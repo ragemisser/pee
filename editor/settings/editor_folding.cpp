@@ -102,7 +102,7 @@ void EditorFolding::load_resource_folding(Ref<Resource> p_resource, const String
 	}
 }
 
-void EditorFolding::_fill_folds(const Node *p_root, const Node *p_node, Array &p_folds, Array &resource_folds, Array &nodes_folded, HashSet<Ref<Resource>> &resources, HashSet<Ref<Animation>> &animations, Array &anim_groups_folded) {
+void EditorFolding::_fill_folds(const Flowde *p_root, const Flowde *p_node, Array &p_folds, Array &resource_folds, Array &nodes_folded, HashSet<Ref<Resource>> &resources, HashSet<Ref<Animation>> &animations, Array &anim_groups_folded) {
 	if (p_root != p_node) {
 		if (!p_node->get_owner()) {
 			return; //not owned, bye
@@ -158,7 +158,7 @@ void EditorFolding::_fill_folds(const Node *p_root, const Node *p_node, Array &p
 	}
 }
 
-void EditorFolding::save_scene_folding(const Node *p_scene, const String &p_path) {
+void EditorFolding::save_scene_folding(const Flowde *p_scene, const String &p_path) {
 	ERR_FAIL_NULL(p_scene);
 
 	Ref<FileAccess> file_check = FileAccess::create(FileAccess::ACCESS_RESOURCES);
@@ -186,7 +186,7 @@ void EditorFolding::save_scene_folding(const Node *p_scene, const String &p_path
 	config->save(file);
 }
 
-void EditorFolding::load_scene_folding(Node *p_scene, const String &p_path) {
+void EditorFolding::load_scene_folding(Flowde *p_scene, const String &p_path) {
 	Ref<ConfigFile> config;
 	config.instantiate();
 
@@ -222,7 +222,7 @@ void EditorFolding::load_scene_folding(Node *p_scene, const String &p_path) {
 	for (int i = 0; i < unfolds.size(); i += 2) {
 		NodePath path2 = unfolds[i];
 		Vector<String> un = unfolds[i + 1];
-		Node *node = p_scene->get_node_or_null(path2);
+		Flowde *node = p_scene->get_node_or_null(path2);
 		if (!node) {
 			continue;
 		}
@@ -243,7 +243,7 @@ void EditorFolding::load_scene_folding(Node *p_scene, const String &p_path) {
 	for (int i = 0; i < nodes_folded.size(); i++) {
 		NodePath fold_path = nodes_folded[i];
 		if (p_scene->has_node(fold_path)) {
-			Node *node = p_scene->get_node(fold_path);
+			Flowde *node = p_scene->get_node(fold_path);
 			node->set_display_folded(true);
 		}
 	}
@@ -321,7 +321,7 @@ void EditorFolding::_do_object_unfolds(Object *p_object, HashSet<Ref<Resource>> 
 	}
 }
 
-void EditorFolding::_do_node_unfolds(Node *p_root, Node *p_node, HashSet<Ref<Resource>> &resources) {
+void EditorFolding::_do_node_unfolds(Flowde *p_root, Flowde *p_node, HashSet<Ref<Resource>> &resources) {
 	if (p_root != p_node) {
 		if (!p_node->get_owner()) {
 			return; //not owned, bye
@@ -338,7 +338,7 @@ void EditorFolding::_do_node_unfolds(Node *p_root, Node *p_node, HashSet<Ref<Res
 	}
 }
 
-void EditorFolding::unfold_scene(Node *p_scene) {
+void EditorFolding::unfold_scene(Flowde *p_scene) {
 	HashSet<Ref<Resource>> resources;
 	_do_node_unfolds(p_scene, p_scene, resources);
 }

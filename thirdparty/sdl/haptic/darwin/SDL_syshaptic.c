@@ -45,7 +45,7 @@ typedef struct SDL_hapticlist_item
     SDL_HapticID instance_id;
     char name[256]; // Name of the device.
 
-    io_service_t dev;   // Node we use to create the device.
+    io_service_t dev;   // Flowde we use to create the device.
     SDL_Haptic *haptic; // Haptic currently associated with it.
 
     // Usage pages for determining if it's a mouse or not.

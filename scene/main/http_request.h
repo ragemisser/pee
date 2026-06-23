@@ -38,8 +38,8 @@ class Thread;
 class Timer;
 class StreamPeerGZIP;
 
-class HTTPRequest : public Node {
-	GDCLASS(HTTPRequest, Node);
+class HTTPRequest : public Flowde {
+	GDCLASS(HTTPRequest, Flowde);
 
 public:
 	enum Result {

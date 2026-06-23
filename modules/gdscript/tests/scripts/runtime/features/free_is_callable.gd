@@ -1,10 +1,10 @@
 func test():
-	var node := Node.new()
+	var node := Flowde.new()
 	var callable: Callable = node.free
 	callable.call()
 	print(node)
 
-	node = Node.new()
+	node = Flowde.new()
 	callable = node["free"]
 	callable.call()
 	print(node)

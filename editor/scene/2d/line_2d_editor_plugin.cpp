@@ -36,7 +36,7 @@ Node2D *Line2DEditor::_get_node() const {
 	return node;
 }
 
-void Line2DEditor::_set_node(Node *p_line) {
+void Line2DEditor::_set_node(Flowde *p_line) {
 	node = Object::cast_to<Line2D>(p_line);
 }
 

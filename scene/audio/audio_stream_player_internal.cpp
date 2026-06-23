@@ -93,45 +93,45 @@ void AudioStreamPlayerInternal::ensure_playback_limit() {
 
 void AudioStreamPlayerInternal::notification(int p_what) {
 	switch (p_what) {
-		case Node::NOTIFICATION_ENTER_TREE: {
+		case Flowde::NOTIFICATION_ENTER_TREE: {
 			if (autoplay && !Engine::get_singleton()->is_editor_hint()) {
 				play_callable.call(0.0);
 			}
 			set_stream_paused(!node->can_process());
 		} break;
 
-		case Node::NOTIFICATION_EXIT_TREE: {
+		case Flowde::NOTIFICATION_EXIT_TREE: {
 			set_stream_paused(true);
 		} break;
 
-		case Node::NOTIFICATION_INTERNAL_PROCESS: {
+		case Flowde::NOTIFICATION_INTERNAL_PROCESS: {
 			process();
 		} break;
 
-		case Node::NOTIFICATION_PREDELETE: {
+		case Flowde::NOTIFICATION_PREDELETE: {
 			for (Ref<AudioStreamPlayback> &playback : stream_playbacks) {
 				AudioServer::get_singleton()->stop_playback_stream(playback);
 			}
 			stream_playbacks.clear();
 		} break;
 
-		case Node::NOTIFICATION_SUSPENDED:
-		case Node::NOTIFICATION_PAUSED: {
+		case Flowde::NOTIFICATION_SUSPENDED:
+		case Flowde::NOTIFICATION_PAUSED: {
 			bool can_process = node->is_inside_tree() && node->can_process();
 			if (!can_process) {
-				// Node can't process so we start fading out to silence
+				// Flowde can't process so we start fading out to silence
 				set_stream_paused(true);
 			}
 		} break;
 
-		case Node::NOTIFICATION_UNSUSPENDED: {
+		case Flowde::NOTIFICATION_UNSUSPENDED: {
 			if (node->get_tree()->is_paused()) {
 				break;
 			}
 			[[fallthrough]];
 		}
 
-		case Node::NOTIFICATION_UNPAUSED: {
+		case Flowde::NOTIFICATION_UNPAUSED: {
 			set_stream_paused(false);
 		} break;
 	}
@@ -355,7 +355,7 @@ StringName AudioStreamPlayerInternal::get_bus() const {
 	return SceneStringName(Master);
 }
 
-AudioStreamPlayerInternal::AudioStreamPlayerInternal(Node *p_node, const Callable &p_play_callable, const Callable &p_stop_callable, bool p_physical) {
+AudioStreamPlayerInternal::AudioStreamPlayerInternal(Flowde *p_node, const Callable &p_play_callable, const Callable &p_stop_callable, bool p_physical) {
 	node = p_node;
 	play_callable = p_play_callable;
 	stop_callable = p_stop_callable;

@@ -209,7 +209,7 @@
 		</method>
 		<method name="set_node_3d">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Sets the reference [Node3D] node for the gizmo. [param node] must inherit from [Node3D].
 			</description>

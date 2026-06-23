@@ -1397,7 +1397,7 @@ void CPUParticles2D::_draw_emission_gizmo() {
 }
 #endif
 
-void CPUParticles2D::convert_from_particles(Node *p_particles) {
+void CPUParticles2D::convert_from_particles(Flowde *p_particles) {
 	GPUParticles2D *gpu_particles = Object::cast_to<GPUParticles2D>(p_particles);
 	ERR_FAIL_NULL_MSG(gpu_particles, "Only GPUParticles2D nodes can be converted to CPUParticles2D.");
 
@@ -1772,7 +1772,7 @@ CPUParticles2D::CPUParticles2D() {
 	// This is because the result often looks better when the particles are updated every frame.
 	// Note that children will need to explicitly turn back on interpolation if they want to use it,
 	// rather than relying on inherit mode.
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_OFF);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_OFF);
 }
 
 CPUParticles2D::~CPUParticles2D() {

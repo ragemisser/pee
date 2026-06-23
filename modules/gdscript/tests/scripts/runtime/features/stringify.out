@@ -22,8 +22,8 @@ hello world
 hello
 hello/world
 RID(0)
-Node::get_name
-Node::[signal]property_list_changed
+Flowde::get_name
+Flowde::[signal]property_list_changed
 { "hello": 123 }
 ["hello", 123]
 [255, 0, 1]

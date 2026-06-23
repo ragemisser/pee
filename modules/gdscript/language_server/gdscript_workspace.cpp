@@ -612,15 +612,15 @@ void GDScriptWorkspace::completion(const LSP::CompletionParams &p_params, List<S
 
 	const ExtendGDScriptParser *parser = GDScriptLanguageProtocol::get_singleton()->get_parse_result(path);
 	if (parser) {
-		Node *owner_scene_node = GDScriptLanguageProtocol::get_singleton()->get_scene_cache()->get(path);
+		Flowde *owner_scene_node = GDScriptLanguageProtocol::get_singleton()->get_scene_cache()->get(path);
 
 		Array stack;
-		Node *current = nullptr;
+		Flowde *current = nullptr;
 		if (owner_scene_node != nullptr) {
 			stack.push_back(owner_scene_node);
 
 			while (!stack.is_empty()) {
-				current = Object::cast_to<Node>(stack.pop_back());
+				current = Object::cast_to<Flowde>(stack.pop_back());
 				Ref<GDScript> scr = current->get_script();
 				if (scr.is_valid() && GDScript::is_canonically_equal_paths(scr->get_path(), path)) {
 					break;

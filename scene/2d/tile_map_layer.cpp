@@ -1605,7 +1605,7 @@ void TileMapLayer::_scenes_update(bool p_force_cleanup) {
 
 void TileMapLayer::_scenes_clear_cell(CellData &r_cell_data) {
 	// Cleanup existing scene.
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 	if (tile_map_node) {
 		// Compatibility with TileMap.
 		node = tile_map_node->get_node_or_null(r_cell_data.scene);
@@ -1634,7 +1634,7 @@ void TileMapLayer::_scenes_update_cell(CellData &r_cell_data) {
 			if (scenes_collection_source) {
 				Ref<PackedScene> packed_scene = scenes_collection_source->get_scene_tile_scene(c.alternative_tile);
 				if (packed_scene.is_valid()) {
-					Node *scene = packed_scene->instantiate();
+					Flowde *scene = packed_scene->instantiate();
 					Control *scene_as_control = Object::cast_to<Control>(scene);
 					Node2D *scene_as_node2d = Object::cast_to<Node2D>(scene);
 					if (scene_as_control) {
@@ -3515,7 +3515,7 @@ void TileMapLayer::navmesh_parse_init() {
 	}
 }
 
-void TileMapLayer::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node) {
+void TileMapLayer::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node) {
 	TileMapLayer *tile_map_layer = Object::cast_to<TileMapLayer>(p_node);
 
 	if (tile_map_layer == nullptr) {

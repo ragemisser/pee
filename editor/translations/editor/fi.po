@@ -651,7 +651,7 @@ msgstr "Lisää %s"
 msgid "Load..."
 msgstr "Lataa..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Siirrä BlendSpace1D solmupistettä"
 
 msgid "Change BlendSpace1D Config"
@@ -668,7 +668,7 @@ msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr ""
 "Tämän tyyppistä solmua ei voi käyttää. Vain juurisolmut ovat sallittuja."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Lisää solmupiste"
 
 msgid "Add Animation Point"
@@ -722,7 +722,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Arvo"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Avaa animaatiosolmu"
 
 msgid "Triangle already exists."
@@ -797,10 +797,10 @@ msgstr "Muokkaa suodattimia"
 msgid "Output node can't be added to the blend tree."
 msgstr "Lähtösolmua ei voida lisätä sulautuspuuhun."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Lisää BlendTree solmu"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Solmu siirretty"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -816,10 +816,10 @@ msgstr "Solmujen yhteyksiä katkaistu"
 msgid "Set Animation"
 msgstr "Aseta animaatio"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Poista solmu"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Poista solmu(t)"
 
 msgid "Toggle Filter On/Off"
@@ -859,10 +859,10 @@ msgstr "Tarkastele Suodatettuja Raitoja:"
 msgid "Edit Filtered Tracks:"
 msgstr "Muokkaa suodatettuja raitoja:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Solmu uudelleennimetty"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Lisää solmu..."
 
 msgid "Enable Filtering"
@@ -1281,7 +1281,7 @@ msgstr "Sulautusajat:"
 msgid "Next (Auto Queue):"
 msgstr "Seuraava (automaattinen jono):"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Siirrä solmua"
 
 msgid "Transition exists!"
@@ -1305,7 +1305,7 @@ msgstr "Toista/Matkusta kohtaan %s"
 msgid "Edit %s"
 msgstr "Muokkaa %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Lisää Solmu ja Siirtymä"
 
 msgid "Transition already exists!"
@@ -1326,7 +1326,7 @@ msgstr "Matkaa"
 msgid "No playback resource set at path: %s."
 msgstr "Polulle ei ole asetettu toistoresurssia: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Solmu poistettu"
 
 msgid "Transition Removed"
@@ -1817,7 +1817,7 @@ msgstr "Animaatio: Lisää RESET avaimet"
 msgid "Bake Animation as Linear Keys"
 msgstr "Animaatio: Tallenna lineaarisina avainruutuina"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Luo solmu"
 
 msgid ""
@@ -2721,7 +2721,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Tallenna haara kohtauksena..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Kopioi solmun polku"
 
 msgid "Expand/Collapse Branch"
@@ -4083,13 +4083,13 @@ msgstr "Tätä toimenpidettä ei voi tehdä puun juurelle."
 msgid "Detach Script"
 msgstr "Irrota skripti"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Siirrä solmu isännän alla"
 
 msgid "Move Nodes in Parent"
 msgstr "Siirrä solmut isännän alla"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Kahdenna solmu(t)"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4097,7 +4097,7 @@ msgstr ""
 "Perittyjen kohtausten solmuja ei voi siirtää uudelleen, solmujen järjestys ei "
 "voi muuttua."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Solmun on kuuluttava muokattuun kohtaukseen, jotta siitä tulee pääte."
 
 msgid "Instantiated scenes can't become root"
@@ -4200,7 +4200,7 @@ msgstr "Ota Kohtauksen Yksilölliset Nimet Pois Käytöstä"
 msgid "New Scene Root"
 msgstr "Uusi kohtauksen pääkansio"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Luo juurisolmu:"
 
 msgid "Favorite Nodes"
@@ -4218,7 +4218,7 @@ msgstr "3D-kohtaus"
 msgid "User Interface"
 msgstr "Käyttöliittymä"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Muu solmu"
 
 msgid "Paste From Clipboard"
@@ -4233,7 +4233,7 @@ msgstr "Ei voi käyttää solmuja, joista nykyinen kohtaus periytyy!"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Tätä toimintoa ei voi toteuttaa ilmennetyissä kohtauksissa."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Vaihda solmun isäntää"
 
 msgid "Attach Script"
@@ -4245,10 +4245,10 @@ msgstr "Aseta varjostin"
 msgid "Toggle Editable Children"
 msgstr "Ota käyttöön muokattavat alisolmut"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Leikkaa solmu(t)"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Poista solmu(t)"
 
 msgid "Change type of node(s)"
@@ -4309,7 +4309,7 @@ msgstr "Avaa editorissa"
 msgid "Auto Expand to Selected"
 msgstr "Laajenna automaattisesti valittuihin"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Keskitä solmu isäntää vaihtaessa"
 
 msgid "Hide Filtered Out Parents"
@@ -4350,13 +4350,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Juurisolmua ei voi liittää samaan kohtaukseen."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Liitä solmu(t) %s sisaruksina"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Liitä solmu(t) %s Jälkeläisinä"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Liitä solmu(t) juurena"
 
 msgid "<Unnamed> at %s"
@@ -4368,7 +4368,7 @@ msgstr "(käytetty %d kertaa)"
 msgid "Batch Rename..."
 msgstr "Niputettu uudelleennimeäminen..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Lisää Alisolmu..."
 
 msgid "Instantiate Child Scene..."
@@ -4398,7 +4398,7 @@ msgstr "Monista"
 msgid "Reparent..."
 msgstr "Uusi isäntä..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Vaihda solmulle uusi isäntä..."
 
 msgid "Make Scene Root"
@@ -4410,11 +4410,11 @@ msgstr "Vaihda Käyttö Yksilöllisellä Nimellä"
 msgid "Delete (No Confirm)"
 msgstr "Poista (ei varmistusta)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Lisää/Luo uusi solmu."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Ilmennä kohtaustiedosto solmuna. Luo perityn kohtauksen, jos juurisolmua ei "
@@ -5136,16 +5136,16 @@ msgstr "Kopioi järjestelmän informaation yhtenä teksti rivinä leikepöydäll
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Lukitse valitut solmut"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Vapauta valitut solmut"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Ryhmitä valitut solmut"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Poista ryhmitys valituilta solmuilta"
 
 msgid "Pan View"
@@ -6727,7 +6727,7 @@ msgstr "Aseta..."
 msgid "Copy as Text"
 msgstr "Kopioi Tekstinä"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Näytä Solmu Puussa"
 
 msgid "Invalid RID"
@@ -8217,7 +8217,7 @@ msgstr "\"%s\" ei sisällä tahkogeometriaa."
 msgid "Generate AABB"
 msgstr "Generoi AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Luo säteilypisteet solmusta"
 
 msgid "The geometry's faces don't contain any area."
@@ -8319,7 +8319,7 @@ msgstr "Kierron välistys:"
 msgid "Scale Step:"
 msgstr "Skaalauksen välistys:"
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Siirrä Solmu(t) Sijaintiin"
 
 msgid "Move Vertical Guide"
@@ -8346,10 +8346,10 @@ msgstr "Luo vaaka- ja pystysuorat apuviivat"
 msgid "Instantiate Scene Here..."
 msgstr "Luo Kohtaus Esiintymä Tähän..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Liitä Solmu(t) Tähän"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Siirrä Solmu(t) Tähän"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -8460,13 +8460,13 @@ msgstr "Tartu pikseleihin"
 msgid "Snap to Parent"
 msgstr "Tartu isäntään"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Tartu solmun ankkuriin"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Tartu solmun reunoihin"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Tartu solmun keskipisteeseen"
 
 msgid "Snap to Other Nodes"
@@ -8587,7 +8587,7 @@ msgstr "Liitetty Skripti"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Callback koodia ei luoda, ole hyvä ja lisää se manuaalisesti."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Yhdistä solmuun:"
 
 msgid "Connect to Script:"
@@ -9126,8 +9126,8 @@ msgstr "Toinen teema"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Suodata tyyppien luetteloa tai luo uusi mukautettu tyyppi:"
 
-msgid "Available Node-based types:"
-msgstr "Saatavilla olevat Node-pohjaiset tyypit:"
+msgid "Available Flowde-based types:"
+msgstr "Saatavilla olevat Flowde-pohjaiset tyypit:"
 
 msgid "Type name is empty!"
 msgstr "Tyypin nimi on tyhjä!"
@@ -9314,13 +9314,13 @@ msgstr "Käytä säännöllisiä lausekkeita"
 msgid "Substitute"
 msgstr "Korvike"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Solmun nimi."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Solmun yläsolmun nimi, jos saatavilla."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Solmun tyyppi."
 
 msgid "Current scene name."
@@ -9436,7 +9436,7 @@ msgstr "Juurisolmu validi."
 msgid "Toggle Visible"
 msgstr "Aseta näkyvyys"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Poista solmun lukitus"
 
 msgid "Disable Scene Unique Name"
@@ -9445,16 +9445,16 @@ msgstr "Poista Kohtauksen Uniikki Nimi Käytöstä"
 msgid "(Connecting From)"
 msgstr "(Yhdistetään paikasta)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Solmun konfiguroinnin varoitus:"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Solmulla on yksi yhteys."
 msgstr[1] "Solmulla on {num} yhteyttä."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Solmu kuluu ryhmään:"
 msgstr[1] "Solmu kuuluu seuraaviin ryhmiin:"
 
@@ -9468,7 +9468,7 @@ msgid "Open Script:"
 msgstr "Avaa skripti:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Solmu on lukittu.\n"
@@ -9497,13 +9497,13 @@ msgstr "Virheellinen solmun nimi, seuraavat merkit eivät ole sallittuja:"
 msgid "Scene Tree (Nodes):"
 msgstr "Kohtauspuu (solmut):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Solmun konfigurointivaroitus!"
 
 msgid "Allowed:"
 msgstr "Sallittu:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Valitse solmu"
 
 msgid "Show All"
@@ -9764,7 +9764,7 @@ msgstr "Luo uuden skriptitiedoston."
 msgid "Built-in Script:"
 msgstr "Sisäänrakennettu skripti:"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Liitä solmun skripti"
 
 msgid "Line"
@@ -10833,7 +10833,7 @@ msgstr "Ei tarpeeksi tavuja tavujen purkamiseksi tai virheellinen formaatti."
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Solmu"
 
 msgid "Incoming RPC"
@@ -10952,7 +10952,7 @@ msgstr "Aseta Parametrin Nimi"
 msgid "Set Input Default Port"
 msgstr "Aseta oletustuloportti"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Lisää solmu visuaaliseen sävyttimeen"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -10979,10 +10979,10 @@ msgstr "Taivas"
 msgid "Fog"
 msgstr "Sumu"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Lisää solmu"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Luo sävytinsolmu"
 
 msgid "Color function."
@@ -11929,19 +11929,19 @@ msgstr ""
 "CollisionShape2D solmulla täytyy olla muoto, jotta se toimisi. Ole hyvä ja "
 "luo sille muotoresurssi!"
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Solmujen A ja B tulee olla PhysicsBody2D tyyppisiä"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Solmun A tulee olla PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Solmun B tulee olla PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Liitos ei ole yhdistetty kahteen PhysicsBody2D solmuun"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Solmujen A ja B tulee olla eri PhysicsBody2D solmut"
 
 msgid ""

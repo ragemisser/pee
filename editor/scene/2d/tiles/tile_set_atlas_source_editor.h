@@ -309,7 +309,7 @@ class EditorPropertyTilePolygon : public EditorProperty {
 	String element_pattern;
 	String base_type;
 
-	void _add_focusable_children(Node *p_node);
+	void _add_focusable_children(Flowde *p_node);
 
 	GenericTilePolygonEditor *generic_tile_polygon_editor = nullptr;
 	void _polygons_changed();

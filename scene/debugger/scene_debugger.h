@@ -35,7 +35,7 @@
 
 class Array;
 class InputEvent;
-class Node;
+class Flowde;
 class Shortcut;
 
 class SceneDebugger {
@@ -58,7 +58,7 @@ private:
 	static void _on_output_max_linear_value_changed(float output_max_linear_value);
 
 	static void _save_node(ObjectID id, const String &p_path);
-	static void _set_node_owner_recursive(Node *p_node, Node *p_owner);
+	static void _set_node_owner_recursive(Flowde *p_node, Flowde *p_owner);
 	static void _set_object_property(ObjectID p_id, const String &p_property, const Variant &p_value, const String &p_field = "");
 	static void _send_object_ids(const Vector<ObjectID> &p_ids, bool p_update_selection);
 	static void _next_frame();
@@ -123,8 +123,8 @@ private:
 
 public:
 	static Error parse_message(void *p_user, const String &p_msg, const Array &p_args, bool &r_captured);
-	static void add_to_cache(const String &p_filename, Node *p_node);
-	static void remove_from_cache(const String &p_filename, Node *p_node);
+	static void add_to_cache(const String &p_filename, Flowde *p_node);
+	static void remove_from_cache(const String &p_filename, Flowde *p_node);
 	static void reload_cached_files(const PackedStringArray &p_files);
 #endif
 };
@@ -139,8 +139,8 @@ private:
 	NodePath live_edit_root;
 	String live_edit_scene;
 
-	HashMap<String, HashSet<Node *>> live_scene_edit_cache;
-	HashMap<Node *, HashMap<ObjectID, Node *>> live_edit_remove_list;
+	HashMap<String, HashSet<Flowde *>> live_scene_edit_cache;
+	HashMap<Flowde *, HashMap<ObjectID, Flowde *>> live_edit_remove_list;
 
 	void _send_tree();
 

@@ -297,7 +297,7 @@ public:
 	};
 #endif // TOOLS_ENABLED
 
-	struct Node {
+	struct Flowde {
 		enum Type {
 			NONE,
 			ANNOTATION,
@@ -347,7 +347,7 @@ public:
 		int start_column = -1;
 		int end_line = -1;
 		int end_column = -1;
-		Node *next = nullptr;
+		Flowde *next = nullptr;
 		List<AnnotationNode *> annotations;
 
 		DataType datatype;
@@ -357,10 +357,10 @@ public:
 
 		virtual bool is_expression() const { return false; }
 
-		virtual ~Node() {}
+		virtual ~Flowde() {}
 	};
 
-	struct ExpressionNode : public Node {
+	struct ExpressionNode : public Flowde {
 		// Base type for all expression kinds.
 		bool reduced = false;
 		bool is_constant = false;
@@ -373,7 +373,7 @@ public:
 		ExpressionNode() {}
 	};
 
-	struct AnnotationNode : public Node {
+	struct AnnotationNode : public Flowde {
 		StringName name;
 		Vector<ExpressionNode *> arguments;
 		Vector<Variant> resolved_arguments;
@@ -384,7 +384,7 @@ public:
 		bool is_resolved = false;
 		bool is_applied = false;
 
-		bool apply(GDScriptParser *p_this, Node *p_target, ClassNode *p_class);
+		bool apply(GDScriptParser *p_this, Flowde *p_target, ClassNode *p_class);
 		bool applies_to(uint32_t p_target_kinds) const;
 
 		AnnotationNode() {
@@ -400,7 +400,7 @@ public:
 		}
 	};
 
-	struct AssertNode : public Node {
+	struct AssertNode : public Flowde {
 		ExpressionNode *condition = nullptr;
 		ExpressionNode *message = nullptr;
 
@@ -409,7 +409,7 @@ public:
 		}
 	};
 
-	struct AssignableNode : public Node {
+	struct AssignableNode : public Flowde {
 		IdentifierNode *identifier = nullptr;
 		ExpressionNode *initializer = nullptr;
 		TypeNode *datatype_specifier = nullptr;
@@ -493,13 +493,13 @@ public:
 		}
 	};
 
-	struct BreakNode : public Node {
+	struct BreakNode : public Flowde {
 		BreakNode() {
 			type = BREAK;
 		}
 	};
 
-	struct BreakpointNode : public Node {
+	struct BreakpointNode : public Flowde {
 		BreakpointNode() {
 			type = BREAKPOINT;
 		}
@@ -534,7 +534,7 @@ public:
 		}
 	};
 
-	struct EnumNode : public Node {
+	struct EnumNode : public Flowde {
 		struct Value {
 			IdentifierNode *identifier = nullptr;
 			ExpressionNode *custom_value = nullptr;
@@ -562,7 +562,7 @@ public:
 		}
 	};
 
-	struct ClassNode : public Node {
+	struct ClassNode : public Flowde {
 		struct Member {
 			enum Type {
 				UNDEFINED,
@@ -687,7 +687,7 @@ public:
 				ERR_FAIL_V_MSG(DataType(), "Reaching unhandled type.");
 			}
 
-			Node *get_source_node() const {
+			Flowde *get_source_node() const {
 				switch (type) {
 					case CLASS:
 						return m_class;
@@ -819,7 +819,7 @@ public:
 		}
 	};
 
-	struct ContinueNode : public Node {
+	struct ContinueNode : public Flowde {
 		ContinueNode() {
 			type = CONTINUE;
 		}
@@ -843,7 +843,7 @@ public:
 		}
 	};
 
-	struct ForNode : public Node {
+	struct ForNode : public Flowde {
 		IdentifierNode *variable = nullptr;
 		TypeNode *datatype_specifier = nullptr;
 		bool use_conversion_assign = false;
@@ -855,7 +855,7 @@ public:
 		}
 	};
 
-	struct FunctionNode : public Node {
+	struct FunctionNode : public Flowde {
 		IdentifierNode *identifier = nullptr;
 		Vector<ParameterNode *> parameters;
 		HashMap<StringName, int> parameters_indices;
@@ -935,7 +935,7 @@ public:
 		}
 	};
 
-	struct IfNode : public Node {
+	struct IfNode : public Flowde {
 		ExpressionNode *condition = nullptr;
 		SuiteNode *true_block = nullptr;
 		SuiteNode *false_block = nullptr;
@@ -970,7 +970,7 @@ public:
 		}
 	};
 
-	struct MatchNode : public Node {
+	struct MatchNode : public Flowde {
 		ExpressionNode *test = nullptr;
 		Vector<MatchBranchNode *> branches;
 
@@ -979,7 +979,7 @@ public:
 		}
 	};
 
-	struct MatchBranchNode : public Node {
+	struct MatchBranchNode : public Flowde {
 		Vector<PatternNode *> patterns;
 		SuiteNode *block = nullptr;
 		bool has_wildcard = false;
@@ -996,13 +996,13 @@ public:
 		}
 	};
 
-	struct PassNode : public Node {
+	struct PassNode : public Flowde {
 		PassNode() {
 			type = PASS;
 		}
 	};
 
-	struct PatternNode : public Node {
+	struct PatternNode : public Flowde {
 		enum Type {
 			PT_LITERAL,
 			PT_EXPRESSION,
@@ -1047,7 +1047,7 @@ public:
 		}
 	};
 
-	struct ReturnNode : public Node {
+	struct ReturnNode : public Flowde {
 		ExpressionNode *return_value = nullptr;
 		bool void_return = false;
 		bool use_conversion = false;
@@ -1065,7 +1065,7 @@ public:
 		}
 	};
 
-	struct SignalNode : public Node {
+	struct SignalNode : public Flowde {
 		IdentifierNode *identifier = nullptr;
 		Vector<ParameterNode *> parameters;
 		HashMap<StringName, int> parameters_indices;
@@ -1095,9 +1095,9 @@ public:
 		}
 	};
 
-	struct SuiteNode : public Node {
+	struct SuiteNode : public Flowde {
 		SuiteNode *parent_block = nullptr;
-		Vector<Node *> statements;
+		Vector<Flowde *> statements;
 		struct Local {
 			enum Type {
 				UNDEFINED,
@@ -1211,7 +1211,7 @@ public:
 		}
 	};
 
-	struct TypeNode : public Node {
+	struct TypeNode : public Flowde {
 		Vector<IdentifierNode *> type_chain;
 		Vector<TypeNode *> container_types;
 
@@ -1283,7 +1283,7 @@ public:
 		}
 	};
 
-	struct WhileNode : public Node {
+	struct WhileNode : public Flowde {
 		ExpressionNode *condition = nullptr;
 		SuiteNode *loop = nullptr;
 
@@ -1320,7 +1320,7 @@ public:
 	};
 
 	struct CompletionCall {
-		Node *call = nullptr;
+		Flowde *call = nullptr;
 		int argument = -1;
 	};
 
@@ -1335,7 +1335,7 @@ public:
 			int type_chain_index;
 		};
 		Variant::Type builtin_type = Variant::VARIANT_MAX;
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 		Object *base = nullptr;
 		GDScriptParser *parser = nullptr;
 		CompletionCall call;
@@ -1356,7 +1356,7 @@ private:
 	HashMap<String, Ref<GDScriptParserRef>> depended_parsers;
 
 	ClassNode *head = nullptr;
-	Node *list = nullptr;
+	Flowde *list = nullptr;
 	List<ParserError> errors;
 
 #ifdef DEBUG_ENABLED
@@ -1374,7 +1374,7 @@ public:
 
 private:
 	struct PendingWarning {
-		const Node *source = nullptr;
+		const Flowde *source = nullptr;
 		GDScriptWarning::Code code = GDScriptWarning::WARNING_MAX;
 		bool treated_as_error = false;
 		Vector<String> symbols;
@@ -1406,7 +1406,7 @@ private:
 	bool in_lambda = false;
 	bool lambda_ended = false; // Marker for when a lambda ends, to apply an end of statement if needed.
 
-	typedef bool (GDScriptParser::*AnnotationAction)(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
+	typedef bool (GDScriptParser::*AnnotationAction)(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
 	struct AnnotationInfo {
 		enum TargetKind {
 			NONE = 0,
@@ -1462,11 +1462,11 @@ private:
 	};
 	static ParseRule *get_rule(GDScriptTokenizer::Token::Type p_token_type);
 
-	List<Node *> nodes_in_progress;
-	void complete_extents(Node *p_node);
-	void update_extents(Node *p_node);
-	void reset_extents(Node *p_node, GDScriptTokenizer::Token p_token);
-	void reset_extents(Node *p_node, Node *p_from);
+	List<Flowde *> nodes_in_progress;
+	void complete_extents(Flowde *p_node);
+	void update_extents(Flowde *p_node);
+	void reset_extents(Flowde *p_node, GDScriptTokenizer::Token p_token);
+	void reset_extents(Flowde *p_node, Flowde *p_from);
 
 	template <typename T>
 	T *alloc_node() {
@@ -1502,13 +1502,13 @@ private:
 
 	void clear();
 
-	void push_error(const String &p_message, const Node *p_origin = nullptr);
+	void push_error(const String &p_message, const Flowde *p_origin = nullptr);
 	void push_error(const String &p_message, const GDScriptTokenizer::Token &p_origin);
 
 #ifdef DEBUG_ENABLED
-	void push_warning(const Node *p_source, GDScriptWarning::Code p_code, const Vector<String> &p_symbols);
+	void push_warning(const Flowde *p_source, GDScriptWarning::Code p_code, const Vector<String> &p_symbols);
 	template <typename... Symbols>
-	void push_warning(const Node *p_source, GDScriptWarning::Code p_code, const Symbols &...p_symbols) {
+	void push_warning(const Flowde *p_source, GDScriptWarning::Code p_code, const Symbols &...p_symbols) {
 		push_warning(p_source, p_code, Vector<String>{ p_symbols... });
 	}
 	void apply_pending_warnings();
@@ -1518,12 +1518,12 @@ private:
 	// Setting p_force to false will prevent the completion context from being update if a context was already set before.
 	// This should only be done when we push context before we consumed any tokens for the corresponding structure.
 	// See parse_precedence for an example.
-	void make_completion_context(CompletionType p_type, Node *p_node, int p_argument = -1, bool p_force = true);
+	void make_completion_context(CompletionType p_type, Flowde *p_node, int p_argument = -1, bool p_force = true);
 	void make_completion_context(CompletionType p_type, Variant::Type p_builtin_type, bool p_force = true);
 	// In some cases it might become necessary to alter the completion context after parsing a subexpression.
 	// For example to not override COMPLETE_CALL_ARGUMENTS with COMPLETION_NONE from string literals.
-	void override_completion_context(const Node *p_for_node, CompletionType p_type, Node *p_node, int p_argument = -1);
-	void push_completion_call(Node *p_call);
+	void override_completion_context(const Flowde *p_for_node, CompletionType p_type, Flowde *p_node, int p_argument = -1);
+	void push_completion_call(Flowde *p_call);
 	void pop_completion_call();
 	void set_last_completion_call_arg(int p_argument);
 
@@ -1558,23 +1558,23 @@ private:
 	static bool register_annotation(const MethodInfo &p_info, uint32_t p_target_kinds, AnnotationAction p_apply, const Vector<Variant> &p_default_arguments = Vector<Variant>(), bool p_is_vararg = false);
 	bool validate_annotation_arguments(AnnotationNode *p_annotation);
 	void clear_unused_annotations();
-	bool tool_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool icon_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool static_unload_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool abstract_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool onready_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
+	bool tool_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool icon_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool static_unload_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool abstract_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool onready_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
 	template <PropertyHint t_hint, Variant::Type t_type>
-	bool export_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool export_storage_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool export_custom_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool export_tool_button_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
+	bool export_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool export_storage_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool export_custom_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool export_tool_button_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
 	template <PropertyUsageFlags t_usage>
-	bool export_group_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool warning_ignore_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool warning_ignore_region_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
-	bool rpc_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class);
+	bool export_group_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool warning_ignore_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool warning_ignore_region_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
+	bool rpc_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class);
 	// Statements.
-	Node *parse_statement();
+	Flowde *parse_statement();
 	VariableNode *parse_variable(bool p_is_static);
 	VariableNode *parse_variable(bool p_is_static, bool p_allow_property);
 	VariableNode *parse_property(VariableNode *p_variable, bool p_need_indent);
@@ -1705,7 +1705,7 @@ public:
 		void print_return(ReturnNode *p_return);
 		void print_self(SelfNode *p_self);
 		void print_signal(SignalNode *p_signal);
-		void print_statement(Node *p_statement);
+		void print_statement(Flowde *p_statement);
 		void print_subscript(SubscriptNode *p_subscript);
 		void print_suite(SuiteNode *p_suite);
 		void print_ternary_op(TernaryOpNode *p_ternary_op);

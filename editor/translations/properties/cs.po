@@ -354,10 +354,10 @@ msgstr "Internacionalizace"
 msgid "Force Right to Left Layout Direction"
 msgstr "Vynutit směr rozvržení zprava doleva"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Směr rozvržení kořenového uzlu"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Automatický překlad kořenového uzlu"
 
 msgid "GUI"
@@ -1146,7 +1146,7 @@ msgstr "Přejmenovávač kostí"
 msgid "Rename Bones"
 msgstr "Přejmenovat kosti"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Unikátní uzel"
 
 msgid "Make Unique"
@@ -1158,7 +1158,7 @@ msgstr "Název kostry"
 msgid "Rest Fixer"
 msgstr "Opravení klidu"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Aplikovat transformace uzlu"
 
 msgid "Normalize Position Tracks"
@@ -1227,10 +1227,10 @@ msgstr "Offset sítě"
 msgid "Force Disable Mesh Compression"
 msgstr "Nuceně zakázat kompresi sítě"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Uzel"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Typ Uzlu"
 
 msgid "Script"
@@ -1440,7 +1440,7 @@ msgstr "Importovat jako kosti kostry"
 msgid "Use Name Suffixes"
 msgstr "Použít Sufixy Jména"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Použít sufixy typu uzlu"
 
 msgid "Meshes"
@@ -2257,7 +2257,7 @@ msgstr "Spouštět dialog vytváření plně rozbalený"
 msgid "Auto Expand to Selected"
 msgstr "Automaticky rozbalit k výběru"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Vycentrovat uzel při změně rodiče"
 
 msgid "Hide Filtered Out Parents"
@@ -2401,7 +2401,7 @@ msgstr "Rychlost vertikálního posouvání"
 msgid "Drag and Drop Selection"
 msgstr "Výběr přetažením"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Zůstat v editoru skriptu při výběru uzlu"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2524,7 +2524,7 @@ msgstr "Přidat nápovědy typů"
 msgid "Add String Name Literals"
 msgstr "Přidat StringName literály"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Přidat NodePath literály"
 
 msgid "Use Single Quotes"
@@ -3451,7 +3451,7 @@ msgstr "Úhly točení"
 msgid "Spin Sides"
 msgstr "Stěny točení"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Uzel cesty"
 
 msgid "Path Interval Type"
@@ -3580,7 +3580,7 @@ msgstr "Síť importu"
 msgid "Image Format"
 msgstr "Formát obrázku"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Režim kořenového uzlu"
 
 msgid "Json"
@@ -3754,7 +3754,7 @@ msgstr "glTF na výraz Godotu"
 msgid "Godot to glTF Expression"
 msgstr "Godot na výraz glTF"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Cesty k uzlům"
 
 msgid "Object Model Type"
@@ -3772,7 +3772,7 @@ msgstr "Klouby"
 msgid "Roots"
 msgstr "Kořeny"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Uzel kosti Godotu"
 
 msgid "Skin Root"
@@ -3925,7 +3925,7 @@ msgstr "Zlomek rozpětí kolize"
 msgid "Active Edge Threshold"
 msgstr "Práh aktivních hran"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Uzel světa"
 
 msgid "Temporary Memory Buffer Size"
@@ -5590,10 +5590,10 @@ msgstr "Délka klidu"
 msgid "Stiffness"
 msgstr "Tuhost"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "Uzel A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "Uzel B"
 
 msgid "Bias"
@@ -6105,7 +6105,7 @@ msgstr "Členění"
 msgid "Light Data"
 msgstr "Světelná data"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "Cílový uzel"
 
 msgid "Forward Axis"
@@ -6123,7 +6123,7 @@ msgstr "Nastavení počátku"
 msgid "From"
 msgstr "Z"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Externí uzel"
 
 msgid "Time Based Interpolation"
@@ -6513,7 +6513,7 @@ msgstr "Požadavek přechodu"
 msgid "Reset on Save"
 msgstr "Resetovat při uložení"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Kořenový uzel"
 
 msgid "Root Motion"

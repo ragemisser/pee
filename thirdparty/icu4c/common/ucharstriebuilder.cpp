@@ -285,13 +285,13 @@ UCharsTrieBuilder::indexOfElementWithNextUnit(int32_t i, int32_t unitIndex, char
     return i;
 }
 
-UCharsTrieBuilder::UCTLinearMatchNode::UCTLinearMatchNode(const char16_t *units, int32_t len, Node *nextNode)
+UCharsTrieBuilder::UCTLinearMatchNode::UCTLinearMatchNode(const char16_t *units, int32_t len, Flowde *nextNode)
         : LinearMatchNode(len, nextNode), s(units) {
     hash=hash*37u+ustr_hashUCharsN(units, len);
 }
 
 bool
-UCharsTrieBuilder::UCTLinearMatchNode::operator==(const Node &other) const {
+UCharsTrieBuilder::UCTLinearMatchNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
@@ -310,9 +310,9 @@ UCharsTrieBuilder::UCTLinearMatchNode::write(StringTrieBuilder &builder) {
     offset=b.writeValueAndType(hasValue, value, b.getMinLinearMatch()+length-1);
 }
 
-StringTrieBuilder::Node *
+StringTrieBuilder::Flowde *
 UCharsTrieBuilder::createLinearMatchNode(int32_t i, int32_t unitIndex, int32_t length,
-                                         Node *nextNode) const {
+                                         Flowde *nextNode) const {
     return new UCTLinearMatchNode(
             elements[i].getString(strings).getBuffer()+unitIndex,
             length,

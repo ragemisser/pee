@@ -8,7 +8,7 @@ _data = {
 "bounce": SubResource("Animation_d1pub")
 }
 
-[node name="GetNode" type="Node"]
+[node name="GetNode" type="Flowde"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,4 @@
-class Foo extends Node:
+class Foo extends Flowde:
 	func _init():
 		name = 'f'
 		var string: String = name

@@ -396,7 +396,7 @@ LightmapGIData::~LightmapGIData() {
 
 ///////////////////////////
 
-void LightmapGI::_find_meshes_and_lights(Node *p_at_node, Vector<MeshesFound> &meshes, Vector<LightsFound> &lights, Vector<Vector3> &probes) {
+void LightmapGI::_find_meshes_and_lights(Flowde *p_at_node, Vector<MeshesFound> &meshes, Vector<LightsFound> &lights, Vector<Vector3> &probes) {
 	MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(p_at_node);
 	if (mi && mi->get_gi_mode() == GeometryInstance3D::GI_MODE_STATIC && mi->is_visible_in_tree()) {
 		Ref<Mesh> mesh = mi->get_mesh();
@@ -485,7 +485,7 @@ void LightmapGI::_find_meshes_and_lights(Node *p_at_node, Vector<MeshesFound> &m
 	}
 
 	for (int i = 0; i < p_at_node->get_child_count(); i++) {
-		Node *child = p_at_node->get_child(i);
+		Flowde *child = p_at_node->get_child(i);
 		if (!child->get_owner()) {
 			continue; //maybe a helper
 		}
@@ -1057,7 +1057,7 @@ void LightmapGI::_build_area_light_texture_atlas(const Vector<LightmapGI::Lights
 	}
 }
 
-LightmapGI::BakeError LightmapGI::bake(Node *p_from_node, String p_image_data_path, Lightmapper::BakeStepFunc p_bake_step, void *p_bake_userdata) {
+LightmapGI::BakeError LightmapGI::bake(Flowde *p_from_node, String p_image_data_path, Lightmapper::BakeStepFunc p_bake_step, void *p_bake_userdata) {
 	if (p_image_data_path.is_empty()) {
 		if (get_light_data().is_null()) {
 			return BAKE_ERROR_NO_SAVE_PATH;
@@ -1735,7 +1735,7 @@ void LightmapGI::_assign_lightmaps() {
 
 	for (int i = 0; i < light_data->get_user_count(); i++) {
 		NodePath user_path = light_data->get_user_path(i);
-		Node *node = get_node_or_null(user_path);
+		Flowde *node = get_node_or_null(user_path);
 		if (!node) {
 			missing_node_paths.push_back(String(user_path));
 			continue;
@@ -1767,7 +1767,7 @@ void LightmapGI::_assign_lightmaps() {
 void LightmapGI::_clear_lightmaps() {
 	ERR_FAIL_COND(light_data.is_null());
 	for (int i = 0; i < light_data->get_user_count(); i++) {
-		Node *node = get_node_or_null(light_data->get_user_path(i));
+		Flowde *node = get_node_or_null(light_data->get_user_path(i));
 		if (!node) {
 			continue;
 		}

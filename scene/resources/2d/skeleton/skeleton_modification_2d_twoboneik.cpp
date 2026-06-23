@@ -280,7 +280,7 @@ void SkeletonModification2DTwoBoneIK::update_target_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(target_node)) {
-				Node *node = stack->skeleton->get_node(target_node);
+				Flowde *node = stack->skeleton->get_node(target_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update target cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -303,7 +303,7 @@ void SkeletonModification2DTwoBoneIK::update_joint_one_bone2d_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(joint_one_bone2d_node)) {
-				Node *node = stack->skeleton->get_node(joint_one_bone2d_node);
+				Flowde *node = stack->skeleton->get_node(joint_one_bone2d_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update joint one Bone2D cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -333,7 +333,7 @@ void SkeletonModification2DTwoBoneIK::update_joint_two_bone2d_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(joint_two_bone2d_node)) {
-				Node *node = stack->skeleton->get_node(joint_two_bone2d_node);
+				Flowde *node = stack->skeleton->get_node(joint_two_bone2d_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update joint two Bone2D cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),

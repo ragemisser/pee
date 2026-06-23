@@ -155,11 +155,11 @@ TypedArray<GLTFAnimation> GLTFState::_get_animations_bind_compat_113172() {
 	return get_animations_bind();
 }
 
-Node *GLTFState::_get_scene_node_bind_compat_113172(GLTFNodeIndex p_gltf_node_index) {
+Flowde *GLTFState::_get_scene_node_bind_compat_113172(GLTFNodeIndex p_gltf_node_index) {
 	return get_scene_node(p_gltf_node_index);
 }
 
-GLTFNodeIndex GLTFState::_get_node_index_bind_compat_113172(Node *p_node) {
+GLTFNodeIndex GLTFState::_get_node_index_bind_compat_113172(Flowde *p_node) {
 	return get_node_index(p_node);
 }
 

@@ -852,7 +852,7 @@ private:
 	void _set_property_favorited(const String &p_path, bool p_favorited);
 	void _clear_current_favorites();
 
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	HashMap<StringName, int> per_array_page;
 	void _page_change_request(int p_new_page, const StringName &p_array_prefix);
@@ -929,7 +929,7 @@ public:
 	void set_hide_metadata(bool p_hide);
 
 	void set_use_filter(bool p_use);
-	void register_text_enter(Node *p_line_edit);
+	void register_text_enter(Flowde *p_line_edit);
 
 	void set_use_folding(bool p_use_folding, bool p_update_tree = true);
 	bool is_using_folding();

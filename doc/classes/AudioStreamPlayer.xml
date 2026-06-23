@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioStreamPlayer" inherits="Node" api_type="core" keywords="sound, music, song" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioStreamPlayer" inherits="Flowde" api_type="core" keywords="sound, music, song" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		A node for audio playback.
 	</brief_description>
@@ -86,7 +86,7 @@
 		</member>
 		<member name="stream_paused" type="bool" setter="set_stream_paused" getter="get_stream_paused" default="false">
 			If [code]true[/code], the sounds are paused. Setting [member stream_paused] to [code]false[/code] resumes all sounds.
-			[b]Note:[/b] This property is automatically changed when exiting or entering the tree, or this node is paused (see [member Node.process_mode]).
+			[b]Note:[/b] This property is automatically changed when exiting or entering the tree, or this node is paused (see [member Flowde.process_mode]).
 		</member>
 		<member name="volume_db" type="float" setter="set_volume_db" getter="get_volume_db" default="0.0">
 			Volume of sound, in decibels. This is an offset of the [member stream]'s volume.

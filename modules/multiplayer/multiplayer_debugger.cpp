@@ -73,10 +73,10 @@ Error MultiplayerDebugger::_capture(void *p_user, const String &p_msg, const Arr
 				out.push_back(id);
 				out.push_back(obj->get_class());
 				out.push_back(((SceneReplicationConfig *)obj)->get_path());
-			} else if (Object::cast_to<Node>(obj)) {
+			} else if (Object::cast_to<Flowde>(obj)) {
 				out.push_back(id);
 				out.push_back(obj->get_class());
-				out.push_back(String(((Node *)obj)->get_path()));
+				out.push_back(String(((Flowde *)obj)->get_path()));
 			} else {
 				ERR_FAIL_V(FAILED);
 			}
@@ -196,7 +196,7 @@ void MultiplayerDebugger::RPCProfiler::init_node(const ObjectID p_node) {
 	}
 	rpc_node_data.insert(p_node, RPCNodeInfo());
 	rpc_node_data[p_node].node = p_node;
-	rpc_node_data[p_node].node_path = String(ObjectDB::get_instance<Node>(p_node)->get_path());
+	rpc_node_data[p_node].node_path = String(ObjectDB::get_instance<Flowde>(p_node)->get_path());
 }
 
 void MultiplayerDebugger::RPCProfiler::toggle(bool p_enable, const Array &p_opts) {

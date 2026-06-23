@@ -210,7 +210,7 @@ private:
 	Ref<CameraAttributes> camera_attributes;
 
 	Ref<LightmapGIData> light_data;
-	Node *last_owner = nullptr;
+	Flowde *last_owner = nullptr;
 
 	struct LightsFound {
 		Transform3D xform;
@@ -231,7 +231,7 @@ private:
 		Vector<Ref<Material>> overrides;
 	};
 
-	void _find_meshes_and_lights(Node *p_at_node, Vector<MeshesFound> &meshes, Vector<LightsFound> &lights, Vector<Vector3> &probes);
+	void _find_meshes_and_lights(Flowde *p_at_node, Vector<MeshesFound> &meshes, Vector<LightsFound> &lights, Vector<Vector3> &probes);
 
 	void _assign_lightmaps();
 	void _clear_lightmaps();
@@ -353,7 +353,7 @@ public:
 
 	AABB get_aabb() const override;
 
-	BakeError bake(Node *p_from_node, String p_image_data_path = "", Lightmapper::BakeStepFunc p_bake_step = nullptr, void *p_bake_userdata = nullptr);
+	BakeError bake(Flowde *p_from_node, String p_image_data_path = "", Lightmapper::BakeStepFunc p_bake_step = nullptr, void *p_bake_userdata = nullptr);
 
 	virtual PackedStringArray get_configuration_warnings() const override;
 

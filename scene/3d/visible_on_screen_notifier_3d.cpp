@@ -137,7 +137,7 @@ void VisibleOnScreenEnabler3D::set_enable_node_path(NodePath p_path) {
 	}
 	if (is_inside_tree() && !Engine::get_singleton()->is_editor_hint()) {
 		node_id = ObjectID();
-		Node *node = get_node(enable_node_path);
+		Flowde *node = get_node(enable_node_path);
 		if (node) {
 			node_id = node->get_instance_id();
 			_update_enable_mode(is_on_screen());
@@ -149,7 +149,7 @@ NodePath VisibleOnScreenEnabler3D::get_enable_node_path() {
 }
 
 void VisibleOnScreenEnabler3D::_update_enable_mode(bool p_enable) {
-	Node *node = ObjectDB::get_instance<Node>(node_id);
+	Flowde *node = ObjectDB::get_instance<Flowde>(node_id);
 	if (node) {
 		if (p_enable) {
 			switch (enable_mode) {
@@ -179,7 +179,7 @@ void VisibleOnScreenEnabler3D::_notification(int p_what) {
 				return;
 			}
 
-			Node *node = get_node(enable_node_path);
+			Flowde *node = get_node(enable_node_path);
 			if (node) {
 				node_id = node->get_instance_id();
 				node->set_process_mode(PROCESS_MODE_DISABLED);

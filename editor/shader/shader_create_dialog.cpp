@@ -163,7 +163,7 @@ void ShaderCreateDialog::_create_new() {
 		emit_signal(SNAME("shader_include_created"), shader_inc);
 	} else {
 		if (is_built_in) {
-			Node *edited_scene = get_tree()->get_edited_scene_root();
+			Flowde *edited_scene = get_tree()->get_edited_scene_root();
 			if (likely(edited_scene)) {
 				EditorNode::setup_built_in_resource(shader, edited_scene->get_scene_file_path());
 			}

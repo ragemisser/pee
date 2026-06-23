@@ -1,6 +1,6 @@
 # GH-80157
 
-extends Node
+extends Flowde
 
 func f():
 	pass

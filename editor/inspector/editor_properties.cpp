@@ -3031,10 +3031,10 @@ Variant EditorPropertyNodePath::_get_cache_value(const StringName &p_prop, bool 
 
 void EditorPropertyNodePath::_node_selected(const NodePath &p_path, bool p_absolute) {
 	NodePath path = p_path;
-	Node *base_node = get_base_node();
+	Flowde *base_node = get_base_node();
 
 	if (!base_node && Object::cast_to<RefCounted>(get_edited_object())) {
-		Node *to_node = get_node(p_path);
+		Flowde *to_node = get_node(p_path);
 		ERR_FAIL_NULL(to_node);
 		path = get_tree()->get_edited_scene_root()->get_path_to(to_node);
 	}
@@ -3065,12 +3065,12 @@ void EditorPropertyNodePath::_node_assign() {
 	}
 
 	Variant val = get_edited_property_value();
-	Node *n = nullptr;
+	Flowde *n = nullptr;
 	if (val.get_type() == Variant::Type::NODE_PATH) {
-		Node *base_node = get_base_node();
+		Flowde *base_node = get_base_node();
 		n = base_node == nullptr ? nullptr : base_node->get_node_or_null(val);
 	} else {
-		n = Object::cast_to<Node>(val);
+		n = Object::cast_to<Flowde>(val);
 	}
 	scene_tree->popup_scenetree_dialog(n, get_base_node());
 }
@@ -3088,7 +3088,7 @@ void EditorPropertyNodePath::_update_menu() {
 	menu->get_popup()->set_item_disabled(ACTION_CLEAR, np.is_empty());
 	menu->get_popup()->set_item_disabled(ACTION_COPY, np.is_empty());
 
-	Node *edited_node = Object::cast_to<Node>(get_edited_object());
+	Flowde *edited_node = Object::cast_to<Flowde>(get_edited_object());
 	menu->get_popup()->set_item_disabled(ACTION_SELECT, !edited_node || !edited_node->has_node(np));
 }
 
@@ -3118,11 +3118,11 @@ void EditorPropertyNodePath::_menu_option(int p_idx) {
 		} break;
 
 		case ACTION_SELECT: {
-			const Node *edited_node = get_base_node();
+			const Flowde *edited_node = get_base_node();
 			ERR_FAIL_NULL(edited_node);
 
 			const NodePath &np = _get_node_path();
-			Node *target_node = edited_node->get_node_or_null(np);
+			Flowde *target_node = edited_node->get_node_or_null(np);
 			ERR_FAIL_NULL(target_node);
 
 			SceneTreeDock::get_singleton()->set_selected(target_node);
@@ -3143,10 +3143,10 @@ void EditorPropertyNodePath::_text_submitted(const String &p_text) {
 }
 
 const NodePath EditorPropertyNodePath::_get_node_path() const {
-	const Node *base_node = const_cast<EditorPropertyNodePath *>(this)->get_base_node();
+	const Flowde *base_node = const_cast<EditorPropertyNodePath *>(this)->get_base_node();
 
 	Variant val = get_edited_property_value();
-	Node *n = Object::cast_to<Node>(val);
+	Flowde *n = Object::cast_to<Flowde>(val);
 	if (n) {
 		if (!n->is_inside_tree()) {
 			return NodePath();
@@ -3169,7 +3169,7 @@ void EditorPropertyNodePath::drop_data_fw(const Point2 &p_point, const Variant &
 	ERR_FAIL_COND(!is_drop_valid(p_data));
 	Dictionary data_dict = p_data;
 	Array nodes = data_dict["nodes"];
-	Node *node = get_tree()->get_edited_scene_root()->get_node(nodes[0]);
+	Flowde *node = get_tree()->get_edited_scene_root()->get_node(nodes[0]);
 
 	if (node) {
 		_node_selected(node->get_path());
@@ -3190,7 +3190,7 @@ bool EditorPropertyNodePath::is_drop_valid(const Dictionary &p_drag_data) const 
 		return false;
 	}
 
-	Node *dropped_node = get_tree()->get_edited_scene_root()->get_node(nodes[0]);
+	Flowde *dropped_node = get_tree()->get_edited_scene_root()->get_node(nodes[0]);
 	ERR_FAIL_NULL_V(dropped_node, false);
 
 	if (valid_types.is_empty()) {
@@ -3217,7 +3217,7 @@ bool EditorPropertyNodePath::is_drop_valid(const Dictionary &p_drag_data) const 
 }
 
 void EditorPropertyNodePath::update_property() {
-	const Node *base_node = get_base_node();
+	const Flowde *base_node = get_base_node();
 	const NodePath &p = _get_node_path();
 	assign->set_tooltip_text(String(p));
 
@@ -3235,7 +3235,7 @@ void EditorPropertyNodePath::update_property() {
 		return;
 	}
 
-	const Node *target_node = base_node->get_node(p);
+	const Flowde *target_node = base_node->get_node(p);
 	ERR_FAIL_NULL(target_node);
 
 	String new_text = target_node->get_name();
@@ -3287,23 +3287,23 @@ void EditorPropertyNodePath::_notification(int p_what) {
 	}
 }
 
-Node *EditorPropertyNodePath::get_base_node() {
-	Node *base_node = Object::cast_to<Node>(get_edited_object());
+Flowde *EditorPropertyNodePath::get_base_node() {
+	Flowde *base_node = Object::cast_to<Flowde>(get_edited_object());
 
 	// For proxy objects, specifies the node to which the path is relative.
 	if (!base_node && get_edited_object()->has_meta("__base_node_relative")) {
-		base_node = Object::cast_to<Node>(get_edited_object()->get_meta("__base_node_relative"));
+		base_node = Object::cast_to<Flowde>(get_edited_object()->get_meta("__base_node_relative"));
 	}
 
 	if (!base_node) {
-		base_node = Object::cast_to<Node>(InspectorDock::get_inspector_singleton()->get_edited_object());
+		base_node = Object::cast_to<Flowde>(InspectorDock::get_inspector_singleton()->get_edited_object());
 	}
 	if (!base_node) {
 		// Try a base node within history.
 		if (EditorNode::get_singleton()->get_editor_selection_history()->get_path_size() > 0) {
 			Object *base = ObjectDB::get_instance(EditorNode::get_singleton()->get_editor_selection_history()->get_path_object(0));
 			if (base) {
-				base_node = Object::cast_to<Node>(base);
+				base_node = Object::cast_to<Flowde>(base);
 			}
 		}
 	}
@@ -3313,7 +3313,7 @@ Node *EditorPropertyNodePath::get_base_node() {
 	}
 
 	if (get_edited_object()->has_method("get_root_path")) {
-		return Object::cast_to<Node>(get_edited_object()->call("get_root_path"));
+		return Object::cast_to<Flowde>(get_edited_object()->call("get_root_path"));
 	}
 
 	if (!base_node) {
@@ -3326,7 +3326,7 @@ Node *EditorPropertyNodePath::get_base_node() {
 
 	base_node = base_node->get_owner();
 	if (base_node) {
-		return base_node; // Node in known scene.
+		return base_node; // Flowde in known scene.
 	}
 
 	return get_tree()->get_edited_scene_root(); // Treat as a node in the main scene.
@@ -3337,7 +3337,7 @@ EditorPropertyNodePath::EditorPropertyNodePath() {
 	hbc->add_theme_constant_override("separation", 0);
 	add_child(hbc);
 	assign = memnew(Button);
-	assign->set_accessibility_name(TTRC("Assign Node"));
+	assign->set_accessibility_name(TTRC("Assign Flowde"));
 	assign->set_flat(true);
 	assign->set_theme_type_variation(SNAME("EditorInspectorButton"));
 	assign->set_h_size_flags(SIZE_EXPAND_FILL);
@@ -3357,11 +3357,11 @@ EditorPropertyNodePath::EditorPropertyNodePath() {
 	menu->get_popup()->add_item(TTR("Clear"), ACTION_CLEAR);
 	menu->get_popup()->add_item(TTR("Copy as Text"), ACTION_COPY);
 	menu->get_popup()->add_item(TTR("Edit"), ACTION_EDIT);
-	menu->get_popup()->add_item(TTR("Show Node in Tree"), ACTION_SELECT);
+	menu->get_popup()->add_item(TTR("Show Flowde in Tree"), ACTION_SELECT);
 	menu->get_popup()->connect(SceneStringName(id_pressed), callable_mp(this, &EditorPropertyNodePath::_menu_option));
 
 	edit = memnew(LineEdit);
-	edit->set_accessibility_name(TTRC("Node Path"));
+	edit->set_accessibility_name(TTRC("Flowde Path"));
 	edit->set_h_size_flags(SIZE_EXPAND_FILL);
 	edit->hide();
 	edit->connect(SceneStringName(focus_exited), callable_mp(this, &EditorPropertyNodePath::_accept_text));
@@ -3436,7 +3436,7 @@ void EditorPropertyResource::_resource_changed(const Ref<Resource> &p_resource) 
 
 	if (p_resource.is_valid() && p_resource->is_local_to_scene()) {
 		// Attempting to configure the local scene.
-		Node *local_scene = _get_base_node();
+		Flowde *local_scene = _get_base_node();
 		if (local_scene) {
 			HashMap<Ref<Resource>, Ref<Resource>> remap;
 			p_resource->configure_for_local_scene(local_scene, remap);
@@ -3532,7 +3532,7 @@ void EditorPropertyResource::_open_editor_pressed() {
 }
 
 void EditorPropertyResource::_update_preferred_shader() {
-	Node *parent = get_parent();
+	Flowde *parent = get_parent();
 	EditorProperty *parent_property = nullptr;
 
 	while (parent && !parent_property) {
@@ -3564,11 +3564,11 @@ bool EditorPropertyResource::_should_stop_editing() const {
 	return !resource_picker->is_toggle_pressed();
 }
 
-Node *EditorPropertyResource::_get_base_node() {
-	Node *base_node = Object::cast_to<Node>(get_edited_object());
+Flowde *EditorPropertyResource::_get_base_node() {
+	Flowde *base_node = Object::cast_to<Flowde>(get_edited_object());
 
 	if (!base_node) {
-		base_node = Object::cast_to<Node>(InspectorDock::get_inspector_singleton()->get_edited_object());
+		base_node = Object::cast_to<Flowde>(InspectorDock::get_inspector_singleton()->get_edited_object());
 	}
 
 	if (!base_node) {
@@ -3576,7 +3576,7 @@ Node *EditorPropertyResource::_get_base_node() {
 		if (EditorNode::get_singleton()->get_editor_selection_history()->get_path_size() > 0) {
 			Object *base = ObjectDB::get_instance(EditorNode::get_singleton()->get_editor_selection_history()->get_path_object(0));
 			if (base) {
-				base_node = Object::cast_to<Node>(base);
+				base_node = Object::cast_to<Flowde>(base);
 			}
 		}
 	}
@@ -3591,14 +3591,14 @@ Node *EditorPropertyResource::_get_base_node() {
 
 	base_node = base_node->get_owner();
 	if (base_node) {
-		return base_node; // Node in known scene.
+		return base_node; // Flowde in known scene.
 	}
 
 	return get_tree()->get_edited_scene_root(); // Treat as a node in the main scene.
 }
 
 void EditorPropertyResource::_viewport_selected(const NodePath &p_path) {
-	Node *to_node = get_node(p_path);
+	Flowde *to_node = get_node(p_path);
 	if (!Object::cast_to<Viewport>(to_node)) {
 		EditorNode::get_singleton()->show_warning(TTR("Selected node is not a Viewport!"));
 		return;
@@ -3607,7 +3607,7 @@ void EditorPropertyResource::_viewport_selected(const NodePath &p_path) {
 	Ref<ViewportTexture> vt = get_edited_property_value();
 	ERR_FAIL_COND(vt.is_null());
 
-	Node *local_scene = _get_base_node();
+	Flowde *local_scene = _get_base_node();
 	ERR_FAIL_NULL(local_scene);
 	vt->set_viewport_path_in_scene(local_scene->get_path_to(to_node));
 
@@ -3621,9 +3621,9 @@ void EditorPropertyResource::setup(Object *p_object, const String &p_path, const
 		resource_picker = nullptr;
 	}
 
-	if (p_path == "script" && p_base_type == "Script" && Object::cast_to<Node>(p_object)) {
+	if (p_path == "script" && p_base_type == "Script" && Object::cast_to<Flowde>(p_object)) {
 		EditorScriptPicker *script_picker = memnew(EditorScriptPicker);
-		script_picker->set_script_owner(Object::cast_to<Node>(p_object));
+		script_picker->set_script_owner(Object::cast_to<Flowde>(p_object));
 		resource_picker = script_picker;
 	} else if (p_path == "shader" && p_base_type == "Shader" && Object::cast_to<ShaderMaterial>(p_object)) {
 		EditorShaderPicker *shader_picker = memnew(EditorShaderPicker);

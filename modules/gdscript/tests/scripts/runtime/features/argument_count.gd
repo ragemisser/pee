@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func my_func_1(_foo, _bar):
 	pass

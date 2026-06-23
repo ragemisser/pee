@@ -45,7 +45,7 @@ void PostImportPluginSkeletonRenamer::get_internal_import_options(InternalImport
 	}
 }
 
-void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options, const HashMap<String, String> &p_rename_map) {
+void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options, const HashMap<String, String> &p_rename_map) {
 	// Prepare objects.
 	Object *map = p_options["retarget/bone_map"].get_validated_object();
 	if (!map || !bool(p_options["retarget/bone_renamer/rename_bones"])) {
@@ -66,12 +66,12 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 
 	// Rename bones in Skin.
 	{
-		TypedArray<Node> nodes = p_base_scene->find_children("*", "ImporterMeshInstance3D");
+		TypedArray<Flowde> nodes = p_base_scene->find_children("*", "ImporterMeshInstance3D");
 		while (nodes.size()) {
 			ImporterMeshInstance3D *mi = Object::cast_to<ImporterMeshInstance3D>(nodes.pop_back());
 			Ref<Skin> skin = mi->get_skin();
 			if (skin.is_valid()) {
-				Node *node = mi->get_node(mi->get_skeleton_path());
+				Flowde *node = mi->get_node(mi->get_skeleton_path());
 				if (node) {
 					Skeleton3D *mesh_skeleton = Object::cast_to<Skeleton3D>(node);
 					if (mesh_skeleton && node == skeleton) {
@@ -93,7 +93,7 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 
 	// Rename bones in AnimationPlayer.
 	{
-		TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+		TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 		while (nodes.size()) {
 			AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 			for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -104,7 +104,7 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 						continue;
 					}
 					String track_path = String(anim->track_get_path(i).get_concatenated_names());
-					Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+					Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 					if (node) {
 						Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
 						if (track_skeleton && track_skeleton == skeleton) {
@@ -128,7 +128,7 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 			rename_map_dict[E->key] = E->value;
 		}
 
-		TypedArray<Node> nodes = p_base_scene->find_children("*", "BoneAttachment3D");
+		TypedArray<Flowde> nodes = p_base_scene->find_children("*", "BoneAttachment3D");
 		while (nodes.size()) {
 			BoneAttachment3D *attachment = Object::cast_to<BoneAttachment3D>(nodes.pop_back());
 			if (attachment) {
@@ -138,7 +138,7 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 	}
 }
 
-void PostImportPluginSkeletonRenamer::internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
+void PostImportPluginSkeletonRenamer::internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
 	if (p_category == INTERNAL_IMPORT_CATEGORY_SKELETON_3D_NODE) {
 		// Prepare objects.
 		Object *map = p_options["retarget/bone_map"].get_validated_object();
@@ -204,7 +204,7 @@ void PostImportPluginSkeletonRenamer::internal_process(InternalImportCategory p_
 			String unique_name = String(p_options["retarget/bone_renamer/unique_node/skeleton_name"]);
 			ERR_FAIL_COND_MSG(unique_name.is_empty(), "Skeleton unique name cannot be empty.");
 
-			TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+			TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 			while (nodes.size()) {
 				AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 				for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -212,8 +212,8 @@ void PostImportPluginSkeletonRenamer::internal_process(InternalImportCategory p_
 					int track_len = anim->get_track_count();
 					for (int i = 0; i < track_len; i++) {
 						String track_path = String(anim->track_get_path(i).get_concatenated_names());
-						Node *orig_node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
-						Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+						Flowde *orig_node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+						Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 						while (node) {
 							Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
 							if (track_skeleton && track_skeleton == skeleton) {

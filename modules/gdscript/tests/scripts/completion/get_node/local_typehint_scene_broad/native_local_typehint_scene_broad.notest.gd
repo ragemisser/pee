@@ -1,7 +1,7 @@
 # TODO
-extends Node
+extends Flowde
 
 func a():
-    var test: Node = $AnimationPlayer
+    var test: Flowde = $AnimationPlayer
     test.➡
     pass

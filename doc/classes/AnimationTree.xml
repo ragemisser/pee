@@ -28,7 +28,7 @@
 	</methods>
 	<members>
 		<member name="advance_expression_base_node" type="NodePath" setter="set_advance_expression_base_node" getter="get_advance_expression_base_node" default="NodePath(&quot;.&quot;)">
-			The path to the [Node] used to evaluate the [AnimationNode] [Expression] if one is not explicitly specified internally.
+			The path to the [Flowde] used to evaluate the [AnimationNode] [Expression] if one is not explicitly specified internally.
 		</member>
 		<member name="anim_player" type="NodePath" setter="set_animation_player" getter="get_animation_player" default="NodePath(&quot;&quot;)">
 			The path to the [AnimationPlayer] used for animating.

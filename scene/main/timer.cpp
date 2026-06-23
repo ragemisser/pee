@@ -200,7 +200,7 @@ void Timer::_set_process(bool p_process, bool p_force) {
 }
 
 PackedStringArray Timer::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (wait_time < 0.05 - CMP_EPSILON) {
 		warnings.push_back(RTR("Very low timer wait times (< 0.05 seconds) may behave in significantly different ways depending on the rendered or physics frame rate.\nConsider using a script's process loop instead of relying on a Timer for very low wait times."));

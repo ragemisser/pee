@@ -71,7 +71,7 @@ struct ColladaImport {
 	HashMap<String, Ref<ImporterMesh>> mesh_cache;
 	HashMap<String, Ref<Curve3D>> curve_cache;
 	HashMap<String, Ref<Material>> material_cache;
-	HashMap<Collada::Node *, Skeleton3D *> skeleton_map;
+	HashMap<Collada::Flowde *, Skeleton3D *> skeleton_map;
 
 	HashMap<Skeleton3D *, HashMap<String, int>> skeleton_bone_map;
 
@@ -82,10 +82,10 @@ struct ColladaImport {
 	HashSet<String> mesh_unique_names;
 	HashSet<String> material_unique_names;
 
-	Error _populate_skeleton(Skeleton3D *p_skeleton, Collada::Node *p_node, int &r_bone, int p_parent);
-	Error _create_scene_skeletons(Collada::Node *p_node);
-	Error _create_scene(Collada::Node *p_node, Node3D *p_parent);
-	Error _create_resources(Collada::Node *p_node, bool p_use_compression);
+	Error _populate_skeleton(Skeleton3D *p_skeleton, Collada::Flowde *p_node, int &r_bone, int p_parent);
+	Error _create_scene_skeletons(Collada::Flowde *p_node);
+	Error _create_scene(Collada::Flowde *p_node, Node3D *p_parent);
+	Error _create_resources(Collada::Flowde *p_node, bool p_use_compression);
 	Error _create_material(const String &p_target);
 	Error _create_mesh_surfaces(bool p_optimize, Ref<ImporterMesh> &p_mesh, const HashMap<String, Collada::NodeGeometry::Material> &p_material_map, const Collada::MeshData &meshdata, const Transform3D &p_local_xform, const Vector<int> &bone_remap, const Collada::SkinControllerData *p_skin_controller, const Collada::MorphControllerData *p_morph_data, const Vector<Ref<ImporterMesh>> &p_morph_meshes = Vector<Ref<ImporterMesh>>(), bool p_use_compression = false, bool p_use_mesh_material = false);
 	Error load(const String &p_path, int p_flags, bool p_force_make_tangents = false, bool p_use_compression = false);
@@ -96,11 +96,11 @@ struct ColladaImport {
 	HashSet<String> tracks_in_clips;
 	Vector<String> missing_textures;
 
-	void _pre_process_lights(Collada::Node *p_node);
+	void _pre_process_lights(Collada::Flowde *p_node);
 };
 
-Error ColladaImport::_populate_skeleton(Skeleton3D *p_skeleton, Collada::Node *p_node, int &r_bone, int p_parent) {
-	if (p_node->type != Collada::Node::TYPE_JOINT) {
+Error ColladaImport::_populate_skeleton(Skeleton3D *p_skeleton, Collada::Flowde *p_node, int &r_bone, int p_parent) {
+	if (p_node->type != Collada::Flowde::TYPE_JOINT) {
 		return OK;
 	}
 
@@ -146,8 +146,8 @@ Error ColladaImport::_populate_skeleton(Skeleton3D *p_skeleton, Collada::Node *p
 	return OK;
 }
 
-void ColladaImport::_pre_process_lights(Collada::Node *p_node) {
-	if (p_node->type == Collada::Node::TYPE_LIGHT) {
+void ColladaImport::_pre_process_lights(Collada::Flowde *p_node) {
+	if (p_node->type == Collada::Flowde::TYPE_LIGHT) {
 		Collada::NodeLight *light = static_cast<Collada::NodeLight *>(p_node);
 		if (collada.state.light_data_map.has(light->light)) {
 			Collada::LightData &ld = collada.state.light_data_map[light->light];
@@ -166,8 +166,8 @@ void ColladaImport::_pre_process_lights(Collada::Node *p_node) {
 	}
 }
 
-Error ColladaImport::_create_scene_skeletons(Collada::Node *p_node) {
-	if (p_node->type == Collada::Node::TYPE_SKELETON) {
+Error ColladaImport::_create_scene_skeletons(Collada::Flowde *p_node) {
+	if (p_node->type == Collada::Flowde::TYPE_SKELETON) {
 		Skeleton3D *sk = memnew(Skeleton3D);
 		int bone = 0;
 		for (int i = 0; i < p_node->children.size(); i++) {
@@ -186,17 +186,17 @@ Error ColladaImport::_create_scene_skeletons(Collada::Node *p_node) {
 	return OK;
 }
 
-Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
+Error ColladaImport::_create_scene(Collada::Flowde *p_node, Node3D *p_parent) {
 	Node3D *node = nullptr;
 
 	switch (p_node->type) {
-		case Collada::Node::TYPE_NODE: {
+		case Collada::Flowde::TYPE_NODE: {
 			node = memnew(Node3D);
 		} break;
-		case Collada::Node::TYPE_JOINT: {
+		case Collada::Flowde::TYPE_JOINT: {
 			return OK; // do nothing
 		} break;
-		case Collada::Node::TYPE_LIGHT: {
+		case Collada::Flowde::TYPE_LIGHT: {
 			//node = memnew( Light)
 			Collada::NodeLight *light = static_cast<Collada::NodeLight *>(p_node);
 			if (collada.state.light_data_map.has(light->light)) {
@@ -250,7 +250,7 @@ Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
 				node = memnew(Node3D);
 			}
 		} break;
-		case Collada::Node::TYPE_CAMERA: {
+		case Collada::Flowde::TYPE_CAMERA: {
 			Collada::NodeCamera *cam = static_cast<Collada::NodeCamera *>(p_node);
 			Camera3D *camera = memnew(Camera3D);
 
@@ -284,7 +284,7 @@ Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
 			node = camera;
 
 		} break;
-		case Collada::Node::TYPE_GEOMETRY: {
+		case Collada::Flowde::TYPE_GEOMETRY: {
 			Collada::NodeGeometry *ng = static_cast<Collada::NodeGeometry *>(p_node);
 
 			if (collada.state.curve_data_map.has(ng->source)) {
@@ -295,7 +295,7 @@ Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
 				//Object::cast_to<ImporterMeshInstance3D>(node)->set_flag(GeometryInstance3D::FLAG_USE_BAKED_LIGHT, true);
 			}
 		} break;
-		case Collada::Node::TYPE_SKELETON: {
+		case Collada::Flowde::TYPE_SKELETON: {
 			ERR_FAIL_COND_V(!skeleton_map.has(p_node), ERR_CANT_CREATE);
 			Skeleton3D *sk = skeleton_map[p_node];
 			node = sk;
@@ -1069,8 +1069,8 @@ Error ColladaImport::_create_mesh_surfaces(bool p_optimize, Ref<ImporterMesh> &p
 	return OK;
 }
 
-Error ColladaImport::_create_resources(Collada::Node *p_node, bool p_use_compression) {
-	if (p_node->type == Collada::Node::TYPE_GEOMETRY && node_map.has(p_node->id)) {
+Error ColladaImport::_create_resources(Collada::Flowde *p_node, bool p_use_compression) {
+	if (p_node->type == Collada::Flowde::TYPE_GEOMETRY && node_map.has(p_node->id)) {
 		Node3D *node = node_map[p_node->id].node;
 		Collada::NodeGeometry *ng = static_cast<Collada::NodeGeometry *>(p_node);
 
@@ -1374,21 +1374,21 @@ Error ColladaImport::load(const String &p_path, int p_flags, bool p_force_make_t
 }
 
 void ColladaImport::_fix_param_animation_tracks() {
-	for (KeyValue<String, Collada::Node *> &E : collada.state.scene_map) {
-		Collada::Node *n = E.value;
+	for (KeyValue<String, Collada::Flowde *> &E : collada.state.scene_map) {
+		Collada::Flowde *n = E.value;
 		switch (n->type) {
-			case Collada::Node::TYPE_NODE: {
+			case Collada::Flowde::TYPE_NODE: {
 				// ? do nothing
 			} break;
-			case Collada::Node::TYPE_JOINT: {
+			case Collada::Flowde::TYPE_JOINT: {
 			} break;
-			case Collada::Node::TYPE_SKELETON: {
+			case Collada::Flowde::TYPE_SKELETON: {
 			} break;
-			case Collada::Node::TYPE_LIGHT: {
+			case Collada::Flowde::TYPE_LIGHT: {
 			} break;
-			case Collada::Node::TYPE_CAMERA: {
+			case Collada::Flowde::TYPE_CAMERA: {
 			} break;
-			case Collada::Node::TYPE_GEOMETRY: {
+			case Collada::Flowde::TYPE_GEOMETRY: {
 				Collada::NodeGeometry *ng = static_cast<Collada::NodeGeometry *>(n);
 				// test source(s)
 				String source = ng->source;
@@ -1577,7 +1577,7 @@ void ColladaImport::create_animation(int p_clip, bool p_import_value_tracks) {
 
 		bool found_anim = false;
 
-		Collada::Node *cn = collada.state.scene_map[E];
+		Collada::Flowde *cn = collada.state.scene_map[E];
 		if (cn->ignore_anim) {
 			continue;
 		}
@@ -1588,21 +1588,21 @@ void ColladaImport::create_animation(int p_clip, bool p_import_value_tracks) {
 
 		for (int i = 0; i < cn->xform_list.size(); i++) {
 			switch (cn->xform_list[i].op) {
-				case Collada::Node::XForm::OP_ROTATE: {
+				case Collada::Flowde::XForm::OP_ROTATE: {
 					has_rotation = true;
 				} break;
-				case Collada::Node::XForm::OP_SCALE: {
+				case Collada::Flowde::XForm::OP_SCALE: {
 					has_scale = true;
 				} break;
-				case Collada::Node::XForm::OP_TRANSLATE: {
+				case Collada::Flowde::XForm::OP_TRANSLATE: {
 					has_position = true;
 				} break;
-				case Collada::Node::XForm::OP_MATRIX: {
+				case Collada::Flowde::XForm::OP_MATRIX: {
 					has_position = true;
 					has_rotation = true;
 					has_scale = true;
 				} break;
-				case Collada::Node::XForm::OP_VISIBILITY: {
+				case Collada::Flowde::XForm::OP_VISIBILITY: {
 				} break;
 			}
 		}
@@ -1677,11 +1677,11 @@ void ColladaImport::create_animation(int p_clip, bool p_import_value_tracks) {
 				Vector<float> data = at.get_value_at_time(snapshots[i]);
 				ERR_CONTINUE(data.is_empty());
 
-				Collada::Node::XForm &xf = cn->xform_list.write[xform_idx];
+				Collada::Flowde::XForm &xf = cn->xform_list.write[xform_idx];
 
 				if (at.component == "ANGLE") {
 					ERR_CONTINUE(data.size() != 1);
-					ERR_CONTINUE(xf.op != Collada::Node::XForm::OP_ROTATE);
+					ERR_CONTINUE(xf.op != Collada::Flowde::XForm::OP_ROTATE);
 					ERR_CONTINUE(xf.data.size() < 4);
 					xf.data.write[3] = data[0];
 				} else if (at.component == "X" || at.component == "Y" || at.component == "Z") {
@@ -1802,7 +1802,7 @@ void EditorSceneFormatImporterCollada::get_extensions(List<String> *r_extensions
 	r_extensions->push_back("dae");
 }
 
-Node *EditorSceneFormatImporterCollada::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
+Flowde *EditorSceneFormatImporterCollada::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
 	if (r_err) {
 		*r_err = OK;
 	}

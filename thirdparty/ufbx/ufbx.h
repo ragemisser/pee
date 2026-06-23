@@ -587,21 +587,21 @@ typedef struct ufbx_unknown ufbx_unknown;
 // Nodes
 typedef struct ufbx_node ufbx_node;
 
-// Node attributes (common)
+// Flowde attributes (common)
 typedef struct ufbx_mesh ufbx_mesh;
 typedef struct ufbx_light ufbx_light;
 typedef struct ufbx_camera ufbx_camera;
 typedef struct ufbx_bone ufbx_bone;
 typedef struct ufbx_empty ufbx_empty;
 
-// Node attributes (curves/surfaces)
+// Flowde attributes (curves/surfaces)
 typedef struct ufbx_line_curve ufbx_line_curve;
 typedef struct ufbx_nurbs_curve ufbx_nurbs_curve;
 typedef struct ufbx_nurbs_surface ufbx_nurbs_surface;
 typedef struct ufbx_nurbs_trim_surface ufbx_nurbs_trim_surface;
 typedef struct ufbx_nurbs_trim_boundary ufbx_nurbs_trim_boundary;
 
-// Node attributes (advanced)
+// Flowde attributes (advanced)
 typedef struct ufbx_procedural_geometry ufbx_procedural_geometry;
 typedef struct ufbx_stereo_camera ufbx_stereo_camera;
 typedef struct ufbx_camera_switcher ufbx_camera_switcher;
@@ -849,7 +849,7 @@ struct ufbx_node {
 		uint32_t typed_id;
 	}; };
 
-	// Node hierarchy
+	// Flowde hierarchy
 
 	// Parent node containing this one if not root.
 	//
@@ -905,7 +905,7 @@ struct ufbx_node {
 	// Contains `local_transform.scale` otherwise.
 	ufbx_vec3 inherit_scale;
 
-	// Node where scale is inherited from for `UFBX_INHERIT_MODE_COMPONENTWISE_SCALE`
+	// Flowde where scale is inherited from for `UFBX_INHERIT_MODE_COMPONENTWISE_SCALE`
 	// and even for `UFBX_INHERIT_MODE_IGNORE_PARENT_SCALE`.
 	// For componentwise-scale nodes, this will point to `parent`, for scale ignoring
 	// nodes this will point to the parent of the nearest componentwise-scaled node
@@ -1657,7 +1657,7 @@ struct ufbx_empty {
 	}; };
 };
 
-// -- Node attributes (curves/surfaces)
+// -- Flowde attributes (curves/surfaces)
 
 // Segment of a `ufbx_line_curve`, indices refer to `ufbx_line_curve.point_indices[]`
 typedef struct ufbx_line_segment {
@@ -1809,7 +1809,7 @@ struct ufbx_nurbs_trim_boundary {
 	}; };
 };
 
-// -- Node attributes (advanced)
+// -- Flowde attributes (advanced)
 
 struct ufbx_procedural_geometry {
 	union { ufbx_element element; struct {
@@ -2678,7 +2678,7 @@ typedef enum ufbx_texture_type UFBX_ENUM_REPR {
 	// Reserved as these _should_ exist in FBX files.
 	UFBX_TEXTURE_PROCEDURAL,
 
-	// Node in a shader graph.
+	// Flowde in a shader graph.
 	// Use `ufbx_texture.shader` for more information.
 	UFBX_TEXTURE_SHADER,
 
@@ -3357,7 +3357,7 @@ struct ufbx_constraint {
 	ufbx_constraint_type type;
 	ufbx_string type_name;
 
-	// Node to be constrained
+	// Flowde to be constrained
 	ufbx_nullable ufbx_node *node;
 
 	// List of weighted targets for the constraint (pole vectors for IK)
@@ -3437,7 +3437,7 @@ struct ufbx_audio_clip {
 
 typedef struct ufbx_bone_pose {
 
-	// Node to apply the pose to.
+	// Flowde to apply the pose to.
 	ufbx_node *bone_node;
 
 	// Matrix from node local space to world space.
@@ -3927,7 +3927,7 @@ struct ufbx_scene {
 	// Global settings
 	ufbx_scene_settings settings;
 
-	// Node instances in the scene
+	// Flowde instances in the scene
 	ufbx_node *root_node;
 
 	// Default animation descriptor
@@ -3940,21 +3940,21 @@ struct ufbx_scene {
 			// Nodes
 			ufbx_node_list nodes;
 
-			// Node attributes (common)
+			// Flowde attributes (common)
 			ufbx_mesh_list meshes;
 			ufbx_light_list lights;
 			ufbx_camera_list cameras;
 			ufbx_bone_list bones;
 			ufbx_empty_list empties;
 
-			// Node attributes (curves/surfaces)
+			// Flowde attributes (curves/surfaces)
 			ufbx_line_curve_list line_curves;
 			ufbx_nurbs_curve_list nurbs_curves;
 			ufbx_nurbs_surface_list nurbs_surfaces;
 			ufbx_nurbs_trim_surface_list nurbs_trim_surfaces;
 			ufbx_nurbs_trim_boundary_list nurbs_trim_boundaries;
 
-			// Node attributes (advanced)
+			// Flowde attributes (advanced)
 			ufbx_procedural_geometry_list procedural_geometries;
 			ufbx_stereo_camera_list stereo_cameras;
 			ufbx_camera_switcher_list camera_switchers;
@@ -4311,7 +4311,7 @@ typedef enum ufbx_error_type UFBX_ENUM_REPR {
 	// Out of bounds index in the file when loading with `UFBX_INDEX_ERROR_HANDLING_ABORT_LOADING`.
 	UFBX_ERROR_BAD_INDEX,
 
-	// Node is deeper than `ufbx_load_opts.node_depth_limit` in the hierarchy.
+	// Flowde is deeper than `ufbx_load_opts.node_depth_limit` in the hierarchy.
 	UFBX_ERROR_NODE_DEPTH_LIMIT,
 
 	// Error parsing ASCII array in a thread.

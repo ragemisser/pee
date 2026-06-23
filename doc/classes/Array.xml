@@ -63,22 +63,22 @@
 				If [param type] is not [constant TYPE_OBJECT], [param class_name] must be an empty [StringName] and [param script] must be [code]null[/code].
 				[codeblock]
 				class_name Sword
-				extends Node
+				extends Flowde
 
 				class Stats:
 					pass
 
 				func _ready():
 					var a = Array([], TYPE_INT, "", null)               # Array[int]
-					var b = Array([], TYPE_OBJECT, "Node", null)        # Array[Node]
-					var c = Array([], TYPE_OBJECT, "Node", Sword)       # Array[Sword]
+					var b = Array([], TYPE_OBJECT, "Flowde", null)        # Array[Flowde]
+					var c = Array([], TYPE_OBJECT, "Flowde", Sword)       # Array[Sword]
 					var d = Array([], TYPE_OBJECT, "RefCounted", Stats) # Array[Stats]
 				[/codeblock]
 				The [param base] array's elements are converted when necessary. If this is not possible or [param base] is already typed, this constructor fails and returns an empty [Array].
 				In GDScript, this constructor is usually not necessary, as it is possible to create a typed array through static typing:
 				[codeblock]
 				var numbers: Array[float] = []
-				var children: Array[Node] = [$Node, $Sprite2D, $RigidBody3D]
+				var children: Array[Flowde] = [$Flowde, $Sprite2D, $RigidBody3D]
 
 				var integers: Array[int] = [0.2, 4.5, -2.0]
 				print(integers) # Prints [0, 4, -2]

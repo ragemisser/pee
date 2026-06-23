@@ -1,5 +1,5 @@
 # Disabled due to GH-105421
-extends Node
+extends Flowde
 
 var test = {
 	t = 1,

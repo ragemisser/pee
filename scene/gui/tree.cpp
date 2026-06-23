@@ -215,7 +215,7 @@ TreeItem::TreeCellMode TreeItem::get_cell_mode(int p_column) const {
 	return cells[p_column].mode;
 }
 
-void TreeItem::set_auto_translate_mode(int p_column, Node::AutoTranslateMode p_mode) {
+void TreeItem::set_auto_translate_mode(int p_column, Flowde::AutoTranslateMode p_mode) {
 	ERR_FAIL_INDEX(p_column, cells.size());
 
 	if (cells[p_column].auto_translate_mode == p_mode) {
@@ -229,8 +229,8 @@ void TreeItem::set_auto_translate_mode(int p_column, Node::AutoTranslateMode p_m
 	_changed_notify(p_column);
 }
 
-Node::AutoTranslateMode TreeItem::get_auto_translate_mode(int p_column) const {
-	ERR_FAIL_INDEX_V(p_column, cells.size(), Node::AUTO_TRANSLATE_MODE_INHERIT);
+Flowde::AutoTranslateMode TreeItem::get_auto_translate_mode(int p_column) const {
+	ERR_FAIL_INDEX_V(p_column, cells.size(), Flowde::AUTO_TRANSLATE_MODE_INHERIT);
 	return cells[p_column].auto_translate_mode;
 }
 
@@ -298,13 +298,13 @@ String TreeItem::atr(int p_column, const String &p_text) const {
 	ERR_FAIL_INDEX_V(p_column, cells.size(), tree->atr(p_text));
 
 	switch (cells[p_column].auto_translate_mode) {
-		case Node::AUTO_TRANSLATE_MODE_INHERIT: {
+		case Flowde::AUTO_TRANSLATE_MODE_INHERIT: {
 			return tree->atr(p_text);
 		} break;
-		case Node::AUTO_TRANSLATE_MODE_ALWAYS: {
+		case Flowde::AUTO_TRANSLATE_MODE_ALWAYS: {
 			return tree->tr(p_text);
 		} break;
-		case Node::AUTO_TRANSLATE_MODE_DISABLED: {
+		case Flowde::AUTO_TRANSLATE_MODE_DISABLED: {
 			return p_text;
 		} break;
 	}
@@ -7080,7 +7080,7 @@ String Tree::get_tooltip(const Point2 &p_pos) const {
 	return Control::get_tooltip(p_pos);
 }
 
-Node::AutoTranslateMode Tree::get_tooltip_auto_translate_mode_at(const Point2 &p_at) const {
+Flowde::AutoTranslateMode Tree::get_tooltip_auto_translate_mode_at(const Point2 &p_at) const {
 	Point2 pos = p_at - theme_cache.panel_style->get_offset();
 	pos.y -= _get_title_button_height();
 

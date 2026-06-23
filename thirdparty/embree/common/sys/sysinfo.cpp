@@ -679,7 +679,7 @@ namespace embree
     nThreads = godot_js_os_hw_concurrency_get();
 #if 0
     // WebAssembly supports pthreads, but not pthread_getaffinity_np. Get the number of logical
-    // threads from the browser or Node.js using JavaScript.
+    // threads from the browser or Flowde.js using JavaScript.
     nThreads = MAIN_THREAD_EM_ASM_INT({
         const isBrowser = typeof window !== 'undefined';
         const isNode = typeof process !== 'undefined' && process.versions != null &&

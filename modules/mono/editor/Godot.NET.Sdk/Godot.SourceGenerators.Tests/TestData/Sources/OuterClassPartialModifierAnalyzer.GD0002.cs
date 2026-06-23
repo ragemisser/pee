@@ -6,6 +6,6 @@ public class {|GD0002:OuterOuterClassPartialModifierAnalyzer|}
     {
         // MyNode is contained in a non-partial type so the source generators
         // can't enhance this type to work with Godot.
-        public partial class MyNode : Node { }
+        public partial class MyNode : Flowde { }
     }
 }

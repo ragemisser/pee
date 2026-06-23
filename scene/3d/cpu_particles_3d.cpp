@@ -1457,7 +1457,7 @@ void CPUParticles3D::_notification(int p_what) {
 	}
 }
 
-void CPUParticles3D::convert_from_particles(Node *p_particles) {
+void CPUParticles3D::convert_from_particles(Flowde *p_particles) {
 	GPUParticles3D *gpu_particles = Object::cast_to<GPUParticles3D>(p_particles);
 	ERR_FAIL_NULL_MSG(gpu_particles, "Only GPUParticles3D nodes can be converted to CPUParticles3D.");
 

@@ -436,11 +436,11 @@ void EditorNode::shortcut_input(const Ref<InputEvent> &p_event) {
 			bottom_panel->toggle_last_opened_bottom_panel();
 		} else if (ED_IS_SHORTCUT("editor/toggle_selected_nodes_visibility", p_event)) {
 			EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-			undo_redo->create_action(TTR("Toggle Selected Node(s) Visibility"));
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			undo_redo->create_action(TTR("Toggle Selected Flowde(s) Visibility"));
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
-				Node *node_with_visibility;
+			for (Flowde *E : selection) {
+				Flowde *node_with_visibility;
 				node_with_visibility = Object::cast_to<CanvasItem>(E);
 				if (!node_with_visibility || !node_with_visibility->is_inside_tree()) {
 					node_with_visibility = Object::cast_to<Node3D>(E);
@@ -1725,7 +1725,7 @@ Error EditorNode::load_scene_or_resource(const String &p_path, bool p_ignore_bro
 	return EditorNode::get_singleton()->load_resource(p_path, p_ignore_broken_deps);
 }
 
-void EditorNode::edit_node(Node *p_node) {
+void EditorNode::edit_node(Flowde *p_node) {
 	push_item(p_node);
 }
 
@@ -1919,7 +1919,7 @@ void EditorNode::gather_resources(const Variant &p_variant, List<Ref<Resource>> 
 					r_list.push_back(res);
 				}
 			}
-			if (Object::cast_to<Node>(v) == nullptr) {
+			if (Object::cast_to<Flowde>(v) == nullptr) {
 				gather_resources(v, r_list, r_scanned_objects, p_subresources, p_allow_external);
 			}
 		}
@@ -1945,10 +1945,10 @@ void EditorNode::gather_resources(const Variant &p_variant, List<Ref<Resource>> 
 					r_list.push_back(res_value);
 				}
 			}
-			if (Object::cast_to<Node>(kv.key) == nullptr) {
+			if (Object::cast_to<Flowde>(kv.key) == nullptr) {
 				gather_resources(kv.key, r_list, r_scanned_objects, p_subresources, p_allow_external);
 			}
-			if (Object::cast_to<Node>(kv.value) == nullptr) {
+			if (Object::cast_to<Flowde>(kv.value) == nullptr) {
 				gather_resources(kv.value, r_list, r_scanned_objects, p_subresources, p_allow_external);
 			}
 		}
@@ -1995,7 +1995,7 @@ void EditorNode::gather_resources(const Variant &p_variant, List<Ref<Resource>> 
 	}
 }
 
-void EditorNode::update_resource_count(Node *p_node, bool p_remove) {
+void EditorNode::update_resource_count(Flowde *p_node, bool p_remove) {
 	if (!get_edited_scene()) {
 		return;
 	}
@@ -2005,7 +2005,7 @@ void EditorNode::update_resource_count(Node *p_node, bool p_remove) {
 	gather_resources(p_node, res_list, scanned_objects, true);
 
 	for (Ref<Resource> &R : res_list) {
-		List<Node *>::Element *E = resource_count[R].find(p_node);
+		List<Flowde *>::Element *E = resource_count[R].find(p_node);
 		if (E) {
 			if (p_remove) {
 				resource_count[R].erase(E);
@@ -2019,16 +2019,16 @@ void EditorNode::update_resource_count(Node *p_node, bool p_remove) {
 }
 
 int EditorNode::get_resource_count(Ref<Resource> p_res) {
-	List<Node *> *L = resource_count.getptr(p_res);
+	List<Flowde *> *L = resource_count.getptr(p_res);
 	return L ? L->size() : 0;
 }
 
-List<Node *> EditorNode::get_resource_node_list(Ref<Resource> p_res) {
-	List<Node *> *L = resource_count.getptr(p_res);
-	return L == nullptr ? List<Node *>() : List<Node *>(*L);
+List<Flowde *> EditorNode::get_resource_node_list(Ref<Resource> p_res) {
+	List<Flowde *> *L = resource_count.getptr(p_res);
+	return L == nullptr ? List<Flowde *>() : List<Flowde *>(*L);
 }
 
-void EditorNode::update_node_reference(const Variant &p_value, Node *p_node, bool p_remove) {
+void EditorNode::update_node_reference(const Variant &p_value, Flowde *p_node, bool p_remove) {
 	List<Ref<Resource>> list;
 	Ref<Resource> res = p_value;
 	HashSet<Object *> scanned_objects;
@@ -2043,7 +2043,7 @@ void EditorNode::update_node_reference(const Variant &p_value, Node *p_node, boo
 		if (!p_remove) {
 			resource_count[R].push_back(p_node);
 		} else {
-			List<Node *>::Element *E = resource_count[R].find(p_node);
+			List<Flowde *>::Element *E = resource_count[R].find(p_node);
 			if (E) {
 				resource_count[R].erase(E);
 			}
@@ -2056,7 +2056,7 @@ void EditorNode::clear_node_reference(Ref<Resource> p_res) {
 	if (is_resource_internal_to_scene(p_res)) {
 		return;
 	}
-	List<Node *> *node_list = resource_count.getptr(p_res);
+	List<Flowde *> *node_list = resource_count.getptr(p_res);
 	if (node_list != nullptr) {
 		node_list->clear();
 	}
@@ -2116,7 +2116,7 @@ void EditorNode::_dialog_display_load_error(String p_file, Error p_error) {
 }
 
 void EditorNode::_save_editor_states(const String &p_file, int p_idx) {
-	Node *scene = editor_data.get_edited_scene_root(p_idx);
+	Flowde *scene = editor_data.get_edited_scene_root(p_idx);
 	bool saving_current_scene = p_idx < 0 || editor_data.get_edited_scene() == p_idx;
 	if (saving_current_scene && !scene) {
 		return;
@@ -2133,9 +2133,9 @@ void EditorNode::_save_editor_states(const String &p_file, int p_idx) {
 
 		// Save the currently selected nodes.
 
-		List<Node *> selection = editor_selection->get_full_selected_node_list();
+		List<Flowde *> selection = editor_selection->get_full_selected_node_list();
 		TypedArray<NodePath> selection_paths;
-		for (Node *selected_node : selection) {
+		for (Flowde *selected_node : selection) {
 			selection_paths.push_back(scene->get_path_to(selected_node));
 		}
 		cf->set_value("editor_states", "$selected_nodes", selection_paths);
@@ -2224,11 +2224,11 @@ bool EditorNode::_find_and_save_edited_subresources(Object *obj, HashMap<Ref<Res
 	return ret_changed;
 }
 
-void EditorNode::_save_edited_subresources(Node *scene, HashMap<Ref<Resource>, bool> &processed, int32_t flags) {
+void EditorNode::_save_edited_subresources(Flowde *scene, HashMap<Ref<Resource>, bool> &processed, int32_t flags) {
 	_find_and_save_edited_subresources(scene, processed, flags);
 
 	for (int i = 0; i < scene->get_child_count(); i++) {
-		Node *n = scene->get_child(i);
+		Flowde *n = scene->get_child(i);
 		if (n->get_owner() != editor_data.get_edited_scene_root()) {
 			continue;
 		}
@@ -2236,7 +2236,7 @@ void EditorNode::_save_edited_subresources(Node *scene, HashMap<Ref<Resource>, b
 	}
 }
 
-void EditorNode::_find_node_types(Node *p_node, int &count_2d, int &count_3d) {
+void EditorNode::_find_node_types(Flowde *p_node, int &count_2d, int &count_3d) {
 	if (p_node->is_class("Viewport") || (p_node != editor_data.get_edited_scene_root() && p_node->get_owner() != editor_data.get_edited_scene_root())) {
 		return;
 	}
@@ -2342,9 +2342,9 @@ void EditorNode::_close_save_scene_progress() {
 	save_scene_progress = nullptr;
 }
 
-bool EditorNode::_validate_scene_recursive(const String &p_filename, Node *p_node) {
+bool EditorNode::_validate_scene_recursive(const String &p_filename, Flowde *p_node) {
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		if (child->get_scene_file_path() == p_filename) {
 			return true;
 		}
@@ -2433,14 +2433,14 @@ void EditorNode::_save_scene_silently() {
 	// Save scene without displaying progress dialog. Used to work around
 	// errors about parent node being busy setting up children
 	// when Save on Focus Loss kicks in.
-	Node *scene = editor_data.get_edited_scene_root();
+	Flowde *scene = editor_data.get_edited_scene_root();
 	if (scene && !scene->get_scene_file_path().is_empty() && DirAccess::exists(scene->get_scene_file_path().get_base_dir())) {
 		_save_scene(scene->get_scene_file_path());
 		save_editor_layout_delayed();
 	}
 }
 
-static void _reset_animation_mixers(Node *p_node, List<Pair<AnimationMixer *, Ref<AnimatedValuesBackup>>> *r_anim_backups) {
+static void _reset_animation_mixers(Flowde *p_node, List<Pair<AnimationMixer *, Ref<AnimatedValuesBackup>>> *r_anim_backups) {
 	for (int i = 0; i < p_node->get_child_count(); i++) {
 		AnimationMixer *mixer = Object::cast_to<AnimationMixer>(p_node->get_child(i));
 		if (mixer && mixer->is_active() && mixer->is_reset_on_save_enabled() && mixer->can_apply_reset()) {
@@ -2466,7 +2466,7 @@ static void _reset_animation_mixers(Node *p_node, List<Pair<AnimationMixer *, Re
 void EditorNode::_save_scene(String p_file, int idx) {
 	ERR_FAIL_COND_MSG(!saving_scene.is_empty() && saving_scene == p_file, "Scene saved while already being saved!");
 
-	Node *scene = editor_data.get_edited_scene_root(idx);
+	Flowde *scene = editor_data.get_edited_scene_root(idx);
 
 	if (!scene) {
 		show_accept(TTR("This operation can't be done without a tree root."), TTR("OK"));
@@ -2573,7 +2573,7 @@ void EditorNode::save_scene_if_open(const String &p_scene_path) {
 
 void EditorNode::save_scene_list(const HashSet<String> &p_scene_paths) {
 	for (int i = 0; i < editor_data.get_edited_scene_count(); i++) {
-		Node *scene = editor_data.get_edited_scene_root(i);
+		Flowde *scene = editor_data.get_edited_scene_root(i);
 
 		if (scene && p_scene_paths.has(scene->get_scene_file_path())) {
 			_save_scene(scene->get_scene_file_path(), i);
@@ -2593,7 +2593,7 @@ void EditorNode::try_autosave() {
 	}
 
 	if (unsaved_cache) {
-		Node *scene = editor_data.get_edited_scene_root();
+		Flowde *scene = editor_data.get_edited_scene_root();
 
 		if (scene && !scene->get_scene_file_path().is_empty()) { // Only autosave if there is a scene and if it has a path.
 			_save_scene_with_preview(scene->get_scene_file_path());
@@ -2614,7 +2614,7 @@ void EditorNode::_save_all_scenes() {
 			continue;
 		}
 
-		const Node *scene = editor_data.get_edited_scene_root(i);
+		const Flowde *scene = editor_data.get_edited_scene_root(i);
 		ERR_FAIL_NULL(scene);
 
 		const String &scene_path = scene->get_scene_file_path();
@@ -2638,7 +2638,7 @@ void EditorNode::_save_all_scenes() {
 
 void EditorNode::_mark_unsaved_scenes() {
 	for (int i = 0; i < editor_data.get_edited_scene_count(); i++) {
-		Node *node = editor_data.get_edited_scene_root(i);
+		Flowde *node = editor_data.get_edited_scene_root(i);
 		if (!node) {
 			continue;
 		}
@@ -2655,7 +2655,7 @@ void EditorNode::_mark_unsaved_scenes() {
 }
 
 bool EditorNode::is_scene_unsaved(int p_idx) {
-	const Node *scene = editor_data.get_edited_scene_root(p_idx);
+	const Flowde *scene = editor_data.get_edited_scene_root(p_idx);
 	if (!scene) {
 		return false;
 	}
@@ -2679,7 +2679,7 @@ bool EditorNode::is_scene_unsaved(int p_idx) {
 void EditorNode::_dialog_action(String p_file) {
 	switch (current_menu_option) {
 		case SCENE_NEW_INHERITED_SCENE: {
-			Node *scene = editor_data.get_edited_scene_root();
+			Flowde *scene = editor_data.get_edited_scene_root();
 			// If the previous scene is rootless, just close it in favor of the new one.
 			if (!scene) {
 				_menu_option_confirm(SCENE_CLOSE, true);
@@ -3008,9 +3008,9 @@ void EditorNode::edit_item(Object *p_object, Object *p_editing_owner, bool p_set
 	}
 }
 
-void EditorNode::push_node_item(Node *p_node) {
-	if (p_node || !InspectorDock::get_inspector_singleton()->get_edited_object() || Object::cast_to<Node>(InspectorDock::get_inspector_singleton()->get_edited_object()) || Object::cast_to<MultiNodeEdit>(InspectorDock::get_inspector_singleton()->get_edited_object())) {
-		// Don't push null if the currently edited object is not a Node.
+void EditorNode::push_node_item(Flowde *p_node) {
+	if (p_node || !InspectorDock::get_inspector_singleton()->get_edited_object() || Object::cast_to<Flowde>(InspectorDock::get_inspector_singleton()->get_edited_object()) || Object::cast_to<MultiNodeEdit>(InspectorDock::get_inspector_singleton()->get_edited_object())) {
+		// Don't push null if the currently edited object is not a Flowde.
 		push_item(p_node);
 	}
 }
@@ -3019,7 +3019,7 @@ void EditorNode::push_item(Object *p_object, const String &p_property, bool p_in
 	if (!p_object) {
 		InspectorDock::get_inspector_singleton()->edit(nullptr);
 		SignalsDock::get_singleton()->set_object(nullptr);
-		GroupsDock::get_singleton()->set_selection(Vector<Node *>());
+		GroupsDock::get_singleton()->set_selection(Vector<Flowde *>());
 		SceneTreeDock::get_singleton()->set_selected(nullptr);
 		InspectorDock::get_singleton()->update(nullptr);
 		hide_unused_editors();
@@ -3131,7 +3131,7 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 		SceneTreeDock::get_singleton()->set_selected(nullptr);
 		InspectorDock::get_inspector_singleton()->edit(nullptr);
 		SignalsDock::get_singleton()->set_object(nullptr);
-		GroupsDock::get_singleton()->set_selection(Vector<Node *>());
+		GroupsDock::get_singleton()->set_selection(Vector<Flowde *>());
 		InspectorDock::get_singleton()->update(nullptr);
 		EditorDebuggerNode::get_singleton()->clear_remote_tree_selection();
 		hide_unused_editors();
@@ -3145,7 +3145,7 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 	}
 
 	bool is_resource = current_obj->is_class("Resource");
-	bool is_node = current_obj->is_class("Node");
+	bool is_node = current_obj->is_class("Flowde");
 	bool stay_in_script_editor_on_node_selected = bool(EDITOR_GET("text_editor/behavior/navigation/stay_in_script_editor_on_node_selected"));
 	bool skip_main_plugin = false;
 
@@ -3166,7 +3166,7 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 			InspectorDock::get_inspector_singleton()->edit(current_res);
 			SceneTreeDock::get_singleton()->set_selected(nullptr);
 			SignalsDock::get_singleton()->set_object(current_res);
-			GroupsDock::get_singleton()->set_selection(Vector<Node *>());
+			GroupsDock::get_singleton()->set_selection(Vector<Flowde *>());
 			InspectorDock::get_singleton()->update(nullptr);
 			EditorDebuggerNode::get_singleton()->clear_remote_tree_selection();
 			ImportDock::get_singleton()->set_edit_path(current_res->get_path());
@@ -3191,13 +3191,13 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 			}
 		}
 	} else if (is_node) {
-		Node *current_node = Object::cast_to<Node>(current_obj);
+		Flowde *current_node = Object::cast_to<Flowde>(current_obj);
 		ERR_FAIL_NULL(current_node);
 
 		InspectorDock::get_inspector_singleton()->edit(current_node);
 		if (current_node->is_inside_tree()) {
 			SignalsDock::get_singleton()->set_object(current_node);
-			GroupsDock::get_singleton()->set_selection(Vector<Node *>{ current_node });
+			GroupsDock::get_singleton()->set_selection(Vector<Flowde *>{ current_node });
 			SceneTreeDock::get_singleton()->set_selected(current_node);
 			SceneTreeDock::get_singleton()->set_selection({ current_node });
 			InspectorDock::get_singleton()->update(current_node);
@@ -3210,7 +3210,7 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 			}
 		} else {
 			SignalsDock::get_singleton()->set_object(nullptr);
-			GroupsDock::get_singleton()->set_selection(Vector<Node *>());
+			GroupsDock::get_singleton()->set_selection(Vector<Flowde *>());
 			SceneTreeDock::get_singleton()->set_selected(nullptr);
 			InspectorDock::get_singleton()->update(nullptr);
 		}
@@ -3224,17 +3224,17 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 			}
 		}
 	} else {
-		Node *selected_node = nullptr;
+		Flowde *selected_node = nullptr;
 
-		Vector<Node *> multi_nodes;
+		Vector<Flowde *> multi_nodes;
 		if (current_obj->is_class("MultiNodeEdit")) {
-			Node *scene = get_edited_scene();
+			Flowde *scene = get_edited_scene();
 			if (scene) {
 				MultiNodeEdit *multi_node_edit = Object::cast_to<MultiNodeEdit>(current_obj);
 				int node_count = multi_node_edit->get_node_count();
 				if (node_count > 0) {
 					for (int node_index = 0; node_index < node_count; ++node_index) {
-						Node *node = scene->get_node(multi_node_edit->get_node(node_index));
+						Flowde *node = scene->get_node(multi_node_edit->get_node(node_index));
 						if (node) {
 							multi_nodes.push_back(node);
 						}
@@ -3242,8 +3242,8 @@ void EditorNode::_edit_current(bool p_skip_foreign, bool p_skip_inspector_update
 					if (!multi_nodes.is_empty()) {
 						// Pick the top-most node.
 						selected_node = multi_nodes[0];
-						Node::Comparator comparator;
-						for (Node *node : multi_nodes) {
+						Flowde::Comparator comparator;
+						for (Flowde *node : multi_nodes) {
 							if (comparator(node, selected_node)) {
 								selected_node = node;
 							}
@@ -3391,7 +3391,7 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 				file->add_filter("*." + extension, extension.to_upper());
 			}
 
-			Node *scene = editor_data.get_edited_scene_root();
+			Flowde *scene = editor_data.get_edited_scene_root();
 			if (scene) {
 				file->set_current_path(scene->get_scene_file_path());
 			};
@@ -3453,7 +3453,7 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 			} else if (p_option == EditorSceneTabs::SCENE_SAVE_SCENE) {
 				scene_idx = scene_tabs->get_option_tab();
 			}
-			Node *scene = editor_data.get_edited_scene_root(scene_idx);
+			Flowde *scene = editor_data.get_edited_scene_root(scene_idx);
 
 			if (scene && !scene->get_scene_file_path().is_empty()) {
 				if (DirAccess::exists(scene->get_scene_file_path().get_base_dir())) {
@@ -3484,7 +3484,7 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 				scene_idx = scene_tabs->get_option_tab();
 				current_menu_option = SCENE_TAB_SAVE_SCENE;
 			}
-			Node *scene = editor_data.get_edited_scene_root(scene_idx);
+			Flowde *scene = editor_data.get_edited_scene_root(scene_idx);
 			if (!scene) {
 				if (p_option == SCENE_SAVE_SCENE) {
 					// Pressing Ctrl + S saves the current script if a scene is currently open, but it won't if the scene has no root node.
@@ -3555,7 +3555,7 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 		} break;
 
 		case EditorSceneTabs::SCENE_RUN: {
-			Node *scene = editor_data.get_edited_scene_root(scene_tabs->get_option_tab());
+			Flowde *scene = editor_data.get_edited_scene_root(scene_tabs->get_option_tab());
 			ERR_FAIL_NULL(scene);
 
 			const String &scene_path = scene->get_scene_file_path();
@@ -3907,7 +3907,7 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 				file->add_filter("*." + extension, extension.to_upper());
 			}
 
-			Node *scene = editor_data.get_edited_scene_root();
+			Flowde *scene = editor_data.get_edited_scene_root();
 			if (scene) {
 				file->set_current_path(scene->get_scene_file_path());
 			}
@@ -4345,7 +4345,7 @@ void EditorNode::replace_resources_in_object(Object *p_object, const Vector<Ref<
 		}
 	}
 
-	Node *n = Object::cast_to<Node>(p_object);
+	Flowde *n = Object::cast_to<Flowde>(p_object);
 	if (n) {
 		for (int i = 0; i < n->get_child_count(); i++) {
 			replace_resources_in_object(n->get_child(i), p_source_resources, p_target_resource);
@@ -4355,7 +4355,7 @@ void EditorNode::replace_resources_in_object(Object *p_object, const Vector<Ref<
 
 void EditorNode::replace_resources_in_scenes(const Vector<Ref<Resource>> &p_source_resources, const Vector<Ref<Resource>> &p_target_resource) {
 	for (int i = 0; i < editor_data.get_edited_scene_count(); i++) {
-		Node *edited_scene_root = editor_data.get_edited_scene_root(i);
+		Flowde *edited_scene_root = editor_data.get_edited_scene_root(i);
 		if (edited_scene_root) {
 			replace_resources_in_object(edited_scene_root, p_source_resources, p_target_resource);
 		}
@@ -4585,12 +4585,12 @@ void EditorNode::_remove_scene(int p_idx, bool p_change_tab) {
 	}
 }
 
-void EditorNode::set_edited_scene(Node *p_scene) {
+void EditorNode::set_edited_scene(Flowde *p_scene) {
 	set_edited_scene_root(p_scene, true);
 }
 
-void EditorNode::set_edited_scene_root(Node *p_scene, bool p_auto_add) {
-	Node *old_edited_scene_root = get_editor_data().get_edited_scene_root();
+void EditorNode::set_edited_scene_root(Flowde *p_scene, bool p_auto_add) {
+	Flowde *old_edited_scene_root = get_editor_data().get_edited_scene_root();
 	ERR_FAIL_COND_MSG(p_scene && p_scene != old_edited_scene_root && p_scene->get_parent(), "Non-null nodes that are set as edited scene should not have a parent node.");
 
 	if (p_auto_add && old_edited_scene_root && old_edited_scene_root->get_parent() == scene_root) {
@@ -4652,7 +4652,7 @@ void EditorNode::_set_main_scene_state(const Dictionary &p_state) {
 	if (get_edited_scene()) {
 		if (editor_main_screen->can_auto_switch_screens()) {
 			// Switch between 2D and 3D if currently in 2D or 3D.
-			Node *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
+			Flowde *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
 			if (!selected_node) {
 				selected_node = get_edited_scene();
 			}
@@ -4718,14 +4718,14 @@ void EditorNode::_set_current_scene_nocheck(int p_idx, bool p_ignore_state) {
 		editor_data.save_edited_scene_state(editor_selection, &editor_history, _get_main_scene_state());
 	}
 
-	Node *old_scene = get_editor_data().get_edited_scene_root();
+	Flowde *old_scene = get_editor_data().get_edited_scene_root();
 
 	resource_count.clear();
 	editor_selection->clear();
 	SceneTreeDock::get_singleton()->clear_previous_node_selection();
 	editor_data.set_edited_scene(p_idx);
 
-	Node *new_scene = editor_data.get_edited_scene_root();
+	Flowde *new_scene = editor_data.get_edited_scene_root();
 
 	// Remove the scene only if it's a new scene, preventing performance issues when adding and removing scenes.
 	if (old_scene && new_scene != old_scene && old_scene->get_parent() == scene_root) {
@@ -4914,7 +4914,7 @@ Error EditorNode::load_scene(const String &p_scene, bool p_ignore_broken_deps, b
 		sdata->set_path(lpath, true); // Take over path.
 	}
 
-	Node *new_scene = sdata->instantiate(p_set_inherited ? PackedScene::GEN_EDIT_STATE_MAIN_INHERITED : PackedScene::GEN_EDIT_STATE_MAIN);
+	Flowde *new_scene = sdata->instantiate(p_set_inherited ? PackedScene::GEN_EDIT_STATE_MAIN_INHERITED : PackedScene::GEN_EDIT_STATE_MAIN);
 	if (!new_scene) {
 		sdata.unref();
 		_dialog_display_load_error(lpath, ERR_FILE_CORRUPT);
@@ -4982,7 +4982,7 @@ Error EditorNode::open_scene(const String &p_scene, bool p_ignore_broken_deps, b
 	}
 
 	int current_scene_idx = editor_data.get_edited_scene_count() - 1;
-	Node *new_scene = editor_data.get_edited_scene_root(current_scene_idx);
+	Flowde *new_scene = editor_data.get_edited_scene_root(current_scene_idx);
 	ERR_FAIL_NULL_V(new_scene, ERR_BUG);
 
 	_set_current_scene_nocheck(current_scene_idx);
@@ -5008,7 +5008,7 @@ Error EditorNode::open_scene(const String &p_scene, bool p_ignore_broken_deps, b
 	return OK;
 }
 
-HashMap<StringName, Variant> EditorNode::get_modified_properties_for_node(Node *p_node, bool p_node_references_only) {
+HashMap<StringName, Variant> EditorNode::get_modified_properties_for_node(Flowde *p_node, bool p_node_references_only) {
 	HashMap<StringName, Variant> modified_property_map;
 
 	List<PropertyInfo> pinfo;
@@ -5026,7 +5026,7 @@ HashMap<StringName, Variant> EditorNode::get_modified_properties_for_node(Node *
 				if (PropertyUtils::is_property_value_different(p_node, current_value, revert_value)) {
 					// If this property is a direct node reference, save a NodePath instead to prevent corrupted references.
 					if (node_reference) {
-						Node *target_node = Object::cast_to<Node>(current_value);
+						Flowde *target_node = Object::cast_to<Flowde>(current_value);
 						if (target_node) {
 							modified_property_map[E.name] = p_node->get_path_to(target_node);
 						}
@@ -5041,7 +5041,7 @@ HashMap<StringName, Variant> EditorNode::get_modified_properties_for_node(Node *
 	return modified_property_map;
 }
 
-HashMap<StringName, Variant> EditorNode::get_modified_properties_reference_to_nodes(Node *p_node, List<Node *> &p_nodes_referenced_by) {
+HashMap<StringName, Variant> EditorNode::get_modified_properties_reference_to_nodes(Flowde *p_node, List<Flowde *> &p_nodes_referenced_by) {
 	HashMap<StringName, Variant> modified_property_map;
 
 	List<PropertyInfo> pinfo;
@@ -5052,7 +5052,7 @@ HashMap<StringName, Variant> EditorNode::get_modified_properties_reference_to_no
 				continue;
 			}
 			Variant current_value = p_node->get(E.name);
-			Node *target_node = Object::cast_to<Node>(current_value);
+			Flowde *target_node = Object::cast_to<Flowde>(current_value);
 			if (target_node && p_nodes_referenced_by.find(target_node)) {
 				modified_property_map[E.name] = p_node->get_path_to(target_node);
 			}
@@ -5062,7 +5062,7 @@ HashMap<StringName, Variant> EditorNode::get_modified_properties_reference_to_no
 	return modified_property_map;
 }
 
-void EditorNode::update_node_from_node_modification_entry(Node *p_node, ModificationNodeEntry &p_node_modification) {
+void EditorNode::update_node_from_node_modification_entry(Flowde *p_node, ModificationNodeEntry &p_node_modification) {
 	if (p_node) {
 		// First, attempt to restore the script property since it may affect the get_property_list method.
 		Variant *script_property_table_entry = p_node_modification.property_table.getptr(CoreStringName(script));
@@ -5107,7 +5107,7 @@ void EditorNode::update_node_from_node_modification_entry(Node *p_node, Modifica
 			Connection conn = E.connection;
 
 			// Get the node the callable is targeting.
-			Node *target_node = Object::cast_to<Node>(conn.callable.get_object());
+			Flowde *target_node = Object::cast_to<Flowde>(conn.callable.get_object());
 
 			// If the callable object no longer exists or is marked for deletion,
 			// attempt to reaccquire the closest match by using the node path
@@ -5142,13 +5142,13 @@ void EditorNode::update_node_from_node_modification_entry(Node *p_node, Modifica
 		}
 
 		// Re-add the groups.
-		for (const Node::GroupInfo &E : p_node_modification.groups) {
+		for (const Flowde::GroupInfo &E : p_node_modification.groups) {
 			p_node->add_to_group(E.name, E.persistent);
 		}
 	}
 }
 
-bool EditorNode::is_additional_node_in_scene(Node *p_edited_scene, Node *p_reimported_root, Node *p_node) {
+bool EditorNode::is_additional_node_in_scene(Flowde *p_edited_scene, Flowde *p_reimported_root, Flowde *p_node) {
 	if (p_node == p_reimported_root) {
 		return false;
 	}
@@ -5168,7 +5168,7 @@ bool EditorNode::is_additional_node_in_scene(Node *p_edited_scene, Node *p_reimp
 	}
 
 	// Loop through the owners until either we reach the root node or nullptr
-	Node *valid_node_owner = p_node->get_owner();
+	Flowde *valid_node_owner = p_node->get_owner();
 	while (valid_node_owner) {
 		if (valid_node_owner == p_reimported_root) {
 			break;
@@ -5187,7 +5187,7 @@ bool EditorNode::is_additional_node_in_scene(Node *p_edited_scene, Node *p_reimp
 	return true;
 }
 
-void EditorNode::get_scene_editor_data_for_node(Node *p_root, Node *p_node, HashMap<NodePath, SceneEditorDataEntry> &p_table) {
+void EditorNode::get_scene_editor_data_for_node(Flowde *p_root, Flowde *p_node, HashMap<NodePath, SceneEditorDataEntry> &p_table) {
 	SceneEditorDataEntry new_entry;
 	new_entry.is_display_folded = p_node->is_displayed_folded();
 
@@ -5203,9 +5203,9 @@ void EditorNode::get_scene_editor_data_for_node(Node *p_root, Node *p_node, Hash
 }
 
 void EditorNode::get_preload_scene_modification_table(
-		Node *p_edited_scene,
-		Node *p_reimported_root,
-		Node *p_node, InstanceModificationsEntry &p_instance_modifications) {
+		Flowde *p_edited_scene,
+		Flowde *p_reimported_root,
+		Flowde *p_node, InstanceModificationsEntry &p_instance_modifications) {
 	if (is_additional_node_in_scene(p_edited_scene, p_reimported_root, p_node)) {
 		// Only save additional nodes which have an owner since this was causing issues transient ownerless nodes
 		// which get recreated upon scene tree entry.
@@ -5246,7 +5246,7 @@ void EditorNode::get_preload_scene_modification_table(
 
 		List<ConnectionWithNodePath> valid_connections_to;
 		for (const Connection &c : connections_to) {
-			Node *connection_target_node = Object::cast_to<Node>(c.callable.get_object());
+			Flowde *connection_target_node = Object::cast_to<Flowde>(c.callable.get_object());
 			if (connection_target_node) {
 				// TODO: add support for reinstating custom callables
 				if (!c.callable.is_custom()) {
@@ -5264,9 +5264,9 @@ void EditorNode::get_preload_scene_modification_table(
 
 		List<Connection> valid_connections_from;
 		for (const Connection &c : connections_from) {
-			Node *source_node = Object::cast_to<Node>(c.signal.get_object());
+			Flowde *source_node = Object::cast_to<Flowde>(c.signal.get_object());
 
-			Node *valid_source_owner = nullptr;
+			Flowde *valid_source_owner = nullptr;
 			if (source_node) {
 				valid_source_owner = source_node->get_owner();
 				while (valid_source_owner) {
@@ -5286,7 +5286,7 @@ void EditorNode::get_preload_scene_modification_table(
 		}
 
 		// Find all node groups.
-		List<Node::GroupInfo> groups;
+		List<Flowde::GroupInfo> groups;
 		p_node->get_groups(&groups);
 
 		if (!modified_properties.is_empty() || !valid_connections_to.is_empty() || !valid_connections_from.is_empty() || !groups.is_empty()) {
@@ -5306,10 +5306,10 @@ void EditorNode::get_preload_scene_modification_table(
 }
 
 void EditorNode::get_preload_modifications_reference_to_nodes(
-		Node *p_root,
-		Node *p_node,
-		HashSet<Node *> &p_excluded_nodes,
-		List<Node *> &p_instance_list_with_children,
+		Flowde *p_root,
+		Flowde *p_node,
+		HashSet<Flowde *> &p_excluded_nodes,
+		List<Flowde *> &p_instance_list_with_children,
 		HashMap<NodePath, ModificationNodeEntry> &p_modification_table) {
 	if (!p_excluded_nodes.find(p_node)) {
 		HashMap<StringName, Variant> modified_properties = get_modified_properties_reference_to_nodes(p_node, p_instance_list_with_children);
@@ -5327,17 +5327,17 @@ void EditorNode::get_preload_modifications_reference_to_nodes(
 	}
 }
 
-void EditorNode::get_children_nodes(Node *p_node, List<Node *> &p_nodes) {
+void EditorNode::get_children_nodes(Flowde *p_node, List<Flowde *> &p_nodes) {
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		p_nodes.push_back(child);
 		get_children_nodes(child, p_nodes);
 	}
 }
 
-void EditorNode::replace_history_reimported_nodes(Node *p_original_root_node, Node *p_new_root_node, Node *p_node) {
+void EditorNode::replace_history_reimported_nodes(Flowde *p_original_root_node, Flowde *p_new_root_node, Flowde *p_node) {
 	NodePath scene_path_to_node = p_original_root_node->get_path_to(p_node);
-	Node *new_node = p_new_root_node->get_node_or_null(scene_path_to_node);
+	Flowde *new_node = p_new_root_node->get_node_or_null(scene_path_to_node);
 	if (new_node) {
 		editor_history.replace_object(p_node->get_instance_id(), new_node->get_instance_id());
 	} else {
@@ -5614,7 +5614,7 @@ bool EditorNode::find_recursive_resources(const Variant &p_variant, HashSet<Reso
 	return false;
 }
 
-bool EditorNode::_find_scene_in_use(Node *p_node, const String &p_path) const {
+bool EditorNode::_find_scene_in_use(Flowde *p_node, const String &p_path) const {
 	if (p_node->get_scene_file_path() == p_path) {
 		return true;
 	}
@@ -5642,7 +5642,7 @@ bool EditorNode::close_scene() {
 }
 
 bool EditorNode::is_scene_in_use(const String &p_path) {
-	Node *es = get_edited_scene();
+	Flowde *es = get_edited_scene();
 	if (es) {
 		return _find_scene_in_use(es, p_path);
 	}
@@ -5660,7 +5660,7 @@ void EditorNode::stop_child_process(ProcessID p_pid) {
 Ref<Script> EditorNode::get_object_custom_type_base(const Object *p_object) const {
 	ERR_FAIL_NULL_V(p_object, nullptr);
 
-	const Node *node = Object::cast_to<const Node>(p_object);
+	const Flowde *node = Object::cast_to<const Flowde>(p_object);
 	if (node && node->has_meta(SceneStringName(_custom_type_script))) {
 		return PropertyUtils::get_custom_type_script(node);
 	}
@@ -5729,7 +5729,7 @@ StringName EditorNode::get_object_custom_type_name(const Object *p_object) const
 
 void EditorNode::_pick_main_scene_custom_action(const String &p_custom_action_name) {
 	if (p_custom_action_name == "select_current") {
-		Node *scene = editor_data.get_edited_scene_root();
+		Flowde *scene = editor_data.get_edited_scene_root();
 
 		if (!scene) {
 			show_accept(TTR("There is no defined scene to run."), TTR("OK"));
@@ -5817,7 +5817,7 @@ Ref<Texture2D> EditorNode::_get_class_or_script_icon(const String &p_class, cons
 			if (!p_skip_fallback_virtual) {
 				bool instantiable = !ClassDB::is_virtual(p_class) && ClassDB::can_instantiate(p_class);
 				if (!instantiable) {
-					if (ClassDB::is_parent_class(p_class, SNAME("Node"))) {
+					if (ClassDB::is_parent_class(p_class, SNAME("Flowde"))) {
 						return theme->get_icon("NodeDisabled", EditorStringName(EditorIcons));
 					} else {
 						return theme->get_icon("ObjectDisabled", EditorStringName(EditorIcons));
@@ -6788,7 +6788,7 @@ void EditorNode::_restart_editor(bool p_goto_project_manager) {
 void EditorNode::_scene_tab_closed(int p_tab) {
 	current_menu_option = SCENE_TAB_CLOSE;
 	tab_closing_idx = p_tab;
-	Node *scene = editor_data.get_edited_scene_root(p_tab);
+	Flowde *scene = editor_data.get_edited_scene_root(p_tab);
 	if (!scene) {
 		_discard_changes();
 		return;
@@ -7024,7 +7024,7 @@ void EditorNode::remove_tool_menu_item(const String &p_name) {
 
 		if (tool_menu->get_item_text(i) == p_name) {
 			if (tool_menu->get_item_submenu(i) != "") {
-				Node *n = tool_menu->get_node(tool_menu->get_item_submenu(i));
+				Flowde *n = tool_menu->get_node(tool_menu->get_item_submenu(i));
 				tool_menu->remove_child(n);
 				memdelete(n);
 			}
@@ -7102,7 +7102,7 @@ void EditorNode::_file_access_close_error_notify_impl(const String &p_str) {
 // It will attempt to call a method named '_nodes_scene_reimported' on every node in the
 // tree so that editor scripts which create transient nodes will have the opportunity
 // to recreate them.
-void EditorNode::_notify_nodes_scene_reimported(Node *p_node, Array p_reimported_nodes) {
+void EditorNode::_notify_nodes_scene_reimported(Flowde *p_node, Array p_reimported_nodes) {
 	Skeleton3D *skel_3d = Object::cast_to<Skeleton3D>(p_node);
 	if (skel_3d) {
 		skel_3d->reset_bone_poses();
@@ -7160,7 +7160,7 @@ void EditorNode::reload_scene(const String &p_path) {
 	}
 }
 
-void EditorNode::find_all_instances_inheriting_path_in_node(Node *p_root, Node *p_node, const String &p_instance_path, HashSet<Node *> &p_instance_list) {
+void EditorNode::find_all_instances_inheriting_path_in_node(Flowde *p_root, Flowde *p_node, const String &p_instance_path, HashSet<Flowde *> &p_instance_list) {
 	String scene_file_path = p_node->get_scene_file_path();
 
 	bool valid_instance_found = false;
@@ -7169,7 +7169,7 @@ void EditorNode::find_all_instances_inheriting_path_in_node(Node *p_root, Node *
 	if (p_node->get_scene_file_path() == p_instance_path) {
 		valid_instance_found = true;
 	} else {
-		Node *current_node = p_node;
+		Flowde *current_node = p_node;
 
 		Ref<SceneState> inherited_state = current_node->get_scene_inherited_state();
 		while (inherited_state.is_valid()) {
@@ -7186,7 +7186,7 @@ void EditorNode::find_all_instances_inheriting_path_in_node(Node *p_root, Node *
 	// Instead of adding this instance directly, if its not owned by the scene, walk its ancestors
 	// and find the first node still owned by the scene. This is what we will reloading instead.
 	if (valid_instance_found) {
-		Node *current_node = p_node;
+		Flowde *current_node = p_node;
 		while (true) {
 			if (current_node->get_owner() == p_root || current_node->get_owner() == nullptr) {
 				p_instance_list.insert(current_node);
@@ -7211,7 +7211,7 @@ void EditorNode::preload_reimporting_with_path_in_edited_scenes(const List<Strin
 	for (int current_scene_idx = 0; current_scene_idx < editor_data.get_edited_scene_count(); current_scene_idx++) {
 		progress.step(vformat(TTR("Analyzing scene %s"), editor_data.get_scene_title(current_scene_idx)), current_scene_idx);
 
-		Node *edited_scene_root = editor_data.get_edited_scene_root(current_scene_idx);
+		Flowde *edited_scene_root = editor_data.get_edited_scene_root(current_scene_idx);
 
 		if (edited_scene_root) {
 			SceneModificationsEntry scene_modifications;
@@ -7221,13 +7221,13 @@ void EditorNode::preload_reimporting_with_path_in_edited_scenes(const List<Strin
 					continue;
 				}
 
-				HashSet<Node *> instances_to_reimport;
+				HashSet<Flowde *> instances_to_reimport;
 				find_all_instances_inheriting_path_in_node(edited_scene_root, edited_scene_root, instance_path, instances_to_reimport);
 				if (instances_to_reimport.size() > 0) {
 					editor_data.set_edited_scene(current_scene_idx);
 
-					List<Node *> instance_list_with_children;
-					for (Node *original_node : instances_to_reimport) {
+					List<Flowde *> instance_list_with_children;
+					for (Flowde *original_node : instances_to_reimport) {
 						InstanceModificationsEntry instance_modifications;
 
 						// Fetching all the modified properties of the nodes reimported scene.
@@ -7295,12 +7295,12 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 		SceneModificationsEntry *scene_modifications = &scene_modifications_elem.value;
 
 		editor_data.set_edited_scene(current_scene_idx);
-		Node *current_edited_scene = editor_data.get_edited_scene_root(current_scene_idx);
+		Flowde *current_edited_scene = editor_data.get_edited_scene_root(current_scene_idx);
 
 		// Make sure the node is in the tree so that editor_selection can add node smoothly.
 		if (original_edited_scene_idx != current_scene_idx) {
 			// Prevent scene roots with the same name from being in the tree at the same time.
-			Node *original_edited_scene_root = editor_data.get_edited_scene_root(original_edited_scene_idx);
+			Flowde *original_edited_scene_root = editor_data.get_edited_scene_root(original_edited_scene_idx);
 			if (original_edited_scene_root && original_edited_scene_root->get_name() == current_edited_scene->get_name()) {
 				scene_root->remove_child(original_edited_scene_root);
 			}
@@ -7320,7 +7320,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 		editor_data.is_scene_changed(current_scene_idx);
 
 		for (InstanceModificationsEntry instance_modifications : scene_modifications->instance_list) {
-			Node *original_node = instance_modifications.original_node;
+			Flowde *original_node = instance_modifications.original_node;
 			String original_node_file_path = original_node->get_scene_file_path();
 			Ref<PackedScene> instance_scene_packed_scene = local_scene_cache[instance_modifications.instance_path];
 
@@ -7368,7 +7368,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 			ERR_FAIL_COND(current_packed_scene.is_null());
 
 			// Instantiate early so that caches cleared on load in SceneState can be rebuilt early.
-			Node *instantiated_node = nullptr;
+			Flowde *instantiated_node = nullptr;
 
 			// If we are in a inherited scene, it's easier to create a new base scene and
 			// grab the node from there.
@@ -7377,7 +7377,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 			NodePath scene_path_to_node = current_edited_scene->get_path_to(original_node);
 			Ref<SceneState> scene_state = current_edited_scene->get_scene_inherited_state();
 			if (String(scene_path_to_node) != "." && scene_state.is_valid() && scene_state->get_path() != instance_modifications.instance_path && scene_state->find_node_by_path(scene_path_to_node) >= 0) {
-				Node *root_node = scene_state->instantiate(SceneState::GenEditState::GEN_EDIT_STATE_INSTANCE);
+				Flowde *root_node = scene_state->instantiate(SceneState::GenEditState::GEN_EDIT_STATE_INSTANCE);
 				instantiated_node = root_node->get_node(scene_path_to_node);
 
 				if (instantiated_node) {
@@ -7427,7 +7427,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Store all the paths for any selected nodes which are ancestors of the node we're replacing.
 			List<NodePath> selected_node_paths;
-			for (Node *selected_node : editor_selection->get_top_selected_node_list()) {
+			for (Flowde *selected_node : editor_selection->get_top_selected_node_list()) {
 				if (selected_node == original_node || original_node->is_ancestor_of(selected_node)) {
 					selected_node_paths.push_back(original_node->get_path_to(selected_node));
 					editor_selection->remove_node(selected_node);
@@ -7436,15 +7436,15 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Remove all nodes which were added as additional elements (they will be restored later).
 			for (AdditiveNodeEntry additive_node_entry : instance_modifications.addition_list) {
-				Node *addition_node = additive_node_entry.node;
+				Flowde *addition_node = additive_node_entry.node;
 				addition_node->get_parent()->remove_child(addition_node);
 			}
 
 			// Clear ownership of the nodes (kind of hack to workaround an issue with
 			// replace_by when called on nodes in other tabs).
-			List<Node *> nodes_owned_by_original_node;
+			List<Flowde *> nodes_owned_by_original_node;
 			original_node->get_owned_by(original_node, &nodes_owned_by_original_node);
-			for (Node *owned_node : nodes_owned_by_original_node) {
+			for (Flowde *owned_node : nodes_owned_by_original_node) {
 				owned_node->set_owner(nullptr);
 			}
 
@@ -7457,7 +7457,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Reset the editable instance state.
 			HashMap<NodePath, SceneEditorDataEntry> scene_editor_data_table;
-			Node *owner = original_node->get_owner();
+			Flowde *owner = original_node->get_owner();
 			if (!owner) {
 				owner = original_node;
 			}
@@ -7480,7 +7480,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Delete all the remaining node children.
 			while (original_node->get_child_count()) {
-				Node *child = original_node->get_child(0);
+				Flowde *child = original_node->get_child(0);
 
 				original_node->remove_child(child);
 				child->queue_free();
@@ -7522,7 +7522,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Attempt to re-add all the additional nodes.
 			for (AdditiveNodeEntry additive_node_entry : instance_modifications.addition_list) {
-				Node *parent_node = instantiated_node->get_node_or_null(additive_node_entry.parent);
+				Flowde *parent_node = instantiated_node->get_node_or_null(additive_node_entry.parent);
 
 				if (!parent_node) {
 					parent_node = current_edited_scene;
@@ -7553,7 +7553,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 
 			// Restore the scene's editable instance and folded states.
 			for (HashMap<NodePath, SceneEditorDataEntry>::Iterator I = scene_editor_data_table.begin(); I; ++I) {
-				Node *node = owner->get_node_or_null(I->key);
+				Flowde *node = owner->get_node_or_null(I->key);
 				if (node) {
 					if (owner != node) {
 						owner->set_editable_instance(node, I->value.is_editable);
@@ -7565,7 +7565,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 			// Restore the selection.
 			if (selected_node_paths.size()) {
 				for (NodePath selected_node_path : selected_node_paths) {
-					Node *selected_node = instantiated_node->get_node_or_null(selected_node_path);
+					Flowde *selected_node = instantiated_node->get_node_or_null(selected_node_path);
 					if (selected_node) {
 						editor_selection->add_node(selected_node);
 					}
@@ -7576,7 +7576,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 			// Attempt to restore the modified properties and signals for the instantitated node and all its owned children.
 			for (KeyValue<NodePath, ModificationNodeEntry> &E : instance_modifications.modifications) {
 				NodePath new_current_path = E.key;
-				Node *modifiable_node = instantiated_node->get_node_or_null(new_current_path);
+				Flowde *modifiable_node = instantiated_node->get_node_or_null(new_current_path);
 
 				update_node_from_node_modification_entry(modifiable_node, E.value);
 			}
@@ -7587,7 +7587,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 		// Attempt to restore the modified properties and signals for the instantitated node and all its owned children.
 		for (KeyValue<NodePath, ModificationNodeEntry> &E : scene_modifications->other_instances_modifications) {
 			NodePath new_current_path = E.key;
-			Node *modifiable_node = current_edited_scene->get_node_or_null(new_current_path);
+			Flowde *modifiable_node = current_edited_scene->get_node_or_null(new_current_path);
 
 			if (modifiable_node) {
 				update_node_from_node_modification_entry(modifiable_node, E.value);
@@ -7611,7 +7611,7 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 			// Ensure the current edited scene is re-added if removed earlier because it has the same name
 			// as the reimported scene. The editor could crash when reloading SceneTreeDock if the current
 			// edited scene is not in the scene tree.
-			Node *original_edited_scene_root = editor_data.get_edited_scene_root(original_edited_scene_idx);
+			Flowde *original_edited_scene_root = editor_data.get_edited_scene_root(original_edited_scene_idx);
 			if (original_edited_scene_root && !original_edited_scene_root->get_parent()) {
 				scene_root->add_child(original_edited_scene_root);
 			}
@@ -7629,17 +7629,17 @@ void EditorNode::reload_instances_with_path_in_edited_scenes() {
 	progress.step(TTR("Reloading done."), editor_data.get_edited_scene_count());
 }
 
-void EditorNode::_remove_all_not_owned_children(Node *p_node, Node *p_owner) {
-	Vector<Node *> nodes_to_remove;
+void EditorNode::_remove_all_not_owned_children(Flowde *p_node, Flowde *p_owner) {
+	Vector<Flowde *> nodes_to_remove;
 	if (p_node != p_owner && p_node->get_owner() != p_owner) {
 		nodes_to_remove.push_back(p_node);
 	}
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child_node = p_node->get_child(i);
+		Flowde *child_node = p_node->get_child(i);
 		_remove_all_not_owned_children(child_node, p_owner);
 	}
 
-	for (Node *node : nodes_to_remove) {
+	for (Flowde *node : nodes_to_remove) {
 		node->get_parent()->remove_child(node);
 		node->queue_free();
 	}
@@ -7906,7 +7906,7 @@ void EditorNode::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("distraction_free_mode_changed", PropertyInfo(Variant::BOOL, "enabled")));
 }
 
-static Node *_resource_get_edited_scene() {
+static Flowde *_resource_get_edited_scene() {
 	return EditorNode::get_singleton()->get_edited_scene();
 }
 
@@ -8420,11 +8420,11 @@ EditorNode::EditorNode() {
 		EditorSettings::create();
 	}
 
-	ED_SHORTCUT("editor/lock_selected_nodes", TTRC("Lock Selected Node(s)"), KeyModifierMask::CMD_OR_CTRL | Key::L);
-	ED_SHORTCUT("editor/unlock_selected_nodes", TTRC("Unlock Selected Node(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::L);
-	ED_SHORTCUT("editor/group_selected_nodes", TTRC("Group Selected Node(s)"), KeyModifierMask::CMD_OR_CTRL | Key::G);
-	ED_SHORTCUT("editor/ungroup_selected_nodes", TTRC("Ungroup Selected Node(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::G);
-	ED_SHORTCUT("editor/toggle_selected_nodes_visibility", TTRC("Toggle Selected Node(s) Visibility"), Key::H);
+	ED_SHORTCUT("editor/lock_selected_nodes", TTRC("Lock Selected Flowde(s)"), KeyModifierMask::CMD_OR_CTRL | Key::L);
+	ED_SHORTCUT("editor/unlock_selected_nodes", TTRC("Unlock Selected Flowde(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::L);
+	ED_SHORTCUT("editor/group_selected_nodes", TTRC("Group Selected Flowde(s)"), KeyModifierMask::CMD_OR_CTRL | Key::G);
+	ED_SHORTCUT("editor/ungroup_selected_nodes", TTRC("Ungroup Selected Flowde(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::G);
+	ED_SHORTCUT("editor/toggle_selected_nodes_visibility", TTRC("Toggle Selected Flowde(s) Visibility"), Key::H);
 
 	FileAccess::set_backup_save(EDITOR_GET("filesystem/on_save/safe_save_on_backup_then_rename"));
 

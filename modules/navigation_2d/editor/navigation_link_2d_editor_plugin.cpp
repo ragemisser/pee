@@ -50,7 +50,7 @@ void NavigationLink2DEditor::_notification(int p_what) {
 	}
 }
 
-void NavigationLink2DEditor::_node_removed(Node *p_node) {
+void NavigationLink2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 	}

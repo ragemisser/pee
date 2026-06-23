@@ -37,7 +37,7 @@
 
 void RigidBody3D::_body_enter_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 	ERR_FAIL_NULL(contact_monitor);
 	HashMap<ObjectID, BodyState>::Iterator E = contact_monitor->body_map.find(p_id);
@@ -59,7 +59,7 @@ void RigidBody3D::_body_enter_tree(ObjectID p_id) {
 
 void RigidBody3D::_body_exit_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 	ERR_FAIL_NULL(contact_monitor);
 	HashMap<ObjectID, BodyState>::Iterator E = contact_monitor->body_map.find(p_id);
@@ -83,7 +83,7 @@ void RigidBody3D::_body_inout(int p_status, const RID &p_body, ObjectID p_instan
 	ObjectID objid = p_instance;
 
 	Object *obj = ObjectDB::get_instance(objid);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 
 	ERR_FAIL_NULL(contact_monitor);
 	HashMap<ObjectID, BodyState>::Iterator E = contact_monitor->body_map.find(objid);
@@ -617,7 +617,7 @@ void RigidBody3D::set_contact_monitor(bool p_enabled) {
 		for (const KeyValue<ObjectID, BodyState> &E : contact_monitor->body_map) {
 			//clean up mess
 			Object *obj = ObjectDB::get_instance(E.key);
-			Node *node = Object::cast_to<Node>(obj);
+			Flowde *node = Object::cast_to<Flowde>(obj);
 
 			if (node) {
 				node->disconnect(SceneStringName(tree_entered), callable_mp(this, &RigidBody3D::_body_enter_tree));
@@ -799,10 +799,10 @@ void RigidBody3D::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR3, "constant_force", PROPERTY_HINT_NONE, U"suffix:kg\u22C5m/s\u00B2 (N)"), "set_constant_force", "get_constant_force");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR3, "constant_torque", PROPERTY_HINT_NONE, U"suffix:kg\u22C5m\u00B2/s\u00B2/rad"), "set_constant_torque", "get_constant_torque");
 
-	ADD_SIGNAL(MethodInfo("body_shape_entered", PropertyInfo(Variant::RID, "body_rid"), PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static()), PropertyInfo(Variant::INT, "body_shape_index"), PropertyInfo(Variant::INT, "local_shape_index")));
-	ADD_SIGNAL(MethodInfo("body_shape_exited", PropertyInfo(Variant::RID, "body_rid"), PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static()), PropertyInfo(Variant::INT, "body_shape_index"), PropertyInfo(Variant::INT, "local_shape_index")));
-	ADD_SIGNAL(MethodInfo("body_entered", PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("body_exited", PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
+	ADD_SIGNAL(MethodInfo("body_shape_entered", PropertyInfo(Variant::RID, "body_rid"), PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static()), PropertyInfo(Variant::INT, "body_shape_index"), PropertyInfo(Variant::INT, "local_shape_index")));
+	ADD_SIGNAL(MethodInfo("body_shape_exited", PropertyInfo(Variant::RID, "body_rid"), PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static()), PropertyInfo(Variant::INT, "body_shape_index"), PropertyInfo(Variant::INT, "local_shape_index")));
+	ADD_SIGNAL(MethodInfo("body_entered", PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("body_exited", PropertyInfo(Variant::OBJECT, "body", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
 	ADD_SIGNAL(MethodInfo("sleeping_state_changed"));
 
 	BIND_ENUM_CONSTANT(FREEZE_MODE_STATIC);

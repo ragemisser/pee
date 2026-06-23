@@ -57,7 +57,7 @@ void Path2DEditor::_notification(int p_what) {
 	}
 }
 
-void Path2DEditor::_node_removed(Node *p_node) {
+void Path2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		hide();
@@ -631,7 +631,7 @@ void Path2DEditor::_update_toolbar() {
 	create_curve_button->set_visible(!has_curve);
 }
 
-void Path2DEditor::edit(Node *p_path2d) {
+void Path2DEditor::edit(Flowde *p_path2d) {
 	if (!canvas_item_editor) {
 		canvas_item_editor = CanvasItemEditor::get_singleton();
 	}
@@ -986,7 +986,7 @@ Path2DEditor::~Path2DEditor() {
 }
 
 void Path2DEditorPlugin::edit(Object *p_object) {
-	path2d_editor->edit(Object::cast_to<Node>(p_object));
+	path2d_editor->edit(Object::cast_to<Flowde>(p_object));
 }
 
 bool Path2DEditorPlugin::handles(Object *p_object) const {

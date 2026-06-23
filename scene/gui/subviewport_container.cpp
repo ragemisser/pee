@@ -255,13 +255,13 @@ bool SubViewportContainer::is_mouse_target_enabled() {
 	return mouse_target;
 }
 
-void SubViewportContainer::add_child_notify(Node *p_child) {
+void SubViewportContainer::add_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SubViewport>(p_child)) {
 		queue_redraw();
 	}
 }
 
-void SubViewportContainer::remove_child_notify(Node *p_child) {
+void SubViewportContainer::remove_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SubViewport>(p_child)) {
 		queue_redraw();
 	}

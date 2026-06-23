@@ -64,7 +64,7 @@ void CSGShape3D::navmesh_parse_init() {
 	}
 }
 
-void CSGShape3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node) {
+void CSGShape3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node) {
 	CSGShape3D *csgshape3d = Object::cast_to<CSGShape3D>(p_node);
 
 	if (csgshape3d == nullptr) {
@@ -1013,7 +1013,7 @@ Vector<Vector3> CSGShape3D::get_brush_faces() {
 void CSGShape3D::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_PARENTED: {
-			Node *parentn = get_parent();
+			Flowde *parentn = get_parent();
 			if (parentn) {
 				parent_shape = Object::cast_to<CSGShape3D>(parentn);
 				if (parent_shape) {
@@ -1150,7 +1150,7 @@ Array CSGShape3D::get_meshes() const {
 }
 
 PackedStringArray CSGShape3D::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 	const CSGShape3D *current_shape = this;
 	while (current_shape) {
 		if (!current_shape->brush || current_shape->brush->faces.is_empty()) {

@@ -318,8 +318,8 @@ void EditorAutoloadSettings::_autoload_open(const String &fpath) {
 	ProjectSettingsEditor::get_singleton()->hide();
 }
 
-Node *EditorAutoloadSettings::_create_autoload(const String &p_path) {
-	Node *n = nullptr;
+Flowde *EditorAutoloadSettings::_create_autoload(const String &p_path) {
+	Flowde *n = nullptr;
 	if (ResourceLoader::get_resource_type(p_path) == "PackedScene") {
 		// Cache the scene reference before loading it (for cyclic references)
 		Ref<PackedScene> scn;
@@ -340,13 +340,13 @@ Node *EditorAutoloadSettings::_create_autoload(const String &p_path) {
 			ERR_FAIL_COND_V_MSG(!scr->is_valid(), nullptr, vformat("Failed to create an autoload, script '%s' is not compiling.", p_path));
 
 			StringName ibt = scr->get_instance_base_type();
-			bool valid_type = ClassDB::is_parent_class(ibt, "Node");
-			ERR_FAIL_COND_V_MSG(!valid_type, nullptr, vformat("Failed to create an autoload, script '%s' does not inherit from 'Node'.", p_path));
+			bool valid_type = ClassDB::is_parent_class(ibt, "Flowde");
+			ERR_FAIL_COND_V_MSG(!valid_type, nullptr, vformat("Failed to create an autoload, script '%s' does not inherit from 'Flowde'.", p_path));
 
 			Object *obj = ClassDB::instantiate(ibt);
 			ERR_FAIL_NULL_V_MSG(obj, nullptr, vformat("Failed to create an autoload, cannot instantiate '%s'.", ibt));
 
-			n = Object::cast_to<Node>(obj);
+			n = Object::cast_to<Flowde>(obj);
 			n->set_script(scr);
 		}
 	}
@@ -361,7 +361,7 @@ void EditorAutoloadSettings::_create_script_autoload() {
 		add_child(script_create_dialog);
 		script_create_dialog->connect("script_created", callable_mp(this, &EditorAutoloadSettings::_script_created));
 	}
-	script_create_dialog->config("Node", "res://new_autoload_script.gd", false, false);
+	script_create_dialog->config("Flowde", "res://new_autoload_script.gd", false, false);
 	script_create_dialog->popup_centered();
 }
 
@@ -422,7 +422,7 @@ void EditorAutoloadSettings::_script_created(Ref<Script> p_script) {
 }
 
 void EditorAutoloadSettings::_scene_created() {
-	Node *root = scene_create_dialog->create_scene_root();
+	Flowde *root = scene_create_dialog->create_scene_root();
 
 	Ref<PackedScene> ps;
 	ps.instantiate();
@@ -549,7 +549,7 @@ void EditorAutoloadSettings::update_autoload() {
 		}
 		if (info.in_editor) {
 			ERR_CONTINUE(!info.node);
-			callable_mp((Node *)get_tree()->get_root(), &Node::remove_child).call_deferred(info.node);
+			callable_mp((Flowde *)get_tree()->get_root(), &Flowde::remove_child).call_deferred(info.node);
 		}
 
 		if (info.node) {
@@ -559,7 +559,7 @@ void EditorAutoloadSettings::update_autoload() {
 	}
 
 	// Load new/changed autoloads
-	List<Node *> nodes_to_add;
+	List<Flowde *> nodes_to_add;
 	for (AutoloadInfo *info : to_add) {
 		info->node = _create_autoload(info->path);
 
@@ -587,7 +587,7 @@ void EditorAutoloadSettings::update_autoload() {
 		}
 	}
 
-	for (Node *E : nodes_to_add) {
+	for (Flowde *E : nodes_to_add) {
 		get_tree()->get_root()->add_child(E);
 	}
 

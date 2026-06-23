@@ -100,13 +100,13 @@ public:
 	Ref<Material> get_active_material(int p_surface) const;
 
 #ifndef PHYSICS_3D_DISABLED
-	Node *create_trimesh_collision_node();
+	Flowde *create_trimesh_collision_node();
 	void create_trimesh_collision();
 
-	Node *create_convex_collision_node(bool p_clean = true, bool p_simplify = false);
+	Flowde *create_convex_collision_node(bool p_clean = true, bool p_simplify = false);
 	void create_convex_collision(bool p_clean = true, bool p_simplify = false);
 
-	Node *create_multiple_convex_collisions_node(const Ref<MeshConvexDecompositionSettings> &p_settings = Ref<MeshConvexDecompositionSettings>());
+	Flowde *create_multiple_convex_collisions_node(const Ref<MeshConvexDecompositionSettings> &p_settings = Ref<MeshConvexDecompositionSettings>());
 	void create_multiple_convex_collisions(const Ref<MeshConvexDecompositionSettings> &p_settings = Ref<MeshConvexDecompositionSettings>());
 #endif // PHYSICS_3D_DISABLED
 
@@ -129,7 +129,7 @@ private:
 public:
 #ifndef NAVIGATION_3D_DISABLED
 	static void navmesh_parse_init();
-	static void navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node);
+	static void navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node);
 #endif // NAVIGATION_3D_DISABLED
 
 	virtual PackedStringArray get_configuration_warnings() const override;

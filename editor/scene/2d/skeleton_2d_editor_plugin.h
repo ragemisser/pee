@@ -55,7 +55,7 @@ class Skeleton2DEditor : public Control {
 	friend class Skeleton2DEditorPlugin;
 
 protected:
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 public:
 	void edit(Skeleton2D *p_sprite);

@@ -59,7 +59,7 @@
 #include "scene/main/scene_tree.h"
 #include "servers/display/display_server.h"
 
-static Node *_find_first_script(Node *p_root, Node *p_node) {
+static Flowde *_find_first_script(Flowde *p_root, Flowde *p_node) {
 	if (p_node != p_root && p_node->get_owner() != p_root) {
 		return nullptr;
 	}
@@ -68,7 +68,7 @@ static Node *_find_first_script(Node *p_root, Node *p_node) {
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *ret = _find_first_script(p_root, p_node->get_child(i));
+		Flowde *ret = _find_first_script(p_root, p_node->get_child(i));
 		if (ret) {
 			return ret;
 		}
@@ -117,10 +117,10 @@ public:
 		}
 	}
 
-	void update_base_node_relative(Node *p_node) {
-		Node *old_base = nullptr;
+	void update_base_node_relative(Flowde *p_node) {
+		Flowde *old_base = nullptr;
 		if (has_meta("__base_node_relative")) {
-			old_base = Object::cast_to<Node>(get_meta("__base_node_relative"));
+			old_base = Object::cast_to<Flowde>(get_meta("__base_node_relative"));
 		}
 
 		if (old_base == p_node) {
@@ -139,7 +139,7 @@ public:
 				continue;
 			}
 			StringName property_name = "bind/argument_" + itos(i + 1);
-			Node *n = old_base->get_node(get(property_name));
+			Flowde *n = old_base->get_node(get(property_name));
 			set(property_name, p_node ? p_node->get_path_to(n) : NodePath());
 		}
 	}
@@ -170,7 +170,7 @@ void ConnectDialog::ok_pressed() {
 		return;
 	}
 
-	Node *target = tree->get_selected();
+	Flowde *target = tree->get_selected();
 	if (!target) {
 		return; // Nothing selected in the tree, not an error.
 	}
@@ -197,13 +197,13 @@ void ConnectDialog::_item_activated() {
  * Called each time a target node is selected within the target node tree.
  */
 void ConnectDialog::_tree_node_selected() {
-	Node *current = tree->get_selected();
+	Flowde *current = tree->get_selected();
 
 	if (!current) {
 		return;
 	}
 
-	Node *source_node = Object::cast_to<Node>(source);
+	Flowde *source_node = Object::cast_to<Flowde>(source);
 	if (source_node) {
 		dst_path = source_node->get_path_to(current);
 	}
@@ -220,7 +220,7 @@ void ConnectDialog::_tree_node_selected() {
 }
 
 void ConnectDialog::_focus_currently_connected() {
-	tree->set_selected(Object::cast_to<Node>(source));
+	tree->set_selected(Object::cast_to<Flowde>(source));
 }
 
 void ConnectDialog::_method_selected() {
@@ -380,7 +380,7 @@ void ConnectDialog::_update_method_tree() {
 
 	Color disabled_color = get_theme_color(SNAME("accent_color"), EditorStringName(Editor)) * 0.7;
 	String search_string = method_search->get_text();
-	Node *target = tree->get_selected();
+	Flowde *target = tree->get_selected();
 	if (!target) {
 		return;
 	}
@@ -431,7 +431,7 @@ void ConnectDialog::_update_method_tree() {
 	do {
 		TreeItem *class_item = method_tree->create_item(root_item);
 		class_item->set_text(0, current_class);
-		Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Node"));
+		Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Flowde"));
 		if (has_theme_icon(current_class, EditorStringName(EditorIcons))) {
 			icon = get_editor_theme_icon(current_class);
 		}
@@ -473,7 +473,7 @@ void ConnectDialog::_open_method_popup() {
  * node is selected and valid in the selected mode.
  */
 void ConnectDialog::_update_ok_enabled() {
-	Node *target = tree->get_selected();
+	Flowde *target = tree->get_selected();
 
 	if (target == nullptr) {
 		get_ok_button()->set_disabled(true);
@@ -489,7 +489,7 @@ void ConnectDialog::_update_ok_enabled() {
 }
 
 void ConnectDialog::_update_warning_label() {
-	Node *dst = Object::cast_to<Node>(source)->get_node(dst_path);
+	Flowde *dst = Object::cast_to<Flowde>(source)->get_node(dst_path);
 
 	if (dst == nullptr) {
 		warning_label->set_visible(false);
@@ -567,7 +567,7 @@ NodePath ConnectDialog::get_dst_path() const {
 	return dst_path;
 }
 
-void ConnectDialog::set_dst_node(Node *p_node) {
+void ConnectDialog::set_dst_node(Flowde *p_node) {
 	tree->set_selected(p_node);
 }
 
@@ -708,10 +708,10 @@ void ConnectDialog::init(const ConnectionData &p_cd, const PackedStringArray &p_
 	signal_args = p_signal_args;
 
 	tree->set_selected(nullptr);
-	tree->set_marked(Object::cast_to<Node>(source));
+	tree->set_marked(Object::cast_to<Flowde>(source));
 
 	if (p_cd.target) {
-		set_dst_node(Object::cast_to<Node>(p_cd.target));
+		set_dst_node(Object::cast_to<Flowde>(p_cd.target));
 		set_dst_method(p_cd.method);
 	}
 
@@ -757,7 +757,7 @@ void ConnectDialog::popup_dialog(const String &p_for_signal) {
 
 void ConnectDialog::_advanced_pressed() {
 	if (advanced->is_pressed()) {
-		connect_to_label->set_text(TTR("Connect to Node:"));
+		connect_to_label->set_text(TTR("Connect to Flowde:"));
 		tree->set_connect_to_script_mode(false);
 
 		vbc_right->show();
@@ -817,7 +817,7 @@ ConnectDialog::ConnectDialog() {
 	focus_current->set_text(TTR("Go to Source"));
 	focus_current->connect(SceneStringName(pressed), callable_mp(this, &ConnectDialog::_focus_currently_connected));
 
-	Node *mc = vbc_left->add_margin_child(TTR("Connect to Script:"), hbc_filter, false);
+	Flowde *mc = vbc_left->add_margin_child(TTR("Connect to Script:"), hbc_filter, false);
 	connect_to_label = Object::cast_to<Label>(vbc_left->get_child(mc->get_index() - 1));
 	vbc_left->add_child(tree);
 
@@ -994,7 +994,7 @@ void ConnectionsDock::_filter_changed(const String &p_text) {
  */
 void ConnectionsDock::_make_or_edit_connection() {
 	NodePath dst_path = connect_dialog->get_dst_path();
-	Node *target = Object::cast_to<Node>(selected_object)->get_node(dst_path);
+	Flowde *target = Object::cast_to<Flowde>(selected_object)->get_node(dst_path);
 
 	ERR_FAIL_NULL(target);
 
@@ -1105,7 +1105,7 @@ void ConnectionsDock::_make_or_edit_connection() {
  */
 void ConnectionsDock::_connect(const ConnectDialog::ConnectionData &p_cd) {
 	Object *source = p_cd.source;
-	Node *target = Object::cast_to<Node>(p_cd.target);
+	Flowde *target = Object::cast_to<Flowde>(p_cd.target);
 
 	if (!source || !target) {
 		return;
@@ -1239,8 +1239,8 @@ void ConnectionsDock::_open_connection_dialog(TreeItem &p_item) {
 
 	ConnectDialog::ConnectionData cd;
 
-	Node *selected_node = Object::cast_to<Node>(selected_object);
-	Node *dst_node = selected_node->get_owner() ? selected_node->get_owner() : selected_node;
+	Flowde *selected_node = Object::cast_to<Flowde>(selected_object);
+	Flowde *dst_node = selected_node->get_owner() ? selected_node->get_owner() : selected_node;
 	if (!dst_node || dst_node->get_script().is_null()) {
 		dst_node = _find_first_script(get_tree()->get_edited_scene_root(), get_tree()->get_edited_scene_root());
 	}
@@ -1696,12 +1696,12 @@ void ConnectionsDock::update_tree() {
 				}
 				ConnectDialog::ConnectionData cd = connection;
 
-				Node *target = Object::cast_to<Node>(cd.target);
+				Flowde *target = Object::cast_to<Flowde>(cd.target);
 				if (!target) {
 					continue;
 				}
 
-				String path = String(Object::cast_to<Node>(selected_object)->get_path_to(target)) + " :: " + cd.method + "()";
+				String path = String(Object::cast_to<Flowde>(selected_object)->get_path_to(target)) + " :: " + cd.method + "()";
 				if (cd.flags & CONNECT_DEFERRED) {
 					path += " (deferred)";
 				}

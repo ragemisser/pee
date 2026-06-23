@@ -741,7 +741,7 @@ msgstr "Přidat %s"
 msgid "Load..."
 msgstr "Načíst..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Přesunout bod uzlu BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -756,7 +756,7 @@ msgstr "Tento typ uzlu nelze použít. Jsou povoleny pouze uzly animace."
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Tento typ uzlu nelze použít. Jsou povoleny pouze kořenové uzly."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Přidat bod uzlu"
 
 msgid "Add Animation Point"
@@ -813,7 +813,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Hodnota"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Otevřít uzel animace"
 
 msgid "Triangle already exists."
@@ -888,10 +888,10 @@ msgstr "Upravit filtry"
 msgid "Output node can't be added to the blend tree."
 msgstr "Výstupní uzel nemůže být přidán do stromu prolnutí."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Přidat uzel do BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Uzel přesunut"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -906,10 +906,10 @@ msgstr "Uzly odpojeny"
 msgid "Set Animation"
 msgstr "Nastavit animaci"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Smazat uzel"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Smazat uzly"
 
 msgid "Toggle Filter On/Off"
@@ -949,10 +949,10 @@ msgstr "Prozkoumat filtrované stopy:"
 msgid "Edit Filtered Tracks:"
 msgstr "Upravit filtrované stopy:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Uzel přejmenován"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Přidat uzel..."
 
 msgid "Enable Filtering"
@@ -1371,7 +1371,7 @@ msgstr "Další (Automaticky přidat do fronty):"
 msgid "Reconnect Transition"
 msgstr "Přepojit přechod"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Přesunout uzel"
 
 msgid "Transition exists!"
@@ -1395,7 +1395,7 @@ msgstr "Přehrát/Přejít na %s"
 msgid "Edit %s"
 msgstr "Upravit %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Přidat uzel a přechod"
 
 msgid "Transition already exists!"
@@ -1416,7 +1416,7 @@ msgstr "Cestovat"
 msgid "No playback resource set at path: %s."
 msgstr "Žádný zdroj pro přehrávání nenastaven na cestě: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Uzel odebrán"
 
 msgid "Transition Removed"
@@ -1928,7 +1928,7 @@ msgstr "Animace: Přidat RESET klíče"
 msgid "Bake Animation as Linear Keys"
 msgstr "Baking animace jako lineárních klíčů"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Vytvořit uzel"
 
 msgid ""
@@ -2869,7 +2869,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Uložit větev jako scénu..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Kopírovat cestu k uzlu"
 
 msgid "Expand/Collapse Branch"
@@ -4258,20 +4258,20 @@ msgstr "Tuto operaci nelze provést v kořenovém uzlu stromu."
 msgid "Detach Script"
 msgstr "Odpojit skript"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Přesunout uzel v rodiči"
 
 msgid "Move Nodes in Parent"
 msgstr "Přesunout uzly v rodiči"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplikovat uzly"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
 msgstr ""
 "Rodičovské uzly ve zděděné scéně nelze změnit, pořadí uzlů nelze změnit."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Aby se stal kořenovým uzlem, musí uzel patřit k upravované scéně."
 
 msgid "Instantiated scenes can't become root"
@@ -4375,7 +4375,7 @@ msgstr "Deaktivovat unikátní názvy ve scéně"
 msgid "New Scene Root"
 msgstr "Nový kořen scény"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Vytvořit kořenový uzel:"
 
 msgid "Favorite Nodes"
@@ -4393,7 +4393,7 @@ msgstr "3D scéna"
 msgid "User Interface"
 msgstr "Uživatelské rozhraní"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Jiný uzel"
 
 msgid "Paste From Clipboard"
@@ -4408,7 +4408,7 @@ msgstr "Nelze manipulovat s uzly, ze kterých dědí aktuální scéna!"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Tuto operaci nelze provést na instancované scéně."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Změnit rodiče uzlu"
 
 msgid "Attach Script"
@@ -4420,16 +4420,16 @@ msgstr "Nastavit shader"
 msgid "Toggle Editable Children"
 msgstr "Přepnout upravitelné potomky"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Vyjmout uzly"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Odstranit uzly"
 
 msgid "Change type of node(s)"
 msgstr "Změnit typ uzlů"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Změnit rodiče na nový uzel"
 
 msgid "This operation requires a single selected node."
@@ -4487,11 +4487,11 @@ msgstr "Otevřít v editoru"
 msgid "Auto Expand to Selected"
 msgstr "Automaticky rozbalit k výběru"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Vycentrovat uzel při změně rodiče"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
 "Je-li aktivováno, Změnit rodiče na nový uzel vytvoří nový uzel ve středu "
@@ -4532,7 +4532,7 @@ msgstr "Filtrovat podle skupiny"
 
 msgid ""
 "Selects all Nodes belonging to the given group.\n"
-"If empty, selects any Node belonging to any group.\n"
+"If empty, selects any Flowde belonging to any group.\n"
 "Inserts \"group:\". You can also use the shorthand \"g:\"."
 msgstr ""
 "Vybere všechny uzly patřící do dané skupiny.\n"
@@ -4551,13 +4551,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Nelze vložit kořenový uzel do stejné scény."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Vložit uzly jako sourozence %s"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Vložit uzly jako potomky %s"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Vložit uzly jako kořenové"
 
 msgid "<Unnamed> at %s"
@@ -4572,7 +4572,7 @@ msgstr "Otevřít dok scény"
 msgid "Batch Rename..."
 msgstr "Hromadné přejmenování..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Přidat podřízený uzel..."
 
 msgid "Instantiate Child Scene..."
@@ -4602,7 +4602,7 @@ msgstr "Duplikovat"
 msgid "Reparent..."
 msgstr "Změnit rodičovský uzel..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Změnit rodiče na nový uzel..."
 
 msgid "Make Scene Root"
@@ -4614,11 +4614,11 @@ msgstr "Přepnout přístup přes unikátní název"
 msgid "Delete (No Confirm)"
 msgstr "Odstranit (bez potvrzení)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Přidat/Vytvořit nový uzel."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Instancovat soubor scény jako uzel. Pokud neexistuje kořenový uzel, vytvoří "
@@ -5384,16 +5384,16 @@ msgstr "Zkopíruje informace o systému do schránky jako jeden řádek textu."
 msgid "Main Menu"
 msgstr "Hlavní Menu"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Uzamknout vybrané uzly"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Odemknout vybrané uzly"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Seskupit vybrané uzly"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Oddělit vybrané uzlů"
 
 msgid "Pan View"
@@ -6900,8 +6900,8 @@ msgstr "Neplatný/nefunkční skript pro post-import (viz konzole):"
 msgid "Error running post-import script:"
 msgstr "Chyba při spuštění skriptu pro post-import:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
-msgstr "Vracíte v metodě `_post_import()` objekt odvozený z Node?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
+msgstr "Vracíte v metodě `_post_import()` objekt odvozený z Flowde?"
 
 msgid "Saving..."
 msgstr "Ukládání..."
@@ -7585,16 +7585,16 @@ msgstr "Dočasný Euler %s"
 msgid "Assign..."
 msgstr "Přiřadit..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Přiřadit uzel"
 
 msgid "Copy as Text"
 msgstr "Kopírovat jako text"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Ukázat uzel ve stromu"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Cesta k uzlu"
 
 msgid "Invalid RID"
@@ -12076,7 +12076,7 @@ msgstr "\"%s\" neobsahuje geometrii stěn."
 msgid "Generate AABB"
 msgstr "Generovat AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Vytvořit emisní body z uzlu"
 
 msgid "The geometry's faces don't contain any area."
@@ -12366,7 +12366,7 @@ msgid ""
 msgstr ""
 "Potomci kontejneru mají svou polohu a velikost určenou pouze jejich rodičem."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Přesunout uzly na pozici"
 
 msgid "Move Vertical Guide"
@@ -12393,10 +12393,10 @@ msgstr "Vytvořit vodorovné a svislé vodítko"
 msgid "Instantiate Scene Here..."
 msgstr "Instancovat scénu sem..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Vložit uzly sem"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Přesunout uzly sem"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -12484,7 +12484,7 @@ msgstr "Vložit pózu"
 msgid "Clear Guides"
 msgstr "Vymazat vodítka"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Vytvořit vlastní kosti Bone2D z uzlů"
 
 msgid "Zoom to 3.125%"
@@ -12547,13 +12547,13 @@ msgstr "Přichytávat na pixely"
 msgid "Snap to Parent"
 msgstr "Přichytávat k rodičovi"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Přichytávat k ukotvení uzlu"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Přichytávat ke stranám uzlu"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Přichytávat ke středu uzlu"
 
 msgid "Snap to Other Nodes"
@@ -12578,7 +12578,7 @@ msgstr "Možnosti kostry"
 msgid "Show Bones"
 msgstr "Zobrazit kosti"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Vytvořit kosti Bone2D z uzlů"
 
 msgid "Show"
@@ -12708,7 +12708,7 @@ msgstr ""
 "%s: Kód pro metodu zpětného volání nebude vygenerován, přidejte ho prosím "
 "ručně."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Připojit k uzlu:"
 
 msgid "Connect to Script:"
@@ -13495,8 +13495,8 @@ msgstr "Jiný motiv"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Filtrovat seznam typů nebo vytvořit nový vlastní typ:"
 
-msgid "Available Node-based types:"
-msgstr "Dostupné typy založené na Node:"
+msgid "Available Flowde-based types:"
+msgstr "Dostupné typy založené na Flowde:"
 
 msgid "Type name is empty!"
 msgstr "Název typu je prázdný!"
@@ -13752,13 +13752,13 @@ msgstr "Použít regulární výrazy"
 msgid "Substitute"
 msgstr "Nahradit"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Název uzlu."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Název rodiče uzlu, pokud je dostupný."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Typ uzlu."
 
 msgid "Current scene name."
@@ -13865,7 +13865,7 @@ msgstr "Přepnout dok Přednačtení zdrojů"
 msgid "Load Resource"
 msgstr "Načíst zdroj"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Vybrat typ kořenového uzlu"
 
 msgid "Scene name is empty."
@@ -13892,7 +13892,7 @@ msgstr "Typ kořenového uzlu:"
 msgid "Other Type"
 msgstr "Jiný Typ"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Vybrat uzel"
 
 msgid "Scene Name:"
@@ -13929,7 +13929,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Přepnout viditelnost"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Odemknout uzel"
 
 msgid "Ungroup Children"
@@ -13944,7 +13944,7 @@ msgstr "Deaktivovat unikátní nazev ve scéně"
 msgid "(Connecting From)"
 msgstr "(Připojování z)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Varování konfigurace uzlu:"
 
 msgid ""
@@ -13957,14 +13957,14 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Kliknutím toto zakážete."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Uzel má jedno připojení."
 msgstr[1] "Uzel má {num} připojení."
 msgstr[2] "Uzel má {num} připojení."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Uzel je v této skupině:"
 msgstr[1] "Uzly je v těchto skupinách:"
 msgstr[2] "Uzel je v těchto skupinách:"
@@ -13992,7 +13992,7 @@ msgid "Open Script:"
 msgstr "Otevřít skript:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Uzel je uzamčený.\n"
@@ -14028,7 +14028,7 @@ msgstr "Neplatný název uzlu, následující znaky nejsou povoleny:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "Uzel s unikátním názvem \"%s\" již v této scéně existuje."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Přejmenovat uzel"
 
 msgid "Rename Nodes"
@@ -14037,7 +14037,7 @@ msgstr "Přejmenovat uzly"
 msgid "Scene Tree (Nodes):"
 msgstr "Strom scény (uzly):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Varování konfigurace uzlu!"
 
 msgid "Revoke"
@@ -14053,7 +14053,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "Povoleno:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Vybrat uzel"
 
 msgid "Show All"
@@ -14510,7 +14510,7 @@ msgstr "Vestavěný skript:"
 msgid "Select File"
 msgstr "Vybrat soubor"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Připojit skript k uzlu"
 
 msgid "Line"
@@ -14758,8 +14758,8 @@ msgstr "Předběžné načítání interních zdrojů není podporováno."
 msgid "Can't drop nodes without an open scene."
 msgstr "Nelze zahodit uzly bez otevřené scény."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
-msgstr "Nelze zahodit uzly, protože skript '%s' nedědí z Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
+msgstr "Nelze zahodit uzly, protože skript '%s' nedědí z Flowde."
 
 msgid "Pick Color"
 msgstr "Vybrat barvu"
@@ -15226,7 +15226,7 @@ msgstr "3D editor"
 msgid "Scene Tree Editing"
 msgstr "Úpravy stromu scény"
 
-msgid "Node Dock (deprecated)"
+msgid "Flowde Dock (deprecated)"
 msgstr "Dok Uzlu (zastaralé)"
 
 msgid "FileSystem Dock"
@@ -16597,7 +16597,7 @@ msgstr "Příchozí Bandwidth"
 msgid "Outgoing Bandwidth"
 msgstr "Odchozí Bandwidth"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Uzel"
 
 msgid "Incoming RPC"
@@ -17420,7 +17420,7 @@ msgstr "Odstranit výstupní port"
 msgid "Set VisualShader Expression"
 msgstr "Nastavit výraz VisualShaderu"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "Škálovat uzel VisualShader"
 
 msgid "Hide Port Preview"
@@ -17450,10 +17450,10 @@ msgstr "Nastavit název parametru"
 msgid "Set Input Default Port"
 msgstr "Nastavit výchozí vstupní port"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Nastavit vlastní možnost uzlu"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Přidat uzel do vizuálního shaderu"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -17462,28 +17462,28 @@ msgstr "Přidat interpolovanou proměnnou do vizuálního shaderu: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Odstranit interpolovanou proměnnou z vizuálního shaderu: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "Přesunout uzly VisualShader"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "Přesunout uzly VisualShader a připojit k rodičovskému snímku"
 
 msgid "Insert node"
 msgstr "Vložit uzel"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Převést konstantní uzly na parametrické"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Převést parametrické uzly na konstantní"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "Odpojit uzel VisualShader od snímku"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Odstranit uzel VisualShader"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Odstranit uzly VisualShader"
 
 msgid "Float Constants"
@@ -17507,13 +17507,13 @@ msgstr "Povolit barvu odstínu"
 msgid "Edit Preview Parameter: %s"
 msgstr "Upravit parametr náhledu: %s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "Duplikovat uzly VisualShader"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Vložit uzly VisualShader"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Vyjmout uzly VisualShader"
 
 msgid "Visual Shader Input Type Changed"
@@ -17537,7 +17537,7 @@ msgstr "Varianta s tímto názvem již existuje."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Booleovský typ nelze použít s režimem interpolované proměnné `%s`."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Přidat uzly do vizuálního shaderu"
 
 msgid "Hold %s Key To Swap Connections"
@@ -17582,13 +17582,13 @@ msgstr "Přepnout náhled shaderu."
 msgid "Generated Shader Code"
 msgstr "Výsledný kód shaderu"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Přidat uzel"
 
 msgid "Clear Copy Buffer"
 msgstr "Promazat vyrovnávací paměť kopie"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Vložit nový uzel"
 
 msgid "Insert New Reroute"
@@ -17613,7 +17613,7 @@ msgstr ""
 "Podporováno jen ve vykreslovacích metodách Forward+ a Mobile, nikoli v režimu "
 "Compatibility."
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Vytvořit shader uzel"
 
 msgid "Create Shader Varying"
@@ -18186,7 +18186,7 @@ msgid ""
 msgstr ""
 "Vrátí hodnotu hloubky získanou z předprůchodu hloubky v lineárním prostoru."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "Rekonstruuje pozici uzlu ve světě z textury hloubky."
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -19860,19 +19860,19 @@ msgstr ""
 "Možnosti úprav uzlů CollisionShape2D jsou pro tvary založené na polygonech "
 "omezené. Zvažte místo toho použití uzlu CollisionPolygon2D."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Uzel A a uzel B musí být PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Uzel A musí být PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Uzel B musí být PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Kloub není připojen ke dvěma PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Uzel A a uzel B musí být různá PhysicsBody2D"
 
 msgid ""
@@ -20401,19 +20401,19 @@ msgstr ""
 "Udělejte prosím jeho měřítko jednotné (tj. stejné na všech osách) a místo "
 "toho změňte velikost jeho zdroje tvaru."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "Uzel A a uzel B musí oba být PhysicsBody3D"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "Uzel A musí být PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "Uzel B musí být PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Kloub není připojen k žádnému PhysicsBody3D"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Uzel A a uzel B musí být dvě různá PhysicsBody3D"
 
 msgid ""
@@ -20730,7 +20730,7 @@ msgstr ""
 msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr "Přístupnost: Název nesmí být prázdný nebo obsahovat jen mezery."
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr "Přístupnost: Jméno nesmí obsahovat název třídy uzlu."
 
 msgid "Accessibility Name must not include control character."

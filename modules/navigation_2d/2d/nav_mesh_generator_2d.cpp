@@ -131,7 +131,7 @@ void NavMeshGenerator2D::finish() {
 	cleanup();
 }
 
-void NavMeshGenerator2D::parse_source_geometry_data(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_root_node, const Callable &p_callback) {
+void NavMeshGenerator2D::parse_source_geometry_data(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_root_node, const Callable &p_callback) {
 	ERR_FAIL_COND(!Thread::is_main_thread());
 	ERR_FAIL_COND(p_navigation_mesh.is_null());
 	ERR_FAIL_NULL(p_root_node);
@@ -226,7 +226,7 @@ void NavMeshGenerator2D::generator_thread_bake(void *p_arg) {
 	generator_task->status = NavMeshGeneratorTask2D::TaskStatus::BAKING_FINISHED;
 }
 
-void NavMeshGenerator2D::generator_parse_geometry_node(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node, bool p_recurse_children) {
+void NavMeshGenerator2D::generator_parse_geometry_node(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node, bool p_recurse_children) {
 	generator_parsers_rwlock.read_lock();
 	for (const NavMeshGeometryParser2D *parser : generator_parsers) {
 		if (!parser->callback.is_valid()) {
@@ -248,8 +248,8 @@ void NavMeshGenerator2D::set_generator_parsers(const LocalVector<NavMeshGeometry
 	generator_parsers = p_parsers;
 }
 
-void NavMeshGenerator2D::generator_parse_source_geometry_data(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_root_node) {
-	Vector<Node *> parse_nodes;
+void NavMeshGenerator2D::generator_parse_source_geometry_data(Ref<NavigationPolygon> p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_root_node) {
+	Vector<Flowde *> parse_nodes;
 
 	if (p_navigation_mesh->get_source_geometry_mode() == NavigationPolygon::SOURCE_GEOMETRY_ROOT_NODE_CHILDREN) {
 		parse_nodes.push_back(p_root_node);
@@ -267,7 +267,7 @@ void NavMeshGenerator2D::generator_parse_source_geometry_data(Ref<NavigationPoly
 
 	bool recurse_children = p_navigation_mesh->get_source_geometry_mode() != NavigationPolygon::SOURCE_GEOMETRY_GROUPS_EXPLICIT;
 
-	for (Node *E : parse_nodes) {
+	for (Flowde *E : parse_nodes) {
 		generator_parse_geometry_node(p_navigation_mesh, p_source_geometry_data, E, recurse_children);
 	}
 }

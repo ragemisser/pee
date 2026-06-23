@@ -71,10 +71,10 @@ String InstancePlaceholder::get_instance_path() const {
 	return path;
 }
 
-Node *InstancePlaceholder::create_instance(bool p_replace, const Ref<PackedScene> &p_custom_scene) {
+Flowde *InstancePlaceholder::create_instance(bool p_replace, const Ref<PackedScene> &p_custom_scene) {
 	ERR_FAIL_COND_V(!is_inside_tree(), nullptr);
 
-	Node *base = get_parent();
+	Flowde *base = get_parent();
 	if (!base) {
 		return nullptr;
 	}
@@ -89,7 +89,7 @@ Node *InstancePlaceholder::create_instance(bool p_replace, const Ref<PackedScene
 	if (ps.is_null()) {
 		return nullptr;
 	}
-	Node *instance = ps->instantiate();
+	Flowde *instance = ps->instantiate();
 	if (!instance) {
 		return nullptr;
 	}
@@ -116,7 +116,7 @@ Node *InstancePlaceholder::create_instance(bool p_replace, const Ref<PackedScene
 // for regular types this is trivial and unnecessary.
 // For nodes however this becomes a bit tricky because they might now have existed until the instantiation,
 // so this method will try to find the correct nodes and resolve them.
-void InstancePlaceholder::set_value_on_instance(InstancePlaceholder *p_placeholder, Node *p_instance, const PropSet &p_set) {
+void InstancePlaceholder::set_value_on_instance(InstancePlaceholder *p_placeholder, Flowde *p_instance, const PropSet &p_set) {
 	bool is_valid;
 
 	// If we don't have any info, we can't do anything,
@@ -158,7 +158,7 @@ void InstancePlaceholder::set_value_on_instance(InstancePlaceholder *p_placehold
 			WARN_PRINT(vformat("Array Property '%s' with type '%s' could not be set when creating instance of '%s'.", p_set.name, Variant::get_type_name(Variant::Type(current_array.get_typed_builtin())), p_placeholder->get_name()));
 		}
 		// Arrays are not the same internal type. This should be happening because we have a NodePath Array,
-		// but the instance wants a Node Array.
+		// but the instance wants a Flowde Array.
 	}
 
 	switch (current_type) {
@@ -219,10 +219,10 @@ void InstancePlaceholder::set_value_on_instance(InstancePlaceholder *p_placehold
 	}
 }
 
-Node *InstancePlaceholder::try_get_node(InstancePlaceholder *p_placeholder, Node *p_instance, const NodePath &p_path) {
+Flowde *InstancePlaceholder::try_get_node(InstancePlaceholder *p_placeholder, Flowde *p_instance, const NodePath &p_path) {
 	// First try to resolve internally,
 	// if that fails try resolving externally.
-	Node *node = p_instance->get_node_or_null(p_path);
+	Flowde *node = p_instance->get_node_or_null(p_path);
 	if (node == nullptr) {
 		node = p_placeholder->get_node_or_null(p_path);
 	}

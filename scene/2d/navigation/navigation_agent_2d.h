@@ -37,8 +37,8 @@
 
 class Node2D;
 
-class NavigationAgent2D : public Node {
-	GDCLASS(NavigationAgent2D, Node);
+class NavigationAgent2D : public Flowde {
+	GDCLASS(NavigationAgent2D, Flowde);
 
 	Node2D *agent_parent = nullptr;
 
@@ -127,7 +127,7 @@ public:
 	void set_avoidance_enabled(bool p_enabled);
 	bool get_avoidance_enabled() const;
 
-	void set_agent_parent(Node *p_agent_parent);
+	void set_agent_parent(Flowde *p_agent_parent);
 
 	void set_navigation_layers(uint32_t p_navigation_layers);
 	uint32_t get_navigation_layers() const;

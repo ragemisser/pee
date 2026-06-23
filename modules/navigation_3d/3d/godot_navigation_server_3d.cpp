@@ -538,7 +538,7 @@ COMMAND_2(region_set_navigation_mesh, RID, p_region, Ref<NavigationMesh>, p_navi
 }
 
 #ifndef DISABLE_DEPRECATED
-void GodotNavigationServer3D::region_bake_navigation_mesh(Ref<NavigationMesh> p_navigation_mesh, Node *p_root_node) {
+void GodotNavigationServer3D::region_bake_navigation_mesh(Ref<NavigationMesh> p_navigation_mesh, Flowde *p_root_node) {
 	ERR_FAIL_COND(p_navigation_mesh.is_null());
 	ERR_FAIL_NULL(p_root_node);
 
@@ -1189,7 +1189,7 @@ uint32_t GodotNavigationServer3D::obstacle_get_avoidance_layers(RID p_obstacle) 
 	return obstacle->get_avoidance_layers();
 }
 
-void GodotNavigationServer3D::parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, Node *p_root_node, const Callable &p_callback) {
+void GodotNavigationServer3D::parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, Flowde *p_root_node, const Callable &p_callback) {
 	ERR_FAIL_COND_MSG(!Thread::is_main_thread(), "The SceneTree can only be parsed on the main thread. Call this function from the main thread or use call_deferred().");
 	ERR_FAIL_COND_MSG(p_navigation_mesh.is_null(), "Invalid navigation mesh.");
 	ERR_FAIL_NULL_MSG(p_root_node, "No parsing root node specified.");

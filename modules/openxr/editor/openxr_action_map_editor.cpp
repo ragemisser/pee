@@ -423,7 +423,7 @@ void OpenXRActionMapEditor::open_action_map(const String &p_path) {
 
 void OpenXRActionMapEditor::_clear_action_map() {
 	while (actionsets_vb->get_child_count() > 0) {
-		Node *child = actionsets_vb->get_child(0);
+		Flowde *child = actionsets_vb->get_child(0);
 		actionsets_vb->remove_child(child);
 		child->queue_free();
 	}

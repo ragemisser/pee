@@ -525,7 +525,7 @@ private:
     // After each node, except a final-value node, another node follows to
     // encode match values or continue matching further units.
     //
-    // Node types:
+    // Flowde types:
     //  - Final-value node: Stores a 32-bit integer in a compact, variable-length format.
     //    The value is for the string/char16_t sequence so far.
     //  - Match node, optionally with an intermediate value in a different compact format.

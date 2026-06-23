@@ -1105,7 +1105,7 @@ bool ProjectConverter3To4::test_conversion(RegExContainer &reg_container) {
 	return valid;
 }
 
-// Validate in all arrays if names don't do cyclic renames "Node" -> "Node2D" | "Node2D" -> "2DNode"
+// Validate in all arrays if names don't do cyclic renames "Flowde" -> "Node2D" | "Node2D" -> "2DNode"
 bool ProjectConverter3To4::test_array_names() {
 	bool valid = true;
 	Vector<String> names = Vector<String>();
@@ -1194,7 +1194,7 @@ bool ProjectConverter3To4::test_array_names() {
 	return valid;
 }
 
-// Validates the array to prevent cyclic renames, such as `Node` -> `Node2D`, then `Node2D` -> `2DNode`.
+// Validates the array to prevent cyclic renames, such as `Flowde` -> `Node2D`, then `Node2D` -> `2DNode`.
 // Also checks if names contain leading or trailing spaces.
 bool ProjectConverter3To4::test_single_array(const char *p_array[][2], bool p_ignore_4_0_name) {
 	bool valid = true;
@@ -1387,10 +1387,10 @@ String ProjectConverter3To4::get_object_of_execution(const String &line) const {
 			if (start == 0) {
 				break;
 			} else if (is_nodepath_sep) {
-				// Freeze variable_start, try to fetch more chars since this might be a Node path literal.
+				// Freeze variable_start, try to fetch more chars since this might be a Flowde path literal.
 				is_possibly_nodepath = true;
 			} else if (is_nodepath_start) {
-				// Found $, this is a Node path literal.
+				// Found $, this is a Flowde path literal.
 				is_valid_nodepath = true;
 				break;
 			}
@@ -1400,7 +1400,7 @@ String ProjectConverter3To4::get_object_of_execution(const String &line) const {
 			start--;
 			continue;
 		} else {
-			// Abandon all hope, this is neither a variable nor a Node path literal.
+			// Abandon all hope, this is neither a variable nor a Flowde path literal.
 			variable_start++; // Found invalid character, needs to be ignored.
 			break;
 		}
@@ -1654,7 +1654,7 @@ void ProjectConverter3To4::process_gdscript_line(String &line, const RegExContai
 		line = reg_container.reg_json_print.sub(line, "JSON.stringify(", true);
 	}
 
-	// -- get_node(@ -> get_node(       Node
+	// -- get_node(@ -> get_node(       Flowde
 	if (line.contains("get_node")) {
 		line = line.replace("get_node(@", "get_node(");
 	}

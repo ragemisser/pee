@@ -1,6 +1,6 @@
 func test():
 	var a: Array[Resource] = []
-	for node: Node in a:
+	for node: Flowde in a:
 		print(node)
 
 	# GH-82021

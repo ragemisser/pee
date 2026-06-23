@@ -104,7 +104,7 @@ bool DedicatedServerExportPlugin::_begin_customize_resources(const Ref<EditorExp
 	return preset->get_export_filter() == EditorExportPreset::EXPORT_CUSTOMIZED;
 }
 
-Node *DedicatedServerExportPlugin::_customize_scene(Node *p_root, const String &p_path) {
+Flowde *DedicatedServerExportPlugin::_customize_scene(Flowde *p_root, const String &p_path) {
 	// Simply set the export mode based on the scene path. All the real
 	// customization happens in _customize_resource().
 	current_export_mode = _get_export_mode_for_path(p_path);

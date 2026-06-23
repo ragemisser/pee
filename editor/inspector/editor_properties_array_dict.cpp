@@ -688,7 +688,7 @@ bool EditorPropertyArray::_is_drop_valid(const Dictionary &p_drag_data) const {
 		bool is_drop_allowed = true;
 
 		for (int i = 0; i < node_paths.size(); i++) {
-			const Node *dropped_node = get_node_or_null(node_paths[i]);
+			const Flowde *dropped_node = get_node_or_null(node_paths[i]);
 			ERR_FAIL_NULL_V_MSG(dropped_node, false, "Could not get the dropped node by its path.");
 
 			if (allowed_type != "NodePath") {
@@ -769,7 +769,7 @@ void EditorPropertyArray::drop_data_fw(const Point2 &p_point, const Variant &p_d
 
 	if (drop_type == "nodes") {
 		Array node_paths = drag_data["nodes"];
-		Node *base_node = get_base_node();
+		Flowde *base_node = get_base_node();
 
 		for (int i = 0; i < node_paths.size(); i++) {
 			const NodePath &path = node_paths[i];
@@ -785,8 +785,8 @@ void EditorPropertyArray::drop_data_fw(const Point2 &p_point, const Variant &p_d
 	}
 }
 
-Node *EditorPropertyArray::get_base_node() {
-	Node *base_node = Object::cast_to<Node>(InspectorDock::get_inspector_singleton()->get_edited_object());
+Flowde *EditorPropertyArray::get_base_node() {
+	Flowde *base_node = Object::cast_to<Flowde>(InspectorDock::get_inspector_singleton()->get_edited_object());
 
 	if (!base_node) {
 		base_node = get_tree()->get_edited_scene_root();

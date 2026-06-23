@@ -39,15 +39,15 @@ class Camera3DEditor : public Control {
 	GDCLASS(Camera3DEditor, Control);
 
 	Button *preview = nullptr;
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 
 	void _pressed();
 
 protected:
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 public:
-	void edit(Node *p_camera);
+	void edit(Flowde *p_camera);
 	Camera3DEditor();
 };
 

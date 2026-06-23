@@ -31,13 +31,13 @@ public:
 	static const int TriangleHeaderSize = TriangleCodec::TriangleHeaderSize;
 
 	/// Convert AABB tree. Returns false if failed.
-	bool							Convert(const Array<IndexedTriangle> &inTriangles, const Array<AABBTreeBuilder::Node> &inNodes, const VertexList &inVertices, const AABBTreeBuilder::Node *inRoot, bool inStoreUserData, const char *&outError)
+	bool							Convert(const Array<IndexedTriangle> &inTriangles, const Array<AABBTreeBuilder::Flowde> &inNodes, const VertexList &inVertices, const AABBTreeBuilder::Flowde *inRoot, bool inStoreUserData, const char *&outError)
 	{
 		typename NodeCodec::EncodingContext node_ctx;
 		typename TriangleCodec::EncodingContext tri_ctx(inVertices);
 
 		// Child nodes out of loop so we don't constantly realloc it
-		Array<const AABBTreeBuilder::Node *> child_nodes;
+		Array<const AABBTreeBuilder::Flowde *> child_nodes;
 		child_nodes.reserve(NumChildrenPerNode);
 
 		// First calculate how big the tree is going to be.
@@ -49,15 +49,15 @@ public:
 		size_t to_process_max_size = 1; // Track size of queues so we can do a single reserve below
 		size_t to_process_triangles_max_size = 0;
 		{	// A scope to free the memory associated with to_estimate and to_estimate_triangles
-			Array<const AABBTreeBuilder::Node *> to_estimate;
-			Array<const AABBTreeBuilder::Node *> to_estimate_triangles;
+			Array<const AABBTreeBuilder::Flowde *> to_estimate;
+			Array<const AABBTreeBuilder::Flowde *> to_estimate_triangles;
 			to_estimate.push_back(inRoot);
 			for (;;)
 			{
 				while (!to_estimate.empty())
 				{
 					// Get the next node to process
-					const AABBTreeBuilder::Node *node = to_estimate.back();
+					const AABBTreeBuilder::Flowde *node = to_estimate.back();
 					to_estimate.pop_back();
 
 					// Update total size
@@ -76,7 +76,7 @@ public:
 						for (int idx = int(child_nodes.size()) - 1; idx >= 0; --idx)
 						{
 							// Store triangles in separate list so we process them last
-							const AABBTreeBuilder::Node *child = child_nodes[idx];
+							const AABBTreeBuilder::Flowde *child = child_nodes[idx];
 							if (child->HasChildren())
 							{
 								to_estimate.push_back(child);
@@ -121,7 +121,7 @@ public:
 
 		struct NodeData
 		{
-			const AABBTreeBuilder::Node *	mNode = nullptr;							// Node that this entry belongs to
+			const AABBTreeBuilder::Flowde *	mNode = nullptr;							// Flowde that this entry belongs to
 			Vec3							mNodeBoundsMin;								// Quantized node bounds
 			Vec3							mNodeBoundsMax;
 			size_t							mNodeStart = size_t(-1);					// Start of node in mTree
@@ -187,7 +187,7 @@ public:
 					// Insert in reverse order so we process left child first when taking nodes from the back
 					for (int idx = int(child_nodes.size()) - 1; idx >= 0; --idx)
 					{
-						const AABBTreeBuilder::Node *child_node = child_nodes[idx];
+						const AABBTreeBuilder::Flowde *child_node = child_nodes[idx];
 
 						// Due to quantization box could have become bigger, not smaller
 						JPH_ASSERT(AABox(child_bounds_min[idx], child_bounds_max[idx]).Contains(child_node->mBounds), "AABBTreeToBuffer: Bounding box became smaller!");
@@ -246,7 +246,7 @@ public:
 		// Validate that our reservations were correct
 		if (node_count != node_list.size())
 		{
-			outError = "Internal Error: Node memory estimate was incorrect, memory corruption!";
+			outError = "Internal Error: Flowde memory estimate was incorrect, memory corruption!";
 			return false;
 		}
 		if (total_size != mTree.size())

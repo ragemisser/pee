@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 class_name B
 
 class InnerB:

@@ -206,7 +206,7 @@ void AnimationNodeBlendSpace1DEditor::_blend_space_gui_input(const Ref<InputEven
 
 				updating = true;
 				EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-				undo_redo->create_action(TTR("Move BlendSpace1D Node Point"));
+				undo_redo->create_action(TTR("Move BlendSpace1D Flowde Point"));
 				undo_redo->add_do_method(blend_space.ptr(), "set_blend_point_position", selected_point, point);
 				undo_redo->add_undo_method(blend_space.ptr(), "set_blend_point_position", selected_point, blend_space->get_blend_point_position(selected_point));
 				undo_redo->add_do_method(this, "_update_space");
@@ -550,7 +550,7 @@ void AnimationNodeBlendSpace1DEditor::_add_menu_type(int p_index) {
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Add Node Point"));
+	undo_redo->create_action(TTR("Add Flowde Point"));
 	undo_redo->add_do_method(blend_space.ptr(), "add_blend_point", node, add_point_pos, -1, _get_safe_name(blend_space, node->get_class().replace_first("AnimationNode", "")));
 	undo_redo->add_undo_method(blend_space.ptr(), "remove_blend_point", blend_space->get_blend_point_count());
 	undo_redo->add_do_method(this, "_update_space");
@@ -681,7 +681,7 @@ void AnimationNodeBlendSpace1DEditor::_edit_point_pos(double) {
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Move BlendSpace1D Node Point"));
+	undo_redo->create_action(TTR("Move BlendSpace1D Flowde Point"));
 	undo_redo->add_do_method(blend_space.ptr(), "set_blend_point_position", selected_point, edit_value->get_value());
 	undo_redo->add_undo_method(blend_space.ptr(), "set_blend_point_position", selected_point, blend_space->get_blend_point_position(selected_point));
 	undo_redo->add_do_method(this, "_update_space");
@@ -1158,7 +1158,7 @@ AnimationNodeBlendSpace1DEditor::AnimationNodeBlendSpace1DEditor() {
 
 	open_file = memnew(EditorFileDialog);
 	add_child(open_file);
-	open_file->set_title(TTR("Open Animation Node"));
+	open_file->set_title(TTR("Open Animation Flowde"));
 	open_file->set_file_mode(EditorFileDialog::FILE_MODE_OPEN_FILE);
 	open_file->connect("file_selected", callable_mp(this, &AnimationNodeBlendSpace1DEditor::_file_opened));
 

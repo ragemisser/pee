@@ -708,7 +708,7 @@ msgstr "Adaugă %s"
 msgid "Load..."
 msgstr "Încarcă..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Mută punct nod BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -725,7 +725,7 @@ msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr ""
 "Acest tip de nod nu poate fi folosit. Doar nodurile rădăcină sunt permise."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Adaugă punct nod"
 
 msgid "Add Animation Point"
@@ -776,7 +776,7 @@ msgstr "Maxim"
 msgid "Value"
 msgstr "Valoare"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Deschide nod animație"
 
 msgid "Triangle already exists."
@@ -851,10 +851,10 @@ msgstr "Editează Filtre"
 msgid "Output node can't be added to the blend tree."
 msgstr "Nodul output nu poate fi adăugat la arborele de interpolare."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Adaugă nod la BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nod Mutat"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -871,10 +871,10 @@ msgstr "Noduri deconectate"
 msgid "Set Animation"
 msgstr "Setează animație"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Șterge Nod"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Șterge nod(uri)"
 
 msgid "Toggle Filter On/Off"
@@ -914,10 +914,10 @@ msgstr "Inspectare piste filtrate:"
 msgid "Edit Filtered Tracks:"
 msgstr "Editare piste filtrate:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nod redenumit"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Adaugă nod..."
 
 msgid "Enable Filtering"
@@ -1447,7 +1447,7 @@ msgstr "Fa Taste Usuratoare"
 msgid "Bake Animation as Linear Keys"
 msgstr "Pregătiți animația sub formă de chei liniare"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Creează Nod"
 
 msgid ""
@@ -2317,7 +2317,7 @@ msgstr "Ștergeți %d noduri?"
 msgid "Delete node \"%s\"?"
 msgstr "Ștergeți nodul \"%s\"?"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Creare nod rădăcină:"
 
 msgid "Can't overwrite scene that is still open!"
@@ -2332,7 +2332,7 @@ msgstr "Deschidere în Editor"
 msgid "Duplicate"
 msgstr "Duplicat"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Adaugă/Creează un Nod nou."
 
 msgid "Delete Related Animation Tracks"
@@ -2513,16 +2513,16 @@ msgstr "Gestionare caracteristici editor..."
 msgid "Manage Export Templates..."
 msgstr "Gestionare șabloane export..."
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Blochează Nodurile Selectate"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Deblochează Nodurile Selectate"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Grupează Nodurile Selectate"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Degrupează Nodurile Selectate"
 
 msgid "Distraction Free Mode"
@@ -3381,7 +3381,7 @@ msgstr "Dimensiune (raport):"
 msgid "Generate Visibility AABB"
 msgstr "Generare Vizibilitate AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Creare Puncte de Emisie din Nod"
 
 msgid "Create Emitter"
@@ -3507,7 +3507,7 @@ msgstr "Lipește Postura"
 msgid "Clear Guides"
 msgstr "Elimină Ghidurile"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Crează Custom Bone2D din Noduri"
 
 msgid "Zoom to 3.125%"
@@ -3567,13 +3567,13 @@ msgstr "Utilizează Pixel Snap"
 msgid "Snap to Parent"
 msgstr "Snap către Părinte"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Snap către Ancora Nodului"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Snap pe Fețele Nodului"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Snap către Centrul Nodului"
 
 msgid "Snap to Other Nodes"
@@ -3671,7 +3671,7 @@ msgid "%s: Callback code won't be generated, please add it manually."
 msgstr ""
 "%s: codul de apel invers nu va fi generat, vă rugăm să îl adăugați manual."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Conectați la Nod:"
 
 msgid "Connect to Script:"
@@ -3877,14 +3877,14 @@ msgstr "Lipiți Resursa"
 msgid "Revoke unique name for node \"%s\"?"
 msgstr "Revocați numelui unic pentru nodul \"%s\"?"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Nodul are o singură conexiune."
 msgstr[1] "Nodul are {num} conexiuni."
 msgstr[2] "Nodul are {num} de conexiuni."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Nodul este în acest grup:"
 msgstr[1] "Nodurile sunt în acest grup:"
 msgstr[2] "Nodurile sunt în acest grup:"
@@ -4215,7 +4215,7 @@ msgstr "Insuficienți bytes pentru decodare bytes, sau format invalid."
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nod"
 
 msgid "Incoming RPC"

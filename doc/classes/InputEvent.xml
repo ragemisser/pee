@@ -4,7 +4,7 @@
 		Abstract base class for input events.
 	</brief_description>
 	<description>
-		Abstract base class of all types of input events. See [method Node._input].
+		Abstract base class of all types of input events. See [method Flowde._input].
 	</description>
 	<tutorials>
 		<link title="Using InputEvent">$DOCS_URL/tutorials/inputs/inputevent.html</link>

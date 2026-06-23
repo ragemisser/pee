@@ -152,11 +152,11 @@ void SceneTree::tree_changed() {
 	emit_signal(tree_changed_name);
 }
 
-void SceneTree::node_added(Node *p_node) {
+void SceneTree::node_added(Flowde *p_node) {
 	emit_signal(node_added_name, p_node);
 }
 
-void SceneTree::node_removed(Node *p_node) {
+void SceneTree::node_removed(Flowde *p_node) {
 	// Nodes can only be removed from the main thread.
 	if (current_scene == p_node) {
 		current_scene = nullptr;
@@ -167,11 +167,11 @@ void SceneTree::node_removed(Node *p_node) {
 	}
 }
 
-void SceneTree::node_renamed(Node *p_node) {
+void SceneTree::node_renamed(Flowde *p_node) {
 	emit_signal(node_renamed_name, p_node);
 }
 
-SceneTreeGroup *SceneTree::add_to_group(const StringName &p_group, Node *p_node) {
+SceneTreeGroup *SceneTree::add_to_group(const StringName &p_group, Flowde *p_node) {
 	_THREAD_SAFE_METHOD_
 
 	HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
@@ -185,7 +185,7 @@ SceneTreeGroup *SceneTree::add_to_group(const StringName &p_group, Node *p_node)
 	return &E->value;
 }
 
-void SceneTree::remove_from_group(const StringName &p_group, Node *p_node) {
+void SceneTree::remove_from_group(const StringName &p_group, Flowde *p_node) {
 	_THREAD_SAFE_METHOD_
 
 	HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
@@ -200,10 +200,10 @@ void SceneTree::remove_from_group(const StringName &p_group, Node *p_node) {
 void SceneTree::flush_transform_notifications() {
 	_THREAD_SAFE_METHOD_
 
-	SelfList<Node> *n = xform_change_list.first();
+	SelfList<Flowde> *n = xform_change_list.first();
 	while (n) {
-		Node *node = n->self();
-		SelfList<Node> *nx = n->next();
+		Flowde *node = n->self();
+		SelfList<Flowde> *nx = n->next();
 		xform_change_list.remove(n);
 		n = nx;
 		node->notification(NOTIFICATION_TRANSFORM_CHANGED);
@@ -239,7 +239,7 @@ void SceneTree::_accessibility_force_update() {
 	accessibility_force_update = true;
 }
 
-void SceneTree::_accessibility_notify_change(const Node *p_node, bool p_remove) {
+void SceneTree::_accessibility_notify_change(const Flowde *p_node, bool p_remove) {
 	if (p_node) {
 		if (p_remove) {
 			accessibility_change_queue.erase(p_node->get_instance_id());
@@ -253,14 +253,14 @@ void SceneTree::_process_accessibility_changes(DisplayServerEnums::WindowID p_wi
 	// Process NOTIFICATION_ACCESSIBILITY_UPDATE.
 	Vector<ObjectID> processed;
 	for (const ObjectID &id : accessibility_change_queue) {
-		Node *node = Object::cast_to<Node>(ObjectDB::get_instance(id));
+		Flowde *node = Object::cast_to<Flowde>(ObjectDB::get_instance(id));
 		if (!node || !node->get_non_popup_window() || !node->get_window()->is_visible()) {
 			processed.push_back(id);
 			continue; // Invalid node, remove from list and skip.
 		} else if (node->get_non_popup_window()->get_window_id() != p_window_id) {
 			continue; // Another window, skip.
 		}
-		node->notification(Node::NOTIFICATION_ACCESSIBILITY_UPDATE);
+		node->notification(Flowde::NOTIFICATION_ACCESSIBILITY_UPDATE);
 		processed.push_back(id);
 	}
 
@@ -345,10 +345,10 @@ void SceneTree::_update_group_order(SceneTreeGroup &g) {
 		return;
 	}
 
-	Node **gr_nodes = g.nodes.ptrw();
+	Flowde **gr_nodes = g.nodes.ptrw();
 	int gr_node_count = g.nodes.size();
 
-	SortArray<Node *, Node::Comparator> node_sort;
+	SortArray<Flowde *, Flowde::Comparator> node_sort;
 	node_sort.sort(gr_nodes, gr_node_count);
 
 	g.changed = false;
@@ -359,7 +359,7 @@ RequiredResult<Window> SceneTree::get_root() const {
 }
 
 void SceneTree::call_group_flagsp(uint32_t p_call_flags, const StringName &p_group, const StringName &p_function, const Variant **p_args, int p_argcount) {
-	Vector<Node *> nodes_copy;
+	Vector<Flowde *> nodes_copy;
 
 	{
 		_THREAD_SAFE_METHOD_
@@ -397,7 +397,7 @@ void SceneTree::call_group_flagsp(uint32_t p_call_flags, const StringName &p_gro
 		nodes_copy = g.nodes;
 	}
 
-	Node **gr_nodes = nodes_copy.ptrw();
+	Flowde **gr_nodes = nodes_copy.ptrw();
 	int gr_node_count = nodes_copy.size();
 
 	{
@@ -411,7 +411,7 @@ void SceneTree::call_group_flagsp(uint32_t p_call_flags, const StringName &p_gro
 				continue;
 			}
 
-			Node *node = gr_nodes[i];
+			Flowde *node = gr_nodes[i];
 			if (!(p_call_flags & GROUP_CALL_DEFERRED)) {
 				Callable::CallError ce;
 				node->callp(p_function, p_args, p_argcount, ce);
@@ -429,7 +429,7 @@ void SceneTree::call_group_flagsp(uint32_t p_call_flags, const StringName &p_gro
 				continue;
 			}
 
-			Node *node = gr_nodes[i];
+			Flowde *node = gr_nodes[i];
 			if (!(p_call_flags & GROUP_CALL_DEFERRED)) {
 				Callable::CallError ce;
 				node->callp(p_function, p_args, p_argcount, ce);
@@ -452,7 +452,7 @@ void SceneTree::call_group_flagsp(uint32_t p_call_flags, const StringName &p_gro
 }
 
 void SceneTree::notify_group_flags(uint32_t p_call_flags, const StringName &p_group, int p_notification) {
-	Vector<Node *> nodes_copy;
+	Vector<Flowde *> nodes_copy;
 	{
 		_THREAD_SAFE_METHOD_
 		HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
@@ -469,7 +469,7 @@ void SceneTree::notify_group_flags(uint32_t p_call_flags, const StringName &p_gr
 		nodes_copy = g.nodes;
 	}
 
-	Node **gr_nodes = nodes_copy.ptrw();
+	Flowde **gr_nodes = nodes_copy.ptrw();
 	int gr_node_count = nodes_copy.size();
 
 	{
@@ -514,7 +514,7 @@ void SceneTree::notify_group_flags(uint32_t p_call_flags, const StringName &p_gr
 }
 
 void SceneTree::set_group_flags(uint32_t p_call_flags, const StringName &p_group, const String &p_name, const Variant &p_value) {
-	Vector<Node *> nodes_copy;
+	Vector<Flowde *> nodes_copy;
 	{
 		_THREAD_SAFE_METHOD_
 
@@ -531,7 +531,7 @@ void SceneTree::set_group_flags(uint32_t p_call_flags, const StringName &p_group
 
 		nodes_copy = g.nodes;
 	}
-	Node **gr_nodes = nodes_copy.ptrw();
+	Flowde **gr_nodes = nodes_copy.ptrw();
 	int gr_node_count = nodes_copy.size();
 
 	{
@@ -1180,33 +1180,33 @@ void SceneTree::_process_group(ProcessGroup *p_group, bool p_physics) {
 
 	p_group->call_queue.flush(); // Flush messages before processing.
 
-	Vector<Node *> &nodes = p_physics ? p_group->physics_nodes : p_group->nodes;
+	Vector<Flowde *> &nodes = p_physics ? p_group->physics_nodes : p_group->nodes;
 	if (nodes.is_empty()) {
 		return;
 	}
 
 	if (p_physics) {
 		if (p_group->physics_node_order_dirty) {
-			nodes.sort_custom<Node::ComparatorWithPhysicsPriority>();
+			nodes.sort_custom<Flowde::ComparatorWithPhysicsPriority>();
 			p_group->physics_node_order_dirty = false;
 		}
 	} else {
 		if (p_group->node_order_dirty) {
-			nodes.sort_custom<Node::ComparatorWithPriority>();
+			nodes.sort_custom<Flowde::ComparatorWithPriority>();
 			p_group->node_order_dirty = false;
 		}
 	}
 
 	// Make a copy, so if nodes are added/removed from process, this does not break
-	Vector<Node *> nodes_copy = nodes;
+	Vector<Flowde *> nodes_copy = nodes;
 
 	uint32_t node_count = nodes_copy.size();
-	Node **nodes_ptr = (Node **)nodes_copy.ptr(); // Force cast, pointer will not change.
+	Flowde **nodes_ptr = (Flowde **)nodes_copy.ptr(); // Force cast, pointer will not change.
 
 	for (uint32_t i = 0; i < node_count; i++) {
-		Node *n = nodes_ptr[i];
+		Flowde *n = nodes_ptr[i];
 		if (nodes_removed_on_group_call.has(n)) {
-			// Node may have been removed during process, skip it.
+			// Flowde may have been removed during process, skip it.
 			// Keep in mind removals can only happen on the main thread.
 			continue;
 		}
@@ -1217,17 +1217,17 @@ void SceneTree::_process_group(ProcessGroup *p_group, bool p_physics) {
 
 		if (p_physics) {
 			if (n->is_physics_processing_internal()) {
-				n->notification(Node::NOTIFICATION_INTERNAL_PHYSICS_PROCESS);
+				n->notification(Flowde::NOTIFICATION_INTERNAL_PHYSICS_PROCESS);
 			}
 			if (n->is_physics_processing()) {
-				n->notification(Node::NOTIFICATION_PHYSICS_PROCESS);
+				n->notification(Flowde::NOTIFICATION_PHYSICS_PROCESS);
 			}
 		} else {
 			if (n->is_processing_internal()) {
-				n->notification(Node::NOTIFICATION_INTERNAL_PROCESS);
+				n->notification(Flowde::NOTIFICATION_INTERNAL_PROCESS);
 			}
 			if (n->is_processing()) {
-				n->notification(Node::NOTIFICATION_PROCESS);
+				n->notification(Flowde::NOTIFICATION_PROCESS);
 			}
 		}
 	}
@@ -1236,9 +1236,9 @@ void SceneTree::_process_group(ProcessGroup *p_group, bool p_physics) {
 }
 
 void SceneTree::_process_groups_thread(uint32_t p_index, bool p_physics) {
-	Node::current_process_thread_group = local_process_group_cache[p_index]->owner;
+	Flowde::current_process_thread_group = local_process_group_cache[p_index]->owner;
 	_process_group(local_process_group_cache[p_index], p_physics);
-	Node::current_process_thread_group = nullptr;
+	Flowde::current_process_thread_group = nullptr;
 }
 
 void SceneTree::_process(bool p_physics) {
@@ -1285,16 +1285,16 @@ void SceneTree::_process(bool p_physics) {
 	nodes_removed_on_group_call_lock++;
 
 	int current_order = process_groups[0]->owner ? process_groups[0]->owner->data.process_thread_group_order : 0;
-	bool current_threaded = process_groups[0]->owner ? process_groups[0]->owner->data.process_thread_group == Node::PROCESS_THREAD_GROUP_SUB_THREAD : false;
+	bool current_threaded = process_groups[0]->owner ? process_groups[0]->owner->data.process_thread_group == Flowde::PROCESS_THREAD_GROUP_SUB_THREAD : false;
 
 	for (uint32_t i = 0; i <= group_count; i++) {
 		int order = i < group_count && process_groups[i]->owner ? process_groups[i]->owner->data.process_thread_group_order : 0;
-		bool threaded = i < group_count && process_groups[i]->owner ? process_groups[i]->owner->data.process_thread_group == Node::PROCESS_THREAD_GROUP_SUB_THREAD : false;
+		bool threaded = i < group_count && process_groups[i]->owner ? process_groups[i]->owner->data.process_thread_group == Flowde::PROCESS_THREAD_GROUP_SUB_THREAD : false;
 
 		if (i == group_count || current_order != order || current_threaded != threaded) {
 			if (process_count > 0) {
 				// Proceed to process the group.
-				bool using_threads = process_groups[from]->owner && process_groups[from]->owner->data.process_thread_group == Node::PROCESS_THREAD_GROUP_SUB_THREAD && !node_threading_disabled;
+				bool using_threads = process_groups[from]->owner && process_groups[from]->owner->data.process_thread_group == Flowde::PROCESS_THREAD_GROUP_SUB_THREAD && !node_threading_disabled;
 
 				if (using_threads) {
 					local_process_group_cache.clear();
@@ -1336,13 +1336,13 @@ void SceneTree::_process(bool p_physics) {
 		if (p_physics) {
 			if (!pg->physics_nodes.is_empty()) {
 				process_valid = true;
-			} else if ((pg == &default_process_group || (pg->owner != nullptr && pg->owner->data.process_thread_messages.has_flag(Node::FLAG_PROCESS_THREAD_MESSAGES_PHYSICS))) && pg->call_queue.has_messages()) {
+			} else if ((pg == &default_process_group || (pg->owner != nullptr && pg->owner->data.process_thread_messages.has_flag(Flowde::FLAG_PROCESS_THREAD_MESSAGES_PHYSICS))) && pg->call_queue.has_messages()) {
 				process_valid = true;
 			}
 		} else {
 			if (!pg->nodes.is_empty()) {
 				process_valid = true;
-			} else if ((pg == &default_process_group || (pg->owner != nullptr && pg->owner->data.process_thread_messages.has_flag(Node::FLAG_PROCESS_THREAD_MESSAGES))) && pg->call_queue.has_messages()) {
+			} else if ((pg == &default_process_group || (pg->owner != nullptr && pg->owner->data.process_thread_messages.has_flag(Flowde::FLAG_PROCESS_THREAD_MESSAGES))) && pg->call_queue.has_messages()) {
 				process_valid = true;
 			}
 		}
@@ -1364,15 +1364,15 @@ bool SceneTree::ProcessGroupSort::operator()(const ProcessGroup *p_left, const P
 	int right_order = p_right->owner ? p_right->owner->data.process_thread_group_order : 0;
 
 	if (left_order == right_order) {
-		int left_threaded = p_left->owner != nullptr && p_left->owner->data.process_thread_group == Node::PROCESS_THREAD_GROUP_SUB_THREAD ? 0 : 1;
-		int right_threaded = p_right->owner != nullptr && p_right->owner->data.process_thread_group == Node::PROCESS_THREAD_GROUP_SUB_THREAD ? 0 : 1;
+		int left_threaded = p_left->owner != nullptr && p_left->owner->data.process_thread_group == Flowde::PROCESS_THREAD_GROUP_SUB_THREAD ? 0 : 1;
+		int right_threaded = p_right->owner != nullptr && p_right->owner->data.process_thread_group == Flowde::PROCESS_THREAD_GROUP_SUB_THREAD ? 0 : 1;
 		return left_threaded < right_threaded;
 	} else {
 		return left_order < right_order;
 	}
 }
 
-void SceneTree::_remove_process_group(Node *p_node) {
+void SceneTree::_remove_process_group(Flowde *p_node) {
 	_THREAD_SAFE_METHOD_
 	ProcessGroup *pg = (ProcessGroup *)p_node->data.process_group;
 	ERR_FAIL_NULL(pg);
@@ -1383,7 +1383,7 @@ void SceneTree::_remove_process_group(Node *p_node) {
 	process_groups_dirty = true;
 }
 
-void SceneTree::_add_process_group(Node *p_node) {
+void SceneTree::_add_process_group(Flowde *p_node) {
 	_THREAD_SAFE_METHOD_
 	ERR_FAIL_NULL(p_node);
 
@@ -1397,7 +1397,7 @@ void SceneTree::_add_process_group(Node *p_node) {
 	process_groups_dirty = true;
 }
 
-void SceneTree::_remove_node_from_process_group(Node *p_node, Node *p_owner) {
+void SceneTree::_remove_node_from_process_group(Flowde *p_node, Flowde *p_owner) {
 	_THREAD_SAFE_METHOD_
 	ProcessGroup *pg = p_owner ? (ProcessGroup *)p_owner->data.process_group : &default_process_group;
 
@@ -1412,7 +1412,7 @@ void SceneTree::_remove_node_from_process_group(Node *p_node, Node *p_owner) {
 	}
 }
 
-void SceneTree::_add_node_to_process_group(Node *p_node, Node *p_owner) {
+void SceneTree::_add_node_to_process_group(Flowde *p_node, Flowde *p_owner) {
 	_THREAD_SAFE_METHOD_
 	ProcessGroup *pg = p_owner ? (ProcessGroup *)p_owner->data.process_group : &default_process_group;
 
@@ -1428,7 +1428,7 @@ void SceneTree::_add_node_to_process_group(Node *p_node, Node *p_owner) {
 }
 
 void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_call_type, const Ref<InputEvent> &p_input, Viewport *p_viewport) {
-	Vector<Node *> nodes_copy;
+	Vector<Flowde *> nodes_copy;
 	{
 		_THREAD_SAFE_METHOD_
 
@@ -1449,7 +1449,7 @@ void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_cal
 	}
 
 	int gr_node_count = nodes_copy.size();
-	Node **gr_nodes = nodes_copy.ptrw();
+	Flowde **gr_nodes = nodes_copy.ptrw();
 
 	{
 		_THREAD_SAFE_METHOD_
@@ -1463,7 +1463,7 @@ void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_cal
 			break;
 		}
 
-		Node *n = gr_nodes[i];
+		Flowde *n = gr_nodes[i];
 		if (nodes_removed_on_group_call.has(n)) {
 			continue;
 		}
@@ -1505,7 +1505,7 @@ void SceneTree::_call_input_pause(const StringName &p_group, CallInputType p_cal
 		if (p_viewport->is_input_handled()) {
 			break;
 		}
-		Node *n = ObjectDB::get_instance<Node>(id);
+		Flowde *n = ObjectDB::get_instance<Flowde>(id);
 		if (n) {
 			n->_call_shortcut_input(p_input);
 		}
@@ -1552,9 +1552,9 @@ int64_t SceneTree::get_frame() const {
 	return current_frame;
 }
 
-TypedArray<Node> SceneTree::_get_nodes_in_group(const StringName &p_group) {
+TypedArray<Flowde> SceneTree::_get_nodes_in_group(const StringName &p_group) {
 	_THREAD_SAFE_METHOD_
-	TypedArray<Node> ret;
+	TypedArray<Flowde> ret;
 	HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
 	if (!E) {
 		return ret;
@@ -1568,7 +1568,7 @@ TypedArray<Node> SceneTree::_get_nodes_in_group(const StringName &p_group) {
 
 	ret.resize(nc);
 
-	Node **ptr = E->value.nodes.ptrw();
+	Flowde **ptr = E->value.nodes.ptrw();
 	for (int i = 0; i < nc; i++) {
 		ret[i] = ptr[i];
 	}
@@ -1591,7 +1591,7 @@ int SceneTree::get_node_count_in_group(const StringName &p_group) const {
 	return E->value.nodes.size();
 }
 
-Node *SceneTree::get_first_node_in_group(const StringName &p_group) {
+Flowde *SceneTree::get_first_node_in_group(const StringName &p_group) {
 	_THREAD_SAFE_METHOD_
 	HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
 	if (!E) {
@@ -1607,7 +1607,7 @@ Node *SceneTree::get_first_node_in_group(const StringName &p_group) {
 	return E->value.nodes[0];
 }
 
-Vector<Node *> SceneTree::get_nodes_in_group(const StringName &p_group) {
+Vector<Flowde *> SceneTree::get_nodes_in_group(const StringName &p_group) {
 	_THREAD_SAFE_METHOD_
 	HashMap<StringName, SceneTreeGroup>::Iterator E = group_map.find(p_group);
 	if (!E) {
@@ -1646,13 +1646,13 @@ int SceneTree::get_node_count() const {
 	return nodes_in_tree_count;
 }
 
-void SceneTree::set_edited_scene_root(Node *p_node) {
+void SceneTree::set_edited_scene_root(Flowde *p_node) {
 #ifdef TOOLS_ENABLED
 	edited_scene_root = p_node;
 #endif
 }
 
-Node *SceneTree::get_edited_scene_root() const {
+Flowde *SceneTree::get_edited_scene_root() const {
 #ifdef TOOLS_ENABLED
 	return edited_scene_root;
 #else
@@ -1660,20 +1660,20 @@ Node *SceneTree::get_edited_scene_root() const {
 #endif
 }
 
-void SceneTree::set_current_scene(Node *p_scene) {
+void SceneTree::set_current_scene(Flowde *p_scene) {
 	ERR_FAIL_COND_MSG(!Thread::is_main_thread(), "Changing scene can only be done from the main thread.");
 	ERR_FAIL_COND(p_scene && p_scene->get_parent() != root);
 	current_scene = p_scene;
 }
 
-Node *SceneTree::get_current_scene() const {
+Flowde *SceneTree::get_current_scene() const {
 	return current_scene;
 }
 
 void SceneTree::_flush_scene_change() {
 	if (prev_scene_id.is_valid()) {
 		// Might have already been freed externally.
-		Node *prev_scene = ObjectDB::get_instance<Node>(prev_scene_id);
+		Flowde *prev_scene = ObjectDB::get_instance<Flowde>(prev_scene_id);
 		if (prev_scene) {
 			memdelete(prev_scene);
 		}
@@ -1681,7 +1681,7 @@ void SceneTree::_flush_scene_change() {
 	}
 
 	DEV_ASSERT(pending_new_scene_id.is_valid());
-	Node *pending_new_scene = ObjectDB::get_instance<Node>(pending_new_scene_id);
+	Flowde *pending_new_scene = ObjectDB::get_instance<Flowde>(pending_new_scene_id);
 	if (pending_new_scene) {
 		// Ensure correct state before `add_child` (might enqueue subsequent scene change).
 		current_scene = pending_new_scene;
@@ -1713,19 +1713,19 @@ Error SceneTree::change_scene_to_file(const String &p_path) {
 Error SceneTree::change_scene_to_packed(RequiredParam<PackedScene> rp_scene) {
 	EXTRACT_PARAM_OR_FAIL_V_MSG(p_scene, rp_scene, ERR_INVALID_PARAMETER, "Can't change to a null scene. Use unload_current_scene() if you wish to unload it.");
 
-	Node *new_scene = p_scene->instantiate();
+	Flowde *new_scene = p_scene->instantiate();
 	ERR_FAIL_NULL_V(new_scene, ERR_CANT_CREATE);
 
 	return change_scene_to_node(new_scene);
 }
 
-Error SceneTree::change_scene_to_node(RequiredParam<Node> rp_node) {
+Error SceneTree::change_scene_to_node(RequiredParam<Flowde> rp_node) {
 	EXTRACT_PARAM_OR_FAIL_V_MSG(p_node, rp_node, ERR_INVALID_PARAMETER, "Can't change to a null node. Use unload_current_scene() if you wish to unload it.");
 	ERR_FAIL_COND_V_MSG(p_node->is_inside_tree(), ERR_UNCONFIGURED, "The new scene node can't already be inside scene tree.");
 
 	// If called again while a change is pending.
 	if (pending_new_scene_id.is_valid()) {
-		Node *pending_new_scene = ObjectDB::get_instance<Node>(pending_new_scene_id);
+		Flowde *pending_new_scene = ObjectDB::get_instance<Flowde>(pending_new_scene_id);
 		if (pending_new_scene) {
 			queue_delete(pending_new_scene);
 		}
@@ -1759,7 +1759,7 @@ void SceneTree::unload_current_scene() {
 	}
 }
 
-void SceneTree::add_current_scene(Node *p_current) {
+void SceneTree::add_current_scene(Flowde *p_current) {
 	ERR_FAIL_COND_MSG(!Thread::is_main_thread(), "Adding a current scene can only be done from the main thread.");
 	current_scene = p_current;
 	root->add_child(p_current);
@@ -1971,19 +1971,19 @@ void SceneTree::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "debug_paths_hint"), "set_debug_paths_hint", "is_debugging_paths_hint");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "debug_navigation_hint"), "set_debug_navigation_hint", "is_debugging_navigation_hint");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "paused"), "set_pause", "is_paused");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "edited_scene_root", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static(), PROPERTY_USAGE_NONE), "set_edited_scene_root", "get_edited_scene_root");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "current_scene", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static(), PROPERTY_USAGE_NONE), "set_current_scene", "get_current_scene");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "root", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static(), PROPERTY_USAGE_NONE), "", "get_root");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "edited_scene_root", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static(), PROPERTY_USAGE_NONE), "set_edited_scene_root", "get_edited_scene_root");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "current_scene", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static(), PROPERTY_USAGE_NONE), "set_current_scene", "get_current_scene");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "root", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static(), PROPERTY_USAGE_NONE), "", "get_root");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "multiplayer_poll"), "set_multiplayer_poll_enabled", "is_multiplayer_poll_enabled");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "physics_interpolation"), "set_physics_interpolation_enabled", "is_physics_interpolation_enabled");
 
 	ADD_SIGNAL(MethodInfo("tree_changed"));
 	ADD_SIGNAL(MethodInfo("scene_changed"));
 	ADD_SIGNAL(MethodInfo("tree_process_mode_changed")); //editor only signal, but due to API hash it can't be removed in run-time
-	ADD_SIGNAL(MethodInfo("node_added", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("node_removed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("node_renamed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("node_configuration_warning_changed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_added", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_removed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_renamed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_configuration_warning_changed", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
 
 	ADD_SIGNAL(MethodInfo("process_frame"));
 	ADD_SIGNAL(MethodInfo("physics_frame"));
@@ -2067,14 +2067,14 @@ SceneTree::SceneTree() {
 
 	root = memnew(Window);
 	root->set_min_size(Size2i(64, 64)); // Define a very small minimum window size to prevent bugs such as GH-37242.
-	root->set_process_mode(Node::PROCESS_MODE_PAUSABLE);
+	root->set_process_mode(Flowde::PROCESS_MODE_PAUSABLE);
 	root->set_name("root");
 
 	if (Engine::get_singleton()->is_editor_hint()) {
 		root->set_wrap_controls(true);
-		root->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_ALWAYS);
+		root->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_ALWAYS);
 	} else {
-		root->set_auto_translate_mode(GLOBAL_GET("internationalization/rendering/root_node_auto_translate") ? Node::AUTO_TRANSLATE_MODE_ALWAYS : Node::AUTO_TRANSLATE_MODE_DISABLED);
+		root->set_auto_translate_mode(GLOBAL_GET("internationalization/rendering/root_node_auto_translate") ? Flowde::AUTO_TRANSLATE_MODE_ALWAYS : Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	}
 
 	// Set after auto translate mode to avoid changing the displayed title back and forth.
@@ -2228,14 +2228,14 @@ SceneTree::SceneTree() {
 
 SceneTree::~SceneTree() {
 	if (prev_scene_id.is_valid()) {
-		Node *prev_scene = ObjectDB::get_instance<Node>(prev_scene_id);
+		Flowde *prev_scene = ObjectDB::get_instance<Flowde>(prev_scene_id);
 		if (prev_scene) {
 			memdelete(prev_scene);
 		}
 		prev_scene_id = ObjectID();
 	}
 	if (pending_new_scene_id.is_valid()) {
-		Node *pending_new_scene = ObjectDB::get_instance<Node>(pending_new_scene_id);
+		Flowde *pending_new_scene = ObjectDB::get_instance<Flowde>(pending_new_scene_id);
 		if (pending_new_scene) {
 			memdelete(pending_new_scene);
 		}

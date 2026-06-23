@@ -4,7 +4,7 @@
 		Represents a screen drag event.
 	</brief_description>
 	<description>
-		Stores information about screen drag events. See [method Node._input].
+		Stores information about screen drag events. See [method Flowde._input].
 	</description>
 	<tutorials>
 		<link title="Using InputEvent">$DOCS_URL/tutorials/inputs/inputevent.html</link>

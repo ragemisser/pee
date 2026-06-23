@@ -131,7 +131,7 @@ class TextureRegionEditor : public AcceptDialog {
 	Ref<Texture2D> _get_edited_object_texture() const;
 	Rect2 _get_edited_object_region() const;
 	void _texture_changed();
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	void _edit_region();
 	void _clear_edited_object();

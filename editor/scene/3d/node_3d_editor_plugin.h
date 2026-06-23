@@ -194,7 +194,7 @@ private:
 	double gpu_time_history[FRAME_TIME_HISTORY];
 	int gpu_time_history_index;
 
-	Node *ruler = nullptr;
+	Flowde *ruler = nullptr;
 	Node3D *ruler_start_point = nullptr;
 	Node3D *ruler_end_point = nullptr;
 	Ref<ImmediateMesh> geometry;
@@ -222,7 +222,7 @@ private:
 	Vector<String> selected_files;
 	AcceptDialog *accept = nullptr;
 
-	Node *target_node = nullptr;
+	Flowde *target_node = nullptr;
 	Point2 drop_pos;
 
 	ObjectID focused_node_id;
@@ -446,7 +446,7 @@ private:
 	void _pilot_commit_undo_session();
 	void _pilot_tick_undo_session(real_t p_delta);
 
-	bool _is_node_locked(const Node *p_node) const;
+	bool _is_node_locked(const Flowde *p_node) const;
 	void _preview_exited_scene();
 	void _preview_camera_property_changed();
 	void _sync_cursor_from_transform(const Transform3D &p_transform);
@@ -465,16 +465,16 @@ private:
 	Vector3 _get_instance_position(const Point2 &p_pos, Node3D *p_node) const;
 	static AABB _calculate_spatial_bounds(const Node3D *p_parent, bool p_omit_top_level = false, const Transform3D *p_bounds_orientation = nullptr);
 
-	Node *_sanitize_preview_node(Node *p_node) const;
+	Flowde *_sanitize_preview_node(Flowde *p_node) const;
 
 	void _create_preview_node(const Vector<String> &files) const;
 	void _remove_preview_node();
 	bool _apply_preview_material(ObjectID p_target, const Point2 &p_point) const;
 	void _reset_preview_material() const;
 	void _remove_preview_material();
-	bool _cyclical_dependency_exists(const String &p_target_scene_path, Node *p_desired_node) const;
-	bool _create_instance(Node *p_parent, const String &p_path, const Point2 &p_point);
-	bool _create_audio_node(Node *p_parent, const String &p_path, const Point2 &p_point);
+	bool _cyclical_dependency_exists(const String &p_target_scene_path, Flowde *p_desired_node) const;
+	bool _create_instance(Flowde *p_parent, const String &p_path, const Point2 &p_point);
+	bool _create_audio_node(Flowde *p_parent, const String &p_path, const Point2 &p_point);
 	void _perform_drop_data();
 
 	bool can_drop_data_fw(const Point2 &p_point, const Variant &p_data, Control *p_from);
@@ -814,7 +814,7 @@ private:
 	void _toggle_maximize_view(Object *p_viewport);
 	void _viewport_clicked(int p_viewport_idx);
 
-	Node *custom_camera = nullptr;
+	Flowde *custom_camera = nullptr;
 
 	Object *_get_editor_data(Object *p_what);
 
@@ -833,8 +833,8 @@ private:
 
 	static Node3DEditor *singleton;
 
-	void _node_added(Node *p_node);
-	void _node_removed(Node *p_node);
+	void _node_added(Flowde *p_node);
+	void _node_removed(Flowde *p_node);
 	Vector<Ref<EditorNode3DGizmoPlugin>> gizmo_plugins_by_priority;
 	Vector<Ref<EditorNode3DGizmoPlugin>> gizmo_plugins_by_name;
 
@@ -974,11 +974,11 @@ public:
 
 	void update_grid();
 	void update_transform_gizmo();
-	void update_all_gizmos(Node *p_node = nullptr);
+	void update_all_gizmos(Flowde *p_node = nullptr);
 	void update_gizmo_opacity();
 	void snap_selected_nodes_to_floor();
 	void select_gizmo_highlight_axis(int p_axis);
-	void set_custom_camera(Node *p_camera) { custom_camera = p_camera; }
+	void set_custom_camera(Flowde *p_camera) { custom_camera = p_camera; }
 
 	Dictionary get_state() const;
 	void set_state(const Dictionary &p_state);

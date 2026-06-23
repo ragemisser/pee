@@ -120,10 +120,10 @@ private:
 	mutable Vector<CachedTab> pending_tabs;
 	CachedTab &get_pending_tab(int p_idx) const;
 
-	HashMap<Node *, RID> tab_panels;
+	HashMap<Flowde *, RID> tab_panels;
 
 	int _get_tab_height() const;
-	Control *_as_tab_control(Node *p_child) const;
+	Control *_as_tab_control(Flowde *p_child) const;
 	Vector<Control *> _get_tab_controls() const;
 	void _on_theme_changed();
 	void _repaint_call_deferred();
@@ -161,9 +161,9 @@ protected:
 	void _maximum_size_changed();
 
 	void _notification(int p_what);
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 	static void _bind_methods();
 
 public:
@@ -237,7 +237,7 @@ public:
 	virtual Size2 get_inner_combined_maximum_size() const override;
 	virtual Size2 get_desired_size() const override;
 
-	void set_popup(Node *p_popup);
+	void set_popup(Flowde *p_popup);
 	Popup *get_popup() const;
 
 	void move_tab_from_tab_container(TabContainer *p_from, int p_from_index, int p_to_index = -1);

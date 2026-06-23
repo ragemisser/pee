@@ -5,7 +5,7 @@
 	</brief_description>
 	<description>
 		A simplified interface to a scene file. Provides access to operations and checks that can be performed on the scene resource itself.
-		Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get saved (see [member Node.owner] property).
+		Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get saved (see [member Flowde.owner] property).
 		[b]Note:[/b] The node doesn't need to own itself.
 		[b]Example:[/b] Load a saved scene:
 		[codeblocks]
@@ -89,17 +89,17 @@
 			</description>
 		</method>
 		<method name="instantiate" qualifiers="const" keywords="create, make, spawn, new">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="edit_state" type="int" enum="PackedScene.GenEditState" default="0" />
 			<description>
-				Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [constant Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
+				Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [constant Flowde.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
 			</description>
 		</method>
 		<method name="pack">
 			<return type="int" enum="Error" />
-			<param index="0" name="path" type="Node" />
+			<param index="0" name="path" type="Flowde" />
 			<description>
-				Packs the [param path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will be cleared. See [member Node.owner].
+				Packs the [param path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will be cleared. See [member Flowde.owner].
 			</description>
 		</method>
 	</methods>

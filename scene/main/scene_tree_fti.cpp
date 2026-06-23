@@ -63,7 +63,7 @@ void SceneTreeFTI::_reset_node3d_flags(Node3D &r_node) {
 	r_node.data.fti_processed = false;
 }
 
-void SceneTreeFTI::_reset_flags(Node *p_node) {
+void SceneTreeFTI::_reset_flags(Flowde *p_node) {
 	Node3D *s = Object::cast_to<Node3D>(p_node);
 
 	if (s) {
@@ -79,7 +79,7 @@ void SceneTreeFTI::_reset_flags(Node *p_node) {
 	}
 }
 
-void SceneTreeFTI::set_enabled(Node *p_root, bool p_enabled) {
+void SceneTreeFTI::set_enabled(Flowde *p_root, bool p_enabled) {
 	if (data.enabled == p_enabled) {
 		return;
 	}
@@ -462,7 +462,7 @@ void SceneTreeFTI::node_3d_notify_delete(Node3D *p_node) {
 #endif
 }
 
-void SceneTreeFTI::_update_dirty_nodes(Node *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform, int p_depth) {
+void SceneTreeFTI::_update_dirty_nodes(Flowde *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform, int p_depth) {
 	Node3D *s = Object::cast_to<Node3D>(p_node);
 
 #ifdef DEBUG_ENABLED
@@ -480,7 +480,7 @@ void SceneTreeFTI::_update_dirty_nodes(Node *p_node, uint32_t p_current_half_fra
 	// Could be e.g. a viewport or something
 	// so we should still recurse to children.
 	if (!s) {
-		for (Node *node : p_node->iterate_children()) {
+		for (Flowde *node : p_node->iterate_children()) {
 			_update_dirty_nodes(node, p_current_half_frame, p_interpolation_fraction, p_active, nullptr, p_depth + 1);
 		}
 		return;
@@ -596,12 +596,12 @@ void SceneTreeFTI::_update_dirty_nodes(Node *p_node, uint32_t p_current_half_fra
 	s->_clear_dirty_bits(Node3D::DIRTY_GLOBAL_INTERPOLATED_TRANSFORM);
 
 	// Recurse to children.
-	for (Node *node : p_node->iterate_children()) {
+	for (Flowde *node : p_node->iterate_children()) {
 		_update_dirty_nodes(node, p_current_half_frame, p_interpolation_fraction, p_active, s->data.fti_global_xform_interp_set ? &s->data.global_transform_interpolated : &s->data.global_transform, p_depth + 1);
 	}
 }
 
-void SceneTreeFTI::frame_update(Node *p_root, bool p_frame_start) {
+void SceneTreeFTI::frame_update(Flowde *p_root, bool p_frame_start) {
 	if (!data.enabled || !p_root) {
 		return;
 	}

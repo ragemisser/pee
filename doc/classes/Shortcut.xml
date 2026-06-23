@@ -9,7 +9,7 @@
 		[b]Example:[/b] Capture the [kbd]Ctrl + S[/kbd] shortcut using a [Shortcut] resource:
 		[codeblocks]
 		[gdscript]
-		extends Node
+		extends Flowde
 
 		var save_shortcut = Shortcut.new()
 		func _ready():
@@ -27,7 +27,7 @@
 		[csharp]
 		using Godot;
 
-		public partial class MyNode : Node
+		public partial class MyNode : Flowde
 		{
 			private readonly Shortcut _saveShortcut = new Shortcut();
 

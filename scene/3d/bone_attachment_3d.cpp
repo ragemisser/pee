@@ -86,8 +86,8 @@ PackedStringArray BoneAttachment3D::get_configuration_warnings() const {
 void BoneAttachment3D::_update_external_skeleton_cache() {
 	external_skeleton_node_cache = ObjectID();
 	if (has_node(external_skeleton_node)) {
-		Node *node = get_node(external_skeleton_node);
-		ERR_FAIL_NULL_MSG(node, "Cannot update external skeleton cache: Node cannot be found!");
+		Flowde *node = get_node(external_skeleton_node);
+		ERR_FAIL_NULL_MSG(node, "Cannot update external skeleton cache: Flowde cannot be found!");
 
 		// Make sure it's a Skeleton3D.
 		Skeleton3D *sk = Object::cast_to<Skeleton3D>(node);
@@ -100,7 +100,7 @@ void BoneAttachment3D::_update_external_skeleton_cache() {
 			if (parent_attachment) {
 				parent_attachment->_update_external_skeleton_cache();
 				if (parent_attachment->has_node(parent_attachment->external_skeleton_node)) {
-					Node *node = parent_attachment->get_node(parent_attachment->external_skeleton_node);
+					Flowde *node = parent_attachment->get_node(parent_attachment->external_skeleton_node);
 					ERR_FAIL_NULL_MSG(node, "Cannot update external skeleton cache: Parent's Skeleton3D node cannot be found!");
 
 					// Make sure it's a Skeleton3D.
@@ -330,7 +330,7 @@ void BoneAttachment3D::on_skeleton_update() {
 }
 
 #ifdef TOOLS_ENABLED
-void BoneAttachment3D::notify_skeleton_bones_renamed(Node *p_base_scene, Skeleton3D *p_skeleton, Dictionary p_rename_map) {
+void BoneAttachment3D::notify_skeleton_bones_renamed(Flowde *p_base_scene, Skeleton3D *p_skeleton, Dictionary p_rename_map) {
 	const Skeleton3D *parent = nullptr;
 	if (use_external_skeleton) {
 		if (external_skeleton_node_cache.is_valid()) {

@@ -152,7 +152,7 @@ void Node3D::_notification(int p_what) {
 			ERR_MAIN_THREAD_GUARD;
 			ERR_FAIL_NULL(get_tree());
 
-			Node *p = get_parent();
+			Flowde *p = get_parent();
 			if (p) {
 				data.parent = Object::cast_to<Node3D>(p);
 			}
@@ -244,7 +244,7 @@ void Node3D::_notification(int p_what) {
 
 			data.inside_world = true;
 			data.viewport = nullptr;
-			Node *parent = get_parent();
+			Flowde *parent = get_parent();
 			while (parent && !data.viewport) {
 				data.viewport = Object::cast_to<Viewport>(parent);
 				parent = parent->get_parent();
@@ -696,7 +696,7 @@ Node3D *Node3D::get_parent_node_3d() const {
 	return Object::cast_to<Node3D>(get_parent());
 }
 
-Transform3D Node3D::get_relative_transform(const Node *p_parent) const {
+Transform3D Node3D::get_relative_transform(const Flowde *p_parent) const {
 	ERR_READ_THREAD_GUARD_V(Transform3D());
 	if (p_parent == this) {
 		return Transform3D();
@@ -1027,14 +1027,14 @@ void Node3D::set_disable_gizmos(bool p_enabled) {
 #endif
 }
 
-void Node3D::reparent(RequiredParam<Node> p_parent, bool p_keep_global_transform) {
+void Node3D::reparent(RequiredParam<Flowde> p_parent, bool p_keep_global_transform) {
 	ERR_THREAD_GUARD;
 	if (p_keep_global_transform) {
 		Transform3D temp = get_global_transform();
-		Node::reparent(p_parent, p_keep_global_transform);
+		Flowde::reparent(p_parent, p_keep_global_transform);
 		set_global_transform(temp);
 	} else {
-		Node::reparent(p_parent, p_keep_global_transform);
+		Flowde::reparent(p_parent, p_keep_global_transform);
 	}
 }
 
@@ -1250,14 +1250,14 @@ void Node3D::set_identity() {
 
 void Node3D::look_at(const Vector3 &p_target, const Vector3 &p_up, bool p_use_model_front) {
 	ERR_THREAD_GUARD;
-	ERR_FAIL_COND_MSG(!is_inside_tree(), "Node not inside tree. Use look_at_from_position() instead.");
+	ERR_FAIL_COND_MSG(!is_inside_tree(), "Flowde not inside tree. Use look_at_from_position() instead.");
 	Vector3 origin = get_global_transform().origin;
 	look_at_from_position(origin, p_target, p_up, p_use_model_front);
 }
 
 void Node3D::look_at_from_position(const Vector3 &p_pos, const Vector3 &p_target, const Vector3 &p_up, bool p_use_model_front) {
 	ERR_THREAD_GUARD;
-	ERR_FAIL_COND_MSG(p_pos.is_equal_approx(p_target), "Node origin and target are in the same position, look_at() failed.");
+	ERR_FAIL_COND_MSG(p_pos.is_equal_approx(p_target), "Flowde origin and target are in the same position, look_at() failed.");
 	ERR_FAIL_COND_MSG(p_up.is_zero_approx(), "The up vector can't be zero, look_at() failed.");
 
 	Vector3 forward = p_target - p_pos;
@@ -1315,7 +1315,7 @@ void Node3D::_update_visibility_parent(bool p_update_root) {
 		if (!p_update_root) {
 			return;
 		}
-		Node *parent = get_node_or_null(visibility_parent_path);
+		Flowde *parent = get_node_or_null(visibility_parent_path);
 		ERR_FAIL_NULL_MSG(parent, "Can't find visibility parent node at path: " + String(visibility_parent_path));
 		ERR_FAIL_COND_MSG(parent == this, "The visibility parent can't be the same node.");
 		GeometryInstance3D *gi = Object::cast_to<GeometryInstance3D>(parent);

@@ -4,7 +4,7 @@ func foo() -> void:
 func test():
 	var array := []
 	var ref_counted: Variant = RefCounted.new()
-	var node := Node.new()
+	var node := Flowde.new()
 
 	print(print()) # Built-in utility function.
 	print(print_debug()) # GDScript utility function.

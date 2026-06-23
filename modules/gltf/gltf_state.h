@@ -110,7 +110,7 @@ protected:
 
 	Vector<Ref<GLTFSkeleton>> skeletons;
 	Vector<Ref<GLTFAnimation>> animations;
-	HashMap<GLTFNodeIndex, Node *> scene_nodes;
+	HashMap<GLTFNodeIndex, Flowde *> scene_nodes;
 	HashMap<GLTFNodeIndex, ImporterMeshInstance3D *> scene_mesh_instances;
 	HashMap<String, Ref<GLTFObjectModelProperty>> object_model_properties;
 
@@ -153,8 +153,8 @@ protected:
 	bool _get_create_animations_bind_compat_113172();
 	bool _get_import_as_skeleton_bones_bind_compat_113172();
 	TypedArray<GLTFAnimation> _get_animations_bind_compat_113172();
-	Node *_get_scene_node_bind_compat_113172(GLTFNodeIndex p_gltf_node_index);
-	GLTFNodeIndex _get_node_index_bind_compat_113172(Node *p_node);
+	Flowde *_get_scene_node_bind_compat_113172(GLTFNodeIndex p_gltf_node_index);
+	GLTFNodeIndex _get_node_index_bind_compat_113172(Flowde *p_node);
 	int _get_animation_players_count_bind_compat_113172(int p_anim_player_index);
 	AnimationPlayer *_get_animation_player_bind_compat_113172(int p_anim_player_index);
 	Variant _get_additional_data_bind_compat_113172(const StringName &p_extension_name);
@@ -172,7 +172,7 @@ public:
 
 	void add_used_extension(const String &p_extension, bool p_required = false);
 	GLTFBufferViewIndex append_data_to_buffers(const Vector<uint8_t> &p_data, const bool p_deduplication);
-	GLTFNodeIndex append_gltf_node(Ref<GLTFNode> p_gltf_node, Node *p_godot_scene_node, GLTFNodeIndex p_parent_node_index);
+	GLTFNodeIndex append_gltf_node(Ref<GLTFNode> p_gltf_node, Flowde *p_godot_scene_node, GLTFNodeIndex p_parent_node_index);
 
 	// Deprecated, use HandleBinaryImageMode instead.
 	enum GLTFHandleBinary {
@@ -315,8 +315,8 @@ public:
 	TypedArray<GLTFAnimation> get_animations_bind() const;
 	void set_animations_bind(const TypedArray<GLTFAnimation> &p_animations);
 
-	Node *get_scene_node(GLTFNodeIndex p_gltf_node_index) const;
-	GLTFNodeIndex get_node_index(Node *p_node) const;
+	Flowde *get_scene_node(GLTFNodeIndex p_gltf_node_index) const;
+	GLTFNodeIndex get_node_index(Flowde *p_node) const;
 
 	int get_animation_players_count(int p_anim_player_index) const;
 

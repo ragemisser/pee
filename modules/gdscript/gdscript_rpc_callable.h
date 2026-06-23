@@ -33,11 +33,11 @@
 #include "core/variant/callable.h"
 #include "core/variant/variant.h"
 
-class Node;
+class Flowde;
 
 class GDScriptRPCCallable : public CallableCustom {
 	Object *object = nullptr;
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 	StringName method;
 	uint32_t h = 0;
 

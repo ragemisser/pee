@@ -286,7 +286,7 @@ msgstr "Lisa %s"
 msgid "Load..."
 msgstr "Lae..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Liiguta BlendSpace1D Sõlme Punkti"
 
 msgid "Change BlendSpace1D Config"
@@ -301,7 +301,7 @@ msgstr "Seda tüüpi sõlme ei saa kasutada. Lubatud on ainult animatsioonisõlm
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Seda tüüpi sõlme ei saa kasutada. Lubatud on ainult juursõlmed."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Lisa Sõlm Punkt"
 
 msgid "Add Animation Point"
@@ -337,7 +337,7 @@ msgstr "Asend"
 msgid "Value"
 msgstr "Väärtus"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Ava Animatsiooni Sõlm"
 
 msgid "Triangle already exists."
@@ -376,7 +376,7 @@ msgstr "Redigeeri Filtreid"
 msgid "Output node can't be added to the blend tree."
 msgstr "Väljundsõlme ei saa Blend Tree'sse lisada."
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Sõlm Liigutatud"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -392,10 +392,10 @@ msgstr "Sõlmed Lahti Ühendatud"
 msgid "Set Animation"
 msgstr "Määra Animatsioon"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Kustuta Sõlm"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Kustuta Sõlm(ed)"
 
 msgid "Toggle Filter On/Off"
@@ -416,10 +416,10 @@ msgstr "Funktsioonid"
 msgid "Edit Filtered Tracks:"
 msgstr "Muuda Filtreeritud Lugusid:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Sõlm Ümbernimetatud"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Lisa Sõlm..."
 
 msgid "Enable Filtering"
@@ -663,13 +663,13 @@ msgstr "Sulge"
 msgid "Error!"
 msgstr "Error!"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Liiguta Sõlme"
 
 msgid "Transition exists!"
 msgstr "Üleminek on olemas!"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Lisa Sõlm Ja Üleminek"
 
 msgid "Add Transition"
@@ -684,7 +684,7 @@ msgstr "Lõpus"
 msgid "No playback resource set at path: %s."
 msgstr "Teele %s pole taasesitusressurssi määratud."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Sõlm Eemaldatud"
 
 msgid "Transition Removed"
@@ -877,7 +877,7 @@ msgstr "Lõikelaud on tühi!"
 msgid "Paste Tracks"
 msgstr "Kleebi rajad"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Loo Sõlm"
 
 msgid "Select an AnimationPlayer node to create and edit animations."
@@ -1343,7 +1343,7 @@ msgstr "Siluja"
 msgid "Debug"
 msgstr "Silumine"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Kopeeri sõlme tee"
 
 msgid "Instance:"
@@ -2051,7 +2051,7 @@ msgstr "Viga Stseeni Loomisel Asukohast %s"
 msgid "This operation can't be done on the tree root."
 msgstr "Seda toimingut ei saa puu juurega teha."
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplikeeri Sõlm(ed)"
 
 msgid "Delete %d nodes?"
@@ -2069,7 +2069,7 @@ msgstr "Luba Stseeni Unikaalsed Nimed"
 msgid "Disable Scene Unique Name(s)"
 msgstr "Keela Stseeni Unikaalsed Nimed"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Loo Juursõlm:"
 
 msgid "2D Scene"
@@ -2087,13 +2087,13 @@ msgstr "Võõrast Stseenist Sõlmedega ei saa opereerida!"
 msgid "Can't operate on nodes the current scene inherits from!"
 msgstr "Ei saa opereerida Sõlmedega, kust praegune Stseen pärineb!"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Muuda Sõlme Vanemat"
 
 msgid "Attach Script"
 msgstr "Manusta skript"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Eemalda Sõlm(ed)"
 
 msgid "This operation requires a single selected node."
@@ -2144,7 +2144,7 @@ msgstr "Tee Stseeni Juursõlmeks"
 msgid "Delete (No Confirm)"
 msgstr "Kustuta (Jäädavalt)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Lisa/loo uus sõlm."
 
 msgid "Attach a new or existing script to the selected node."
@@ -2479,16 +2479,16 @@ msgstr "Konfigureeri FBX-i importijat..."
 msgid "Copies the system info as a single-line text into the clipboard."
 msgstr "Kopeerib süsteemiteabe üherealise tekstina lõikelauale."
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Lukusta Valitud Sõlm(ed)"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Avage Valitud Sõlm(ed)"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Grupeeri Valitud Sõlm(ed)"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Eemalda Valitud Sõlme(de) Grupeering"
 
 msgid "Pan View"
@@ -5477,7 +5477,7 @@ msgstr "\"%s\" ei sisalda Tahu Geomeetriat."
 msgid "Generate AABB"
 msgstr "Genereeri AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Loo Emissiooni Punktid Sõlmest"
 
 msgid "The geometry's faces don't contain any area."
@@ -5607,7 +5607,7 @@ msgstr "Pööramise Nihe:"
 msgid "Rotation Step:"
 msgstr "Pööramise Samm:"
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Liigutage Sõlme(d) asukohta"
 
 msgid "Move Vertical Guide"
@@ -5631,10 +5631,10 @@ msgstr "Eemalda horisontaalne juht"
 msgid "Create Horizontal and Vertical Guides"
 msgstr "Loo Horisontaalsed Ja Vertikaalsed Juhid"
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Kleebi Sõlm(ed) Siia"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Liiguta Sõlm(ed) Siia"
 
 msgid "Rotate %d CanvasItems"
@@ -5670,7 +5670,7 @@ msgstr "Kleebi Poos"
 msgid "Clear Guides"
 msgstr "Tühjenda Juhid"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Looge Kohandatud Bone2D(d) Sõlme(de)st"
 
 msgid "Zoom to 3.125%"
@@ -5715,7 +5715,7 @@ msgstr "Skeleti Suvandid"
 msgid "Show Bones"
 msgstr "Näita Konte"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Loo Bone2D Sõlm(ed) tavalistest Sõlm/edest/est"
 
 msgid "Show"
@@ -5778,7 +5778,7 @@ msgid ""
 msgstr ""
 "Sihtmeetodit ei leitud. Määrake kehtiv meetod või lisage siht-node'ile skript."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Ühenda node'iga:"
 
 msgid "Connect to Script:"
@@ -6391,7 +6391,7 @@ msgstr "Teine Teema"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Filtreeri Tüüpide loendit või looge uus kohandatud Tüüp:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Saadaolevad Sõlmepõhised Tüübid:"
 
 msgid "Type name is empty!"
@@ -6594,10 +6594,10 @@ msgstr "Laadi Stseen uuesti, et kajastada selle kõige uuemat olekut."
 msgid "Replace:"
 msgstr "Asenda:"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Sõlme nimi."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Sõlme Vanema Nimi, kui see on saadaval."
 
 msgid "Select new parent:"
@@ -6645,22 +6645,22 @@ msgstr "Stseeni nimi on valiidne:"
 msgid "Toggle Visible"
 msgstr "Lülitage Nähtavus"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Avage Sõlm"
 
 msgid "Disable Scene Unique Name"
 msgstr "Keela Stseeni Unikaalne Nimi"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Sõlme konfiguratsiooni hoiatus:"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Sõlmel on üks ühendus."
 msgstr[1] "Sõlmel on {num} ühendust."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Sõlm on selles grupis:"
 msgstr[1] "Sõlm on järgmistes gruppides:"
 
@@ -6677,7 +6677,7 @@ msgid "Open Script:"
 msgstr "Ava skript:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Sõlm on lukus.\n"
@@ -6706,10 +6706,10 @@ msgstr "Vale sõlme nimi, järgmised märgid pole lubatud:"
 msgid "Scene Tree (Nodes):"
 msgstr "Stseenipuu (Sõlmed):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Sõlme Konfiguratsiooni hoiatus!"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Valige Sõlm"
 
 msgid "No Frames Selected"
@@ -6947,7 +6947,7 @@ msgstr "Pärandub"
 msgid "Invalid path."
 msgstr "Kehtetu failitee."
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Kinnita Sõlme Skript"
 
 msgid "Line"
@@ -7779,7 +7779,7 @@ msgstr "Tekstuuride hankimine"
 msgid "Not enough bytes for decoding bytes, or invalid format."
 msgstr "Ebapiisav kogus baite nende dekodeerimiseks või kehtetu formaat."
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Sõlm"
 
 msgid "Config"
@@ -7872,19 +7872,19 @@ msgstr "Määra Parameetri Nimi"
 msgid "Set Input Default Port"
 msgstr "Määra Sisendi Vaikimisi Port"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Lisa Sõlm Visuaal Shaderisse"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Konverteeri Konstantsed Sõlm(ed) Parameetri(te)ks"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Konverteeri Parameetri Sõlm(ed) Konstanti(de)ks"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Kustuta VisualShader Sõlm"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Kustuta VisualShader Sõlm(ed)"
 
 msgid "Float Constants"
@@ -7896,13 +7896,13 @@ msgstr "Teisenda Konstant(id) Parameetri(te)ks"
 msgid "Convert Parameter(s) to Constant(s)"
 msgstr "Teisenda Parameetr(id) Konstant(id)eks"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "Duplikeeri VisualShader Sõlm(ed)"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Kleebi VisualShader Sõlm(ed)"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Lõika VisualShader Sõlm(ed)"
 
 msgid "Visual Shader Input Type Changed"
@@ -7920,7 +7920,7 @@ msgstr "Määratud konstant: %s"
 msgid "Invalid name for varying."
 msgstr "Kehtetu nimi muutuja jaoks."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Lisa Sõlm(ed) Visual Shader'isse"
 
 msgid "Vertex"
@@ -7956,13 +7956,13 @@ msgstr "Näita genereeritud Shader'i koodi."
 msgid "Generated Shader Code"
 msgstr "Genereeri Shader'i Kood"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Lisa Sõlm"
 
 msgid "Clear Copy Buffer"
 msgstr "Puhasta Kopeerimis Puhver"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Loo Shader'i Sõlm"
 
 msgid "Create Shader Varying"

@@ -401,7 +401,7 @@ private:
 
 	// Focus.
 
-	void _window_find_focus_neighbor(const Vector2 &p_dir, Node *p_at, const Rect2 &p_rect, const Rect2 &p_clamp, real_t p_min, real_t &r_closest_dist_squared, Control **r_closest);
+	void _window_find_focus_neighbor(const Vector2 &p_dir, Flowde *p_at, const Rect2 &p_rect, const Rect2 &p_clamp, real_t p_min, real_t &r_closest_dist_squared, Control **r_closest);
 	Control *_get_focus_neighbor(Side p_side, int p_count = 0);
 	bool _is_focus_mode_enabled() const;
 	void _update_focus_behavior_recursive();
@@ -462,10 +462,10 @@ protected:
 	// Focus.
 	bool _is_focusable() const;
 
-	// Node overrides.
+	// Flowde overrides.
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	// Exposed virtual methods.
 
@@ -484,7 +484,7 @@ protected:
 	GDVIRTUAL1RC(int, _get_cursor_shape, Vector2)
 
 	GDVIRTUAL0RC(String, _accessibility_get_contextual_info);
-	GDVIRTUAL1RC(String, _get_accessibility_container_name, RequiredParam<const Node>)
+	GDVIRTUAL1RC(String, _get_accessibility_container_name, RequiredParam<const Flowde>)
 
 	GDVIRTUAL1(_gui_input, RequiredParam<InputEvent>)
 
@@ -534,7 +534,7 @@ public:
 	virtual bool _edit_use_rect() const override;
 #endif // DEBUG_ENABLED
 
-	virtual void reparent(RequiredParam<Node> p_parent, bool p_keep_global_transform = true) override;
+	virtual void reparent(RequiredParam<Flowde> p_parent, bool p_keep_global_transform = true) override;
 
 	// Editor integration.
 
@@ -699,8 +699,8 @@ public:
 	void warp_mouse(const Point2 &p_position);
 
 	bool is_focus_owner_in_shortcut_context() const;
-	void set_shortcut_context(const Node *p_node);
-	Node *get_shortcut_context() const;
+	void set_shortcut_context(const Flowde *p_node);
+	Flowde *get_shortcut_context() const;
 
 	// Drag and drop handling.
 
@@ -740,7 +740,7 @@ public:
 
 	// Accessibility.
 
-	virtual String get_accessibility_container_name(const Node *p_node) const;
+	virtual String get_accessibility_container_name(const Flowde *p_node) const;
 
 	void set_accessibility_name(const String &p_name);
 	String get_accessibility_name() const;
@@ -781,8 +781,8 @@ public:
 
 	// Theming.
 
-	void set_theme_owner_node(Node *p_node);
-	Node *get_theme_owner_node() const;
+	void set_theme_owner_node(Flowde *p_node);
+	Flowde *get_theme_owner_node() const;
 	bool has_theme_owner_node() const;
 
 	void set_theme_context(ThemeContext *p_context, bool p_propagate = true);

@@ -43,7 +43,7 @@ void PostImportPluginSkeletonTrackOrganizer::get_internal_import_options(Interna
 	}
 }
 
-void PostImportPluginSkeletonTrackOrganizer::internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
+void PostImportPluginSkeletonTrackOrganizer::internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
 	if (p_category == INTERNAL_IMPORT_CATEGORY_SKELETON_3D_NODE) {
 		// Prepare objects.
 		Object *map = p_options["retarget/bone_map"].get_validated_object();
@@ -67,7 +67,7 @@ void PostImportPluginSkeletonTrackOrganizer::internal_process(InternalImportCate
 			return;
 		}
 
-		TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+		TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 		while (nodes.size()) {
 			AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 
@@ -82,7 +82,7 @@ void PostImportPluginSkeletonTrackOrganizer::internal_process(InternalImportCate
 				Vector<int> unmapped_bone_indices;
 				for (int i = 0; i < track_len; i++) {
 					String track_path = String(anim->track_get_path(i).get_concatenated_names());
-					Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+					Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 					if (!node) {
 						if (remove_except_bone) {
 							remove_indices.push_back(i);

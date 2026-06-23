@@ -425,10 +425,10 @@ msgstr "Internacionalización"
 msgid "Force Right to Left Layout Direction"
 msgstr "Forzar Dirección de Layout de Derecha a Izquierda"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Dirección de Diseño del Nodo Raíz"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Autotraducir Nodo Raíz"
 
 msgid "GUI"
@@ -1250,7 +1250,7 @@ msgstr "Renombrador de Huesos"
 msgid "Rename Bones"
 msgstr "Renombrar Huesos"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Nodo Único"
 
 msgid "Make Unique"
@@ -1262,7 +1262,7 @@ msgstr "Nombre de Esqueleto"
 msgid "Rest Fixer"
 msgstr "Reparador de Descanso"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Aplicar Transformaciones al Nodo"
 
 msgid "Normalize Position Tracks"
@@ -1331,10 +1331,10 @@ msgstr "Malla de Desplazamiento"
 msgid "Force Disable Mesh Compression"
 msgstr "Forzar Desactivación de Compresión de Mesh"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nodos"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Tipo de Nodo"
 
 msgid "Script"
@@ -1544,7 +1544,7 @@ msgstr "Importar como Huesos de Esqueleto"
 msgid "Use Name Suffixes"
 msgstr "Usar Sufijos de Nombre"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Usar Sufijos de Tipo de Nodo"
 
 msgid "Meshes"
@@ -2472,7 +2472,7 @@ msgstr "Comenzar Diálogo de Creación Expandido"
 msgid "Auto Expand to Selected"
 msgstr "Auto Expandir a Seleccionado"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Centrar Nodo al Reemparentar"
 
 msgid "Hide Filtered Out Parents"
@@ -2616,7 +2616,7 @@ msgstr "Velocidad de Scroll V"
 msgid "Drag and Drop Selection"
 msgstr "Arrastrar y Soltar la Selección"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Permanecer en el Editor de Script al Seleccionar un Nodo"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2742,7 +2742,7 @@ msgstr "Añadir Sugerencias de Tipo"
 msgid "Add String Name Literals"
 msgstr "Agregar Literales de Nombre de String"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Agregar Literal NodePath"
 
 msgid "Use Single Quotes"
@@ -3264,7 +3264,7 @@ msgstr "Cambio Automático al Árbol de Escenas Remoto"
 msgid "Auto Switch to Stack Trace"
 msgstr "Cambio Automático a la Traza de Pila"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "Selección Máxima de Nodos"
 
 msgid "Profiler Frame History Size"
@@ -3873,7 +3873,7 @@ msgstr "Grados de Giro"
 msgid "Spin Sides"
 msgstr "Lados de Giro"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Ruta del Nodo"
 
 msgid "Path Interval Type"
@@ -4062,7 +4062,7 @@ msgstr "Inferencia en Variante"
 msgid "Native Method Override"
 msgstr "Anulación de Método Nativo"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "Obtener Nodo Por Defecto Sin Onready"
 
 msgid "Onready With Export"
@@ -4149,7 +4149,7 @@ msgstr "Formato de Imagen de Reserva"
 msgid "Fallback Image Quality"
 msgstr "Calidad de Imagen de Reserva"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Modo de Nodo Raíz"
 
 msgid "Visibility Mode"
@@ -4329,7 +4329,7 @@ msgstr "Expresión glTF a Godot"
 msgid "Godot to glTF Expression"
 msgstr "Expresión Godot a glTF"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Rutas de Nodos"
 
 msgid "Object Model Type"
@@ -4347,7 +4347,7 @@ msgstr "Articulaciones"
 msgid "Roots"
 msgstr "Raíces"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Nodo de Huesos de Godot"
 
 msgid "Skin Root"
@@ -4500,7 +4500,7 @@ msgstr "Fracción del Margen de Colisión"
 msgid "Active Edge Threshold"
 msgstr "Umbral de Borde Activa"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Nodo del Mundo"
 
 msgid "Temporary Memory Buffer Size"
@@ -6501,10 +6501,10 @@ msgstr "Rigidez"
 msgid "Initial Offset"
 msgstr "Desplazamiento Inicial"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "Nodo A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "Nodo B"
 
 msgid "Bias"
@@ -6742,7 +6742,7 @@ msgstr "Mostrar Rect"
 msgid "Enabling"
 msgstr "Habilitando"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Ruta del Nodo"
 
 msgid "Doppler Tracking"
@@ -7181,7 +7181,7 @@ msgstr "Excluir"
 msgid "Chains"
 msgstr "Cadenas"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "Nodo Objetivo"
 
 msgid "Forward Axis"
@@ -7199,7 +7199,7 @@ msgstr "Configuración de Origen"
 msgid "From"
 msgstr "Desde"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Nodo Externo"
 
 msgid "Time Based Interpolation"
@@ -7862,7 +7862,7 @@ msgstr "Solicitud de Transición"
 msgid "Reset on Save"
 msgstr "Restablecer Al Guardar"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Nodo Raíz"
 
 msgid "Root Motion"
@@ -7928,7 +7928,7 @@ msgstr "Cerrar la Película al Finalizar"
 msgid "Tree Root"
 msgstr "Raíz del Árbol"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "Nodo Base de Expresión Avanzada"
 
 msgid "Anim Player"
@@ -9051,10 +9051,10 @@ msgstr "Modo de Transferencia"
 msgid "Transfer Channel"
 msgstr "Canal de Transferencia"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "Separador de Nombre y Número de Nodo"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "Convención de Nombres de Nodos"
 
 msgid "Physics Priority"
@@ -9465,7 +9465,7 @@ msgstr "Usar Gravedad"
 msgid "Bone Index"
 msgstr "Índice de Hueso"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "Nodo de Hueso 2D"
 
 msgid "Physical Bone Chain Length"

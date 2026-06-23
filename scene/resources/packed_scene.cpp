@@ -59,7 +59,7 @@ bool SceneState::can_instantiate() const {
 	return nodes.size() > 0;
 }
 
-static Array _sanitize_node_pinned_properties(Node *p_node) {
+static Array _sanitize_node_pinned_properties(Flowde *p_node) {
 	Array pinned = p_node->get_meta("_edit_pinned_properties_", Array());
 	if (pinned.is_empty()) {
 		return Array();
@@ -80,7 +80,7 @@ static Array _sanitize_node_pinned_properties(Node *p_node) {
 	return pinned;
 }
 
-Ref<Resource> SceneState::get_remap_resource(const Ref<Resource> &p_resource, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &remap_cache, const Ref<Resource> &p_fallback, Node *p_for_scene) {
+Ref<Resource> SceneState::get_remap_resource(const Ref<Resource> &p_resource, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &remap_cache, const Ref<Resource> &p_fallback, Flowde *p_for_scene) {
 	ERR_FAIL_COND_V(p_resource.is_null(), Ref<Resource>());
 
 	// Find the shared copy of the source resource.
@@ -135,7 +135,7 @@ Ref<Resource> SceneState::get_remap_resource(const Ref<Resource> &p_resource, Ha
 	return local_dupe;
 }
 
-static Node *_find_node_by_id(Node *p_owner, Node *p_node, int32_t p_id) {
+static Flowde *_find_node_by_id(Flowde *p_owner, Flowde *p_node, int32_t p_id) {
 	if (p_owner == p_node || p_node->get_owner() == p_owner) {
 		if (p_node->get_unique_scene_id() == p_id) {
 			return p_node;
@@ -143,7 +143,7 @@ static Node *_find_node_by_id(Node *p_owner, Node *p_node, int32_t p_id) {
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *found = _find_node_by_id(p_owner, p_node->get_child(i), p_id);
+		Flowde *found = _find_node_by_id(p_owner, p_node->get_child(i), p_id);
 		if (found) {
 			return found;
 		}
@@ -152,12 +152,12 @@ static Node *_find_node_by_id(Node *p_owner, Node *p_node, int32_t p_id) {
 	return nullptr;
 }
 
-Node *SceneState::instantiate(GenEditState p_edit_state) const {
+Flowde *SceneState::instantiate(GenEditState p_edit_state) const {
 	// Nodes where instantiation failed (because something is missing.)
-	List<Node *> stray_instances;
+	List<Flowde *> stray_instances;
 
 #define NODE_FROM_ID(p_name, p_id) \
-	Node *p_name; \
+	Flowde *p_name; \
 	if (p_id & FLAG_ID_IS_PATH) { \
 		NodePath np = node_paths[p_id & FLAG_MASK]; \
 		p_name = ret_nodes[0]->get_node_or_null(np); \
@@ -188,12 +188,12 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 
 	const NodeData *nd = &nodes[0];
 
-	Node **ret_nodes = (Node **)alloca(sizeof(Node *) * nc);
+	Flowde **ret_nodes = (Flowde **)alloca(sizeof(Flowde *) * nc);
 	ret_nodes[0] = nullptr; // Sidesteps "maybe uninitialized" false-positives on GCC.
 
 	bool gen_node_path_cache = p_edit_state != GEN_EDIT_STATE_DISABLED && node_path_cache.is_empty();
 
-	HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> resources_local_to_scenes; // Record the mappings in sub-scenes.
+	HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> resources_local_to_scenes; // Record the mappings in sub-scenes.
 
 	LocalVector<DeferredNodePathProperties> deferred_node_paths;
 
@@ -202,7 +202,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 	for (int i = 0; i < nc; i++) {
 		const NodeData &n = nd[i];
 
-		Node *parent = nullptr;
+		Flowde *parent = nullptr;
 		String old_parent_path;
 
 		if (i > 0) {
@@ -222,7 +222,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 			ERR_FAIL_COND_V_MSG(n.type == TYPE_INSTANTIATED && base_scene_idx < 0, nullptr, vformat("Invalid scene: root node %s in an instance, but there's no base scene.", snames[n.name]));
 		}
 
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 		MissingNode *missing_node = nullptr;
 		bool is_inherited_scene = false;
 
@@ -287,12 +287,12 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 					if (!node) {
 						// Can't get by name, try to fetch by ID. This is slow, but should be fixed after re-save.
 						int32_t id = ids[i];
-						if (id != Node::UNIQUE_SCENE_ID_UNASSIGNED) {
+						if (id != Flowde::UNIQUE_SCENE_ID_UNASSIGNED) {
 							if (!deep_search_warned) {
 								WARN_PRINT(vformat("%sA node in the scene this one inherits from has been removed or moved, so a recovery process needs to take place. Please re-save this scene to avoid the cost of this process next time.", !get_path().is_empty() ? get_path() + ": " : ""));
 								deep_search_warned = true;
 							}
-							Node *base = parent;
+							Flowde *base = parent;
 							while (base != ret_nodes[0] && !base->is_instance()) {
 								base = base->get_parent();
 							}
@@ -309,15 +309,15 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 				}
 #ifdef DEBUG_ENABLED
 				if (!node) {
-					WARN_PRINT(String("Node '" + String(ret_nodes[0]->get_path_to(parent)) + "/" + String(snames[n.name]) + "' was modified from inside an instance, but it has vanished.").ascii().get_data());
+					WARN_PRINT(String("Flowde '" + String(ret_nodes[0]->get_path_to(parent)) + "/" + String(snames[n.name]) + "' was modified from inside an instance, but it has vanished.").ascii().get_data());
 				}
 #endif
 			}
 		} else {
-			// Node belongs to this scene and must be created.
+			// Flowde belongs to this scene and must be created.
 			Object *obj = ClassDB::instantiate(snames[n.type]);
 
-			node = Object::cast_to<Node>(obj);
+			node = Object::cast_to<Flowde>(obj);
 
 			if (!node) {
 				if (obj) {
@@ -332,7 +332,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 					node = missing_node;
 					obj = missing_node;
 				} else {
-					WARN_PRINT(vformat("Node %s of type %s cannot be created. A placeholder will be created instead.", snames[n.name], snames[n.type]).ascii().get_data());
+					WARN_PRINT(vformat("Flowde %s of type %s cannot be created. A placeholder will be created instead.", snames[n.name], snames[n.type]).ascii().get_data());
 					if (n.parent >= 0 && n.parent < nc && ret_nodes[n.parent]) {
 						if (Object::cast_to<Control>(ret_nodes[n.parent])) {
 							obj = memnew(Control);
@@ -346,10 +346,10 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 					}
 
 					if (!obj) {
-						obj = memnew(Node);
+						obj = memnew(Flowde);
 					}
 
-					node = Object::cast_to<Node>(obj);
+					node = Object::cast_to<Flowde>(obj);
 				}
 			}
 		}
@@ -414,9 +414,9 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 						if (value_as_script.is_valid() && value_as_script->is_abstract()) {
 							const String global_class_name = value_as_script->get_global_name();
 							if (global_class_name.is_empty()) {
-								ERR_PRINT("Node \"" + snames[n.name] + "\" previously had a script, but that script is now abstract. Please assign a different script (right-click -> Attach Script...) or change the node to a different type (right-click -> Change Type...) to fix this, then re-save the scene.");
+								ERR_PRINT("Flowde \"" + snames[n.name] + "\" previously had a script, but that script is now abstract. Please assign a different script (right-click -> Attach Script...) or change the node to a different type (right-click -> Change Type...) to fix this, then re-save the scene.");
 							} else {
-								ERR_PRINT("Node \"" + snames[n.name] + "\" previously had a class of type \"" + global_class_name + "\", but that class is now abstract. Please assign a different script (right-click -> Attach Script...) or change the node to a different type (right-click -> Change Type...) to fix this, then re-save the scene.");
+								ERR_PRINT("Flowde \"" + snames[n.name] + "\" previously had a class of type \"" + global_class_name + "\", but that class is now abstract. Please assign a different script (right-click -> Attach Script...) or change the node to a different type (right-click -> Change Type...) to fix this, then re-save the scene.");
 							}
 							callable_mp((Object *)node, &Object::remove_meta).call_deferred(SceneStringName(_custom_type_script));
 						} else {
@@ -518,7 +518,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 						bool pending_add = true;
 #ifdef TOOLS_ENABLED
 						if (Engine::get_singleton()->is_editor_hint()) {
-							Node *existing = parent->_get_child_by_name(snames[n.name]);
+							Flowde *existing = parent->_get_child_by_name(snames[n.name]);
 							if (existing) {
 								// There's already a node in the same parent with the same name.
 								// This means that somehow the node was added both to the scene being
@@ -596,7 +596,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 
 	for (const DeferredNodePathProperties &dnp : deferred_node_paths) {
 		// Replace properties stored as NodePaths with actual Nodes.
-		Node *base = ObjectDB::get_instance<Node>(dnp.base);
+		Flowde *base = ObjectDB::get_instance<Flowde>(dnp.base);
 		ERR_CONTINUE_EDMSG(!base, vformat("Failed to set deferred property '%s' as the base node disappeared.", dnp.property));
 		if (dnp.value.get_type() == Variant::ARRAY) {
 			Array paths = dnp.value;
@@ -619,9 +619,9 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 			ERR_CONTINUE_EDMSG(!valid, vformat("Failed to get property '%s' from node '%s'.", dnp.property, base->get_name()));
 			dict = dict.duplicate();
 			bool convert_key = dict.get_typed_key_builtin() == Variant::OBJECT &&
-					ClassDB::is_parent_class(dict.get_typed_key_class_name(), "Node");
+					ClassDB::is_parent_class(dict.get_typed_key_class_name(), "Flowde");
 			bool convert_value = dict.get_typed_value_builtin() == Variant::OBJECT &&
-					ClassDB::is_parent_class(dict.get_typed_value_class_name(), "Node");
+					ClassDB::is_parent_class(dict.get_typed_value_class_name(), "Flowde");
 
 			for (const KeyValue<Variant, Variant> &kv : paths) {
 				Variant key = kv.key;
@@ -640,7 +640,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 		}
 	}
 
-	for (KeyValue<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &E : resources_local_to_scenes) {
+	for (KeyValue<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &E : resources_local_to_scenes) {
 		for (KeyValue<Ref<Resource>, Ref<Resource>> &R : E.value) {
 			R.value->setup_local_to_scene(); // Setup may be required for the resource to work properly.
 		}
@@ -682,7 +682,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 		cfrom->connect(snames[c.signal], callable, CONNECT_PERSIST | c.flags | (p_edit_state == GEN_EDIT_STATE_MAIN ? 0 : CONNECT_INHERITED));
 	}
 
-	//Node *s = ret_nodes[0];
+	//Flowde *s = ret_nodes[0];
 
 	//remove nodes that could not be added, likely as a result that
 	while (stray_instances.size()) {
@@ -691,7 +691,7 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 	}
 
 	for (int i = 0; i < editable_instances.size(); i++) {
-		Node *ei = ret_nodes[0]->get_node_or_null(editable_instances[i]);
+		Flowde *ei = ret_nodes[0]->get_node_or_null(editable_instances[i]);
 		if (ei) {
 			ret_nodes[0]->set_editable_instance(ei, true);
 		}
@@ -700,13 +700,13 @@ Node *SceneState::instantiate(GenEditState p_edit_state) const {
 	return ret_nodes[0];
 }
 
-Variant SceneState::make_local_resource(Variant &p_value, const SceneState::NodeData &p_node_data, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *p_node, const StringName p_sname, int p_i, Node **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
+Variant SceneState::make_local_resource(Variant &p_value, const SceneState::NodeData &p_node_data, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *p_node, const StringName p_sname, int p_i, Flowde **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
 	Ref<Resource> res = p_value;
 	if (res.is_null() || !res->is_local_to_scene()) {
 		return p_value;
 	}
 
-	Node *base = (p_i == 0 || p_node->is_instance()) ? p_node : (p_node->get_owner() ? p_node->get_owner() : p_ret_nodes[0]);
+	Flowde *base = (p_i == 0 || p_node->is_instance()) ? p_node : (p_node->get_owner() ? p_node->get_owner() : p_ret_nodes[0]);
 
 	if (p_node_data.type == TYPE_INSTANTIATED) { // For the (root) nodes of sub-scenes, treat them as parts of the sub-scenes.
 		return get_remap_resource(res, p_resources_local_to_scenes, p_node->get(p_sname), base);
@@ -730,7 +730,7 @@ Variant SceneState::make_local_resource(Variant &p_value, const SceneState::Node
 	return local_dupe;
 }
 
-Array SceneState::setup_resources_in_array(Array &p_array_to_scan, const SceneState::NodeData &p_n, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *p_node, const StringName p_sname, int p_i, Node **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
+Array SceneState::setup_resources_in_array(Array &p_array_to_scan, const SceneState::NodeData &p_n, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *p_node, const StringName p_sname, int p_i, Flowde **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
 	for (int i = 0; i < p_array_to_scan.size(); i++) {
 		if (p_array_to_scan[i].get_type() == Variant::OBJECT) {
 			p_array_to_scan[i] = make_local_resource(p_array_to_scan[i], p_n, p_resources_local_to_scenes, p_node, p_sname, p_i, p_ret_nodes, p_edit_state);
@@ -739,7 +739,7 @@ Array SceneState::setup_resources_in_array(Array &p_array_to_scan, const SceneSt
 	return p_array_to_scan;
 }
 
-Dictionary SceneState::setup_resources_in_dictionary(Dictionary &p_dictionary_to_scan, const SceneState::NodeData &p_n, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *p_node, const StringName p_sname, int p_i, Node **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
+Dictionary SceneState::setup_resources_in_dictionary(Dictionary &p_dictionary_to_scan, const SceneState::NodeData &p_n, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *p_node, const StringName p_sname, int p_i, Flowde **p_ret_nodes, SceneState::GenEditState p_edit_state) const {
 	const Array keys = p_dictionary_to_scan.keys();
 	const Array values = p_dictionary_to_scan.values();
 
@@ -789,7 +789,7 @@ static int _vm_get_variant(const Variant &p_variant, HashMap<Variant, int> &vari
 	return idx;
 }
 
-Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Node *, int> &node_map, HashMap<Node *, int> &nodepath_map, HashSet<int32_t> &ids_saved) {
+Error SceneState::_parse_node(Flowde *p_owner, Flowde *p_node, int p_parent_idx, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Flowde *, int> &node_map, HashMap<Flowde *, int> &nodepath_map, HashSet<int32_t> &ids_saved) {
 	// this function handles all the work related to properly packing scenes, be it
 	// instantiated or inherited.
 	// given the complexity of this process, an attempt will be made to properly
@@ -806,10 +806,10 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 	// upon load back
 	if (p_node != p_owner && p_node->is_instance() && p_owner->is_editable_instance(p_node)) {
 		editable_instances.push_back(p_owner->get_path_to(p_node));
-		// Node is the root of an editable instance.
+		// Flowde is the root of an editable instance.
 		is_editable_instance = true;
 	} else if (p_node->get_owner() && p_owner->is_ancestor_of(p_node->get_owner()) && p_owner->is_editable_instance(p_node->get_owner())) {
-		// Node is part of an editable instance.
+		// Flowde is part of an editable instance.
 		is_editable_instance = true;
 	}
 
@@ -885,7 +885,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 
 		if (E.type == Variant::OBJECT && E.hint == PROPERTY_HINT_NODE_TYPE) {
 			if (value.get_type() == Variant::OBJECT) {
-				if (Node *n = Object::cast_to<Node>(value)) {
+				if (Flowde *n = Object::cast_to<Flowde>(value)) {
 					value = p_node->get_path_to(n);
 				}
 				use_deferred_node_path_bit = true;
@@ -918,7 +918,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 					for (int i = 0; i < array.size(); i++) {
 						Variant elem = array[i];
 						if (elem.get_type() == Variant::OBJECT) {
-							if (Node *n = Object::cast_to<Node>(elem)) {
+							if (Flowde *n = Object::cast_to<Flowde>(elem)) {
 								new_array.push_back(p_node->get_path_to(n));
 								continue;
 							}
@@ -960,13 +960,13 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 					for (const KeyValue<Variant, Variant> &kv : dict) {
 						Variant new_key = kv.key;
 						if (convert_key && new_key.get_type() == Variant::OBJECT) {
-							if (Node *n = Object::cast_to<Node>(new_key)) {
+							if (Flowde *n = Object::cast_to<Flowde>(new_key)) {
 								new_key = p_node->get_path_to(n);
 							}
 						}
 						Variant new_value = kv.value;
 						if (convert_value && new_value.get_type() == Variant::OBJECT) {
-							if (Node *n = Object::cast_to<Node>(new_value)) {
+							if (Flowde *n = Object::cast_to<Flowde>(new_value)) {
 								new_value = p_node->get_path_to(n);
 							}
 						}
@@ -1007,9 +1007,9 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 	// save the groups this node is into
 	// discard groups that come from the original scene
 
-	List<Node::GroupInfo> groups;
+	List<Flowde::GroupInfo> groups;
 	p_node->get_groups(&groups);
-	for (const Node::GroupInfo &gi : groups) {
+	for (const Flowde::GroupInfo &gi : groups) {
 		if (!gi.persistent) {
 			continue;
 		}
@@ -1097,7 +1097,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 		}
 
 		int32_t unique_scene_id = p_node->get_unique_scene_id();
-		if (save_node && (unique_scene_id == Node::UNIQUE_SCENE_ID_UNASSIGNED || ids_saved.has(unique_scene_id))) {
+		if (save_node && (unique_scene_id == Flowde::UNIQUE_SCENE_ID_UNASSIGNED || ids_saved.has(unique_scene_id))) {
 			// Unassigned or clash somehow.
 			// Clashes will always happen with instantiated scenes, so it is normal
 			// to expect them to be resolved.
@@ -1106,7 +1106,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 				uint32_t data = ResourceUID::get_singleton()->create_id();
 				unique_scene_id = data & 0x7FFFFFFF; // keep positive.
 
-				if (unique_scene_id == Node::UNIQUE_SCENE_ID_UNASSIGNED) {
+				if (unique_scene_id == Flowde::UNIQUE_SCENE_ID_UNASSIGNED) {
 					unique_scene_id = 1;
 				}
 				if (ids_saved.has(unique_scene_id)) {
@@ -1127,7 +1127,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *c = p_node->get_child(i);
+		Flowde *c = p_node->get_child(i);
 		Error err = _parse_node(p_owner, c, parent_node, name_map, variant_map, node_map, nodepath_map, ids_saved);
 		if (err) {
 			return err;
@@ -1137,7 +1137,7 @@ Error SceneState::_parse_node(Node *p_owner, Node *p_node, int p_parent_idx, Has
 	return OK;
 }
 
-Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Node *, int> &node_map, HashMap<Node *, int> &nodepath_map) {
+Error SceneState::_parse_connections(Flowde *p_owner, Flowde *p_node, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Flowde *, int> &node_map, HashMap<Flowde *, int> &nodepath_map) {
 	// Ignore nodes that are within a scene instance.
 	if (p_node != p_owner && p_node->get_owner() && p_node->get_owner() != p_owner && !p_owner->is_editable_instance(p_node->get_owner())) {
 		return OK;
@@ -1151,13 +1151,13 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 	//NodeData &nd = nodes[node_map[p_node]];
 
 	for (const MethodInfo &E : _signals) {
-		List<Node::Connection> conns;
+		List<Flowde::Connection> conns;
 		p_node->get_signal_connection_list(E.name, &conns);
 
 		conns.sort();
 
-		for (const Node::Connection &F : conns) {
-			const Node::Connection &c = F;
+		for (const Flowde::Connection &F : conns) {
+			const Flowde::Connection &c = F;
 
 			// Don't save connections that are not persistent.
 			if (!(c.flags & CONNECT_PERSIST)) {
@@ -1167,7 +1167,7 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 			// only connections that originate or end into main saved scene are saved
 			// everything else is discarded
 
-			Node *target = Object::cast_to<Node>(c.callable.get_object());
+			Flowde *target = Object::cast_to<Flowde>(c.callable.get_object());
 
 			if (!target) {
 				continue;
@@ -1197,7 +1197,7 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 			}
 
 			//find if this connection already exists
-			Node *common_parent = target->find_common_parent_with(p_node);
+			Flowde *common_parent = target->find_common_parent_with(p_node);
 
 			ERR_CONTINUE(!common_parent);
 
@@ -1239,7 +1239,7 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 			}
 
 			{
-				Node *nl = p_node;
+				Flowde *nl = p_node;
 
 				bool exists2 = false;
 
@@ -1330,7 +1330,7 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 
 	// Recursively parse child connections.
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		Error err = _parse_connections(p_owner, child, name_map, variant_map, node_map, nodepath_map);
 		if (err) {
 			return err;
@@ -1340,17 +1340,17 @@ Error SceneState::_parse_connections(Node *p_owner, Node *p_node, HashMap<String
 	return OK;
 }
 
-Error SceneState::pack(Node *p_scene) {
+Error SceneState::pack(Flowde *p_scene) {
 	ERR_FAIL_NULL_V(p_scene, ERR_INVALID_PARAMETER);
 
 	clear();
 
-	Node *scene = p_scene;
+	Flowde *scene = p_scene;
 
 	HashMap<StringName, int> name_map;
 	HashMap<Variant, int> variant_map;
-	HashMap<Node *, int> node_map;
-	HashMap<Node *, int> nodepath_map;
+	HashMap<Flowde *, int> node_map;
+	HashMap<Flowde *, int> nodepath_map;
 	HashSet<int32_t> ids_saved;
 
 	// If using scene inheritance, pack the scene it inherits from.
@@ -1390,14 +1390,14 @@ Error SceneState::pack(Node *p_scene) {
 
 	node_paths.resize(nodepath_map.size());
 	id_paths.resize(nodepath_map.size());
-	for (const KeyValue<Node *, int> &E : nodepath_map) {
+	for (const KeyValue<Flowde *, int> &E : nodepath_map) {
 		node_paths.write[E.value] = scene->get_path_to(E.key);
 
 		// Build a path of IDs to reach the node.
 		PackedInt32Array id_path;
 		bool id_path_valid = false;
-		Node *base = E.key;
-		while (base && base->get_unique_scene_id() != Node::UNIQUE_SCENE_ID_UNASSIGNED) {
+		Flowde *base = E.key;
+		while (base && base->get_unique_scene_id() != Flowde::UNIQUE_SCENE_ID_UNASSIGNED) {
 			id_path.push_back(base->get_unique_scene_id());
 			base = base->get_owner();
 			if (base == p_scene) {
@@ -1418,7 +1418,7 @@ Error SceneState::pack(Node *p_scene) {
 
 	if (Engine::get_singleton()->is_editor_hint()) {
 		// Build node path cache
-		for (const KeyValue<Node *, int> &E : node_map) {
+		for (const KeyValue<Flowde *, int> &E : node_map) {
 			node_path_cache[scene->get_path_to(E.key)] = E.value;
 		}
 	}
@@ -1946,7 +1946,7 @@ Vector<StringName> SceneState::get_node_groups(int p_idx) const {
 	return groups;
 }
 
-Node *SceneState::_recover_node_path_index(Node *p_base, int p_idx) const {
+Flowde *SceneState::_recover_node_path_index(Flowde *p_base, int p_idx) const {
 	// ID paths are only used for recovery, since they are slower to traverse.
 	// This function attempts to recover a node by using IDs in case the path
 	// has disappeared.
@@ -2009,7 +2009,7 @@ Node *SceneState::_recover_node_path_index(Node *p_base, int p_idx) const {
 
 int32_t SceneState::get_node_unique_id(int p_idx) const {
 	if (p_idx >= ids.size()) {
-		return Node::UNIQUE_SCENE_ID_UNASSIGNED;
+		return Flowde::UNIQUE_SCENE_ID_UNASSIGNED;
 	}
 	return ids[p_idx];
 }
@@ -2470,7 +2470,7 @@ Dictionary PackedScene::_get_bundled_scene() const {
 	return state->get_bundled_scene();
 }
 
-Error PackedScene::pack(Node *p_scene) {
+Error PackedScene::pack(Flowde *p_scene) {
 	return state->pack(p_scene);
 }
 
@@ -2504,12 +2504,12 @@ bool PackedScene::can_instantiate() const {
 	return state->can_instantiate();
 }
 
-Node *PackedScene::instantiate(GenEditState p_edit_state) const {
+Flowde *PackedScene::instantiate(GenEditState p_edit_state) const {
 #ifndef TOOLS_ENABLED
 	ERR_FAIL_COND_V_MSG(p_edit_state != GEN_EDIT_STATE_DISABLED, nullptr, "Edit state is only for editors, does not work without tools compiled.");
 #endif
 
-	Node *s = state->instantiate((SceneState::GenEditState)p_edit_state);
+	Flowde *s = state->instantiate((SceneState::GenEditState)p_edit_state);
 	if (!s) {
 		return nullptr;
 	}
@@ -2522,7 +2522,7 @@ Node *PackedScene::instantiate(GenEditState p_edit_state) const {
 		s->set_scene_file_path(get_path());
 	}
 
-	s->notification(Node::NOTIFICATION_SCENE_INSTANTIATED);
+	s->notification(Flowde::NOTIFICATION_SCENE_INSTANTIATED);
 
 	return s;
 }

@@ -172,7 +172,7 @@ ScriptEditor *ScriptEditor::script_editor = nullptr;
 
 /*** SCRIPT EDITOR ******/
 
-String ScriptEditor::_get_debug_tooltip(const String &p_text, Node *p_se) {
+String ScriptEditor::_get_debug_tooltip(const String &p_text, Flowde *p_se) {
 	if (EDITOR_GET("text_editor/behavior/documentation/enable_tooltips")) {
 		return String();
 	}
@@ -309,7 +309,7 @@ void ScriptEditor::_update_history_arrows() {
 
 void ScriptEditor::_save_history() {
 	if (history_pos >= 0 && history_pos < history.size() && history[history_pos].control == tab_container->get_current_tab_control()) {
-		Node *n = tab_container->get_current_tab_control();
+		Flowde *n = tab_container->get_current_tab_control();
 
 		if (Object::cast_to<TextEditorBase>(n)) {
 			Dictionary nav_state = Object::cast_to<TextEditorBase>(n)->get_navigation_state();
@@ -339,7 +339,7 @@ void ScriptEditor::_save_previous_state(Dictionary p_state) {
 	}
 
 	if (history_pos >= 0 && history_pos < history.size() && history[history_pos].control == tab_container->get_current_tab_control()) {
-		Node *n = tab_container->get_current_tab_control();
+		Flowde *n = tab_container->get_current_tab_control();
 
 		if (Object::cast_to<ScriptTextEditor>(n)) {
 			history.write[history_pos].state = p_state;
@@ -370,7 +370,7 @@ void ScriptEditor::_go_to_tab(int p_idx) {
 	}
 
 	if (history_pos >= 0 && history_pos < history.size() && history[history_pos].control == tab_container->get_current_tab_control()) {
-		Node *n = tab_container->get_current_tab_control();
+		Flowde *n = tab_container->get_current_tab_control();
 
 		if (Object::cast_to<TextEditorBase>(n)) {
 			Dictionary nav_state = Object::cast_to<TextEditorBase>(n)->get_navigation_state();
@@ -527,7 +527,7 @@ void ScriptEditor::_close_tab(int p_idx, bool p_save, bool p_history_back) {
 		return;
 	}
 
-	Node *tselected = tab_container->get_tab_control(selected);
+	Flowde *tselected = tab_container->get_tab_control(selected);
 
 	if (ScriptEditorBase *current = Object::cast_to<ScriptEditorBase>(tselected)) {
 		Ref<Resource> file = current->get_edited_resource();
@@ -1018,7 +1018,7 @@ void ScriptEditor::_menu_option(int p_option) {
 	ScriptEditorBase *current = _get_current_editor();
 	switch (p_option) {
 		case FILE_MENU_NEW_SCRIPT: {
-			script_create_dialog->config("Node", "new_script", false, false);
+			script_create_dialog->config("Flowde", "new_script", false, false);
 			script_create_dialog->popup_centered();
 		} break;
 		case FILE_MENU_NEW_TEXTFILE: {
@@ -1654,7 +1654,7 @@ void ScriptEditor::_members_overview_selected(int p_idx) {
 }
 
 void ScriptEditor::_help_overview_selected(int p_idx) {
-	Node *current = tab_container->get_tab_control(tab_container->get_current_tab());
+	Flowde *current = tab_container->get_tab_control(tab_container->get_current_tab());
 	if (EditorHelp *eh = Object::cast_to<EditorHelp>(current)) {
 		eh->scroll_to_section(help_overview->get_item_metadata(p_idx));
 	}
@@ -1687,7 +1687,7 @@ bool ScriptEditor::is_editor_floating() {
 	return is_floating;
 }
 
-void ScriptEditor::_find_scripts(Node *p_base, Node *p_current, HashSet<Ref<Script>> &used) {
+void ScriptEditor::_find_scripts(Flowde *p_base, Flowde *p_current, HashSet<Ref<Script>> &used) {
 	if (p_current != p_base && p_current->get_owner() != p_base) {
 		return;
 	}
@@ -1713,7 +1713,7 @@ struct _ScriptEditorItemData {
 	String tooltip;
 	bool used = false;
 	int category = 0;
-	Node *ref = nullptr;
+	Flowde *ref = nullptr;
 
 	bool operator<(const _ScriptEditorItemData &id) const {
 		if (category == id.category) {
@@ -1734,7 +1734,7 @@ void ScriptEditor::_update_members_overview_visibility() {
 		members_overview_alphabeta_sort_button->set_visible(false);
 		members_overview->set_visible(false);
 
-		Node *current = tab_container->get_tab_control(tab_container->get_current_tab());
+		Flowde *current = tab_container->get_tab_control(tab_container->get_current_tab());
 		EditorHelp *editor_help = Object::cast_to<EditorHelp>(current);
 		overview_vbox->set_visible(help_overview_enabled && editor_help);
 		return;
@@ -1805,7 +1805,7 @@ void ScriptEditor::_update_help_overview_visibility() {
 		return;
 	}
 
-	Node *current = tab_container->get_tab_control(tab_container->get_current_tab());
+	Flowde *current = tab_container->get_tab_control(tab_container->get_current_tab());
 	if (!Object::cast_to<EditorHelp>(current)) {
 		help_overview->set_visible(false);
 		return;
@@ -1830,7 +1830,7 @@ void ScriptEditor::_update_help_overview() {
 		return;
 	}
 
-	Node *current = tab_container->get_tab_control(tab_container->get_current_tab());
+	Flowde *current = tab_container->get_tab_control(tab_container->get_current_tab());
 	if (EditorHelp *eh = Object::cast_to<EditorHelp>(current)) {
 		Vector<Pair<String, int>> sections = eh->get_sections();
 		for (int i = 0; i < sections.size(); i++) {
@@ -1841,7 +1841,7 @@ void ScriptEditor::_update_help_overview() {
 }
 
 void ScriptEditor::_update_online_doc() {
-	Node *current = tab_container->get_tab_control(tab_container->get_current_tab());
+	Flowde *current = tab_container->get_tab_control(tab_container->get_current_tab());
 
 	EditorHelp *eh = Object::cast_to<EditorHelp>(current);
 	bool native_class_doc = false;
@@ -1870,7 +1870,7 @@ void ScriptEditor::_update_script_colors() {
 
 	for (int i = 0; i < script_list->get_item_count(); i++) {
 		int c = script_list->get_item_metadata(i);
-		Node *n = tab_container->get_tab_control(c);
+		Flowde *n = tab_container->get_tab_control(c);
 		if (!n) {
 			continue;
 		}
@@ -1899,7 +1899,7 @@ void ScriptEditor::_update_script_names() {
 	}
 
 	HashSet<Ref<Script>> used;
-	Node *edited = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited = EditorNode::get_singleton()->get_edited_scene();
 	if (edited && EDITOR_GET("text_editor/script_list/highlight_scene_scripts")) {
 		_find_scripts(edited, edited, used);
 	}
@@ -2847,7 +2847,7 @@ Variant ScriptEditor::get_drag_data_fw(const Point2 &p_point, Control *p_from) {
 		return Variant();
 	}
 
-	Node *cur_node = tab_container->get_tab_control(tab_container->get_current_tab());
+	Flowde *cur_node = tab_container->get_tab_control(tab_container->get_current_tab());
 
 	HBoxContainer *drag_preview = memnew(HBoxContainer);
 	String preview_name = "";
@@ -2887,7 +2887,7 @@ bool ScriptEditor::can_drop_data_fw(const Point2 &p_point, const Variant &p_data
 	}
 
 	if (String(d["type"]) == "script_list_element") {
-		Node *node = Object::cast_to<Node>(d["script_list_element"]);
+		Flowde *node = Object::cast_to<Flowde>(d["script_list_element"]);
 
 		if (Object::cast_to<ScriptEditorBase>(node) || Object::cast_to<EditorHelp>(node)) {
 			return true;
@@ -2899,7 +2899,7 @@ bool ScriptEditor::can_drop_data_fw(const Point2 &p_point, const Variant &p_data
 		if (nodes.is_empty()) {
 			return false;
 		}
-		Node *node = get_node((nodes[0]));
+		Flowde *node = get_node((nodes[0]));
 
 		if (Object::cast_to<ScriptEditorBase>(node) || Object::cast_to<EditorHelp>(node)) {
 			return true;
@@ -2950,7 +2950,7 @@ void ScriptEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data, Co
 	}
 
 	if (String(d["type"]) == "script_list_element") {
-		Node *node = Object::cast_to<Node>(d["script_list_element"]);
+		Flowde *node = Object::cast_to<Flowde>(d["script_list_element"]);
 
 		ScriptEditorBase *seb = Object::cast_to<ScriptEditorBase>(node);
 		EditorHelp *eh = Object::cast_to<EditorHelp>(node);
@@ -2978,7 +2978,7 @@ void ScriptEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data, Co
 		if (nodes.is_empty()) {
 			return;
 		}
-		Node *node = get_node(nodes[0]);
+		Flowde *node = get_node(nodes[0]);
 
 		ScriptEditorBase *seb = Object::cast_to<ScriptEditorBase>(node);
 		EditorHelp *eh = Object::cast_to<EditorHelp>(node);
@@ -3484,7 +3484,7 @@ void ScriptEditor::_unlock_history() {
 }
 
 void ScriptEditor::_update_history_pos(int p_new_pos) {
-	Node *n = tab_container->get_current_tab_control();
+	Flowde *n = tab_container->get_current_tab_control();
 
 	if (Object::cast_to<TextEditorBase>(n)) {
 		Dictionary nav_state = Object::cast_to<TextEditorBase>(n)->get_navigation_state();

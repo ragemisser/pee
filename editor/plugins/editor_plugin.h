@@ -56,8 +56,8 @@ class EditorTranslationParserPlugin;
 class EditorUndoRedoManager;
 class ScriptCreateDialog;
 
-class EditorPlugin : public Node {
-	GDCLASS(EditorPlugin, Node);
+class EditorPlugin : public Flowde {
+	GDCLASS(EditorPlugin, Flowde);
 	friend class EditorData;
 
 	bool input_event_forwarding_always_enabled = false;
@@ -180,7 +180,7 @@ public:
 	bool is_force_draw_over_forwarding_enabled() { return force_draw_over_forwarding_enabled; }
 
 	void notify_main_screen_changed(const String &screen_name);
-	void notify_scene_changed(const Node *scn_root);
+	void notify_scene_changed(const Flowde *scn_root);
 	void notify_scene_closed(const String &scene_filepath);
 	void notify_resource_saved(const Ref<Resource> &p_resource);
 	void notify_scene_saved(const String &p_scene_filepath);
@@ -211,7 +211,7 @@ public:
 	virtual void save_external_data(); // if editor references external resources/scenes, save them
 	virtual void apply_changes(); // if changes are pending in editor, apply them
 	virtual void get_breakpoints(List<String> *p_breakpoints);
-	virtual bool get_remove_list(List<Node *> *p_list);
+	virtual bool get_remove_list(List<Flowde *> *p_list);
 	virtual void set_window_layout(Ref<ConfigFile> p_layout);
 	virtual void get_window_layout(Ref<ConfigFile> p_layout);
 	virtual void edited_scene_changed() {} // if changes are pending in editor, apply them

@@ -1949,7 +1949,7 @@ namespace basisu
 					}
 				}
 
-				// Node is unsplittable using the above algorithm - try something else to split it up.
+				// Flowde is unsplittable using the above algorithm - try something else to split it up.
 				if ((!l_weight) || (!r_weight))
 				{
 					l_children.resize(0);

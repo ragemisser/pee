@@ -317,7 +317,7 @@ Particles2DEditorPlugin::Particles2DEditorPlugin() {
 	emission_mask_dialog->connect(SceneStringName(theme_changed), callable_mp(this, &Particles2DEditorPlugin::_theme_changed));
 }
 
-void Particles2DEditorPlugin::_set_show_gizmos(Node *p_node, bool p_show) {
+void Particles2DEditorPlugin::_set_show_gizmos(Flowde *p_node, bool p_show) {
 	GPUParticles2D *gpu_particles = Object::cast_to<GPUParticles2D>(p_node);
 	if (gpu_particles) {
 		gpu_particles->set_show_gizmos(p_show);
@@ -336,14 +336,14 @@ void Particles2DEditorPlugin::_set_show_gizmos(Node *p_node, bool p_show) {
 }
 
 void Particles2DEditorPlugin::_selection_changed() {
-	const List<Node *> &current_selection = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
+	const List<Flowde *> &current_selection = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
 	if (selected_particles.is_empty() && current_selection.is_empty()) {
 		return;
 	}
 
 	// Turn gizmos on for nodes that are newly selected.
 	HashSet<ObjectID> nodes_in_current_selection;
-	for (Node *node : current_selection) {
+	for (Flowde *node : current_selection) {
 		ObjectID nid = node->get_instance_id();
 		nodes_in_current_selection.insert(nid);
 		if (!selected_particles.has(nid)) {
@@ -363,7 +363,7 @@ void Particles2DEditorPlugin::_selection_changed() {
 	LocalVector<ObjectID> to_erase;
 	for (const ObjectID &nid : selected_particles) {
 		if (!nodes_in_current_selection.has(nid)) {
-			Node *node = ObjectDB::get_instance<Node>(nid);
+			Flowde *node = ObjectDB::get_instance<Flowde>(nid);
 			if (node) {
 				_set_show_gizmos(node, false);
 			}
@@ -376,7 +376,7 @@ void Particles2DEditorPlugin::_selection_changed() {
 	}
 }
 
-void Particles2DEditorPlugin::_node_removed(Node *p_node) {
+void Particles2DEditorPlugin::_node_removed(Flowde *p_node) {
 	if (p_node && selected_particles.erase(p_node->get_instance_id())) {
 		_set_show_gizmos(p_node, false);
 	}
@@ -548,7 +548,7 @@ void Particles2DEditorPlugin::_emission_mask_mode_item_changed(int p_idx) const 
 	}
 }
 
-Node *GPUParticles2DEditorPlugin::_convert_particles() {
+Flowde *GPUParticles2DEditorPlugin::_convert_particles() {
 	GPUParticles2D *particles = Object::cast_to<GPUParticles2D>(edited_node);
 
 	CPUParticles2D *cpu_particles = memnew(CPUParticles2D);
@@ -674,7 +674,7 @@ GPUParticles2DEditorPlugin::GPUParticles2DEditorPlugin() {
 	generate_visibility_rect->connect(SceneStringName(confirmed), callable_mp(this, &GPUParticles2DEditorPlugin::_generate_visibility_rect));
 }
 
-Node *CPUParticles2DEditorPlugin::_convert_particles() {
+Flowde *CPUParticles2DEditorPlugin::_convert_particles() {
 	CPUParticles2D *particles = Object::cast_to<CPUParticles2D>(edited_node);
 
 	GPUParticles2D *gpu_particles = memnew(GPUParticles2D);

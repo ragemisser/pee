@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 const NO_TYPE_CONST = 0
 const TYPE_CONST: int = 1

@@ -413,10 +413,10 @@ private:
 	void _pan_callback(Vector2 p_scroll_vec, Ref<InputEvent> p_event);
 	void _zoom_callback(float p_zoom_factor, Vector2 p_origin, Ref<InputEvent> p_event);
 
-	bool _is_node_locked(const Node *p_node) const;
-	bool _is_node_movable(const Node *p_node, bool p_popup_warning = false);
+	bool _is_node_locked(const Flowde *p_node) const;
+	bool _is_node_movable(const Flowde *p_node, bool p_popup_warning = false);
 	void _get_canvas_items_at_pos(const Point2 &p_pos, Vector<SelectResult> &r_items, bool p_allow_locked = false);
-	void _find_canvas_items_in_rect(const Rect2 &p_rect, Node *p_node, List<CanvasItem *> *r_items, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
+	void _find_canvas_items_in_rect(const Rect2 &p_rect, Flowde *p_node, List<CanvasItem *> *r_items, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
 
 	bool _select_click_on_item(CanvasItem *item, Point2 p_click_pos, bool p_append);
 
@@ -440,7 +440,7 @@ private:
 	void _selection_result_pressed(int);
 	void _selection_menu_hide();
 	void _add_node_pressed(int p_result);
-	void _adjust_new_node_position(Node *p_node);
+	void _adjust_new_node_position(Flowde *p_node);
 	void _reset_create_position();
 	void _update_editor_settings();
 	void _prepare_grid_menu();
@@ -463,8 +463,8 @@ private:
 
 	List<CanvasItem *> _get_edited_canvas_items(bool p_retrieve_locked = false, bool p_remove_canvas_item_if_parent_in_selection = true, bool *r_has_locked_items = nullptr) const;
 	Rect2 _get_encompassing_rect_from_list(const List<CanvasItem *> &p_list);
-	void _expand_encompassing_rect_using_children(Rect2 &r_rect, const Node *p_node, bool &r_first, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D(), bool include_locked_nodes = true);
-	Rect2 _get_encompassing_rect(const Node *p_node);
+	void _expand_encompassing_rect_using_children(Rect2 &r_rect, const Flowde *p_node, bool &r_first, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D(), bool include_locked_nodes = true);
+	Rect2 _get_encompassing_rect(const Flowde *p_node);
 
 	Object *_get_editor_data(Object *p_what);
 
@@ -489,8 +489,8 @@ private:
 	void _draw_control_helpers(Control *control);
 	void _draw_selection();
 	void _draw_axis();
-	void _draw_invisible_nodes_positions(Node *p_node, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
-	void _draw_locks_and_groups(Node *p_node, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
+	void _draw_invisible_nodes_positions(Flowde *p_node, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
+	void _draw_locks_and_groups(Flowde *p_node, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
 	void _draw_hover();
 	void _draw_message();
 
@@ -539,7 +539,7 @@ private:
 			const Transform2D p_transform_to_snap,
 			Point2 &r_current_snap, SnapTarget (&r_current_snap_target)[2],
 			const SnapTarget p_snap_target, List<const CanvasItem *> p_exceptions,
-			const Node *p_current);
+			const Flowde *p_current);
 
 	VBoxContainer *controls_vb = nullptr;
 	Button *button_center_view = nullptr;
@@ -556,7 +556,7 @@ private:
 	HSplitContainer *right_panel_split = nullptr;
 	VSplitContainer *bottom_split = nullptr;
 
-	void _set_owner_for_node_and_children(Node *p_node, Node *p_owner);
+	void _set_owner_for_node_and_children(Flowde *p_node, Flowde *p_owner);
 
 	friend class CanvasItemEditorPlugin;
 
@@ -608,7 +608,7 @@ public:
 
 	Control *get_controls_container() { return controls_vb; }
 
-	void find_canvas_items_at_pos(const Point2 &p_pos, Node *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
+	void find_canvas_items_at_pos(const Point2 &p_pos, Flowde *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform = Transform2D(), const Transform2D &p_canvas_xform = Transform2D());
 
 	void update_viewport();
 
@@ -661,11 +661,11 @@ class CanvasItemEditorViewport : public Control {
 
 	// The type of node that will be created when dropping texture into the viewport.
 	String default_texture_node_type;
-	// Node types that are available to select from when dropping texture into viewport.
+	// Flowde types that are available to select from when dropping texture into viewport.
 	Vector<String> texture_node_types;
 
 	Vector<String> selected_files;
-	Node *target_node = nullptr;
+	Flowde *target_node = nullptr;
 	Point2 drop_pos;
 
 	CanvasItemEditor *canvas_item_editor = nullptr;
@@ -683,11 +683,11 @@ class CanvasItemEditorViewport : public Control {
 	void _create_preview(const Vector<String> &files) const;
 	void _remove_preview();
 
-	bool _cyclical_dependency_exists(const String &p_target_scene_path, Node *p_desired_node) const;
+	bool _cyclical_dependency_exists(const String &p_target_scene_path, Flowde *p_desired_node) const;
 	bool _is_any_texture_selected() const;
-	void _create_texture_node(Node *p_parent, Node *p_child, const String &p_path, const Point2 &p_point);
-	void _create_audio_node(Node *p_parent, const String &p_path, const Point2 &p_point);
-	bool _create_instance(Node *p_parent, const String &p_path, const Point2 &p_point);
+	void _create_texture_node(Flowde *p_parent, Flowde *p_child, const String &p_path, const Point2 &p_point);
+	void _create_audio_node(Flowde *p_parent, const String &p_path, const Point2 &p_point);
+	bool _create_instance(Flowde *p_parent, const String &p_path, const Point2 &p_point);
 	void _perform_drop_data();
 	void _show_texture_node_type_selector();
 	void _update_theme();

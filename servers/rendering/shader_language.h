@@ -369,8 +369,8 @@ public:
 		uint32_t uint;
 	};
 
-	struct Node {
-		Node *next = nullptr;
+	struct Flowde {
+		Flowde *next = nullptr;
 
 		enum Type {
 			NODE_TYPE_SHADER,
@@ -395,9 +395,9 @@ public:
 		virtual bool is_indexed() const { return false; }
 		virtual Vector<Scalar> get_values() const { return Vector<Scalar>(); }
 
-		Node(Type t) :
+		Flowde(Type t) :
 				type(t) {}
-		virtual ~Node() {}
+		virtual ~Flowde() {}
 	};
 
 	template <typename T>
@@ -408,15 +408,15 @@ public:
 		return node;
 	}
 
-	Node *nodes = nullptr;
+	Flowde *nodes = nullptr;
 
-	struct OperatorNode : public Node {
+	struct OperatorNode : public Flowde {
 		DataType return_cache = TYPE_VOID;
 		DataPrecision return_precision_cache = PRECISION_DEFAULT;
 		int return_array_size = 0;
 		Operator op = OP_EQUAL;
 		StringName struct_name;
-		Vector<Node *> arguments;
+		Vector<Flowde *> arguments;
 		Vector<Scalar> values;
 
 		virtual DataType get_datatype() const override { return return_cache; }
@@ -426,10 +426,10 @@ public:
 		virtual Vector<Scalar> get_values() const override { return values; }
 
 		OperatorNode() :
-				Node(NODE_TYPE_OPERATOR) {}
+				Flowde(NODE_TYPE_OPERATOR) {}
 	};
 
-	struct VariableNode : public Node {
+	struct VariableNode : public Flowde {
 		DataType datatype_cache = TYPE_VOID;
 		StringName name;
 		StringName rname;
@@ -441,10 +441,10 @@ public:
 		virtual String get_datatype_name() const override { return String(struct_name); }
 
 		VariableNode() :
-				Node(NODE_TYPE_VARIABLE) {}
+				Flowde(NODE_TYPE_VARIABLE) {}
 	};
 
-	struct VariableDeclarationNode : public Node {
+	struct VariableDeclarationNode : public Flowde {
 		DataPrecision precision = PRECISION_DEFAULT;
 		DataType datatype = TYPE_VOID;
 		String struct_name;
@@ -453,8 +453,8 @@ public:
 		struct Declaration {
 			StringName name;
 			uint32_t size = 0U;
-			Node *size_expression = nullptr;
-			Vector<Node *> initializer;
+			Flowde *size_expression = nullptr;
+			Vector<Flowde *> initializer;
 			bool single_expression = false;
 		};
 		Vector<Declaration> declarations;
@@ -462,16 +462,16 @@ public:
 		virtual DataType get_datatype() const override { return datatype; }
 
 		VariableDeclarationNode() :
-				Node(NODE_TYPE_VARIABLE_DECLARATION) {}
+				Flowde(NODE_TYPE_VARIABLE_DECLARATION) {}
 	};
 
-	struct ArrayNode : public Node {
+	struct ArrayNode : public Flowde {
 		DataType datatype_cache = TYPE_VOID;
 		StringName struct_name;
 		StringName name;
-		Node *index_expression = nullptr;
-		Node *call_expression = nullptr;
-		Node *assign_expression = nullptr;
+		Flowde *index_expression = nullptr;
+		Flowde *call_expression = nullptr;
+		Flowde *assign_expression = nullptr;
 		bool is_const = false;
 		int array_size = 0;
 		bool is_local = false;
@@ -482,23 +482,23 @@ public:
 		virtual bool is_indexed() const override { return index_expression != nullptr; }
 
 		ArrayNode() :
-				Node(NODE_TYPE_ARRAY) {}
+				Flowde(NODE_TYPE_ARRAY) {}
 	};
 
-	struct ArrayConstructNode : public Node {
+	struct ArrayConstructNode : public Flowde {
 		DataType datatype = TYPE_VOID;
 		String struct_name;
-		Vector<Node *> initializer;
+		Vector<Flowde *> initializer;
 
 		virtual DataType get_datatype() const override { return datatype; }
 		virtual String get_datatype_name() const override { return struct_name; }
 		virtual int get_array_size() const override { return initializer.size(); }
 
 		ArrayConstructNode() :
-				Node(NODE_TYPE_ARRAY_CONSTRUCT) {}
+				Flowde(NODE_TYPE_ARRAY_CONSTRUCT) {}
 	};
 
-	struct ConstantNode : public Node {
+	struct ConstantNode : public Flowde {
 		DataType datatype = TYPE_VOID;
 		String struct_name = "";
 		int array_size = 0;
@@ -514,12 +514,12 @@ public:
 		}
 
 		ConstantNode() :
-				Node(NODE_TYPE_CONSTANT) {}
+				Flowde(NODE_TYPE_CONSTANT) {}
 	};
 
 	struct FunctionNode;
 
-	struct BlockNode : public Node {
+	struct BlockNode : public Flowde {
 		FunctionNode *parent_function = nullptr;
 		BlockNode *parent_block = nullptr;
 
@@ -547,7 +547,7 @@ public:
 		};
 
 		HashMap<StringName, Variable> variables;
-		List<Node *> statements;
+		List<Flowde *> statements;
 		bool single_statement = false;
 		bool use_comma_between_statements = false;
 		bool use_op_eval = true;
@@ -556,19 +556,19 @@ public:
 		HashSet<int> constants;
 
 		BlockNode() :
-				Node(NODE_TYPE_BLOCK) {}
+				Flowde(NODE_TYPE_BLOCK) {}
 	};
 
-	struct ControlFlowNode : public Node {
+	struct ControlFlowNode : public Flowde {
 		FlowOperation flow_op = FLOW_OP_IF;
-		Vector<Node *> expressions;
+		Vector<Flowde *> expressions;
 		Vector<BlockNode *> blocks;
 
 		ControlFlowNode() :
-				Node(NODE_TYPE_CONTROL_FLOW) {}
+				Flowde(NODE_TYPE_CONTROL_FLOW) {}
 	};
 
-	struct MemberNode : public Node {
+	struct MemberNode : public Flowde {
 		DataType basetype = TYPE_VOID;
 		bool basetype_const = false;
 		StringName base_struct_name;
@@ -577,10 +577,10 @@ public:
 		int array_size = 0;
 		StringName struct_name;
 		StringName name;
-		Node *owner = nullptr;
-		Node *index_expression = nullptr;
-		Node *assign_expression = nullptr;
-		Node *call_expression = nullptr;
+		Flowde *owner = nullptr;
+		Flowde *index_expression = nullptr;
+		Flowde *assign_expression = nullptr;
+		Flowde *call_expression = nullptr;
 		bool has_swizzling_duplicates = false;
 
 		virtual DataType get_datatype() const override { return call_expression ? call_expression->get_datatype() : datatype; }
@@ -589,22 +589,22 @@ public:
 		virtual bool is_indexed() const override { return index_expression != nullptr || call_expression != nullptr; }
 
 		MemberNode() :
-				Node(NODE_TYPE_MEMBER) {}
+				Flowde(NODE_TYPE_MEMBER) {}
 	};
 
-	struct StructNode : public Node {
+	struct StructNode : public Flowde {
 		List<MemberNode *> members;
 		StructNode() :
-				Node(NODE_TYPE_STRUCT) {}
+				Flowde(NODE_TYPE_STRUCT) {}
 	};
 
-	struct ShaderNode : public Node {
+	struct ShaderNode : public Flowde {
 		struct Constant {
 			StringName name;
 			DataType type;
 			StringName struct_name;
 			DataPrecision precision;
-			Node *initializer = nullptr;
+			Flowde *initializer = nullptr;
 			int array_size;
 		};
 
@@ -738,10 +738,10 @@ public:
 		Vector<Struct> vstructs;
 
 		ShaderNode() :
-				Node(NODE_TYPE_SHADER) {}
+				Flowde(NODE_TYPE_SHADER) {}
 	};
 
-	struct FunctionNode : public Node {
+	struct FunctionNode : public Flowde {
 		struct Argument {
 			ArgumentQualifier qualifier;
 			StringName name;
@@ -776,7 +776,7 @@ public:
 		virtual int get_array_size() const override { return return_array_size; }
 
 		FunctionNode() :
-				Node(NODE_TYPE_FUNCTION) {}
+				Flowde(NODE_TYPE_FUNCTION) {}
 	};
 
 	struct UniformOrderComparator {
@@ -789,7 +789,7 @@ public:
 		bool is_op;
 		union {
 			Operator op;
-			Node *node = nullptr;
+			Flowde *node = nullptr;
 		};
 	};
 
@@ -1136,10 +1136,10 @@ private:
 	void _parse_used_identifier(const StringName &p_identifier, IdentifierType p_type, const StringName &p_function);
 #endif // DEBUG_ENABLED
 	bool _is_operator_assign(Operator p_op) const;
-	bool _validate_assign(Node *p_node, const FunctionInfo &p_function_info, String *r_message = nullptr);
+	bool _validate_assign(Flowde *p_node, const FunctionInfo &p_function_info, String *r_message = nullptr);
 	bool _validate_operator(const BlockNode *p_block, const FunctionInfo &p_function_info, OperatorNode *p_op, DataType *r_ret_type = nullptr, int *r_ret_size = nullptr, StringName *r_ret_struct_name = nullptr);
 
-	Vector<Scalar> _get_node_values(const BlockNode *p_block, const FunctionInfo &p_function_info, Node *p_node);
+	Vector<Scalar> _get_node_values(const BlockNode *p_block, const FunctionInfo &p_function_info, Flowde *p_node);
 	bool _eval_operator(const BlockNode *p_block, const FunctionInfo &p_function_info, OperatorNode *p_op);
 	Scalar _eval_unary_scalar(const Scalar &p_a, Operator p_op, DataType p_ret_type);
 	Scalar _eval_scalar(const Scalar &p_a, const Scalar &p_b, Operator p_op, DataType p_ret_type, bool &r_is_valid);
@@ -1206,7 +1206,7 @@ private:
 
 	Error _validate_precision(DataType p_type, DataPrecision p_precision);
 	bool _compare_datatypes(DataType p_datatype_a, String p_datatype_name_a, int p_array_size_a, DataType p_datatype_b, String p_datatype_name_b, int p_array_size_b);
-	bool _compare_datatypes_in_nodes(Node *a, Node *b);
+	bool _compare_datatypes_in_nodes(Flowde *a, Flowde *b);
 
 	bool _validate_function_call(BlockNode *p_block, const FunctionInfo &p_function_info, OperatorNode *p_func, DataType *r_ret_type, StringName *r_ret_type_str, bool *r_is_custom_function = nullptr);
 	bool _parse_function_arguments(BlockNode *p_block, const FunctionInfo &p_function_info, OperatorNode *p_func, int *r_complete_arg = nullptr);
@@ -1214,18 +1214,18 @@ private:
 	bool _propagate_function_call_sampler_uniform_settings(const StringName &p_name, int p_argument, TextureFilter p_filter, TextureRepeat p_repeat, ShaderNode::Uniform::Hint p_hint);
 	bool _propagate_function_call_sampler_builtin_reference(const StringName &p_name, int p_argument, const StringName &p_builtin);
 	bool _validate_varying_assign(ShaderNode::Varying &p_varying, String *r_message);
-	bool _check_node_constness(const Node *p_node) const;
+	bool _check_node_constness(const Flowde *p_node) const;
 
 	bool _check_restricted_func(const StringName &p_name, const StringName &p_current_function) const;
 	bool _validate_restricted_func(const StringName &p_call_name, const CallInfo *p_func_info, bool p_is_builtin_hint = false);
 
-	Node *_parse_expression(BlockNode *p_block, const FunctionInfo &p_function_info, const ExpressionInfo *p_previous_expression_info = nullptr);
-	Error _parse_array_size(BlockNode *p_block, const FunctionInfo &p_function_info, bool p_forbid_unknown_size, Node **r_size_expression, int *r_array_size, bool *r_unknown_size);
-	Node *_parse_array_constructor(BlockNode *p_block, const FunctionInfo &p_function_info);
-	Node *_parse_array_constructor(BlockNode *p_block, const FunctionInfo &p_function_info, DataType p_type, const StringName &p_struct_name, int p_array_size);
-	ShaderLanguage::Node *_reduce_expression(BlockNode *p_block, ShaderLanguage::Node *p_node);
+	Flowde *_parse_expression(BlockNode *p_block, const FunctionInfo &p_function_info, const ExpressionInfo *p_previous_expression_info = nullptr);
+	Error _parse_array_size(BlockNode *p_block, const FunctionInfo &p_function_info, bool p_forbid_unknown_size, Flowde **r_size_expression, int *r_array_size, bool *r_unknown_size);
+	Flowde *_parse_array_constructor(BlockNode *p_block, const FunctionInfo &p_function_info);
+	Flowde *_parse_array_constructor(BlockNode *p_block, const FunctionInfo &p_function_info, DataType p_type, const StringName &p_struct_name, int p_array_size);
+	ShaderLanguage::Flowde *_reduce_expression(BlockNode *p_block, ShaderLanguage::Flowde *p_node);
 
-	Node *_parse_and_reduce_expression(BlockNode *p_block, const FunctionInfo &p_function_info, const ExpressionInfo *p_previous_expression_info = nullptr);
+	Flowde *_parse_and_reduce_expression(BlockNode *p_block, const FunctionInfo &p_function_info, const ExpressionInfo *p_previous_expression_info = nullptr);
 	Error _parse_block(BlockNode *p_block, const FunctionInfo &p_function_info, bool p_just_one = false, bool p_can_break = false, bool p_can_continue = false);
 	String _get_shader_type_list(const HashSet<String> &p_shader_types) const;
 	String _get_qualifier_str(ArgumentQualifier p_qualifier) const;

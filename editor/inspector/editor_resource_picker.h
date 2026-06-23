@@ -172,7 +172,7 @@ class EditorScriptPicker : public EditorResourcePicker {
 		OBJ_MENU_EXTEND_SCRIPT = 51
 	};
 
-	Node *script_owner = nullptr;
+	Flowde *script_owner = nullptr;
 
 protected:
 	static void _bind_methods();
@@ -181,8 +181,8 @@ public:
 	virtual void set_create_options(Object *p_menu_node) override;
 	virtual bool handle_menu_selected(int p_which) override;
 
-	void set_script_owner(Node *p_owner);
-	Node *get_script_owner() const;
+	void set_script_owner(Flowde *p_owner);
+	Flowde *get_script_owner() const;
 };
 
 class EditorShaderPicker : public EditorResourcePicker {

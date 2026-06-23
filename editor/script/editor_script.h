@@ -35,7 +35,7 @@
 
 class EditorInterface;
 class EditorNode;
-class Node;
+class Flowde;
 
 class EditorScript : public RefCounted {
 	GDCLASS(EditorScript, RefCounted);
@@ -46,9 +46,9 @@ protected:
 	GDVIRTUAL0_REQUIRED(_run)
 
 public:
-	void add_root_node(Node *p_node);
+	void add_root_node(Flowde *p_node);
 #ifndef DISABLE_DEPRECATED
-	Node *get_scene() const;
+	Flowde *get_scene() const;
 #endif // DISABLE_DEPRECATED
 	EditorInterface *get_editor_interface() const;
 

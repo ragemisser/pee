@@ -1,5 +1,5 @@
 #GH-63329
-class A extends Node:
+class A extends Flowde:
 	@onready var a := get_value("a")
 
 	func get_value(var_name: String) -> String:

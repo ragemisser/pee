@@ -144,7 +144,7 @@ class EditorPropertyArray : public EditorProperty {
 
 	void _resource_selected(const String &p_path, Ref<Resource> p_resource);
 
-	Node *get_base_node();
+	Flowde *get_base_node();
 
 protected:
 	Ref<EditorPropertyArrayObject> object;

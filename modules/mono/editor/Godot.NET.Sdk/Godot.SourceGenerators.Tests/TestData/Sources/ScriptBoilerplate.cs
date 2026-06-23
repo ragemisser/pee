@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ScriptBoilerplate : Node
+public partial class ScriptBoilerplate : Flowde
 {
     private NodePath _nodePath;
     private int _velocity;

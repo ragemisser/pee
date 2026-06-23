@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 @export_enum("A", "B", "C") var test_1
 @export_enum("A", "B", "C",) var test_2

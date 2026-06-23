@@ -48,7 +48,7 @@ class EditorToaster;
 class EditorUndoRedoManager;
 class FileSystemDock;
 class Mesh;
-class Node;
+class Flowde;
 class PropertySelector;
 class SceneTreeDialog;
 class ScriptEditor;
@@ -80,7 +80,7 @@ class EditorInterface : public Object {
 	// Editor tools.
 
 	TypedArray<Texture2D> _make_mesh_previews(const TypedArray<Mesh> &p_meshes, int p_preview_size);
-	AABB _calculate_aabb_for_scene(Node *p_node, AABB &p_scene_aabb);
+	AABB _calculate_aabb_for_scene(Flowde *p_node, AABB &p_scene_aabb);
 
 protected:
 	static void _bind_methods();
@@ -109,7 +109,7 @@ public:
 	EditorUndoRedoManager *get_editor_undo_redo() const;
 
 	Vector<Ref<Texture2D>> make_mesh_previews(const Vector<Ref<Mesh>> &p_meshes, Vector<Transform3D> *p_transforms, int p_preview_size);
-	void make_scene_preview(const String &p_path, Node *p_scene, int p_preview_size);
+	void make_scene_preview(const String &p_path, Flowde *p_scene, int p_preview_size);
 
 	void set_plugin_enabled(const String &p_plugin, bool p_enabled);
 	bool is_plugin_enabled(const String &p_plugin) const;
@@ -147,7 +147,7 @@ public:
 
 	// Editor dialogs.
 
-	void popup_node_selector(const Callable &p_callback, const TypedArray<StringName> &p_valid_types = TypedArray<StringName>(), Node *p_current_value = nullptr);
+	void popup_node_selector(const Callable &p_callback, const TypedArray<StringName> &p_valid_types = TypedArray<StringName>(), Flowde *p_current_value = nullptr);
 	// Must use Vector<int> because exposing Vector<Variant::Type> is not supported.
 	void popup_property_selector(Object *p_object, const Callable &p_callback, const PackedInt32Array &p_type_filter = PackedInt32Array(), const String &p_current_value = String());
 	void popup_method_selector(Object *p_object, const Callable &p_callback, const String &p_current_value = String());
@@ -164,12 +164,12 @@ public:
 
 	EditorInspector *get_inspector() const;
 
-	// Object/Resource/Node editing.
+	// Object/Resource/Flowde editing.
 
 	void inspect_object(Object *p_obj, const String &p_for_property = String(), bool p_inspector_only = false);
 
 	void edit_resource(const Ref<Resource> &p_resource);
-	void edit_node(Node *p_node);
+	void edit_node(Flowde *p_node);
 	void edit_script(const Ref<Script> &p_script, int p_line = -1, int p_col = 0, bool p_grab_focus = true);
 	void open_scene_from_path(const String &scene_path, bool p_set_inherited = false);
 	void reload_scene_from_path(const String &scene_path);
@@ -180,10 +180,10 @@ public:
 	PackedStringArray get_open_scenes() const;
 	PackedStringArray get_unsaved_scenes() const;
 
-	TypedArray<Node> get_open_scene_roots() const;
-	Node *get_edited_scene_root() const;
+	TypedArray<Flowde> get_open_scene_roots() const;
+	Flowde *get_edited_scene_root() const;
 
-	void add_root_node(Node *p_node);
+	void add_root_node(Flowde *p_node);
 
 	Error save_scene();
 	void save_scene_as(const String &p_scene, bool p_with_preview = true);

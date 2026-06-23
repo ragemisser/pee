@@ -112,7 +112,7 @@
 			The key representing this dock in the editor's layout file. If empty, the dock's displayed name will be used instead.
 		</member>
 		<member name="title" type="String" setter="set_title" getter="get_title" default="&quot;&quot;">
-			The title of the dock's tab. If empty, the dock's [member Node.name] will be used. If the name is auto-generated (contains [code]@[/code]), the first child's name will be used instead.
+			The title of the dock's tab. If empty, the dock's [member Flowde.name] will be used. If the name is auto-generated (contains [code]@[/code]), the first child's name will be used instead.
 		</member>
 		<member name="title_color" type="Color" setter="set_title_color" getter="get_title_color" default="Color(0, 0, 0, 0)">
 			The color of the dock tab's title. If its alpha is [code]0.0[/code], the default font color will be used.

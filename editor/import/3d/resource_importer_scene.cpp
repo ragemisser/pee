@@ -69,14 +69,14 @@ void EditorSceneFormatImporter::get_extensions(List<String> *r_extensions) const
 	}
 }
 
-Node *EditorSceneFormatImporter::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
+Flowde *EditorSceneFormatImporter::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
 	Dictionary options_dict;
 	for (const KeyValue<StringName, Variant> &elem : p_options) {
 		options_dict[elem.key] = elem.value;
 	}
 	Object *ret = nullptr;
 	GDVIRTUAL_CALL(_import_scene, p_path, p_flags, options_dict, ret);
-	return Object::cast_to<Node>(ret);
+	return Object::cast_to<Flowde>(ret);
 }
 
 void EditorSceneFormatImporter::add_import_option(const String &p_name, const Variant &p_default_value) {
@@ -126,10 +126,10 @@ void EditorScenePostImport::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_source_file"), &EditorScenePostImport::get_source_file);
 }
 
-Node *EditorScenePostImport::post_import(Node *p_scene) {
+Flowde *EditorScenePostImport::post_import(Flowde *p_scene) {
 	Object *ret;
 	if (GDVIRTUAL_CALL(_post_import, p_scene, ret)) {
-		return Object::cast_to<Node>(ret);
+		return Object::cast_to<Flowde>(ret);
 	}
 
 	return p_scene;
@@ -189,7 +189,7 @@ Variant EditorScenePostImportPlugin::get_internal_option_update_view_required(In
 	return ret;
 }
 
-void EditorScenePostImportPlugin::internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
+void EditorScenePostImportPlugin::internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
 	current_options_dict = &p_options;
 	GDVIRTUAL_CALL(_internal_process, p_category, p_base_scene, p_node, p_resource);
 	current_options_dict = nullptr;
@@ -208,12 +208,12 @@ Variant EditorScenePostImportPlugin::get_option_visibility(const String &p_path,
 	return ret;
 }
 
-void EditorScenePostImportPlugin::pre_process(Node *p_scene, const HashMap<StringName, Variant> &p_options) {
+void EditorScenePostImportPlugin::pre_process(Flowde *p_scene, const HashMap<StringName, Variant> &p_options) {
 	current_options = &p_options;
 	GDVIRTUAL_CALL(_pre_process, p_scene);
 	current_options = nullptr;
 }
-void EditorScenePostImportPlugin::post_process(Node *p_scene, const HashMap<StringName, Variant> &p_options) {
+void EditorScenePostImportPlugin::post_process(Flowde *p_scene, const HashMap<StringName, Variant> &p_options) {
 	current_options = &p_options;
 	GDVIRTUAL_CALL(_post_process, p_scene);
 	current_options = nullptr;
@@ -361,9 +361,9 @@ String ResourceImporterScene::get_preset_name(int p_idx) const {
 	return String();
 }
 
-void ResourceImporterScene::_pre_fix_global(Node *p_scene, const HashMap<StringName, Variant> &p_options) const {
+void ResourceImporterScene::_pre_fix_global(Flowde *p_scene, const HashMap<StringName, Variant> &p_options) const {
 	if (p_options.has("animation/import_rest_as_RESET") && (bool)p_options["animation/import_rest_as_RESET"]) {
-		TypedArray<Node> anim_players = p_scene->find_children("*", "AnimationPlayer");
+		TypedArray<Flowde> anim_players = p_scene->find_children("*", "AnimationPlayer");
 		if (anim_players.is_empty()) {
 			AnimationPlayer *anim_player = memnew(AnimationPlayer);
 			anim_player->set_name("AnimationPlayer");
@@ -391,7 +391,7 @@ void ResourceImporterScene::_pre_fix_global(Node *p_scene, const HashMap<StringN
 			}
 			anim_library->add_animation(SceneStringName(RESET), reset_anim);
 		}
-		TypedArray<Node> skeletons = p_scene->find_children("*", "Skeleton3D");
+		TypedArray<Flowde> skeletons = p_scene->find_children("*", "Skeleton3D");
 		for (int i = 0; i < skeletons.size(); i++) {
 			Skeleton3D *skeleton = cast_to<Skeleton3D>(skeletons[i]);
 			NodePath skeleton_path = p_scene->get_path_to(skeleton);
@@ -620,7 +620,7 @@ void _apply_scale_to_scalable_node_collection(ScalableNodeCollection &p_collecti
 	}
 }
 
-void _populate_scalable_nodes_collection(Node *p_node, ScalableNodeCollection &p_collection) {
+void _populate_scalable_nodes_collection(Flowde *p_node, ScalableNodeCollection &p_collection) {
 	if (!p_node) {
 		return;
 	}
@@ -651,18 +651,18 @@ void _populate_scalable_nodes_collection(Node *p_node, ScalableNodeCollection &p
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		_populate_scalable_nodes_collection(child, p_collection);
 	}
 }
 
-void _apply_permanent_scale_to_descendants(Node *p_root_node, Vector3 p_scale) {
+void _apply_permanent_scale_to_descendants(Flowde *p_root_node, Vector3 p_scale) {
 	ScalableNodeCollection scalable_node_collection;
 	_populate_scalable_nodes_collection(p_root_node, scalable_node_collection);
 	_apply_scale_to_scalable_node_collection(scalable_node_collection, p_scale);
 }
 
-Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &r_collision_map, Pair<PackedVector3Array, PackedInt32Array> *r_occluder_arrays, List<Pair<NodePath, Node *>> &r_node_renames, const HashMap<StringName, Variant> &p_options) {
+Flowde *ResourceImporterScene::_pre_fix_node(Flowde *p_node, Flowde *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &r_collision_map, Pair<PackedVector3Array, PackedInt32Array> *r_occluder_arrays, List<Pair<NodePath, Flowde *>> &r_node_renames, const HashMap<StringName, Variant> &p_options) {
 	bool use_name_suffixes = true;
 	if (p_options.has("nodes/use_name_suffixes")) {
 		use_name_suffixes = p_options["nodes/use_name_suffixes"];
@@ -673,7 +673,7 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 
 	// Children first.
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *r = _pre_fix_node(p_node->get_child(i), p_root, r_collision_map, r_occluder_arrays, r_node_renames, p_options);
+		Flowde *r = _pre_fix_node(p_node->get_child(i), p_root, r_collision_map, r_occluder_arrays, r_node_renames, p_options);
 		if (!r) {
 			i--; // Was erased.
 		}
@@ -721,8 +721,8 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 	if (Object::cast_to<AnimationPlayer>(p_node)) {
 		AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(p_node);
 
-		// Node paths in animation tracks are relative to the following path (this is used to fix node paths below).
-		Node *ap_root = ap->get_node(ap->get_root_node());
+		// Flowde paths in animation tracks are relative to the following path (this is used to fix node paths below).
+		Flowde *ap_root = ap->get_node(ap->get_root_node());
 		NodePath path_prefix = p_root->get_path_to(ap_root);
 
 		bool nodes_were_renamed = r_node_renames.size() != 0;
@@ -757,7 +757,7 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 					NodePath absolute_path(absolute_path_names, false);
 					absolute_path.simplify();
 					// Fix paths to renamed nodes.
-					for (const Pair<NodePath, Node *> &F : r_node_renames) {
+					for (const Pair<NodePath, Flowde *> &F : r_node_renames) {
 						if (F.first == absolute_path) {
 							NodePath new_path(ap_root->get_path_to(F.second).get_names(), path.get_subnames(), false);
 							print_verbose(vformat("Fix: Correcting node path in animation track: %s should be %s", path, new_path));
@@ -994,7 +994,7 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 			return p_node;
 		}
 
-		Node *owner = p_node->get_owner();
+		Flowde *owner = p_node->get_owner();
 		Node3D *s = Object::cast_to<Node3D>(p_node);
 		VehicleBody3D *bv = memnew(VehicleBody3D);
 		String n = _fixstr(p_node->get_name(), "vehicle");
@@ -1014,7 +1014,7 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 			return p_node;
 		}
 
-		Node *owner = p_node->get_owner();
+		Flowde *owner = p_node->get_owner();
 		Node3D *s = Object::cast_to<Node3D>(p_node);
 		VehicleWheel3D *bv = memnew(VehicleWheel3D);
 		String n = _fixstr(p_node->get_name(), "wheel");
@@ -1077,10 +1077,10 @@ Node *ResourceImporterScene::_pre_fix_node(Node *p_node, Node *p_root, HashMap<R
 	return p_node;
 }
 
-Node *ResourceImporterScene::_pre_fix_animations(Node *p_node, Node *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps) {
+Flowde *ResourceImporterScene::_pre_fix_animations(Flowde *p_node, Flowde *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps) {
 	// children first
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *r = _pre_fix_animations(p_node->get_child(i), p_root, p_node_data, p_animation_data, p_animation_fps);
+		Flowde *r = _pre_fix_animations(p_node->get_child(i), p_root, p_node_data, p_animation_data, p_animation_fps);
 		if (!r) {
 			i--; //was erased
 		}
@@ -1125,10 +1125,10 @@ Node *ResourceImporterScene::_pre_fix_animations(Node *p_node, Node *p_root, con
 	return p_node;
 }
 
-Node *ResourceImporterScene::_post_fix_animations(Node *p_node, Node *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps, bool p_remove_immutable_tracks) {
+Flowde *ResourceImporterScene::_post_fix_animations(Flowde *p_node, Flowde *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps, bool p_remove_immutable_tracks) {
 	// children first
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *r = _post_fix_animations(p_node->get_child(i), p_root, p_node_data, p_animation_data, p_animation_fps, p_remove_immutable_tracks);
+		Flowde *r = _post_fix_animations(p_node->get_child(i), p_root, p_node_data, p_animation_data, p_animation_fps, p_remove_immutable_tracks);
 		if (!r) {
 			i--; //was erased
 		}
@@ -1189,7 +1189,7 @@ Node *ResourceImporterScene::_post_fix_animations(Node *p_node, Node *p_root, co
 					}
 					AnimationImportTracks track_mode = import_tracks_mode[track_channel_type];
 					NodePath path = anim->track_get_path(track_i);
-					Node *n = p_root->get_node(path);
+					Flowde *n = p_root->get_node(path);
 					Node3D *n3d = Object::cast_to<Node3D>(n);
 					Skeleton3D *skel = Object::cast_to<Skeleton3D>(n);
 					bool keep_track = false;
@@ -1392,12 +1392,12 @@ Node *ResourceImporterScene::_post_fix_animations(Node *p_node, Node *p_root, co
 	return p_node;
 }
 
-Node *ResourceImporterScene::_replace_node_with_type_and_script(Node *p_node, String p_node_type, Ref<Script> p_script) {
+Flowde *ResourceImporterScene::_replace_node_with_type_and_script(Flowde *p_node, String p_node_type, Ref<Script> p_script) {
 	p_node_type = p_node_type.get_slicec(' ', 0); // Full root_type is "ClassName (filename.gd)" for a script global class.
 	if (p_script.is_valid()) {
 		// Ensure the node type supports the script, or pick one that does.
 		String script_base_type = p_script->get_instance_base_type();
-		if (ClassDB::is_parent_class(script_base_type, "Node")) {
+		if (ClassDB::is_parent_class(script_base_type, "Flowde")) {
 			if (p_node_type.is_empty() || !ClassDB::is_parent_class(p_node_type, script_base_type)) {
 				p_node_type = script_base_type;
 			}
@@ -1420,7 +1420,7 @@ Node *ResourceImporterScene::_replace_node_with_type_and_script(Node *p_node, St
 	if (!p_node_type.is_empty() && p_node->get_class_name() != p_node_type) {
 		// If the user specified a Godot node type that does not match
 		// what the scene import gave us, replace the root node.
-		Node *new_base_node = Object::cast_to<Node>(ClassDB::instantiate(p_node_type));
+		Flowde *new_base_node = Object::cast_to<Flowde>(ClassDB::instantiate(p_node_type));
 		if (new_base_node) {
 			List<PropertyInfo> old_properties;
 			p_node->get_property_list(&old_properties);
@@ -1444,10 +1444,10 @@ Node *ResourceImporterScene::_replace_node_with_type_and_script(Node *p_node, St
 	return p_node;
 }
 
-Node *ResourceImporterScene::_post_fix_node(Node *p_node, Node *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &collision_map, Pair<PackedVector3Array, PackedInt32Array> &r_occluder_arrays, HashSet<Ref<ImporterMesh>> &r_scanned_meshes, const Dictionary &p_node_data, const Dictionary &p_material_data, const Dictionary &p_animation_data, float p_animation_fps, float p_applied_root_scale, const String &p_source_file, const HashMap<StringName, Variant> &p_options) {
+Flowde *ResourceImporterScene::_post_fix_node(Flowde *p_node, Flowde *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &collision_map, Pair<PackedVector3Array, PackedInt32Array> &r_occluder_arrays, HashSet<Ref<ImporterMesh>> &r_scanned_meshes, const Dictionary &p_node_data, const Dictionary &p_material_data, const Dictionary &p_animation_data, float p_animation_fps, float p_applied_root_scale, const String &p_source_file, const HashMap<StringName, Variant> &p_options) {
 	// children first
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *r = _post_fix_node(p_node->get_child(i), p_root, collision_map, r_occluder_arrays, r_scanned_meshes, p_node_data, p_material_data, p_animation_data, p_animation_fps, p_applied_root_scale, p_source_file, p_options);
+		Flowde *r = _post_fix_node(p_node->get_child(i), p_root, collision_map, r_occluder_arrays, r_scanned_meshes, p_node_data, p_material_data, p_animation_data, p_animation_fps, p_applied_root_scale, p_source_file, p_options);
 		if (!r) {
 			i--; //was erased
 		}
@@ -1529,7 +1529,7 @@ Node *ResourceImporterScene::_post_fix_node(Node *p_node, Node *p_root, HashMap<
 		if (skeleton != nullptr && int(node_settings.get("rest_pose/load_pose", 0)) != 0) {
 			String selected_animation_name = node_settings.get("rest_pose/selected_animation", String());
 			if (int(node_settings["rest_pose/load_pose"]) == 1) {
-				TypedArray<Node> children = p_root->find_children("*", "AnimationPlayer", true, false);
+				TypedArray<Flowde> children = p_root->find_children("*", "AnimationPlayer", true, false);
 				for (int node_i = 0; node_i < children.size(); node_i++) {
 					AnimationPlayer *anim_player = cast_to<AnimationPlayer>(children[node_i]);
 					ERR_CONTINUE(anim_player == nullptr);
@@ -2141,8 +2141,8 @@ void ResourceImporterScene::_compress_animations(AnimationPlayer *anim, int p_pa
 	}
 }
 
-Error ResourceImporterScene::_save_scene_as_mesh_library(const String &p_source_file, const String &p_save_path, Node *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags) {
-	TypedArray<Node> mesh_instances = p_godot_scene->find_children("*", "MeshInstance3D", true, false);
+Error ResourceImporterScene::_save_scene_as_mesh_library(const String &p_source_file, const String &p_save_path, Flowde *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags) {
+	TypedArray<Flowde> mesh_instances = p_godot_scene->find_children("*", "MeshInstance3D", true, false);
 	const int mesh_inst_count = mesh_instances.size();
 	HashSet<Ref<Mesh>> unique_meshes;
 	const bool use_node_names_as_mesh_names = p_options.has("mesh_library/use_node_names_as_mesh_names") && p_options["mesh_library/use_node_names_as_mesh_names"];
@@ -2172,8 +2172,8 @@ Error ResourceImporterScene::_save_scene_as_mesh_library(const String &p_source_
 	return ResourceSaver::save(mesh_library, p_save_path + ".res", p_flags);
 }
 
-Error ResourceImporterScene::_save_scene_as_single_mesh(const String &p_source_file, const String &p_save_path, Node *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags) {
-	TypedArray<Node> mesh_instance_nodes = p_godot_scene->find_children("*", "MeshInstance3D", true, false);
+Error ResourceImporterScene::_save_scene_as_single_mesh(const String &p_source_file, const String &p_save_path, Flowde *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags) {
+	TypedArray<Flowde> mesh_instance_nodes = p_godot_scene->find_children("*", "MeshInstance3D", true, false);
 	const int mesh_inst_count = mesh_instance_nodes.size();
 	ERR_FAIL_COND_V_MSG(mesh_inst_count == 0, ERR_INVALID_DATA, "Cannot import GLTF file " + p_source_file + " as a single mesh, because it contains no meshes.");
 	const String save_file_path = p_save_path + ".res";
@@ -2211,7 +2211,7 @@ Error ResourceImporterScene::_save_scene_as_single_mesh(const String &p_source_f
 void ResourceImporterScene::get_internal_import_options(InternalImportCategory p_category, List<ImportOption> *r_options) const {
 	switch (p_category) {
 		case INTERNAL_IMPORT_CATEGORY_NODE: {
-			r_options->push_back(ImportOption(PropertyInfo(Variant::STRING, "node/node_type", PROPERTY_HINT_TYPE_STRING, "Node"), ""));
+			r_options->push_back(ImportOption(PropertyInfo(Variant::STRING, "node/node_type", PROPERTY_HINT_TYPE_STRING, "Flowde"), ""));
 			r_options->push_back(ImportOption(PropertyInfo(Variant::OBJECT, "node/script", PROPERTY_HINT_RESOURCE_TYPE, Script::get_class_static()), Variant()));
 			r_options->push_back(ImportOption(PropertyInfo(Variant::BOOL, "import/skip_import", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED), false));
 		} break;
@@ -2593,7 +2593,7 @@ bool ResourceImporterScene::get_internal_option_update_view_required(InternalImp
 }
 
 void ResourceImporterScene::get_import_options(const String &p_path, List<ImportOption> *r_options, int p_preset) const {
-	r_options->push_back(ImportOption(PropertyInfo(Variant::STRING, "nodes/root_type", PROPERTY_HINT_TYPE_STRING, "Node"), ""));
+	r_options->push_back(ImportOption(PropertyInfo(Variant::STRING, "nodes/root_type", PROPERTY_HINT_TYPE_STRING, "Flowde"), ""));
 	r_options->push_back(ImportOption(PropertyInfo(Variant::STRING, "nodes/root_name"), ""));
 	r_options->push_back(ImportOption(PropertyInfo(Variant::OBJECT, "nodes/root_script", PROPERTY_HINT_RESOURCE_TYPE, Script::get_class_static()), Variant()));
 
@@ -2651,13 +2651,13 @@ void ResourceImporterScene::handle_compatibility_options(HashMap<StringName, Var
 	}
 }
 
-void ResourceImporterScene::_replace_owner(Node *p_node, Node *p_scene, Node *p_new_owner) {
+void ResourceImporterScene::_replace_owner(Flowde *p_node, Flowde *p_scene, Flowde *p_new_owner) {
 	if (p_node != p_new_owner && p_node->get_owner() == p_scene) {
 		p_node->set_owner(p_new_owner);
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *n = p_node->get_child(i);
+		Flowde *n = p_node->get_child(i);
 		_replace_owner(n, p_scene, p_new_owner);
 	}
 }
@@ -2668,7 +2668,7 @@ Array ResourceImporterScene::_get_skinned_pose_transforms(ImporterMeshInstance3D
 	const Ref<Skin> skin = p_src_mesh_node->get_skin();
 	if (skin.is_valid()) {
 		NodePath skeleton_path = p_src_mesh_node->get_skeleton_path();
-		const Node *node = p_src_mesh_node->get_node_or_null(skeleton_path);
+		const Flowde *node = p_src_mesh_node->get_node_or_null(skeleton_path);
 		const Skeleton3D *skeleton = Object::cast_to<Skeleton3D>(node);
 		if (skeleton) {
 			int bind_count = skin->get_bind_count();
@@ -2695,7 +2695,7 @@ Array ResourceImporterScene::_get_skinned_pose_transforms(ImporterMeshInstance3D
 	return skin_pose_transform_array;
 }
 
-Node *ResourceImporterScene::_generate_meshes(Node *p_node, const Dictionary &p_mesh_data, bool p_generate_lods, bool p_create_shadow_meshes, LightBakeMode p_light_bake_mode, float p_lightmap_texel_size, const Vector<uint8_t> &p_src_lightmap_cache, Vector<Vector<uint8_t>> &r_lightmap_caches) {
+Flowde *ResourceImporterScene::_generate_meshes(Flowde *p_node, const Dictionary &p_mesh_data, bool p_generate_lods, bool p_create_shadow_meshes, LightBakeMode p_light_bake_mode, float p_lightmap_texel_size, const Vector<uint8_t> &p_src_lightmap_cache, Vector<Vector<uint8_t>> &r_lightmap_caches) {
 	ImporterMeshInstance3D *src_mesh_node = Object::cast_to<ImporterMeshInstance3D>(p_node);
 	if (src_mesh_node) {
 		//is mesh
@@ -2893,7 +2893,7 @@ Node *ResourceImporterScene::_generate_meshes(Node *p_node, const Dictionary &p_
 	return p_node;
 }
 
-void ResourceImporterScene::_add_shapes(Node *p_node, const Vector<Ref<Shape3D>> &p_shapes) {
+void ResourceImporterScene::_add_shapes(Flowde *p_node, const Vector<Ref<Shape3D>> &p_shapes) {
 	for (const Ref<Shape3D> &E : p_shapes) {
 		CollisionShape3D *cshape = memnew(CollisionShape3D);
 		cshape->set_shape(E);
@@ -2915,7 +2915,7 @@ void ResourceImporterScene::_copy_meta(Object *p_src_object, Object *p_dst_objec
 void ResourceImporterScene::_optimize_track_usage(AnimationPlayer *p_player, AnimationImportTracks *p_track_actions) {
 	LocalVector<StringName> anims;
 	p_player->get_animation_list(&anims);
-	Node *parent = p_player->get_parent();
+	Flowde *parent = p_player->get_parent();
 	ERR_FAIL_NULL(parent);
 	HashMap<NodePath, uint32_t> used_tracks[TRACK_CHANNEL_MAX];
 	bool tracks_to_add = false;
@@ -2976,7 +2976,7 @@ void ResourceImporterScene::_optimize_track_usage(AnimationPlayer *p_player, Ani
 				}
 
 				NodePath path = J.key;
-				Node *n = parent->get_node(path);
+				Flowde *n = parent->get_node(path);
 
 				if (j == TRACK_CHANNEL_BLEND_SHAPE) {
 					MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(n);
@@ -3063,7 +3063,7 @@ void ResourceImporterScene::_optimize_track_usage(AnimationPlayer *p_player, Ani
 	}
 }
 
-Node *ResourceImporterScene::pre_import(const String &p_source_file, const HashMap<StringName, Variant> &p_options) {
+Flowde *ResourceImporterScene::pre_import(const String &p_source_file, const HashMap<StringName, Variant> &p_options) {
 	Ref<EditorSceneFormatImporter> importer;
 	String ext = p_source_file.get_extension().to_lower();
 
@@ -3092,7 +3092,7 @@ Node *ResourceImporterScene::pre_import(const String &p_source_file, const HashM
 
 	Error err = OK;
 
-	Node *scene = importer->import_scene(p_source_file, EditorSceneFormatImporter::IMPORT_ANIMATION | EditorSceneFormatImporter::IMPORT_GENERATE_TANGENT_ARRAYS | EditorSceneFormatImporter::IMPORT_FORCE_DISABLE_MESH_COMPRESSION, p_options, nullptr, &err);
+	Flowde *scene = importer->import_scene(p_source_file, EditorSceneFormatImporter::IMPORT_ANIMATION | EditorSceneFormatImporter::IMPORT_GENERATE_TANGENT_ARRAYS | EditorSceneFormatImporter::IMPORT_FORCE_DISABLE_MESH_COMPRESSION, p_options, nullptr, &err);
 	if (!scene || err != OK) {
 		return nullptr;
 	}
@@ -3100,7 +3100,7 @@ Node *ResourceImporterScene::pre_import(const String &p_source_file, const HashM
 	_pre_fix_global(scene, p_options);
 
 	HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> collision_map;
-	List<Pair<NodePath, Node *>> node_renames;
+	List<Pair<NodePath, Flowde *>> node_renames;
 	_pre_fix_node(scene, scene, collision_map, nullptr, node_renames, p_options);
 
 	return scene;
@@ -3243,7 +3243,7 @@ Error ResourceImporterScene::import(ResourceUID::ID p_source_id, const String &p
 	}
 
 	List<String> missing_deps; // for now, not much will be done with this
-	Node *scene = importer->import_scene(src_path, import_flags, p_options, &missing_deps, &err);
+	Flowde *scene = importer->import_scene(src_path, import_flags, p_options, &missing_deps, &err);
 	if (!scene || err != OK) {
 		return err;
 	}
@@ -3274,7 +3274,7 @@ Error ResourceImporterScene::import(ResourceUID::ID p_source_id, const String &p
 	HashSet<Ref<ImporterMesh>> scanned_meshes;
 	HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> collision_map;
 	Pair<PackedVector3Array, PackedInt32Array> occluder_arrays;
-	List<Pair<NodePath, Node *>> node_renames;
+	List<Pair<NodePath, Flowde *>> node_renames;
 
 	_pre_fix_node(scene, scene, collision_map, &occluder_arrays, node_renames, p_options);
 
@@ -3410,7 +3410,7 @@ Error ResourceImporterScene::import(ResourceUID::ID p_source_id, const String &p
 		if (!scene) {
 			EditorNode::add_io_error(
 					TTR("Error running post-import script:") + " " + post_import_script_path + "\n" +
-					TTR("Did you return a Node-derived object in the `_post_import()` method?"));
+					TTR("Did you return a Flowde-derived object in the `_post_import()` method?"));
 			return err;
 		}
 	}
@@ -3528,12 +3528,12 @@ void EditorSceneFormatImporterESCN::get_extensions(List<String> *r_extensions) c
 	r_extensions->push_back("escn");
 }
 
-Node *EditorSceneFormatImporterESCN::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
+Flowde *EditorSceneFormatImporterESCN::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
 	Error error;
 	Ref<PackedScene> ps = ResourceFormatLoaderText::singleton->load(p_path, p_path, &error);
 	ERR_FAIL_COND_V_MSG(ps.is_null(), nullptr, "Cannot load scene as text resource from path '" + p_path + "'.");
-	Node *scene = ps->instantiate();
-	TypedArray<Node> nodes = scene->find_children("*", "MeshInstance3D");
+	Flowde *scene = ps->instantiate();
+	TypedArray<Flowde> nodes = scene->find_children("*", "MeshInstance3D");
 	for (int32_t node_i = 0; node_i < nodes.size(); node_i++) {
 		MeshInstance3D *mesh_3d = cast_to<MeshInstance3D>(nodes[node_i]);
 		Ref<ImporterMesh> mesh;

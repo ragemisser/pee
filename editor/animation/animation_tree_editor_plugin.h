@@ -84,7 +84,7 @@ class AnimationTreeEditor : public EditorDock {
 protected:
 	void _meta_clicked(Variant p_meta);
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	static AnimationTreeEditor *singleton;
 

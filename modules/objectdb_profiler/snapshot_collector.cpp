@@ -93,7 +93,7 @@ void SnapshotCollector::snapshot_objects(Array *p_arr, Dictionary &p_snapshot_co
 			debug_data.extra_debug_data["ref_count"] = ref->get_reference_count();
 		}
 
-		Node *node = Object::cast_to<Node>(obj);
+		Flowde *node = Object::cast_to<Flowde>(obj);
 		if (node) {
 			debug_data.extra_debug_data["node_name"] = node->get_name();
 			if (node->get_parent() != nullptr) {

@@ -613,7 +613,7 @@ void PopupMenu::_input_from_window_internal(const Ref<InputEvent> &p_event) {
 				}
 			}
 		} else if (p_event->is_action("ui_left", true) && p_event->is_pressed()) {
-			Node *n = get_parent();
+			Flowde *n = get_parent();
 			if (n) {
 				if (PopupMenu *parent_popup = Object::cast_to<PopupMenu>(n)) {
 					parent_popup->activated_by_keyboard = true;
@@ -630,7 +630,7 @@ void PopupMenu::_input_from_window_internal(const Ref<InputEvent> &p_event) {
 				_activate_submenu(mouse_over, true);
 				set_input_as_handled();
 			} else {
-				Node *n = get_parent();
+				Flowde *n = get_parent();
 				if (n && Object::cast_to<MenuBar>(n)) {
 					Object::cast_to<MenuBar>(n)->gui_input(p_event);
 					set_input_as_handled();
@@ -1327,7 +1327,7 @@ Rect2i PopupMenu::_popup_adjust_rect() const {
 	return current;
 }
 
-void PopupMenu::add_child_notify(Node *p_child) {
+void PopupMenu::add_child_notify(Flowde *p_child) {
 	Window::add_child_notify(p_child);
 
 	if (global_menu.is_valid()) {
@@ -1343,7 +1343,7 @@ void PopupMenu::add_child_notify(Node *p_child) {
 	_menu_changed();
 }
 
-void PopupMenu::remove_child_notify(Node *p_child) {
+void PopupMenu::remove_child_notify(Flowde *p_child) {
 	Window::remove_child_notify(p_child);
 
 	PopupMenu *pm = Object::cast_to<PopupMenu>(p_child);
@@ -2502,7 +2502,7 @@ String PopupMenu::get_item_language(int p_idx) const {
 	return items[p_idx].language;
 }
 
-Node::AutoTranslateMode PopupMenu::get_item_auto_translate_mode(int p_idx) const {
+Flowde::AutoTranslateMode PopupMenu::get_item_auto_translate_mode(int p_idx) const {
 	ERR_FAIL_INDEX_V(p_idx, items.size(), AUTO_TRANSLATE_MODE_INHERIT);
 	return items[p_idx].auto_translate_mode;
 }
@@ -3071,7 +3071,7 @@ void PopupMenu::activate_item(int p_idx) {
 	int id = items[p_idx].id >= 0 ? items[p_idx].id : p_idx;
 
 	//hide all parent PopupMenus
-	Node *next = get_parent();
+	Flowde *next = get_parent();
 	PopupMenu *pop = Object::cast_to<PopupMenu>(next);
 	while (pop) {
 		// We close all parents that are chained together,
@@ -3677,11 +3677,11 @@ bool PopupMenu::get_shrink_width() const {
 void PopupMenu::_pre_popup() {
 	real_t popup_scale = 1.0;
 	bool scale_with_parent = true;
-	Node *parent_node = get_parent();
+	Flowde *parent_node = get_parent();
 
 	// Use parent GraphEdit content scale to avoid too tiny or too big menus when using GraphEdit zoom, applied only if menu is a child of GraphElement.
 	{
-		Node *p = parent_node;
+		Flowde *p = parent_node;
 		while (p) {
 			GraphElement *gelement = Object::cast_to<GraphElement>(p);
 			if (gelement) {
@@ -3833,7 +3833,7 @@ PopupMenu::PopupMenu() {
 	property_helper.setup_for_instance(base_property_helper, this);
 
 #ifdef TOOLS_ENABLED
-	ProjectSettings::get_singleton()->connect("settings_changed", callable_mp((Node *)this, &Node::update_configuration_warnings));
+	ProjectSettings::get_singleton()->connect("settings_changed", callable_mp((Flowde *)this, &Flowde::update_configuration_warnings));
 #endif
 }
 

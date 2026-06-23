@@ -93,7 +93,7 @@ void ViewportTexture::setup_local_to_scene() {
 		return;
 	}
 
-	Node *loc_scene = get_local_scene();
+	Flowde *loc_scene = get_local_scene();
 	if (!loc_scene) {
 		return;
 	}
@@ -208,11 +208,11 @@ void ViewportTexture::_err_print_viewport_not_set() const {
 	}
 }
 
-void ViewportTexture::_setup_local_to_scene(const Node *p_loc_scene) {
+void ViewportTexture::_setup_local_to_scene(const Flowde *p_loc_scene) {
 	// Always reset this, even if this call fails with an error.
 	vp_pending = false;
 
-	Node *vpn = p_loc_scene->get_node_or_null(path);
+	Flowde *vpn = p_loc_scene->get_node_or_null(path);
 	ERR_FAIL_NULL_MSG(vpn, "Path to node is invalid: '" + String(path) + "'.");
 	vp = Object::cast_to<Viewport>(vpn);
 	ERR_FAIL_NULL_MSG(vp, "Path to node does not point to a viewport: '" + String(path) + "'.");
@@ -266,9 +266,9 @@ void Viewport::_process_dirty_canvas_parent_orders() {
 			continue; // May have been deleted.
 		}
 
-		Node *n = static_cast<Node *>(obj);
+		Flowde *n = static_cast<Flowde *>(obj);
 		for (int i = 0; i < n->get_child_count(); i++) {
-			Node *c = n->get_child(i);
+			Flowde *c = n->get_child(i);
 			CanvasItem *ci = Object::cast_to<CanvasItem>(c);
 			if (ci) {
 				ci->update_draw_order();
@@ -561,7 +561,7 @@ void Viewport::_update_viewport_path() {
 	}
 
 	for (ViewportTexture *E : viewport_textures) {
-		Node *loc_scene = E->get_local_scene();
+		Flowde *loc_scene = E->get_local_scene();
 		if (loc_scene && loc_scene->is_inside_tree()) {
 			E->path = loc_scene->get_path_to(this);
 		}
@@ -1252,7 +1252,7 @@ Rect2 Viewport::get_visible_rect() const {
 	return r;
 }
 
-void Viewport::canvas_parent_mark_dirty(Node *p_node) {
+void Viewport::canvas_parent_mark_dirty(Flowde *p_node) {
 	ERR_MAIN_THREAD_GUARD;
 	bool request_update = gui.canvas_parents_with_dirty_order.is_empty();
 	gui.canvas_parents_with_dirty_order.insert(p_node->get_instance_id());
@@ -1366,12 +1366,12 @@ Ref<World2D> Viewport::find_world_2d() const {
 	}
 }
 
-void Viewport::_propagate_drag_notification(Node *p_node, int p_what) {
+void Viewport::_propagate_drag_notification(Flowde *p_node, int p_what) {
 	// Send notification to p_node and all children and descendant nodes of p_node, except to SubViewports which are not children of a SubViewportContainer.
 	p_node->notification(p_what);
 	bool is_svc = Object::cast_to<SubViewportContainer>(p_node);
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *c = p_node->get_child(i);
+		Flowde *c = p_node->get_child(i);
 		if (!is_svc && Object::cast_to<SubViewport>(c)) {
 			continue;
 		}
@@ -1393,7 +1393,7 @@ Transform2D Viewport::get_final_transform() const {
 	return stretch_transform * global_canvas_transform;
 }
 
-void Viewport::_update_canvas_items(Node *p_node) {
+void Viewport::_update_canvas_items(Flowde *p_node) {
 	if (p_node != this) {
 		Window *w = Object::cast_to<Window>(p_node);
 		if (w && (!w->is_inside_tree() || !w->is_embedded())) {
@@ -2711,7 +2711,7 @@ Window *Viewport::get_base_window() {
 	return w;
 }
 
-void Viewport::_gui_remove_focus_for_window(Node *p_window) {
+void Viewport::_gui_remove_focus_for_window(Flowde *p_window) {
 	if (get_base_window() == p_window) {
 		gui_release_focus();
 	}
@@ -3764,7 +3764,7 @@ Variant Viewport::gui_get_drag_data() const {
 
 PackedStringArray Viewport::get_configuration_warnings() const {
 	ERR_MAIN_THREAD_GUARD_V(PackedStringArray());
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (size.x <= 1 || size.y <= 1) {
 		warnings.push_back(RTR("The Viewport size must be greater than or equal to 2 pixels on both dimensions to render anything."));
@@ -4051,7 +4051,7 @@ void Viewport::_refresh_texture_filter_cache() const {
 			default_canvas_item_texture_filter_cache = RSE::CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS;
 		} break;
 		case DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_PARENT_NODE: {
-			Node *p = get_parent();
+			Flowde *p = get_parent();
 			CanvasItem *parent_ci = Object::cast_to<CanvasItem>(p);
 			if (parent_ci) {
 				default_canvas_item_texture_filter_cache = (RenderingServerEnums::CanvasItemTextureFilter)parent_ci->get_texture_filter_in_tree();
@@ -4080,7 +4080,7 @@ void Viewport::_update_texture_filter_changed(bool p_propagate) {
 	RS::get_singleton()->viewport_set_default_canvas_item_texture_filter(viewport, default_canvas_item_texture_filter_cache);
 
 	if (p_propagate) {
-		for (Node *c : iterate_children()) {
+		for (Flowde *c : iterate_children()) {
 			CanvasItem *child_ci = Object::cast_to<CanvasItem>(c);
 			if (child_ci) {
 				if (child_ci->texture_filter == CanvasItem::TEXTURE_FILTER_PARENT_NODE) {
@@ -4134,7 +4134,7 @@ void Viewport::_refresh_texture_repeat_cache() const {
 			default_canvas_item_texture_repeat_cache = RSE::CANVAS_ITEM_TEXTURE_REPEAT_MIRROR;
 		} break;
 		case DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_PARENT_NODE: {
-			Node *p = get_parent();
+			Flowde *p = get_parent();
 			CanvasItem *parent_ci = Object::cast_to<CanvasItem>(p);
 			if (parent_ci) {
 				default_canvas_item_texture_repeat_cache = (RenderingServerEnums::CanvasItemTextureRepeat)parent_ci->get_texture_repeat_in_tree();
@@ -4163,7 +4163,7 @@ void Viewport::_update_texture_repeat_changed(bool p_propagate) {
 	RS::get_singleton()->viewport_set_default_canvas_item_texture_repeat(viewport, default_canvas_item_texture_repeat_cache);
 
 	if (p_propagate) {
-		for (Node *c : iterate_children()) {
+		for (Flowde *c : iterate_children()) {
 			CanvasItem *child_ci = Object::cast_to<CanvasItem>(c);
 			if (child_ci) {
 				if (child_ci->texture_repeat == CanvasItem::TEXTURE_REPEAT_PARENT_NODE) {
@@ -4585,10 +4585,10 @@ Camera2D *Viewport::get_camera_2d() const {
 
 void Viewport::assign_next_enabled_camera_2d(const StringName &p_camera_group) {
 	ERR_MAIN_THREAD_GUARD;
-	Vector<Node *> camera_list = get_tree()->get_nodes_in_group(p_camera_group);
+	Vector<Flowde *> camera_list = get_tree()->get_nodes_in_group(p_camera_group);
 
 	Camera2D *new_camera = nullptr;
-	for (Node *E : camera_list) {
+	for (Flowde *E : camera_list) {
 		Camera2D *cam = Object::cast_to<Camera2D>(E);
 		if (!cam) {
 			continue; // Non-camera node (e.g. ParallaxBackground).
@@ -4962,7 +4962,7 @@ bool Viewport::is_using_own_world_3d() const {
 	return own_world_3d.is_valid();
 }
 
-void Viewport::_propagate_enter_world_3d(Node *p_node) {
+void Viewport::_propagate_enter_world_3d(Flowde *p_node) {
 	if (p_node != this) {
 		if (!p_node->is_inside_tree()) { //may not have entered scene yet
 			return;
@@ -4985,7 +4985,7 @@ void Viewport::_propagate_enter_world_3d(Node *p_node) {
 	}
 }
 
-void Viewport::_propagate_exit_world_3d(Node *p_node) {
+void Viewport::_propagate_exit_world_3d(Flowde *p_node) {
 	if (p_node != this) {
 		if (!p_node->is_inside_tree()) { //may have exited scene already
 			return;
@@ -5128,7 +5128,7 @@ Viewport::AnisotropicFiltering Viewport::get_anisotropic_filtering_level() const
 
 #endif // _3D_DISABLED
 
-void Viewport::_propagate_world_2d_changed(Node *p_node) {
+void Viewport::_propagate_world_2d_changed(Flowde *p_node) {
 	if (p_node != this) {
 		if (Object::cast_to<CanvasItem>(p_node)) {
 			p_node->notification(CanvasItem::NOTIFICATION_WORLD_2D_CHANGED);
@@ -5589,7 +5589,7 @@ Viewport::Viewport() {
 	// and Controls default to PHYSICS_INTERPOLATION_MODE_OFF.
 	// Viewports can thus inherit physics interpolation OFF, which is unexpected.
 	// Setting to ON allows each viewport to have a fresh interpolation state.
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_ON);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_ON);
 
 	ProjectSettings::get_singleton()->connect("settings_changed", callable_mp(this, &Viewport::_on_settings_changed));
 }
@@ -5849,7 +5849,7 @@ void Viewport::CameraOverride<T>::enable(Viewport *p_viewport, const T *p_curren
 
 	T *override_camera = memnew(T);
 	override_camera->set_name(vformat("Override%s", T ::get_class_static()));
-	p_viewport->add_child(override_camera, false, Node::INTERNAL_MODE_BACK);
+	p_viewport->add_child(override_camera, false, Flowde::INTERNAL_MODE_BACK);
 
 	override_camera->make_current();
 	set_overridden_camera(p_current_camera);

@@ -371,7 +371,7 @@ void AnimationNodeStateMachineEditor::_state_machine_gui_input(const Ref<InputEv
 			updating = true;
 
 			EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-			undo_redo->create_action(TTR("Move Node"));
+			undo_redo->create_action(TTR("Move Flowde"));
 
 			for (int i = 0; i < node_rects.size(); i++) {
 				if (!selected_nodes.has(node_rects[i].node_name)) {
@@ -969,7 +969,7 @@ void AnimationNodeStateMachineEditor::_add_menu_type(int p_index) {
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Add Node and Transition"));
+	undo_redo->create_action(TTR("Add Flowde and Transition"));
 	undo_redo->add_do_method(state_machine.ptr(), "add_node", name, node, add_node_pos);
 	undo_redo->add_undo_method(state_machine.ptr(), "remove_node", name);
 	connecting_to_node = name;
@@ -998,7 +998,7 @@ void AnimationNodeStateMachineEditor::_add_animation_type(int p_index) {
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Add Node and Transition"));
+	undo_redo->create_action(TTR("Add Flowde and Transition"));
 	undo_redo->add_do_method(state_machine.ptr(), "add_node", name, anim, add_node_pos);
 	undo_redo->add_undo_method(state_machine.ptr(), "remove_node", name);
 	connecting_to_node = name;
@@ -1864,7 +1864,7 @@ void AnimationNodeStateMachineEditor::_name_edited(const String &p_text) {
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Node Renamed"));
+	undo_redo->create_action(TTR("Flowde Renamed"));
 	undo_redo->add_do_method(state_machine.ptr(), "rename_node", prev_name, name);
 	undo_redo->add_undo_method(state_machine.ptr(), "rename_node", name, prev_name);
 	undo_redo->add_do_method(this, "_update_graph");
@@ -1901,7 +1901,7 @@ void AnimationNodeStateMachineEditor::_erase_selected(const bool p_nested_action
 			updating = true;
 		}
 		EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-		undo_redo->create_action(TTR("Node Removed"));
+		undo_redo->create_action(TTR("Flowde Removed"));
 
 		for (int i = 0; i < node_rects.size(); i++) {
 			if (node_rects[i].node_name == SceneStringName(Start) || node_rects[i].node_name == SceneStringName(End)) {
@@ -2184,7 +2184,7 @@ AnimationNodeStateMachineEditor::AnimationNodeStateMachineEditor() {
 
 	open_file = memnew(EditorFileDialog);
 	add_child(open_file);
-	open_file->set_title(TTR("Open Animation Node"));
+	open_file->set_title(TTR("Open Animation Flowde"));
 	open_file->set_file_mode(EditorFileDialog::FILE_MODE_OPEN_FILE);
 	open_file->connect("file_selected", callable_mp(this, &AnimationNodeStateMachineEditor::_file_opened));
 }

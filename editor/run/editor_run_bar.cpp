@@ -280,7 +280,7 @@ void EditorRunBar::_run_scene(const String &p_scene_path, const Vector<String> &
 	String write_movie_file;
 	if (is_movie_maker_enabled()) {
 		if (current_mode == RUN_CURRENT) {
-			Node *scene_root = nullptr;
+			Flowde *scene_root = nullptr;
 			if (p_scene_path.is_empty()) {
 				scene_root = get_tree()->get_edited_scene_root();
 			} else {
@@ -323,7 +323,7 @@ void EditorRunBar::_run_scene(const String &p_scene_path, const Vector<String> &
 				break;
 			}
 
-			Node *scene_root = get_tree()->get_edited_scene_root();
+			Flowde *scene_root = get_tree()->get_edited_scene_root();
 			if (!scene_root) {
 				EditorNode::get_singleton()->show_accept(TTR("There is no defined scene to run."), TTR("OK"));
 				return;

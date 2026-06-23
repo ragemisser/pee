@@ -56,7 +56,7 @@ protected:
 	String handled_type;
 	String conversion_option_name;
 
-	Node *edited_node = nullptr;
+	Flowde *edited_node = nullptr;
 
 	void _notification(int p_what);
 
@@ -64,7 +64,7 @@ protected:
 	virtual void _menu_callback(int p_idx);
 
 	virtual void _add_menu_options(PopupMenu *p_menu) {}
-	virtual Node *_convert_particles() = 0;
+	virtual Flowde *_convert_particles() = 0;
 
 public:
 	virtual void edit(Object *p_object) override;

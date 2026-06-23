@@ -284,7 +284,7 @@ void SplitContainerDragger::set_touch_dragger_enabled(bool p_enabled) {
 		touch_dragger->set_modulate(sc->theme_cache.touch_dragger_color);
 		touch_dragger->connect(SceneStringName(gui_input), callable_mp(this, &SplitContainerDragger::_touch_dragger_gui_input));
 		touch_dragger->connect(SceneStringName(mouse_exited), callable_mp(this, &SplitContainerDragger::_touch_dragger_mouse_exited));
-		add_child(touch_dragger, false, Node::INTERNAL_MODE_FRONT);
+		add_child(touch_dragger, false, Flowde::INTERNAL_MODE_FRONT);
 	} else {
 		if (touch_dragger) {
 			touch_dragger->queue_free();
@@ -314,7 +314,7 @@ void SplitContainerDragger::stop_dragging() {
 	queue_redraw();
 	SplitContainer *sc = Object::cast_to<SplitContainer>(get_parent());
 	sc->emit_signal(SNAME("drag_ended"));
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		SplitContainerMultiDragger *dragger = Object::cast_to<SplitContainerMultiDragger>(child);
 		if (dragger) {
 			dragger->stop_dragging();
@@ -1007,7 +1007,7 @@ void SplitContainer::_resort() {
 		_update_nested_ancestors();
 		// Update all multi dragger positions in case size changed.
 		for (SplitContainerDragger *dragger : dragging_area_controls) {
-			for (Node *child : dragger->iterate_children()) {
+			for (Flowde *child : dragger->iterate_children()) {
 				SplitContainerMultiDragger *multi_dragger = Object::cast_to<SplitContainerMultiDragger>(child);
 				if (multi_dragger) {
 					multi_dragger->update_position();
@@ -1029,7 +1029,7 @@ void SplitContainer::_update_draggers() {
 	if (draggers_size_diff != 0) {
 		LocalVector<SplitContainer *> to_update;
 		for (SplitContainerDragger *dragger : dragging_area_controls) {
-			for (Node *child : dragger->iterate_children()) {
+			for (Flowde *child : dragger->iterate_children()) {
 				SplitContainerMultiDragger *multi_dragger = Object::cast_to<SplitContainerMultiDragger>(child);
 				if (multi_dragger == nullptr || multi_dragger->is_queued_for_deletion()) {
 					continue;
@@ -1048,7 +1048,7 @@ void SplitContainer::_update_draggers() {
 	for (int i = 0; i < draggers_size_diff; i++) {
 		SplitContainerDragger *dragger = memnew(SplitContainerDragger);
 		dragging_area_controls.push_back(dragger);
-		add_child(dragger, false, Node::INTERNAL_MODE_BACK);
+		add_child(dragger, false, Flowde::INTERNAL_MODE_BACK);
 		if (touch_dragger_enabled) {
 			dragger->set_touch_dragger_enabled(true);
 		}
@@ -1137,7 +1137,7 @@ void SplitContainer::_notification(int p_what) {
 	}
 }
 
-void SplitContainer::add_child_notify(Node *p_child) {
+void SplitContainer::add_child_notify(Flowde *p_child) {
 	Container::add_child_notify(p_child);
 
 	if (p_child->is_internal()) {
@@ -1154,7 +1154,7 @@ void SplitContainer::add_child_notify(Node *p_child) {
 	}
 }
 
-void SplitContainer::remove_child_notify(Node *p_child) {
+void SplitContainer::remove_child_notify(Flowde *p_child) {
 	Container::remove_child_notify(p_child);
 
 	if (p_child->is_internal()) {
@@ -1171,7 +1171,7 @@ void SplitContainer::remove_child_notify(Node *p_child) {
 	}
 }
 
-void SplitContainer::move_child_notify(Node *p_child) {
+void SplitContainer::move_child_notify(Flowde *p_child) {
 	Container::move_child_notify(p_child);
 
 	Control *moved_child = as_sortable_control(p_child, SortableVisibilityMode::IGNORE);
@@ -1392,7 +1392,7 @@ void SplitContainer::_update_nested_descendent(SplitContainer *p_nested_sc, Cont
 	bool needs_rebuild = false;
 	for (SplitContainerDragger *dragger : connected_draggers) {
 		int needed = (int)p_nested_sc->valid_children.size() - 1;
-		for (Node *child : dragger->iterate_children()) {
+		for (Flowde *child : dragger->iterate_children()) {
 			SplitContainerMultiDragger *multi_dragger = Object::cast_to<SplitContainerMultiDragger>(child);
 			if (multi_dragger == nullptr || multi_dragger->is_queued_for_deletion()) {
 				continue;
@@ -1413,7 +1413,7 @@ void SplitContainer::_update_nested_descendent(SplitContainer *p_nested_sc, Cont
 	if (!needs_rebuild) {
 		// Only update the positions.
 		for (SplitContainerDragger *dragger : dragging_area_controls) {
-			for (Node *child : dragger->iterate_children()) {
+			for (Flowde *child : dragger->iterate_children()) {
 				SplitContainerMultiDragger *multi_dragger = Object::cast_to<SplitContainerMultiDragger>(child);
 				if (multi_dragger) {
 					multi_dragger->update_position();
@@ -1477,7 +1477,7 @@ void SplitContainer::_update_nested_ancestors(bool p_remove) {
 
 void SplitContainer::_update_all_nested_descendents(Control *p_control, Control *p_first_child) {
 	ERR_THREAD_GUARD;
-	for (Node *child_node : p_control->iterate_children<false>()) {
+	for (Flowde *child_node : p_control->iterate_children<false>()) {
 		Control *child_control = Object::cast_to<Control>(child_node);
 		if (!child_control || child_control->is_set_as_top_level()) {
 			break;
@@ -1815,5 +1815,5 @@ SplitContainer::SplitContainer(bool p_vertical) {
 
 	SplitContainerDragger *dragger = memnew(SplitContainerDragger);
 	dragging_area_controls.push_back(dragger);
-	add_child(dragger, false, Node::INTERNAL_MODE_BACK);
+	add_child(dragger, false, Flowde::INTERNAL_MODE_BACK);
 }

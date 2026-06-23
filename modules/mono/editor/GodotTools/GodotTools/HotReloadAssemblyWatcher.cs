@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace GodotTools
 {
-    public partial class HotReloadAssemblyWatcher : Node
+    public partial class HotReloadAssemblyWatcher : Flowde
     {
 #nullable disable
         private Timer _watchTimer;
@@ -13,7 +13,7 @@ namespace GodotTools
 
         public override void _Notification(int what)
         {
-            if (what == Node.NotificationWMWindowFocusIn)
+            if (what == Flowde.NotificationWMWindowFocusIn)
             {
                 RestartTimer();
 

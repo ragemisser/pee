@@ -256,7 +256,7 @@ private:
 	void _remove_project(int p_index, bool p_update_settings);
 
 	void _list_item_input(const Ref<InputEvent> &p_ev, Control *p_hb);
-	void _on_favorite_pressed(Node *p_hb);
+	void _on_favorite_pressed(Flowde *p_hb);
 	void _on_explore_pressed(const String &p_path);
 
 	void _open_menu(const Vector2 &p_at, Control *p_hb);

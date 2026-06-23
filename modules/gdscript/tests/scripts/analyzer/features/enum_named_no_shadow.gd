@@ -8,9 +8,9 @@ class Parent:
 	enum NamedEnum2 { F }
 
 class Child extends Parent:
-	enum TestEnum { A, B, C, D, E, F, Node, Object, Child, Parent}
+	enum TestEnum { A, B, C, D, E, F, Flowde, Object, Child, Parent}
 
 func test():
 	print(A, B, NamedEnum.C, Parent.D, Parent.E, Parent.NamedEnum2.F)
 	print(Child.TestEnum.A, Child.TestEnum.B, Child.TestEnum.C, Child.TestEnum.D, Child.TestEnum.E, Child.TestEnum.F)
-	print(Child.TestEnum.Node, Child.TestEnum.Object, Child.TestEnum.Child, Child.TestEnum.Parent)
+	print(Child.TestEnum.Flowde, Child.TestEnum.Object, Child.TestEnum.Child, Child.TestEnum.Parent)

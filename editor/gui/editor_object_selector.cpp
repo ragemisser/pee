@@ -148,8 +148,8 @@ void EditorObjectSelector::update_path() {
 				}
 			} else if (obj->is_class("EditorDebuggerRemoteObjects")) {
 				name = obj->call("get_title");
-			} else if (Object::cast_to<Node>(obj)) {
-				name = Object::cast_to<Node>(obj)->get_name();
+			} else if (Object::cast_to<Flowde>(obj)) {
+				name = Object::cast_to<Flowde>(obj)->get_name();
 			} else if (Object::cast_to<Resource>(obj) && !Object::cast_to<Resource>(obj)->get_name().is_empty()) {
 				name = Object::cast_to<Resource>(obj)->get_name();
 			} else {

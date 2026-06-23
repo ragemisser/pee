@@ -1677,7 +1677,7 @@ void FileDialog::_update_drives(bool p_select) {
 	} else {
 		PopupMenu *pm = drives->get_popup();
 		pm->clear();
-		Node *dp = drives->get_parent();
+		Flowde *dp = drives->get_parent();
 		if (dp) {
 			dp->remove_child(drives);
 		}
@@ -1970,12 +1970,12 @@ void FileDialog::_update_option_controls() {
 	options_dirty = false;
 
 	while (flow_checkbox_options->get_child_count() > 0) {
-		Node *child = flow_checkbox_options->get_child(0);
+		Flowde *child = flow_checkbox_options->get_child(0);
 		flow_checkbox_options->remove_child(child);
 		child->queue_free();
 	}
 	while (grid_select_options->get_child_count() > 0) {
-		Node *child = grid_select_options->get_child(0);
+		Flowde *child = grid_select_options->get_child(0);
 		grid_select_options->remove_child(child);
 		child->queue_free();
 	}

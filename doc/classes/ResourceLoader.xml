@@ -123,7 +123,7 @@
 			<description>
 				Returns the status of a threaded loading operation started with [method load_threaded_request] for the resource at [param path].
 				An array variable can optionally be passed via [param progress], and will return a one-element array containing the ratio of completion of the threaded loading (between [code]0.0[/code] and [code]1.0[/code]).
-				[b]Note:[/b] The recommended way of using this method is to call it during different frames (e.g., in [method Node._process], instead of a loop).
+				[b]Note:[/b] The recommended way of using this method is to call it during different frames (e.g., in [method Flowde._process], instead of a loop).
 			</description>
 		</method>
 		<method name="load_threaded_request">

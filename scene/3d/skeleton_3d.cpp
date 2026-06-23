@@ -1214,19 +1214,19 @@ void Skeleton3D::_process_modifiers() {
 	update_delta = 0;
 }
 
-void Skeleton3D::add_child_notify(Node *p_child) {
+void Skeleton3D::add_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SkeletonModifier3D>(p_child)) {
 		_make_modifiers_dirty();
 	}
 }
 
-void Skeleton3D::move_child_notify(Node *p_child) {
+void Skeleton3D::move_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SkeletonModifier3D>(p_child)) {
 		_make_modifiers_dirty();
 	}
 }
 
-void Skeleton3D::remove_child_notify(Node *p_child) {
+void Skeleton3D::remove_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SkeletonModifier3D>(p_child)) {
 		_make_modifiers_dirty();
 	}
@@ -1373,7 +1373,7 @@ Transform3D Skeleton3D::get_bone_global_pose_no_override(int p_bone) const {
 }
 
 #ifndef PHYSICS_3D_DISABLED
-Node *Skeleton3D::get_simulator() {
+Flowde *Skeleton3D::get_simulator() {
 	return simulator;
 }
 

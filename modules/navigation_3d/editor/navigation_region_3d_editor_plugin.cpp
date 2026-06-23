@@ -44,7 +44,7 @@
 #include "scene/main/scene_tree.h"
 #include "servers/navigation_3d/navigation_server_3d.h"
 
-void NavigationRegion3DEditor::_node_removed(Node *p_node) {
+void NavigationRegion3DEditor::_node_removed(Flowde *p_node) {
 	if (selected_regions.is_empty()) {
 		return;
 	}
@@ -274,7 +274,7 @@ void NavigationRegion3DEditorPlugin::edit(Object *p_object) {
 	}
 
 	Ref<MultiNodeEdit> mne = Ref<MultiNodeEdit>(p_object);
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (mne.is_valid() && edited_scene) {
 		for (int i = 0; i < mne->get_node_count(); i++) {
 			NavigationRegion3D *region = Object::cast_to<NavigationRegion3D>(edited_scene->get_node(mne->get_node(i)));
@@ -293,7 +293,7 @@ bool NavigationRegion3DEditorPlugin::handles(Object *p_object) const {
 	}
 
 	Ref<MultiNodeEdit> mne = Ref<MultiNodeEdit>(p_object);
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (mne.is_valid() && edited_scene) {
 		for (int i = 0; i < mne->get_node_count(); i++) {
 			if (Object::cast_to<NavigationRegion3D>(edited_scene->get_node(mne->get_node(i)))) {

@@ -737,7 +737,7 @@ msgstr "Kondi Ümbernimetaja"
 msgid "Rename Bones"
 msgstr "Nimeta Kondid Ümber"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Unikaalne Sõlm"
 
 msgid "Make Unique"
@@ -782,7 +782,7 @@ msgstr "Genereeri Puutujad"
 msgid "Generate LODs"
 msgstr "Looge LOD'd"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Sõlm"
 
 msgid "Script"
@@ -1475,7 +1475,7 @@ msgstr "Vert. Kerimise Kiirus"
 msgid "Drag and Drop Selection"
 msgstr "Lohistage Valik"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Püsi Redaktoris Sõlme Valimisel"
 
 msgid "Indent"
@@ -2003,7 +2003,7 @@ msgstr "Pöörde Kraadid"
 msgid "Spin Sides"
 msgstr "Pöörde Küljed"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Tee Sõlm"
 
 msgid "Path Interval"
@@ -2792,8 +2792,8 @@ msgstr "Sihtmärk"
 msgid "Pose"
 msgstr "Poos"
 
-msgid "Root Node"
-msgstr "Juur Node"
+msgid "Root Flowde"
+msgstr "Juur Flowde"
 
 msgid "Button Group"
 msgstr "Nuppude Grupp"

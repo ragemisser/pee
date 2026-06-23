@@ -32,7 +32,7 @@
 
 #include "editor/settings/editor_command_palette.h"
 
-void GroupsDock::set_selection(const Vector<Node *> &p_nodes) {
+void GroupsDock::set_selection(const Vector<Flowde *> &p_nodes) {
 	groups->set_selection(p_nodes);
 }
 

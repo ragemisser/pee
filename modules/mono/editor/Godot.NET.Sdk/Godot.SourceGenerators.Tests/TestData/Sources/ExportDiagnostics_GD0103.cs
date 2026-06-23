@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ExportDiagnostics_GD0103 : Node
+public partial class ExportDiagnostics_GD0103 : Flowde
 {
     [Export]
     public readonly string {|GD0103:ReadOnlyField|};

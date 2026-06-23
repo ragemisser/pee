@@ -1136,8 +1136,8 @@ void SpriteFramesEditor::_select_animation(const String &p_name, bool p_update_n
 	_update_library();
 }
 
-static void _find_anim_sprites(Node *p_node, List<Node *> *r_nodes, Ref<SpriteFrames> p_sfames) {
-	Node *edited = EditorNode::get_singleton()->get_edited_scene();
+static void _find_anim_sprites(Flowde *p_node, List<Flowde *> *r_nodes, Ref<SpriteFrames> p_sfames) {
+	Flowde *edited = EditorNode::get_singleton()->get_edited_scene();
 	if (!edited) {
 		return;
 	}
@@ -1218,11 +1218,11 @@ void SpriteFramesEditor::_animation_name_edited() {
 }
 
 void SpriteFramesEditor::_rename_node_animation(EditorUndoRedoManager *undo_redo, bool is_undo, const String &p_filter, const String &p_new_animation, const String &p_new_autoplay) {
-	List<Node *> nodes;
+	List<Flowde *> nodes;
 	_find_anim_sprites(EditorNode::get_singleton()->get_edited_scene(), &nodes, Ref<SpriteFrames>(frames));
 
 	if (is_undo) {
-		for (Node *E : nodes) {
+		for (Flowde *E : nodes) {
 			String current_name = E->call("get_animation");
 			if (current_name == p_filter) {
 				undo_redo->force_fixed_history(); // Fixes corner-case when editing SpriteFrames stored as separate file.
@@ -1235,7 +1235,7 @@ void SpriteFramesEditor::_rename_node_animation(EditorUndoRedoManager *undo_redo
 			}
 		}
 	} else {
-		for (Node *E : nodes) {
+		for (Flowde *E : nodes) {
 			String current_name = E->call("get_animation");
 			if (current_name == p_filter) {
 				undo_redo->force_fixed_history();
@@ -2034,9 +2034,9 @@ void SpriteFramesEditor::_remove_sprite_node() {
 }
 
 void SpriteFramesEditor::_fetch_sprite_node() {
-	Node *selected = nullptr;
+	Flowde *selected = nullptr;
 	EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
-	const List<Node *> &top_node_list = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &top_node_list = editor_selection->get_top_selected_node_list();
 	if (top_node_list.size() == 1) {
 		selected = top_node_list.front()->get();
 	}
@@ -2148,7 +2148,7 @@ void SpriteFramesEditor::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("_select_animation", "name", "update_node"), &SpriteFramesEditor::_select_animation, DEFVAL(true));
 }
 
-void SpriteFramesEditor::_node_removed(Node *p_node) {
+void SpriteFramesEditor::_node_removed(Flowde *p_node) {
 	if (animated_sprite) {
 		if (animated_sprite != p_node) {
 			return;

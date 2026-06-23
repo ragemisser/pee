@@ -54,7 +54,7 @@ class EditorSceneFormatImporter : public RefCounted {
 protected:
 	static void _bind_methods();
 
-	Node *import_scene_wrapper(const String &p_path, uint32_t p_flags, const Dictionary &p_options);
+	Flowde *import_scene_wrapper(const String &p_path, uint32_t p_flags, const Dictionary &p_options);
 	Ref<Animation> import_animation_wrapper(const String &p_path, uint32_t p_flags, const Dictionary &p_options);
 
 	GDVIRTUAL0RC_REQUIRED(Vector<String>, _get_extensions)
@@ -76,7 +76,7 @@ public:
 	void add_import_option(const String &p_name, const Variant &p_default_value);
 	void add_import_option_advanced(Variant::Type p_type, const String &p_name, const Variant &p_default_value, PropertyHint p_hint = PROPERTY_HINT_NONE, const String &p_hint_string = String(), int p_usage_flags = PROPERTY_USAGE_DEFAULT);
 	virtual void get_extensions(List<String> *r_extensions) const;
-	virtual Node *import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err = nullptr);
+	virtual Flowde *import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err = nullptr);
 	virtual void get_import_options(const String &p_path, List<ResourceImporter::ImportOption> *r_options);
 	virtual Variant get_option_visibility(const String &p_path, const String &p_scene_import_type, const String &p_option, const HashMap<StringName, Variant> &p_options);
 	virtual void handle_compatibility_options(HashMap<StringName, Variant> &p_import_params) const {}
@@ -92,11 +92,11 @@ class EditorScenePostImport : public RefCounted {
 protected:
 	static void _bind_methods();
 
-	GDVIRTUAL1R(Object *, _post_import, Node *)
+	GDVIRTUAL1R(Object *, _post_import, Flowde *)
 
 public:
 	String get_source_file() const;
-	virtual Node *post_import(Node *p_scene);
+	virtual Flowde *post_import(Flowde *p_scene);
 	virtual void init(const String &p_source_file);
 };
 
@@ -124,11 +124,11 @@ protected:
 	GDVIRTUAL1(_get_internal_import_options, int)
 	GDVIRTUAL3RC(Variant, _get_internal_option_visibility, int, bool, String)
 	GDVIRTUAL2RC(Variant, _get_internal_option_update_view_required, int, String)
-	GDVIRTUAL4(_internal_process, int, Node *, Node *, Ref<Resource>)
+	GDVIRTUAL4(_internal_process, int, Flowde *, Flowde *, Ref<Resource>)
 	GDVIRTUAL1(_get_import_options, String)
 	GDVIRTUAL3RC(Variant, _get_option_visibility, String, bool, String)
-	GDVIRTUAL1(_pre_process, Node *)
-	GDVIRTUAL1(_post_process, Node *)
+	GDVIRTUAL1(_pre_process, Flowde *)
+	GDVIRTUAL1(_post_process, Flowde *)
 
 	static void _bind_methods();
 
@@ -141,13 +141,13 @@ public:
 	virtual Variant get_internal_option_visibility(InternalImportCategory p_category, const String &p_scene_import_type, const String &p_option, const HashMap<StringName, Variant> &p_options) const;
 	virtual Variant get_internal_option_update_view_required(InternalImportCategory p_category, const String &p_option, const HashMap<StringName, Variant> &p_options) const;
 
-	virtual void internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options);
+	virtual void internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options);
 
 	virtual void get_import_options(const String &p_path, List<ResourceImporter::ImportOption> *r_options);
 	virtual Variant get_option_visibility(const String &p_path, const String &p_scene_import_type, const String &p_option, const HashMap<StringName, Variant> &p_options) const;
 
-	virtual void pre_process(Node *p_scene, const HashMap<StringName, Variant> &p_options);
-	virtual void post_process(Node *p_scene, const HashMap<StringName, Variant> &p_options);
+	virtual void pre_process(Flowde *p_scene, const HashMap<StringName, Variant> &p_options);
+	virtual void post_process(Flowde *p_scene, const HashMap<StringName, Variant> &p_options);
 };
 
 VARIANT_ENUM_CAST(EditorScenePostImportPlugin::InternalImportCategory)
@@ -210,11 +210,11 @@ class ResourceImporterScene : public ResourceImporter {
 
 	static Error _check_resource_save_paths(ResourceUID::ID p_source_id, const String &p_hash_suffix, const Dictionary &p_data);
 	Array _get_skinned_pose_transforms(ImporterMeshInstance3D *p_src_mesh_node);
-	void _replace_owner(Node *p_node, Node *p_scene, Node *p_new_owner);
-	Node *_generate_meshes(Node *p_node, const Dictionary &p_mesh_data, bool p_generate_lods, bool p_create_shadow_meshes, LightBakeMode p_light_bake_mode, float p_lightmap_texel_size, const Vector<uint8_t> &p_src_lightmap_cache, Vector<Vector<uint8_t>> &r_lightmap_caches);
-	void _add_shapes(Node *p_node, const Vector<Ref<Shape3D>> &p_shapes);
+	void _replace_owner(Flowde *p_node, Flowde *p_scene, Flowde *p_new_owner);
+	Flowde *_generate_meshes(Flowde *p_node, const Dictionary &p_mesh_data, bool p_generate_lods, bool p_create_shadow_meshes, LightBakeMode p_light_bake_mode, float p_lightmap_texel_size, const Vector<uint8_t> &p_src_lightmap_cache, Vector<Vector<uint8_t>> &r_lightmap_caches);
+	void _add_shapes(Flowde *p_node, const Vector<Ref<Shape3D>> &p_shapes);
 	void _copy_meta(Object *p_src_object, Object *p_dst_object);
-	Node *_replace_node_with_type_and_script(Node *p_node, String p_node_type, Ref<Script> p_script);
+	Flowde *_replace_node_with_type_and_script(Flowde *p_node, String p_node_type, Ref<Script> p_script);
 
 	enum AnimationImportTracks {
 		ANIMATION_IMPORT_TRACKS_IF_PRESENT,
@@ -280,21 +280,21 @@ public:
 	// Import scenes *after* everything else (such as textures).
 	virtual int get_import_order() const override { return ResourceImporter::IMPORT_ORDER_SCENE; }
 
-	void _pre_fix_global(Node *p_scene, const HashMap<StringName, Variant> &p_options) const;
-	Node *_pre_fix_node(Node *p_node, Node *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &r_collision_map, Pair<PackedVector3Array, PackedInt32Array> *r_occluder_arrays, List<Pair<NodePath, Node *>> &r_node_renames, const HashMap<StringName, Variant> &p_options);
-	Node *_pre_fix_animations(Node *p_node, Node *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps);
-	Node *_post_fix_node(Node *p_node, Node *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &collision_map, Pair<PackedVector3Array, PackedInt32Array> &r_occluder_arrays, HashSet<Ref<ImporterMesh>> &r_scanned_meshes, const Dictionary &p_node_data, const Dictionary &p_material_data, const Dictionary &p_animation_data, float p_animation_fps, float p_applied_root_scale, const String &p_source_file, const HashMap<StringName, Variant> &p_options);
-	Node *_post_fix_animations(Node *p_node, Node *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps, bool p_remove_immutable_tracks);
+	void _pre_fix_global(Flowde *p_scene, const HashMap<StringName, Variant> &p_options) const;
+	Flowde *_pre_fix_node(Flowde *p_node, Flowde *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &r_collision_map, Pair<PackedVector3Array, PackedInt32Array> *r_occluder_arrays, List<Pair<NodePath, Flowde *>> &r_node_renames, const HashMap<StringName, Variant> &p_options);
+	Flowde *_pre_fix_animations(Flowde *p_node, Flowde *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps);
+	Flowde *_post_fix_node(Flowde *p_node, Flowde *p_root, HashMap<Ref<ImporterMesh>, Vector<Ref<Shape3D>>> &collision_map, Pair<PackedVector3Array, PackedInt32Array> &r_occluder_arrays, HashSet<Ref<ImporterMesh>> &r_scanned_meshes, const Dictionary &p_node_data, const Dictionary &p_material_data, const Dictionary &p_animation_data, float p_animation_fps, float p_applied_root_scale, const String &p_source_file, const HashMap<StringName, Variant> &p_options);
+	Flowde *_post_fix_animations(Flowde *p_node, Flowde *p_root, const Dictionary &p_node_data, const Dictionary &p_animation_data, float p_animation_fps, bool p_remove_immutable_tracks);
 
 	Ref<Animation> _save_animation_to_file(Ref<Animation> anim, bool p_save_to_file, const String &p_save_to_path, bool p_keep_custom_tracks);
 	void _create_slices(AnimationPlayer *ap, Ref<Animation> anim, const Array &p_clips, bool p_bake_all);
 	void _optimize_animations(AnimationPlayer *anim, float p_max_vel_error, float p_max_ang_error, int p_prc_error);
 	void _compress_animations(AnimationPlayer *anim, int p_page_size_kb);
 
-	Error _save_scene_as_mesh_library(const String &p_source_file, const String &p_save_path, Node *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags);
-	Error _save_scene_as_single_mesh(const String &p_source_file, const String &p_save_path, Node *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags);
+	Error _save_scene_as_mesh_library(const String &p_source_file, const String &p_save_path, Flowde *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags);
+	Error _save_scene_as_single_mesh(const String &p_source_file, const String &p_save_path, Flowde *p_godot_scene, const HashMap<StringName, Variant> &p_options, int p_flags);
 
-	Node *pre_import(const String &p_source_file, const HashMap<StringName, Variant> &p_options);
+	Flowde *pre_import(const String &p_source_file, const HashMap<StringName, Variant> &p_options);
 	virtual Error import(ResourceUID::ID p_source_id, const String &p_source_file, const String &p_save_path, const HashMap<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files = nullptr, Variant *r_metadata = nullptr) override;
 
 	virtual bool has_advanced_options() const override;
@@ -314,7 +314,7 @@ class EditorSceneFormatImporterESCN : public EditorSceneFormatImporter {
 
 public:
 	virtual void get_extensions(List<String> *r_extensions) const override;
-	virtual Node *import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err = nullptr) override;
+	virtual Flowde *import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err = nullptr) override;
 };
 
 template <typename M>

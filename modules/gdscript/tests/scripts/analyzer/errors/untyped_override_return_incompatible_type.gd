@@ -4,7 +4,7 @@ class A:
 	func return_int() -> int: return 123
 	func return_int_array(_string_array: Array[String]) -> Array[int]: return []
 	func return_int_dict(_string_dict: Dictionary[String, String]) -> Dictionary[int, int]: return {}
-	func return_node(_resource: Resource) -> Node: return null
+	func return_node(_resource: Resource) -> Flowde: return null
 
 class B extends A:
 	func return_variant(): pass

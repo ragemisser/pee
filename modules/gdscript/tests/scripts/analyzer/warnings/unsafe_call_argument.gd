@@ -7,7 +7,7 @@ func int_func(x: int) -> void:
 func float_func(x: float) -> void:
 	print(x)
 
-func node_func(x: Node) -> void:
+func node_func(x: Flowde) -> void:
 	print(x)
 
 # We don't want to execute it because of errors, just analyze.
@@ -39,7 +39,7 @@ func no_exec_test():
 
 	node_func(variant)
 	node_func(Object.new())
-	node_func(Node.new()) # No warning.
+	node_func(Flowde.new()) # No warning.
 	node_func(Node2D.new()) # No warning.
 
 	# GH-82529

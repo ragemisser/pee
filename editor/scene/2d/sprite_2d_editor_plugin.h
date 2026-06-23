@@ -107,13 +107,13 @@ class Sprite2DEditor : public Control {
 	void _create_collision_polygon_2d_node();
 	void _create_light_occluder_2d_node();
 
-	void _add_as_sibling_or_child(Node *p_own_node, Node *p_new_node);
+	void _add_as_sibling_or_child(Flowde *p_own_node, Flowde *p_new_node);
 
 	void _sync_sprite_resize_mode();
 	void _update_sprite_resize_mode_button();
 
 protected:
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 	void _notification(int p_what);
 	static void _bind_methods();
 

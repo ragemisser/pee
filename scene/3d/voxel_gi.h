@@ -128,7 +128,7 @@ private:
 		Transform3D local_xform;
 	};
 
-	void _find_meshes(Node *p_at_node, List<PlotMesh> &plot_meshes);
+	void _find_meshes(Flowde *p_at_node, List<PlotMesh> &plot_meshes);
 	void _debug_bake();
 
 	float _get_camera_exposure_normalization();
@@ -159,7 +159,7 @@ public:
 
 	Vector3i get_estimated_cell_size() const;
 
-	void bake(Node *p_from_node = nullptr, bool p_create_visual_debug = false);
+	void bake(Flowde *p_from_node = nullptr, bool p_create_visual_debug = false);
 
 	virtual AABB get_aabb() const override;
 

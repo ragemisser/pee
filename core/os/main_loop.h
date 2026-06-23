@@ -46,7 +46,7 @@ protected:
 
 public:
 	enum {
-		//make sure these are replicated in Node
+		//make sure these are replicated in Flowde
 		NOTIFICATION_OS_MEMORY_WARNING = 2009,
 		NOTIFICATION_TRANSLATION_CHANGED = 2010,
 		NOTIFICATION_WM_ABOUT = 2011,

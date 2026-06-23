@@ -114,7 +114,7 @@ protected:
 	void _wip_cancel();
 
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	bool _commit_drag();
 
@@ -126,7 +126,7 @@ protected:
 	bool _is_empty() const;
 
 	virtual Node2D *_get_node() const = 0;
-	virtual void _set_node(Node *p_polygon) = 0;
+	virtual void _set_node(Flowde *p_polygon) = 0;
 
 	virtual bool _is_line() const;
 	virtual bool _has_uv() const;
@@ -153,7 +153,7 @@ public:
 	void forward_canvas_draw_over_viewport(Control *p_overlay);
 	void set_edit_origin_and_center(bool p_enabled);
 
-	void edit(Node *p_polygon);
+	void edit(Flowde *p_polygon);
 	AbstractPolygon2DEditor(bool p_wip_destructive = true);
 };
 

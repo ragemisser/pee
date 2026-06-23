@@ -26,13 +26,13 @@ namespace Godot.SourceGenerators
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
             // Ignore syntax inside comments
-            if (IsInsideDocumentation(context.Node))
+            if (IsInsideDocumentation(context.Flowde))
                 return;
 
-            var typeArgListSyntax = (TypeArgumentListSyntax)context.Node;
+            var typeArgListSyntax = (TypeArgumentListSyntax)context.Flowde;
 
             // Method invocation or variable declaration that contained the type arguments
-            var parentSyntax = context.Node.Parent;
+            var parentSyntax = context.Flowde.Parent;
             Helper.ThrowIfNull(parentSyntax);
 
             var sm = context.SemanticModel;

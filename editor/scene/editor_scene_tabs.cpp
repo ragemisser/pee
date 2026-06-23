@@ -307,7 +307,7 @@ void EditorSceneTabs::_update_tab_titles() {
 
 	Ref<Texture2D> script_icon = get_editor_theme_icon(SNAME("Script"));
 	for (int i = 0; i < EditorNode::get_editor_data().get_edited_scene_count(); i++) {
-		Node *type_node = EditorNode::get_editor_data().get_edited_scene_root(i);
+		Flowde *type_node = EditorNode::get_editor_data().get_edited_scene_root(i);
 		Ref<Texture2D> icon;
 		if (type_node) {
 			icon = EditorNode::get_singleton()->get_object_icon(type_node);

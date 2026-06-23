@@ -7,7 +7,7 @@
 		This class holds the context information required for encryption and decryption operations with AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
 		[codeblocks]
 		[gdscript]
-		extends Node
+		extends Flowde
 
 		var aes = AESContext.new()
 
@@ -41,7 +41,7 @@
 		using Godot;
 		using System.Diagnostics;
 
-		public partial class MyNode : Node
+		public partial class MyNode : Flowde
 		{
 			private AesContext _aes = new AesContext();
 

@@ -162,7 +162,7 @@ UnicodeString   RBBISymbolTable::parseReference(const UnicodeString& text,
 
 //
 // RBBISymbolTable::lookupNode      Given a key (a variable name), return the
-//                                  corresponding RBBI Node.  If there is no entry
+//                                  corresponding RBBI Flowde.  If there is no entry
 //                                  in the table for this name, return nullptr.
 //
 RBBINode       *RBBISymbolTable::lookupNode(const UnicodeString &key) const{
@@ -229,7 +229,7 @@ RBBISymbolTableEntry::~RBBISymbolTableEntry() {
 #ifdef RBBI_DEBUG
 void RBBISymbolTable::rbbiSymtablePrint() const {
     RBBIDebugPrintf("Variable Definitions Symbol Table\n"
-           "Name                  Node         serial  String Val\n"
+           "Name                  Flowde         serial  String Val\n"
            "-------------------------------------------------------------------\n");
 
     int32_t pos = UHASH_FIRST;

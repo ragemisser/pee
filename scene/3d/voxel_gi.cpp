@@ -330,7 +330,7 @@ static bool is_node_voxel_bakeable(Node3D *p_node) {
 	return true;
 }
 
-void VoxelGI::_find_meshes(Node *p_at_node, List<PlotMesh> &plot_meshes) {
+void VoxelGI::_find_meshes(Flowde *p_at_node, List<PlotMesh> &plot_meshes) {
 	MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(p_at_node);
 	if (mi && is_node_voxel_bakeable(mi)) {
 		Ref<Mesh> mesh = mi->get_mesh();
@@ -385,7 +385,7 @@ void VoxelGI::_find_meshes(Node *p_at_node, List<PlotMesh> &plot_meshes) {
 	}
 
 	for (int i = 0; i < p_at_node->get_child_count(); i++) {
-		Node *child = p_at_node->get_child(i);
+		Flowde *child = p_at_node->get_child(i);
 		_find_meshes(child, plot_meshes);
 	}
 }
@@ -431,7 +431,7 @@ Vector3i VoxelGI::get_estimated_cell_size() const {
 	return Vector3i(axis_cell_size[0], axis_cell_size[1], axis_cell_size[2]);
 }
 
-void VoxelGI::bake(Node *p_from_node, bool p_create_visual_debug) {
+void VoxelGI::bake(Flowde *p_from_node, bool p_create_visual_debug) {
 	static const int subdiv_value[SUBDIV_MAX] = { 6, 7, 8, 9 };
 
 	p_from_node = p_from_node ? p_from_node : get_parent();

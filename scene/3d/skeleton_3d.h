@@ -71,7 +71,7 @@ class Skeleton3D : public Node3D {
 
 #if !defined(DISABLE_DEPRECATED) && !defined(PHYSICS_3D_DISABLED)
 	bool animate_physical_bones = true;
-	Node *simulator = nullptr;
+	Flowde *simulator = nullptr;
 	void setup_simulator();
 #endif // _DISABLE_DEPRECATED && PHYSICS_3D_DISABLED
 
@@ -220,9 +220,9 @@ protected:
 	TypedArray<StringName> _get_bone_meta_list_bind(int p_bone) const;
 	static void _bind_methods();
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 public:
 	enum {
@@ -310,7 +310,7 @@ public:
 	Transform3D get_bone_global_pose_override(int p_bone) const;
 	void set_bone_global_pose_override(int p_bone, const Transform3D &p_pose, real_t p_amount, bool p_persistent = false);
 
-	Node *get_simulator();
+	Flowde *get_simulator();
 #ifndef PHYSICS_3D_DISABLED
 	void set_animate_physical_bones(bool p_enabled);
 	bool get_animate_physical_bones() const;

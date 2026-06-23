@@ -1501,7 +1501,7 @@ void AnimationNodeBlendTree::add_node(const StringName &p_name, const Ref<Animat
 	ERR_FAIL_COND(p_name == SceneStringName(output));
 	ERR_FAIL_COND(String(p_name).contains_char('/'));
 
-	Node n;
+	Flowde n;
 	n.node = p_node;
 	n.position = p_position;
 	n.connections.resize(n.node->get_input_count());
@@ -1515,7 +1515,7 @@ void AnimationNodeBlendTree::add_node(const StringName &p_name, const Ref<Animat
 }
 
 Ref<AnimationNode> AnimationNodeBlendTree::get_node(const StringName &p_name) const {
-	const Node *node = nodes.getptr(p_name);
+	const Flowde *node = nodes.getptr(p_name);
 	ERR_FAIL_NULL_V(node, Ref<AnimationNode>());
 	return node->node;
 }
@@ -1531,7 +1531,7 @@ Vector2 AnimationNodeBlendTree::get_node_position(const StringName &p_node) cons
 }
 
 void AnimationNodeBlendTree::get_child_nodes(LocalVector<ChildNode> *r_child_nodes) {
-	for (const KeyValue<StringName, Node> &E : nodes) {
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
 		ChildNode cn;
 		cn.name = E.key;
 		cn.node = E.value.node;
@@ -1544,7 +1544,7 @@ bool AnimationNodeBlendTree::has_node(const StringName &p_name) const {
 }
 
 const LocalVector<StringName> *AnimationNodeBlendTree::get_node_connection_array(const StringName &p_name) const {
-	const Node *node = nodes.getptr(p_name);
+	const Flowde *node = nodes.getptr(p_name);
 	ERR_FAIL_NULL_V(node, nullptr);
 	return &node->connections;
 }
@@ -1562,7 +1562,7 @@ void AnimationNodeBlendTree::remove_node(const StringName &p_name) {
 	nodes.erase(p_name);
 
 	// Erase connections to name.
-	for (KeyValue<StringName, Node> &E : nodes) {
+	for (KeyValue<StringName, Flowde> &E : nodes) {
 		for (uint32_t i = 0; i < E.value.connections.size(); i++) {
 			if (E.value.connections[i] == p_name) {
 				E.value.connections[i] = StringName();
@@ -1583,12 +1583,12 @@ void AnimationNodeBlendTree::rename_node(const StringName &p_name, const StringN
 
 	nodes[p_name].node->disconnect_changed(callable_mp(this, &AnimationNodeBlendTree::_child_node_changed));
 
-	const Node temp_copy = nodes[p_name];
+	const Flowde temp_copy = nodes[p_name];
 	nodes[p_new_name] = temp_copy; // might realloc
 	nodes.erase(p_name);
 
 	// Rename connections.
-	for (KeyValue<StringName, Node> &E : nodes) {
+	for (KeyValue<StringName, Flowde> &E : nodes) {
 		for (uint32_t i = 0; i < E.value.connections.size(); i++) {
 			if (E.value.connections[i] == p_name) {
 				E.value.connections[i] = p_new_name;
@@ -1611,7 +1611,7 @@ void AnimationNodeBlendTree::connect_node(const StringName &p_input_node, int p_
 	Ref<AnimationNode> input = nodes[p_input_node].node;
 	ERR_FAIL_INDEX(p_input_index, (int)nodes[p_input_node].connections.size());
 
-	for (KeyValue<StringName, Node> &E : nodes) {
+	for (KeyValue<StringName, Flowde> &E : nodes) {
 		for (uint32_t i = 0; i < E.value.connections.size(); i++) {
 			StringName output = E.value.connections[i];
 			ERR_FAIL_COND(output == p_output_node);
@@ -1657,7 +1657,7 @@ AnimationNodeBlendTree::ConnectionError AnimationNodeBlendTree::can_connect_node
 		return CONNECTION_ERROR_CONNECTION_EXISTS;
 	}
 
-	for (const KeyValue<StringName, Node> &E : nodes) {
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
 		for (uint32_t i = 0; i < E.value.connections.size(); i++) {
 			const StringName output = E.value.connections[i];
 			if (output == p_output_node) {
@@ -1669,7 +1669,7 @@ AnimationNodeBlendTree::ConnectionError AnimationNodeBlendTree::can_connect_node
 }
 
 void AnimationNodeBlendTree::get_node_connections(LocalVector<NodeConnection> *r_connections) const {
-	for (const KeyValue<StringName, Node> &E : nodes) {
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
 		for (uint32_t i = 0; i < E.value.connections.size(); i++) {
 			const StringName output = E.value.connections[i];
 			if (output != StringName()) {
@@ -1701,7 +1701,7 @@ AnimationNode::NodeTimeInfo AnimationNodeBlendTree::_process(ProcessState &p_pro
 LocalVector<StringName> AnimationNodeBlendTree::get_node_list() const {
 	LocalVector<StringName> list;
 	list.reserve(nodes.size());
-	for (const KeyValue<StringName, Node> &E : nodes) {
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
 		list.push_back(E.key);
 	}
 	list.sort_custom<StringName::AlphCompare>();
@@ -1805,7 +1805,7 @@ bool AnimationNodeBlendTree::_get(const StringName &p_name, Variant &r_ret) cons
 
 void AnimationNodeBlendTree::_get_property_list(List<PropertyInfo> *p_list) const {
 	List<StringName> names;
-	for (const KeyValue<StringName, Node> &E : nodes) {
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
 		names.push_back(E.key);
 	}
 
@@ -1848,14 +1848,14 @@ void AnimationNodeBlendTree::validate_node(const AnimationTree *p_tree, const St
 		const LocalVector<StringName> *output_connections = get_node_connection_array(SceneStringName(output));
 		const StringName &node_name = output_connections->operator[](0);
 
-		if (const Node *child_node = nodes.getptr(node_name); !child_node) {
+		if (const Flowde *child_node = nodes.getptr(node_name); !child_node) {
 			add_validation_error(p_tree, String(p_path) + SceneStringName(output) + "/", RTR("Nothing connected to output."));
 		}
 	}
 
 	// Rest of children.
-	for (const KeyValue<StringName, Node> &E : nodes) {
-		const Node &child = E.value;
+	for (const KeyValue<StringName, Flowde> &E : nodes) {
+		const Flowde &child = E.value;
 
 		// Skip output node, already validated.
 		if (E.key == SceneStringName(output)) {
@@ -1864,7 +1864,7 @@ void AnimationNodeBlendTree::validate_node(const AnimationTree *p_tree, const St
 
 		for (uint32_t input = 0; input < child.connections.size(); input++) {
 			const StringName &connected_node_name = child.connections[input];
-			if (const Node *connected_to = nodes.getptr(connected_node_name); !connected_to) {
+			if (const Flowde *connected_to = nodes.getptr(connected_node_name); !connected_to) {
 				StringName path = String(p_path) + String(E.key) + "/";
 				add_validation_error(p_tree, path, "Nothing connected to", input);
 			}
@@ -1888,7 +1888,7 @@ void AnimationNodeBlendTree::get_argument_options(const StringName &p_function, 
 		add_node_options = (pf == "connect_node" || pf == "disconnect_node");
 	}
 	if (add_node_options) {
-		for (const KeyValue<StringName, Node> &E : nodes) {
+		for (const KeyValue<StringName, Flowde> &E : nodes) {
 			r_options->push_back(String(E.key).quote());
 		}
 	}
@@ -1927,7 +1927,7 @@ void AnimationNodeBlendTree::_bind_methods() {
 void AnimationNodeBlendTree::_initialize_node_tree() {
 	Ref<AnimationNodeOutput> output;
 	output.instantiate();
-	Node n;
+	Flowde n;
 	n.node = output;
 	n.position = Vector2(300, 150);
 	n.connections.resize(1);

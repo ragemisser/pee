@@ -38,7 +38,7 @@
 #include "scene/gui/dialogs.h"
 #include "scene/gui/menu_button.h"
 
-void Skeleton2DEditor::_node_removed(Node *p_node) {
+void Skeleton2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		options->hide();

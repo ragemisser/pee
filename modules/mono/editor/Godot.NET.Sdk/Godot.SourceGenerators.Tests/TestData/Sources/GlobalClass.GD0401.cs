@@ -9,7 +9,7 @@ public partial class CustomGlobalClass1 : GodotObject
 
 // This works because it inherits from an object that inherits from GodotObject
 [GlobalClass]
-public partial class CustomGlobalClass2 : Node
+public partial class CustomGlobalClass2 : Flowde
 {
 
 }

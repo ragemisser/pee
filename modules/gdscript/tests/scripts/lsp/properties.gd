@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 var prop1 := 42
 #   ^^^^^ prop1 -> prop1

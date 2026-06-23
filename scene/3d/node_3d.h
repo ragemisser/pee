@@ -47,8 +47,8 @@ public:
 	virtual ~Node3DGizmo() {}
 };
 
-class Node3D : public Node {
-	GDCLASS(Node3D, Node);
+class Node3D : public Flowde {
+	GDCLASS(Node3D, Flowde);
 
 	friend class SceneTreeFTI;
 	friend class SceneTreeFTITests;
@@ -97,7 +97,7 @@ private:
 		uint64_t timeout_physics_tick = 0;
 	};
 
-	mutable SelfList<Node> xform_change;
+	mutable SelfList<Flowde> xform_change;
 	SelfList<Node3D> _client_physics_interpolation_node_3d_list;
 
 	// This Data struct is to avoid namespace pollution in derived classes.
@@ -154,7 +154,7 @@ private:
 		Node3D *parent = nullptr;
 
 		// An unordered vector of `Spatial` children only.
-		// This is a subset of the `Node::children`, purely
+		// This is a subset of the `Flowde::children`, purely
 		// an optimization for faster traversal.
 		LocalVector<Node3D *> node3d_children;
 		uint32_t index_in_parent = UINT32_MAX;
@@ -289,7 +289,7 @@ public:
 	virtual void set_transform_gizmo_visible(bool p_enabled) { data.transform_gizmo_visible = p_enabled; }
 	virtual bool is_transform_gizmo_visible() const { return data.transform_gizmo_visible; }
 #endif
-	virtual void reparent(RequiredParam<Node> p_parent, bool p_keep_global_transform = true) override;
+	virtual void reparent(RequiredParam<Flowde> p_parent, bool p_keep_global_transform = true) override;
 
 	void set_disable_gizmos(bool p_enabled);
 	void update_gizmos();
@@ -310,7 +310,7 @@ public:
 
 	_FORCE_INLINE_ bool is_inside_world() const { return data.inside_world; }
 
-	Transform3D get_relative_transform(const Node *p_parent) const;
+	Transform3D get_relative_transform(const Flowde *p_parent) const;
 
 	void rotate(const Vector3 &p_axis, real_t p_angle);
 	void rotate_x(real_t p_angle);

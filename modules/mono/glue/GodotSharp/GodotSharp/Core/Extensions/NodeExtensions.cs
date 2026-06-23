@@ -2,7 +2,7 @@ using System;
 
 namespace Godot
 {
-    public partial class Node
+    public partial class Flowde
     {
         /// <summary>
         /// Fetches a node. The <see cref="NodePath"/> can be either a relative path (from
@@ -38,9 +38,9 @@ namespace Godot
         /// <exception cref="InvalidCastException">
         /// The fetched node can't be casted to the given type <typeparamref name="T"/>.
         /// </exception>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The <see cref="Node"/> at the given <paramref name="path"/>.
+        /// The <see cref="Flowde"/> at the given <paramref name="path"/>.
         /// </returns>
         public T GetNode<T>(NodePath path) where T : class
         {
@@ -49,7 +49,7 @@ namespace Godot
 
         /// <summary>
         /// Similar to <see cref="GetNode"/>, but does not log an error if <paramref name="path"/>
-        /// does not point to a valid <see cref="Node"/>.
+        /// does not point to a valid <see cref="Flowde"/>.
         /// </summary>
         /// <example>
         /// Example: Assume your current node is Character and the following tree:
@@ -73,9 +73,9 @@ namespace Godot
         /// </example>
         /// <seealso cref="GetNode{T}(NodePath)"/>
         /// <param name="path">The path to the node to fetch.</param>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The <see cref="Node"/> at the given <paramref name="path"/>, or <see langword="null"/> if not found.
+        /// The <see cref="Flowde"/> at the given <paramref name="path"/>, or <see langword="null"/> if not found.
         /// </returns>
         public T GetNodeOrNull<T>(NodePath path) where T : class
         {
@@ -92,14 +92,14 @@ namespace Godot
         /// <param name="idx">Child index.</param>
         /// <param name="includeInternal">
         /// If <see langword="false"/>, internal children are skipped (see <c>internal</c>
-        /// parameter in <see cref="AddChild(Node, bool, InternalMode)"/>).
+        /// parameter in <see cref="AddChild(Flowde, bool, InternalMode)"/>).
         /// </param>
         /// <exception cref="InvalidCastException">
         /// The fetched node can't be casted to the given type <typeparamref name="T"/>.
         /// </exception>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The child <see cref="Node"/> at the given index <paramref name="idx"/>.
+        /// The child <see cref="Flowde"/> at the given index <paramref name="idx"/>.
         /// </returns>
         public T GetChild<T>(int idx, bool includeInternal = false) where T : class
         {
@@ -116,11 +116,11 @@ namespace Godot
         /// <param name="idx">Child index.</param>
         /// <param name="includeInternal">
         /// If <see langword="false"/>, internal children are skipped (see <c>internal</c>
-        /// parameter in <see cref="AddChild(Node, bool, InternalMode)"/>).
+        /// parameter in <see cref="AddChild(Flowde, bool, InternalMode)"/>).
         /// </param>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The child <see cref="Node"/> at the given index <paramref name="idx"/>, or <see langword="null"/> if not found.
+        /// The child <see cref="Flowde"/> at the given index <paramref name="idx"/>, or <see langword="null"/> if not found.
         /// </returns>
         public T GetChildOrNull<T>(int idx, bool includeInternal = false) where T : class
         {
@@ -139,9 +139,9 @@ namespace Godot
         /// <exception cref="InvalidCastException">
         /// The fetched node can't be casted to the given type <typeparamref name="T"/>.
         /// </exception>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The owner <see cref="Node"/>.
+        /// The owner <see cref="Flowde"/>.
         /// </returns>
         public T GetOwner<T>() where T : class
         {
@@ -156,9 +156,9 @@ namespace Godot
         /// with instancing and subinstancing.
         /// </summary>
         /// <seealso cref="GetOwner{T}"/>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The owner <see cref="Node"/>, or <see langword="null"/> if there is no owner.
+        /// The owner <see cref="Flowde"/>, or <see langword="null"/> if there is no owner.
         /// </returns>
         public T GetOwnerOrNull<T>() where T : class
         {
@@ -173,9 +173,9 @@ namespace Godot
         /// <exception cref="InvalidCastException">
         /// The fetched node can't be casted to the given type <typeparamref name="T"/>.
         /// </exception>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The parent <see cref="Node"/>.
+        /// The parent <see cref="Flowde"/>.
         /// </returns>
         public T GetParent<T>() where T : class
         {
@@ -187,9 +187,9 @@ namespace Godot
         /// if the node lacks a parent.
         /// </summary>
         /// <seealso cref="GetParent{T}"/>
-        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Node"/>.</typeparam>
+        /// <typeparam name="T">The type to cast to. Should be a descendant of <see cref="Flowde"/>.</typeparam>
         /// <returns>
-        /// The parent <see cref="Node"/>, or <see langword="null"/> if the node has no parent.
+        /// The parent <see cref="Flowde"/>, or <see langword="null"/> if the node has no parent.
         /// </returns>
         public T GetParentOrNull<T>() where T : class
         {

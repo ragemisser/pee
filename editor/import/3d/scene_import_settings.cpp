@@ -376,7 +376,7 @@ void SceneImportSettingsDialog::_fill_animation(Tree *p_tree, const Ref<Animatio
 	animation_data.scene_node = item;
 }
 
-void SceneImportSettingsDialog::_fill_scene(Node *p_node, TreeItem *p_parent_item) {
+void SceneImportSettingsDialog::_fill_scene(Flowde *p_node, TreeItem *p_parent_item) {
 	String import_id;
 
 	if (p_node->has_meta("import_id")) {
@@ -426,7 +426,7 @@ void SceneImportSettingsDialog::_fill_scene(Node *p_node, TreeItem *p_parent_ite
 
 	item->set_icon(0, icon);
 
-	item->set_meta("type", "Node");
+	item->set_meta("type", "Flowde");
 	item->set_meta("class", type);
 	item->set_meta("import_id", import_id);
 	item->set_tooltip_text(0, vformat(TTR("Type: %s\nImport ID: %s"), type, import_id));
@@ -590,7 +590,7 @@ void SceneImportSettingsDialog::_update_view_gizmos() {
 		}
 
 		// Get the collider_view MeshInstance3D.
-		TypedArray<Node> descendants = mesh_node->find_children("collider_view", "MeshInstance3D", false);
+		TypedArray<Flowde> descendants = mesh_node->find_children("collider_view", "MeshInstance3D", false);
 		CRASH_COND_MSG(descendants.is_empty(), "This is unreachable, since the collider view is always created even when the collision is not used! If this is triggered there is a bug on the function `_fill_scene`.");
 		MeshInstance3D *collider_view = Object::cast_to<MeshInstance3D>(descendants[0].operator Object *());
 
@@ -676,7 +676,7 @@ void SceneImportSettingsDialog::_update_camera() {
 	float rot_y = cam_rot_y;
 	float zoom = cam_zoom;
 
-	if (selected_type == "Node" || selected_type == "Animation" || selected_type.is_empty()) {
+	if (selected_type == "Flowde" || selected_type == "Animation" || selected_type.is_empty()) {
 		camera_aabb = contents_aabb;
 	} else {
 		if (mesh_preview->get_mesh().is_valid()) {
@@ -843,7 +843,7 @@ SceneImportSettingsDialog *SceneImportSettingsDialog::get_singleton() {
 	return singleton;
 }
 
-Node *SceneImportSettingsDialog::get_selected_node() {
+Flowde *SceneImportSettingsDialog::get_selected_node() {
 	if (selected_id == "") {
 		return nullptr;
 	}
@@ -859,7 +859,7 @@ void SceneImportSettingsDialog::_select(Tree *p_from, const String &p_type, cons
 	const bool hide_node_gen_options = _resource_importer_scene->get_scene_import_type() != "PackedScene";
 
 	bones_mesh_preview->hide();
-	if (p_type == "Node") {
+	if (p_type == "Flowde") {
 		node_selected->hide(); // Always hide just in case.
 		mesh_preview->hide();
 		_reset_animation();

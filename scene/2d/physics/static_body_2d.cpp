@@ -105,7 +105,7 @@ void StaticBody2D::navmesh_parse_init() {
 	}
 }
 
-void StaticBody2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node) {
+void StaticBody2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node) {
 	StaticBody2D *static_body = Object::cast_to<StaticBody2D>(p_node);
 
 	if (static_body == nullptr) {

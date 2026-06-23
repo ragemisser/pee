@@ -1,4 +1,4 @@
 func test():
 	var a: Array = [Resource.new()]
-	for node: Node in a:
+	for node: Flowde in a:
 		print(node)

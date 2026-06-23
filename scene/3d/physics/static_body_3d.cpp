@@ -110,7 +110,7 @@ void StaticBody3D::navmesh_parse_init() {
 	}
 }
 
-void StaticBody3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node) {
+void StaticBody3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node) {
 	StaticBody3D *static_body = Object::cast_to<StaticBody3D>(p_node);
 
 	if (static_body == nullptr) {

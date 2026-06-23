@@ -1179,7 +1179,7 @@ int GraphNode::get_output_port_slot(int p_port_idx) {
 	return right_port_cache[p_port_idx].slot_index;
 }
 
-String GraphNode::get_accessibility_container_name(const Node *p_node) const {
+String GraphNode::get_accessibility_container_name(const Flowde *p_node) const {
 	int idx = 0;
 	for (int i = 0; i < get_child_count(false); i++) {
 		Control *child = as_sortable_control(get_child(i, false), SortableVisibilityMode::IGNORE);

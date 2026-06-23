@@ -471,7 +471,7 @@ private:
     // After each node, except a final-value node, another node follows to
     // encode match values or continue matching further bytes.
     //
-    // Node types:
+    // Flowde types:
     //  - Value node: Stores a 32-bit integer in a compact, variable-length format.
     //    The value is for the string/byte sequence so far.
     //    One node bit indicates whether the value is final or whether
@@ -494,7 +494,7 @@ private:
     //      Otherwise, skip the "jump" delta to the next sub-node
     //      which will have a length of length-length/2.
 
-    // Node lead byte values.
+    // Flowde lead byte values.
 
     // 00..0f: Branch node. If node!=0 then the length is node+1, otherwise
     // the length is one more than the next byte.

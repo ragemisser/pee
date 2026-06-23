@@ -20,7 +20,7 @@
 			<description>
 				This will simulate pressing the specified action.
 				The strength can be used for non-boolean actions, it's ranged between 0 and 1 representing the intensity of the given action.
-				[b]Note:[/b] This method will not cause any [method Node._input] calls. It is intended to be used with [method is_action_pressed] and [method is_action_just_pressed]. If you want to simulate [code]_input[/code], use [method parse_input_event] instead.
+				[b]Note:[/b] This method will not cause any [method Flowde._input] calls. It is intended to be used with [method is_action_pressed] and [method is_action_just_pressed]. If you want to simulate [code]_input[/code], use [method parse_input_event] instead.
 			</description>
 		</method>
 		<method name="action_release">
@@ -316,7 +316,7 @@
 				If [param exact_match] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
 				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] pressed. An action can be pressed and released again rapidly, and [code]true[/code] will still be returned so as not to miss input.
 				[b]Note:[/b] Due to keyboard ghosting, [method is_action_just_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
-				[b]Note:[/b] During input handling (e.g. [method Node._input]), use [method InputEvent.is_action_pressed] instead to query the action state of the current event. See also [method is_action_just_pressed_by_event].
+				[b]Note:[/b] During input handling (e.g. [method Flowde._input]), use [method InputEvent.is_action_pressed] instead to query the action state of the current event. See also [method is_action_just_pressed_by_event].
 			</description>
 		</method>
 		<method name="is_action_just_pressed_by_event" qualifiers="const">
@@ -326,7 +326,7 @@
 			<param index="2" name="exact_match" type="bool" default="false" />
 			<description>
 				Returns [code]true[/code] when the user has [i]started[/i] pressing the action event in the current frame or physics tick, and the first event that triggered action press in the current frame/physics tick was [param event]. It will only return [code]true[/code] on the frame or tick that the user pressed down the button.
-				This is useful for code that needs to run only once when an action is pressed, and the action is processed during input handling (e.g. [method Node._input]).
+				This is useful for code that needs to run only once when an action is pressed, and the action is processed during input handling (e.g. [method Flowde._input]).
 				If [param exact_match] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
 				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] pressed. An action can be pressed and released again rapidly, and [code]true[/code] will still be returned so as not to miss input.
 				[b]Note:[/b] Due to keyboard ghosting, [method is_action_just_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
@@ -340,7 +340,7 @@
 				Returns [code]true[/code] when the user [i]stops[/i] pressing the action event in the current frame or physics tick. It will only return [code]true[/code] on the frame or tick that the user releases the button.
 				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] not pressed. An action can be released and pressed again rapidly, and [code]true[/code] will still be returned so as not to miss input.
 				If [param exact_match] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
-				[b]Note:[/b] During input handling (e.g. [method Node._input]), use [method InputEvent.is_action_released] instead to query the action state of the current event. See also [method is_action_just_released_by_event].
+				[b]Note:[/b] During input handling (e.g. [method Flowde._input]), use [method InputEvent.is_action_released] instead to query the action state of the current event. See also [method is_action_just_released_by_event].
 			</description>
 		</method>
 		<method name="is_action_just_released_by_event" qualifiers="const">
@@ -350,7 +350,7 @@
 			<param index="2" name="exact_match" type="bool" default="false" />
 			<description>
 				Returns [code]true[/code] when the user [i]stops[/i] pressing the action event in the current frame or physics tick, and the first event that triggered action release in the current frame/physics tick was [param event]. It will only return [code]true[/code] on the frame or tick that the user releases the button.
-				This is useful when an action is processed during input handling (e.g. [method Node._input]).
+				This is useful when an action is processed during input handling (e.g. [method Flowde._input]).
 				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] not pressed. An action can be released and pressed again rapidly, and [code]true[/code] will still be returned so as not to miss input.
 				If [param exact_match] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
 			</description>
@@ -377,7 +377,7 @@
 			<param index="1" name="button" type="int" enum="JoyButton" />
 			<description>
 				Returns [code]true[/code] if you are pressing the joypad button at index [param button].
-				[b]Note:[/b] If you want to check if a joypad button was just pressed, use Godot's input action system with [method is_action_just_pressed] or use the [method Node._input] method like this instead:
+				[b]Note:[/b] If you want to check if a joypad button was just pressed, use Godot's input action system with [method is_action_just_pressed] or use the [method Flowde._input] method like this instead:
 				[codeblocks]
 				[gdscript]
 				func _input(event):
@@ -443,7 +443,7 @@
 			<param index="0" name="keycode" type="int" enum="Key" />
 			<description>
 				Returns [code]true[/code] if you are pressing the key with the [param keycode] printed on it. You can pass a [enum Key] constant or any Unicode character code.
-				[b]Note:[/b] If you want to check if a key was just pressed by using its label, use Godot's input action system with [method is_action_just_pressed] or use the [method Node._input] method like this instead:
+				[b]Note:[/b] If you want to check if a key was just pressed by using its label, use Godot's input action system with [method is_action_just_pressed] or use the [method Flowde._input] method like this instead:
 				[codeblocks]
 				[gdscript]
 				func _input(event):
@@ -469,7 +469,7 @@
 				Returns [code]true[/code] if you are pressing the Latin key in the current keyboard layout. You can pass a [enum Key] constant.
 				[method is_key_pressed] is only recommended over [method is_physical_key_pressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [method is_physical_key_pressed].
 				[b]Note:[/b] Due to keyboard ghosting, [method is_key_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
-				[b]Note:[/b] If you want to check if a key was just pressed by using its keycode, use Godot's input action system with [method is_action_just_pressed] or use the [method Node._input] method like this instead:
+				[b]Note:[/b] If you want to check if a key was just pressed by using its keycode, use Godot's input action system with [method is_action_just_pressed] or use the [method Flowde._input] method like this instead:
 				[codeblocks]
 				[gdscript]
 				func _input(event):
@@ -493,7 +493,7 @@
 			<param index="0" name="button" type="int" enum="MouseButton" />
 			<description>
 				Returns [code]true[/code] if you are pressing the mouse button specified with [enum MouseButton].
-				[b]Note:[/b] If you want to check if a mouse button was just pressed, use Godot's input action system with [method is_action_just_pressed] or use the [method Node._input] method like this instead:
+				[b]Note:[/b] If you want to check if a mouse button was just pressed, use Godot's input action system with [method is_action_just_pressed] or use the [method Flowde._input] method like this instead:
 				[codeblocks]
 				[gdscript]
 				func _input(event):
@@ -519,7 +519,7 @@
 				Returns [code]true[/code] if you are pressing the key in the physical location on the 101/102-key US QWERTY keyboard. You can pass a [enum Key] constant.
 				[method is_physical_key_pressed] is recommended over [method is_key_pressed] for in-game actions, as it will make [kbd]W[/kbd]/[kbd]A[/kbd]/[kbd]S[/kbd]/[kbd]D[/kbd] layouts work regardless of the user's keyboard layout. [method is_physical_key_pressed] will also ensure that the top row number keys work on any keyboard layout. If in doubt, use [method is_physical_key_pressed].
 				[b]Note:[/b] Due to keyboard ghosting, [method is_physical_key_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
-				[b]Note:[/b] If you want to check if a key was just pressed by using its physical keycode, use Godot's input action system with [method is_action_just_pressed] or use the [method Node._input] method like this instead:
+				[b]Note:[/b] If you want to check if a key was just pressed by using its physical keycode, use Godot's input action system with [method is_action_just_pressed] or use the [method Flowde._input] method like this instead:
 				[codeblocks]
 				[gdscript]
 				func _input(event):
@@ -542,7 +542,7 @@
 			<return type="void" />
 			<param index="0" name="event" type="InputEvent" />
 			<description>
-				Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code. Also generates [method Node._input] calls.
+				Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code. Also generates [method Flowde._input] calls.
 				[codeblocks]
 				[gdscript]
 				var cancel_event = InputEventAction.new()

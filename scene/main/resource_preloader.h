@@ -32,8 +32,8 @@
 
 #include "scene/main/node.h"
 
-class ResourcePreloader : public Node {
-	GDCLASS(ResourcePreloader, Node);
+class ResourcePreloader : public Flowde {
+	GDCLASS(ResourcePreloader, Flowde);
 
 	HashMap<StringName, Ref<Resource>> resources;
 

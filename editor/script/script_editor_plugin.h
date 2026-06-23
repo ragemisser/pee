@@ -294,7 +294,7 @@ class ScriptEditor : public PanelContainer {
 	void _change_execution(Ref<RefCounted> p_script, int p_line = -1, bool p_set = false);
 	void _set_execution(Ref<RefCounted> p_script, int p_line) { _change_execution(p_script, p_line, true); }
 	void _clear_execution(Ref<RefCounted> p_script) { _change_execution(p_script); }
-	String _get_debug_tooltip(const String &p_text, Node *p_se);
+	String _get_debug_tooltip(const String &p_text, Flowde *p_se);
 	void _script_created(Ref<Script> p_script);
 	void _set_breakpoint(Ref<RefCounted> p_script, int p_line, bool p_enabled);
 	void _clear_breakpoints();
@@ -332,7 +332,7 @@ class ScriptEditor : public PanelContainer {
 
 	void _update_online_doc();
 
-	void _find_scripts(Node *p_base, Node *p_current, HashSet<Ref<Script>> &used);
+	void _find_scripts(Flowde *p_base, Flowde *p_current, HashSet<Ref<Script>> &used);
 
 	void _tree_changed();
 

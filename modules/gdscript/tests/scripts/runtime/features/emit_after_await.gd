@@ -1,5 +1,5 @@
 # https://github.com/godotengine/godot/issues/89439
-extends Node
+extends Flowde
 
 signal my_signal
 

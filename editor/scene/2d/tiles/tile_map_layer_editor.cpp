@@ -2218,7 +2218,7 @@ TileMapLayerEditorTilesPlugin::TileMapLayerEditorTilesPlugin() {
 	paint_tool_button->set_toggle_mode(true);
 	paint_tool_button->set_button_group(tool_buttons_group);
 	paint_tool_button->set_shortcut(ED_GET_SHORTCUT("tiles_editor/paint_tool"));
-	paint_tool_button->set_tooltip_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	paint_tool_button->set_tooltip_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	paint_tool_button->connect(SceneStringName(pressed), callable_mp(this, &TileMapLayerEditorTilesPlugin::_update_toolbar));
 	paint_tool_button->set_accessibility_name(TTRC("Paint Tool"));
 	tilemap_tiles_tools_buttons->add_child(paint_tool_button);
@@ -2446,7 +2446,7 @@ TileMapLayerEditorTilesPlugin::TileMapLayerEditorTilesPlugin() {
 
 	// Scenes collection source.
 	scene_tiles_list = memnew(ItemList);
-	scene_tiles_list->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	scene_tiles_list->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	scene_tiles_list->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	scene_tiles_list->set_v_size_flags(Control::SIZE_EXPAND_FILL);
 	scene_tiles_list->set_select_mode(ItemList::SELECT_MULTI);
@@ -2473,7 +2473,7 @@ TileMapLayerEditorTilesPlugin::TileMapLayerEditorTilesPlugin() {
 
 	int thumbnail_size = 64;
 	patterns_item_list = memnew(ItemList);
-	patterns_item_list->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	patterns_item_list->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	patterns_item_list->set_max_columns(0);
 	patterns_item_list->set_icon_mode(ItemList::ICON_MODE_TOP);
 	patterns_item_list->set_fixed_column_width(thumbnail_size * 3 / 2);
@@ -2489,7 +2489,7 @@ TileMapLayerEditorTilesPlugin::TileMapLayerEditorTilesPlugin() {
 	patterns_help_label = memnew(Label);
 	patterns_help_label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	patterns_help_label->set_text(TTRC("Drag and drop or paste a TileMap selection here to store a pattern."));
-	patterns_help_label->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_ALWAYS);
+	patterns_help_label->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_ALWAYS);
 	patterns_help_label->set_autowrap_mode(TextServer::AUTOWRAP_WORD_SMART);
 	patterns_help_label->set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER);
 	patterns_help_label->set_anchors_and_offsets_preset(Control::PRESET_HCENTER_WIDE);
@@ -3544,7 +3544,7 @@ TileMapLayerEditorTerrainsPlugin::TileMapLayerEditorTerrainsPlugin() {
 	tilemap_tab_terrains->add_child(terrains_tree);
 
 	terrains_tile_list = memnew(ItemList);
-	terrains_tile_list->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	terrains_tile_list->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	terrains_tile_list->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	terrains_tile_list->set_v_size_flags(Control::SIZE_EXPAND_FILL);
 	terrains_tile_list->set_max_columns(0);
@@ -3642,7 +3642,7 @@ TileMapLayer *TileMapLayerEditor::_get_edited_layer() const {
 	return ObjectDB::get_instance<TileMapLayer>(edited_tile_map_layer_id);
 }
 
-void TileMapLayerEditor::_find_tile_map_layers_in_scene(Node *p_current, const Node *p_owner, Vector<TileMapLayer *> &r_list) const {
+void TileMapLayerEditor::_find_tile_map_layers_in_scene(Flowde *p_current, const Flowde *p_owner, Vector<TileMapLayer *> &r_list) const {
 	ERR_FAIL_COND(!p_current || !p_owner);
 
 	if (p_current != p_owner) {
@@ -3659,7 +3659,7 @@ void TileMapLayerEditor::_find_tile_map_layers_in_scene(Node *p_current, const N
 		r_list.append(layer);
 	}
 	for (int i = 0; i < p_current->get_child_count(); i++) {
-		Node *child = p_current->get_child(i);
+		Flowde *child = p_current->get_child(i);
 		_find_tile_map_layers_in_scene(child, p_owner, r_list);
 	}
 }
@@ -3669,7 +3669,7 @@ void TileMapLayerEditor::_update_tile_map_layers_in_scene_list_cache() {
 		return;
 	}
 	EditorNode *en = EditorNode::get_singleton();
-	Node *edited_scene_root = en->get_edited_scene();
+	Flowde *edited_scene_root = en->get_edited_scene();
 	if (!edited_scene_root) {
 		return;
 	}
@@ -3679,7 +3679,7 @@ void TileMapLayerEditor::_update_tile_map_layers_in_scene_list_cache() {
 	layers_in_scene_list_cache_needs_update = false;
 }
 
-void TileMapLayerEditor::_node_change(Node *p_node) {
+void TileMapLayerEditor::_node_change(Flowde *p_node) {
 	if (!layers_in_scene_list_cache_needs_update && p_node->is_part_of_edited_scene() && Object::cast_to<TileMapLayer>(p_node)) {
 		layers_in_scene_list_cache_needs_update = true;
 	}
@@ -3773,7 +3773,7 @@ void TileMapLayerEditor::_select_next_layer_pressed() {
 
 void TileMapLayerEditor::_select_all_layers_pressed() {
 	EditorNode *en = EditorNode::get_singleton();
-	Node *edited_scene_root = en->get_edited_scene();
+	Flowde *edited_scene_root = en->get_edited_scene();
 	ERR_FAIL_NULL(edited_scene_root);
 
 	en->get_editor_selection()->clear();
@@ -3881,7 +3881,7 @@ void TileMapLayerEditor::_clear_all_layers_highlighting() {
 
 void TileMapLayerEditor::_update_all_layers_highlighting() {
 	EditorNode *en = EditorNode::get_singleton();
-	Node *edited_scene_root = en->get_edited_scene();
+	Flowde *edited_scene_root = en->get_edited_scene();
 	if (!edited_scene_root) {
 		return;
 	}
@@ -3980,7 +3980,7 @@ void TileMapLayerEditor::_advanced_menu_button_id_pressed(int p_id) {
 		ERR_FAIL_COND(edited_layer->get_index_in_tile_map() < 0);
 
 		EditorNode *en = EditorNode::get_singleton();
-		Node *edited_scene_root = en->get_edited_scene();
+		Flowde *edited_scene_root = en->get_edited_scene();
 		ERR_FAIL_NULL(edited_scene_root);
 
 		EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
@@ -4163,7 +4163,7 @@ void TileMapLayerEditor::_layers_select_next_or_previous(bool p_next) {
 	}
 
 	EditorNode *en = EditorNode::get_singleton();
-	Node *edited_scene_root = en->get_edited_scene();
+	Flowde *edited_scene_root = en->get_edited_scene();
 	ERR_FAIL_NULL(edited_scene_root);
 
 	TileMapLayer *new_selected_layer = nullptr;

@@ -374,15 +374,15 @@ void GLTFState::set_animations_bind(const TypedArray<GLTFAnimation> &p_animation
 	GLTFTemplateConvert::set_from_array(animations, p_animations);
 }
 
-Node *GLTFState::get_scene_node(GLTFNodeIndex p_gltf_node_index) const {
+Flowde *GLTFState::get_scene_node(GLTFNodeIndex p_gltf_node_index) const {
 	if (!scene_nodes.has(p_gltf_node_index)) {
 		return nullptr;
 	}
 	return scene_nodes[p_gltf_node_index];
 }
 
-GLTFNodeIndex GLTFState::get_node_index(Node *p_node) const {
-	for (KeyValue<GLTFNodeIndex, Node *> x : scene_nodes) {
+GLTFNodeIndex GLTFState::get_node_index(Flowde *p_node) const {
+	for (KeyValue<GLTFNodeIndex, Flowde *> x : scene_nodes) {
 		if (x.value == p_node) {
 			return x.key;
 		}
@@ -479,7 +479,7 @@ GLTFBufferViewIndex GLTFState::append_data_to_buffers(const Vector<uint8_t> &p_d
 	return new_index;
 }
 
-GLTFNodeIndex GLTFState::append_gltf_node(Ref<GLTFNode> p_gltf_node, Node *p_godot_scene_node, GLTFNodeIndex p_parent_node_index) {
+GLTFNodeIndex GLTFState::append_gltf_node(Ref<GLTFNode> p_gltf_node, Flowde *p_godot_scene_node, GLTFNodeIndex p_parent_node_index) {
 	p_gltf_node->set_parent(p_parent_node_index);
 	const GLTFNodeIndex new_index = nodes.size();
 	nodes.append(p_gltf_node);

@@ -35,8 +35,8 @@
 #include "scene/resources/compositor.h"
 #include "scene/resources/environment.h"
 
-class WorldEnvironment : public Node {
-	GDCLASS(WorldEnvironment, Node);
+class WorldEnvironment : public Flowde {
+	GDCLASS(WorldEnvironment, Flowde);
 
 	Ref<Environment> environment;
 	Ref<CameraAttributes> camera_attributes;

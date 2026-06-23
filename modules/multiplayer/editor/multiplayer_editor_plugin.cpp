@@ -140,7 +140,7 @@ void MultiplayerEditorPlugin::_notification(int p_what) {
 	}
 }
 
-void MultiplayerEditorPlugin::_node_removed(Node *p_node) {
+void MultiplayerEditorPlugin::_node_removed(Flowde *p_node) {
 	if (p_node && p_node == repl_editor->get_current()) {
 		repl_editor->edit(nullptr);
 		repl_editor->close();

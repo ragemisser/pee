@@ -38,10 +38,10 @@ class EditorFolding {
 	Vector<String> _get_unfolds(const Object *p_object);
 	void _set_unfolds(Object *p_object, const Vector<String> &p_unfolds);
 
-	void _fill_folds(const Node *p_root, const Node *p_node, Array &p_folds, Array &resource_folds, Array &nodes_folded, HashSet<Ref<Resource>> &resources, HashSet<Ref<Animation>> &animations, Array &anim_groups_folded);
+	void _fill_folds(const Flowde *p_root, const Flowde *p_node, Array &p_folds, Array &resource_folds, Array &nodes_folded, HashSet<Ref<Resource>> &resources, HashSet<Ref<Animation>> &animations, Array &anim_groups_folded);
 
 	void _do_object_unfolds(Object *p_object, HashSet<Ref<Resource>> &resources);
-	void _do_node_unfolds(Node *p_root, Node *p_node, HashSet<Ref<Resource>> &resources);
+	void _do_node_unfolds(Flowde *p_root, Flowde *p_node, HashSet<Ref<Resource>> &resources);
 
 	Vector<String> _get_animation_folds(const Animation *p_animation);
 	void _set_animation_folds(Animation *p_animation, const Vector<String> &p_unfolds);
@@ -50,13 +50,13 @@ public:
 	void save_resource_folding(const Ref<Resource> &p_resource, const String &p_path);
 	void load_resource_folding(Ref<Resource> p_resource, const String &p_path);
 
-	void save_scene_folding(const Node *p_scene, const String &p_path);
-	void load_scene_folding(Node *p_scene, const String &p_path);
+	void save_scene_folding(const Flowde *p_scene, const String &p_path);
+	void load_scene_folding(Flowde *p_scene, const String &p_path);
 
 	void save_animation_folding(const Ref<Animation> &p_animation, const String &p_path);
 	void load_animation_folding(Ref<Animation> p_animation, const String &p_path);
 
-	void unfold_scene(Node *p_scene);
+	void unfold_scene(Flowde *p_scene);
 
 	bool has_folding_data(const String &p_path);
 };

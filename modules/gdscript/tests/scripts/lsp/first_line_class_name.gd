@@ -1,5 +1,5 @@
 class_name Test
-extends Node
+extends Flowde
 
 func _init():
 	pass

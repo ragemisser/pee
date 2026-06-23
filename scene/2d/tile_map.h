@@ -257,7 +257,7 @@ private:
 #ifndef NAVIGATION_2D_DISABLED
 public:
 	static void navmesh_parse_init();
-	static void navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node);
+	static void navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node);
 #endif // NAVIGATION_2D_DISABLED
 
 	TileMap();

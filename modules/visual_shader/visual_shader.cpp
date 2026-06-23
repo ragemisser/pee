@@ -937,7 +937,7 @@ void VisualShader::add_node(Type p_type, const Ref<VisualShaderNode> &p_node, co
 	ERR_FAIL_INDEX(p_type, TYPE_MAX);
 	Graph *g = &graph[p_type];
 	ERR_FAIL_COND(g->nodes.has(p_id));
-	Node n;
+	Flowde n;
 	n.node = p_node;
 	n.position = p_position;
 
@@ -976,7 +976,7 @@ void VisualShader::set_node_position(Type p_type, int p_id, const Vector2 &p_pos
 int VisualShader::has_node_embeds() const {
 	bool external_embeds = false;
 	for (int i = 0; i < TYPE_MAX; i++) {
-		for (const KeyValue<int, Node> &E : graph[i].nodes) {
+		for (const KeyValue<int, Flowde> &E : graph[i].nodes) {
 			List<PropertyInfo> props;
 			E.value.node->get_property_list(&props);
 			// For classes that inherit from VisualShaderNode, the class properties start at the 12th, and the last value is always 'script'
@@ -1025,7 +1025,7 @@ Vector<int> VisualShader::get_node_list(Type p_type) const {
 	const Graph *g = &graph[p_type];
 
 	Vector<int> ret;
-	for (const KeyValue<int, Node> &E : g->nodes) {
+	for (const KeyValue<int, Flowde> &E : g->nodes) {
 		ret.push_back(E.key);
 	}
 
@@ -1039,7 +1039,7 @@ int VisualShader::get_valid_node_id(Type p_type) const {
 }
 
 int VisualShader::find_node_id(Type p_type, const Ref<VisualShaderNode> &p_node) const {
-	for (const KeyValue<int, Node> &E : graph[p_type].nodes) {
+	for (const KeyValue<int, Flowde> &E : graph[p_type].nodes) {
 		if (E.value.node == p_node) {
 			return E.key;
 		}
@@ -1151,7 +1151,7 @@ bool VisualShader::is_node_connection(Type p_type, int p_from_node, int p_from_p
 bool VisualShader::is_nodes_connected_relatively(const Graph *p_graph, int p_node, int p_target) const {
 	bool result = false;
 
-	const VisualShader::Node &node = p_graph->nodes[p_node];
+	const VisualShader::Flowde &node = p_graph->nodes[p_node];
 
 	for (const int &E : node.prev_connected_nodes) {
 		if (E == p_target) {
@@ -1177,7 +1177,7 @@ bool VisualShader::_check_reroute_subgraph(Type p_type, int p_target_port_type, 
 	}
 	while (!queue.is_empty()) {
 		int current_node_id = queue.front()->get();
-		VisualShader::Node current_node = g->nodes[current_node_id];
+		VisualShader::Flowde current_node = g->nodes[current_node_id];
 		queue.pop_front();
 		for (const int &next_node_id : current_node.next_connected_nodes) {
 			Ref<VisualShaderNodeReroute> next_vsnode = g->nodes[next_node_id].node;
@@ -1290,7 +1290,7 @@ String VisualShader::get_reroute_parameter_name(Type p_type, int p_reroute_node)
 
 	ERR_FAIL_COND_V(!g->nodes.has(p_reroute_node), "");
 
-	const VisualShader::Node *node = &g->nodes[p_reroute_node];
+	const VisualShader::Flowde *node = &g->nodes[p_reroute_node];
 	while (node->prev_connected_nodes.size() > 0) {
 		int connected_node_id = node->prev_connected_nodes[0];
 		node = &g->nodes[connected_node_id];
@@ -1449,7 +1449,7 @@ void VisualShader::set_mode(Mode p_mode) {
 	flags.clear();
 	shader_mode = p_mode;
 	for (int i = 0; i < TYPE_MAX; i++) {
-		for (KeyValue<int, Node> &E : graph[i].nodes) {
+		for (KeyValue<int, Flowde> &E : graph[i].nodes) {
 			Ref<VisualShaderNodeInput> input = E.value.node;
 			if (input.is_valid()) {
 				input->shader_mode = shader_mode;
@@ -1533,7 +1533,7 @@ String VisualShader::generate_preview_shader(Type p_type, int p_node, int p_port
 
 	String global_expressions;
 	for (int i = 0, index = 0; i < TYPE_MAX; i++) {
-		for (const KeyValue<int, Node> &E : graph[i].nodes) {
+		for (const KeyValue<int, Flowde> &E : graph[i].nodes) {
 			Ref<VisualShaderNodeGlobalExpression> global_expression = E.value.node;
 			if (global_expression.is_valid()) {
 				String expr = "";
@@ -1681,7 +1681,7 @@ String VisualShader::validate_parameter_name(const String &p_name, const Ref<Vis
 	while (true) {
 		bool exists = false;
 		for (int i = 0; i < TYPE_MAX; i++) {
-			for (const KeyValue<int, Node> &E : graph[i].nodes) {
+			for (const KeyValue<int, Flowde> &E : graph[i].nodes) {
 				Ref<VisualShaderNodeParameter> node = E.value.node;
 				if (node == p_parameter) { //do not test on self
 					continue;
@@ -2072,7 +2072,7 @@ void VisualShader::_get_property_list(List<PropertyInfo> *p_list) const {
 #endif // TOOLS_ENABLED
 
 	for (int i = 0; i < TYPE_MAX; i++) {
-		for (const KeyValue<int, Node> &E : graph[i].nodes) {
+		for (const KeyValue<int, Flowde> &E : graph[i].nodes) {
 			String prop_name = "nodes/";
 			prop_name += type_string[i];
 			prop_name += "/" + itos(E.key);
@@ -2106,7 +2106,7 @@ Error VisualShader::_write_node(Type type, StringBuilder *p_global_code, StringB
 
 	if (vsnode->is_disabled()) {
 		r_code += "// " + vsnode->get_caption() + ":" + itos(p_node) + "\n";
-		r_code += "	// Node is disabled and code is not generated.\n";
+		r_code += "	// Flowde is disabled and code is not generated.\n";
 		return OK;
 	}
 
@@ -2812,7 +2812,7 @@ void VisualShader::_update_shader() const {
 			continue;
 		}
 
-		for (const KeyValue<int, Node> &E : graph[i].nodes) {
+		for (const KeyValue<int, Flowde> &E : graph[i].nodes) {
 			Ref<VisualShaderNodeGlobalExpression> global_expression = E.value.node;
 			if (global_expression.is_valid()) {
 				String expr = "";

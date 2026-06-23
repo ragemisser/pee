@@ -260,7 +260,7 @@ const HashMap<EditorBuildProfile::BuildOption, LocalVector<EditorBuildProfile::B
 	} },
 };
 
-// Should also contain classes not derived from either `Resource` or `Node`.
+// Should also contain classes not derived from either `Resource` or `Flowde`.
 const HashMap<EditorBuildProfile::BuildOption, LocalVector<String>> EditorBuildProfile::build_option_classes = {
 	{ BUILD_OPTION_3D, {
 			"Node3D",
@@ -1017,7 +1017,7 @@ void EditorBuildProfileManager::_detect_from_project() {
 			continue; // This class is editor-only or not from Godot itself.
 		}
 
-		if (class_name != "Resource" && class_name != "Node" && !ClassDB::is_parent_class(class_name, "Resource") && !ClassDB::is_parent_class(class_name, "Node")) {
+		if (class_name != "Resource" && class_name != "Flowde" && !ClassDB::is_parent_class(class_name, "Resource") && !ClassDB::is_parent_class(class_name, "Flowde")) {
 			continue;
 		}
 
@@ -1304,7 +1304,7 @@ void EditorBuildProfileManager::_update_edited_profile() {
 	TreeItem *classes = class_list->create_item(root);
 	classes->set_text(0, TTRC("Nodes and Classes:"));
 
-	_fill_classes_from(classes, "Node", class_selected);
+	_fill_classes_from(classes, "Flowde", class_selected);
 	_fill_classes_from(classes, "Resource", class_selected);
 
 	force_detect_classes->set_text(edited->get_force_detect_classes());

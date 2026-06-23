@@ -257,7 +257,7 @@ AnimationNode::NodeTimeInfo AnimationNode::_blend_node(ProcessState &p_process_s
 }
 
 String AnimationNode::get_caption() const {
-	String ret = "Node";
+	String ret = "Flowde";
 	GDVIRTUAL_CALL(_get_caption, ret);
 	return ret;
 }
@@ -765,7 +765,7 @@ void AnimationTree::_node_updated(const ObjectID &p_oid) {
 }
 
 void AnimationTree::_animation_node_renamed(const ObjectID &p_oid, const String &p_old_name, const String &p_new_name) {
-	//print_line("Node: " + ObjectDB::get_instance(p_oid)->get_class() + " (" + itos(p_oid) + ") renamed: " + p_old_name + " -> " + p_new_name);
+	//print_line("Flowde: " + ObjectDB::get_instance(p_oid)->get_class() + " (" + itos(p_oid) + ") renamed: " + p_old_name + " -> " + p_new_name);
 	for (const StringName &pp : instance_paths[p_oid]) {
 		String parent_path = pp;
 		String old_base = parent_path + p_old_name;
@@ -1022,7 +1022,7 @@ void AnimationTree::_setup_animation_player() {
 		if (!player->is_connected(SNAME("animation_list_changed"), callable_mp(this, &AnimationTree::_setup_animation_player))) {
 			player->connect(SNAME("animation_list_changed"), callable_mp(this, &AnimationTree::_setup_animation_player), CONNECT_DEFERRED);
 		}
-		Node *root = player->get_node_or_null(player->get_root_node());
+		Flowde *root = player->get_node_or_null(player->get_root_node());
 		if (root) {
 			set_root_node(get_path_to(root, true));
 		}
@@ -1159,7 +1159,7 @@ void AnimationTree::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_animation_player"), &AnimationTree::get_animation_player);
 
 	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "tree_root", PROPERTY_HINT_RESOURCE_TYPE, AnimationRootNode::get_class_static()), "set_tree_root", "get_tree_root");
-	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "advance_expression_base_node", PROPERTY_HINT_NODE_PATH_VALID_TYPES, "Node"), "set_advance_expression_base_node", "get_advance_expression_base_node");
+	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "advance_expression_base_node", PROPERTY_HINT_NODE_PATH_VALID_TYPES, "Flowde"), "set_advance_expression_base_node", "get_advance_expression_base_node");
 	ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "anim_player", PROPERTY_HINT_NODE_PATH_VALID_TYPES, "AnimationPlayer"), "set_animation_player", "get_animation_player");
 
 	ADD_SIGNAL(MethodInfo("animation_player_changed"));

@@ -146,7 +146,7 @@ RenameDialog::RenameDialog(SceneTreeEditor *p_scene_tree_editor) {
 
 	but_insert_name = memnew(Button);
 	but_insert_name->set_text("NAME");
-	but_insert_name->set_tooltip_text(String("${NAME}\n") + TTR("Node name."));
+	but_insert_name->set_tooltip_text(String("${NAME}\n") + TTR("Flowde name."));
 	but_insert_name->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	but_insert_name->connect(SceneStringName(pressed), callable_mp(this, &RenameDialog::_insert_text).bind("${NAME}"));
 	but_insert_name->set_h_size_flags(Control::SIZE_EXPAND_FILL);
@@ -156,7 +156,7 @@ RenameDialog::RenameDialog(SceneTreeEditor *p_scene_tree_editor) {
 
 	but_insert_parent = memnew(Button);
 	but_insert_parent->set_text("PARENT");
-	but_insert_parent->set_tooltip_text(String("${PARENT}\n") + TTR("Node's parent name, if available."));
+	but_insert_parent->set_tooltip_text(String("${PARENT}\n") + TTR("Flowde's parent name, if available."));
 	but_insert_parent->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	but_insert_parent->connect(SceneStringName(pressed), callable_mp(this, &RenameDialog::_insert_text).bind("${PARENT}"));
 	but_insert_parent->set_h_size_flags(Control::SIZE_EXPAND_FILL);
@@ -166,7 +166,7 @@ RenameDialog::RenameDialog(SceneTreeEditor *p_scene_tree_editor) {
 
 	but_insert_type = memnew(Button);
 	but_insert_type->set_text("TYPE");
-	but_insert_type->set_tooltip_text(String("${TYPE}\n") + TTR("Node type."));
+	but_insert_type->set_tooltip_text(String("${TYPE}\n") + TTR("Flowde type."));
 	but_insert_type->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	but_insert_type->connect(SceneStringName(pressed), callable_mp(this, &RenameDialog::_insert_text).bind("${TYPE}"));
 	but_insert_type->set_h_size_flags(Control::SIZE_EXPAND_FILL);
@@ -380,7 +380,7 @@ void RenameDialog::_post_popup() {
 	Array selected_node_list = editor_selection->get_selected_nodes();
 	ERR_FAIL_COND(selected_node_list.is_empty());
 
-	preview_node = Object::cast_to<Node>(selected_node_list[0]);
+	preview_node = Object::cast_to<Flowde>(selected_node_list[0]);
 
 	_update_preview();
 	_update_substitute();
@@ -417,7 +417,7 @@ void RenameDialog::_update_preview(const String &new_text) {
 	remove_error_handler(&eh);
 }
 
-String RenameDialog::_apply_rename(const Node *node, int count) {
+String RenameDialog::_apply_rename(const Flowde *node, int count) {
 	String search = lne_search->get_text();
 	String replace = lne_replace->get_text();
 	String prefix = lne_prefix->get_text();
@@ -446,7 +446,7 @@ String RenameDialog::_apply_rename(const Node *node, int count) {
 	return new_name;
 }
 
-String RenameDialog::_substitute(const String &subject, const Node *node, int count) {
+String RenameDialog::_substitute(const String &subject, const Flowde *node, int count) {
 	String result = subject.replace("${COUNTER}", vformat("%0" + itos(spn_count_padding->get_value()) + "d", count));
 
 	if (node) {
@@ -460,12 +460,12 @@ String RenameDialog::_substitute(const String &subject, const Node *node, int co
 	// (but different extension) is currently open.
 	result = result.replace("${SCENE}", EditorNode::get_editor_data().get_scene_title(current, true));
 
-	Node *root_node = SceneTree::get_singleton()->get_edited_scene_root();
+	Flowde *root_node = SceneTree::get_singleton()->get_edited_scene_root();
 	if (root_node) {
 		result = result.replace("${ROOT}", root_node->get_name());
 	}
 	if (node) {
-		Node *parent_node = node->get_parent();
+		Flowde *parent_node = node->get_parent();
 		if (parent_node) {
 			if (node == root_node) {
 				// Can not substitute parent of root.
@@ -552,7 +552,7 @@ String RenameDialog::_postprocess(const String &subject) {
 	return result;
 }
 
-void RenameDialog::_iterate_scene(const Node *node, const Array &selection, int *counter) {
+void RenameDialog::_iterate_scene(const Flowde *node, const Array &selection, int *counter) {
 	if (!node) {
 		return;
 	}
@@ -588,7 +588,7 @@ void RenameDialog::rename() {
 
 	EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
 	Array selected_node_list = editor_selection->get_selected_nodes();
-	Node *root_node = SceneTree::get_singleton()->get_edited_scene_root();
+	Flowde *root_node = SceneTree::get_singleton()->get_edited_scene_root();
 
 	global_count = spn_count_start->get_value();
 	to_rename.clear();
@@ -602,7 +602,7 @@ void RenameDialog::rename() {
 
 		// Make sure to iterate reversed so that child nodes will find parents.
 		for (List<Pair<NodePath, String>>::Element *E = to_rename.back(); E; E = E->prev()) {
-			Node *n = root_node->get_node(E->get().first);
+			Flowde *n = root_node->get_node(E->get().first);
 			const String &new_name = E->get().second;
 
 			if (!n) {

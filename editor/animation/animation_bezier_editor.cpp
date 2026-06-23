@@ -417,7 +417,7 @@ void AnimationBezierTrackEdit::_notification(int p_what) {
 				{
 					NodePath path = animation->track_get_path(tracks[0]);
 
-					Node *node = nullptr;
+					Flowde *node = nullptr;
 
 					if (root && root->has_node(path)) {
 						node = root->get_node(path);
@@ -878,7 +878,7 @@ bool AnimationBezierTrackEdit::_is_track_displayed(int p_track_index) {
 	if (is_filtered) {
 		String path = String(animation->track_get_path(p_track_index));
 		if (root && root->has_node(path)) {
-			Node *node = root->get_node(path);
+			Flowde *node = root->get_node(path);
 			if (!node) {
 				return false; // No node, no filter.
 			}
@@ -1006,7 +1006,7 @@ void AnimationBezierTrackEdit::update_play_position() {
 	play_position->queue_redraw();
 }
 
-void AnimationBezierTrackEdit::set_root(Node *p_root) {
+void AnimationBezierTrackEdit::set_root(Flowde *p_root) {
 	root = p_root;
 }
 
@@ -1018,7 +1018,7 @@ void AnimationBezierTrackEdit::set_filtered(bool p_filtered) {
 	String base_path = String(animation->track_get_path(selected_track));
 	if (is_filtered) {
 		if (root && root->has_node(base_path)) {
-			Node *node = root->get_node(base_path);
+			Flowde *node = root->get_node(base_path);
 			if (!node || !EditorNode::get_singleton()->get_editor_selection()->is_selected(node)) {
 				for (int i = 0; i < animation->get_track_count(); ++i) {
 					if (animation->track_get_type(i) != Animation::TrackType::TYPE_BEZIER) {

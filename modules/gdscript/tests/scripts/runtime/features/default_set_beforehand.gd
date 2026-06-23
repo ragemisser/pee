@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 @onready var later_inferred := [1]
 @onready var later_static: Array

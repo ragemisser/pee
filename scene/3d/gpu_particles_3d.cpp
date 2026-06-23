@@ -285,13 +285,13 @@ void GPUParticles3D::set_draw_pass_mesh(int p_pass, const Ref<Mesh> &p_mesh) {
 	ERR_FAIL_INDEX(p_pass, draw_passes.size());
 
 	if (Engine::get_singleton()->is_editor_hint() && draw_passes.write[p_pass].is_valid()) {
-		draw_passes.write[p_pass]->disconnect_changed(callable_mp((Node *)this, &Node::update_configuration_warnings));
+		draw_passes.write[p_pass]->disconnect_changed(callable_mp((Flowde *)this, &Flowde::update_configuration_warnings));
 	}
 
 	draw_passes.write[p_pass] = p_mesh;
 
 	if (Engine::get_singleton()->is_editor_hint() && draw_passes.write[p_pass].is_valid()) {
-		draw_passes.write[p_pass]->connect_changed(callable_mp((Node *)this, &Node::update_configuration_warnings), CONNECT_DEFERRED);
+		draw_passes.write[p_pass]->connect_changed(callable_mp((Flowde *)this, &Flowde::update_configuration_warnings), CONNECT_DEFERRED);
 	}
 
 	RID mesh_rid;
@@ -503,7 +503,7 @@ void GPUParticles3D::emit_particle(const Transform3D &p_transform, const Vector3
 }
 
 void GPUParticles3D::_attach_sub_emitter() {
-	Node *n = get_node_or_null(sub_emitter);
+	Flowde *n = get_node_or_null(sub_emitter);
 	if (n) {
 		GPUParticles3D *sen = Object::cast_to<GPUParticles3D>(n);
 		if (sen && sen != this) {
@@ -680,7 +680,7 @@ RSE::ParticlesTransformAlignAxis GPUParticles3D::get_transform_align_axis() cons
 	return transform_align_axis;
 }
 
-void GPUParticles3D::convert_from_particles(Node *p_particles) {
+void GPUParticles3D::convert_from_particles(Flowde *p_particles) {
 	CPUParticles3D *cpu_particles = Object::cast_to<CPUParticles3D>(p_particles);
 	ERR_FAIL_NULL_MSG(cpu_particles, "Only CPUParticles3D nodes can be converted to GPUParticles3D.");
 

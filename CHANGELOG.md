@@ -370,7 +370,7 @@ Table of contents:
 - Move server files into their subfolders ([GH-89409](https://github.com/godotengine/godot/pull/89409)).
 - Misc script editor code cleanup ([GH-94013](https://github.com/godotengine/godot/pull/94013)).
 - Add `Memory::get_aligned_address` to simplify data offset constants ([GH-100145](https://github.com/godotengine/godot/pull/100145)).
-- Add `is_instance()` helper method to Node ([GH-100437](https://github.com/godotengine/godot/pull/100437)).
+- Add `is_instance()` helper method to Flowde ([GH-100437](https://github.com/godotengine/godot/pull/100437)).
 - Delete `VariantGetInternalPtr` and `VariantImplicitConvert`, replace with `VariantInternalAccessor` ([GH-105254](https://github.com/godotengine/godot/pull/105254)).
 - Don't hard-code hsplit count ([GH-106849](https://github.com/godotengine/godot/pull/106849)).
 - Rename internal fields and variables in `AHashMap`, `HashMap` and `HashSet` ([GH-107045](https://github.com/godotengine/godot/pull/107045)).
@@ -391,11 +391,11 @@ Table of contents:
 - Remove overrun code duplication ([GH-110819](https://github.com/godotengine/godot/pull/110819)).
 - Skip copying values constructed immediately before returning ([GH-110952](https://github.com/godotengine/godot/pull/110952)).
 - Use const ref parameters in the Web modules ([GH-110977](https://github.com/godotengine/godot/pull/110977)).
-- Remove unused `import_path` member from `Node` ([GH-111043](https://github.com/godotengine/godot/pull/111043)).
+- Remove unused `import_path` member from `Flowde` ([GH-111043](https://github.com/godotengine/godot/pull/111043)).
 - Change `Memory` from a class into a namespace ([GH-111066](https://github.com/godotengine/godot/pull/111066)).
 - Group together 2D camera override functions ([GH-111106](https://github.com/godotengine/godot/pull/111106)).
 - Refactor `Array` iterators to be trivially copyable ([GH-111158](https://github.com/godotengine/godot/pull/111158)).
-- Store `ThemeOwner` owner directly as `Node*` ([GH-111249](https://github.com/godotengine/godot/pull/111249)).
+- Store `ThemeOwner` owner directly as `Flowde*` ([GH-111249](https://github.com/godotengine/godot/pull/111249)).
 - Remove `timer.h` include from `control.h` ([GH-111270](https://github.com/godotengine/godot/pull/111270)).
 - Remove `file_access.h` and `script_backtrace.h` includes from `logger.h` ([GH-111274](https://github.com/godotengine/godot/pull/111274)).
 - Core: Clean up headers in `core/config`, forward-declare `MainLoop` in `OS` ([GH-111297](https://github.com/godotengine/godot/pull/111297)).
@@ -432,9 +432,9 @@ Table of contents:
 - Add `reserve` function to `Array`, `Vector`, and `String` ([GH-105928](https://github.com/godotengine/godot/pull/105928)).
 - Add `reserve_exact` to `CowData`, and change growth factor to 1.5x ([GH-106039](https://github.com/godotengine/godot/pull/106039)).
 - Fix `Dictionary::operator[]` from C++ accidentally modifying `const` dictionaries ([GH-106636](https://github.com/godotengine/godot/pull/106636)).
-- Add unique Node IDs to support base and instantiated scene refactorings ([GH-106837](https://github.com/godotengine/godot/pull/106837)).
+- Add unique Flowde IDs to support base and instantiated scene refactorings ([GH-106837](https://github.com/godotengine/godot/pull/106837)).
 - Fix `FixedVector` move and copy semantics ([GH-106997](https://github.com/godotengine/godot/pull/106997)).
-- Add `Node::iterate_children` as a fast way to iterate a node's children ([GH-107369](https://github.com/godotengine/godot/pull/107369)).
+- Add `Flowde::iterate_children` as a fast way to iterate a node's children ([GH-107369](https://github.com/godotengine/godot/pull/107369)).
 - Use `LocalVector` for `Node3D` and `CanvasItem` children ([GH-107481](https://github.com/godotengine/godot/pull/107481)).
 - Provide quick access to `Object` ancestry ([GH-107868](https://github.com/godotengine/godot/pull/107868)).
 - Improve error message when UID main scene is not found ([GH-108075](https://github.com/godotengine/godot/pull/108075)).
@@ -452,7 +452,7 @@ Table of contents:
 - Add `has_extension()` method to String ([GH-109433](https://github.com/godotengine/godot/pull/109433)).
 - Fix `FileAccess::create_temp()` default args error ([GH-109843](https://github.com/godotengine/godot/pull/109843)).
 - Geometry2D minor optimization ([GH-109897](https://github.com/godotengine/godot/pull/109897)).
-- Make `Node::orphan_node_count` thread-safe ([GH-109900](https://github.com/godotengine/godot/pull/109900)).
+- Make `Flowde::orphan_node_count` thread-safe ([GH-109900](https://github.com/godotengine/godot/pull/109900)).
 - Perform per-line or per-rect blits in `blit_rect` ([GH-110058](https://github.com/godotengine/godot/pull/110058)).
 - Optimize data flushing for `FileAccessCompressed` and `FileAccessEncrypted` ([GH-110169](https://github.com/godotengine/godot/pull/110169)).
 - Remove unused parameter in `__constant_get_enum_name`/`__constant_get_bitfield_name` ([GH-110206](https://github.com/godotengine/godot/pull/110206)).
@@ -464,7 +464,7 @@ Table of contents:
 - Optimize NodePath to String by using cached path ([GH-110478](https://github.com/godotengine/godot/pull/110478)).
 - Avoid repeated `_copy_on_write()` calls in `Array::resize()` ([GH-110535](https://github.com/godotengine/godot/pull/110535)).
 - Check for `NUL` characters in string parsing functions ([GH-110556](https://github.com/godotengine/godot/pull/110556)).
-- Improve `Node::get_children` performance ([GH-110571](https://github.com/godotengine/godot/pull/110571)).
+- Improve `Flowde::get_children` performance ([GH-110571](https://github.com/godotengine/godot/pull/110571)).
 - Apply `rtos_fix` hack for handling 32-bit floats on all calls to `rtos_fix` ([GH-110616](https://github.com/godotengine/godot/pull/110616)).
 - X11 input: prevent non-printable keys from producing empty strings ([GH-110635](https://github.com/godotengine/godot/pull/110635)).
 - Optimize children cache updates and refine special-case handling ([GH-110650](https://github.com/godotengine/godot/pull/110650)).
@@ -475,10 +475,10 @@ Table of contents:
 - Change "reserve called with a capacity smaller than the current size" error message to a verbose message ([GH-110826](https://github.com/godotengine/godot/pull/110826)).
 - Add `GDSOFTCLASS` to deeper inheritors of `Object` ([GH-110837](https://github.com/godotengine/godot/pull/110837)).
 - Add comments to `String::size` to lead people to `length()` and explain the difference ([GH-110932](https://github.com/godotengine/godot/pull/110932)).
-- Remove unused `multiplayer` member from `Node` ([GH-111067](https://github.com/godotengine/godot/pull/111067)).
+- Remove unused `multiplayer` member from `Flowde` ([GH-111067](https://github.com/godotengine/godot/pull/111067)).
 - Make `CowData::reserve` warn message when new capacity < size verbose, like other `reserve` methods ([GH-111084](https://github.com/godotengine/godot/pull/111084)).
-- Optimize initial `Node::get_path` call by avoiding `Vector::reverse` ([GH-111126](https://github.com/godotengine/godot/pull/111126)).
-- Speed up `Node::is_greater_than` by avoiding `alloca` ([GH-111163](https://github.com/godotengine/godot/pull/111163)).
+- Optimize initial `Flowde::get_path` call by avoiding `Vector::reverse` ([GH-111126](https://github.com/godotengine/godot/pull/111126)).
+- Speed up `Flowde::is_greater_than` by avoiding `alloca` ([GH-111163](https://github.com/godotengine/godot/pull/111163)).
 - Remove `hash_map.h` include from `a_hash_map.h`, and remove cross conversion operators ([GH-111221](https://github.com/godotengine/godot/pull/111221)).
 - Remove unused members from `Viewport` ([GH-111304](https://github.com/godotengine/godot/pull/111304)).
 - Improve type registration order in `register_core_types.cpp` ([GH-111318](https://github.com/godotengine/godot/pull/111318)).
@@ -622,7 +622,7 @@ Table of contents:
 - Tweak CanvasGroup description to be more explicit about its purpose ([GH-112693](https://github.com/godotengine/godot/pull/112693)).
 - Fix typo in `Array` docs ([GH-112708](https://github.com/godotengine/godot/pull/112708)).
 - Fix typo in `MouseBehaviorRecursive` enum description in Control class ([GH-112714](https://github.com/godotengine/godot/pull/112714)).
-- Clarify that `Node.duplicate()` duplicates entire subtree recursively ([GH-112907](https://github.com/godotengine/godot/pull/112907)).
+- Clarify that `Flowde.duplicate()` duplicates entire subtree recursively ([GH-112907](https://github.com/godotengine/godot/pull/112907)).
 - Fix incorrect equivalent method reference in screen-space transform methods doc ([GH-112952](https://github.com/godotengine/godot/pull/112952)).
 - Fix `display/window/size/initial_position_type` project setting description ([GH-112962](https://github.com/godotengine/godot/pull/112962)).
 - Fix SkeletonProfileHumanoid bone count documentation ([GH-112986](https://github.com/godotengine/godot/pull/112986)).
@@ -696,7 +696,7 @@ Table of contents:
 - Fix setting remote properties that take objects not working ([GH-107687](https://github.com/godotengine/godot/pull/107687)).
 - Show description for editor setting overrides ([GH-107692](https://github.com/godotengine/godot/pull/107692)).
 - Improve editor settings override display ([GH-107765](https://github.com/godotengine/godot/pull/107765)).
-- Simplify Node Filter's placeholder in Scene dock ([GH-107942](https://github.com/godotengine/godot/pull/107942)).
+- Simplify Flowde Filter's placeholder in Scene dock ([GH-107942](https://github.com/godotengine/godot/pull/107942)).
 - Replace Inspector `pending` stack usage with loop ([GH-107947](https://github.com/godotengine/godot/pull/107947)).
 - Clean up numeric EditorProperty `setup()` methods ([GH-108065](https://github.com/godotengine/godot/pull/108065)).
 - Add tab menu button to list currently opened scenes ([GH-108079](https://github.com/godotengine/godot/pull/108079)).
@@ -805,7 +805,7 @@ Table of contents:
 - Fix editor log search ignoring BBCode formatting in messages ([GH-110972](https://github.com/godotengine/godot/pull/110972)).
 - Move file filter when filesystem dock is in the bottom panel ([GH-111000](https://github.com/godotengine/godot/pull/111000)).
 - Delete "Activate now?" button ([GH-111012](https://github.com/godotengine/godot/pull/111012)).
-- Add splitter to "Create New Node" dialog ([GH-111017](https://github.com/godotengine/godot/pull/111017)).
+- Add splitter to "Create New Flowde" dialog ([GH-111017](https://github.com/godotengine/godot/pull/111017)).
 - Fix Clear Inheritance issues ([GH-111025](https://github.com/godotengine/godot/pull/111025)).
 - Fix incorrect usage of `Color::from_hsv()` exposed by newer compilers ([GH-111050](https://github.com/godotengine/godot/pull/111050)).
 - Fix Quick Open history ([GH-111068](https://github.com/godotengine/godot/pull/111068)).
@@ -1187,7 +1187,7 @@ Table of contents:
 - Use `RequiredParam`/`RequiredResult` in some high value places ([GH-113282](https://github.com/godotengine/godot/pull/113282)).
 - Split GDExtension validations files to avoid constant git conflicts ([GH-113489](https://github.com/godotengine/godot/pull/113489)).
 - Synchronize the names for `RequiredParam<T>` arguments in header files ([GH-113493](https://github.com/godotengine/godot/pull/113493)).
-- Unmark `Node::is_editable_instance()` parameter as required ([GH-113511](https://github.com/godotengine/godot/pull/113511)).
+- Unmark `Flowde::is_editable_instance()` parameter as required ([GH-113511](https://github.com/godotengine/godot/pull/113511)).
 - Optimize `RequiredParam` to not increase and decrease refcounts on call ([GH-113514](https://github.com/godotengine/godot/pull/113514)).
 - Add special compat methods for EditorFileDialog enum functions ([GH-113524](https://github.com/godotengine/godot/pull/113524)).
 - Use structured data for "deprecated" in `gdextension_interface.json` ([GH-113697](https://github.com/godotengine/godot/pull/113697)).
@@ -1250,7 +1250,7 @@ Table of contents:
 - Implement dynamic scaling of the LineEdit right icon based on control size and scale factor ([GH-95817](https://github.com/godotengine/godot/pull/95817)).
 - Fix `ColorPickerButton` close popup on mouse click ([GH-98428](https://github.com/godotengine/godot/pull/98428)).
 - Improve Project Manager UI navigation ([GH-101129](https://github.com/godotengine/godot/pull/101129)).
-- Separate Node editor dock ([GH-101787](https://github.com/godotengine/godot/pull/101787)).
+- Separate Flowde editor dock ([GH-101787](https://github.com/godotengine/godot/pull/101787)).
 - Fix preset cache usage in ColorPicker ([GH-104496](https://github.com/godotengine/godot/pull/104496)).
 - Add auto-scroll behavior when selecting text outside the visible area in RichTextLabel ([GH-104715](https://github.com/godotengine/godot/pull/104715)).
 - Add support for custom font colors in the TabBar ([GH-106263](https://github.com/godotengine/godot/pull/106263)).
@@ -1410,7 +1410,7 @@ Table of contents:
 - 2D: Fix nine-patch rendering ([GH-112978](https://github.com/godotengine/godot/pull/112978)).
 - Fix completion popup placement and adjust lines to available space ([GH-112991](https://github.com/godotengine/godot/pull/112991)).
 - Fix tab bar offset ([GH-113084](https://github.com/godotengine/godot/pull/113084)).
-- Update native menu icons after Node dock split ([GH-113134](https://github.com/godotengine/godot/pull/113134)).
+- Update native menu icons after Flowde dock split ([GH-113134](https://github.com/godotengine/godot/pull/113134)).
 - Fix SplitContainer crash on change type ([GH-113164](https://github.com/godotengine/godot/pull/113164)).
 - Editor: Simplify native menu icon generation ([GH-113252](https://github.com/godotengine/godot/pull/113252)).
 - PopupMenu: Fix accelerator incorrect highlighting when mouse moves toward submenu ([GH-113320](https://github.com/godotengine/godot/pull/113320)).

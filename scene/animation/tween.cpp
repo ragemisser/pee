@@ -235,7 +235,7 @@ void Tween::clear() {
 	tweeners.clear();
 }
 
-RequiredResult<Tween> Tween::bind_node(RequiredParam<const Node> rp_node) {
+RequiredResult<Tween> Tween::bind_node(RequiredParam<const Flowde> rp_node) {
 	EXTRACT_PARAM_OR_FAIL_V(p_node, rp_node, this);
 
 	bound_node = p_node->get_instance_id();
@@ -338,7 +338,7 @@ bool Tween::step(double p_delta) {
 	}
 
 	if (is_bound) {
-		Node *node = get_bound_node();
+		Flowde *node = get_bound_node();
 		if (node) {
 			if (!node->is_inside_tree()) {
 				return true;
@@ -356,7 +356,7 @@ bool Tween::step(double p_delta) {
 	if (!started) {
 		if (tweeners.is_empty()) {
 			String tween_id;
-			Node *node = get_bound_node();
+			Flowde *node = get_bound_node();
 			if (node) {
 				tween_id = vformat("Tween (bound to %s)", node->is_inside_tree() ? (String)node->get_path() : (String)node->get_name());
 			} else {
@@ -433,7 +433,7 @@ bool Tween::step(double p_delta) {
 
 bool Tween::can_process(bool p_tree_paused) const {
 	if (is_bound && pause_mode == TWEEN_PAUSE_BOUND) {
-		Node *node = get_bound_node();
+		Flowde *node = get_bound_node();
 		if (node) {
 			return node->is_inside_tree() && node->can_process();
 		}
@@ -442,9 +442,9 @@ bool Tween::can_process(bool p_tree_paused) const {
 	return !p_tree_paused || pause_mode == TWEEN_PAUSE_PROCESS;
 }
 
-Node *Tween::get_bound_node() const {
+Flowde *Tween::get_bound_node() const {
 	if (is_bound) {
-		return ObjectDB::get_instance<Node>(bound_node);
+		return ObjectDB::get_instance<Flowde>(bound_node);
 	} else {
 		return nullptr;
 	}
@@ -475,7 +475,7 @@ Variant Tween::interpolate_variant(const Variant &p_initial_val, const Variant &
 
 String Tween::_to_string() {
 	String ret = Object::_to_string();
-	Node *node = get_bound_node();
+	Flowde *node = get_bound_node();
 	if (node) {
 		ret += vformat(" (bound to %s)", node->get_name());
 	}

@@ -23,7 +23,7 @@ namespace embree
 
     struct Statistics 
     {
-      template<typename Node>
+      template<typename Flowde>
         struct NodeStat
       {
         NodeStat ( double nodeSAH = 0,
@@ -38,7 +38,7 @@ namespace embree
         }
 
         size_t bytes() const {
-          return numNodes*sizeof(Node);
+          return numNodes*sizeof(Flowde);
         }
 
         size_t size() const {

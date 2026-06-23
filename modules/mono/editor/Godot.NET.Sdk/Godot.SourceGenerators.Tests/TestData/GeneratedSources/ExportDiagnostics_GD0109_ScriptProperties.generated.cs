@@ -7,7 +7,7 @@ partial class ExportDiagnostics_GD0109
     /// <summary>
     /// Cached StringNames for the properties and fields contained in this class, for fast lookup.
     /// </summary>
-    public new class PropertyName : global::Godot.Node.PropertyName {
+    public new class PropertyName : global::Godot.Flowde.PropertyName {
         /// <summary>
         /// Cached name for the 'MyButton' property.
         /// </summary>

@@ -1461,7 +1461,7 @@ void ScriptEditorDebugger::_method_changed(Object *p_base, const StringName &p_n
 		return;
 	}
 
-	Node *node = Object::cast_to<Node>(p_base);
+	Flowde *node = Object::cast_to<Flowde>(p_base);
 
 	for (int i = 0; i < p_argcount; i++) {
 		//no pointers, sorry
@@ -1506,7 +1506,7 @@ void ScriptEditorDebugger::_property_changed(Object *p_base, const StringName &p
 		return;
 	}
 
-	Node *node = Object::cast_to<Node>(p_base);
+	Flowde *node = Object::cast_to<Flowde>(p_base);
 
 	if (node) {
 		NodePath path = EditorNode::get_singleton()->get_edited_scene()->get_path_to(node);

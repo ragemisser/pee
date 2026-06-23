@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 [Tool]
-public partial class ExportDiagnostics_GD0111 : Node
+public partial class ExportDiagnostics_GD0111 : Flowde
 {
     private Callable _backingField;
 

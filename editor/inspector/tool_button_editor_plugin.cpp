@@ -46,7 +46,7 @@ void EditorInspectorToolButtonPlugin::_call_action(const Variant &p_object, cons
 
 	Ref<MultiNodeEdit> multinode = p_object;
 	if (multinode.is_valid()) {
-		Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+		Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 		if (edited_scene) {
 			const StringName method = callable.get_method();
 			for (int i = 0; i < multinode->get_node_count(); i++) {
@@ -80,7 +80,7 @@ bool EditorInspectorToolButtonPlugin::parse_property(Object *p_object, const Var
 	const String &hint_icon = splits.size() > 1 ? splits[1] : "Callable";
 
 	EditorInspectorActionButton *action_button = memnew(EditorInspectorActionButton(hint_text, hint_icon));
-	action_button->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	action_button->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	bool is_multinode = Object::cast_to<MultiNodeEdit>(p_object);
 	if (p_usage & PROPERTY_USAGE_READ_ONLY) {
 		action_button->set_disabled(true);

@@ -239,7 +239,7 @@ void AbstractPolygon2DEditor::_notification(int p_what) {
 	}
 }
 
-void AbstractPolygon2DEditor::_node_removed(Node *p_node) {
+void AbstractPolygon2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == _get_node()) {
 		edit(nullptr);
 		hide();
@@ -763,7 +763,7 @@ void AbstractPolygon2DEditor::set_edit_origin_and_center(bool p_enabled) {
 	}
 }
 
-void AbstractPolygon2DEditor::edit(Node *p_polygon) {
+void AbstractPolygon2DEditor::edit(Flowde *p_polygon) {
 	if (!canvas_item_editor) {
 		canvas_item_editor = CanvasItemEditor::get_singleton();
 	}
@@ -929,7 +929,7 @@ AbstractPolygon2DEditor::AbstractPolygon2DEditor(bool p_wip_destructive) {
 }
 
 void AbstractPolygon2DEditorPlugin::edit(Object *p_object) {
-	Node *polygon_node = Object::cast_to<Node>(p_object);
+	Flowde *polygon_node = Object::cast_to<Flowde>(p_object);
 	polygon_editor->edit(polygon_node);
 	make_visible(polygon_node != nullptr);
 }

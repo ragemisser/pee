@@ -690,13 +690,13 @@ TEST_CASE("[Dictionary] Type checks/comparisons") {
 	CHECK_FALSE(d1.is_typed_key());
 	CHECK_FALSE(d1.is_typed_value());
 
-	d1.set_typed(Variant::STRING, StringName(), Variant(), Variant::OBJECT, "Node", Variant());
+	d1.set_typed(Variant::STRING, StringName(), Variant(), Variant::OBJECT, "Flowde", Variant());
 	CHECK(d1.is_typed());
 	CHECK(d1.is_typed_key());
 	CHECK(d1.is_typed_value());
 	CHECK_EQ(d1.get_typed_key_builtin(), Variant::STRING);
 	CHECK_EQ(d1.get_typed_value_builtin(), Variant::OBJECT);
-	CHECK_EQ(d1.get_typed_value_class_name(), "Node");
+	CHECK_EQ(d1.get_typed_value_class_name(), "Flowde");
 
 	Dictionary d2;
 	CHECK_FALSE(d1.is_same_typed(d2));

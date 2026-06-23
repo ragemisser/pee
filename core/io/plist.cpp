@@ -695,7 +695,7 @@ bool PList::load_string(const String &p_string, String &r_err_out) {
 		}
 
 		if (!in_plist) {
-			r_err_out = "Node outside of <plist> tag.";
+			r_err_out = "Flowde outside of <plist> tag.";
 			return false;
 		}
 

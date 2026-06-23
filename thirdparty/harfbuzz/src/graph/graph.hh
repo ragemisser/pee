@@ -1385,7 +1385,7 @@ struct graph_t
     {
       const auto& v = vertices_[i];
       if (!v.incoming_edges ())
-        DEBUG_MSG (SUBSET_REPACK, nullptr, "Node %u is orphaned.", i);
+        DEBUG_MSG (SUBSET_REPACK, nullptr, "Flowde %u is orphaned.", i);
     }
   }
 

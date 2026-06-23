@@ -164,7 +164,7 @@ void ItemList::set_item_auto_translate_mode(int p_idx, AutoTranslateMode p_mode)
 	}
 }
 
-Node::AutoTranslateMode ItemList::get_item_auto_translate_mode(int p_idx) const {
+Flowde::AutoTranslateMode ItemList::get_item_auto_translate_mode(int p_idx) const {
 	ERR_FAIL_INDEX_V(p_idx, items.size(), AUTO_TRANSLATE_MODE_INHERIT);
 	return items[p_idx].auto_translate_mode;
 }
@@ -2078,7 +2078,7 @@ String ItemList::get_tooltip(const Point2 &p_pos) const {
 	return Control::get_tooltip(p_pos);
 }
 
-Node::AutoTranslateMode ItemList::get_tooltip_auto_translate_mode_at(const Point2 &p_at) const {
+Flowde::AutoTranslateMode ItemList::get_tooltip_auto_translate_mode_at(const Point2 &p_at) const {
 	int closest = get_item_at_position(p_at, true);
 	if (closest != -1) {
 		return items[closest].auto_translate_mode;

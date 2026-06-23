@@ -1,2 +1,2 @@
 # Some comment
-extends Node
+extends Flowde

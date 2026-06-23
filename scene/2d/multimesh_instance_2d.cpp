@@ -136,7 +136,7 @@ void MultiMeshInstance2D::navmesh_parse_init() {
 	}
 }
 
-void MultiMeshInstance2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node) {
+void MultiMeshInstance2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node) {
 	MultiMeshInstance2D *multimesh_instance = Object::cast_to<MultiMeshInstance2D>(p_node);
 
 	if (multimesh_instance == nullptr) {

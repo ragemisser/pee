@@ -7,7 +7,7 @@ func subtest_native():
 	print(ref_counted.notify_property_list_changed())
 
 func subtest_free():
-	var node: Variant = Node.new()
+	var node: Variant = Flowde.new()
 	print(node.free())
 
 func test():

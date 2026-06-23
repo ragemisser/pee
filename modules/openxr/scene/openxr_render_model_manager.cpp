@@ -212,7 +212,7 @@ PackedStringArray OpenXRRenderModelManager::get_configuration_warnings() const {
 
 		parent = Object::cast_to<XROrigin3D>(get_parent());
 	} else {
-		Node *node = get_parent();
+		Flowde *node = get_parent();
 		while (!parent && node) {
 			parent = Object::cast_to<XROrigin3D>(node);
 

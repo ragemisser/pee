@@ -73,7 +73,7 @@ class SpriteFramesEditor : public EditorDock {
 	GDCLASS(SpriteFramesEditor, EditorDock);
 
 	Ref<SpriteFrames> frames;
-	Node *animated_sprite = nullptr;
+	Flowde *animated_sprite = nullptr;
 
 	enum {
 		PARAM_USE_CURRENT, // Used in callbacks to indicate `dominant_param` should be not updated.
@@ -304,7 +304,7 @@ class SpriteFramesEditor : public EditorDock {
 
 protected:
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 	static void _bind_methods();
 
 public:

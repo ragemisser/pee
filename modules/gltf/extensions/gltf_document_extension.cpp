@@ -126,7 +126,7 @@ Error GLTFDocumentExtension::import_pre_generate(Ref<GLTFState> p_state) {
 	return err;
 }
 
-Node3D *GLTFDocumentExtension::generate_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Node *p_scene_parent) {
+Node3D *GLTFDocumentExtension::generate_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Flowde *p_scene_parent) {
 	ERR_FAIL_COND_V(p_state.is_null(), nullptr);
 	ERR_FAIL_COND_V(p_gltf_node.is_null(), nullptr);
 	Node3D *ret_node = nullptr;
@@ -134,7 +134,7 @@ Node3D *GLTFDocumentExtension::generate_scene_node(Ref<GLTFState> p_state, Ref<G
 	return ret_node;
 }
 
-Error GLTFDocumentExtension::import_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_dict, Node *p_node) {
+Error GLTFDocumentExtension::import_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_dict, Flowde *p_node) {
 	ERR_FAIL_COND_V(p_state.is_null(), ERR_INVALID_PARAMETER);
 	ERR_FAIL_COND_V(p_gltf_node.is_null(), ERR_INVALID_PARAMETER);
 	ERR_FAIL_NULL_V(p_node, ERR_INVALID_PARAMETER);
@@ -143,7 +143,7 @@ Error GLTFDocumentExtension::import_node(Ref<GLTFState> p_state, Ref<GLTFNode> p
 	return err;
 }
 
-Error GLTFDocumentExtension::import_post(Ref<GLTFState> p_state, Node *p_root) {
+Error GLTFDocumentExtension::import_post(Ref<GLTFState> p_state, Flowde *p_root) {
 	ERR_FAIL_NULL_V(p_root, ERR_INVALID_PARAMETER);
 	ERR_FAIL_COND_V(p_state.is_null(), ERR_INVALID_PARAMETER);
 	Error err = OK;
@@ -152,7 +152,7 @@ Error GLTFDocumentExtension::import_post(Ref<GLTFState> p_state, Node *p_root) {
 }
 
 // Export process.
-List<PropertyInfo> GLTFDocumentExtension::export_get_property_list(Node *p_root_node) {
+List<PropertyInfo> GLTFDocumentExtension::export_get_property_list(Flowde *p_root_node) {
 	TypedArray<Dictionary> ret_dicts;
 	GDVIRTUAL_CALL(_export_get_property_list, p_root_node, ret_dicts);
 	List<PropertyInfo> ret;
@@ -165,21 +165,21 @@ List<PropertyInfo> GLTFDocumentExtension::export_get_property_list(Node *p_root_
 	return ret;
 }
 
-Error GLTFDocumentExtension::export_preflight(Ref<GLTFState> p_state, Node *p_root) {
+Error GLTFDocumentExtension::export_preflight(Ref<GLTFState> p_state, Flowde *p_root) {
 	ERR_FAIL_NULL_V(p_root, ERR_INVALID_PARAMETER);
 	Error err = OK;
 	GDVIRTUAL_CALL(_export_preflight, p_state, p_root, err);
 	return err;
 }
 
-void GLTFDocumentExtension::convert_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Node *p_scene_node) {
+void GLTFDocumentExtension::convert_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Flowde *p_scene_node) {
 	ERR_FAIL_COND(p_state.is_null());
 	ERR_FAIL_COND(p_gltf_node.is_null());
 	ERR_FAIL_NULL(p_scene_node);
 	GDVIRTUAL_CALL(_convert_scene_node, p_state, p_gltf_node, p_scene_node);
 }
 
-Error GLTFDocumentExtension::export_post_convert(Ref<GLTFState> p_state, Node *p_root) {
+Error GLTFDocumentExtension::export_post_convert(Ref<GLTFState> p_state, Flowde *p_root) {
 	ERR_FAIL_COND_V(p_state.is_null(), ERR_INVALID_PARAMETER);
 	ERR_FAIL_NULL_V(p_root, ERR_INVALID_PARAMETER);
 	Error err = OK;
@@ -194,7 +194,7 @@ Error GLTFDocumentExtension::export_preserialize(Ref<GLTFState> p_state) {
 	return err;
 }
 
-Ref<GLTFObjectModelProperty> GLTFDocumentExtension::export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Node *p_godot_node, GLTFNodeIndex p_gltf_node_index, const Object *p_target_object, int p_target_depth) {
+Ref<GLTFObjectModelProperty> GLTFDocumentExtension::export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Flowde *p_godot_node, GLTFNodeIndex p_gltf_node_index, const Object *p_target_object, int p_target_depth) {
 	Ref<GLTFObjectModelProperty> ret;
 	ERR_FAIL_COND_V(p_state.is_null(), ret);
 	ERR_FAIL_NULL_V(p_godot_node, ret);
@@ -233,7 +233,7 @@ Error GLTFDocumentExtension::serialize_texture_json(Ref<GLTFState> p_state, Dict
 	return err;
 }
 
-Error GLTFDocumentExtension::export_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_dict, Node *p_node) {
+Error GLTFDocumentExtension::export_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_dict, Flowde *p_node) {
 	ERR_FAIL_COND_V(p_state.is_null(), ERR_INVALID_PARAMETER);
 	ERR_FAIL_COND_V(p_gltf_node.is_null(), ERR_INVALID_PARAMETER);
 	Error err = OK;

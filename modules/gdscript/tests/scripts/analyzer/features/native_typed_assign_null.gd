@@ -1,10 +1,10 @@
-extends Node
+extends Flowde
 
 func test():
 	var typed: Variant = get_node_or_null("does_not_exist")
 	var untyped = null
-	var node_1: Node = typed
-	var node_2: Node = untyped
+	var node_1: Flowde = typed
+	var node_2: Flowde = untyped
 	var node_3 = typed
 	var node_4 = untyped
 	print(typed)

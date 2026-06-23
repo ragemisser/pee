@@ -52,7 +52,7 @@ CollisionShape2DEditor::CollisionShape2DEditor() {
 	grab_threshold = EDITOR_GET("editors/polygon_editor/point_grab_radius");
 }
 
-void CollisionShape2DEditor::_node_removed(Node *p_node) {
+void CollisionShape2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 	}
@@ -653,7 +653,7 @@ void CollisionShape2DEditor::_notification(int p_what) {
 	}
 }
 
-void CollisionShape2DEditor::edit(Node *p_node) {
+void CollisionShape2DEditor::edit(Flowde *p_node) {
 	if (!canvas_item_editor) {
 		canvas_item_editor = CanvasItemEditor::get_singleton();
 	}
@@ -674,7 +674,7 @@ void CollisionShape2DEditor::edit(Node *p_node) {
 }
 
 void CollisionShape2DEditorPlugin::edit(Object *p_obj) {
-	collision_shape_2d_editor->edit(Object::cast_to<Node>(p_obj));
+	collision_shape_2d_editor->edit(Object::cast_to<Flowde>(p_obj));
 }
 
 bool CollisionShape2DEditorPlugin::handles(Object *p_obj) const {

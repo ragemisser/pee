@@ -203,7 +203,7 @@ TEST_CASE("[SceneTree][Control] Focus") {
 }
 
 TEST_CASE("[SceneTree][Control] Find next/prev valid focus") {
-	Node *intermediate = memnew(Node);
+	Flowde *intermediate = memnew(Flowde);
 	Control *ctrl = memnew(Control);
 	intermediate->add_child(ctrl);
 	SceneTree::get_singleton()->get_root()->add_child(intermediate);

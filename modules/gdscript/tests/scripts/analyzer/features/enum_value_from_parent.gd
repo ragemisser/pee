@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 enum { VALUE_A, VALUE_B, VALUE_C = 42 }
 

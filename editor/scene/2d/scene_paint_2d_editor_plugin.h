@@ -91,7 +91,7 @@ class ScenePaint2DEditor : public Control {
 	PopupMenu *advanced_settings_popup = nullptr;
 	Control *custom_overlay = nullptr;
 	Control *viewport = nullptr;
-	HashMap<Node *, Node *> pinned_nodes;
+	HashMap<Flowde *, Flowde *> pinned_nodes;
 
 	Node2D *cache_node = nullptr;
 	Node2D *node = nullptr;
@@ -130,7 +130,7 @@ class ScenePaint2DEditor : public Control {
 
 	Vector2 _get_mouse_grid_cell();
 
-	void _set_pinned(bool p_pinned, Node *p_pinned_node = nullptr);
+	void _set_pinned(bool p_pinned, Flowde *p_pinned_node = nullptr);
 	void _pinned_toggled(bool p_pressed);
 	void _scene_changed();
 
@@ -146,7 +146,7 @@ class ScenePaint2DEditor : public Control {
 
 	bool _is_selected_scene_valid(Node2D *p_node) const;
 	bool _is_scene_painted(Node2D *p_node) const;
-	Node2D *_get_node_root(Node *p_node) const;
+	Node2D *_get_node_root(Flowde *p_node) const;
 
 	void _edit_properties_toggled(bool p_pressed);
 	void _edit_properties();

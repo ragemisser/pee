@@ -225,7 +225,7 @@ extern void CrashHandlerException(int signal) {
 		msg = GLOBAL_GET("debug/settings/crash_handler/message");
 	}
 
-	// Tell MainLoop about the crash. This can be handled by users too in Node.
+	// Tell MainLoop about the crash. This can be handled by users too in Flowde.
 	if (OS::get_singleton()->get_main_loop()) {
 		OS::get_singleton()->get_main_loop()->notification(MainLoop::NOTIFICATION_CRASH);
 	}

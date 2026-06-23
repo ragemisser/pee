@@ -235,7 +235,7 @@ class ControlEditorToolbar : public HBoxContainer {
 	void _update_container_sizing_selection_ui(bool p_pressed);
 
 	Vector2 _position_to_anchor(const Control *p_control, Vector2 position);
-	bool _is_node_locked(const Node *p_node);
+	bool _is_node_locked(const Flowde *p_node);
 	List<Control *> _get_edited_controls();
 	void _selection_changed();
 

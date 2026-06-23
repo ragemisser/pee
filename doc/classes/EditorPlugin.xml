@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="EditorPlugin" inherits="Node" api_type="editor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="EditorPlugin" inherits="Flowde" api_type="editor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Used by the editor to extend its functionality.
 	</brief_description>
@@ -242,7 +242,7 @@
 					# You can use a custom icon:
 					return preload("res://addons/my_plugin/my_plugin_icon.svg")
 					# Or use a built-in icon:
-					return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
+					return EditorInterface.get_editor_theme().get_icon("Flowde", "EditorIcons")
 				[/gdscript]
 				[csharp]
 				public override Texture2D _GetPluginIcon()
@@ -250,7 +250,7 @@
 					// You can use a custom icon:
 					return ResourceLoader.Load&lt;Texture2D&gt;("res://addons/my_plugin/my_plugin_icon.svg");
 					// Or use a built-in icon:
-					return EditorInterface.Singleton.GetEditorTheme().GetIcon("Node", "EditorIcons");
+					return EditorInterface.Singleton.GetEditorTheme().GetIcon("Flowde", "EditorIcons");
 				}
 				[/csharp]
 				[/codeblocks]
@@ -322,7 +322,7 @@
 			<return type="bool" />
 			<param index="0" name="object" type="Object" />
 			<description>
-				Implement this function if your plugin edits a specific type of object (Resource or Node). If you return [code]true[/code], then you will get the functions [method _edit] and [method _make_visible] called when the editor requests them. If you have declared the methods [method _forward_canvas_gui_input] and [method _forward_3d_gui_input] these will be called too.
+				Implement this function if your plugin edits a specific type of object (Resource or Flowde). If you return [code]true[/code], then you will get the functions [method _edit] and [method _make_visible] called when the editor requests them. If you have declared the methods [method _forward_canvas_gui_input] and [method _forward_3d_gui_input] these will be called too.
 				[b]Note:[/b] Each plugin should handle only one type of objects at a time. If a plugin handles more types of objects and they are edited at the same time, it will result in errors.
 			</description>
 		</method>
@@ -350,7 +350,7 @@
 					return "My Super Cool Plugin 3000"
 
 				func _get_plugin_icon():
-					return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
+					return EditorInterface.get_editor_theme().get_icon("Flowde", "EditorIcons")
 				[/codeblock]
 			</description>
 		</method>
@@ -430,7 +430,7 @@
 			<param index="1" name="title" type="String" />
 			<param index="2" name="shortcut" type="Shortcut" default="null" />
 			<description>
-				Adds a control to the bottom panel (together with Output, Debug, Animation, etc.). Returns a reference to a button that is outside the scene tree. It's up to you to hide/show the button when needed. When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_bottom_panel] and free it with [method Node.queue_free].
+				Adds a control to the bottom panel (together with Output, Debug, Animation, etc.). Returns a reference to a button that is outside the scene tree. It's up to you to hide/show the button when needed. When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_bottom_panel] and free it with [method Flowde.queue_free].
 				[param shortcut] is a shortcut that, when activated, will toggle the bottom panel's visibility. The shortcut object is only set when this control is added to the bottom panel.
 				[b]Note[/b] See the default editor bottom panel shortcuts in the Editor Settings for inspiration. By convention, they all use [kbd]Alt[/kbd] modifier.
 			</description>
@@ -442,7 +442,7 @@
 			<description>
 				Adds a custom control to a container in the editor UI.
 				Please remember that you have to manage the visibility of your custom controls yourself (and likely hide it after adding it).
-				When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_container] and free it with [method Node.queue_free].
+				When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_container] and free it with [method Flowde.queue_free].
 			</description>
 		</method>
 		<method name="add_control_to_dock" deprecated="Use [method add_dock] instead.">
@@ -453,7 +453,7 @@
 			<description>
 				Adds the control to a specific dock slot.
 				If the dock is repositioned and as long as the plugin is active, the editor will save the dock position on further sessions.
-				When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_docks] and free it with [method Node.queue_free].
+				When your plugin is deactivated, make sure to remove your custom control with [method remove_control_from_docks] and free it with [method Flowde.queue_free].
 				Optionally, you can specify a shortcut parameter. When pressed, this shortcut will open and focus the dock.
 			</description>
 		</method>
@@ -484,7 +484,7 @@
 			<param index="0" name="dock" type="EditorDock" />
 			<description>
 				Adds a new dock.
-				When your plugin is deactivated, make sure to remove your custom dock with [method remove_dock] and free it with [method Node.queue_free].
+				When your plugin is deactivated, make sure to remove your custom dock with [method remove_dock] and free it with [method Flowde.queue_free].
 			</description>
 		</method>
 		<method name="add_export_platform">
@@ -667,7 +667,7 @@
 			<return type="void" />
 			<param index="0" name="control" type="Control" />
 			<description>
-				Removes the control from the bottom panel. You have to manually [method Node.queue_free] the control.
+				Removes the control from the bottom panel. You have to manually [method Flowde.queue_free] the control.
 			</description>
 		</method>
 		<method name="remove_control_from_container">
@@ -675,14 +675,14 @@
 			<param index="0" name="container" type="int" enum="EditorPlugin.CustomControlContainer" />
 			<param index="1" name="control" type="Control" />
 			<description>
-				Removes the control from the specified container. You have to manually [method Node.queue_free] the control.
+				Removes the control from the specified container. You have to manually [method Flowde.queue_free] the control.
 			</description>
 		</method>
 		<method name="remove_control_from_docks" deprecated="Use [method remove_dock] instead.">
 			<return type="void" />
 			<param index="0" name="control" type="Control" />
 			<description>
-				Removes the control from the dock. You have to manually [method Node.queue_free] the control.
+				Removes the control from the dock. You have to manually [method Flowde.queue_free] the control.
 			</description>
 		</method>
 		<method name="remove_custom_type">
@@ -703,7 +703,7 @@
 			<return type="void" />
 			<param index="0" name="dock" type="EditorDock" />
 			<description>
-				Removes [param dock] from the available docks. You should manually call [method Node.queue_free] to free it.
+				Removes [param dock] from the available docks. You should manually call [method Flowde.queue_free] to free it.
 			</description>
 		</method>
 		<method name="remove_export_platform">
@@ -829,7 +829,7 @@
 			</description>
 		</signal>
 		<signal name="scene_changed">
-			<param index="0" name="scene_root" type="Node" />
+			<param index="0" name="scene_root" type="Flowde" />
 			<description>
 				Emitted when the scene is changed in the editor. The argument will return the root node of the scene that has just become active. If this scene is new and empty, the argument will be [code]null[/code].
 			</description>
@@ -900,7 +900,7 @@
 			Dock slot, left side, bottom-right (in default layout includes FileSystem dock).
 		</constant>
 		<constant name="DOCK_SLOT_RIGHT_UL" value="4" enum="DockSlot">
-			Dock slot, right side, upper-left (in default layout includes Inspector, Node, and History docks).
+			Dock slot, right side, upper-left (in default layout includes Inspector, Flowde, and History docks).
 		</constant>
 		<constant name="DOCK_SLOT_RIGHT_BL" value="5" enum="DockSlot">
 			Dock slot, right side, bottom-left (empty in default layout).

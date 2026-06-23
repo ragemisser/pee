@@ -1556,7 +1556,7 @@ GDScriptTokenizer::Token GDScriptTokenizerText::scan() {
 				_advance();
 				return make_token(Token::CARET_EQUAL);
 			} else if (_peek() == '"' || _peek() == '\'') {
-				// Node path
+				// Flowde path
 				return string();
 			} else {
 				return make_token(Token::CARET);

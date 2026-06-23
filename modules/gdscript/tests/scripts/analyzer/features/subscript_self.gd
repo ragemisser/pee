@@ -1,8 +1,8 @@
 # https://github.com/godotengine/godot/issues/43221
-extends Node
+extends Flowde
 
 func test():
-	name = "Node"
+	name = "Flowde"
 	print(self["name"])
 	self["name"] = "Changed"
 	print(name)

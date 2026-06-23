@@ -66,7 +66,7 @@ void ScalableContainer::_notification(int p_what) {
 	size.width -= get_margin_size(SIDE_LEFT) + get_margin_size(SIDE_RIGHT);
 	size.height -= get_margin_size(SIDE_TOP) + get_margin_size(SIDE_BOTTOM);
 
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		Control *control = as_sortable_control(child);
 		if (control) {
 			fit_child_in_rect(control, Rect2(control->get_position(), size));
@@ -472,12 +472,12 @@ void SceneThemeEditorPreview::_reload_scene() {
 	}
 
 	for (int i = preview_content->get_child_count() - 1; i >= 0; i--) {
-		Node *node = preview_content->get_child(i);
+		Flowde *node = preview_content->get_child(i);
 		node->queue_free();
 		preview_content->remove_child(node);
 	}
 
-	Node *instance = loaded_scene->instantiate();
+	Flowde *instance = loaded_scene->instantiate();
 	if (!instance || !Object::cast_to<Control>(instance)) {
 		EditorNode::get_singleton()->show_warning(TTR("Invalid PackedScene resource, must have a Control node at its root."));
 		emit_signal(SNAME("scene_invalidated"));
@@ -508,7 +508,7 @@ bool SceneThemeEditorPreview::set_preview_scene(const String &p_path) {
 		return false;
 	}
 
-	Node *instance = loaded_scene->instantiate();
+	Flowde *instance = loaded_scene->instantiate();
 
 	if (!instance) {
 		EditorNode::get_singleton()->show_warning(TTR("Invalid PackedScene resource, could not instantiate it."));

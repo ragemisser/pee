@@ -137,12 +137,12 @@
 				Returns [code]true[/code] if the string contains [param what]. In GDScript, this corresponds to the [code]in[/code] operator.
 				[codeblocks]
 				[gdscript]
-				print("Node".contains("de")) # Prints true
+				print("Flowde".contains("de")) # Prints true
 				print("team".contains("I"))  # Prints false
 				print("I" in "team")         # Prints false
 				[/gdscript]
 				[csharp]
-				GD.Print("Node".Contains("de")); // Prints True
+				GD.Print("Flowde".Contains("de")); // Prints True
 				GD.Print("team".Contains("I"));  // Prints False
 				[/csharp]
 				[/codeblocks]
@@ -443,7 +443,7 @@
 		<method name="is_relative_path" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the string is a path, and its starting point is dependent on context. The path could begin from the current directory, or the current [Node] (if the string is derived from a [NodePath]), and may sometimes be prefixed with [code]"./"[/code]. This method is the opposite of [method is_absolute_path].
+				Returns [code]true[/code] if the string is a path, and its starting point is dependent on context. The path could begin from the current directory, or the current [Flowde] (if the string is derived from a [NodePath]), and may sometimes be prefixed with [code]"./"[/code]. This method is the opposite of [method is_absolute_path].
 			</description>
 		</method>
 		<method name="is_subsequence_of" qualifiers="const">
@@ -1216,7 +1216,7 @@
 		<method name="validate_node_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns a copy of the string with all characters that are not allowed in [member Node.name] ([code].[/code] [code]:[/code] [code]@[/code] [code]/[/code] [code]"[/code] [code]%[/code]) replaced with underscores.
+				Returns a copy of the string with all characters that are not allowed in [member Flowde.name] ([code].[/code] [code]:[/code] [code]@[/code] [code]/[/code] [code]"[/code] [code]%[/code]) replaced with underscores.
 			</description>
 		</method>
 		<method name="xml_escape" qualifiers="const">

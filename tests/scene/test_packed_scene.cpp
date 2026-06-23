@@ -39,7 +39,7 @@ namespace TestPackedScene {
 
 TEST_CASE("[PackedScene] Pack Scene and Retrieve State") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -62,10 +62,10 @@ TEST_CASE("[PackedScene] Signals Preserved when Packing Scene") {
 	// `- sub_node (local)
 	// `- sub_scene (instance of another scene)
 	//    `- sub_scene_node (owned by sub_scene)
-	Node *main_scene_root = memnew(Node);
-	Node *sub_node = memnew(Node);
-	Node *sub_scene_root = memnew(Node);
-	Node *sub_scene_node = memnew(Node);
+	Flowde *main_scene_root = memnew(Flowde);
+	Flowde *sub_node = memnew(Flowde);
+	Flowde *sub_scene_root = memnew(Flowde);
+	Flowde *sub_scene_node = memnew(Flowde);
 
 	main_scene_root->add_child(sub_node);
 	sub_node->set_owner(main_scene_root);
@@ -79,11 +79,11 @@ TEST_CASE("[PackedScene] Signals Preserved when Packing Scene") {
 	SUBCASE("Signals that should be saved") {
 		int main_flags = Object::CONNECT_PERSIST;
 		// sub node to a node in main scene
-		sub_node->connect("ready", callable_mp(main_scene_root, &Node::is_ready), main_flags);
+		sub_node->connect("ready", callable_mp(main_scene_root, &Flowde::is_ready), main_flags);
 		// subscene root to a node in main scene
-		sub_scene_root->connect("ready", callable_mp(main_scene_root, &Node::is_ready), main_flags);
+		sub_scene_root->connect("ready", callable_mp(main_scene_root, &Flowde::is_ready), main_flags);
 		//subscene root to subscene root (connected within main scene)
-		sub_scene_root->connect("ready", callable_mp(sub_scene_root, &Node::is_ready), main_flags);
+		sub_scene_root->connect("ready", callable_mp(sub_scene_root, &Flowde::is_ready), main_flags);
 
 		// Pack the scene.
 		Ref<PackedScene> packed_scene;
@@ -101,11 +101,11 @@ TEST_CASE("[PackedScene] Signals Preserved when Packing Scene") {
 	SUBCASE("Signals that should not be saved") {
 		int subscene_flags = Object::CONNECT_PERSIST | Object::CONNECT_INHERITED;
 		// subscene node to itself
-		sub_scene_node->connect("ready", callable_mp(sub_scene_node, &Node::is_ready), subscene_flags);
+		sub_scene_node->connect("ready", callable_mp(sub_scene_node, &Flowde::is_ready), subscene_flags);
 		// subscene node to subscene root
-		sub_scene_node->connect("ready", callable_mp(sub_scene_root, &Node::is_ready), subscene_flags);
+		sub_scene_node->connect("ready", callable_mp(sub_scene_root, &Flowde::is_ready), subscene_flags);
 		//subscene root to subscene root (connected within sub scene)
-		sub_scene_root->connect("ready", callable_mp(sub_scene_root, &Node::is_ready), subscene_flags);
+		sub_scene_root->connect("ready", callable_mp(sub_scene_root, &Flowde::is_ready), subscene_flags);
 
 		// Pack the scene.
 		Ref<PackedScene> packed_scene;
@@ -124,7 +124,7 @@ TEST_CASE("[PackedScene] Signals Preserved when Packing Scene") {
 
 TEST_CASE("[PackedScene] Clear Packed Scene") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -143,7 +143,7 @@ TEST_CASE("[PackedScene] Clear Packed Scene") {
 
 TEST_CASE("[PackedScene] Can Instantiate Packed Scene") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -159,7 +159,7 @@ TEST_CASE("[PackedScene] Can Instantiate Packed Scene") {
 
 TEST_CASE("[PackedScene] Instantiate Packed Scene") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -167,7 +167,7 @@ TEST_CASE("[PackedScene] Instantiate Packed Scene") {
 	packed_scene.pack(scene);
 
 	// Instantiate the packed scene.
-	Node *instance = packed_scene.instantiate();
+	Flowde *instance = packed_scene.instantiate();
 	CHECK(instance != nullptr);
 	CHECK(instance->get_name() == "TestScene");
 
@@ -177,22 +177,22 @@ TEST_CASE("[PackedScene] Instantiate Packed Scene") {
 
 TEST_CASE("[PackedScene] Instantiate Packed Scene With Children") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Add persisting child nodes to the scene.
-	Node *child1 = memnew(Node);
+	Flowde *child1 = memnew(Flowde);
 	child1->set_name("Child1");
 	scene->add_child(child1);
 	child1->set_owner(scene);
 
-	Node *child2 = memnew(Node);
+	Flowde *child2 = memnew(Flowde);
 	child2->set_name("Child2");
 	scene->add_child(child2);
 	child2->set_owner(scene);
 
 	// Add non persisting child node to the scene.
-	Node *child3 = memnew(Node);
+	Flowde *child3 = memnew(Flowde);
 	child3->set_name("Child3");
 	scene->add_child(child3);
 
@@ -201,7 +201,7 @@ TEST_CASE("[PackedScene] Instantiate Packed Scene With Children") {
 	packed_scene.pack(scene);
 
 	// Instantiate the packed scene.
-	Node *instance = packed_scene.instantiate();
+	Flowde *instance = packed_scene.instantiate();
 	CHECK(instance != nullptr);
 	CHECK(instance->get_name() == "TestScene");
 
@@ -218,7 +218,7 @@ TEST_CASE("[PackedScene] Instantiate Packed Scene With Children") {
 
 TEST_CASE("[PackedScene] Set Path") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -239,7 +239,7 @@ TEST_CASE("[PackedScene] Set Path") {
 
 TEST_CASE("[PackedScene] Replace State") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.
@@ -263,7 +263,7 @@ TEST_CASE("[PackedScene] Replace State") {
 
 TEST_CASE("[PackedScene] Recreate State") {
 	// Create a scene to pack.
-	Node *scene = memnew(Node);
+	Flowde *scene = memnew(Flowde);
 	scene->set_name("TestScene");
 
 	// Pack the scene.

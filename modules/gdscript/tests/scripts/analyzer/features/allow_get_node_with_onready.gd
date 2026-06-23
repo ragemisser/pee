@@ -1,13 +1,13 @@
-extends Node
+extends Flowde
 
-@onready var shorthand = $Node
-@onready var call_no_cast = get_node(^"Node")
-@onready var shorthand_with_cast = $Node as Node
-@onready var call_with_cast = get_node(^"Node") as Node
+@onready var shorthand = $Flowde
+@onready var call_no_cast = get_node(^"Flowde")
+@onready var shorthand_with_cast = $Flowde as Flowde
+@onready var call_with_cast = get_node(^"Flowde") as Flowde
 
 func _init():
-	var node := Node.new()
-	node.name = "Node"
+	var node := Flowde.new()
+	node.name = "Flowde"
 	add_child(node)
 
 func test():

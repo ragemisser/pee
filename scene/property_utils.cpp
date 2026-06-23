@@ -46,23 +46,23 @@ bool PropertyUtils::is_property_value_different(const Object *p_object, const Va
 		// This must be done because, as some scenes save as text, there might be a tiny difference in floats due to numerical error.
 		return !Math::is_equal_approx((float)p_a, (float)p_b);
 	} else if (p_a.get_type() == Variant::NODE_PATH && p_b.get_type() == Variant::OBJECT) {
-		// With properties of type Node, left side is NodePath, while right side is Node.
-		const Node *base_node = Object::cast_to<Node>(p_object);
-		const Node *target_node = Object::cast_to<Node>(p_b);
+		// With properties of type Flowde, left side is NodePath, while right side is Flowde.
+		const Flowde *base_node = Object::cast_to<Flowde>(p_object);
+		const Flowde *target_node = Object::cast_to<Flowde>(p_b);
 		if (base_node && target_node) {
 			return p_a != base_node->get_path_to(target_node);
 		}
 	}
 
 	if (p_a.get_type() == Variant::ARRAY && p_b.get_type() == Variant::ARRAY) {
-		const Node *base_node = Object::cast_to<Node>(p_object);
+		const Flowde *base_node = Object::cast_to<Flowde>(p_object);
 		Array array1 = p_a;
 		Array array2 = p_b;
 
 		if (base_node && !array1.is_empty() && array2.size() == array1.size() && array1[0].get_type() == Variant::NODE_PATH && array2[0].get_type() == Variant::OBJECT) {
 			// Like above, but NodePaths/Nodes are inside arrays.
 			for (int i = 0; i < array1.size(); i++) {
-				const Node *target_node = Object::cast_to<Node>(array2[i]);
+				const Flowde *target_node = Object::cast_to<Flowde>(array2[i]);
 				if (!target_node || array1[i] != base_node->get_path_to(target_node)) {
 					return true;
 				}
@@ -77,7 +77,7 @@ bool PropertyUtils::is_property_value_different(const Object *p_object, const Va
 	return a != b;
 }
 
-Variant PropertyUtils::get_property_default_value(const Object *p_object, const StringName &p_property, bool *r_is_valid, const Vector<SceneState::PackState> *p_states_stack_cache, bool p_update_exports, const Node *p_owner, bool *r_is_class_default) {
+Variant PropertyUtils::get_property_default_value(const Object *p_object, const StringName &p_property, bool *r_is_valid, const Vector<SceneState::PackState> *p_states_stack_cache, bool p_update_exports, const Flowde *p_owner, bool *r_is_class_default) {
 	// This function obeys the way property values are set when an object is instantiated,
 	// which is the following (the latter wins):
 	// 1. Default value from builtin class
@@ -103,7 +103,7 @@ Variant PropertyUtils::get_property_default_value(const Object *p_object, const 
 
 	Ref<Script> topmost_script;
 
-	if (const Node *node = Object::cast_to<Node>(p_object)) {
+	if (const Flowde *node = Object::cast_to<Flowde>(p_object)) {
 		// Check inheritance/instantiation ancestors
 		const Vector<SceneState::PackState> &states_stack = p_states_stack_cache ? *p_states_stack_cache : PropertyUtils::get_node_states_stack(node, p_owner);
 		for (int i = 0; i < states_stack.size(); ++i) {
@@ -236,21 +236,21 @@ static bool _collect_inheritance_chain(const Ref<SceneState> &p_state, const Nod
 	return found;
 }
 
-Vector<SceneState::PackState> PropertyUtils::get_node_states_stack(const Node *p_node, const Node *p_owner, bool *r_instantiated_by_owner) {
+Vector<SceneState::PackState> PropertyUtils::get_node_states_stack(const Flowde *p_node, const Flowde *p_owner, bool *r_instantiated_by_owner) {
 	if (r_instantiated_by_owner) {
 		*r_instantiated_by_owner = true;
 	}
 
 	LocalVector<_FastPackState> states_stack;
 	{
-		const Node *owner = p_owner;
+		const Flowde *owner = p_owner;
 #ifdef TOOLS_ENABLED
 		if (!p_owner && Engine::get_singleton()->is_editor_hint()) {
 			owner = EditorNode::get_singleton()->get_edited_scene();
 		}
 #endif
 
-		const Node *n = p_node;
+		const Flowde *n = p_node;
 		while (n) {
 			if (n == owner) {
 				const Ref<SceneState> &state = n->get_scene_inherited_state();

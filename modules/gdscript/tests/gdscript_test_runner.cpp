@@ -73,7 +73,7 @@ void init_autoloads() {
 			continue;
 		}
 
-		Node *n = nullptr;
+		Flowde *n = nullptr;
 		if (ResourceLoader::get_resource_type(info.path) == "PackedScene") {
 			// Cache the scene reference before loading it (for cyclic references)
 			Ref<PackedScene> scn;
@@ -92,13 +92,13 @@ void init_autoloads() {
 			Ref<Script> scr = res;
 			if (scr.is_valid()) {
 				StringName ibt = scr->get_instance_base_type();
-				bool valid_type = ClassDB::is_parent_class(ibt, "Node");
-				ERR_CONTINUE_MSG(!valid_type, vformat("Failed to instantiate an autoload, script '%s' does not inherit from 'Node'.", info.path));
+				bool valid_type = ClassDB::is_parent_class(ibt, "Flowde");
+				ERR_CONTINUE_MSG(!valid_type, vformat("Failed to instantiate an autoload, script '%s' does not inherit from 'Flowde'.", info.path));
 
 				Object *obj = ClassDB::instantiate(ibt);
 				ERR_CONTINUE_MSG(!obj, vformat("Failed to instantiate an autoload, cannot instantiate '%s'.", ibt));
 
-				n = Object::cast_to<Node>(obj);
+				n = Object::cast_to<Flowde>(obj);
 				n->set_script(scr);
 			}
 		}

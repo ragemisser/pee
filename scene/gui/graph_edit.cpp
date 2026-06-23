@@ -531,7 +531,7 @@ void GraphEdit::_update_scrollbars() {
 	updating = false;
 }
 
-void GraphEdit::_ensure_node_order_from(Node *p_node) {
+void GraphEdit::_ensure_node_order_from(Flowde *p_node) {
 	GraphElement *graph_node = Object::cast_to<GraphElement>(p_node);
 	ERR_FAIL_NULL(graph_node);
 	GraphFrame *frame = Object::cast_to<GraphFrame>(p_node);
@@ -569,14 +569,14 @@ void GraphEdit::_ensure_node_order_from(Node *p_node) {
 	}
 }
 
-void GraphEdit::_graph_element_selected(Node *p_node) {
+void GraphEdit::_graph_element_selected(Flowde *p_node) {
 	GraphElement *graph_element = Object::cast_to<GraphElement>(p_node);
 	ERR_FAIL_NULL(graph_element);
 
 	emit_signal(SNAME("node_selected"), graph_element);
 }
 
-void GraphEdit::_graph_element_deselected(Node *p_node) {
+void GraphEdit::_graph_element_deselected(Flowde *p_node) {
 	GraphElement *graph_element = Object::cast_to<GraphElement>(p_node);
 	ERR_FAIL_NULL(graph_element);
 
@@ -589,7 +589,7 @@ void GraphEdit::_graph_element_visibility_changed(GraphElement *p_graph_element)
 	}
 }
 
-void GraphEdit::_graph_element_resize_request(const Vector2 &p_new_minsize, Node *p_node) {
+void GraphEdit::_graph_element_resize_request(const Vector2 &p_new_minsize, Flowde *p_node) {
 	GraphElement *graph_element = Object::cast_to<GraphElement>(p_node);
 	ERR_FAIL_NULL(graph_element);
 
@@ -629,7 +629,7 @@ void GraphEdit::_graph_frame_autoshrink_changed(const Vector2 &p_new_minsize, Gr
 	callable_mp(this, &GraphEdit::_update_top_connection_layer).call_deferred();
 }
 
-void GraphEdit::_graph_element_moved(Node *p_node) {
+void GraphEdit::_graph_element_moved(Flowde *p_node) {
 	GraphElement *graph_element = Object::cast_to<GraphElement>(p_node);
 	ERR_FAIL_NULL(graph_element);
 	ERR_FAIL_NULL_MSG(connections_layer, "connections_layer is missing.");
@@ -640,7 +640,7 @@ void GraphEdit::_graph_element_moved(Node *p_node) {
 	callable_mp(this, &GraphEdit::_update_top_connection_layer).call_deferred();
 }
 
-void GraphEdit::_graph_node_slot_updated(int p_index, Node *p_node) {
+void GraphEdit::_graph_node_slot_updated(int p_index, Flowde *p_node) {
 	ERR_FAIL_NULL_MSG(connections_layer, "connections_layer is missing.");
 	GraphNode *graph_node = Object::cast_to<GraphNode>(p_node);
 	ERR_FAIL_NULL(graph_node);
@@ -691,7 +691,7 @@ void GraphEdit::_ensure_node_order_from_root(const StringName &p_node) {
 	_ensure_node_order_from(root_frame);
 }
 
-void GraphEdit::add_child_notify(Node *p_child) {
+void GraphEdit::add_child_notify(Flowde *p_child) {
 	Control::add_child_notify(p_child);
 
 	// Keep the top layer always on top!
@@ -716,8 +716,8 @@ void GraphEdit::add_child_notify(Node *p_child) {
 		if (graph_frame) {
 			background_nodes_separator_idx++;
 
-			callable_mp((Node *)this, &Node::move_child).call_deferred(graph_frame, 0);
-			callable_mp((Node *)this, &Node::move_child).call_deferred(connections_layer, background_nodes_separator_idx);
+			callable_mp((Flowde *)this, &Flowde::move_child).call_deferred(graph_frame, 0);
+			callable_mp((Flowde *)this, &Flowde::move_child).call_deferred(connections_layer, background_nodes_separator_idx);
 
 			_update_graph_frame(graph_frame);
 
@@ -736,7 +736,7 @@ void GraphEdit::add_child_notify(Node *p_child) {
 	}
 }
 
-void GraphEdit::remove_child_notify(Node *p_child) {
+void GraphEdit::remove_child_notify(Flowde *p_child) {
 	Control::remove_child_notify(p_child);
 
 	if (p_child == top_layer) {
@@ -1052,7 +1052,7 @@ void GraphEdit::start_keyboard_connecting(GraphNode *p_node, int p_in_port, int 
 			// Check disconnect.
 			for (const Ref<Connection> &conn : connection_map[p_node->get_name()]) {
 				if (conn->to_node == p_node->get_name() && conn->to_port == p_in_port) {
-					Node *fr = get_node(NodePath(conn->from_node));
+					Flowde *fr = get_node(NodePath(conn->from_node));
 					if (Object::cast_to<GraphNode>(fr)) {
 						connecting_from_node = conn->from_node;
 						connecting_from_port_index = conn->from_port;
@@ -1098,7 +1098,7 @@ void GraphEdit::start_keyboard_connecting(GraphNode *p_node, int p_in_port, int 
 			// Check disconnect.
 			for (const Ref<Connection> &conn : connection_map[p_node->get_name()]) {
 				if (conn->from_node == p_node->get_name() && conn->from_port == p_out_port) {
-					Node *to = get_node(NodePath(conn->to_node));
+					Flowde *to = get_node(NodePath(conn->to_node));
 					if (Object::cast_to<GraphNode>(to)) {
 						connecting_from_node = conn->to_node;
 						connecting_from_port_index = conn->to_port;
@@ -1229,7 +1229,7 @@ void GraphEdit::_top_connection_layer_input(const Ref<InputEvent> &p_ev) {
 						// Check disconnect.
 						for (const Ref<Connection> &conn : connection_map[graph_node->get_name()]) {
 							if (conn->from_node == graph_node->get_name() && conn->from_port == j) {
-								Node *to = get_node(NodePath(conn->to_node));
+								Flowde *to = get_node(NodePath(conn->to_node));
 								if (Object::cast_to<GraphNode>(to)) {
 									connecting_from_node = conn->to_node;
 									connecting_from_port_index = conn->to_port;
@@ -1286,7 +1286,7 @@ void GraphEdit::_top_connection_layer_input(const Ref<InputEvent> &p_ev) {
 						// Check disconnect.
 						for (const Ref<Connection> &conn : connection_map[graph_node->get_name()]) {
 							if (conn->to_node == graph_node->get_name() && conn->to_port == j) {
-								Node *fr = get_node(NodePath(conn->from_node));
+								Flowde *fr = get_node(NodePath(conn->from_node));
 								if (Object::cast_to<GraphNode>(fr)) {
 									connecting_from_node = conn->from_node;
 									connecting_from_port_index = conn->from_port;
@@ -1620,13 +1620,13 @@ void GraphEdit::_update_connections() {
 
 	for (const Ref<Connection> &conn : connections) {
 		if (conn->_cache.dirty) {
-			Node *from = get_node_or_null(NodePath(conn->from_node));
+			Flowde *from = get_node_or_null(NodePath(conn->from_node));
 			GraphNode *gnode_from = Object::cast_to<GraphNode>(from);
 			if (!gnode_from && !conn->keep_alive) {
 				dead_connections.push_back(conn);
 				continue;
 			}
-			Node *to = get_node_or_null(NodePath(conn->to_node));
+			Flowde *to = get_node_or_null(NodePath(conn->to_node));
 			GraphNode *gnode_to = Object::cast_to<GraphNode>(to);
 
 			if (!gnode_to && !conn->keep_alive) {
@@ -1968,7 +1968,7 @@ void GraphEdit::_draw_grid() {
 	}
 }
 
-void GraphEdit::set_selected(Node *p_child) {
+void GraphEdit::set_selected(Flowde *p_child) {
 	for (int i = get_child_count() - 1; i >= 0; i--) {
 		GraphElement *graph_element = Object::cast_to<GraphElement>(get_child(i));
 		if (!graph_element) {
@@ -2172,7 +2172,7 @@ void GraphEdit::gui_input(const Ref<InputEvent> &p_ev) {
 			callable_mp(this, &GraphEdit::_update_top_connection_layer).call_deferred();
 		}
 
-		// Node selection logic.
+		// Flowde selection logic.
 		if (mb->get_button_index() == MouseButton::LEFT && mb->is_pressed()) {
 			GraphElement *graph_element = nullptr;
 
@@ -2687,7 +2687,7 @@ GraphFrame *GraphEdit::get_element_frame(const StringName &p_attached_graph_elem
 		return nullptr;
 	}
 
-	Node *parent = get_node_or_null(NodePath(linked_parent_map[p_attached_graph_element]));
+	Flowde *parent = get_node_or_null(NodePath(linked_parent_map[p_attached_graph_element]));
 
 	return Object::cast_to<GraphFrame>(parent);
 }
@@ -3119,8 +3119,8 @@ void GraphEdit::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("duplicate_nodes_request"));
 	ADD_SIGNAL(MethodInfo("delete_nodes_request", PropertyInfo(Variant::ARRAY, "nodes", PROPERTY_HINT_ARRAY_TYPE, "StringName")));
 
-	ADD_SIGNAL(MethodInfo("node_selected", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("node_deselected", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_selected", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("node_deselected", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
 	ADD_SIGNAL(MethodInfo("frame_rect_changed", PropertyInfo(Variant::OBJECT, "frame", PROPERTY_HINT_RESOURCE_TYPE, GraphFrame::get_class_static()), PropertyInfo(Variant::RECT2, "new_rect")));
 
 	ADD_SIGNAL(MethodInfo("popup_request", PropertyInfo(Variant::VECTOR2, "at_position")));

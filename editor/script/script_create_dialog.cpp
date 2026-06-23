@@ -1030,5 +1030,5 @@ ScriptCreateDialog::ScriptCreateDialog() {
 	add_child(alert);
 
 	set_hide_on_ok(false);
-	set_title(TTR("Attach Node Script"));
+	set_title(TTR("Attach Flowde Script"));
 }

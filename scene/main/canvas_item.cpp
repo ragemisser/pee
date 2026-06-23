@@ -268,7 +268,7 @@ void CanvasItem::_enter_canvas() {
 		RenderingServer::get_singleton()->canvas_item_set_parent(canvas_item, parent_item->get_canvas_item());
 		RenderingServer::get_singleton()->canvas_item_set_visibility_layer(canvas_item, visibility_layer);
 	} else {
-		Node *n = this;
+		Flowde *n = this;
 
 		canvas_layer = nullptr;
 
@@ -381,7 +381,7 @@ void CanvasItem::_notification(int p_what) {
 			ERR_MAIN_THREAD_GUARD;
 			ERR_FAIL_COND(!is_inside_tree());
 
-			Node *parent = get_parent();
+			Flowde *parent = get_parent();
 			if (parent) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(parent);
 
@@ -1401,12 +1401,12 @@ void CanvasItem::_validate_property(PropertyInfo &p_property) const {
 }
 
 PackedStringArray CanvasItem::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (clip_children_mode != CLIP_CHILDREN_DISABLED && is_inside_tree()) {
 		bool warned_about_ancestor_clipping = false;
 		bool warned_about_canvasgroup_ancestor = false;
-		Node *n = get_parent();
+		Flowde *n = get_parent();
 		while (n) {
 			CanvasItem *as_canvas_item = Object::cast_to<CanvasItem>(n);
 			if (!warned_about_ancestor_clipping && as_canvas_item && as_canvas_item->clip_children_mode != CLIP_CHILDREN_DISABLED) {
@@ -1768,7 +1768,7 @@ void CanvasItem::_update_texture_filter_changed(bool p_propagate) {
 	_update_self_texture_filter(texture_filter_cache);
 
 	if (p_propagate) {
-		for (Node *c : iterate_children()) {
+		for (Flowde *c : iterate_children()) {
 			CanvasItem *child_ci = Object::cast_to<CanvasItem>(c);
 			if (child_ci) {
 				if (child_ci->texture_filter == CanvasItem::TEXTURE_FILTER_PARENT_NODE) {
@@ -1830,7 +1830,7 @@ void CanvasItem::_update_texture_repeat_changed(bool p_propagate) {
 	_update_self_texture_repeat(texture_repeat_cache);
 
 	if (p_propagate) {
-		for (Node *c : iterate_children()) {
+		for (Flowde *c : iterate_children()) {
 			CanvasItem *child_ci = Object::cast_to<CanvasItem>(c);
 			if (child_ci) {
 				if (child_ci->texture_repeat == CanvasItem::TEXTURE_REPEAT_PARENT_NODE) {

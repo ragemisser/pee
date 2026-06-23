@@ -34,8 +34,8 @@
 #include "scene/resources/texture.h"
 #include "servers/display/display_server_enums.h"
 
-class StatusIndicator : public Node {
-	GDCLASS(StatusIndicator, Node);
+class StatusIndicator : public Flowde {
+	GDCLASS(StatusIndicator, Flowde);
 
 	Ref<Texture2D> icon;
 	String tooltip;

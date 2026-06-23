@@ -32,8 +32,8 @@
 
 #include "scene/main/node.h"
 
-class ShaderGlobalsOverride : public Node {
-	GDCLASS(ShaderGlobalsOverride, Node);
+class ShaderGlobalsOverride : public Flowde {
+	GDCLASS(ShaderGlobalsOverride, Flowde);
 
 	struct Override {
 		bool in_use = false;

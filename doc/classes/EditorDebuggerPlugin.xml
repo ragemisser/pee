@@ -48,7 +48,7 @@
 		To connect on the running game side, use the [EngineDebugger] singleton:
 		[codeblocks]
 		[gdscript]
-		extends Node
+		extends Flowde
 
 		func _ready():
 			EngineDebugger.register_message_capture("my_plugin", _capture)

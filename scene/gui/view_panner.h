@@ -33,7 +33,7 @@
 #include "core/object/ref_counted.h"
 
 class InputEvent;
-class Node;
+class Flowde;
 class Shortcut;
 
 class ViewPanner : public RefCounted {
@@ -86,7 +86,7 @@ private:
 	Callable zoom_callback;
 
 	ControlScheme control_scheme = SCROLL_ZOOMS;
-	Node *warped_panning_owner = nullptr;
+	Flowde *warped_panning_owner = nullptr;
 
 public:
 	void set_callbacks(Callable p_pan_callback, Callable p_zoom_callback);
@@ -100,7 +100,7 @@ public:
 	void set_zoom_style(ZoomStyle p_zoom_style);
 
 	void setup(ControlScheme p_scheme, Ref<Shortcut> p_shortcut, bool p_simple_panning);
-	void setup_warped_panning(Node *p_owner, bool p_allowed);
+	void setup_warped_panning(Flowde *p_owner, bool p_allowed);
 
 	bool is_panning() const;
 	void set_force_drag(bool p_force);

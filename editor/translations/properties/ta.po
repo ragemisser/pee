@@ -311,10 +311,10 @@ msgstr "பன்னாட்டுமயமாக்கல்"
 msgid "Force Right to Left Layout Direction"
 msgstr "வலதுபுறம் இடது தளவமைப்பு திசையை கட்டாயப்படுத்தவும்"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "ரூட் முனை தளவமைப்பு திசை"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "ரூட் முனை ஆட்டோ மொழிபெயர்ப்பு"
 
 msgid "GUI"
@@ -1136,7 +1136,7 @@ msgstr "எலும்பு ரிவர்"
 msgid "Rename Bones"
 msgstr "எலும்புகள் மறுபெயரிடுங்கள்"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "தனித்துவமான முனை"
 
 msgid "Make Unique"
@@ -1148,7 +1148,7 @@ msgstr "எலும்புக்கூடு பெயர்"
 msgid "Rest Fixer"
 msgstr "ரெச்ட் ஃபிக்சர்"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "முனை உருமாற்றங்களைப் பயன்படுத்துங்கள்"
 
 msgid "Normalize Position Tracks"
@@ -1217,10 +1217,10 @@ msgstr "ஆஃப்செட் மெச்"
 msgid "Force Disable Mesh Compression"
 msgstr "படை கண்ணி சுருக்கத்தை முடக்கவும்"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "கணு"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "முனை வகை"
 
 msgid "Script"
@@ -1430,7 +1430,7 @@ msgstr "எலும்புக்கூடு எலும்புகளா�
 msgid "Use Name Suffixes"
 msgstr "பெயர் பின்னொட்டுகளைப் பயன்படுத்துங்கள்"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "முனை வகை பின்னொட்டுகளைப் பயன்படுத்தவும்"
 
 msgid "Meshes"
@@ -2358,7 +2358,7 @@ msgstr "முழுமையாக விரிவாக்கப்பட்�
 msgid "Auto Expand to Selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட வரை தானாக விரிவாக்குங்கள்"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "மறுசீரமைப்பில் மைய முனை"
 
 msgid "Hide Filtered Out Parents"
@@ -2502,7 +2502,7 @@ msgstr "வி உருள் விரைவு"
 msgid "Drag and Drop Selection"
 msgstr "தேர்வை இழுத்து விடுங்கள்"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "தேர்ந்தெடுக்கப்பட்ட முனையில் ச்கிரிப்ட் எடிட்டரில் இருங்கள்"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2628,7 +2628,7 @@ msgstr "வகை குறிப்புகளைச் சேர்க்க�
 msgid "Add String Name Literals"
 msgstr "சரம் பெயர் எழுத்தாளர்களைச் சேர்க்கவும்"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "முனை பாதை எழுத்தாளர்களைச் சேர்க்கவும்"
 
 msgid "Use Single Quotes"
@@ -3150,7 +3150,7 @@ msgstr "தொலைநிலை காட்சி மரத்திற்க�
 msgid "Auto Switch to Stack Trace"
 msgstr "ச்டாக் சுவடுக்கு தானாக சுவிட்ச்"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "அதிகபட்ச முனை தேர்வு"
 
 msgid "Profiler Frame History Size"
@@ -3759,7 +3759,7 @@ msgstr "சுழல் டிகிரி"
 msgid "Spin Sides"
 msgstr "சுழல் பக்கங்கள்"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "பாதை முனை"
 
 msgid "Path Interval Type"
@@ -3948,7 +3948,7 @@ msgstr "மாறுபாட்டில் அனுமானம்"
 msgid "Native Method Override"
 msgstr "பூர்வீக முறை மேலெழுதும்"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "முடிந்து இல்லாமல் முனை இயல்புநிலையைப் பெறுங்கள்"
 
 msgid "Onready With Export"
@@ -4035,7 +4035,7 @@ msgstr "குறைவடையும் பட வடிவம்"
 msgid "Fallback Image Quality"
 msgstr "குறைவடையும் படத்தின் தகுதி"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "ரூட் முனை பயன்முறை"
 
 msgid "Visibility Mode"
@@ -4215,7 +4215,7 @@ msgstr "கோடோட் வெளிப்பாட்டிற்கு gltf
 msgid "Godot to glTF Expression"
 msgstr "Gltf வெளிப்பாட்டிற்கு கோடோட்"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "முனை பாதைகள்"
 
 msgid "Object Model Type"
@@ -4233,7 +4233,7 @@ msgstr "மூட்டுகள்"
 msgid "Roots"
 msgstr "வேர்கள்"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "கோடோட் எலும்பு முனை"
 
 msgid "Skin Root"
@@ -4386,7 +4386,7 @@ msgstr "மோதல் விளிம்பு பின்னம்"
 msgid "Active Edge Threshold"
 msgstr "செயலில் விளிம்பு வாசல்"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "உலக முனை"
 
 msgid "Temporary Memory Buffer Size"
@@ -6387,10 +6387,10 @@ msgstr "விறைப்பு"
 msgid "Initial Offset"
 msgstr "ஆரம்ப ஆஃப்செட்"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "முனை a"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "முனை ஆ"
 
 msgid "Bias"
@@ -6628,7 +6628,7 @@ msgstr "செவ்வகத்தைக் காட்டு"
 msgid "Enabling"
 msgstr "செயல்படுத்துகிறது"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "முனை பாதை"
 
 msgid "Doppler Tracking"
@@ -7067,7 +7067,7 @@ msgstr "விலக்கு"
 msgid "Chains"
 msgstr "சங்கிலிகள்"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "இலக்கு முனை"
 
 msgid "Forward Axis"
@@ -7085,7 +7085,7 @@ msgstr "தோற்றம் அமைப்புகள்"
 msgid "From"
 msgstr "இருந்து"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "வெளிப்புற முனை"
 
 msgid "Time Based Interpolation"
@@ -7748,7 +7748,7 @@ msgstr "மாற்றம் கோரிக்கை"
 msgid "Reset on Save"
 msgstr "சேமிக்க மீட்டமைக்கவும்"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "ரூட் முனை"
 
 msgid "Root Motion"
@@ -7814,7 +7814,7 @@ msgstr "திரைப்படம் முடிவடைந்தது"
 msgid "Tree Root"
 msgstr "மர வேர்"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "முன்கூட்டியே வெளிப்பாடு அடிப்படை முனை"
 
 msgid "Anim Player"
@@ -8937,10 +8937,10 @@ msgstr "பரிமாற்ற முறை"
 msgid "Transfer Channel"
 msgstr "பரிமாற்ற சேனல்"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "முனை பெயர் எண் பிரிப்பான்"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "முனை பெயர் உறை"
 
 msgid "Physics Priority"
@@ -9351,7 +9351,7 @@ msgstr "ஈர்ப்பு விசையைப் பயன்படுத�
 msgid "Bone Index"
 msgstr "எலும்பு அட்டவணை"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "எலும்பு 2 டி முனை"
 
 msgid "Physical Bone Chain Length"

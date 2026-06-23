@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func a():
     %AnimationPlayer.➡

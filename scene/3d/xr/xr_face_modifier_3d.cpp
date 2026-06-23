@@ -532,7 +532,7 @@ MeshInstance3D *XRFaceModifier3D::get_mesh_instance() const {
 		return nullptr;
 	}
 
-	Node *node = get_node(target);
+	Flowde *node = get_node(target);
 	if (!node) {
 		return nullptr;
 	}

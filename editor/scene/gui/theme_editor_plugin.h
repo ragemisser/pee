@@ -472,8 +472,8 @@ class ThemeEditor : public EditorDock {
 	void _add_preview_tab(ThemeEditorPreview *p_preview_tab, const String &p_preview_name, const Ref<Texture2D> &p_icon);
 	void _change_preview_tab(int p_tab);
 	void _remove_preview_tab(int p_tab);
-	void _remove_preview_tab_invalid(Node *p_tab_control);
-	void _update_preview_tab(Node *p_tab_control);
+	void _remove_preview_tab_invalid(Flowde *p_tab_control);
+	void _update_preview_tab(Flowde *p_tab_control);
 	void _preview_control_picked(String p_class_name);
 	void _preview_tabs_resized();
 

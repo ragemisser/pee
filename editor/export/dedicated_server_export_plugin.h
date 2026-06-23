@@ -49,7 +49,7 @@ protected:
 	bool _begin_customize_scenes(const Ref<EditorExportPlatform> &p_platform, const Vector<String> &p_features) override;
 	bool _begin_customize_resources(const Ref<EditorExportPlatform> &p_platform, const Vector<String> &p_features) override;
 
-	Node *_customize_scene(Node *p_root, const String &p_path) override;
+	Flowde *_customize_scene(Flowde *p_root, const String &p_path) override;
 	Ref<Resource> _customize_resource(const Ref<Resource> &p_resource, const String &p_path) override;
 
 	void _end_customize_scenes() override;

@@ -66,13 +66,13 @@ void AnimationPlayerEditor::_find_player() {
 		return;
 	}
 
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 
 	if (!edited_scene) {
 		return;
 	}
 
-	TypedArray<Node> players = edited_scene->find_children("", "AnimationPlayer");
+	TypedArray<Flowde> players = edited_scene->find_children("", "AnimationPlayer");
 
 	if (players.size() == 1) {
 		// Replicating EditorNode::_plugin_over_edit to ensure an identical setup as when selecting manually.
@@ -81,7 +81,7 @@ void AnimationPlayerEditor::_find_player() {
 	}
 }
 
-void AnimationPlayerEditor::_node_removed(Node *p_node) {
+void AnimationPlayerEditor::_node_removed(Flowde *p_node) {
 	if (player && original_node == p_node) {
 		if (is_dummy) {
 			plugin->_clear_dummy_player();
@@ -272,7 +272,7 @@ void AnimationPlayerEditor::go_to_nearest_keyframe(bool p_backward) {
 	int track_count = anim->get_track_count();
 	bool bezier_active = track_editor->is_bezier_editor_active();
 
-	Node *root = get_tree()->get_edited_scene_root();
+	Flowde *root = get_tree()->get_edited_scene_root();
 	EditorSelection *selection = EditorNode::get_singleton()->get_editor_selection();
 
 	Vector<int> selected_tracks;
@@ -469,7 +469,7 @@ void AnimationPlayerEditor::_animation_selected(int p_which) {
 			bool animation_is_readonly = EditorNode::get_singleton()->is_resource_read_only(anim);
 
 			track_editor->set_animation(anim, animation_is_readonly);
-			Node *root = player->get_node_or_null(player->get_root_node());
+			Flowde *root = player->get_node_or_null(player->get_root_node());
 
 			// Player shouldn't access parent if it's the scene root.
 			if (!root || (player == get_tree()->get_edited_scene_root() && player->get_root_node() == NodePath(".."))) {
@@ -924,7 +924,7 @@ void AnimationPlayerEditor::set_state(const Dictionary &p_state) {
 	}
 
 	if (p_state.has("player")) {
-		Node *n = EditorNode::get_singleton()->get_edited_scene()->get_node(p_state["player"]);
+		Flowde *n = EditorNode::get_singleton()->get_edited_scene()->get_node(p_state["player"]);
 		if (Object::cast_to<AnimationPlayer>(n) && EditorNode::get_singleton()->get_editor_selection()->is_selected(n)) {
 			if (player) {
 				if (player->is_connected(SNAME("animation_list_changed"), callable_mp(this, &AnimationPlayerEditor::_animation_libraries_updated))) {
@@ -983,7 +983,7 @@ void AnimationPlayerEditor::_animation_edit() {
 
 		track_editor->set_animation(anim, EditorNode::get_singleton()->is_resource_read_only(anim));
 
-		Node *root = player->get_node_or_null(player->get_root_node());
+		Flowde *root = player->get_node_or_null(player->get_root_node());
 		if (root) {
 			track_editor->set_root(root);
 		}
@@ -1112,7 +1112,7 @@ void AnimationPlayerEditor::_update_player() {
 		bool animation_library_is_readonly = EditorNode::get_singleton()->is_resource_read_only(anim);
 
 		track_editor->set_animation(anim, animation_library_is_readonly);
-		Node *root = player->get_node_or_null(player->get_root_node());
+		Flowde *root = player->get_node_or_null(player->get_root_node());
 		if (root) {
 			track_editor->set_root(root);
 		}
@@ -1991,7 +1991,7 @@ AnimationMixer *AnimationPlayerEditor::fetch_mixer_for_library() const {
 	// Does AnimationTree have AnimationPlayer?
 	if (original_node->is_class("AnimationTree")) {
 		AnimationTree *src_tree = Object::cast_to<AnimationTree>(original_node);
-		Node *src_player = src_tree->get_node_or_null(src_tree->get_animation_player());
+		Flowde *src_player = src_tree->get_node_or_null(src_tree->get_animation_player());
 		if (src_player) {
 			return Object::cast_to<AnimationMixer>(src_player);
 		}
@@ -1999,8 +1999,8 @@ AnimationMixer *AnimationPlayerEditor::fetch_mixer_for_library() const {
 	return original_node;
 }
 
-Node *AnimationPlayerEditor::get_cached_root_node() const {
-	return ObjectDB::get_instance<Node>(cached_root_node_id);
+Flowde *AnimationPlayerEditor::get_cached_root_node() const {
+	return ObjectDB::get_instance<Flowde>(cached_root_node_id);
 }
 
 bool AnimationPlayerEditor::_validate_tracks(const Ref<Animation> p_anim) {
@@ -2422,9 +2422,9 @@ void AnimationPlayerEditorPlugin::_clear_dummy_player() {
 	if (!dummy_player) {
 		return;
 	}
-	Node *parent = dummy_player->get_parent();
+	Flowde *parent = dummy_player->get_parent();
 	if (parent) {
-		callable_mp(parent, &Node::remove_child).call_deferred(dummy_player);
+		callable_mp(parent, &Flowde::remove_child).call_deferred(dummy_player);
 	}
 	dummy_player->queue_free();
 	dummy_player = nullptr;
@@ -2439,7 +2439,7 @@ void AnimationPlayerEditorPlugin::_update_dummy_player(AnimationMixer *p_mixer) 
 
 	// Add dummy player to scene.
 	if (!dummy_player) {
-		Node *parent = p_mixer->get_parent();
+		Flowde *parent = p_mixer->get_parent();
 		ERR_FAIL_NULL(parent);
 		dummy_player = memnew(AnimationPlayer);
 		dummy_player->set_active(false); // Inactive as default, it will be activated if the AnimationPlayerEditor visibility is changed.

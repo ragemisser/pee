@@ -93,7 +93,7 @@ public:
 
 	String get_scene_path() const;
 	String get_root_name() const;
-	Node *create_scene_root();
+	Flowde *create_scene_root();
 
 	SceneCreateDialog();
 };

@@ -36,7 +36,7 @@
 #include <functional>
 
 class Font;
-class Node;
+class Flowde;
 class StyleBox;
 class Texture2D;
 class ThemeContext;
@@ -46,14 +46,14 @@ class ThemeContext;
 
 #define BIND_THEME_ITEM(m_data_type, m_class, m_prop) \
 	ThemeDB::get_singleton()->bind_class_item(m_data_type, get_class_static(), #m_prop, #m_prop, \
-			[](Node *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
+			[](Flowde *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
 				m_class *p_cast = Object::cast_to<m_class>(p_instance); \
 				p_cast->theme_cache.m_prop = p_cast->get_theme_item(m_data_type, p_item_name, p_type_name); \
 			})
 
 #define BIND_THEME_ITEM_CUSTOM(m_data_type, m_class, m_prop, m_item_name) \
 	ThemeDB::get_singleton()->bind_class_item(m_data_type, get_class_static(), #m_prop, m_item_name, \
-			[](Node *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
+			[](Flowde *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
 				m_class *p_cast = Object::cast_to<m_class>(p_instance); \
 				p_cast->theme_cache.m_prop = p_cast->get_theme_item(m_data_type, p_item_name, p_type_name); \
 			})
@@ -63,7 +63,7 @@ class ThemeContext;
 
 #define BIND_THEME_ITEM_EXT(m_data_type, m_class, m_prop, m_item_name, m_type_name) \
 	ThemeDB::get_singleton()->bind_class_external_item(m_data_type, get_class_static(), #m_prop, m_item_name, m_type_name, \
-			[](Node *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
+			[](Flowde *p_instance, const StringName &p_item_name, const StringName &p_type_name) { \
 				m_class *p_cast = Object::cast_to<m_class>(p_instance); \
 				p_cast->theme_cache.m_prop = p_cast->get_theme_item(m_data_type, p_item_name, p_type_name); \
 			})
@@ -89,16 +89,16 @@ class ThemeDB : public Object {
 	// Global theme contexts used to scope global Theme resources.
 
 	ThemeContext *default_theme_context = nullptr;
-	HashMap<Node *, ThemeContext *> theme_contexts;
+	HashMap<Flowde *, ThemeContext *> theme_contexts;
 
-	void _propagate_theme_context(Node *p_from_node, ThemeContext *p_context);
+	void _propagate_theme_context(Flowde *p_from_node, ThemeContext *p_context);
 	void _init_default_theme_context();
 	void _finalize_theme_contexts();
 
-	// Binding of theme items to Node classes.
+	// Binding of theme items to Flowde classes.
 
 public:
-	typedef std::function<void(Node *, const StringName &, const StringName &)> ThemeItemSetter;
+	typedef std::function<void(Flowde *, const StringName &, const StringName &)> ThemeItemSetter;
 
 	struct ThemeItemBind {
 		Theme::DataType data_type;
@@ -159,18 +159,18 @@ public:
 
 	// Global theme contexts.
 
-	ThemeContext *create_theme_context(Node *p_node, Vector<Ref<Theme>> &p_themes);
-	void destroy_theme_context(Node *p_node);
+	ThemeContext *create_theme_context(Flowde *p_node, Vector<Ref<Theme>> &p_themes);
+	void destroy_theme_context(Flowde *p_node);
 
-	ThemeContext *get_theme_context(Node *p_node) const;
+	ThemeContext *get_theme_context(Flowde *p_node) const;
 	ThemeContext *get_default_theme_context() const;
-	ThemeContext *get_nearest_theme_context(Node *p_for_node) const;
+	ThemeContext *get_nearest_theme_context(Flowde *p_for_node) const;
 
 	// Theme item binding.
 
 	void bind_class_item(Theme::DataType p_data_type, const StringName &p_class_name, const StringName &p_prop_name, const StringName &p_item_name, ThemeItemSetter p_setter);
 	void bind_class_external_item(Theme::DataType p_data_type, const StringName &p_class_name, const StringName &p_prop_name, const StringName &p_item_name, const StringName &p_type_name, ThemeItemSetter p_setter);
-	void update_class_instance_items(Node *p_instance);
+	void update_class_instance_items(Flowde *p_instance);
 
 	void get_class_items(const StringName &p_class_name, List<ThemeItemBind> *r_list, bool p_include_inherited = false, Theme::DataType p_filter_type = Theme::DATA_TYPE_MAX);
 
@@ -186,7 +186,7 @@ class ThemeContext : public Object {
 
 	friend class ThemeDB;
 
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 	ThemeContext *parent = nullptr;
 
 	// Themes are stacked in the order of relevance, for easy iteration.

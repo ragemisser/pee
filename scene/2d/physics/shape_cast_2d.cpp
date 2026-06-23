@@ -351,7 +351,7 @@ void ShapeCast2D::add_exception_rid(const RID &p_rid) {
 }
 
 void ShapeCast2D::add_exception(RequiredParam<const CollisionObject2D> rp_node) {
-	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Node must be an instance of CollisionObject2D.");
+	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Flowde must be an instance of CollisionObject2D.");
 	add_exception_rid(p_node->get_rid());
 }
 
@@ -360,7 +360,7 @@ void ShapeCast2D::remove_exception_rid(const RID &p_rid) {
 }
 
 void ShapeCast2D::remove_exception(RequiredParam<const CollisionObject2D> rp_node) {
-	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Node must be an instance of CollisionObject2D.");
+	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Flowde must be an instance of CollisionObject2D.");
 	remove_exception_rid(p_node->get_rid());
 }
 

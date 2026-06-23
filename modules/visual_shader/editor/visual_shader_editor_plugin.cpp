@@ -523,7 +523,7 @@ void VisualShaderGraphPlugin::update_frames(VisualShader::Type p_type, int p_nod
 
 	Ref<VisualShaderNode> vsnode = visual_shader->get_node(p_type, p_node);
 	if (vsnode.is_null()) {
-		WARN_PRINT("Update linked frames: Node not found.");
+		WARN_PRINT("Update linked frames: Flowde not found.");
 		return;
 	}
 
@@ -887,7 +887,7 @@ void VisualShaderGraphPlugin::add_node(VisualShader::Type p_type, int p_id, bool
 			if (!prop_name.is_empty()) {
 				Label *label = memnew(Label);
 				label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
-				label->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
+				label->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
 				label->set_text(prop_name + ":");
 				hbox->add_child(label);
 			}
@@ -1163,7 +1163,7 @@ void VisualShaderGraphPlugin::add_node(VisualShader::Type p_type, int p_id, bool
 				} else {
 					Label *label = memnew(Label);
 					label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
-					label->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
+					label->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
 					label->set_text(name_left);
 					label->add_theme_style_override(CoreStringName(normal), editor->get_theme_stylebox(SNAME("label_style"), SNAME("VShaderEditor")));
 					hb->add_child(label);
@@ -1215,7 +1215,7 @@ void VisualShaderGraphPlugin::add_node(VisualShader::Type p_type, int p_id, bool
 				} else {
 					Label *label = memnew(Label);
 					label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
-					label->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
+					label->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED); // TODO: Implement proper translation switch.
 					label->set_text(name_right);
 					label->add_theme_style_override(CoreStringName(normal), editor->get_theme_stylebox(SNAME("label_style"), SNAME("VShaderEditor"))); //more compact
 					hb->add_child(label);
@@ -2670,7 +2670,7 @@ void VisualShaderEditor::_update_graph() {
 	// Remove all nodes.
 	for (int i = 0; i < graph->get_child_count(); i++) {
 		if (Object::cast_to<GraphElement>(graph->get_child(i))) {
-			Node *node = graph->get_child(i);
+			Flowde *node = graph->get_child(i);
 			graph->remove_child(node);
 			memdelete(node);
 			i--;
@@ -2706,7 +2706,7 @@ void VisualShaderEditor::_update_graph() {
 	// Attach nodes to frames.
 	for (int node_id : nodes) {
 		Ref<VisualShaderNode> vsnode = visual_shader->get_node(type, node_id);
-		ERR_CONTINUE_MSG(vsnode.is_null(), "Node is null.");
+		ERR_CONTINUE_MSG(vsnode.is_null(), "Flowde is null.");
 
 		if (vsnode->get_frame() != -1) {
 			int frame_name = vsnode->get_frame();
@@ -3122,7 +3122,7 @@ void VisualShaderEditor::_set_node_size(int p_type, int p_node, const Vector2 &p
 		}
 
 		GraphElement *graph_element = nullptr;
-		Node *node2 = graph->get_node(itos(p_node));
+		Flowde *node2 = graph->get_node(itos(p_node));
 		graph_element = Object::cast_to<GraphElement>(node2);
 		if (!graph_element) {
 			return;
@@ -3150,7 +3150,7 @@ void VisualShaderEditor::_node_resized(const Vector2 &p_new_size, int p_type, in
 	Size2 size = graph_element->get_size();
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Resize VisualShader Node"));
+	undo_redo->create_action(TTR("Resize VisualShader Flowde"));
 	undo_redo->add_do_method(this, "_set_node_size", p_type, p_node, size);
 	undo_redo->add_undo_method(this, "_set_node_size", p_type, p_node, node->get_size());
 	undo_redo->commit_action();
@@ -3455,7 +3455,7 @@ void VisualShaderEditor::_set_custom_node_option(int p_index, int p_node, int p_
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Set Custom Node Option"));
+	undo_redo->create_action(TTR("Set Custom Flowde Option"));
 	undo_redo->add_do_method(node.ptr(), "_set_option_index", p_op, p_index);
 	undo_redo->add_undo_method(node.ptr(), "_set_option_index", p_op, node->get_option_index(p_op));
 	undo_redo->add_do_method(graph_plugin.ptr(), "update_node", type, p_node);
@@ -3894,7 +3894,7 @@ void VisualShaderEditor::_add_node(int p_idx, const Vector<Variant> &p_ops, cons
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	if (p_resource_path.is_empty()) {
-		undo_redo->create_action(TTR("Add Node to Visual Shader"));
+		undo_redo->create_action(TTR("Add Flowde to Visual Shader"));
 	} else {
 		id_to_use += p_node_idx;
 	}
@@ -4226,9 +4226,9 @@ void VisualShaderEditor::_nodes_dragged() {
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	if (frame_node_id_to_link_to == -1) {
-		undo_redo->create_action(TTR("Move VisualShader Node(s)"));
+		undo_redo->create_action(TTR("Move VisualShader Flowde(s)"));
 	} else {
-		undo_redo->create_action(TTR("Move and Attach VisualShader Node(s) to parent frame"));
+		undo_redo->create_action(TTR("Move and Attach VisualShader Flowde(s) to parent frame"));
 	}
 
 	for (const DragOp &E : drag_buffer) {
@@ -4623,9 +4623,9 @@ void VisualShaderEditor::_convert_constants_to_parameters(bool p_vice_versa) {
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	if (!p_vice_versa) {
-		undo_redo->create_action(TTR("Convert Constant Node(s) To Parameter(s)"));
+		undo_redo->create_action(TTR("Convert Constant Flowde(s) To Parameter(s)"));
 	} else {
-		undo_redo->create_action(TTR("Convert Parameter Node(s) To Constant(s)"));
+		undo_redo->create_action(TTR("Convert Parameter Flowde(s) To Constant(s)"));
 	}
 
 	const HashSet<int> &current_set = p_vice_versa ? selected_parameters : selected_constants;
@@ -4850,7 +4850,7 @@ void VisualShaderEditor::_detach_nodes_from_frame_request() {
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Detach VisualShader Node(s) from Frame"));
+	undo_redo->create_action(TTR("Detach VisualShader Flowde(s) from Frame"));
 	_detach_nodes_from_frame(get_current_shader_type(), to_detach_node_ids);
 	undo_redo->commit_action();
 }
@@ -4865,7 +4865,7 @@ void VisualShaderEditor::_delete_node_request(int p_type, int p_node) {
 	to_erase.push_back(p_node);
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Delete VisualShader Node"));
+	undo_redo->create_action(TTR("Delete VisualShader Flowde"));
 	_delete_nodes(p_type, to_erase);
 	undo_redo->commit_action();
 }
@@ -4904,7 +4904,7 @@ void VisualShaderEditor::_delete_nodes_request(const TypedArray<StringName> &p_n
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Delete VisualShader Node(s)"));
+	undo_redo->create_action(TTR("Delete VisualShader Flowde(s)"));
 	_delete_nodes(get_current_shader_type(), to_erase);
 	undo_redo->commit_action();
 }
@@ -5502,7 +5502,7 @@ void VisualShaderEditor::_dup_copy_nodes(int p_type, List<CopyItem> &r_items, Li
 void VisualShaderEditor::_dup_paste_nodes(int p_type, List<CopyItem> &r_items, const List<VisualShader::Connection> &p_connections, const Vector2 &p_offset, bool p_duplicate) {
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	if (p_duplicate) {
-		undo_redo->create_action(TTR("Duplicate VisualShader Node(s)"));
+		undo_redo->create_action(TTR("Duplicate VisualShader Flowde(s)"));
 	} else {
 		bool copy_buffer_empty = true;
 		for (const CopyItem &item : copy_items_buffer) {
@@ -5515,7 +5515,7 @@ void VisualShaderEditor::_dup_paste_nodes(int p_type, List<CopyItem> &r_items, c
 			return;
 		}
 
-		undo_redo->create_action(TTR("Paste VisualShader Node(s)"));
+		undo_redo->create_action(TTR("Paste VisualShader Flowde(s)"));
 	}
 
 	VisualShader::Type type = (VisualShader::Type)p_type;
@@ -5646,7 +5646,7 @@ void VisualShaderEditor::_copy_nodes(bool p_cut) {
 
 	if (p_cut) {
 		EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-		undo_redo->create_action(TTR("Cut VisualShader Node(s)"));
+		undo_redo->create_action(TTR("Cut VisualShader Flowde(s)"));
 
 		List<int> ids;
 		for (const CopyItem &E : copy_items_buffer) {
@@ -6298,7 +6298,7 @@ void VisualShaderEditor::drop_data_fw(const Point2 &p_point, const Variant &p_da
 			_add_node(idx, add_options[idx].ops);
 		} else if (d.has("files")) {
 			EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-			undo_redo->create_action(TTR("Add Node(s) to Visual Shader"));
+			undo_redo->create_action(TTR("Add Flowde(s) to Visual Shader"));
 
 			if (d["files"].get_type() == Variant::PACKED_STRING_ARRAY) {
 				PackedStringArray arr = d["files"];
@@ -6656,13 +6656,13 @@ VisualShaderEditor::VisualShaderEditor() {
 
 	toolbar_hflow = memnew(HFlowContainer);
 	{
-		LocalVector<Node *> nodes;
+		LocalVector<Flowde *> nodes;
 		for (int i = 0; i < graph->get_menu_hbox()->get_child_count(); i++) {
-			Node *child = graph->get_menu_hbox()->get_child(i);
+			Flowde *child = graph->get_menu_hbox()->get_child(i);
 			nodes.push_back(child);
 		}
 
-		for (Node *node : nodes) {
+		for (Flowde *node : nodes) {
 			graph->get_menu_hbox()->remove_child(node);
 			toolbar_hflow->add_child(node);
 		}
@@ -6727,7 +6727,7 @@ VisualShaderEditor::VisualShaderEditor() {
 
 	add_node = memnew(Button);
 	add_node->set_theme_type_variation(SceneStringName(FlatButton));
-	add_node->set_text(TTR("Add Node..."));
+	add_node->set_text(TTR("Add Flowde..."));
 	toolbar_hflow->add_child(add_node);
 	toolbar_hflow->move_child(add_node, 0);
 	add_node->connect(SceneStringName(pressed), callable_mp(this, &VisualShaderEditor::_show_members_dialog).bind(false, VisualShaderNode::PORT_TYPE_MAX, VisualShaderNode::PORT_TYPE_MAX));
@@ -6827,7 +6827,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	popup_menu = memnew(PopupMenu);
 	add_child(popup_menu);
 	popup_menu->set_hide_on_checkable_item_selection(false);
-	popup_menu->add_item(TTR("Add Node"), NodeMenuOptions::ADD);
+	popup_menu->add_item(TTR("Add Flowde"), NodeMenuOptions::ADD);
 	popup_menu->add_separator();
 	popup_menu->add_item(TTR("Cut"), NodeMenuOptions::CUT);
 	popup_menu->add_item(TTR("Copy"), NodeMenuOptions::COPY);
@@ -6840,7 +6840,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	connection_popup_menu = memnew(PopupMenu);
 	add_child(connection_popup_menu);
 	connection_popup_menu->add_item(TTR("Disconnect"), ConnectionMenuOptions::DISCONNECT);
-	connection_popup_menu->add_item(TTR("Insert New Node"), ConnectionMenuOptions::INSERT_NEW_NODE);
+	connection_popup_menu->add_item(TTR("Insert New Flowde"), ConnectionMenuOptions::INSERT_NEW_NODE);
 	connection_popup_menu->add_item(TTR("Insert New Reroute"), ConnectionMenuOptions::INSERT_NEW_REROUTE);
 	connection_popup_menu->connect(SceneStringName(id_pressed), callable_mp(this, &VisualShaderEditor::_connection_menu_id_pressed));
 
@@ -6981,7 +6981,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	node_desc->set_custom_minimum_size(Size2(0, 70 * EDSCALE));
 
 	members_dialog = memnew(ConfirmationDialog);
-	members_dialog->set_title(TTR("Create Shader Node"));
+	members_dialog->set_title(TTR("Create Shader Flowde"));
 	members_dialog->add_child(members_vb);
 	members_dialog->set_ok_button_text(TTR("Create"));
 	members_dialog->connect(SceneStringName(confirmed), callable_mp(this, &VisualShaderEditor::_member_create));
@@ -7527,7 +7527,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	add_options.push_back(AddOption("CurveXYZTexture", "Textures/Functions", "VisualShaderNodeCurveXYZTexture", TTR("Perform the three components curve texture lookup."), {}, VisualShaderNode::PORT_TYPE_VECTOR_3D));
 	add_options.push_back(AddOption("LinearSceneDepth", "Textures/Functions", "VisualShaderNodeLinearSceneDepth", TTR("Returns the depth value obtained from the depth prepass in a linear space."), {}, VisualShaderNode::PORT_TYPE_SCALAR, TYPE_FLAGS_FRAGMENT, Shader::MODE_SPATIAL));
 	texture2d_node_option_idx = add_options.size();
-	add_options.push_back(AddOption("WorldPositionFromDepth", "Textures/Functions", "VisualShaderNodeWorldPositionFromDepth", TTR("Reconstructs the World Position of the Node from the depth texture."), {}, VisualShaderNode::PORT_TYPE_VECTOR_3D, TYPE_FLAGS_FRAGMENT, Shader::MODE_SPATIAL));
+	add_options.push_back(AddOption("WorldPositionFromDepth", "Textures/Functions", "VisualShaderNodeWorldPositionFromDepth", TTR("Reconstructs the World Position of the Flowde from the depth texture."), {}, VisualShaderNode::PORT_TYPE_VECTOR_3D, TYPE_FLAGS_FRAGMENT, Shader::MODE_SPATIAL));
 	texture2d_node_option_idx = add_options.size();
 	add_options.push_back(AddOption("ScreenNormalWorldSpace", "Textures/Functions", "VisualShaderNodeScreenNormalWorldSpace", TTR("Unpacks the Screen Normal Texture in World Space"), {}, VisualShaderNode::PORT_TYPE_VECTOR_3D, TYPE_FLAGS_FRAGMENT, Shader::MODE_SPATIAL));
 	texture2d_node_option_idx = add_options.size();

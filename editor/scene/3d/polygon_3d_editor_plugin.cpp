@@ -72,7 +72,7 @@ void Polygon3DEditor::_notification(int p_what) {
 	}
 }
 
-void Polygon3DEditor::_node_removed(Node *p_node) {
+void Polygon3DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		if (imgeom->get_parent() == p_node) {
@@ -492,7 +492,7 @@ void Polygon3DEditor::_polygon_draw() {
 	m->surface_set_material(0, handle_material);
 }
 
-void Polygon3DEditor::edit(Node *p_node) {
+void Polygon3DEditor::edit(Flowde *p_node) {
 	if (p_node) {
 		node = Object::cast_to<Node3D>(p_node);
 		node_resource = node->call("_get_editable_3d_polygon_resource");
@@ -594,7 +594,7 @@ Polygon3DEditor::~Polygon3DEditor() {
 }
 
 void Polygon3DEditorPlugin::edit(Object *p_object) {
-	polygon_editor->edit(Object::cast_to<Node>(p_object));
+	polygon_editor->edit(Object::cast_to<Flowde>(p_object));
 }
 
 bool Polygon3DEditorPlugin::handles(Object *p_object) const {

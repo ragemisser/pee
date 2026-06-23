@@ -49,11 +49,11 @@ protected:
 	};
 
 	void queue_sort();
-	Control *as_sortable_control(Node *p_node, SortableVisibilityMode p_visibility_mode = SortableVisibilityMode::VISIBLE_IN_TREE) const;
+	Control *as_sortable_control(Flowde *p_node, SortableVisibilityMode p_visibility_mode = SortableVisibilityMode::VISIBLE_IN_TREE) const;
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	GDVIRTUAL0RC(Vector<int>, _get_allowed_size_flags_horizontal)
 	GDVIRTUAL0RC(Vector<int>, _get_allowed_size_flags_vertical)

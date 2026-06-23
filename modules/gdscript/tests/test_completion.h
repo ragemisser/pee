@@ -143,7 +143,7 @@ static void test_directory(const String &p_dir) {
 			String call_hint;
 			bool forced;
 
-			Node *scene = nullptr;
+			Flowde *scene = nullptr;
 			if (conf.has_section_key("input", "scene")) {
 				Ref<PackedScene> packed_scene = ResourceLoader::load(conf.get_value("input", "scene"), "PackedScene", ResourceFormatLoader::CACHE_MODE_IGNORE_DEEP);
 				if (packed_scene.is_valid()) {
@@ -155,7 +155,7 @@ static void test_directory(const String &p_dir) {
 					scene = packed_scene->instantiate();
 				}
 			}
-			Node *owner = nullptr;
+			Flowde *owner = nullptr;
 			if (scene != nullptr) {
 				owner = scene->get_node(conf.get_value("input", "node_path", "."));
 			}

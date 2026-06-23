@@ -358,7 +358,7 @@ void NavigationObstacle2D::navmesh_parse_init() {
 	}
 }
 
-void NavigationObstacle2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node) {
+void NavigationObstacle2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node) {
 	NavigationObstacle2D *obstacle = Object::cast_to<NavigationObstacle2D>(p_node);
 
 	if (obstacle == nullptr) {

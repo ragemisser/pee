@@ -152,15 +152,15 @@ private:
 
     class BTLinearMatchNode : public LinearMatchNode {
     public:
-        BTLinearMatchNode(const char *units, int32_t len, Node *nextNode);
-        virtual bool operator==(const Node &other) const override;
+        BTLinearMatchNode(const char *units, int32_t len, Flowde *nextNode);
+        virtual bool operator==(const Flowde &other) const override;
         virtual void write(StringTrieBuilder &builder) override;
     private:
         const char *s;
     };
     
-    virtual Node *createLinearMatchNode(int32_t i, int32_t byteIndex, int32_t length,
-                                        Node *nextNode) const override;
+    virtual Flowde *createLinearMatchNode(int32_t i, int32_t byteIndex, int32_t length,
+                                        Flowde *nextNode) const override;
 
     UBool ensureCapacity(int32_t length);
     virtual int32_t write(int32_t byte) override;

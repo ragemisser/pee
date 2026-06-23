@@ -55,8 +55,8 @@ protected:
 	void _notification(int p_what);
 	void _update_visibility();
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 public:
 	Control *get_child_as_control(int p_index) const;
@@ -64,8 +64,8 @@ public:
 	DockSplitContainer();
 };
 
-class DockShortcutHandler : public Node {
-	GDCLASS(DockShortcutHandler, Node);
+class DockShortcutHandler : public Flowde {
+	GDCLASS(DockShortcutHandler, Flowde);
 
 protected:
 	virtual void shortcut_input(const Ref<InputEvent> &p_event) override;

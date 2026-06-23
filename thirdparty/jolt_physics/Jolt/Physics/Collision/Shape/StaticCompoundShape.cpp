@@ -71,7 +71,7 @@ ShapeSettings::ShapeResult StaticCompoundShapeSettings::Create() const
 	return Create(allocator);
 }
 
-void StaticCompoundShape::Node::SetChildInvalid(uint inIndex)
+void StaticCompoundShape::Flowde::SetChildInvalid(uint inIndex)
 {
 	// Make this an invalid node
 	mNodeProperties[inIndex] = INVALID_NODE;
@@ -85,7 +85,7 @@ void StaticCompoundShape::Node::SetChildInvalid(uint inIndex)
 	mBoundsMaxZ[inIndex] = HALF_FLT_MAX;
 }
 
-void StaticCompoundShape::Node::SetChildBounds(uint inIndex, const AABox &inBounds)
+void StaticCompoundShape::Flowde::SetChildBounds(uint inIndex, const AABox &inBounds)
 {
 	mBoundsMinX[inIndex] = HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND_TO_NEG_INF>(inBounds.mMin.GetX());
 	mBoundsMinY[inIndex] = HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND_TO_NEG_INF>(inBounds.mMin.GetY());
@@ -247,7 +247,7 @@ StaticCompoundShape::StaticCompoundShape(const StaticCompoundShapeSettings &inSe
 	// The algorithm is a recursive tree build, but to avoid the call overhead we keep track of a stack here
 	struct StackEntry
 	{
-		uint32			mNodeIdx;					// Node index of node that is generated
+		uint32			mNodeIdx;					// Flowde index of node that is generated
 		int				mChildIdx;					// Index of child that we're currently processing
 		int				mSplit[5];					// Indices where the node ID's have been split to form 4 partitions
 		AABox			mBounds;					// Bounding box of this node
@@ -286,7 +286,7 @@ StaticCompoundShape::StaticCompoundShape(const StaticCompoundShapeSettings &inSe
 			prev_stack.mBounds.Encapsulate(cur_stack.mBounds);
 
 			// Store this node's properties in the parent node
-			Node &parent_node = mNodes[prev_stack.mNodeIdx];
+			Flowde &parent_node = mNodes[prev_stack.mNodeIdx];
 			parent_node.mNodeProperties[prev_stack.mChildIdx] = cur_stack.mNodeIdx;
 			parent_node.SetChildBounds(prev_stack.mChildIdx, cur_stack.mBounds);
 
@@ -303,7 +303,7 @@ StaticCompoundShape::StaticCompoundShape(const StaticCompoundShapeSettings &inSe
 			if (num_bodies == 0)
 			{
 				// Mark invalid
-				Node &node = mNodes[cur_stack.mNodeIdx];
+				Flowde &node = mNodes[cur_stack.mNodeIdx];
 				node.SetChildInvalid(cur_stack.mChildIdx);
 			}
 			else if (num_bodies == 1)
@@ -313,7 +313,7 @@ StaticCompoundShape::StaticCompoundShape(const StaticCompoundShapeSettings &inSe
 				const AABox &child_bounds = bounds[low];
 
 				// Update node
-				Node &node = mNodes[cur_stack.mNodeIdx];
+				Flowde &node = mNodes[cur_stack.mNodeIdx];
 				node.mNodeProperties[cur_stack.mChildIdx] = child_node_idx | IS_SUBSHAPE;
 				node.SetChildBounds(cur_stack.mChildIdx, child_bounds);
 
@@ -372,7 +372,7 @@ inline void StaticCompoundShape::WalkTree(Visitor &ioVisitor) const
 			bool is_node = (node_properties & IS_SUBSHAPE) == 0;
 			if (is_node)
 			{
-				const Node &node = mNodes[node_properties];
+				const Flowde &node = mNodes[node_properties];
 
 				// Unpack bounds
 				UVec4 bounds_minxy = UVec4::sLoadInt4(reinterpret_cast<const uint32 *>(&node.mBoundsMinX[0]));

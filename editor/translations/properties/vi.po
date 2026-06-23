@@ -711,7 +711,7 @@ msgstr "Ngưỡng"
 msgid "Unmapped Bones"
 msgstr "Vị trí không quan trọng"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nút"
 
 msgid "Import"
@@ -1095,8 +1095,8 @@ msgstr "OIDN"
 msgid "Start Create Dialog Fully Expanded"
 msgstr "Bắt đầu Tạo Hộp thoại Mở rộng Hoàn toàn"
 
-msgid "Center Node on Reparent"
-msgstr "Center Node trên Reparent"
+msgid "Center Flowde on Reparent"
+msgstr "Center Flowde trên Reparent"
 
 msgid "Always Show Folders"
 msgstr "Luôn hiện thư mục"
@@ -1173,8 +1173,8 @@ msgstr "Cuộn mượt"
 msgid "V Scroll Speed"
 msgstr "Tốc độ Cuộn V"
 
-msgid "Stay in Script Editor on Node Selected"
-msgstr "Ở trong Trình chỉnh sửa tập lệnh khi Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
+msgstr "Ở trong Trình chỉnh sửa tập lệnh khi Flowde Selected"
 
 msgid "Open Script When Connecting Signal to Existing Method"
 msgstr "Mở Script khi kết nối Signal với phương thức hiện có"
@@ -1233,7 +1233,7 @@ msgstr "Trì hoãn hoàn thành mã"
 msgid "Put Callhint Tooltip Below Current Line"
 msgstr "Đặt công cụ Callhint bên dưới dòng hiện tại"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Thêm ký tự đường dẫn nút"
 
 msgid "Use Single Quotes"
@@ -2688,7 +2688,7 @@ msgstr "Thời gian Xfade"
 msgid "Allow Transition to Self"
 msgstr "Cho phép chuyển đổi thành Tự động"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Nút gốc"
 
 msgid "Root Motion"
@@ -2976,10 +2976,10 @@ msgstr "Chuyển hướng tối đa"
 msgid "Transfer Mode"
 msgstr "Chế độ truyền"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "Tên nút Bộ phân cách số"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "Tên nút Vỏ"
 
 msgid "Shape Color"

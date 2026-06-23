@@ -63,7 +63,7 @@ Node2D *Polygon2DEditor::_get_node() const {
 	return node;
 }
 
-void Polygon2DEditor::_set_node(Node *p_polygon) {
+void Polygon2DEditor::_set_node(Flowde *p_polygon) {
 	CanvasItem *draw = Object::cast_to<CanvasItem>(canvas);
 	if (node) {
 		node->disconnect(SceneStringName(draw), callable_mp(draw, &CanvasItem::queue_redraw));
@@ -160,7 +160,7 @@ void Polygon2DEditor::_sync_bones() {
 		error->set_text(TTR("The skeleton property of the Polygon2D does not point to a Skeleton2D node"));
 		error->popup_centered();
 	} else {
-		Node *sn = node->get_node(node->get_skeleton());
+		Flowde *sn = node->get_node(node->get_skeleton());
 		skeleton = Object::cast_to<Skeleton2D>(sn);
 	}
 

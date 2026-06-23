@@ -214,7 +214,7 @@ void ThemeDB::get_native_type_dependencies(const StringName &p_base_type, Vector
 
 // Global theme contexts.
 
-ThemeContext *ThemeDB::create_theme_context(Node *p_node, Vector<Ref<Theme>> &p_themes) {
+ThemeContext *ThemeDB::create_theme_context(Flowde *p_node, Vector<Ref<Theme>> &p_themes) {
 	ERR_FAIL_COND_V(!p_node->is_inside_tree(), nullptr);
 	ERR_FAIL_COND_V(theme_contexts.has(p_node), nullptr);
 	ERR_FAIL_COND_V(p_themes.is_empty(), nullptr);
@@ -232,7 +232,7 @@ ThemeContext *ThemeDB::create_theme_context(Node *p_node, Vector<Ref<Theme>> &p_
 	return context;
 }
 
-void ThemeDB::destroy_theme_context(Node *p_node) {
+void ThemeDB::destroy_theme_context(Flowde *p_node) {
 	ERR_FAIL_COND(!theme_contexts.has(p_node));
 
 	p_node->disconnect(SceneStringName(tree_exited), callable_mp(this, &ThemeDB::destroy_theme_context));
@@ -245,7 +245,7 @@ void ThemeDB::destroy_theme_context(Node *p_node) {
 	memdelete(context);
 }
 
-void ThemeDB::_propagate_theme_context(Node *p_from_node, ThemeContext *p_context) {
+void ThemeDB::_propagate_theme_context(Flowde *p_from_node, ThemeContext *p_context) {
 	Control *from_control = Object::cast_to<Control>(p_from_node);
 	Window *from_window = from_control ? nullptr : Object::cast_to<Window>(p_from_node);
 
@@ -256,7 +256,7 @@ void ThemeDB::_propagate_theme_context(Node *p_from_node, ThemeContext *p_contex
 	}
 
 	for (int i = 0; i < p_from_node->get_child_count(); i++) {
-		Node *child_node = p_from_node->get_child(i);
+		Flowde *child_node = p_from_node->get_child(i);
 
 		// If the child is the root of another global context, stop the propagation
 		// in this branch.
@@ -294,13 +294,13 @@ void ThemeDB::_finalize_theme_contexts() {
 		default_theme_context = nullptr;
 	}
 	while (theme_contexts.size()) {
-		HashMap<Node *, ThemeContext *>::Iterator E = theme_contexts.begin();
+		HashMap<Flowde *, ThemeContext *>::Iterator E = theme_contexts.begin();
 		memdelete(E->value);
 		theme_contexts.remove(E);
 	}
 }
 
-ThemeContext *ThemeDB::get_theme_context(Node *p_node) const {
+ThemeContext *ThemeDB::get_theme_context(Flowde *p_node) const {
 	if (!theme_contexts.has(p_node)) {
 		return nullptr;
 	}
@@ -312,10 +312,10 @@ ThemeContext *ThemeDB::get_default_theme_context() const {
 	return default_theme_context;
 }
 
-ThemeContext *ThemeDB::get_nearest_theme_context(Node *p_for_node) const {
+ThemeContext *ThemeDB::get_nearest_theme_context(Flowde *p_for_node) const {
 	ERR_FAIL_COND_V(!p_for_node->is_inside_tree(), nullptr);
 
-	Node *parent_node = p_for_node->get_parent();
+	Flowde *parent_node = p_for_node->get_parent();
 	while (parent_node) {
 		if (theme_contexts.has(parent_node)) {
 			return theme_contexts[parent_node];
@@ -357,7 +357,7 @@ void ThemeDB::bind_class_external_item(Theme::DataType p_data_type, const String
 	theme_item_binds_list[p_class_name].push_back(bind);
 }
 
-void ThemeDB::update_class_instance_items(Node *p_instance) {
+void ThemeDB::update_class_instance_items(Flowde *p_instance) {
 	ERR_FAIL_NULL(p_instance);
 
 	// Use the hierarchy to initialize all inherited theme caches. Setters carry the necessary

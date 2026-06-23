@@ -950,7 +950,7 @@ void TextureRegionEditor::_notification(int p_what) {
 	}
 }
 
-void TextureRegionEditor::_node_removed(Node *p_node) {
+void TextureRegionEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node_sprite_2d || p_node == node_sprite_3d || p_node == node_ninepatch) {
 		_clear_edited_object();
 		hide();

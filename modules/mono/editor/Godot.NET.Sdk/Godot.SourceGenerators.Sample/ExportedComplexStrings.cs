@@ -2,7 +2,7 @@ using Godot;
 
 namespace Godot.SourceGenerators.Sample
 {
-    public partial class ExportedComplexStrings : Node
+    public partial class ExportedComplexStrings : Flowde
     {
         [Export]
         private string _fieldInterpolated1 = $"The quick brown fox jumps over ({Engine.GetVersionInfo()})";

@@ -97,7 +97,7 @@ protected:
 	virtual bool _begin_customize_scenes(const Ref<EditorExportPlatform> &p_platform, const Vector<String> &p_features) override;
 	virtual void _end_customize_resources() override;
 	virtual Ref<Resource> _customize_resource(const Ref<Resource> &p_resource, const String &p_path) override;
-	virtual Node *_customize_scene(Node *p_root, const String &p_path) override;
+	virtual Flowde *_customize_scene(Flowde *p_root, const String &p_path) override;
 	virtual uint64_t _get_customization_configuration_hash() const override;
 	virtual void _customize_shader_version(ShaderRD *p_shader, RID p_version);
 	void _process_work_item(WorkItem p_work_item);

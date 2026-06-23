@@ -190,7 +190,7 @@ bool SnapshotDataObject::is_refcounted() {
 }
 
 bool SnapshotDataObject::is_node() {
-	return is_class(Node::get_class_static());
+	return is_class(Flowde::get_class_static());
 }
 
 bool SnapshotDataObject::is_class(const String &p_base_class) {

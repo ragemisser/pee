@@ -48,7 +48,7 @@ NavigationMeshGenerator::NavigationMeshGenerator() {
 NavigationMeshGenerator::~NavigationMeshGenerator() {
 }
 
-void NavigationMeshGenerator::bake(const Ref<NavigationMesh> &p_navigation_mesh, Node *p_root_node) {
+void NavigationMeshGenerator::bake(const Ref<NavigationMesh> &p_navigation_mesh, Flowde *p_root_node) {
 	WARN_PRINT_ONCE("NavigationMeshGenerator::bake() is deprecated due to core threading changes. To upgrade existing code, first create a NavigationMeshSourceGeometryData3D resource. Use this resource with method parse_source_geometry_data() to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with method bake_from_source_geometry_data() to bake a navigation mesh..");
 }
 
@@ -59,7 +59,7 @@ void NavigationMeshGenerator::clear(Ref<NavigationMesh> p_navigation_mesh) {
 	}
 }
 
-void NavigationMeshGenerator::parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_root_node, const Callable &p_callback) {
+void NavigationMeshGenerator::parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_root_node, const Callable &p_callback) {
 	NavigationServer3D::get_singleton()->parse_source_geometry_data(p_navigation_mesh, p_source_geometry_data, p_root_node, p_callback);
 }
 

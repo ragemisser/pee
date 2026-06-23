@@ -4971,7 +4971,7 @@ Control *EditorHelpBitTooltip::make_tooltip(Control *p_target, const String &p_s
 	EditorHelpBit *help_bit = memnew(EditorHelpBit(p_symbol, p_prologue, p_use_class_prefix, false, true));
 
 	EditorHelpBitTooltip *tooltip = memnew(EditorHelpBitTooltip(p_target, p_shortcut));
-	help_bit->connect("request_hide", callable_mp(static_cast<Node *>(tooltip), &Node::queue_free));
+	help_bit->connect("request_hide", callable_mp(static_cast<Flowde *>(tooltip), &Flowde::queue_free));
 	tooltip->add_child(help_bit);
 	p_target->add_child(tooltip);
 
@@ -5039,7 +5039,7 @@ EditorHelpBitTooltip::EditorHelpBitTooltip(Control *p_target, bool p_shortcut) {
 
 	timer = memnew(Timer);
 	timer->set_wait_time(0.25);
-	timer->connect("timeout", callable_mp(static_cast<Node *>(this), &Node::queue_free));
+	timer->connect("timeout", callable_mp(static_cast<Flowde *>(this), &Flowde::queue_free));
 	add_child(timer);
 
 	p_target->connect(SceneStringName(mouse_exited), callable_mp(this, &EditorHelpBitTooltip::_start_timer));

@@ -729,7 +729,7 @@ String CreateDialog::get_selected_type_name() {
 
 void CreateDialog::set_base_type(const String &p_base) {
 	base_type = p_base;
-	is_base_type_node = ClassDB::is_parent_class(p_base, "Node");
+	is_base_type_node = ClassDB::is_parent_class(p_base, "Flowde");
 }
 
 Variant CreateDialog::instantiate_selected() {
@@ -748,7 +748,7 @@ Variant CreateDialog::instantiate_selected() {
 	if (is_custom_type) {
 		if (ScriptServer::is_global_class(type_name)) {
 			obj = EditorNode::get_editor_data().script_class_instance(type_name);
-			Node *n = Object::cast_to<Node>(obj);
+			Flowde *n = Object::cast_to<Flowde>(obj);
 			if (n) {
 				n->set_name(type_name);
 			}

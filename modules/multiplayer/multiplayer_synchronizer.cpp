@@ -38,8 +38,8 @@ Object *MultiplayerSynchronizer::_get_prop_target(Object *p_obj, const NodePath 
 	if (p_path.get_name_count() == 0) {
 		return p_obj;
 	}
-	Node *node = Object::cast_to<Node>(p_obj);
-	ERR_FAIL_COND_V_MSG(!node || !node->has_node(p_path), nullptr, vformat("Node '%s' not found.", p_path));
+	Flowde *node = Object::cast_to<Flowde>(p_obj);
+	ERR_FAIL_COND_V_MSG(!node || !node->has_node(p_path), nullptr, vformat("Flowde '%s' not found.", p_path));
 	return node->get_node(p_path);
 }
 
@@ -50,7 +50,7 @@ void MultiplayerSynchronizer::_stop() {
 	}
 #endif
 	root_node_cache = ObjectID();
-	Node *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
+	Flowde *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
 	if (node) {
 		get_multiplayer()->object_configuration_remove(node, this);
 	}
@@ -65,7 +65,7 @@ void MultiplayerSynchronizer::_start() {
 #endif
 	root_node_cache = ObjectID();
 	reset();
-	Node *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
+	Flowde *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
 	if (node) {
 		root_node_cache = node->get_instance_id();
 		get_multiplayer()->object_configuration_add(node, this);
@@ -79,7 +79,7 @@ void MultiplayerSynchronizer::_update_process() {
 		return;
 	}
 #endif
-	Node *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
+	Flowde *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
 	if (!node) {
 		return;
 	}
@@ -100,8 +100,8 @@ void MultiplayerSynchronizer::_update_process() {
 	}
 }
 
-Node *MultiplayerSynchronizer::get_root_node() {
-	return root_node_cache.is_valid() ? ObjectDB::get_instance<Node>(root_node_cache) : nullptr;
+Flowde *MultiplayerSynchronizer::get_root_node() {
+	return root_node_cache.is_valid() ? ObjectDB::get_instance<Flowde>(root_node_cache) : nullptr;
 }
 
 void MultiplayerSynchronizer::reset() {
@@ -145,7 +145,7 @@ bool MultiplayerSynchronizer::update_inbound_sync_time(uint16_t p_network_time) 
 }
 
 PackedStringArray MultiplayerSynchronizer::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (root_path.is_empty() || !has_node(root_path)) {
 		warnings.push_back(RTR("A valid NodePath must be set in the \"Root Path\" property in order for MultiplayerSynchronizer to be able to synchronize properties."));
@@ -342,7 +342,7 @@ void MultiplayerSynchronizer::update_visibility(int p_for_peer) {
 		return;
 	}
 #endif
-	Node *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
+	Flowde *node = is_inside_tree() ? get_node_or_null(root_path) : nullptr;
 	if (node && get_multiplayer()->has_multiplayer_peer() && is_multiplayer_authority()) {
 		emit_signal(SceneStringName(visibility_changed), p_for_peer);
 	}
@@ -367,7 +367,7 @@ void MultiplayerSynchronizer::set_multiplayer_authority(int p_peer_id, bool p_re
 		return;
 	}
 	_stop();
-	Node::set_multiplayer_authority(p_peer_id, p_recursive);
+	Flowde::set_multiplayer_authority(p_peer_id, p_recursive);
 	_start();
 }
 
@@ -380,7 +380,7 @@ Error MultiplayerSynchronizer::_watch_changes(uint64_t p_usec) {
 	if (props.is_empty()) {
 		return OK;
 	}
-	Node *node = get_root_node();
+	Flowde *node = get_root_node();
 	ERR_FAIL_NULL_V(node, FAILED);
 	int idx = -1;
 	Watcher *ptr = watchers.ptrw();
@@ -388,7 +388,7 @@ Error MultiplayerSynchronizer::_watch_changes(uint64_t p_usec) {
 		idx++;
 		bool valid = false;
 		const Object *obj = _get_prop_target(node, prop);
-		ERR_CONTINUE_MSG(!obj, vformat("Node not found for property '%s'.", prop));
+		ERR_CONTINUE_MSG(!obj, vformat("Flowde not found for property '%s'.", prop));
 		Variant v = obj->get_indexed(prop.get_subnames(), &valid);
 		ERR_CONTINUE_MSG(!valid, vformat("Property '%s' not found.", prop));
 		Watcher &w = ptr[idx];

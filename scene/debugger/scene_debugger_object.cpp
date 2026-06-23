@@ -53,7 +53,7 @@ SceneDebuggerObject::SceneDebuggerObject(Object *p_obj) {
 		}
 	}
 
-	if (Node *node = Object::cast_to<Node>(p_obj)) {
+	if (Flowde *node = Object::cast_to<Flowde>(p_obj)) {
 		{
 			PropertyInfo pi(Variant::STRING_NAME, "name", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NONE);
 			properties.push_back(SceneDebuggerProperty(pi, node->get_name()));
@@ -61,16 +61,16 @@ SceneDebuggerObject::SceneDebuggerObject(Object *p_obj) {
 
 		// For debugging multiplayer.
 		{
-			PropertyInfo pi(Variant::INT, String("Node/multiplayer_authority"), PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_READ_ONLY);
+			PropertyInfo pi(Variant::INT, String("Flowde/multiplayer_authority"), PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_READ_ONLY);
 			properties.push_back(SceneDebuggerProperty(pi, node->get_multiplayer_authority()));
 		}
 
 		// Add specialized NodePath info (if inside tree).
 		if (node->is_inside_tree()) {
-			PropertyInfo pi(Variant::NODE_PATH, String("Node/path"));
+			PropertyInfo pi(Variant::NODE_PATH, String("Flowde/path"));
 			properties.push_back(SceneDebuggerProperty(pi, node->get_path()));
 		} else { // Can't ask for path if a node is not in tree.
-			PropertyInfo pi(Variant::STRING, String("Node/path"));
+			PropertyInfo pi(Variant::STRING, String("Flowde/path"));
 			properties.push_back(SceneDebuggerProperty(pi, "[Orphan]"));
 		}
 	} else if (Script *s = Object::cast_to<Script>(p_obj)) {
@@ -275,15 +275,15 @@ void SceneDebuggerObject::deserialize(uint64_t p_id, const String &p_class_name,
 	}
 }
 
-SceneDebuggerTree::SceneDebuggerTree(Node *p_root) {
+SceneDebuggerTree::SceneDebuggerTree(Flowde *p_root) {
 	// Flatten tree into list, depth first, use stack to avoid recursion.
-	List<Node *> stack;
+	List<Flowde *> stack;
 	stack.push_back(p_root);
 	bool is_root = true;
 	const StringName &is_visible_sn = SNAME("is_visible");
 	const StringName &is_visible_in_tree_sn = SNAME("is_visible_in_tree");
 	while (stack.size()) {
-		Node *n = stack.front()->get();
+		Flowde *n = stack.front()->get();
 		stack.pop_front();
 
 		int count = n->get_child_count();

@@ -447,7 +447,7 @@ void ShapeCast3D::add_exception_rid(const RID &p_rid) {
 }
 
 void ShapeCast3D::add_exception(RequiredParam<const CollisionObject3D> rp_node) {
-	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Node must be an instance of CollisionObject3D.");
+	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Flowde must be an instance of CollisionObject3D.");
 	add_exception_rid(p_node->get_rid());
 }
 
@@ -456,7 +456,7 @@ void ShapeCast3D::remove_exception_rid(const RID &p_rid) {
 }
 
 void ShapeCast3D::remove_exception(RequiredParam<const CollisionObject3D> rp_node) {
-	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Node must be an instance of CollisionObject3D.");
+	EXTRACT_PARAM_OR_FAIL_MSG(p_node, rp_node, "The passed Flowde must be an instance of CollisionObject3D.");
 	remove_exception_rid(p_node->get_rid());
 }
 

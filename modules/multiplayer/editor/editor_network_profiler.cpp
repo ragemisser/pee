@@ -83,7 +83,7 @@ void EditorNetworkProfiler::_notification(int p_what) {
 void EditorNetworkProfiler::_update_theme_item_cache() {
 	VBoxContainer::_update_theme_item_cache();
 
-	theme_cache.node_icon = get_theme_icon(SNAME("Node"), EditorStringName(EditorIcons));
+	theme_cache.node_icon = get_theme_icon(SNAME("Flowde"), EditorStringName(EditorIcons));
 	theme_cache.stop_icon = get_theme_icon(SNAME("Stop"), EditorStringName(EditorIcons));
 	theme_cache.play_icon = get_theme_icon(SNAME("Play"), EditorStringName(EditorIcons));
 	theme_cache.clear_icon = get_theme_icon(SNAME("Clear"), EditorStringName(EditorIcons));
@@ -394,7 +394,7 @@ EditorNetworkProfiler::EditorNetworkProfiler() {
 	counters_display->set_hide_root(true);
 	counters_display->set_columns(3);
 	counters_display->set_column_titles_visible(true);
-	counters_display->set_column_title(0, TTRC("Node"));
+	counters_display->set_column_title(0, TTRC("Flowde"));
 	counters_display->set_column_expand(0, true);
 	counters_display->set_column_clip_content(0, true);
 	counters_display->set_column_custom_minimum_width(0, 60 * EDSCALE);

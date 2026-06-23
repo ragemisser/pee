@@ -1484,7 +1484,7 @@ public:
 		todo[stackptr].end = objectAabbs.size();
 		todo[stackptr].parent = kRoot;
 		stackptr++;
-		Node node;
+		Flowde node;
 		m_nodes.reserve(objectAabbs.size() * 2);
 		uint32_t nNodes = 0;
 		while(stackptr > 0) {
@@ -1562,7 +1562,7 @@ public:
 		while(stackptr >= 0) {
 			// Pop off the next node to work on.
 			const int ni = todo[stackptr--];
-			const Node &node = m_nodes[ni];
+			const Flowde &node = m_nodes[ni];
 			// Is leaf -> Intersect
 			if (node.rightOffset == 0) {
 				for(uint32_t o = 0; o < node.nPrims; ++o) {
@@ -1588,7 +1588,7 @@ private:
 		uint32_t start, end; // The range of objects in the object list covered by this node.
 	};
 
-	struct Node
+	struct Flowde
 	{
 		AABB aabb;
 		uint32_t start, nPrims, rightOffset;
@@ -1596,7 +1596,7 @@ private:
 
 	const Array<AABB> *m_objectAabbs;
 	Array<uint32_t> m_objectIds;
-	Array<Node> m_nodes;
+	Array<Flowde> m_nodes;
 };
 
 struct Fit

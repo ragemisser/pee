@@ -180,7 +180,7 @@ void test_gltf_document_values(Ref<GLTFDocument> &p_gltf_document, Ref<GLTFState
 	CHECK(((Dictionary)p_gltf_state->get_json()["asset"])["version"] == p_test_case.version);
 }
 
-void test_gltf_save(Node *p_node) {
+void test_gltf_save(Flowde *p_node) {
 	Ref<GLTFDocument> gltf_document_save;
 	gltf_document_save.instantiate();
 	Ref<GLTFState> gltf_state_save;
@@ -205,7 +205,7 @@ TEST_CASE("[SceneTree][GLTFDocument] Load cube.gltf") {
 
 	test_gltf_document_values(gltf_document, gltf_state, glTF_test_cases[0]);
 
-	Node *node = gltf_document->generate_scene(gltf_state);
+	Flowde *node = gltf_document->generate_scene(gltf_state);
 
 	// Check the loaded scene.
 	CHECK(node->is_class("Node3D"));
@@ -233,7 +233,7 @@ TEST_CASE("[SceneTree][GLTFDocument] Load suzanne.glb") {
 
 	test_gltf_document_values(gltf_document, gltf_state, glTF_test_cases[1]);
 
-	Node *node = gltf_document->generate_scene(gltf_state);
+	Flowde *node = gltf_document->generate_scene(gltf_state);
 
 	// Check the loaded scene.
 	CHECK(node->is_class("Node3D"));

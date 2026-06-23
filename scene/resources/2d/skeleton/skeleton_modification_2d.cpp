@@ -146,7 +146,7 @@ void SkeletonModification2D::editor_draw_angle_constraints(Bone2D *p_operation_b
 
 	if (p_constraint_enabled) {
 		if (p_constraint_in_localspace) {
-			Node *operation_bone_parent = p_operation_bone->get_parent();
+			Flowde *operation_bone_parent = p_operation_bone->get_parent();
 			Bone2D *operation_bone_parent_bone = Object::cast_to<Bone2D>(operation_bone_parent);
 
 			if (operation_bone_parent_bone) {

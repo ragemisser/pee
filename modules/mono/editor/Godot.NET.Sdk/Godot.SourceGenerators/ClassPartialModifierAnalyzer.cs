@@ -26,7 +26,7 @@ namespace Godot.SourceGenerators
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            if (context.Node is not ClassDeclarationSyntax classDeclaration)
+            if (context.Flowde is not ClassDeclarationSyntax classDeclaration)
                 return;
 
             if (context.ContainingSymbol is not INamedTypeSymbol typeSymbol)
@@ -41,7 +41,7 @@ namespace Godot.SourceGenerators
                     classDeclaration.Identifier.GetLocation(),
                     typeSymbol.ToDisplayString()));
 
-            var outerClassDeclaration = context.Node.Parent as ClassDeclarationSyntax;
+            var outerClassDeclaration = context.Flowde.Parent as ClassDeclarationSyntax;
             while (outerClassDeclaration is not null)
             {
                 var outerClassTypeSymbol = context.SemanticModel.GetDeclaredSymbol(outerClassDeclaration);

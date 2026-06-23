@@ -807,7 +807,7 @@ bool Camera2D::is_position_smoothing_enabled() const {
 	return position_smoothing_enabled;
 }
 
-void Camera2D::set_custom_viewport(Node *p_viewport) {
+void Camera2D::set_custom_viewport(Flowde *p_viewport) {
 	ERR_FAIL_NULL(p_viewport);
 	if (custom_viewport == p_viewport) {
 		return;
@@ -841,7 +841,7 @@ void Camera2D::set_custom_viewport(Node *p_viewport) {
 	}
 }
 
-Node *Camera2D::get_custom_viewport() const {
+Flowde *Camera2D::get_custom_viewport() const {
 	return custom_viewport;
 }
 

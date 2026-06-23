@@ -741,9 +741,9 @@ String EditorResourcePicker::_get_owner_path() const {
 	}
 	Object *obj = property->get_edited_object();
 
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	if (node) {
-		Node *p_edited_scene_root = EditorNode::get_singleton()->get_editor_data().get_edited_scene_root();
+		Flowde *p_edited_scene_root = EditorNode::get_singleton()->get_editor_data().get_edited_scene_root();
 		if (node->get_scene_file_path().is_empty()) {
 			node = node->get_owner();
 		} else if (p_edited_scene_root != nullptr && p_edited_scene_root->get_scene_file_path() != node->get_scene_file_path()) {
@@ -916,7 +916,7 @@ bool EditorResourcePicker::_is_custom_type_script() const {
 
 	// Check if the property being edited is 'script'.
 	if (editor_property->get_edited_property() == CoreStringName(script)) {
-		// If there's currently a valid script assigned and the owning Node/Resource also has a custom type script assigned, then
+		// If there's currently a valid script assigned and the owning Flowde/Resource also has a custom type script assigned, then
 		// the currently assigned script is either the custom type script itself or an extension of it.
 		Ref<Script> resource_as_script = edited_resource;
 		if (resource_as_script.is_valid() && resource_owner && resource_owner->has_meta(SceneStringName(_custom_type_script))) {
@@ -1411,7 +1411,7 @@ bool EditorResourcePicker::_is_uniqueness_enabled(bool p_check_recursive) {
 	Ref<Resource> parent_resource = _has_parent_resource();
 	EditorNode *en = EditorNode::get_singleton();
 	bool internal_to_scene = en->is_resource_internal_to_scene(edited_resource);
-	List<Node *> node_list = en->get_editor_selection()->get_full_selected_node_list();
+	List<Flowde *> node_list = en->get_editor_selection()->get_full_selected_node_list();
 
 	// Todo: Implement a more elegant solution for multiple selected Nodes. This should suffice for the time being.
 	if (node_list.size() > 1 && !p_check_recursive) {
@@ -1449,7 +1449,7 @@ bool EditorResourcePicker::_is_uniqueness_enabled(bool p_check_recursive) {
 }
 
 Ref<Resource> EditorResourcePicker::_has_parent_resource() {
-	Node *current_node = this->get_parent();
+	Flowde *current_node = this->get_parent();
 	while (current_node != nullptr) {
 		EditorProperty *ep = Object::cast_to<EditorProperty>(current_node);
 		if (ep && Object::cast_to<Resource>(ep->get_edited_object())) {
@@ -1555,11 +1555,11 @@ bool EditorScriptPicker::handle_menu_selected(int p_which) {
 	return false;
 }
 
-void EditorScriptPicker::set_script_owner(Node *p_owner) {
+void EditorScriptPicker::set_script_owner(Flowde *p_owner) {
 	script_owner = p_owner;
 }
 
-Node *EditorScriptPicker::get_script_owner() const {
+Flowde *EditorScriptPicker::get_script_owner() const {
 	return script_owner;
 }
 
@@ -1567,7 +1567,7 @@ void EditorScriptPicker::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_script_owner", "owner_node"), &EditorScriptPicker::set_script_owner);
 	ClassDB::bind_method(D_METHOD("get_script_owner"), &EditorScriptPicker::get_script_owner);
 
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "script_owner", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static(), PROPERTY_USAGE_NONE), "set_script_owner", "get_script_owner");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "script_owner", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static(), PROPERTY_USAGE_NONE), "set_script_owner", "get_script_owner");
 }
 
 // EditorShaderPicker

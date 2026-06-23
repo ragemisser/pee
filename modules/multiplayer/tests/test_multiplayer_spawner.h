@@ -39,8 +39,8 @@
 #include "tests/test_utils.h"
 
 namespace TestMultiplayerSpawner {
-class Wasp : public Node {
-	GDCLASS(Wasp, Node);
+class Wasp : public Flowde {
+	GDCLASS(Wasp, Flowde);
 
 	int _size = 0;
 
@@ -120,7 +120,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawn Path warning") {
 	CHECK_MESSAGE(warning_messages[0].contains("\"Spawn Path\""), "Invalid configuration warning");
 
 	// If there is a spawn path and a node on it, shouldn't be a warning.
-	Node *foo = memnew(Node);
+	Flowde *foo = memnew(Flowde);
 	foo->set_name("Foo");
 	SceneTree::get_singleton()->get_root()->add_child(foo);
 	warning_messages = multiplayer_spawner->get_configuration_warnings();
@@ -135,7 +135,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawn node") {
 	SceneTree::get_singleton()->get_root()->add_child(multiplayer_spawner);
 	CHECK_EQ(multiplayer_spawner->get_spawn_node(), nullptr);
 
-	Node *foo = memnew(Node);
+	Flowde *foo = memnew(Flowde);
 	foo->set_name("Foo");
 	SceneTree::get_singleton()->get_root()->add_child(foo);
 
@@ -167,7 +167,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawn node") {
 		CHECK_EQ(multiplayer_spawner->get_spawn_node(), foo);
 		CHECK(foo->has_connections("child_entered_tree"));
 
-		Node *bar = memnew(Node);
+		Flowde *bar = memnew(Flowde);
 		bar->set_name("Bar");
 		SceneTree::get_singleton()->get_root()->add_child(bar);
 		multiplayer_spawner->set_spawn_path(NodePath("/root/Bar"));
@@ -196,14 +196,14 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawnable scene") {
 	}
 
 	SUBCASE("Add one and if there is a valid spawn path add a connection to it") {
-		Node *foo = memnew(Node);
+		Flowde *foo = memnew(Flowde);
 		foo->set_name("Foo");
 		multiplayer_spawner->set_spawn_path(NodePath("/root/Foo"));
 		CHECK_FALSE(foo->has_connections("child_entered_tree"));
 
 		// Adding now foo to the tree to avoid set_spawn_path() making the connection.
 		SceneTree::get_singleton()->get_root()->add_child(foo);
-		multiplayer_spawner->notification(Node::NOTIFICATION_POST_ENTER_TREE);
+		multiplayer_spawner->notification(Flowde::NOTIFICATION_POST_ENTER_TREE);
 		CHECK_FALSE(foo->has_connections("child_entered_tree"));
 		multiplayer_spawner->add_spawnable_scene("scene.tscn");
 		CHECK(foo->has_connections("child_entered_tree"));
@@ -223,7 +223,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawnable scene") {
 	}
 
 	SUBCASE("Clear") {
-		Node *foo = memnew(Node);
+		Flowde *foo = memnew(Flowde);
 		foo->set_name("Foo");
 		SceneTree::get_singleton()->get_root()->add_child(foo);
 		multiplayer_spawner->set_spawn_path(NodePath("/root/Foo"));
@@ -248,7 +248,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Instantiate custom") {
 	SceneTree::get_singleton()->get_root()->add_child(multiplayer_spawner);
 	CHECK_EQ(multiplayer_spawner->get_spawn_node(), nullptr);
 
-	Node *nest = memnew(Node);
+	Flowde *nest = memnew(Flowde);
 	nest->set_name("Nest");
 	SceneTree::get_singleton()->get_root()->add_child(nest);
 	multiplayer_spawner->set_spawn_path(NodePath("/root/Nest"));
@@ -348,7 +348,7 @@ TEST_CASE("[Multiplayer][MultiplayerSpawner][SceneTree] Spawn") {
 	SceneTree::get_singleton()->get_root()->add_child(multiplayer_spawner);
 	CHECK_EQ(multiplayer_spawner->get_spawn_node(), nullptr);
 
-	Node *nest = memnew(Node);
+	Flowde *nest = memnew(Flowde);
 	nest->set_name("Nest");
 	SceneTree::get_singleton()->get_root()->add_child(nest);
 	multiplayer_spawner->set_spawn_path(NodePath("/root/Nest"));

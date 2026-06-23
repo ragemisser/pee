@@ -154,7 +154,7 @@ int Performance::_get_node_count() const {
 
 int Performance::_get_orphan_node_count() const {
 #ifdef DEBUG_ENABLED
-	const int total_node_count = Node::total_node_count.get();
+	const int total_node_count = Flowde::total_node_count.get();
 	const int orphan_node_count = total_node_count - _get_node_count();
 	return orphan_node_count;
 #else

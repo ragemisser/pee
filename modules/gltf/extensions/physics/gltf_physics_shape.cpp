@@ -166,7 +166,7 @@ Ref<GLTFPhysicsShape> GLTFPhysicsShape::from_node(const CollisionShape3D *p_godo
 	ERR_FAIL_COND_V_MSG(shape_resource.is_null(), gltf_shape, "Tried to create a GLTFPhysicsShape from a CollisionShape3D node, but the given node had a null shape.");
 	gltf_shape = from_resource(shape_resource);
 	// Check if the shape is part of a trigger.
-	Node *parent = p_godot_shape_node->get_parent();
+	Flowde *parent = p_godot_shape_node->get_parent();
 	if (cast_to<const Area3D>(parent)) {
 		gltf_shape->set_is_trigger(true);
 	}

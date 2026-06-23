@@ -216,7 +216,7 @@ GDScriptParser::GDScriptParser() {
 
 GDScriptParser::~GDScriptParser() {
 	while (list != nullptr) {
-		Node *element = list;
+		Flowde *element = list;
 		list = list->next;
 		memdelete(element);
 	}
@@ -228,7 +228,7 @@ void GDScriptParser::clear() {
 	*this = GDScriptParser();
 }
 
-void GDScriptParser::push_error(const String &p_message, const Node *p_origin) {
+void GDScriptParser::push_error(const String &p_message, const Flowde *p_origin) {
 	// TODO: Improve error reporting by pointing at source code.
 	// TODO: Errors might point at more than one place at once (e.g. show previous declaration).
 	panic_mode = true;
@@ -264,7 +264,7 @@ void GDScriptParser::push_error(const String &p_message, const GDScriptTokenizer
 }
 
 #ifdef DEBUG_ENABLED
-void GDScriptParser::push_warning(const Node *p_source, GDScriptWarning::Code p_code, const Vector<String> &p_symbols) {
+void GDScriptParser::push_warning(const Flowde *p_source, GDScriptWarning::Code p_code, const Vector<String> &p_symbols) {
 	ERR_FAIL_NULL(p_source);
 	ERR_FAIL_INDEX(p_code, GDScriptWarning::WARNING_MAX);
 
@@ -344,7 +344,7 @@ void GDScriptParser::evaluate_warning_directory_rules_for_script_path() {
 }
 #endif // DEBUG_ENABLED
 
-void GDScriptParser::override_completion_context(const Node *p_for_node, CompletionType p_type, Node *p_node, int p_argument) {
+void GDScriptParser::override_completion_context(const Flowde *p_for_node, CompletionType p_type, Flowde *p_node, int p_argument) {
 	if (!for_completion) {
 		return;
 	}
@@ -366,7 +366,7 @@ void GDScriptParser::override_completion_context(const Node *p_for_node, Complet
 	completion_context = context;
 }
 
-void GDScriptParser::make_completion_context(CompletionType p_type, Node *p_node, int p_argument, bool p_force) {
+void GDScriptParser::make_completion_context(CompletionType p_type, Flowde *p_node, int p_argument, bool p_force) {
 	if (!for_completion || (!p_force && completion_context.type != COMPLETION_NONE)) {
 		return;
 	}
@@ -409,7 +409,7 @@ void GDScriptParser::make_completion_context(CompletionType p_type, Variant::Typ
 	completion_context = context;
 }
 
-void GDScriptParser::push_completion_call(Node *p_call) {
+void GDScriptParser::push_completion_call(Flowde *p_call) {
 	if (!for_completion) {
 		return;
 	}
@@ -494,8 +494,8 @@ Error GDScriptParser::parse(const String &p_source_code, const String &p_script_
 #ifdef DEBUG_ENABLED
 	// Warn about parsing an empty script file:
 	if (current.type == GDScriptTokenizer::Token::TK_EOF) {
-		// Create a dummy Node for the warning, pointing to the very beginning of the file
-		Node *nd = alloc_node<PassNode>();
+		// Create a dummy Flowde for the warning, pointing to the very beginning of the file
+		Flowde *nd = alloc_node<PassNode>();
 		nd->start_line = 1;
 		nd->start_column = 1;
 		nd->end_line = 1;
@@ -581,7 +581,7 @@ GDScriptTokenizer::Token GDScriptParser::advance() {
 		current = tokenizer->scan();
 	}
 	if (previous.type != GDScriptTokenizer::Token::DEDENT) { // `DEDENT` belongs to the next non-empty line.
-		for (Node *n : nodes_in_progress) {
+		for (Flowde *n : nodes_in_progress) {
 			update_extents(n);
 		}
 	}
@@ -1888,7 +1888,7 @@ GDScriptParser::AnnotationNode *GDScriptParser::parse_annotation(uint32_t p_vali
 			} else {
 				annotation->arguments.push_back(argument);
 
-				if (argument->type == Node::LITERAL) {
+				if (argument->type == Flowde::LITERAL) {
 					override_completion_context(argument, COMPLETION_ANNOTATION_ARGUMENTS, annotation, argument_index);
 				}
 			}
@@ -1967,7 +1967,7 @@ GDScriptParser::SuiteNode *GDScriptParser::parse_suite(const String &p_context, 
 		if (is_at_end() || (!multiline && previous.type == GDScriptTokenizer::Token::SEMICOLON && check(GDScriptTokenizer::Token::NEWLINE))) {
 			break;
 		}
-		Node *statement = parse_statement();
+		Flowde *statement = parse_statement();
 		if (statement == nullptr) {
 			if (error_count++ > 100) {
 				push_error("Too many statement errors.", suite);
@@ -1979,7 +1979,7 @@ GDScriptParser::SuiteNode *GDScriptParser::parse_suite(const String &p_context, 
 
 		// Register locals.
 		switch (statement->type) {
-			case Node::VARIABLE: {
+			case Flowde::VARIABLE: {
 				VariableNode *variable = static_cast<VariableNode *>(statement);
 				const SuiteNode::Local &local = current_suite->get_local(variable->identifier->name);
 				if (local.type != SuiteNode::Local::UNDEFINED) {
@@ -1988,7 +1988,7 @@ GDScriptParser::SuiteNode *GDScriptParser::parse_suite(const String &p_context, 
 				current_suite->add_local(variable, current_function);
 				break;
 			}
-			case Node::CONSTANT: {
+			case Flowde::CONSTANT: {
 				ConstantNode *constant = static_cast<ConstantNode *>(statement);
 				const SuiteNode::Local &local = current_suite->get_local(constant->identifier->name);
 				if (local.type != SuiteNode::Local::UNDEFINED) {
@@ -2029,8 +2029,8 @@ GDScriptParser::SuiteNode *GDScriptParser::parse_suite(const String &p_context, 
 	return suite;
 }
 
-GDScriptParser::Node *GDScriptParser::parse_statement() {
-	Node *result = nullptr;
+GDScriptParser::Flowde *GDScriptParser::parse_statement() {
+	Flowde *result = nullptr;
 #ifdef DEBUG_ENABLED
 	bool unreachable = current_suite->has_return && !current_suite->has_unreachable_code;
 #endif
@@ -2161,26 +2161,26 @@ GDScriptParser::Node *GDScriptParser::parse_statement() {
 #ifdef DEBUG_ENABLED
 			if (expression != nullptr) {
 				switch (expression->type) {
-					case Node::ASSIGNMENT:
-					case Node::AWAIT:
-					case Node::CALL:
+					case Flowde::ASSIGNMENT:
+					case Flowde::AWAIT:
+					case Flowde::CALL:
 						// Fine.
 						break;
-					case Node::PRELOAD:
+					case Flowde::PRELOAD:
 						// `preload` is a function-like keyword.
 						push_warning(expression, GDScriptWarning::RETURN_VALUE_DISCARDED, "preload");
 						break;
-					case Node::LAMBDA:
+					case Flowde::LAMBDA:
 						// Standalone lambdas can't be used, so make this an error.
 						push_error("Standalone lambdas cannot be accessed. Consider assigning it to a variable.", expression);
 						break;
-					case Node::LITERAL:
+					case Flowde::LITERAL:
 						// Allow strings as multiline comments.
 						if (static_cast<GDScriptParser::LiteralNode *>(expression)->value.get_type() != Variant::STRING) {
 							push_warning(expression, GDScriptWarning::STANDALONE_EXPRESSION);
 						}
 						break;
-					case Node::TERNARY_OPERATOR:
+					case Flowde::TERNARY_OPERATOR:
 						push_warning(expression, GDScriptWarning::STANDALONE_TERNARY);
 						break;
 					default:
@@ -2221,9 +2221,9 @@ GDScriptParser::Node *GDScriptParser::parse_statement() {
 			doc_data = parse_doc_comment(doc_comment_line);
 		}
 
-		if (result->type == Node::CONSTANT) {
+		if (result->type == Flowde::CONSTANT) {
 			static_cast<ConstantNode *>(result)->doc_data = doc_data;
-		} else if (result->type == Node::VARIABLE) {
+		} else if (result->type == Flowde::VARIABLE) {
 			static_cast<VariableNode *>(result)->doc_data = doc_data;
 		}
 
@@ -2695,7 +2695,7 @@ GDScriptParser::PatternNode *GDScriptParser::parse_match_pattern(PatternNode *p_
 				complete_extents(pattern);
 				return nullptr;
 			} else {
-				if (expression->type == GDScriptParser::Node::LITERAL) {
+				if (expression->type == GDScriptParser::Flowde::LITERAL) {
 					pattern->pattern_type = PatternNode::PT_LITERAL;
 				} else {
 					pattern->pattern_type = PatternNode::PT_EXPRESSION;
@@ -2785,7 +2785,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_precedence(Precedence p_pr
 
 #ifdef TOOLS_ENABLED
 	// HACK: We can't create a context in parse_identifier since it is used in places were we don't want completion.
-	if (previous_operand != nullptr && previous_operand->type == GDScriptParser::Node::IDENTIFIER && prefix_rule == static_cast<ParseFunction>(&GDScriptParser::parse_identifier)) {
+	if (previous_operand != nullptr && previous_operand->type == GDScriptParser::Flowde::IDENTIFIER && prefix_rule == static_cast<ParseFunction>(&GDScriptParser::parse_identifier)) {
 		make_completion_context(COMPLETION_IDENTIFIER, previous_operand);
 	}
 #endif
@@ -3133,7 +3133,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_assignment(ExpressionNode 
 	}
 
 	switch (p_previous_operand->type) {
-		case Node::IDENTIFIER: {
+		case Flowde::IDENTIFIER: {
 #ifdef DEBUG_ENABLED
 			// Get source to store assignment count.
 			// Also remove one usage since assignment isn't usage.
@@ -3157,7 +3157,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_assignment(ExpressionNode 
 			}
 #endif
 		} break;
-		case Node::SUBSCRIPT:
+		case Flowde::SUBSCRIPT:
 			// Okay.
 			break;
 		default:
@@ -3225,7 +3225,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_assignment(ExpressionNode 
 	assignment->assignee = p_previous_operand;
 	assignment->assigned_value = parse_expression(false);
 #ifdef TOOLS_ENABLED
-	if (assignment->assigned_value != nullptr && assignment->assigned_value->type == GDScriptParser::Node::IDENTIFIER) {
+	if (assignment->assigned_value != nullptr && assignment->assigned_value->type == GDScriptParser::Flowde::IDENTIFIER) {
 		override_completion_context(assignment->assigned_value, COMPLETION_ASSIGN, assignment);
 	}
 #endif
@@ -3313,10 +3313,10 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_dictionary(ExpressionNode 
 
 			switch (dictionary->style) {
 				case DictionaryNode::LUA_TABLE:
-					if (key != nullptr && key->type != Node::IDENTIFIER && key->type != Node::LITERAL) {
+					if (key != nullptr && key->type != Flowde::IDENTIFIER && key->type != Flowde::LITERAL) {
 						push_error(R"(Expected identifier or string as Lua-style dictionary key (e.g "{ key = value }").)");
 					}
-					if (key != nullptr && key->type == Node::LITERAL && static_cast<LiteralNode *>(key)->value.get_type() != Variant::STRING) {
+					if (key != nullptr && key->type == Flowde::LITERAL && static_cast<LiteralNode *>(key)->value.get_type() != Variant::STRING) {
 						push_error(R"(Expected identifier or string as Lua-style dictionary key (e.g "{ key = value }").)");
 					}
 					if (!match(GDScriptTokenizer::Token::EQUAL)) {
@@ -3329,9 +3329,9 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_dictionary(ExpressionNode 
 					}
 					if (key != nullptr) {
 						key->is_constant = true;
-						if (key->type == Node::IDENTIFIER) {
+						if (key->type == Flowde::IDENTIFIER) {
 							key->reduced_value = static_cast<IdentifierNode *>(key)->name;
-						} else if (key->type == Node::LITERAL) {
+						} else if (key->type == Flowde::LITERAL) {
 							key->reduced_value = StringName(static_cast<LiteralNode *>(key)->value.operator String());
 						}
 					}
@@ -3399,7 +3399,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_attribute(ExpressionNode *
 
 	if (for_completion) {
 		bool is_builtin = false;
-		if (p_previous_operand && p_previous_operand->type == Node::IDENTIFIER) {
+		if (p_previous_operand && p_previous_operand->type == Flowde::IDENTIFIER) {
 			const IdentifierNode *id = static_cast<const IdentifierNode *>(p_previous_operand);
 			Variant::Type builtin_type = get_builtin_type(id->name);
 			if (builtin_type < Variant::VARIANT_MAX) {
@@ -3440,7 +3440,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_subscript(ExpressionNode *
 	subscript->index = parse_expression(false);
 
 #ifdef TOOLS_ENABLED
-	if (subscript->index != nullptr && subscript->index->type == Node::LITERAL) {
+	if (subscript->index != nullptr && subscript->index->type == Flowde::LITERAL) {
 		override_completion_context(subscript->index, COMPLETION_SUBSCRIPT, subscript);
 	}
 #endif
@@ -3523,10 +3523,10 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_call(ExpressionNode *p_pre
 
 		if (call->callee == nullptr) {
 			push_error(R"*(Cannot call on an expression. Use ".call()" if it's a Callable.)*");
-		} else if (call->callee->type == Node::IDENTIFIER) {
+		} else if (call->callee->type == Flowde::IDENTIFIER) {
 			call->function_name = static_cast<IdentifierNode *>(call->callee)->name;
 			make_completion_context(COMPLETION_METHOD, call->callee);
-		} else if (call->callee->type == Node::SUBSCRIPT) {
+		} else if (call->callee->type == Flowde::SUBSCRIPT) {
 			SubscriptNode *attribute = static_cast<SubscriptNode *>(call->callee);
 			if (attribute->is_attribute) {
 				if (attribute->attribute) {
@@ -3562,7 +3562,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_call(ExpressionNode *p_pre
 		} else {
 			call->arguments.push_back(argument);
 
-			if (argument->type == Node::LITERAL) {
+			if (argument->type == Flowde::LITERAL) {
 				override_completion_context(argument, ct, call, argument_index);
 			}
 		}
@@ -3702,7 +3702,7 @@ GDScriptParser::ExpressionNode *GDScriptParser::parse_preload(ExpressionNode *p_
 
 	if (preload->path == nullptr) {
 		push_error(R"(Expected resource path after "(".)");
-	} else if (preload->path->type == Node::LITERAL) {
+	} else if (preload->path->type == Flowde::LITERAL) {
 		override_completion_context(preload->path, COMPLETION_RESOURCE_PATH, preload);
 	}
 
@@ -4391,7 +4391,7 @@ const GDScriptParser::SuiteNode::Local &GDScriptParser::SuiteNode::get_local(con
 	return empty;
 }
 
-bool GDScriptParser::AnnotationNode::apply(GDScriptParser *p_this, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::AnnotationNode::apply(GDScriptParser *p_this, Flowde *p_target, ClassNode *p_class) {
 	if (is_applied) {
 		return true;
 	}
@@ -4423,7 +4423,7 @@ bool GDScriptParser::validate_annotation_arguments(AnnotationNode *p_annotation)
 		for (int i = 0; i < p_annotation->arguments.size(); i++) {
 			ExpressionNode *argument = p_annotation->arguments[i];
 
-			if (argument->type != Node::LITERAL) {
+			if (argument->type != Flowde::LITERAL) {
 				push_error(vformat(R"(Argument %d of annotation "%s" must be a string literal.)", i + 1, p_annotation->name), argument);
 				return false;
 			}
@@ -4444,7 +4444,7 @@ bool GDScriptParser::validate_annotation_arguments(AnnotationNode *p_annotation)
 	return true;
 }
 
-bool GDScriptParser::tool_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::tool_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 #ifdef DEBUG_ENABLED
 	if (_is_tool) {
 		push_error(R"("@tool" annotation can only be used once.)", p_annotation);
@@ -4455,8 +4455,8 @@ bool GDScriptParser::tool_annotation(AnnotationNode *p_annotation, Node *p_targe
 	return true;
 }
 
-bool GDScriptParser::icon_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::CLASS, false, R"("@icon" annotation can only be applied to classes.)");
+bool GDScriptParser::icon_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::CLASS, false, R"("@icon" annotation can only be applied to classes.)");
 	ERR_FAIL_COND_V(p_annotation->resolved_arguments.is_empty(), false);
 
 	ClassNode *class_node = static_cast<ClassNode *>(p_target);
@@ -4486,8 +4486,8 @@ bool GDScriptParser::icon_annotation(AnnotationNode *p_annotation, Node *p_targe
 	return true;
 }
 
-bool GDScriptParser::static_unload_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::CLASS, false, vformat(R"("%s" annotation can only be applied to classes.)", p_annotation->name));
+bool GDScriptParser::static_unload_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::CLASS, false, vformat(R"("%s" annotation can only be applied to classes.)", p_annotation->name));
 	ClassNode *class_node = static_cast<ClassNode *>(p_target);
 	if (class_node->annotated_static_unload) {
 		push_error(vformat(R"("%s" annotation can only be used once per script.)", p_annotation->name), p_annotation);
@@ -4497,9 +4497,9 @@ bool GDScriptParser::static_unload_annotation(AnnotationNode *p_annotation, Node
 	return true;
 }
 
-bool GDScriptParser::abstract_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::abstract_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 	// NOTE: Use `p_target`, **not** `p_class`, because when `p_target` is a class then `p_class` refers to the outer class.
-	if (p_target->type == Node::CLASS) {
+	if (p_target->type == Flowde::CLASS) {
 		ClassNode *class_node = static_cast<ClassNode *>(p_target);
 		if (class_node->is_abstract) {
 			push_error(R"("@abstract" annotation can only be used once per class.)", p_annotation);
@@ -4508,7 +4508,7 @@ bool GDScriptParser::abstract_annotation(AnnotationNode *p_annotation, Node *p_t
 		class_node->is_abstract = true;
 		return true;
 	}
-	if (p_target->type == Node::FUNCTION) {
+	if (p_target->type == Flowde::FUNCTION) {
 		FunctionNode *function_node = static_cast<FunctionNode *>(p_target);
 		if (function_node->is_static) {
 			push_error(R"("@abstract" annotation cannot be applied to static functions.)", p_annotation);
@@ -4524,11 +4524,11 @@ bool GDScriptParser::abstract_annotation(AnnotationNode *p_annotation, Node *p_t
 	ERR_FAIL_V_MSG(false, R"("@abstract" annotation can only be applied to classes and functions.)");
 }
 
-bool GDScriptParser::onready_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::VARIABLE, false, R"("@onready" annotation can only be applied to class variables.)");
+bool GDScriptParser::onready_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::VARIABLE, false, R"("@onready" annotation can only be applied to class variables.)");
 
-	if (current_class && !ClassDB::is_parent_class(current_class->get_datatype().native_type, SNAME("Node"))) {
-		push_error(R"("@onready" can only be used in classes that inherit "Node".)", p_annotation);
+	if (current_class && !ClassDB::is_parent_class(current_class->get_datatype().native_type, SNAME("Flowde"))) {
+		push_error(R"("@onready" can only be used in classes that inherit "Flowde".)", p_annotation);
 		return false;
 	}
 
@@ -4657,8 +4657,8 @@ static StringName _find_narrowest_native_or_global_class(const GDScriptParser::D
 }
 
 template <PropertyHint t_hint, Variant::Type t_type>
-bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
+bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
 	ERR_FAIL_NULL_V(p_class, false);
 
 	VariableNode *variable = static_cast<VariableNode *>(p_target);
@@ -4725,8 +4725,8 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 			if (!ClassDB::class_exists(native_class) || !ClassDB::is_class_exposed(native_class)) {
 				push_error(vformat(R"(Invalid argument %d of annotation "@export_node_path": The class "%s" was not found in the global scope.)", i + 1, arg_string), p_annotation->arguments[i]);
 				return false;
-			} else if (!ClassDB::is_parent_class(native_class, SNAME("Node"))) {
-				push_error(vformat(R"(Invalid argument %d of annotation "@export_node_path": The class "%s" does not inherit "Node".)", i + 1, arg_string), p_annotation->arguments[i]);
+			} else if (!ClassDB::is_parent_class(native_class, SNAME("Flowde"))) {
+				push_error(vformat(R"(Invalid argument %d of annotation "@export_node_path": The class "%s" does not inherit "Flowde".)", i + 1, arg_string), p_annotation->arguments[i]);
 				return false;
 			}
 		}
@@ -4813,7 +4813,7 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 					variable->export_info.type = Variant::OBJECT;
 					variable->export_info.hint = PROPERTY_HINT_RESOURCE_TYPE;
 					variable->export_info.hint_string = class_name;
-				} else if (ClassDB::is_parent_class(export_type.native_type, SNAME("Node"))) {
+				} else if (ClassDB::is_parent_class(export_type.native_type, SNAME("Flowde"))) {
 					variable->export_info.type = Variant::OBJECT;
 					variable->export_info.hint = PROPERTY_HINT_NODE_TYPE;
 					variable->export_info.hint_string = class_name;
@@ -4858,8 +4858,8 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 				return false;
 		}
 
-		if (variable->export_info.hint == PROPERTY_HINT_NODE_TYPE && !ClassDB::is_parent_class(p_class->base_type.native_type, SNAME("Node"))) {
-			push_error(vformat(R"(Node export is only supported in Node-derived classes, but the current class inherits "%s".)", p_class->base_type.to_string()), p_annotation);
+		if (variable->export_info.hint == PROPERTY_HINT_NODE_TYPE && !ClassDB::is_parent_class(p_class->base_type.native_type, SNAME("Flowde"))) {
+			push_error(vformat(R"(Flowde export is only supported in Flowde-derived classes, but the current class inherits "%s".)", p_class->base_type.to_string()), p_annotation);
 			return false;
 		}
 
@@ -4890,7 +4890,7 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 						variable->export_info.type = Variant::OBJECT;
 						variable->export_info.hint = PROPERTY_HINT_RESOURCE_TYPE;
 						variable->export_info.hint_string = class_name;
-					} else if (ClassDB::is_parent_class(export_type.native_type, SNAME("Node"))) {
+					} else if (ClassDB::is_parent_class(export_type.native_type, SNAME("Flowde"))) {
 						variable->export_info.type = Variant::OBJECT;
 						variable->export_info.hint = PROPERTY_HINT_NODE_TYPE;
 						variable->export_info.hint_string = class_name;
@@ -4929,8 +4929,8 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 					return false;
 			}
 
-			if (variable->export_info.hint == PROPERTY_HINT_NODE_TYPE && !ClassDB::is_parent_class(p_class->base_type.native_type, SNAME("Node"))) {
-				push_error(vformat(R"(Node export is only supported in Node-derived classes, but the current class inherits "%s".)", p_class->base_type.to_string()), p_annotation);
+			if (variable->export_info.hint == PROPERTY_HINT_NODE_TYPE && !ClassDB::is_parent_class(p_class->base_type.native_type, SNAME("Flowde"))) {
+				push_error(vformat(R"(Flowde export is only supported in Flowde-derived classes, but the current class inherits "%s".)", p_class->base_type.to_string()), p_annotation);
 				return false;
 			}
 
@@ -4994,8 +4994,8 @@ bool GDScriptParser::export_annotations(AnnotationNode *p_annotation, Node *p_ta
 // For `@export_storage` and `@export_custom`, there is no need to check the variable type, argument values,
 // or handle array exports in a special way, so they are implemented as separate methods.
 
-bool GDScriptParser::export_storage_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
+bool GDScriptParser::export_storage_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
 
 	VariableNode *variable = static_cast<VariableNode *>(p_target);
 	if (variable->is_static) {
@@ -5016,8 +5016,8 @@ bool GDScriptParser::export_storage_annotation(AnnotationNode *p_annotation, Nod
 	return true;
 }
 
-bool GDScriptParser::export_custom_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
+bool GDScriptParser::export_custom_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
 	ERR_FAIL_COND_V_MSG(p_annotation->resolved_arguments.size() < 2, false, R"(Annotation "@export_custom" requires 2 arguments.)");
 
 	VariableNode *variable = static_cast<VariableNode *>(p_target);
@@ -5044,9 +5044,9 @@ bool GDScriptParser::export_custom_annotation(AnnotationNode *p_annotation, Node
 	return true;
 }
 
-bool GDScriptParser::export_tool_button_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::export_tool_button_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 #ifdef TOOLS_ENABLED
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::VARIABLE, false, vformat(R"("%s" annotation can only be applied to variables.)", p_annotation->name));
 	ERR_FAIL_COND_V(p_annotation->resolved_arguments.is_empty(), false);
 
 	if (!is_tool()) {
@@ -5091,7 +5091,7 @@ bool GDScriptParser::export_tool_button_annotation(AnnotationNode *p_annotation,
 }
 
 template <PropertyUsageFlags t_usage>
-bool GDScriptParser::export_group_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::export_group_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 	ERR_FAIL_COND_V(p_annotation->resolved_arguments.is_empty(), false);
 
 	p_annotation->export_info.name = p_annotation->resolved_arguments[0];
@@ -5119,7 +5119,7 @@ bool GDScriptParser::export_group_annotations(AnnotationNode *p_annotation, Node
 	return true;
 }
 
-bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 #ifdef DEBUG_ENABLED
 	bool has_error = false;
 	for (const Variant &warning_name : p_annotation->resolved_arguments) {
@@ -5143,16 +5143,16 @@ bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Nod
 	} break;
 
 				// Can contain properties (set/get).
-				SIMPLE_CASE(Node::VARIABLE, VariableNode, initializer)
+				SIMPLE_CASE(Flowde::VARIABLE, VariableNode, initializer)
 
 				// Contain bodies.
-				SIMPLE_CASE(Node::FOR, ForNode, list)
-				SIMPLE_CASE(Node::IF, IfNode, condition)
-				SIMPLE_CASE(Node::MATCH, MatchNode, test)
-				SIMPLE_CASE(Node::WHILE, WhileNode, condition)
+				SIMPLE_CASE(Flowde::FOR, ForNode, list)
+				SIMPLE_CASE(Flowde::IF, IfNode, condition)
+				SIMPLE_CASE(Flowde::MATCH, MatchNode, test)
+				SIMPLE_CASE(Flowde::WHILE, WhileNode, condition)
 #undef SIMPLE_CASE
 
-				case Node::CLASS: {
+				case Flowde::CLASS: {
 					end_line = p_target->start_line;
 					for (const AnnotationNode *annotation : p_target->annotations) {
 						start_line = MIN(start_line, annotation->start_line);
@@ -5160,7 +5160,7 @@ bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Nod
 					}
 				} break;
 
-				case Node::FUNCTION: {
+				case Flowde::FUNCTION: {
 					FunctionNode *function = static_cast<FunctionNode *>(p_target);
 					end_line = function->start_line;
 					for (int i = 0; i < function->parameters.size(); i++) {
@@ -5171,7 +5171,7 @@ bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Nod
 					}
 				} break;
 
-				case Node::MATCH_BRANCH: {
+				case Flowde::MATCH_BRANCH: {
 					MatchBranchNode *branch = static_cast<MatchBranchNode *>(p_target);
 					end_line = branch->start_line;
 					for (int i = 0; i < branch->patterns.size(); i++) {
@@ -5196,7 +5196,7 @@ bool GDScriptParser::warning_ignore_annotation(AnnotationNode *p_annotation, Nod
 #endif // DEBUG_ENABLED
 }
 
-bool GDScriptParser::warning_ignore_region_annotations(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
+bool GDScriptParser::warning_ignore_region_annotations(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
 #ifdef DEBUG_ENABLED
 	bool has_error = false;
 	const bool is_start = p_annotation->name == SNAME("@warning_ignore_start");
@@ -5235,8 +5235,8 @@ bool GDScriptParser::warning_ignore_region_annotations(AnnotationNode *p_annotat
 #endif // DEBUG_ENABLED
 }
 
-bool GDScriptParser::rpc_annotation(AnnotationNode *p_annotation, Node *p_target, ClassNode *p_class) {
-	ERR_FAIL_COND_V_MSG(p_target->type != Node::FUNCTION, false, vformat(R"("%s" annotation can only be applied to functions.)", p_annotation->name));
+bool GDScriptParser::rpc_annotation(AnnotationNode *p_annotation, Flowde *p_target, ClassNode *p_class) {
+	ERR_FAIL_COND_V_MSG(p_target->type != Flowde::FUNCTION, false, vformat(R"("%s" annotation can only be applied to functions.)", p_annotation->name));
 
 	FunctionNode *function = static_cast<FunctionNode *>(p_target);
 	if (function->rpc_config.get_type() != Variant::NIL) {
@@ -5572,7 +5572,7 @@ bool GDScriptParser::DataType::can_reference(const GDScriptParser::DataType &p_o
 	return true;
 }
 
-void GDScriptParser::complete_extents(Node *p_node) {
+void GDScriptParser::complete_extents(Flowde *p_node) {
 	while (!nodes_in_progress.is_empty() && nodes_in_progress.back()->get() != p_node) {
 		ERR_PRINT("Parser bug: Mismatch in extents tracking stack.");
 		nodes_in_progress.pop_back();
@@ -5584,19 +5584,19 @@ void GDScriptParser::complete_extents(Node *p_node) {
 	}
 }
 
-void GDScriptParser::update_extents(Node *p_node) {
+void GDScriptParser::update_extents(Flowde *p_node) {
 	p_node->end_line = previous.end_line;
 	p_node->end_column = previous.end_column;
 }
 
-void GDScriptParser::reset_extents(Node *p_node, GDScriptTokenizer::Token p_token) {
+void GDScriptParser::reset_extents(Flowde *p_node, GDScriptTokenizer::Token p_token) {
 	p_node->start_line = p_token.start_line;
 	p_node->end_line = p_token.end_line;
 	p_node->start_column = p_token.start_column;
 	p_node->end_column = p_token.end_column;
 }
 
-void GDScriptParser::reset_extents(Node *p_node, Node *p_from) {
+void GDScriptParser::reset_extents(Flowde *p_node, Flowde *p_from) {
 	if (p_from == nullptr) {
 		return;
 	}
@@ -5681,10 +5681,10 @@ void GDScriptParser::TreePrinter::print_assert(AssertNode *p_assert) {
 
 void GDScriptParser::TreePrinter::print_assignment(AssignmentNode *p_assignment) {
 	switch (p_assignment->assignee->type) {
-		case Node::IDENTIFIER:
+		case Flowde::IDENTIFIER:
 			print_identifier(static_cast<IdentifierNode *>(p_assignment->assignee));
 			break;
-		case Node::SUBSCRIPT:
+		case Flowde::SUBSCRIPT:
 			print_subscript(static_cast<SubscriptNode *>(p_assignment->assignee));
 			break;
 		default:
@@ -5943,55 +5943,55 @@ void GDScriptParser::TreePrinter::print_expression(ExpressionNode *p_expression)
 		return;
 	}
 	switch (p_expression->type) {
-		case Node::ARRAY:
+		case Flowde::ARRAY:
 			print_array(static_cast<ArrayNode *>(p_expression));
 			break;
-		case Node::ASSIGNMENT:
+		case Flowde::ASSIGNMENT:
 			print_assignment(static_cast<AssignmentNode *>(p_expression));
 			break;
-		case Node::AWAIT:
+		case Flowde::AWAIT:
 			print_await(static_cast<AwaitNode *>(p_expression));
 			break;
-		case Node::BINARY_OPERATOR:
+		case Flowde::BINARY_OPERATOR:
 			print_binary_op(static_cast<BinaryOpNode *>(p_expression));
 			break;
-		case Node::CALL:
+		case Flowde::CALL:
 			print_call(static_cast<CallNode *>(p_expression));
 			break;
-		case Node::CAST:
+		case Flowde::CAST:
 			print_cast(static_cast<CastNode *>(p_expression));
 			break;
-		case Node::DICTIONARY:
+		case Flowde::DICTIONARY:
 			print_dictionary(static_cast<DictionaryNode *>(p_expression));
 			break;
-		case Node::GET_NODE:
+		case Flowde::GET_NODE:
 			print_get_node(static_cast<GetNodeNode *>(p_expression));
 			break;
-		case Node::IDENTIFIER:
+		case Flowde::IDENTIFIER:
 			print_identifier(static_cast<IdentifierNode *>(p_expression));
 			break;
-		case Node::LAMBDA:
+		case Flowde::LAMBDA:
 			print_lambda(static_cast<LambdaNode *>(p_expression));
 			break;
-		case Node::LITERAL:
+		case Flowde::LITERAL:
 			print_literal(static_cast<LiteralNode *>(p_expression));
 			break;
-		case Node::PRELOAD:
+		case Flowde::PRELOAD:
 			print_preload(static_cast<PreloadNode *>(p_expression));
 			break;
-		case Node::SELF:
+		case Flowde::SELF:
 			print_self(static_cast<SelfNode *>(p_expression));
 			break;
-		case Node::SUBSCRIPT:
+		case Flowde::SUBSCRIPT:
 			print_subscript(static_cast<SubscriptNode *>(p_expression));
 			break;
-		case Node::TERNARY_OPERATOR:
+		case Flowde::TERNARY_OPERATOR:
 			print_ternary_op(static_cast<TernaryOpNode *>(p_expression));
 			break;
-		case Node::TYPE_TEST:
+		case Flowde::TYPE_TEST:
 			print_type_test(static_cast<TypeTestNode *>(p_expression));
 			break;
-		case Node::UNARY_OPERATOR:
+		case Flowde::UNARY_OPERATOR:
 			print_unary_op(static_cast<UnaryOpNode *>(p_expression));
 			break;
 		default:
@@ -6271,45 +6271,45 @@ void GDScriptParser::TreePrinter::print_subscript(SubscriptNode *p_subscript) {
 	}
 }
 
-void GDScriptParser::TreePrinter::print_statement(Node *p_statement) {
+void GDScriptParser::TreePrinter::print_statement(Flowde *p_statement) {
 	switch (p_statement->type) {
-		case Node::ASSERT:
+		case Flowde::ASSERT:
 			print_assert(static_cast<AssertNode *>(p_statement));
 			break;
-		case Node::VARIABLE:
+		case Flowde::VARIABLE:
 			print_variable(static_cast<VariableNode *>(p_statement));
 			break;
-		case Node::CONSTANT:
+		case Flowde::CONSTANT:
 			print_constant(static_cast<ConstantNode *>(p_statement));
 			break;
-		case Node::IF:
+		case Flowde::IF:
 			print_if(static_cast<IfNode *>(p_statement));
 			break;
-		case Node::FOR:
+		case Flowde::FOR:
 			print_for(static_cast<ForNode *>(p_statement));
 			break;
-		case Node::WHILE:
+		case Flowde::WHILE:
 			print_while(static_cast<WhileNode *>(p_statement));
 			break;
-		case Node::MATCH:
+		case Flowde::MATCH:
 			print_match(static_cast<MatchNode *>(p_statement));
 			break;
-		case Node::RETURN:
+		case Flowde::RETURN:
 			print_return(static_cast<ReturnNode *>(p_statement));
 			break;
-		case Node::BREAK:
+		case Flowde::BREAK:
 			push_line("Break");
 			break;
-		case Node::CONTINUE:
+		case Flowde::CONTINUE:
 			push_line("Continue");
 			break;
-		case Node::PASS:
+		case Flowde::PASS:
 			push_line("Pass");
 			break;
-		case Node::BREAKPOINT:
+		case Flowde::BREAKPOINT:
 			push_line("Breakpoint");
 			break;
-		case Node::ASSIGNMENT:
+		case Flowde::ASSIGNMENT:
 			print_assignment(static_cast<AssignmentNode *>(p_statement));
 			break;
 		default:

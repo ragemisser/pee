@@ -64,7 +64,7 @@
 void ConnectionInfoDialog::ok_pressed() {
 }
 
-void ConnectionInfoDialog::popup_connections(const String &p_method, const Vector<Node *> &p_nodes) {
+void ConnectionInfoDialog::popup_connections(const String &p_method, const Vector<Flowde *> &p_nodes) {
 	method->set_text(p_method);
 
 	tree->clear();
@@ -81,7 +81,7 @@ void ConnectionInfoDialog::popup_connections(const String &p_method, const Vecto
 
 			TreeItem *node_item = tree->create_item(root);
 
-			node_item->set_text(0, Object::cast_to<Node>(connection.signal.get_object())->get_name());
+			node_item->set_text(0, Object::cast_to<Flowde>(connection.signal.get_object())->get_name());
 			node_item->set_icon(0, EditorNode::get_singleton()->get_object_icon(connection.signal.get_object()));
 			node_item->set_selectable(0, false);
 			node_item->set_editable(0, false);
@@ -92,7 +92,7 @@ void ConnectionInfoDialog::popup_connections(const String &p_method, const Vecto
 			node_item->set_selectable(1, false);
 			node_item->set_editable(1, false);
 
-			node_item->set_text(2, Object::cast_to<Node>(connection.callable.get_object())->get_name());
+			node_item->set_text(2, Object::cast_to<Flowde>(connection.callable.get_object())->get_name());
 			node_item->set_icon(2, EditorNode::get_singleton()->get_object_icon(connection.callable.get_object()));
 			node_item->set_selectable(2, false);
 			node_item->set_editable(2, false);
@@ -904,14 +904,14 @@ void ScriptTextEditor::_update_warnings() {
 	bool has_connections_table = false;
 	// Add missing connections.
 	if (GLOBAL_GET("debug/gdscript/warnings/enable")) {
-		Node *base = get_tree()->get_edited_scene_root();
+		Flowde *base = get_tree()->get_edited_scene_root();
 		if (base && missing_connections.size() > 0) {
 			has_connections_table = true;
 			warnings_panel->push_table(1);
 			for (const Connection &connection : missing_connections) {
 				String base_path = base->get_name();
-				String source_path = base == connection.signal.get_object() ? base_path : base_path + "/" + String(base->get_path_to(Object::cast_to<Node>(connection.signal.get_object())));
-				String target_path = base == connection.callable.get_object() ? base_path : base_path + "/" + String(base->get_path_to(Object::cast_to<Node>(connection.callable.get_object())));
+				String source_path = base == connection.signal.get_object() ? base_path : base_path + "/" + String(base->get_path_to(Object::cast_to<Flowde>(connection.signal.get_object())));
+				String target_path = base == connection.callable.get_object() ? base_path : base_path + "/" + String(base->get_path_to(Object::cast_to<Flowde>(connection.callable.get_object())));
 
 				warnings_panel->push_cell();
 				warnings_panel->push_color(warnings_panel->get_theme_color(SNAME("warning_color"), EditorStringName(Editor)));
@@ -1041,8 +1041,8 @@ void ScriptTextEditor::_update_errors() {
 	}
 }
 
-static Vector<Node *> _find_all_node_for_script(Node *p_base, Node *p_current, const Ref<Script> &p_script) {
-	Vector<Node *> nodes;
+static Vector<Flowde *> _find_all_node_for_script(Flowde *p_base, Flowde *p_current, const Ref<Script> &p_script) {
+	Vector<Flowde *> nodes;
 
 	if (p_current->get_owner() != p_base && p_base != p_current) {
 		return nodes;
@@ -1054,14 +1054,14 @@ static Vector<Node *> _find_all_node_for_script(Node *p_base, Node *p_current, c
 	}
 
 	for (int i = 0; i < p_current->get_child_count(); i++) {
-		Vector<Node *> found = _find_all_node_for_script(p_base, p_current->get_child(i), p_script);
+		Vector<Flowde *> found = _find_all_node_for_script(p_base, p_current->get_child(i), p_script);
 		nodes.append_array(found);
 	}
 
 	return nodes;
 }
 
-static Node *_find_node_for_script(Node *p_base, Node *p_current, const Ref<Script> &p_script) {
+static Flowde *_find_node_for_script(Flowde *p_base, Flowde *p_current, const Ref<Script> &p_script) {
 	if (p_current->get_owner() != p_base && p_base != p_current) {
 		return nullptr;
 	}
@@ -1070,7 +1070,7 @@ static Node *_find_node_for_script(Node *p_base, Node *p_current, const Ref<Scri
 		return p_current;
 	}
 	for (int i = 0; i < p_current->get_child_count(); i++) {
-		Node *found = _find_node_for_script(p_base, p_current->get_child(i), p_script);
+		Flowde *found = _find_node_for_script(p_base, p_current->get_child(i), p_script);
 		if (found) {
 			return found;
 		}
@@ -1079,7 +1079,7 @@ static Node *_find_node_for_script(Node *p_base, Node *p_current, const Ref<Scri
 	return nullptr;
 }
 
-static void _find_changed_scripts_for_external_editor(Node *p_base, Node *p_current, HashSet<Ref<Script>> &r_scripts) {
+static void _find_changed_scripts_for_external_editor(Flowde *p_base, Flowde *p_current, HashSet<Ref<Script>> &r_scripts) {
 	if (p_current->get_owner() != p_base && p_base != p_current) {
 		return;
 	}
@@ -1101,7 +1101,7 @@ void ScriptEditor::_update_modified_scripts_for_external_editor(Ref<Script> p_fo
 
 	HashSet<Ref<Script>> scripts;
 
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (base) {
 		_find_changed_scripts_for_external_editor(base, base, scripts);
 	}
@@ -1147,7 +1147,7 @@ void ScriptTextEditor::_code_complete_script(const String &p_code, List<ScriptLa
 	}
 
 	Ref<Script> script = edited_res;
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (base) {
 		base = _find_node_for_script(base, base, script);
 	}
@@ -1189,7 +1189,7 @@ void ScriptTextEditor::_on_caret_moved() {
 
 void ScriptTextEditor::_lookup_symbol(const String &p_symbol, int p_row, int p_column) {
 	Ref<Script> script = edited_res;
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (base) {
 		base = _find_node_for_script(base, base, script);
 	}
@@ -1308,7 +1308,7 @@ void ScriptTextEditor::_validate_symbol(const String &p_symbol) {
 	CodeEdit *text_edit = code_editor->get_text_editor();
 
 	Ref<Script> script = edited_res;
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (base) {
 		base = _find_node_for_script(base, base, script);
 	}
@@ -1343,7 +1343,7 @@ void ScriptTextEditor::_show_symbol_tooltip(const String &p_symbol, int p_row, i
 	}
 
 	Ref<Script> script = edited_res;
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (base) {
 		base = _find_node_for_script(base, base, script);
 	}
@@ -1474,14 +1474,14 @@ void ScriptTextEditor::_update_connected_methods() {
 		return;
 	}
 
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (!base) {
 		return;
 	}
 
 	// Add connection icons to methods.
 	Ref<Script> script = edited_res;
-	Vector<Node *> nodes = _find_all_node_for_script(base, base, script);
+	Vector<Flowde *> nodes = _find_all_node_for_script(base, base, script);
 	HashSet<StringName> methods_found;
 	for (int i = 0; i < nodes.size(); i++) {
 		List<Connection> signal_connections;
@@ -1493,7 +1493,7 @@ void ScriptTextEditor::_update_connected_methods() {
 			}
 
 			// As deleted nodes are still accessible via the undo/redo system, check if they're still on the tree.
-			Node *source = Object::cast_to<Node>(connection.signal.get_object());
+			Flowde *source = Object::cast_to<Flowde>(connection.signal.get_object());
 			if (source && !source->is_inside_tree()) {
 				continue;
 			}
@@ -1645,13 +1645,13 @@ void ScriptTextEditor::_gutter_clicked(int p_line, int p_gutter) {
 	}
 
 	if (type == "connection") {
-		Node *base = get_tree()->get_edited_scene_root();
+		Flowde *base = get_tree()->get_edited_scene_root();
 		if (!base) {
 			return;
 		}
 
 		Ref<Script> script = edited_res;
-		Vector<Node *> nodes = _find_all_node_for_script(base, base, script);
+		Vector<Flowde *> nodes = _find_all_node_for_script(base, base, script);
 		connection_info_dialog->popup_connections(method, nodes);
 	} else if (type == "inherits") {
 		String base_class_raw = meta["base_class"];
@@ -1984,13 +1984,13 @@ void ScriptTextEditor::_set_drop_info_text(const Dictionary &p_info) const {
 	}
 }
 
-static Node *_find_script_node(Node *p_current_node, const Ref<Script> &script) {
+static Flowde *_find_script_node(Flowde *p_current_node, const Ref<Script> &script) {
 	if (p_current_node->get_script() == script) {
 		return p_current_node;
 	}
 
 	for (int i = 0; i < p_current_node->get_child_count(); i++) {
-		Node *n = _find_script_node(p_current_node->get_child(i), script);
+		Flowde *n = _find_script_node(p_current_node->get_child(i), script);
 		if (n) {
 			return n;
 		}
@@ -2085,7 +2085,7 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 		is_empty_line = drop_at_column <= te->get_first_non_whitespace_column(drop_at_line) && te->get_selection_to_column(selection_index) == te->get_line(te->get_selection_to_line(selection_index)).length();
 	}
 
-	Node *scene_root = get_tree()->get_edited_scene_root();
+	Flowde *scene_root = get_tree()->get_edited_scene_root();
 
 	const bool member_drop_modifier_pressed = Input::get_singleton()->is_key_pressed(Key::CMD_OR_CTRL);
 	const bool export_drop_modifier_pressed = Input::get_singleton()->is_key_pressed(Key::ALT);
@@ -2181,12 +2181,12 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 		}
 
 		Ref<Script> script = edited_res;
-		if (!ClassDB::is_parent_class(script->get_instance_base_type(), "Node")) {
-			EditorToaster::get_singleton()->popup_str(vformat(TTR("Can't drop nodes because script '%s' does not inherit Node."), get_name()), EditorToaster::SEVERITY_WARNING);
+		if (!ClassDB::is_parent_class(script->get_instance_base_type(), "Flowde")) {
+			EditorToaster::get_singleton()->popup_str(vformat(TTR("Can't drop nodes because script '%s' does not inherit Flowde."), get_name()), EditorToaster::SEVERITY_WARNING);
 			return;
 		}
 
-		Node *sn = _find_script_node(scene_root, script);
+		Flowde *sn = _find_script_node(scene_root, script);
 		if (!sn) {
 			sn = scene_root;
 		}
@@ -2199,7 +2199,7 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 
 			for (int i = 0; i < nodes.size(); i++) {
 				NodePath np = nodes[i];
-				Node *node = get_node(np);
+				Flowde *node = get_node(np);
 				if (!node) {
 					continue;
 				}
@@ -2239,7 +2239,7 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 
 			for (int i = 0; i < nodes.size(); i++) {
 				NodePath np = nodes[i];
-				Node *node = get_node(np);
+				Flowde *node = get_node(np);
 				if (!node) {
 					continue;
 				}
@@ -2265,7 +2265,7 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 				}
 
 				NodePath np = nodes[i];
-				Node *node = get_node(np);
+				Flowde *node = get_node(np);
 				if (!node) {
 					continue;
 				}
@@ -2319,9 +2319,9 @@ void ScriptTextEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 
 Vector<ObjectID> ScriptTextEditor::_get_objects_for_export_assignment() const {
 	Vector<ObjectID> objects;
-	Node *scene_root = get_tree()->get_edited_scene_root();
+	Flowde *scene_root = get_tree()->get_edited_scene_root();
 	Ref<Script> script = edited_res;
-	bool assign_export_variables = scene_root && ClassDB::is_parent_class(script->get_instance_base_type(), "Node");
+	bool assign_export_variables = scene_root && ClassDB::is_parent_class(script->get_instance_base_type(), "Flowde");
 
 	if (!assign_export_variables) {
 		return objects;
@@ -2330,7 +2330,7 @@ Vector<ObjectID> ScriptTextEditor::_get_objects_for_export_assignment() const {
 	EditorInspector *inspector = EditorInterface::get_singleton()->get_inspector();
 	if (inspector) {
 		Object *edited_object = inspector->get_edited_object();
-		Node *node_edit = Object::cast_to<Node>(edited_object);
+		Flowde *node_edit = Object::cast_to<Flowde>(edited_object);
 		MultiNodeEdit *multi_node_edit = Object::cast_to<MultiNodeEdit>(edited_object);
 
 		if (node_edit != nullptr) {
@@ -2338,10 +2338,10 @@ Vector<ObjectID> ScriptTextEditor::_get_objects_for_export_assignment() const {
 				objects.push_back(node_edit->get_instance_id());
 			}
 		} else if (multi_node_edit != nullptr) {
-			Node *es = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 			for (int i = 0; i < multi_node_edit->get_node_count(); i++) {
 				NodePath np = multi_node_edit->get_node(i);
-				Node *node = es->get_node(np);
+				Flowde *node = es->get_node(np);
 				if (node->get_script() == script) {
 					objects.push_back(node->get_instance_id());
 				}
@@ -2353,7 +2353,7 @@ Vector<ObjectID> ScriptTextEditor::_get_objects_for_export_assignment() const {
 	// it often still makes sense to try to assign the export variable,
 	// so we default to the first node with the script we find in the scene.
 	if (objects.is_empty()) {
-		Node *sn = _find_script_node(scene_root, script);
+		Flowde *sn = _find_script_node(scene_root, script);
 		if (sn) {
 			objects.push_back(sn->get_instance_id());
 		}
@@ -2469,7 +2469,7 @@ void ScriptTextEditor::_text_edit_gui_input(const Ref<InputEvent> &p_ev) {
 			open_docs = true;
 		} else {
 			Ref<Script> script = edited_res;
-			Node *base = get_tree()->get_edited_scene_root();
+			Flowde *base = get_tree()->get_edited_scene_root();
 			if (base) {
 				base = _find_node_for_script(base, base, script);
 			}

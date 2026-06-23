@@ -364,10 +364,10 @@ msgstr "국제화"
 msgid "Force Right to Left Layout Direction"
 msgstr "레이아웃 방향을 오른쪽에서 왼쪽으로 강제"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "루트 노드 레이아웃 방향"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "루트 노드 자동 번역"
 
 msgid "GUI"
@@ -1189,7 +1189,7 @@ msgstr "본 이름 변경기"
 msgid "Rename Bones"
 msgstr "본 이름 바꾸기"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "고유 노드"
 
 msgid "Make Unique"
@@ -1201,7 +1201,7 @@ msgstr "스켈레톤 이름"
 msgid "Rest Fixer"
 msgstr "레스트 픽서"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "노드 변환 적용"
 
 msgid "Normalize Position Tracks"
@@ -1270,10 +1270,10 @@ msgstr "오프셋 메시"
 msgid "Force Disable Mesh Compression"
 msgstr "메시 압축 강제 비활성화"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "노드"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "노드 유형"
 
 msgid "Script"
@@ -1483,7 +1483,7 @@ msgstr "스켈레톤 본으로 가져오기"
 msgid "Use Name Suffixes"
 msgstr "이름 접미사 사용"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "노드 유형 접미사 사용"
 
 msgid "Meshes"
@@ -2411,7 +2411,7 @@ msgstr "만들기 대화 상자를 완전히 확장하여 시작"
 msgid "Auto Expand to Selected"
 msgstr "선택으로 자동 확장"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "부모 다시 지정 시 노드를 가운데로"
 
 msgid "Hide Filtered Out Parents"
@@ -2555,7 +2555,7 @@ msgstr "세로 스크롤 속도"
 msgid "Drag and Drop Selection"
 msgstr "선택된 항목을 드래그 앤 드롭"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "선택된 노드에서 스크립트 편집기 유지"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2681,7 +2681,7 @@ msgstr "유형 힌트 추가"
 msgid "Add String Name Literals"
 msgstr "문자열 이름 리터럴 추가"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "노드 경로 리터럴 추가"
 
 msgid "Use Single Quotes"
@@ -3203,7 +3203,7 @@ msgstr "원격 씬 트리로 자동 전환"
 msgid "Auto Switch to Stack Trace"
 msgstr "스택 추적으로 자동 전환"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "최대 노드 선택"
 
 msgid "Profiler Frame History Size"
@@ -3812,7 +3812,7 @@ msgstr "회전 정도"
 msgid "Spin Sides"
 msgstr "스핀 사이드"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "경로 노드"
 
 msgid "Path Interval Type"
@@ -4001,7 +4001,7 @@ msgstr "변종에서의 추론"
 msgid "Native Method Override"
 msgstr "네이티브 메서드 오버라이드"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "Onready 없이 노드 디폴트 얻기"
 
 msgid "Onready With Export"
@@ -4088,7 +4088,7 @@ msgstr "폴백 이미지 형식"
 msgid "Fallback Image Quality"
 msgstr "폴백 이미지 품질"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "루트 노드 모드"
 
 msgid "Visibility Mode"
@@ -4268,7 +4268,7 @@ msgstr "glTF을 Godot로 표현식"
 msgid "Godot to glTF Expression"
 msgstr "Godot를 glTF으로 표현식"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "노드 경로"
 
 msgid "Object Model Type"
@@ -4286,7 +4286,7 @@ msgstr "조인트"
 msgid "Roots"
 msgstr "루트"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Godot 본 노드"
 
 msgid "Skin Root"
@@ -4439,7 +4439,7 @@ msgstr "콜리전 여백 비례"
 msgid "Active Edge Threshold"
 msgstr "활성 에지 역치값"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "세계 노드"
 
 msgid "Temporary Memory Buffer Size"
@@ -6440,10 +6440,10 @@ msgstr "강성"
 msgid "Initial Offset"
 msgstr "초기 오프셋"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "노드 A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "노드 B"
 
 msgid "Bias"
@@ -6681,7 +6681,7 @@ msgstr "직사각형 보이기"
 msgid "Enabling"
 msgstr "활성화함"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "노드 경로"
 
 msgid "Doppler Tracking"
@@ -7120,7 +7120,7 @@ msgstr "제외"
 msgid "Chains"
 msgstr "체인"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "대상 노드"
 
 msgid "Forward Axis"
@@ -7138,7 +7138,7 @@ msgstr "원점 설정"
 msgid "From"
 msgstr "부터"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "외부 노드"
 
 msgid "Time Based Interpolation"
@@ -7801,7 +7801,7 @@ msgstr "전환 요청"
 msgid "Reset on Save"
 msgstr "저장 시 재설정"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "루트 노드"
 
 msgid "Root Motion"
@@ -7867,7 +7867,7 @@ msgstr "끝날 때 영상 종료"
 msgid "Tree Root"
 msgstr "트리 루트"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "고급 표현식 기반 노드"
 
 msgid "Anim Player"
@@ -8990,10 +8990,10 @@ msgstr "전송 모드"
 msgid "Transfer Channel"
 msgstr "전송 채널"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "노드 이름 숫자 분리자"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "노드 이름 대소문자"
 
 msgid "Physics Priority"
@@ -9404,7 +9404,7 @@ msgstr "중력 사용"
 msgid "Bone Index"
 msgstr "본 인덱스"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "본 2D 노드"
 
 msgid "Physical Bone Chain Length"

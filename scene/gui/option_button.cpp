@@ -298,7 +298,7 @@ String OptionButton::get_item_tooltip(int p_idx) const {
 	return popup->get_item_tooltip(p_idx);
 }
 
-Node::AutoTranslateMode OptionButton::get_item_auto_translate_mode(int p_idx) const {
+Flowde::AutoTranslateMode OptionButton::get_item_auto_translate_mode(int p_idx) const {
 	return popup->get_item_auto_translate_mode(p_idx);
 }
 

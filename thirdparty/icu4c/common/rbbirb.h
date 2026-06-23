@@ -184,7 +184,7 @@ private:
 //----------------------------------------------------------------------------
 //
 //   RBBISetTableEl   is an entry in the hash table of UnicodeSets that have
-//                    been encountered.  The val Node will be of nodetype uset
+//                    been encountered.  The val Flowde will be of nodetype uset
 //                    and contain pointers to the actual UnicodeSets.
 //                    The Key is the source string for initializing the set.
 //

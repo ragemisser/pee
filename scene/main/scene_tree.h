@@ -44,7 +44,7 @@ class ArrayMesh;
 class InputEvent;
 class Material;
 class MultiplayerAPI;
-class Node;
+class Flowde;
 class PackedScene;
 class Tween;
 class Viewport;
@@ -82,7 +82,7 @@ public:
 };
 
 struct SceneTreeGroup {
-	Vector<Node *> nodes;
+	Vector<Flowde *> nodes;
 	bool changed = false;
 };
 
@@ -99,12 +99,12 @@ private:
 
 	struct ProcessGroup {
 		CallQueue call_queue;
-		Vector<Node *> nodes;
-		Vector<Node *> physics_nodes;
+		Vector<Flowde *> nodes;
+		Vector<Flowde *> physics_nodes;
 		bool node_order_dirty = true;
 		bool physics_node_order_dirty = true;
 		bool removed = false;
-		Node *owner = nullptr;
+		Flowde *owner = nullptr;
 		uint64_t last_pass = 0;
 	};
 
@@ -167,7 +167,7 @@ private:
 	int nodes_in_tree_count = 0;
 
 #ifdef TOOLS_ENABLED
-	Node *edited_scene_root = nullptr;
+	Flowde *edited_scene_root = nullptr;
 #endif
 	struct UGCall {
 		StringName group;
@@ -183,7 +183,7 @@ private:
 	// Safety for when a node is deleted while a group is being called.
 
 	int nodes_removed_on_group_call_lock = 0;
-	HashSet<Node *> nodes_removed_on_group_call; // Skip erased nodes.
+	HashSet<Flowde *> nodes_removed_on_group_call; // Skip erased nodes.
 
 	List<ObjectID> delete_queue;
 
@@ -198,9 +198,9 @@ private:
 
 	_FORCE_INLINE_ void _update_group_order(SceneTreeGroup &g);
 
-	TypedArray<Node> _get_nodes_in_group(const StringName &p_group);
+	TypedArray<Flowde> _get_nodes_in_group(const StringName &p_group);
 
-	Node *current_scene = nullptr;
+	Flowde *current_scene = nullptr;
 	ObjectID prev_scene_id;
 	ObjectID pending_new_scene_id;
 
@@ -225,26 +225,26 @@ private:
 	bool multiplayer_poll = true;
 
 	static SceneTree *singleton;
-	friend class Node;
+	friend class Flowde;
 
 	void tree_changed();
-	void node_added(Node *p_node);
-	void node_removed(Node *p_node);
-	void node_renamed(Node *p_node);
+	void node_added(Flowde *p_node);
+	void node_removed(Flowde *p_node);
+	void node_renamed(Flowde *p_node);
 	void process_timers(double p_delta, bool p_physics_frame);
 	void process_tweens(double p_delta, bool p_physics_frame);
 
-	SceneTreeGroup *add_to_group(const StringName &p_group, Node *p_node);
-	void remove_from_group(const StringName &p_group, Node *p_node);
+	SceneTreeGroup *add_to_group(const StringName &p_group, Flowde *p_node);
+	void remove_from_group(const StringName &p_group, Flowde *p_node);
 
 	void _process_group(ProcessGroup *p_group, bool p_physics);
 	void _process_groups_thread(uint32_t p_index, bool p_physics);
 	void _process(bool p_physics);
 
-	void _remove_process_group(Node *p_node);
-	void _add_process_group(Node *p_node);
-	void _remove_node_from_process_group(Node *p_node, Node *p_owner);
-	void _add_node_to_process_group(Node *p_node, Node *p_owner);
+	void _remove_process_group(Flowde *p_node);
+	void _add_process_group(Flowde *p_node);
+	void _remove_node_from_process_group(Flowde *p_node, Flowde *p_owner);
+	void _add_node_to_process_group(Flowde *p_node, Flowde *p_owner);
 
 	void _call_group_flags(const Variant **p_args, int p_argcount, Callable::CallError &r_error);
 	void _call_group(const Variant **p_args, int p_argcount, Callable::CallError &r_error);
@@ -255,7 +255,7 @@ private:
 	friend class Node3D;
 	friend class Viewport;
 
-	SelfList<Node>::List xform_change_list;
+	SelfList<Flowde>::List xform_change_list;
 
 #ifdef DEBUG_ENABLED // No live editor in release build.
 	friend class LiveEditor;
@@ -337,7 +337,7 @@ public:
 	bool is_accessibility_enabled() const;
 	bool is_accessibility_supported() const;
 	void _accessibility_force_update();
-	void _accessibility_notify_change(const Node *p_node, bool p_remove = false);
+	void _accessibility_notify_change(const Flowde *p_node, bool p_remove = false);
 	void _flush_accessibility_changes();
 	void _process_accessibility_changes(int p_window_id); // Effectively DisplayServerEnums::WindowID
 
@@ -411,22 +411,22 @@ public:
 
 	void queue_delete(RequiredParam<Object> rp_object);
 
-	Vector<Node *> get_nodes_in_group(const StringName &p_group);
-	Node *get_first_node_in_group(const StringName &p_group);
+	Vector<Flowde *> get_nodes_in_group(const StringName &p_group);
+	Flowde *get_first_node_in_group(const StringName &p_group);
 	bool has_group(const StringName &p_identifier) const;
 	int get_node_count_in_group(const StringName &p_group) const;
 
 	//void change_scene(const String& p_path);
-	//Node *get_loaded_scene();
+	//Flowde *get_loaded_scene();
 
-	void set_edited_scene_root(Node *p_node);
-	Node *get_edited_scene_root() const;
+	void set_edited_scene_root(Flowde *p_node);
+	Flowde *get_edited_scene_root() const;
 
-	void set_current_scene(Node *p_scene);
-	Node *get_current_scene() const;
+	void set_current_scene(Flowde *p_scene);
+	Flowde *get_current_scene() const;
 	Error change_scene_to_file(const String &p_path);
 	Error change_scene_to_packed(RequiredParam<PackedScene> rp_scene);
-	Error change_scene_to_node(RequiredParam<Node> rp_node);
+	Error change_scene_to_node(RequiredParam<Flowde> rp_node);
 	Error reload_current_scene();
 	void unload_current_scene();
 
@@ -436,7 +436,7 @@ public:
 	TypedArray<Tween> get_processed_tweens();
 
 	//used by Main::start, don't use otherwise
-	void add_current_scene(Node *p_current);
+	void add_current_scene(Flowde *p_current);
 
 	static SceneTree *get_singleton() { return singleton; }
 

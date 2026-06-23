@@ -177,9 +177,9 @@ protected:
 	void _notification(int p_what);
 	void _validate_property(PropertyInfo &p_property) const;
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
 	static void _bind_methods();
 
 #ifndef DISABLE_DEPRECATED

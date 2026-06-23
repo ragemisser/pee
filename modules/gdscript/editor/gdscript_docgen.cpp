@@ -298,25 +298,25 @@ String GDScriptDocGen::docvalue_from_expression(const GDP::ExpressionNode *p_exp
 	}
 
 	switch (p_expression->type) {
-		case GDP::Node::ARRAY: {
+		case GDP::Flowde::ARRAY: {
 			const GDP::ArrayNode *array = static_cast<const GDP::ArrayNode *>(p_expression);
 			return array->elements.is_empty() ? "[]" : "[...]";
 		} break;
-		case GDP::Node::CALL: {
+		case GDP::Flowde::CALL: {
 			const GDP::CallNode *call = static_cast<const GDP::CallNode *>(p_expression);
-			if (call->get_callee_type() == GDP::Node::IDENTIFIER) {
+			if (call->get_callee_type() == GDP::Flowde::IDENTIFIER) {
 				return call->function_name.operator String() + (call->arguments.is_empty() ? "()" : "(...)");
 			}
 		} break;
-		case GDP::Node::DICTIONARY: {
+		case GDP::Flowde::DICTIONARY: {
 			const GDP::DictionaryNode *dict = static_cast<const GDP::DictionaryNode *>(p_expression);
 			return dict->elements.is_empty() ? "{}" : "{...}";
 		} break;
-		case GDP::Node::IDENTIFIER: {
+		case GDP::Flowde::IDENTIFIER: {
 			const GDP::IdentifierNode *id = static_cast<const GDP::IdentifierNode *>(p_expression);
 			return id->name;
 		} break;
-		case GDP::Node::LAMBDA: {
+		case GDP::Flowde::LAMBDA: {
 			const GDP::LambdaNode *lambda = static_cast<const GDP::LambdaNode *>(p_expression);
 			const GDP::IdentifierNode *id = lambda->function->identifier;
 			return id != nullptr ? id->name : "<anonymous lambda>";

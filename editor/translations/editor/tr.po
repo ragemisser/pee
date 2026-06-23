@@ -809,7 +809,7 @@ msgstr "%s Ekle"
 msgid "Load..."
 msgstr "Yükle..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "BlendSpace1D Düğüm Noktasını Taşı"
 
 msgid "Change BlendSpace1D Config"
@@ -825,7 +825,7 @@ msgstr ""
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Bu türden bir düğüm kullanılamaz. Sadece kök düğümlere izin verilir."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Düğüm Noktası Ekle"
 
 msgid "Add Animation Point"
@@ -882,7 +882,7 @@ msgstr "En Fazla"
 msgid "Value"
 msgstr "Değer"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Canlandırma Düğümünü Aç"
 
 msgid "Triangle already exists."
@@ -957,10 +957,10 @@ msgstr "Filtreleri Düzenle"
 msgid "Output node can't be added to the blend tree."
 msgstr "Çıktı düğümü, harmanlama ağacına eklenemiyor."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Düğümü, BlendTree'ye (harmanlama ağacı) ekle"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Düğüm Taşındı"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -976,10 +976,10 @@ msgstr "Düğümlerin Bağlantısı Kesildi"
 msgid "Set Animation"
 msgstr "Canlandırma Ayarla"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Düğümü Sil"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Düğüm(leri) Sil"
 
 msgid "Toggle Filter On/Off"
@@ -1019,10 +1019,10 @@ msgstr "Filtrelenmiş İzleri İncele:"
 msgid "Edit Filtered Tracks:"
 msgstr "Filtrelenmiş Parçaları Düzenle:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Düğüm Yeniden Adlandırıldı"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Düğüm Ekle..."
 
 msgid "Enable Filtering"
@@ -1415,7 +1415,7 @@ msgstr "Sonraki (Otomatik Kuyruk):"
 msgid "Reconnect Transition"
 msgstr "Geçişi Tekrar Bağla"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Düğümü Taşı"
 
 msgid "Transition exists!"
@@ -1436,7 +1436,7 @@ msgstr "%s'ye Oynat/Git"
 msgid "Edit %s"
 msgstr "%s 'yi Düzenle"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Düğüm ve Geçiş Ekle"
 
 msgid "Transition already exists!"
@@ -1457,7 +1457,7 @@ msgstr "Seyahat"
 msgid "No playback resource set at path: %s."
 msgstr "%s yolunda, hiç bir oynatma kaynağı ayarlanmadı."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Düğüm Silindi"
 
 msgid "Transition Removed"
@@ -1969,7 +1969,7 @@ msgstr "Canlandırma RESET Anahtarları Ekle"
 msgid "Bake Animation as Linear Keys"
 msgstr "Canlandırmayı Doğrusal Anahtarlar Olarak Fırınla"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Düğüm Oluştur"
 
 msgid ""
@@ -2905,7 +2905,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Bu Dalı, Sahne olarak Kaydet..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Düğüm Yolunu Kopyala"
 
 msgid "Expand/Collapse Branch"
@@ -4282,13 +4282,13 @@ msgstr "Bu işlem, ağacın kök düğümü üzerinde yapılamaz."
 msgid "Detach Script"
 msgstr "Betiği Ayır"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Üst-ögedeki Düğümü Taşı"
 
 msgid "Move Nodes in Parent"
 msgstr "Üst-ögedeki Düğümleri Taşı"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Düğümü/Düğümleri Çoğalt"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4296,7 +4296,7 @@ msgstr ""
 "Miras alınan sahnelerdeki düğümler tekrar üst-öge yapılamaz, düğümlerin "
 "sırası değişemez."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Kök olabilmesi için düğümün düzenlenen sahneye ait olması gerekir."
 
 msgid "Instantiated scenes can't become root"
@@ -4397,7 +4397,7 @@ msgstr "Sahne İçi Benzersiz İsim(ler)i Etkisiz Kıl"
 msgid "New Scene Root"
 msgstr "Yeni Sahne Kökü"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Kök Düğüm Oluştur:"
 
 msgid "Favorite Nodes"
@@ -4415,7 +4415,7 @@ msgstr "3B Sahne"
 msgid "User Interface"
 msgstr "Kullanıcı Arayüzü"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Diğer Düğüm"
 
 msgid "Paste From Clipboard"
@@ -4430,7 +4430,7 @@ msgstr "Geçerli sahnenin miras aldığı düğümler üzerinde işlem yapılama
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Bu işlem örneklenmiş sahneler üzerinde yapılamaz."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Düğümün üst-ögesini Değiştir"
 
 msgid "Attach Script"
@@ -4442,16 +4442,16 @@ msgstr "Gölgelendirici Ayarla"
 msgid "Toggle Editable Children"
 msgstr "Düzenlenebilir Alt-ögeleri Aç/Kapat"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Düğüm(ler)i Kes"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Düğüm(ler)i Kaldır"
 
 msgid "Change type of node(s)"
 msgstr "Düğüm(ler)in türünü değiştir"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Yeni Düğüme Üst-öge Yap"
 
 msgid "This operation requires a single selected node."
@@ -4507,11 +4507,11 @@ msgstr "Düzenleyicide Aç"
 msgid "Auto Expand to Selected"
 msgstr "Seçilene Otomatik Genişlet"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Üst-öge Değişiminde Düğümü Ortala"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
 "Etkinleştirilirse, Yeni Düğüme Üst-öge Yap seçimi, mümkünse, yeni düğümü "
@@ -4562,13 +4562,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Kök düğüm aynı sahnenin içine yapıştırılamaz."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Düğüm(ler)i %s'nin Kardeş-ögesi Olarak Yapıştır"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Düğüm(ler)i, %s'nin Alt-Ögesi Olarak Yapıştır"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Düğüm(ler)i, Kök Olarak Yapıştır"
 
 msgid "<Unnamed> at %s"
@@ -4583,7 +4583,7 @@ msgstr "Sahne Yuvasını Aç"
 msgid "Batch Rename..."
 msgstr "Toplu Yeniden İsimlendir..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Alt-öge Düğümü Ekle..."
 
 msgid "Instantiate Child Scene..."
@@ -4613,7 +4613,7 @@ msgstr "Çoğalt"
 msgid "Reparent..."
 msgstr "Üst-Ögeyi Değiştir..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Yeni Düğüme Üst-öge Yap..."
 
 msgid "Make Scene Root"
@@ -4625,11 +4625,11 @@ msgstr "Benzersiz İsim olarak Erişimi Aç/Kapat"
 msgid "Delete (No Confirm)"
 msgstr "Sil (Doğrulama Yok)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Yeni Bir Düğüm Ekle/Oluştur."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Bir sahne dosyasını bir Düğüm olarak örneklendir. Eğer hiç kök düğüm yoksa, "
@@ -5363,16 +5363,16 @@ msgstr "Sistem bilgilerini panoya, tek-satırlık bir metin olarak kopyalar."
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Seçilmiş Düğüm(ler)i Kilitle"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Seçilmiş Düğüm(ler)in Kilidini Aç"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Seçilen Düğümleri Grupla"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Seçilen Düğümleri Dağıt"
 
 msgid "Pan View"
@@ -6786,7 +6786,7 @@ msgstr "\"İçe aktarım sonrası\" için geçersiz/bozuk betik (uç-birime göz
 msgid "Error running post-import script:"
 msgstr "\"İçe aktarım sonrası\" betiği çalıştırılırken hata:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
 msgstr "`_post_import()` yönteminde Düğüm-türevi bir nesne döndürdünüz mü?"
 
 msgid "Saving..."
@@ -7479,16 +7479,16 @@ msgstr "Geçici Euler %s"
 msgid "Assign..."
 msgstr "Ata..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Düğüm Ata"
 
 msgid "Copy as Text"
 msgstr "Metin Olarak Kopyala"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Düğümü Ağaçta Görüntüle"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Düğüm Yolu"
 
 msgid "Invalid RID"
@@ -11558,7 +11558,7 @@ msgstr "\"%s\" bir yüzey geometrisi içermiyor."
 msgid "Generate AABB"
 msgstr "AABB Üret"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Düğümden Yayılım Noktaları Oluştur"
 
 msgid "The geometry's faces don't contain any area."
@@ -11838,7 +11838,7 @@ msgstr ""
 "Bir taşıyıcının alt ögelerinin konumları ve boyutları yalnızca bunların üst "
 "ögeleri tarafından belirlenir."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Düğüm(ler)i Konuma Taşı"
 
 msgid "Move Vertical Guide"
@@ -11865,10 +11865,10 @@ msgstr "Yatay ve Dikey Kılavuzlar Oluştur"
 msgid "Instantiate Scene Here..."
 msgstr "Sahneyi Buraya Örnekle..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Düğüm(ler)i Buraya Yapıştır"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Düğüm(ler)i Buraya Taşı"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -11954,7 +11954,7 @@ msgstr "Duruşu Yapıştır"
 msgid "Clear Guides"
 msgstr "Kılavuzları Temizle"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Düğüm(ler)den Özel Bone2D(ler) (2B kemik) Oluştur"
 
 msgid "Zoom to 3.125%"
@@ -12017,13 +12017,13 @@ msgstr "Piksel Tutunmasını Kullan"
 msgid "Snap to Parent"
 msgstr "Üst Ögeye Tutun"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Düğüm Çapasına Tutun"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Düğüm Kenarlarına Tutun"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Düğüm Merkezine Tutun"
 
 msgid "Snap to Other Nodes"
@@ -12048,7 +12048,7 @@ msgstr "İskelet Seçenekleri"
 msgid "Show Bones"
 msgstr "Kemikleri Göster"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Düğüm(ler)den, Bone2D (2B kemik) Düğüm(ler)i oluştur"
 
 msgid "Show"
@@ -12172,7 +12172,7 @@ msgstr "Ekli Betik"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Geriçağır kodu oluşturulmayacak, lütfen kendiniz elden ekleyin."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Düğüme Bağla:"
 
 msgid "Connect to Script:"
@@ -12945,7 +12945,7 @@ msgstr "Başka Bir Tema"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Tip listesini filtrele veya yeni bir özel tip oluştur:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Kullanılabilir Düğüm-tabanlı türler:"
 
 msgid "Type name is empty!"
@@ -13193,13 +13193,13 @@ msgstr "Düzenli İfadeler Kullan"
 msgid "Substitute"
 msgstr "Yerine Geçir"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Düğüm ismi."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Düğüm'ün üst-düğüm ismi, eğer varsa."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Düğüm türü."
 
 msgid "Current scene name."
@@ -13297,7 +13297,7 @@ msgstr "Kaynağı Yapıştır"
 msgid "Load Resource"
 msgstr "Kaynak Yükle"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Kök Düğüm Türünü Seç"
 
 msgid "Scene name is empty."
@@ -13324,7 +13324,7 @@ msgstr "Kök Türü:"
 msgid "Other Type"
 msgstr "Diğer Tip"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Düğüm Seç"
 
 msgid "Scene Name:"
@@ -13362,7 +13362,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Görünürlüğü Aç/Kapat"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Düğümün Kilidini Aç"
 
 msgid "Ungroup Children"
@@ -13377,7 +13377,7 @@ msgstr "Sahne Benzersiz İsmini Devre Dışı Bırak"
 msgid "(Connecting From)"
 msgstr "(Gelen Bağlantı)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Düğüm yapılandırma uyarısı:"
 
 msgid ""
@@ -13390,13 +13390,13 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Bunu devre dışı bırakmak için tıklayın."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Düğümün bir bağlantısı var."
 msgstr[1] "Düğümün {num} bağlantısı var."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Düğüm bu grupta:"
 msgstr[1] "Düğüm bu gruplarda:"
 
@@ -13423,7 +13423,7 @@ msgid "Open Script:"
 msgstr "Betik Aç:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Düğüm kilitli.\n"
@@ -13459,7 +13459,7 @@ msgstr "Geçersiz düğüm adı, aşağıdaki karakterlere izin verilmez:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "%s benzersiz ismine sahip bir düğüm bu sahnede zaten mevcut."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Düğümü Yeniden Adlandır"
 
 msgid "Rename Nodes"
@@ -13468,7 +13468,7 @@ msgstr "Düğümleri Yeniden Adlandır"
 msgid "Scene Tree (Nodes):"
 msgstr "Sahne Ağacı (Düğümler):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Düğüm Yapılandırma Uyarısı!"
 
 msgid "Revoke"
@@ -13484,7 +13484,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "İzin verildi:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Bir Düğüm Seç"
 
 msgid "Show All"
@@ -13907,7 +13907,7 @@ msgstr "Yerleşik Betik:"
 msgid "Select File"
 msgstr "Dosya Seç"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Düğüm Betiği İliştir"
 
 msgid "Line"
@@ -14150,9 +14150,9 @@ msgstr "Dahili kaynakların önyüklemesi desteklenmez."
 msgid "Can't drop nodes without an open scene."
 msgstr "Açık bir sahne olmadan düğümler bırakılamaz."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
 msgstr ""
-"Bu düğümler bırakılamaz, çünkü '%s' betik dosyası Node sınıfından miras "
+"Bu düğümler bırakılamaz, çünkü '%s' betik dosyası Flowde sınıfından miras "
 "almıyor."
 
 msgid "Pick Color"
@@ -15884,7 +15884,7 @@ msgstr "Gelen Bant Genişliği"
 msgid "Outgoing Bandwidth"
 msgstr "Giden Bant Genişliği"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Düğüm"
 
 msgid "Incoming RPC"
@@ -16416,7 +16416,7 @@ msgstr "Çıktı Portunu Kaldır"
 msgid "Set VisualShader Expression"
 msgstr "VisualShader İfadesini Ayarla (görsel gölgelendirici)"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "VisualShader Düğümünü Boyutlandır (görsel gölgelendirici)"
 
 msgid "Hide Port Preview"
@@ -16446,10 +16446,10 @@ msgstr "Parametre İsmini Ayarla"
 msgid "Set Input Default Port"
 msgstr "Girdi Varsayılan Portunu Ayarla"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Özel Düğüm Seçeneğini Ayarla"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Görsel Gölgelendiriciye Düğüm Ekle"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -16458,28 +16458,28 @@ msgstr "Görsel Gölgelendiriciye Değişen Ekle: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Görsel Gölgelendiriciden Değişen Çıkar: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "VisualShader Düğüm(ler)ini Taşı"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "VisualShader Düğüm(ler)ini üst-öge çerçeveye taşı ve tuttur"
 
 msgid "Insert node"
 msgstr "Düğüm ekle"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Sabit Düğüm(ler)i Parametre(ler)e Dönüştür"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Parametre Düğüm(ler)ini Sabit(ler)e Dönüştür"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "VisualShader Düğüm(ler)ini Çerçeveden Ayır"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "VisualShader Düğümünü Sil (görsel gölgelendirici)"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "VisualShader Düğüm(ler)ini Sil (görsel gölgelendirici)"
 
 msgid "Float Constants"
@@ -16503,13 +16503,13 @@ msgstr "Ağarma Rengini Etkinleştir"
 msgid "Edit Preview Parameter: %s"
 msgstr "Önizleme Parametresini Düzenle: %s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "VisualShader Düğümünü/Düğümlerini Çoğalt (görsel gölgelendirici)"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "VisualShader Düğüm(ler)ini Yapıştır (görsel gölgelendirici)"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "VisualShader Düğüm(ler)ini Kes (görsel gölgelendirici)"
 
 msgid "Visual Shader Input Type Changed"
@@ -16533,7 +16533,7 @@ msgstr "Bu isimle bir değişen zaten var."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Mantıksal tip `%s` değişen modu ile kullanılamaz."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Görsel Gölgelendiriciye Düğüm(ler) Ekle"
 
 msgid "Hold %s Key To Swap Connections"
@@ -16578,13 +16578,13 @@ msgstr "Gölgelendirici önizlemesini aç / kapat."
 msgid "Generated Shader Code"
 msgstr "Üretilen Gölgelendirici Kodu"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Düğüm Ekle"
 
 msgid "Clear Copy Buffer"
 msgstr "Kopyalama Arabelleğini Temizle"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Yeni Düğüm Ekle"
 
 msgid "Insert New Reroute"
@@ -16599,7 +16599,7 @@ msgstr "Parametreleri Malzemeden Kopyala"
 msgid "Paste Parameters To Material"
 msgstr "Parametreleri Malzemeye Yapıştır"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Gölgelendirici Düğümü Oluştur"
 
 msgid "Create Shader Varying"
@@ -17198,7 +17198,7 @@ msgstr ""
 "Doğrusal bir uzayda, derinlik ön-geçişinden elde edilen derinlik değerini "
 "döndürür."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "Düğümün Dünya Konumunu derinlik dokusundan yeniden yapılandırır."
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -19238,7 +19238,7 @@ msgstr ""
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Eklem, herhangi bir FizikCisim3B'ye bağlı değil (PhysicsBody3D)"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Düğüm A ve Düğüm B, farklı birer FizikCisim3B olmalıdır (PhysicsBody3D)"
 
 msgid ""
@@ -19521,8 +19521,8 @@ msgstr ""
 msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr "Erişilebilirlik İsmi boş olmamalı, veya yalnızca boşluk içermemelidir."
 
-msgid "Accessibility Name must not include Node class name."
-msgstr "Erişilebilirlik İsmi, Node sınıf adını içermemelidir."
+msgid "Accessibility Name must not include Flowde class name."
+msgstr "Erişilebilirlik İsmi, Flowde sınıf adını içermemelidir."
 
 msgid "Accessibility Name must not include control character."
 msgstr "Erişilebilirlik İsmi kontrol karakteri içermemelidir."

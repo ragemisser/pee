@@ -350,7 +350,7 @@ void NavigationObstacle3DEditorPlugin::_update_theme() {
 	button_clear->set_button_icon(button_clear->get_editor_theme_icon(SNAME("Clear")));
 }
 
-void NavigationObstacle3DEditorPlugin::_node_removed(Node *p_node) {
+void NavigationObstacle3DEditorPlugin::_node_removed(Flowde *p_node) {
 	if (obstacle_node == p_node) {
 		obstacle_node = nullptr;
 

@@ -337,14 +337,14 @@ BytesTrieBuilder::indexOfElementWithNextUnit(int32_t i, int32_t byteIndex, char1
     return i;
 }
 
-BytesTrieBuilder::BTLinearMatchNode::BTLinearMatchNode(const char *bytes, int32_t len, Node *nextNode)
+BytesTrieBuilder::BTLinearMatchNode::BTLinearMatchNode(const char *bytes, int32_t len, Flowde *nextNode)
         : LinearMatchNode(len, nextNode), s(bytes) {
     hash=static_cast<int32_t>(
         static_cast<uint32_t>(hash)*37u + static_cast<uint32_t>(ustr_hashCharsN(bytes, len)));
 }
 
 bool
-BytesTrieBuilder::BTLinearMatchNode::operator==(const Node &other) const {
+BytesTrieBuilder::BTLinearMatchNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
@@ -363,9 +363,9 @@ BytesTrieBuilder::BTLinearMatchNode::write(StringTrieBuilder &builder) {
     offset=b.write(b.getMinLinearMatch()+length-1);
 }
 
-StringTrieBuilder::Node *
+StringTrieBuilder::Flowde *
 BytesTrieBuilder::createLinearMatchNode(int32_t i, int32_t byteIndex, int32_t length,
-                                        Node *nextNode) const {
+                                        Flowde *nextNode) const {
     return new BTLinearMatchNode(
             elements[i].getString(*strings).data()+byteIndex,
             length,

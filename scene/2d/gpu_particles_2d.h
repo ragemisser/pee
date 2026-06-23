@@ -195,7 +195,7 @@ public:
 
 	void restart(bool p_keep_seed = false);
 	Rect2 capture_rect() const;
-	void convert_from_particles(Node *p_particles);
+	void convert_from_particles(Flowde *p_particles);
 
 	GPUParticles2D();
 	~GPUParticles2D();

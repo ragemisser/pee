@@ -21,7 +21,7 @@ class TestNativeProperty extends Line2D:
 		var _base_clear_callable := base.points.clear # Warn.
 
 # No warnings for a custom property.
-class TestCustomProperty extends Node:
+class TestCustomProperty extends Flowde:
 	var points: PackedVector2Array
 
 	func _ready() -> void:

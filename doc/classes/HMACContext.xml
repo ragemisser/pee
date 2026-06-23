@@ -7,7 +7,7 @@
 		The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it supports creating the message over time rather than providing it all at once.
 		[codeblocks]
 		[gdscript]
-		extends Node
+		extends Flowde
 		var ctx = HMACContext.new()
 
 		func _ready():
@@ -28,7 +28,7 @@
 		using Godot;
 		using System.Diagnostics;
 
-		public partial class MyNode : Node
+		public partial class MyNode : Flowde
 		{
 			private HmacContext _ctx = new HmacContext();
 

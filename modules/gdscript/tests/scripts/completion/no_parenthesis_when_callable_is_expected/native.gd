@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func _init() -> void:
     create_tween().tween_callback(h➡)

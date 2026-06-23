@@ -300,7 +300,7 @@ void SpringBoneSimulator3D::_get_property_list(List<PropertyInfo> *p_list) const
 		props.push_back(PropertyInfo(Variant::BOOL, path + "extend_end_bone"));
 		props.push_back(PropertyInfo(Variant::INT, path + "end_bone/direction", PROPERTY_HINT_ENUM, SkeletonModifier3D::get_hint_bone_direction()));
 		props.push_back(PropertyInfo(Variant::FLOAT, path + "end_bone/length", PROPERTY_HINT_RANGE, "0,1,0.001,or_greater,suffix:m"));
-		props.push_back(PropertyInfo(Variant::INT, path + "center_from", PROPERTY_HINT_ENUM, "WorldOrigin,Node,Bone"));
+		props.push_back(PropertyInfo(Variant::INT, path + "center_from", PROPERTY_HINT_ENUM, "WorldOrigin,Flowde,Bone"));
 		props.push_back(PropertyInfo(Variant::NODE_PATH, path + "center_node"));
 		props.push_back(PropertyInfo(Variant::STRING, path + "center_bone_name", PROPERTY_HINT_ENUM_SUGGESTION, enum_hint));
 		props.push_back(PropertyInfo(Variant::INT, path + "center_bone", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NO_EDITOR));
@@ -1104,7 +1104,7 @@ void SpringBoneSimulator3D::set_exclude_collision_path(int p_index, int p_collis
 	ERR_FAIL_INDEX(p_collision, (int)setting_exclude_collisions.size());
 	setting_exclude_collisions[p_collision] = NodePath(); // Reset first.
 	if (is_inside_tree()) {
-		Node *node = get_node_or_null(p_node_path);
+		Flowde *node = get_node_or_null(p_node_path);
 		if (!node) {
 			_make_collisions_dirty();
 			return;
@@ -1160,7 +1160,7 @@ void SpringBoneSimulator3D::set_collision_path(int p_index, int p_collision, con
 	ERR_FAIL_INDEX(p_collision, (int)setting_collisions.size());
 	setting_collisions[p_collision] = NodePath(); // Reset first.
 	if (is_inside_tree()) {
-		Node *node = get_node_or_null(p_node_path);
+		Flowde *node = get_node_or_null(p_node_path);
 		if (!node) {
 			_make_collisions_dirty();
 			return;
@@ -1391,19 +1391,19 @@ void SpringBoneSimulator3D::_make_all_joints_dirty() {
 	}
 }
 
-void SpringBoneSimulator3D::add_child_notify(Node *p_child) {
+void SpringBoneSimulator3D::add_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SpringBoneCollision3D>(p_child)) {
 		_make_collisions_dirty();
 	}
 }
 
-void SpringBoneSimulator3D::move_child_notify(Node *p_child) {
+void SpringBoneSimulator3D::move_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SpringBoneCollision3D>(p_child)) {
 		_make_collisions_dirty();
 	}
 }
 
-void SpringBoneSimulator3D::remove_child_notify(Node *p_child) {
+void SpringBoneSimulator3D::remove_child_notify(Flowde *p_child) {
 	if (Object::cast_to<SpringBoneCollision3D>(p_child)) {
 		_make_collisions_dirty();
 	}
@@ -1459,7 +1459,7 @@ void SpringBoneSimulator3D::_find_collisions() {
 			// Allow list.
 			LocalVector<NodePath> &setting_collisions = settings[i]->collisions;
 			for (uint32_t j = 0; j < setting_collisions.size(); j++) {
-				Node *n = get_node_or_null(setting_collisions[j]);
+				Flowde *n = get_node_or_null(setting_collisions[j]);
 				if (!n) {
 					continue;
 				}
@@ -1475,7 +1475,7 @@ void SpringBoneSimulator3D::_find_collisions() {
 			LocalVector<uint32_t> masks;
 			LocalVector<NodePath> &setting_exclude_collisions = settings[i]->exclude_collisions;
 			for (uint32_t j = 0; j < setting_exclude_collisions.size(); j++) {
-				Node *n = get_node_or_null(setting_exclude_collisions[j]);
+				Flowde *n = get_node_or_null(setting_exclude_collisions[j]);
 				if (!n) {
 					continue;
 				}

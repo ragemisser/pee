@@ -6,7 +6,7 @@
 	<description>
 		Tweens are mostly useful for animations requiring a numerical property to be interpolated over a range of values. The name [i]tween[/i] comes from [i]in-betweening[/i], an animation technique where you specify [i]keyframes[/i] and the computer interpolates the frames that appear between them. Animating something with a [Tween] is called tweening.
 		[Tween] is more suited than [AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [Tween]; it would be difficult to do the same thing with an [AnimationPlayer] node. Tweens are also more light-weight than [AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a "fire-and-forget" manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [CallbackTweener] with a delay.
-		A [Tween] can be created by using either [method SceneTree.create_tween] or [method Node.create_tween]. [Tween]s created manually (i.e. by using [code]Tween.new()[/code]) are invalid and can't be used for tweening values.
+		A [Tween] can be created by using either [method SceneTree.create_tween] or [method Flowde.create_tween]. [Tween]s created manually (i.e. by using [code]Tween.new()[/code]) are invalid and can't be used for tweening values.
 		A tween animation is created by adding [Tweener]s to the [Tween] object, using [method tween_property], [method tween_interval], [method tween_callback], [method tween_method], [method tween_subtween], or [method tween_await]:
 		[codeblocks]
 		[gdscript]
@@ -22,7 +22,7 @@
 		tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
 		[/csharp]
 		[/codeblocks]
-		This sequence will make the [code]$Sprite[/code] node turn red, then shrink, before finally calling [method Node.queue_free] to free the sprite. [Tweener]s are executed one after another by default. This behavior can be changed using [method parallel] and [method set_parallel].
+		This sequence will make the [code]$Sprite[/code] node turn red, then shrink, before finally calling [method Flowde.queue_free] to free the sprite. [Tweener]s are executed one after another by default. This behavior can be changed using [method parallel] and [method set_parallel].
 		When a [Tweener] is created with one of the [code]tween_*[/code] methods, a chained method call can be used to tweak the properties of this [Tweener]. For example, if you want to set a different transition type in the above example, you can use [method set_trans]:
 		[codeblocks]
 		[gdscript]
@@ -62,7 +62,7 @@
 		[/gdscript]
 		[csharp]
 		Tween tween = CreateTween();
-		foreach (Node sprite in GetChildren())
+		foreach (Flowde sprite in GetChildren())
 			tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
 		[/csharp]
 		[/codeblocks]
@@ -90,17 +90,17 @@
 		Some [Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [url=https://easings.net/]easings.net[/url] for some examples). The second accepts an [enum EaseType] constant, and controls where the [code]trans_type[/code] is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [constant EASE_IN_OUT], and use the one that looks best.
 		[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp]Tween easing and transition types cheatsheet[/url]
 		[b]Note:[/b] Tweens are not designed to be reused and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
-		[b]Note:[/b] The tween is processed after all of the nodes in the current frame, i.e. node's [method Node._process] method would be called before the tween (or [method Node._physics_process] depending on the value passed to [method set_process_mode]).
+		[b]Note:[/b] The tween is processed after all of the nodes in the current frame, i.e. node's [method Flowde._process] method would be called before the tween (or [method Flowde._physics_process] depending on the value passed to [method set_process_mode]).
 	</description>
 	<tutorials>
 	</tutorials>
 	<methods>
 		<method name="bind_node">
 			<return type="Tween" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
-				Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
-				For a shorter way to create and bind a [Tween], you can use [method Node.create_tween].
+				Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Flowde] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
+				For a shorter way to create and bind a [Tween], you can use [method Flowde.create_tween].
 			</description>
 		</method>
 		<method name="chain">
@@ -283,7 +283,7 @@
 			<return type="Tween" />
 			<param index="0" name="mode" type="int" enum="Tween.TweenProcessMode" />
 			<description>
-				Determines whether the [Tween] should run after process frames (see [method Node._process]) or physics frames (see [method Node._physics_process]).
+				Determines whether the [Tween] should run after process frames (see [method Flowde._process]) or physics frames (see [method Flowde._physics_process]).
 				Default value is [constant TWEEN_PROCESS_IDLE].
 			</description>
 		</method>
@@ -561,13 +561,13 @@
 	</signals>
 	<constants>
 		<constant name="TWEEN_PROCESS_PHYSICS" value="0" enum="TweenProcessMode">
-			The [Tween] updates after each physics frame (see [method Node._physics_process]).
+			The [Tween] updates after each physics frame (see [method Flowde._physics_process]).
 		</constant>
 		<constant name="TWEEN_PROCESS_IDLE" value="1" enum="TweenProcessMode">
-			The [Tween] updates after each process frame (see [method Node._process]).
+			The [Tween] updates after each process frame (see [method Flowde._process]).
 		</constant>
 		<constant name="TWEEN_PAUSE_BOUND" value="0" enum="TweenPauseMode">
-			If the [Tween] has a bound node, it will process when that node can process (see [member Node.process_mode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP].
+			If the [Tween] has a bound node, it will process when that node can process (see [member Flowde.process_mode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP].
 		</constant>
 		<constant name="TWEEN_PAUSE_STOP" value="1" enum="TweenPauseMode">
 			If [SceneTree] is paused, the [Tween] will also pause.

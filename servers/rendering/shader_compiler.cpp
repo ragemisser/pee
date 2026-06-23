@@ -447,11 +447,11 @@ static String _get_global_shader_uniform_from_type_and_index(const String &p_buf
 	}
 }
 
-String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, GeneratedCode &r_gen_code, IdentifierActions &p_actions, const DefaultIdentifierActions &p_default_actions, bool p_assigning, bool p_use_scope) {
+String ShaderCompiler::_dump_node_code(const SL::Flowde *p_node, int p_level, GeneratedCode &r_gen_code, IdentifierActions &p_actions, const DefaultIdentifierActions &p_default_actions, bool p_assigning, bool p_use_scope) {
 	String code;
 
 	switch (p_node->type) {
-		case SL::Node::NODE_TYPE_SHADER: {
+		case SL::Flowde::NODE_TYPE_SHADER: {
 			SL::ShaderNode *pnode = (SL::ShaderNode *)p_node;
 
 			// Render modes.
@@ -804,11 +804,11 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 
 			//code+=dump_node_code(pnode->body,p_level);
 		} break;
-		case SL::Node::NODE_TYPE_STRUCT: {
+		case SL::Flowde::NODE_TYPE_STRUCT: {
 		} break;
-		case SL::Node::NODE_TYPE_FUNCTION: {
+		case SL::Flowde::NODE_TYPE_FUNCTION: {
 		} break;
-		case SL::Node::NODE_TYPE_BLOCK: {
+		case SL::Flowde::NODE_TYPE_BLOCK: {
 			SL::BlockNode *bnode = (SL::BlockNode *)p_node;
 
 			//variables
@@ -817,10 +817,10 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 			int i = 0;
-			for (List<ShaderLanguage::Node *>::ConstIterator itr = bnode->statements.begin(); itr != bnode->statements.end(); ++itr, ++i) {
+			for (List<ShaderLanguage::Flowde *>::ConstIterator itr = bnode->statements.begin(); itr != bnode->statements.end(); ++itr, ++i) {
 				String scode = _dump_node_code(*itr, p_level, r_gen_code, p_actions, p_default_actions, p_assigning);
 
-				if ((*itr)->type == SL::Node::NODE_TYPE_CONTROL_FLOW || bnode->single_statement) {
+				if ((*itr)->type == SL::Flowde::NODE_TYPE_CONTROL_FLOW || bnode->single_statement) {
 					code += scode; //use directly
 					if (bnode->use_comma_between_statements && i + 1 < bnode->statements.size()) {
 						code += ",";
@@ -834,7 +834,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_VARIABLE_DECLARATION: {
+		case SL::Flowde::NODE_TYPE_VARIABLE_DECLARATION: {
 			SL::VariableDeclarationNode *vdnode = (SL::VariableDeclarationNode *)p_node;
 
 			String declaration;
@@ -892,7 +892,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 
 			code += declaration;
 		} break;
-		case SL::Node::NODE_TYPE_VARIABLE: {
+		case SL::Flowde::NODE_TYPE_VARIABLE: {
 			SL::VariableNode *vnode = (SL::VariableNode *)p_node;
 			bool use_fragment_varying = false;
 
@@ -1002,7 +1002,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_ARRAY_CONSTRUCT: {
+		case SL::Flowde::NODE_TYPE_ARRAY_CONSTRUCT: {
 			SL::ArrayConstructNode *acnode = (SL::ArrayConstructNode *)p_node;
 			int sz = acnode->initializer.size();
 			if (acnode->datatype == SL::TYPE_STRUCT) {
@@ -1022,7 +1022,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 			code += ")";
 		} break;
-		case SL::Node::NODE_TYPE_ARRAY: {
+		case SL::Flowde::NODE_TYPE_ARRAY: {
 			SL::ArrayNode *anode = (SL::ArrayNode *)p_node;
 			bool use_fragment_varying = false;
 
@@ -1122,7 +1122,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_CONSTANT: {
+		case SL::Flowde::NODE_TYPE_CONSTANT: {
 			SL::ConstantNode *cnode = (SL::ConstantNode *)p_node;
 
 			if (cnode->array_size == 0) {
@@ -1149,7 +1149,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_OPERATOR: {
+		case SL::Flowde::NODE_TYPE_OPERATOR: {
 			SL::OperatorNode *onode = (SL::OperatorNode *)p_node;
 
 			switch (onode->op) {
@@ -1187,7 +1187,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 				case SL::OP_CALL:
 				case SL::OP_STRUCT:
 				case SL::OP_CONSTRUCT: {
-					ERR_FAIL_COND_V(onode->arguments[0]->type != SL::Node::NODE_TYPE_VARIABLE, String());
+					ERR_FAIL_COND_V(onode->arguments[0]->type != SL::Flowde::NODE_TYPE_VARIABLE, String());
 					const SL::VariableNode *vnode = static_cast<const SL::VariableNode *>(onode->arguments[0]);
 					const SL::FunctionNode *func = nullptr;
 					const bool is_internal_func = internal_functions.has(vnode->name);
@@ -1256,17 +1256,17 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 							StringName name;
 							bool found = false;
 							{
-								const SL::Node *node = onode->arguments[i];
+								const SL::Flowde *node = onode->arguments[i];
 
 								bool done = false;
 								do {
 									switch (node->type) {
-										case SL::Node::NODE_TYPE_VARIABLE: {
+										case SL::Flowde::NODE_TYPE_VARIABLE: {
 											name = static_cast<const SL::VariableNode *>(node)->name;
 											done = true;
 											found = true;
 										} break;
-										case SL::Node::NODE_TYPE_MEMBER: {
+										case SL::Flowde::NODE_TYPE_MEMBER: {
 											node = static_cast<const SL::MemberNode *>(node)->owner;
 										} break;
 										default: {
@@ -1288,12 +1288,12 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 							bool correct_texture_uniform = false;
 
 							switch (onode->arguments[i]->type) {
-								case SL::Node::NODE_TYPE_VARIABLE: {
+								case SL::Flowde::NODE_TYPE_VARIABLE: {
 									const SL::VariableNode *varnode = static_cast<const SL::VariableNode *>(onode->arguments[i]);
 									texture_uniform = varnode->name;
 									correct_texture_uniform = true;
 								} break;
-								case SL::Node::NODE_TYPE_ARRAY: {
+								case SL::Flowde::NODE_TYPE_ARRAY: {
 									const SL::ArrayNode *anode = static_cast<const SL::ArrayNode *>(onode->arguments[i]);
 									texture_uniform = anode->name;
 									correct_texture_uniform = true;
@@ -1458,7 +1458,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_CONTROL_FLOW: {
+		case SL::Flowde::NODE_TYPE_CONTROL_FLOW: {
 			SL::ControlFlowNode *cfnode = (SL::ControlFlowNode *)p_node;
 			if (cfnode->flow_op == SL::FLOW_OP_IF) {
 				code += _mktab(p_level) + "if (" + _dump_node_code(cfnode->expressions[0], p_level, r_gen_code, p_actions, p_default_actions, p_assigning) + ")\n";
@@ -1510,7 +1510,7 @@ String ShaderCompiler::_dump_node_code(const SL::Node *p_node, int p_level, Gene
 			}
 
 		} break;
-		case SL::Node::NODE_TYPE_MEMBER: {
+		case SL::Flowde::NODE_TYPE_MEMBER: {
 			SL::MemberNode *mnode = (SL::MemberNode *)p_node;
 			String name;
 			if (mnode->basetype == SL::TYPE_STRUCT) {

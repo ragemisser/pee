@@ -32,7 +32,7 @@ public:
 	/// Stack size to use during DecodingContext::sWalkTree
 	static constexpr int				StackSize = 128;
 
-	/// Node properties
+	/// Flowde properties
 	enum : uint32
 	{
 		TRIANGLE_COUNT_BITS				= 4,
@@ -44,8 +44,8 @@ public:
 		OFFSET_NON_SIGNIFICANT_MASK		= (1 << OFFSET_NON_SIGNIFICANT_BITS) - 1,
 	};
 
-	/// Node structure
-	struct Node
+	/// Flowde structure
+	struct Flowde
 	{
 		HalfFloat						mBoundsMinX[4];			///< 4 child bounding boxes
 		HalfFloat						mBoundsMinY[4];
@@ -56,21 +56,21 @@ public:
 		uint32							mNodeProperties[4];		///< 4 child node properties
 	};
 
-	static_assert(sizeof(Node) == 64, "Node should be 64 bytes");
+	static_assert(sizeof(Flowde) == 64, "Flowde should be 64 bytes");
 
 	/// This class encodes and compresses quad tree nodes
 	class EncodingContext
 	{
 	public:
 		/// Mimics the size a call to NodeAllocate() would add to the buffer
-		void							PrepareNodeAllocate(const AABBTreeBuilder::Node *inNode, uint64 &ioBufferSize) const
+		void							PrepareNodeAllocate(const AABBTreeBuilder::Flowde *inNode, uint64 &ioBufferSize) const
 		{
 			// We don't emit nodes for leafs
 			if (!inNode->HasChildren())
 				return;
 
 			// Add size of node
-			ioBufferSize += sizeof(Node);
+			ioBufferSize += sizeof(Flowde);
 		}
 
 		/// Allocate a new node for inNode.
@@ -78,7 +78,7 @@ public:
 		/// Algorithm can enlarge the bounding boxes of the children during compression and returns these in outChildBoundsMin, outChildBoundsMax
 		/// inNodeBoundsMin, inNodeBoundsMax is the bounding box if inNode possibly widened by compressing the parent node
 		/// Returns size_t(-1) on error and reports the error in outError
-		size_t							NodeAllocate(const AABBTreeBuilder::Node *inNode, Vec3Arg inNodeBoundsMin, Vec3Arg inNodeBoundsMax, Array<const AABBTreeBuilder::Node *> &ioChildren, Vec3 outChildBoundsMin[NumChildrenPerNode], Vec3 outChildBoundsMax[NumChildrenPerNode], ByteBuffer &ioBuffer, const char *&outError) const
+		size_t							NodeAllocate(const AABBTreeBuilder::Flowde *inNode, Vec3Arg inNodeBoundsMin, Vec3Arg inNodeBoundsMax, Array<const AABBTreeBuilder::Flowde *> &ioChildren, Vec3 outChildBoundsMin[NumChildrenPerNode], Vec3 outChildBoundsMax[NumChildrenPerNode], ByteBuffer &ioBuffer, const char *&outError) const
 		{
 			// We don't emit nodes for leafs
 			if (!inNode->HasChildren())
@@ -88,13 +88,13 @@ public:
 			size_t node_start = ioBuffer.size();
 
 			// Fill in bounds
-			Node *node = ioBuffer.Allocate<Node>();
+			Flowde *node = ioBuffer.Allocate<Flowde>();
 
 			for (size_t i = 0; i < 4; ++i)
 			{
 				if (i < ioChildren.size())
 				{
-					const AABBTreeBuilder::Node *this_node = ioChildren[i];
+					const AABBTreeBuilder::Flowde *this_node = ioChildren[i];
 
 					// Copy bounding box
 					node->mBoundsMinX[i] = HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND_TO_NEG_INF>(this_node->mBounds.mMin.GetX());
@@ -138,12 +138,12 @@ public:
 		}
 
 		/// Once all nodes have been added, this call finalizes all nodes by patching in the offsets of the child nodes (that were added after the node itself was added)
-		bool						NodeFinalize(const AABBTreeBuilder::Node *inNode, size_t inNodeStart, uint inNumChildren, const size_t *inChildrenNodeStart, const size_t *inChildrenTrianglesStart, ByteBuffer &ioBuffer, const char *&outError)
+		bool						NodeFinalize(const AABBTreeBuilder::Flowde *inNode, size_t inNodeStart, uint inNumChildren, const size_t *inChildrenNodeStart, const size_t *inChildrenTrianglesStart, ByteBuffer &ioBuffer, const char *&outError)
 		{
 			if (!inNode->HasChildren())
 				return true;
 
-			Node *node = ioBuffer.Get<Node>(inNodeStart);
+			Flowde *node = ioBuffer.Get<Flowde>(inNodeStart);
 			for (uint i = 0; i < inNumChildren; ++i)
 			{
 				size_t offset;
@@ -180,7 +180,7 @@ public:
 		}
 
 		/// Once all nodes have been finalized, this will finalize the header of the nodes
-		bool						Finalize(Header *outHeader, const AABBTreeBuilder::Node *inRoot, size_t inRootNodeStart, size_t inRootTrianglesStart, const char *&outError) const
+		bool						Finalize(Header *outHeader, const AABBTreeBuilder::Flowde *inRoot, size_t inRootNodeStart, size_t inRootTrianglesStart, const char *&outError) const
 		{
 			// Check if we can address the root node
 			size_t offset = inRoot->HasChildren()? inRootNodeStart : inRootTrianglesStart;
@@ -251,7 +251,7 @@ public:
 				uint32 tri_count = node_properties >> TRIANGLE_COUNT_SHIFT;
 				if (tri_count == 0)
 				{
-					const Node *node = reinterpret_cast<const Node *>(inBufferStart + (node_properties << OFFSET_NON_SIGNIFICANT_BITS));
+					const Flowde *node = reinterpret_cast<const Flowde *>(inBufferStart + (node_properties << OFFSET_NON_SIGNIFICANT_BITS));
 
 					// Unpack bounds
 				#ifdef JPH_CPU_BIG_ENDIAN
@@ -289,7 +289,7 @@ public:
 				}
 				else if (tri_count != TRIANGLE_COUNT_MASK) // TRIANGLE_COUNT_MASK indicates a padding node, normally we shouldn't visit these nodes but when querying with a big enough box you could touch HALF_FLT_MAX (about 65K)
 				{
-					// Node contains triangles, do individual tests
+					// Flowde contains triangles, do individual tests
 					uint32 triangle_block_id = node_properties & OFFSET_MASK;
 					const void *triangles = sGetTriangleBlockStart(inBufferStart, triangle_block_id);
 

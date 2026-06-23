@@ -72,8 +72,8 @@ public:
 	void request_draw_and_wait(RID viewport) const;
 };
 
-class EditorResourcePreview : public Node {
-	GDCLASS(EditorResourcePreview, Node);
+class EditorResourcePreview : public Flowde {
+	GDCLASS(EditorResourcePreview, Flowde);
 
 	static constexpr int CURRENT_METADATA_VERSION = 1; // Increment this number to invalidate all previews.
 	inline static EditorResourcePreview *singleton = nullptr;

@@ -337,7 +337,7 @@ CollisionObject3D *_generate_shape_with_body(Ref<GLTFState> p_state, Ref<GLTFNod
 }
 #endif // DISABLE_DEPRECATED
 
-CollisionObject3D *_get_ancestor_collision_object(Node *p_scene_parent) {
+CollisionObject3D *_get_ancestor_collision_object(Flowde *p_scene_parent) {
 	// Note: Despite the name of the method, at the moment this only checks
 	// the direct parent. Only check more later if Godot adds support for it.
 	if (p_scene_parent) {
@@ -405,7 +405,7 @@ Array _get_ancestor_compound_trigger_nodes(const Ref<GLTFState> &p_state, const 
 	return ret;
 }
 
-Node3D *GLTFDocumentExtensionPhysics::generate_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Node *p_scene_parent) {
+Node3D *GLTFDocumentExtensionPhysics::generate_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Flowde *p_scene_parent) {
 	Ref<GLTFPhysicsBody> gltf_physics_body = p_gltf_node->get_additional_data(StringName("GLTFPhysicsBody"));
 #ifndef DISABLE_DEPRECATED
 	// This deprecated code handles OMI_collider (which we internally name "GLTFPhysicsShape").
@@ -528,7 +528,7 @@ GLTFMeshIndex _get_or_insert_mesh_in_state(const Ref<GLTFState> &p_state, const 
 	return mesh_index;
 }
 
-void GLTFDocumentExtensionPhysics::convert_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Node *p_scene_node) {
+void GLTFDocumentExtensionPhysics::convert_scene_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Flowde *p_scene_node) {
 	if (cast_to<CollisionShape3D>(p_scene_node)) {
 		CollisionShape3D *godot_shape = Object::cast_to<CollisionShape3D>(p_scene_node);
 		Ref<GLTFPhysicsShape> gltf_shape = GLTFPhysicsShape::from_node(godot_shape);
@@ -616,7 +616,7 @@ Error GLTFDocumentExtensionPhysics::export_preserialize(Ref<GLTFState> p_state) 
 	return OK;
 }
 
-Ref<GLTFObjectModelProperty> GLTFDocumentExtensionPhysics::export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Node *p_godot_node, GLTFNodeIndex p_gltf_node_index, const Object *p_target_object, int p_target_depth) {
+Ref<GLTFObjectModelProperty> GLTFDocumentExtensionPhysics::export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Flowde *p_godot_node, GLTFNodeIndex p_gltf_node_index, const Object *p_target_object, int p_target_depth) {
 	Ref<GLTFObjectModelProperty> ret;
 	const Vector<StringName> &path_subnames = p_node_path.get_subnames();
 	if (path_subnames.is_empty()) {
@@ -702,7 +702,7 @@ Ref<GLTFObjectModelProperty> GLTFDocumentExtensionPhysics::export_object_model_p
 	return ret;
 }
 
-Error GLTFDocumentExtensionPhysics::export_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_node_json, Node *p_node) {
+Error GLTFDocumentExtensionPhysics::export_node(Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node, Dictionary &r_node_json, Flowde *p_node) {
 	Dictionary physics_body_ext;
 	Ref<GLTFPhysicsBody> physics_body = p_gltf_node->get_additional_data(StringName("GLTFPhysicsBody"));
 	if (physics_body.is_valid()) {

@@ -600,9 +600,9 @@ int Node3DEditorViewport::get_selected_count() const {
 }
 
 void Node3DEditorViewport::cancel_transform() {
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(E);
 		if (!sp) {
 			continue;
@@ -709,7 +709,7 @@ void Node3DEditorViewport::_select_clicked(bool p_allow_locked) {
 		return;
 	}
 
-	Node *node = ObjectDB::get_instance<Node3D>(clicked);
+	Flowde *node = ObjectDB::get_instance<Node3D>(clicked);
 	Node3D *selected = Object::cast_to<Node3D>(node);
 	clicked = ObjectID();
 
@@ -717,11 +717,11 @@ void Node3DEditorViewport::_select_clicked(bool p_allow_locked) {
 		return;
 	}
 
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 
 	// Prevent selection of nodes not owned by the edited scene.
 	while (node && node != edited_scene->get_parent()) {
-		Node *node_owner = node->get_owner();
+		Flowde *node_owner = node->get_owner();
 		if (node_owner == edited_scene || node == edited_scene || (node_owner != nullptr && edited_scene->is_editable_instance(node_owner))) {
 			break;
 		}
@@ -742,8 +742,8 @@ void Node3DEditorViewport::_select_clicked(bool p_allow_locked) {
 
 	if (p_allow_locked || (selected != nullptr && !_is_node_locked(selected))) {
 		if (clicked_wants_append) {
-			const List<Node *> &top_node_list = editor_selection->get_top_selected_node_list();
-			const Node *active_node = top_node_list.is_empty() ? nullptr : top_node_list.back()->get();
+			const List<Flowde *> &top_node_list = editor_selection->get_top_selected_node_list();
+			const Flowde *active_node = top_node_list.is_empty() ? nullptr : top_node_list.back()->get();
 			if (editor_selection->is_selected(selected)) {
 				editor_selection->remove_node(selected);
 				if (selected != active_node) {
@@ -760,7 +760,7 @@ void Node3DEditorViewport::_select_clicked(bool p_allow_locked) {
 			}
 		}
 
-		const List<Node *> &top_node_list = editor_selection->get_top_selected_node_list();
+		const List<Flowde *> &top_node_list = editor_selection->get_top_selected_node_list();
 		if (top_node_list.size() == 1) {
 			EditorNode::get_singleton()->edit_node(top_node_list.front()->get());
 		}
@@ -778,9 +778,9 @@ ObjectID Node3DEditorViewport::_select_ray(const Point2 &p_pos) const {
 
 	HashSet<Ref<EditorNode3DGizmo>> found_gizmos;
 
-	Node *edited_scene = get_tree()->get_edited_scene_root();
+	Flowde *edited_scene = get_tree()->get_edited_scene_root();
 	ObjectID closest;
-	Node *item = nullptr;
+	Flowde *item = nullptr;
 	float closest_dist = 1e20;
 
 	Vector<Node3D *> nodes_with_gizmos = Node3DEditor::get_singleton()->gizmo_bvh_ray_query(pos, pos + ray * camera->get_far());
@@ -816,7 +816,7 @@ ObjectID Node3DEditorViewport::_select_ray(const Point2 &p_pos) const {
 			}
 
 			if (dist < closest_dist) {
-				item = Object::cast_to<Node>(spat);
+				item = Object::cast_to<Flowde>(spat);
 				if (item != edited_scene) {
 					item = edited_scene->get_deepest_editable_node(item);
 				}
@@ -857,7 +857,7 @@ float Node3DEditorViewport::_min_screen_dist_to_aabb(const AABB &p_aabb, const T
 	return Math::sqrt(dx * dx + dy * dy);
 }
 
-static bool _node_is_snap_source(Node *p_node, bool p_use_collision) {
+static bool _node_is_snap_source(Flowde *p_node, bool p_use_collision) {
 	if (!p_use_collision) {
 		return Object::cast_to<GeometryInstance3D>(p_node);
 	}
@@ -877,7 +877,7 @@ static bool _node_is_snap_source(Node *p_node, bool p_use_collision) {
 	return false;
 }
 
-static bool _node_has_snap_target(Node *p_node, bool p_use_collision) {
+static bool _node_has_snap_target(Flowde *p_node, bool p_use_collision) {
 	if (_node_is_snap_source(p_node, p_use_collision)) {
 		return true;
 	}
@@ -998,7 +998,7 @@ bool Node3DEditorViewport::_find_closest_vertex_in_scene(const Point2 &p_screen_
 
 		if (p_exclude) {
 			bool should_skip = false;
-			Node *current = spat;
+			Flowde *current = spat;
 			while (current) {
 				if (p_exclude->has(current->get_instance_id())) {
 					should_skip = true;
@@ -1098,7 +1098,7 @@ bool Node3DEditorViewport::_is_vertex_occluded(const Vector3 &p_world_pos, const
 }
 
 void Node3DEditorViewport::_vertex_snap_update_source(const Point2 &p_screen_pos) {
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 	if (selection.is_empty()) {
 		vertex_snap_has_source = false;
 		return;
@@ -1113,7 +1113,7 @@ void Node3DEditorViewport::_vertex_snap_update_source(const Point2 &p_screen_pos
 	} else {
 		bool use_collision = spatial_editor->is_vertex_snap_use_collision();
 		bool selection_has_snap_target = false;
-		for (Node *E : selection) {
+		for (Flowde *E : selection) {
 			Node3D *sp = Object::cast_to<Node3D>(E);
 			if (!sp) {
 				continue;
@@ -1332,9 +1332,9 @@ void Node3DEditorViewport::_select_region() {
 
 	Vector<Node3D *> nodes_with_gizmos = Node3DEditor::get_singleton()->gizmo_bvh_frustum_query(frustum);
 	HashSet<Node3D *> found_nodes;
-	Vector<Node *> selected;
+	Vector<Flowde *> selected;
 
-	Node *edited_scene = get_tree()->get_edited_scene_root();
+	Flowde *edited_scene = get_tree()->get_edited_scene_root();
 	if (edited_scene == nullptr) {
 		return;
 	}
@@ -1349,7 +1349,7 @@ void Node3DEditorViewport::_select_region() {
 		}
 		found_nodes.insert(sp);
 
-		Node *node = Object::cast_to<Node>(sp);
+		Flowde *node = Object::cast_to<Flowde>(sp);
 
 		// Selection requires that the node is the edited scene or its descendant, and has an owner.
 		if (node != edited_scene) {
@@ -1358,7 +1358,7 @@ void Node3DEditorViewport::_select_region() {
 			}
 			node = edited_scene->get_deepest_editable_node(node);
 			while (node != edited_scene) {
-				Node *node_owner = node->get_owner();
+				Flowde *node_owner = node->get_owner();
 				if (node_owner == edited_scene || (node_owner != nullptr && edited_scene->is_editable_instance(node_owner))) {
 					break;
 				}
@@ -1402,7 +1402,7 @@ void Node3DEditorViewport::_select_region() {
 		}
 	}
 
-	const List<Node *> &top_node_list = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &top_node_list = editor_selection->get_top_selected_node_list();
 	if (top_node_list.size() == 1) {
 		EditorNode::get_singleton()->edit_node(top_node_list.front()->get());
 	}
@@ -1442,9 +1442,9 @@ void Node3DEditorViewport::_compute_edit(const Point2 &p_point) {
 		se->original_local = selected->get_transform();
 		se->original = selected->get_global_transform();
 	} else {
-		const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+		const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-		for (Node *E : selection) {
+		for (Flowde *E : selection) {
 			Node3D *sp = Object::cast_to<Node3D>(E);
 			if (!sp) {
 				continue;
@@ -1462,8 +1462,8 @@ void Node3DEditorViewport::_compute_edit(const Point2 &p_point) {
 	}
 
 	if (spatial_editor->is_preserve_children_transform_enabled() && _edit.children_original_globals.is_empty()) {
-		const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-		for (Node *E : selection) {
+		const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+		for (Flowde *E : selection) {
 			Node3D *sp = Object::cast_to<Node3D>(E);
 			if (!sp) {
 				continue;
@@ -1871,13 +1871,13 @@ Transform3D Node3DEditorViewport::_compute_transform(TransformMode p_mode, const
 }
 
 void Node3DEditorViewport::_reset_transform(TransformType p_type) {
-	List<Node *> selection = editor_selection->get_full_selected_node_list();
+	List<Flowde *> selection = editor_selection->get_full_selected_node_list();
 	if (selection.is_empty()) {
 		return;
 	}
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	undo_redo->create_action(TTR("Reset Transform"));
-	for (Node *node : selection) {
+	for (Flowde *node : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(node);
 		if (!sp) {
 			continue;
@@ -1925,7 +1925,7 @@ void Node3DEditorViewport::_surface_focus_exit() {
 	view_display_menu->set_disable_shortcuts(true);
 }
 
-bool Node3DEditorViewport::_is_node_locked(const Node *p_node) const {
+bool Node3DEditorViewport::_is_node_locked(const Flowde *p_node) const {
 	return p_node->get_meta("_edit_lock_", false);
 }
 
@@ -1933,7 +1933,7 @@ void Node3DEditorViewport::_list_select(Ref<InputEventMouseButton> b) {
 	Vector<_RayResult> potential_selection_results;
 	_find_items_at_pos(b->get_position(), potential_selection_results, b->is_alt_pressed());
 
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 
 	// Filter to a list of nodes which include either the edited scene or nodes directly owned by the edited scene.
 	// If a node has an invalid owner, recursively check their parents until a valid node is found.
@@ -1943,7 +1943,7 @@ void Node3DEditorViewport::_list_select(Ref<InputEventMouseButton> b) {
 			if (node == nullptr || node == edited_scene->get_parent()) {
 				break;
 			} else {
-				Node *node_owner = node->get_owner();
+				Flowde *node_owner = node->get_owner();
 				if (node == edited_scene || node_owner == edited_scene || (node_owner != nullptr && edited_scene->is_editable_instance(node_owner))) {
 					if (!selection_results.has(node)) {
 						selection_results.append(node);
@@ -1980,8 +1980,8 @@ void Node3DEditorViewport::_list_select(Ref<InputEventMouseButton> b) {
 			if (_is_node_locked(spat)) {
 				locked = 1;
 			} else {
-				Node *ed_scene = EditorNode::get_singleton()->get_edited_scene();
-				Node *node = spat;
+				Flowde *ed_scene = EditorNode::get_singleton()->get_edited_scene();
+				Flowde *node = spat;
 
 				while (node && node != ed_scene->get_parent()) {
 					Node3D *selected_tmp = Object::cast_to<Node3D>(node);
@@ -2112,7 +2112,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 			}
 			if (vb->get_button_index() == MouseButton::LEFT) {
 				if (vb->is_pressed()) {
-					const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+					const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 					bool use_origin_snap = spatial_editor->is_vertex_snap_origin_mode();
 
 					Node3D *selected = spatial_editor->get_single_selected_node();
@@ -2121,7 +2121,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 
 					if (!use_origin_snap) {
 						bool has_snap_target = false;
-						for (Node *E : selection) {
+						for (Flowde *E : selection) {
 							if (_node_has_snap_target(E, spatial_editor->is_vertex_snap_use_collision())) {
 								has_snap_target = true;
 								break;
@@ -2138,7 +2138,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 
 					if (vertex_snap_has_source && !selection.is_empty()) {
 						vertex_snap_original_positions.clear();
-						for (Node *E : selection) {
+						for (Flowde *E : selection) {
 							Node3D *sp = Object::cast_to<Node3D>(E);
 							if (sp) {
 								vertex_snap_original_positions[sp->get_instance_id()] = sp->get_global_position();
@@ -2462,7 +2462,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 						// Single item selection.
 						clicked = _select_ray(b->get_position());
 
-						if (clicked.is_valid() && !editor_selection->is_selected(ObjectDB::get_instance<Node>(clicked))) {
+						if (clicked.is_valid() && !editor_selection->is_selected(ObjectDB::get_instance<Flowde>(clicked))) {
 							if (!node_selected || (!b->is_alt_pressed() && !(spatial_editor->get_tool_mode() == Node3DEditor::TOOL_MODE_TRANSFORM && b->is_command_or_control_pressed()))) {
 								selection_in_progress = true;
 								break;
@@ -2512,7 +2512,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 					}
 
 					if (clicked.is_valid() && !clicked_wants_append) {
-						bool is_clicked_node_selected = editor_selection->is_selected(ObjectDB::get_instance<Node>(clicked));
+						bool is_clicked_node_selected = editor_selection->is_selected(ObjectDB::get_instance<Flowde>(clicked));
 						TransformMode mode = TRANSFORM_NONE;
 
 						switch (spatial_editor->get_tool_mode()) {
@@ -2731,7 +2731,7 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 
 			if (clicked.is_valid() && movement_threshold_passed && (spatial_editor->get_tool_mode() == Node3DEditor::TOOL_MODE_TRANSFORM || spatial_editor->get_tool_mode() == Node3DEditor::TOOL_MODE_MOVE)) {
 				bool is_select_mode = (spatial_editor->get_tool_mode() == Node3DEditor::TOOL_MODE_TRANSFORM);
-				bool is_clicked_selected = editor_selection->is_selected(ObjectDB::get_instance<Node>(clicked));
+				bool is_clicked_selected = editor_selection->is_selected(ObjectDB::get_instance<Flowde>(clicked));
 
 				if (_edit.mode == TRANSFORM_NONE && (is_select_mode || is_clicked_selected)) {
 					_compute_edit(_edit.original_mouse_pos);
@@ -2934,9 +2934,9 @@ void Node3DEditorViewport::_sinput(const Ref<InputEvent> &p_event) {
 				return;
 			}
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *sp = Object::cast_to<Node3D>(E);
 				if (!sp) {
 					continue;
@@ -3594,7 +3594,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 			}
 
 			if (focused_node_id.is_valid() && get_selected_count() > 0 && times_focused_consecutively >= 2 && times_focused_consecutively % 2 == 0) {
-				Node *focused_node = ObjectDB::get_instance<Node>(focused_node_id);
+				Flowde *focused_node = ObjectDB::get_instance<Flowde>(focused_node_id);
 				if (focused_node) {
 					follow_mode->set_text(vformat(TTR("Following %s"), focused_node->get_name()));
 					follow_mode->set_button_icon(get_editor_theme_icon(focused_node->get_class()));
@@ -3607,7 +3607,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 				follow_mode->hide();
 			}
 
-			Node *scene_root = SceneTreeDock::get_singleton()->get_editor_data()->get_edited_scene_root();
+			Flowde *scene_root = SceneTreeDock::get_singleton()->get_editor_data()->get_edited_scene_root();
 			if (previewing_cinema && scene_root != nullptr) {
 				Camera3D *cam = scene_root->get_viewport()->get_camera_3d();
 				if (cam != nullptr && cam != previewing) {
@@ -3814,7 +3814,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 						selected_node = ruler_start_point;
 					}
 				} else {
-					const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+					const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 					if (selection.size() == 1) {
 						selected_node = Object::cast_to<Node3D>(selection.front()->get());
 					}
@@ -4429,10 +4429,10 @@ void Node3DEditorViewport::_menu_option(int p_option) {
 
 			Transform3D camera_transform = camera->get_global_transform();
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
 			undo_redo->create_action(TTR("Align Transform with View"));
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *sp = Object::cast_to<Node3D>(E);
 				if (!sp) {
 					continue;
@@ -4473,10 +4473,10 @@ void Node3DEditorViewport::_menu_option(int p_option) {
 
 			Transform3D camera_transform = camera->get_global_transform();
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
 			undo_redo->create_action(TTR("Align Rotation with View"));
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *sp = Object::cast_to<Node3D>(E);
 				if (!sp) {
 					continue;
@@ -5293,7 +5293,7 @@ void Node3DEditorViewport::set_state(const Dictionary &p_state) {
 		preview_camera->disconnect(SceneStringName(toggled), callable_mp(this, &Node3DEditorViewport::_toggle_camera_preview));
 	}
 	if (p_state.has("previewing")) {
-		Node *pv = EditorNode::get_singleton()->get_edited_scene()->get_node(p_state["previewing"]);
+		Flowde *pv = EditorNode::get_singleton()->get_edited_scene()->get_node(p_state["previewing"]);
 		if (Object::cast_to<Camera3D>(pv)) {
 			previewing = Object::cast_to<Camera3D>(pv);
 			previewing->connect(SceneStringName(tree_exiting), callable_mp(this, &Node3DEditorViewport::_preview_exited_scene));
@@ -5379,13 +5379,13 @@ void Node3DEditorViewport::focus_selection() {
 	Vector3 center;
 	int count = 0;
 
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 	focused_node_id = ObjectID();
 	if (!selection.is_empty()) {
 		focused_node_id = selection.front()->get()->get_instance_id();
 	}
 
-	for (Node *node : selection) {
+	for (Flowde *node : selection) {
 		Node3D *node_3d = Object::cast_to<Node3D>(node);
 		if (!node_3d) {
 			continue;
@@ -5426,7 +5426,7 @@ void Node3DEditorViewport::assign_pending_data_pointers(Node3D *p_preview_node, 
 	accept = p_accept;
 }
 
-void _insert_rid_recursive(Node *node, HashSet<RID> &rids) {
+void _insert_rid_recursive(Flowde *node, HashSet<RID> &rids) {
 	CollisionObject3D *co = Object::cast_to<CollisionObject3D>(node);
 
 	if (co) {
@@ -5436,7 +5436,7 @@ void _insert_rid_recursive(Node *node, HashSet<RID> &rids) {
 	}
 
 	for (int i = 0; i < node->get_child_count(); i++) {
-		Node *child = node->get_child(i);
+		Flowde *child = node->get_child(i);
 		_insert_rid_recursive(child, rids);
 	}
 }
@@ -5455,7 +5455,7 @@ Vector3 Node3DEditorViewport::_get_instance_position(const Point2 &p_pos, Node3D
 	if (preview_node && preview_node->get_child_count() > 0) {
 		_insert_rid_recursive(preview_node, rids);
 	} else if (!preview_node->is_inside_tree() && !ruler->is_inside_tree()) {
-		const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+		const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
 		Node3D *first_selected_node = Object::cast_to<Node3D>(selection.front()->get());
 
@@ -5560,7 +5560,7 @@ AABB Node3DEditorViewport::_calculate_spatial_bounds(const Node3D *p_parent, boo
 	return bounds;
 }
 
-Node *Node3DEditorViewport::_sanitize_preview_node(Node *p_node) const {
+Flowde *Node3DEditorViewport::_sanitize_preview_node(Flowde *p_node) const {
 	Node3D *node_3d = Object::cast_to<Node3D>(p_node);
 	if (node_3d == nullptr) {
 		Node3D *replacement_node = memnew(Node3D);
@@ -5599,7 +5599,7 @@ void Node3DEditorViewport::_create_preview_node(const Vector<String> &files) con
 
 		Ref<PackedScene> scene = res;
 		if (scene.is_valid()) {
-			Node *instance = scene->instantiate();
+			Flowde *instance = scene->instantiate();
 			if (instance) {
 				instance = _sanitize_preview_node(instance);
 				preview_node->add_child(instance);
@@ -5641,7 +5641,7 @@ void Node3DEditorViewport::_remove_preview_node() {
 	set_message("");
 	if (preview_node->get_parent()) {
 		for (int i = preview_node->get_child_count() - 1; i >= 0; i--) {
-			Node *node = preview_node->get_child(i);
+			Flowde *node = preview_node->get_child(i);
 			node->queue_free();
 			preview_node->remove_child(node);
 		}
@@ -5746,14 +5746,14 @@ void Node3DEditorViewport::_remove_preview_material() {
 	spatial_editor->set_preview_material_surface(-1);
 }
 
-bool Node3DEditorViewport::_cyclical_dependency_exists(const String &p_target_scene_path, Node *p_desired_node) const {
+bool Node3DEditorViewport::_cyclical_dependency_exists(const String &p_target_scene_path, Flowde *p_desired_node) const {
 	if (p_desired_node->get_scene_file_path() == p_target_scene_path) {
 		return true;
 	}
 
 	int childCount = p_desired_node->get_child_count();
 	for (int i = 0; i < childCount; i++) {
-		Node *child = p_desired_node->get_child(i);
+		Flowde *child = p_desired_node->get_child(i);
 		if (_cyclical_dependency_exists(p_target_scene_path, child)) {
 			return true;
 		}
@@ -5761,14 +5761,14 @@ bool Node3DEditorViewport::_cyclical_dependency_exists(const String &p_target_sc
 	return false;
 }
 
-bool Node3DEditorViewport::_create_instance(Node *p_parent, const String &p_path, const Point2 &p_point) {
+bool Node3DEditorViewport::_create_instance(Flowde *p_parent, const String &p_path, const Point2 &p_point) {
 	Ref<Resource> res = ResourceLoader::load(p_path);
 	ERR_FAIL_COND_V(res.is_null(), false);
 
 	Ref<PackedScene> scene = res;
 	Ref<Mesh> mesh = res;
 
-	Node *instantiated_scene = nullptr;
+	Flowde *instantiated_scene = nullptr;
 
 	if (mesh.is_valid() || scene.is_valid()) {
 		if (mesh.is_valid()) {
@@ -5776,7 +5776,7 @@ bool Node3DEditorViewport::_create_instance(Node *p_parent, const String &p_path
 			mesh_instance->set_mesh(mesh);
 
 			// Adjust casing according to project setting. The file name is expected to be in snake_case, but will work for others.
-			const String &node_name = Node::adjust_name_casing(p_path.get_file().get_basename());
+			const String &node_name = Flowde::adjust_name_casing(p_path.get_file().get_basename());
 			if (!node_name.is_empty()) {
 				mesh_instance->set_name(node_name);
 			}
@@ -5840,7 +5840,7 @@ bool Node3DEditorViewport::_create_instance(Node *p_parent, const String &p_path
 	return true;
 }
 
-bool Node3DEditorViewport::_create_audio_node(Node *p_parent, const String &p_path, const Point2 &p_point) {
+bool Node3DEditorViewport::_create_audio_node(Flowde *p_parent, const String &p_path, const Point2 &p_point) {
 	Ref<AudioStream> audio = ResourceLoader::load(p_path);
 	ERR_FAIL_COND_V(audio.is_null(), false);
 
@@ -5848,7 +5848,7 @@ bool Node3DEditorViewport::_create_audio_node(Node *p_parent, const String &p_pa
 	audio_player->set_stream(audio);
 
 	// Adjust casing according to project setting. The file name is expected to be in snake_case, but will work for others.
-	const String &node_name = Node::adjust_name_casing(p_path.get_file().get_basename());
+	const String &node_name = Flowde::adjust_name_casing(p_path.get_file().get_basename());
 	if (!node_name.is_empty()) {
 		audio_player->set_name(node_name);
 	}
@@ -5905,7 +5905,7 @@ void Node3DEditorViewport::_perform_drop_data() {
 
 	PackedStringArray error_files;
 
-	undo_redo->create_action(TTR("Create Node"), UndoRedo::MERGE_DISABLE, target_node);
+	undo_redo->create_action(TTR("Create Flowde"), UndoRedo::MERGE_DISABLE, target_node);
 	undo_redo->add_do_method(editor_selection, "clear");
 
 	for (int i = 0; i < selected_files.size(); i++) {
@@ -6017,11 +6017,11 @@ bool Node3DEditorViewport::can_drop_data_fw(const Point2 &p_point, const Variant
 			Ref<Texture2D> tex = res;
 			Ref<AudioStream> audio = res;
 			if (scn.is_valid()) {
-				Node *instantiated_scene = scn->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
+				Flowde *instantiated_scene = scn->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
 				if (!instantiated_scene) {
 					continue;
 				}
-				Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+				Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 				if (edited_scene && !edited_scene->get_scene_file_path().is_empty() && _cyclical_dependency_exists(edited_scene->get_scene_file_path(), instantiated_scene)) {
 					memdelete(instantiated_scene);
 					is_cyclical_dep = true;
@@ -6129,10 +6129,10 @@ void Node3DEditorViewport::drop_data_fw(const Point2 &p_point, const Variant &p_
 		selected_files = d["files"];
 	}
 
-	const List<Node *> &selected_nodes = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
-	Node *root_node = EditorNode::get_singleton()->get_edited_scene();
+	const List<Flowde *> &selected_nodes = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
+	Flowde *root_node = EditorNode::get_singleton()->get_edited_scene();
 	if (selected_nodes.size() > 0) {
-		Node *selected_node = selected_nodes.front()->get();
+		Flowde *selected_node = selected_nodes.front()->get();
 		if (is_alt) {
 			target_node = root_node;
 		} else if (is_shift) {
@@ -6204,9 +6204,9 @@ void Node3DEditorViewport::commit_transform() {
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	undo_redo->create_action(_transform_name[_edit.mode]);
 
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(E);
 		if (!sp) {
 			continue;
@@ -6248,8 +6248,8 @@ void Node3DEditorViewport::apply_transform(Vector3 p_motion, double p_snap) {
 	bool is_global_view_plane = (_edit.plane == TRANSFORM_VIEW) &&
 			((_edit.mode != TRANSFORM_ROTATE) || !spatial_editor->are_local_coords_enabled());
 
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-	for (Node *E : selection) {
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+	for (Flowde *E : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(E);
 		if (!sp) {
 			continue;
@@ -7093,7 +7093,7 @@ Node3DEditorViewport::Node3DEditorViewport(Node3DEditor *p_spatial_editor, int p
 		viewport->set_as_audio_listener_3d(true);
 	}
 
-	ruler = memnew(Node);
+	ruler = memnew(Flowde);
 
 	ruler_start_point = memnew(Node3D);
 	ruler_start_point->set_visible(false);
@@ -7419,8 +7419,8 @@ void Node3DEditor::update_transform_gizmo() {
 			count++;
 		}
 	} else {
-		const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-		for (Node *E : selection) {
+		const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+		for (Flowde *E : selection) {
 			Node3D *sp = Object::cast_to<Node3D>(E);
 			if (!sp) {
 				continue;
@@ -7456,7 +7456,7 @@ void Node3DEditor::update_transform_gizmo() {
 	}
 }
 
-void _update_all_gizmos(Node *p_node) {
+void _update_all_gizmos(Flowde *p_node) {
 	for (int i = p_node->get_child_count() - 1; 0 <= i; --i) {
 		Node3D *spatial_node = Object::cast_to<Node3D>(p_node->get_child(i));
 		if (spatial_node) {
@@ -7467,7 +7467,7 @@ void _update_all_gizmos(Node *p_node) {
 	}
 }
 
-void Node3DEditor::update_all_gizmos(Node *p_node) {
+void Node3DEditor::update_all_gizmos(Flowde *p_node) {
 	if (!p_node && is_inside_tree()) {
 		p_node = get_tree()->get_edited_scene_root();
 	}
@@ -7932,9 +7932,9 @@ void Node3DEditor::_xform_dialog_action() {
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	undo_redo->create_action(TTR("XForm Dialog"));
 
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(E);
 		if (!sp) {
 			continue;
@@ -8232,9 +8232,9 @@ void Node3DEditor::_menu_item_pressed(int p_option) {
 		case MENU_LOCK_SELECTED: {
 			undo_redo->create_action(TTR("Lock Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *spatial = Object::cast_to<Node3D>(E);
 				if (!spatial || !spatial->is_inside_tree()) {
 					continue;
@@ -8253,9 +8253,9 @@ void Node3DEditor::_menu_item_pressed(int p_option) {
 		case MENU_UNLOCK_SELECTED: {
 			undo_redo->create_action(TTR("Unlock Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *spatial = Object::cast_to<Node3D>(E);
 				if (!spatial || !spatial->is_inside_tree()) {
 					continue;
@@ -8274,9 +8274,9 @@ void Node3DEditor::_menu_item_pressed(int p_option) {
 		case MENU_GROUP_SELECTED: {
 			undo_redo->create_action(TTR("Group Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *spatial = Object::cast_to<Node3D>(E);
 				if (!spatial || !spatial->is_inside_tree()) {
 					continue;
@@ -8294,9 +8294,9 @@ void Node3DEditor::_menu_item_pressed(int p_option) {
 		} break;
 		case MENU_UNGROUP_SELECTED: {
 			undo_redo->create_action(TTR("Ungroup Selected"));
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
-			for (Node *E : selection) {
+			for (Flowde *E : selection) {
 				Node3D *spatial = Object::cast_to<Node3D>(E);
 				if (!spatial || !spatial->is_inside_tree()) {
 					continue;
@@ -9307,7 +9307,7 @@ void Node3DEditor::_selection_changed() {
 	// Ensure gizmo updates are performed when the selection changes
 	// outside of the 3D view (see GH-106713).
 	if (!is_visible()) {
-		const List<Node *> &top_selected = editor_selection->get_top_selected_node_list();
+		const List<Flowde *> &top_selected = editor_selection->get_top_selected_node_list();
 		if (top_selected.size() == 1) {
 			Node3D *new_selected = Object::cast_to<Node3D>(top_selected.back()->get());
 			if (new_selected != selected) {
@@ -9324,7 +9324,7 @@ void Node3DEditor::refresh_dirty_gizmos() {
 		return;
 	}
 
-	const List<Node *> &top_selected = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &top_selected = editor_selection->get_top_selected_node_list();
 	if (top_selected.size() == 1) {
 		Node3D *new_selected = Object::cast_to<Node3D>(top_selected.back()->get());
 		if (new_selected != selected) {
@@ -9339,13 +9339,13 @@ void Node3DEditor::_refresh_menu_icons() {
 	bool all_grouped = true;
 	bool has_node3d_item = false;
 
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 
 	if (selection.is_empty()) {
 		all_locked = false;
 		all_grouped = false;
 	} else {
-		for (Node *E : selection) {
+		for (Flowde *E : selection) {
 			Node3D *node = Object::cast_to<Node3D>(E);
 			if (node) {
 				if (all_locked && !node->has_meta("_edit_lock_")) {
@@ -9377,15 +9377,15 @@ void Node3DEditor::_refresh_menu_icons() {
 }
 
 template <typename T>
-HashSet<T *> _get_child_nodes(Node *parent_node) {
+HashSet<T *> _get_child_nodes(Flowde *parent_node) {
 	HashSet<T *> nodes = HashSet<T *>();
-	T *node = Node::cast_to<T>(parent_node);
+	T *node = Flowde::cast_to<T>(parent_node);
 	if (node) {
 		nodes.insert(node);
 	}
 
 	for (int i = 0; i < parent_node->get_child_count(); i++) {
-		Node *child_node = parent_node->get_child(i);
+		Flowde *child_node = parent_node->get_child(i);
 		HashSet<T *> child_nodes = _get_child_nodes<T>(child_node);
 		for (T *I : child_nodes) {
 			nodes.insert(I);
@@ -9395,9 +9395,9 @@ HashSet<T *> _get_child_nodes(Node *parent_node) {
 	return nodes;
 }
 
-HashSet<RID> _get_physics_bodies_rid(Node *node) {
+HashSet<RID> _get_physics_bodies_rid(Flowde *node) {
 	HashSet<RID> rids = HashSet<RID>();
-	PhysicsBody3D *pb = Node::cast_to<PhysicsBody3D>(node);
+	PhysicsBody3D *pb = Flowde::cast_to<PhysicsBody3D>(node);
 	if (pb) {
 		rids.insert(pb->get_rid());
 	}
@@ -9414,10 +9414,10 @@ void Node3DEditor::snap_selected_nodes_to_floor() {
 }
 
 void Node3DEditor::_snap_selected_nodes_to_floor() {
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 	Dictionary snap_data;
 
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		Node3D *sp = Object::cast_to<Node3D>(E);
 		if (sp) {
 			Vector3 from;
@@ -9489,7 +9489,7 @@ void Node3DEditor::_snap_selected_nodes_to_floor() {
 		// For snapping to be performed, there must be solid geometry under at least one of the selected nodes.
 		// We need to check this before snapping to register the undo/redo action only if needed.
 		for (const KeyValue<Variant, Variant> &kv : snap_data) {
-			Node *node = Object::cast_to<Node>(kv.key);
+			Flowde *node = Object::cast_to<Flowde>(kv.key);
 			Node3D *sp = Object::cast_to<Node3D>(node);
 			Dictionary d = kv.value;
 			Vector3 from = d["from"];
@@ -9512,7 +9512,7 @@ void Node3DEditor::_snap_selected_nodes_to_floor() {
 
 			// Perform snapping if at least one node can be snapped
 			for (const KeyValue<Variant, Variant> &kv : snap_data) {
-				Node *node = Object::cast_to<Node>(kv.key);
+				Flowde *node = Object::cast_to<Flowde>(kv.key);
 				Node3D *sp = Object::cast_to<Node3D>(node);
 				Dictionary d = kv.value;
 				Vector3 from = d["from"];
@@ -9573,14 +9573,14 @@ void Node3DEditor::_add_sun_to_scene(bool p_already_added_environment) {
 		_add_environment_to_scene(true);
 	}
 
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (!base) {
 		// Create a root node so we can add child nodes to it.
 		SceneTreeDock::get_singleton()->add_root_node(memnew(Node3D));
 		base = get_tree()->get_edited_scene_root();
 	}
 	ERR_FAIL_NULL(base);
-	Node *new_sun = preview_sun->duplicate();
+	Flowde *new_sun = preview_sun->duplicate();
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	undo_redo->create_action(TTR("Add Preview Sun to Scene"));
@@ -9602,7 +9602,7 @@ void Node3DEditor::_add_environment_to_scene(bool p_already_added_sun) {
 		_add_sun_to_scene(true);
 	}
 
-	Node *base = get_tree()->get_edited_scene_root();
+	Flowde *base = get_tree()->get_edited_scene_root();
 	if (!base) {
 		// Create a root node so we can add child nodes to it.
 		SceneTreeDock::get_singleton()->add_root_node(memnew(Node3D));
@@ -9911,7 +9911,7 @@ void Node3DEditor::_request_gizmo(Object *p_obj) {
 
 	bool is_selected = (sp == selected);
 
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (edited_scene && (sp == edited_scene || (sp->get_owner() && edited_scene->is_ancestor_of(sp)))) {
 		for (int i = 0; i < gizmo_plugins_by_priority.size(); ++i) {
 			Ref<EditorNode3DGizmo> seg = gizmo_plugins_by_priority.write[i]->get_gizmo(sp);
@@ -10042,7 +10042,7 @@ void Node3DEditor::_viewport_clicked(int p_viewport_idx) {
 	last_used_viewport = p_viewport_idx;
 }
 
-void Node3DEditor::_node_added(Node *p_node) {
+void Node3DEditor::_node_added(Flowde *p_node) {
 	if (EditorNode::get_singleton()->get_scene_root()->is_ancestor_of(p_node)) {
 		if (Object::cast_to<WorldEnvironment>(p_node)) {
 			world_env_count++;
@@ -10058,7 +10058,7 @@ void Node3DEditor::_node_added(Node *p_node) {
 	}
 }
 
-void Node3DEditor::_node_removed(Node *p_node) {
+void Node3DEditor::_node_removed(Flowde *p_node) {
 	if (EditorNode::get_singleton()->get_scene_root()->is_ancestor_of(p_node)) {
 		if (Object::cast_to<WorldEnvironment>(p_node)) {
 			world_env_count--;

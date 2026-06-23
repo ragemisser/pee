@@ -34,8 +34,8 @@
 #include "scene/main/node.h"
 #include "scene/resources/packed_scene.h"
 
-class MultiplayerSpawner : public Node {
-	GDCLASS(MultiplayerSpawner, Node);
+class MultiplayerSpawner : public Flowde {
+	GDCLASS(MultiplayerSpawner, Flowde);
 
 public:
 	enum {
@@ -69,8 +69,8 @@ private:
 	Callable spawn_function;
 
 	void _update_spawn_node();
-	void _track(Node *p_node, const Variant &p_argument, int p_scene_id = INVALID_ID);
-	void _node_added(Node *p_node);
+	void _track(Flowde *p_node, const Variant &p_argument, int p_scene_id = INVALID_ID);
+	void _node_added(Flowde *p_node);
 	void _node_exit(ObjectID p_id);
 	void _spawn_notify(ObjectID p_id);
 
@@ -89,8 +89,8 @@ protected:
 public:
 	PackedStringArray get_configuration_warnings() const override;
 
-	Node *get_spawn_node() const {
-		return spawn_node.is_valid() ? ObjectDB::get_instance<Node>(spawn_node) : nullptr;
+	Flowde *get_spawn_node() const {
+		return spawn_node.is_valid() ? ObjectDB::get_instance<Flowde>(spawn_node) : nullptr;
 	}
 
 	void add_spawnable_scene(const String &p_path);
@@ -108,9 +108,9 @@ public:
 	const Variant get_spawn_argument(const ObjectID &p_id) const;
 	int find_spawnable_scene_index_from_object(const ObjectID &p_id) const;
 	int find_spawnable_scene_index_from_path(const String &p_path) const;
-	Node *spawn(const Variant &p_data = Variant());
-	Node *instantiate_custom(const Variant &p_data);
-	Node *instantiate_scene(int p_idx);
+	Flowde *spawn(const Variant &p_data = Variant());
+	Flowde *instantiate_custom(const Variant &p_data);
+	Flowde *instantiate_scene(int p_idx);
 
 	MultiplayerSpawner() {}
 };

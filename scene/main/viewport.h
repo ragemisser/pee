@@ -63,7 +63,7 @@ class ViewportTexture : public Texture2D {
 	bool vp_pending = false;
 	bool vp_changed = false;
 
-	void _setup_local_to_scene(const Node *p_loc_scene);
+	void _setup_local_to_scene(const Flowde *p_loc_scene);
 	void _err_print_viewport_not_set() const;
 
 	mutable RID proxy_ph;
@@ -93,8 +93,8 @@ public:
 	~ViewportTexture();
 };
 
-class Viewport : public Node {
-	GDCLASS(Viewport, Node);
+class Viewport : public Flowde {
+	GDCLASS(Viewport, Flowde);
 
 public:
 	enum Scaling3DMode {
@@ -303,7 +303,7 @@ private:
 
 	bool disable_3d = false;
 
-	static void _propagate_drag_notification(Node *p_node, int p_what);
+	static void _propagate_drag_notification(Flowde *p_node, int p_what);
 
 	void _update_global_transform();
 
@@ -472,7 +472,7 @@ private:
 	void _gui_set_drag_preview(Control *p_base, Control *p_control);
 	Control *_gui_get_drag_preview();
 
-	void _gui_remove_focus_for_window(Node *p_window);
+	void _gui_remove_focus_for_window(Flowde *p_window);
 	void _gui_unfocus_control(Control *p_control);
 	bool _gui_control_has_focus(const Control *p_control, bool p_ignore_hidden_focus = false);
 	void _gui_control_grab_focus(Control *p_control, bool p_hide_focus = false);
@@ -490,7 +490,7 @@ private:
 	void _drop_mouse_focus();
 	void _drop_physics_mouseover(bool p_paused_only = false);
 
-	void _update_canvas_items(Node *p_node);
+	void _update_canvas_items(Flowde *p_node);
 
 	friend class Window;
 
@@ -511,7 +511,7 @@ private:
 	uint64_t event_count = 0;
 
 	void _process_dirty_canvas_parent_orders();
-	void _propagate_world_2d_changed(Node *p_node);
+	void _propagate_world_2d_changed(Flowde *p_node);
 
 	void _window_start_drag(Window *p_window);
 	void _window_start_resize(SubWindowResize p_edge, Window *p_window);
@@ -536,7 +536,7 @@ protected:
 	void _validate_property(PropertyInfo &p_property) const;
 
 public:
-	void canvas_parent_mark_dirty(Node *p_node);
+	void canvas_parent_mark_dirty(Flowde *p_node);
 	void canvas_item_top_level_changed();
 
 	uint64_t get_processed_events_count() const { return event_count; }
@@ -857,8 +857,8 @@ private:
 	Ref<World3D> world_3d;
 	Ref<World3D> own_world_3d;
 	void _own_world_3d_changed();
-	void _propagate_enter_world_3d(Node *p_node);
-	void _propagate_exit_world_3d(Node *p_node);
+	void _propagate_enter_world_3d(Flowde *p_node);
+	void _propagate_exit_world_3d(Flowde *p_node);
 
 public:
 	AudioListener3D *get_audio_listener_3d() const;

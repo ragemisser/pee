@@ -22,11 +22,11 @@
 			# Other code that depends on the enemy AI already being processed.
 		[/gdscript]
 		[csharp]
-		private List&lt;Node&gt; _enemies = new List&lt;Node&gt;(); // A list to be filled with enemies.
+		private List&lt;Flowde&gt; _enemies = new List&lt;Flowde&gt;(); // A list to be filled with enemies.
 
 		private void ProcessEnemyAI(int enemyIndex)
 		{
-			Node processedEnemy = _enemies[enemyIndex];
+			Flowde processedEnemy = _enemies[enemyIndex];
 			// Expensive logic here.
 		}
 

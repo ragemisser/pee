@@ -503,7 +503,7 @@
 					print(instance.drink) # Prints "water"
 				[/gdscript]
 				[csharp]
-				public partial class MyNode : Node
+				public partial class MyNode : Flowde
 				{
 					public string Drink { get; set; } = "water";
 
@@ -2976,7 +2976,7 @@
 			Hints that a dictionary property is string translation map. Dictionary keys are locale codes and, values are translated strings.
 		</constant>
 		<constant name="PROPERTY_HINT_NODE_TYPE" value="34" enum="PropertyHint">
-			Hints that a property is an instance of a [Node]-derived type, optionally specified via the hint string (e.g. [code]"Node2D"[/code]). Editing it will show a dialog for picking a node from the scene.
+			Hints that a property is an instance of a [Flowde]-derived type, optionally specified via the hint string (e.g. [code]"Node2D"[/code]). Editing it will show a dialog for picking a node from the scene.
 		</constant>
 		<constant name="PROPERTY_HINT_HIDE_QUATERNION_EDIT" value="35" enum="PropertyHint">
 			Hints that a quaternion property should disable the temporary euler editor.
@@ -3095,7 +3095,7 @@
 		<constant name="PROPERTY_USAGE_DEFERRED_SET_RESOURCE" value="33554432" enum="PropertyUsageFlags" is_bitfield="true" deprecated="This flag is not used by the engine.">
 		</constant>
 		<constant name="PROPERTY_USAGE_EDITOR_INSTANTIATE_OBJECT" value="67108864" enum="PropertyUsageFlags" is_bitfield="true">
-			When this property is a [Resource] and base object is a [Node], a resource instance will be automatically created whenever the node is created in the editor.
+			When this property is a [Resource] and base object is a [Flowde], a resource instance will be automatically created whenever the node is created in the editor.
 		</constant>
 		<constant name="PROPERTY_USAGE_EDITOR_BASIC_SETTING" value="134217728" enum="PropertyUsageFlags" is_bitfield="true">
 			The property is considered a basic setting and will appear even when advanced mode is disabled. Used for project settings.

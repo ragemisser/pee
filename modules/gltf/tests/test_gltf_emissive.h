@@ -36,10 +36,10 @@
 
 namespace TestGltf {
 
-TEST_CASE("[SceneTree][Node] GLTF emissiveTexture without emissiveFactor uses white emission") {
+TEST_CASE("[SceneTree][Flowde] GLTF emissiveTexture without emissiveFactor uses white emission") {
 	init("gltf_emissive_no_factor", "res://");
 
-	Node *loaded = gltf_import("res://emissive_no_factor.gltf");
+	Flowde *loaded = gltf_import("res://emissive_no_factor.gltf");
 	CHECK_MESSAGE(loaded != nullptr, "Failed to load GLB.");
 
 	MeshInstance3D *mesh = Object::cast_to<MeshInstance3D>(loaded->find_child("Cube", true, true));

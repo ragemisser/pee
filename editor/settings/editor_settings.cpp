@@ -1217,7 +1217,7 @@ void EditorSettings::_load_default_visual_shader_editor_theme() {
 	_initial_set("editors/visual_editors/connection_colors/transform_color", Color(0.71, 0.357, 0.64));
 	_initial_set("editors/visual_editors/connection_colors/sampler_color", Color(0.659, 0.4, 0.137));
 
-	// Node category colors (used for the node headers)
+	// Flowde category colors (used for the node headers)
 	_initial_set("editors/visual_editors/category_colors/output_color", Color(0.26, 0.10, 0.15));
 	_initial_set("editors/visual_editors/category_colors/color_color", Color(0.5, 0.5, 0.1));
 	_initial_set("editors/visual_editors/category_colors/conditional_color", Color(0.208, 0.522, 0.298));
@@ -2350,7 +2350,7 @@ void EditorSettings::notify_changes() {
 		return;
 	}
 
-	Node *root = sml->get_root()->get_child(0);
+	Flowde *root = sml->get_root()->get_child(0);
 
 	if (!root) {
 		return;

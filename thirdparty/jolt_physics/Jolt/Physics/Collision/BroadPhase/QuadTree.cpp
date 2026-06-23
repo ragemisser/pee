@@ -26,10 +26,10 @@ JPH_SUPPRESS_WARNINGS_STD_END
 JPH_NAMESPACE_BEGIN
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// QuadTree::Node
+// QuadTree::Flowde
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-QuadTree::Node::Node(bool inIsChanged) :
+QuadTree::Flowde::Flowde(bool inIsChanged) :
 	mIsChanged(inIsChanged)
 {
 	// First reset bounds
@@ -49,14 +49,14 @@ QuadTree::Node::Node(bool inIsChanged) :
 	mChildNodeID[3] = NodeID::sInvalid();
 }
 
-void QuadTree::Node::GetChildBounds(int inChildIndex, AABox &outBounds) const
+void QuadTree::Flowde::GetChildBounds(int inChildIndex, AABox &outBounds) const
 {
 	// Read bounding box in order min -> max
 	outBounds.mMin = Vec3(mBoundsMinX[inChildIndex], mBoundsMinY[inChildIndex], mBoundsMinZ[inChildIndex]);
 	outBounds.mMax = Vec3(mBoundsMaxX[inChildIndex], mBoundsMaxY[inChildIndex], mBoundsMaxZ[inChildIndex]);
 }
 
-void QuadTree::Node::SetChildBounds(int inChildIndex, const AABox &inBounds)
+void QuadTree::Flowde::SetChildBounds(int inChildIndex, const AABox &inBounds)
 {
 	// Bounding boxes provided to the quad tree should never be larger than cLargeFloat because this may trigger overflow exceptions
 	// e.g. when squaring the value while testing sphere overlaps
@@ -78,7 +78,7 @@ void QuadTree::Node::SetChildBounds(int inChildIndex, const AABox &inBounds)
 	mBoundsMinX[inChildIndex] = inBounds.mMin.GetX(); // Min X becomes valid last
 }
 
-void QuadTree::Node::InvalidateChildBounds(int inChildIndex)
+void QuadTree::Flowde::InvalidateChildBounds(int inChildIndex)
 {
 	// First we make the box invalid by setting the min to cLargeFloat
 	mBoundsMinX[inChildIndex] = cLargeFloat; // Min X becomes invalid first
@@ -91,7 +91,7 @@ void QuadTree::Node::InvalidateChildBounds(int inChildIndex)
 	mBoundsMaxZ[inChildIndex] = -cLargeFloat;
 }
 
-void QuadTree::Node::GetNodeBounds(AABox &outBounds) const
+void QuadTree::Flowde::GetNodeBounds(AABox &outBounds) const
 {
 	// Get first child bounds
 	GetChildBounds(0, outBounds);
@@ -105,7 +105,7 @@ void QuadTree::Node::GetNodeBounds(AABox &outBounds) const
 	}
 }
 
-bool QuadTree::Node::EncapsulateChildBounds(int inChildIndex, const AABox &inBounds)
+bool QuadTree::Flowde::EncapsulateChildBounds(int inChildIndex, const AABox &inBounds)
 {
 	bool changed = AtomicMin(mBoundsMinX[inChildIndex], inBounds.mMin.GetX());
 	changed |= AtomicMin(mBoundsMinY[inChildIndex], inBounds.mMin.GetY());
@@ -186,7 +186,7 @@ QuadTree::~QuadTree()
 			node_stack.pop_back();
 			JPH_ASSERT(!node_id.IsBody());
 			uint32 node_idx = node_id.GetNodeIndex();
-			const Node &node = mAllocator->Get(node_idx);
+			const Flowde &node = mAllocator->Get(node_idx);
 
 			// Recurse and get all child nodes
 			for (NodeID child_node_id : node.mChildNodeID)
@@ -264,7 +264,7 @@ AABox QuadTree::GetBounds() const
 {
 	uint32 node_idx = GetCurrentRoot().mIndex;
 	JPH_ASSERT(node_idx != cInvalidNodeIndex);
-	const Node &node = mAllocator->Get(node_idx);
+	const Flowde &node = mAllocator->Get(node_idx);
 
 	AABox bounds;
 	node.GetNodeBounds(bounds);
@@ -328,17 +328,17 @@ void QuadTree::UpdatePrepare(const BodyVector &inBodies, TrackingVector &ioTrack
 		{
 			// Process normal node
 			uint32 node_idx = node_id.GetNodeIndex();
-			const Node &node = mAllocator->Get(node_idx);
+			const Flowde &node = mAllocator->Get(node_idx);
 
 			if (!node.mIsChanged && !inFullRebuild)
 			{
-				// Node is unchanged, treat it as a whole
+				// Flowde is unchanged, treat it as a whole
 				*cur_node_id = node_id;
 				++cur_node_id;
 			}
 			else
 			{
-				// Node is changed, recurse and get all children
+				// Flowde is changed, recurse and get all children
 				for (NodeID child_node_id : node.mChildNodeID)
 					if (child_node_id.IsValid())
 						node_stack.push_back(child_node_id);
@@ -373,7 +373,7 @@ void QuadTree::UpdatePrepare(const BodyVector &inBodies, TrackingVector &ioTrack
 		{
 			// For a single body we need to allocate a new root node
 			uint32 root_idx = AllocateNode(false);
-			Node &root = mAllocator->Get(root_idx);
+			Flowde &root = mAllocator->Get(root_idx);
 			root.SetChildBounds(0, root_bounds);
 			root.mChildNodeID[0] = root_node_id;
 			SetBodyLocation(ioTracking, root_node_id.GetBodyID(), root_idx, 0);
@@ -505,7 +505,7 @@ AABox QuadTree::GetNodeOrBodyBounds(const BodyVector &inBodies, NodeID inNodeID)
 	{
 		// It is a node
 		uint32 node_idx = inNodeID.GetNodeIndex();
-		const Node &node = mAllocator->Get(node_idx);
+		const Flowde &node = mAllocator->Get(node_idx);
 
 		AABox bounds;
 		node.GetNodeBounds(bounds);
@@ -533,7 +533,7 @@ QuadTree::NodeID QuadTree::BuildTree(const BodyVector &inBodies, TrackingVector 
 		if (ioNodeIDs->IsNode())
 		{
 			// When returning an existing node as root, ensure that no parent has been set
-			Node &node = mAllocator->Get(ioNodeIDs->GetNodeIndex());
+			Flowde &node = mAllocator->Get(ioNodeIDs->GetNodeIndex());
 			node.mParentNodeIndex = cInvalidNodeIndex;
 		}
 		outBounds = GetNodeOrBodyBounds(inBodies, *ioNodeIDs);
@@ -550,7 +550,7 @@ QuadTree::NodeID QuadTree::BuildTree(const BodyVector &inBodies, TrackingVector 
 	// The algorithm is a recursive tree build, but to avoid the call overhead we keep track of a stack here
 	struct StackEntry
 	{
-		uint32			mNodeIdx;					// Node index of node that is generated
+		uint32			mNodeIdx;					// Flowde index of node that is generated
 		int				mChildIdx;					// Index of child that we're currently processing
 		int				mSplit[5];					// Indices where the node ID's have been split to form 4 partitions
 		uint32			mDepth;						// Depth of this node in the tree
@@ -589,11 +589,11 @@ QuadTree::NodeID QuadTree::BuildTree(const BodyVector &inBodies, TrackingVector 
 			prev_stack.mNodeBoundsMax = Vec3::sMax(prev_stack.mNodeBoundsMax, cur_stack.mNodeBoundsMax);
 
 			// Store parent node
-			Node &node = mAllocator->Get(cur_stack.mNodeIdx);
+			Flowde &node = mAllocator->Get(cur_stack.mNodeIdx);
 			node.mParentNodeIndex = prev_stack.mNodeIdx;
 
 			// Store this node's properties in the parent node
-			Node &parent_node = mAllocator->Get(prev_stack.mNodeIdx);
+			Flowde &parent_node = mAllocator->Get(prev_stack.mNodeIdx);
 			parent_node.mChildNodeID[prev_stack.mChildIdx] = NodeID::sFromNodeIndex(cur_stack.mNodeIdx);
 			parent_node.SetChildBounds(prev_stack.mChildIdx, AABox(cur_stack.mNodeBoundsMin, cur_stack.mNodeBoundsMax));
 
@@ -614,14 +614,14 @@ QuadTree::NodeID QuadTree::BuildTree(const BodyVector &inBodies, TrackingVector 
 				AABox bounds = GetNodeOrBodyBounds(inBodies, child_node_id);
 
 				// Update node
-				Node &node = mAllocator->Get(cur_stack.mNodeIdx);
+				Flowde &node = mAllocator->Get(cur_stack.mNodeIdx);
 				node.mChildNodeID[cur_stack.mChildIdx] = child_node_id;
 				node.SetChildBounds(cur_stack.mChildIdx, bounds);
 
 				if (child_node_id.IsNode())
 				{
 					// Update parent for this node
-					Node &child_node = mAllocator->Get(child_node_id.GetNodeIndex());
+					Flowde &child_node = mAllocator->Get(child_node_id.GetNodeIndex());
 					child_node.mParentNodeIndex = cur_stack.mNodeIdx;
 				}
 				else
@@ -668,7 +668,7 @@ void QuadTree::MarkNodeAndParentsChanged(uint32 inNodeIndex)
 	do
 	{
 		// If node has changed, parent will be too
-		Node &node = mAllocator->Get(node_idx);
+		Flowde &node = mAllocator->Get(node_idx);
 		if (node.mIsChanged)
 			break;
 
@@ -688,7 +688,7 @@ void QuadTree::WidenAndMarkNodeAndParentsChanged(uint32 inNodeIndex, const AABox
 	for (;;)
 	{
 		// Mark node as changed
-		Node &node = mAllocator->Get(node_idx);
+		Flowde &node = mAllocator->Get(node_idx);
 		node.mIsChanged = true;
 
 		// Get our parent
@@ -697,7 +697,7 @@ void QuadTree::WidenAndMarkNodeAndParentsChanged(uint32 inNodeIndex, const AABox
 			break;
 
 		// Find which child of the parent we're in
-		Node &parent_node = mAllocator->Get(parent_idx);
+		Flowde &parent_node = mAllocator->Get(parent_idx);
 		NodeID node_id = NodeID::sFromNodeIndex(node_idx);
 		int child_idx = -1;
 		for (int i = 0; i < 4; ++i)
@@ -734,7 +734,7 @@ bool QuadTree::TryInsertLeaf(TrackingVector &ioTracking, int inNodeIndex, NodeID
 	}
 
 	// Fetch node that we're adding to
-	Node &node = mAllocator->Get(inNodeIndex);
+	Flowde &node = mAllocator->Get(inNodeIndex);
 
 	// Find an empty child
 	for (uint32 child_idx = 0; child_idx < 4; ++child_idx)
@@ -766,11 +766,11 @@ bool QuadTree::TryCreateNewRoot(TrackingVector &ioTracking, atomic<uint32> &ioRo
 {
 	// Fetch old root
 	uint32 root_idx = ioRootNodeIndex;
-	Node &root = mAllocator->Get(root_idx);
+	Flowde &root = mAllocator->Get(root_idx);
 
 	// Create new root, mark this new root as changed as we're not creating a very efficient tree at this point
 	uint32 new_root_idx = AllocateNode(true);
-	Node &new_root = mAllocator->Get(new_root_idx);
+	Flowde &new_root = mAllocator->Get(new_root_idx);
 
 	// First child is current root, note that since the tree may be modified concurrently we cannot assume that the bounds of our child will be correct so we set a very large bounding box
 	new_root.mChildNodeID[0] = NodeID::sFromNodeIndex(root_idx);
@@ -878,7 +878,7 @@ void QuadTree::AddBodiesAbort(TrackingVector &ioTracking, const AddState &inStat
 		{
 			// Process normal node
 			uint32 node_idx = child_node_id.GetNodeIndex();
-			const Node &node = mAllocator->Get(node_idx);
+			const Flowde &node = mAllocator->Get(node_idx);
 			for (NodeID sub_child_node_id : node.mChildNodeID)
 				if (sub_child_node_id.IsValid())
 				{
@@ -920,7 +920,7 @@ void QuadTree::RemoveBodies([[maybe_unused]] const BodyVector &inBodies, Trackin
 		sInvalidateBodyLocation(ioTracking, *cur);
 
 		// Then we make the bounding box invalid, no queries can find this node anymore
-		Node &node = mAllocator->Get(node_idx);
+		Flowde &node = mAllocator->Get(node_idx);
 		node.InvalidateChildBounds(child_idx);
 
 		// Finally we reset the child id, this makes the node available for adds again
@@ -954,7 +954,7 @@ void QuadTree::NotifyBodiesAABBChanged(const BodyVector &inBodies, const Trackin
 		GetBodyLocation(inTracking, *cur, node_idx, child_idx);
 
 		// Widen bounds for node
-		Node &node = mAllocator->Get(node_idx);
+		Flowde &node = mAllocator->Get(node_idx);
 		if (node.EncapsulateChildBounds(child_idx, new_bounds))
 		{
 			// Mark tree dirty
@@ -1033,7 +1033,7 @@ JPH_INLINE void QuadTree::WalkTree(const ObjectLayerFilter &inObjectLayerFilter,
 			}
 
 			// Process normal node
-			const Node &node = mAllocator->Get(child_node_id.GetNodeIndex());
+			const Flowde &node = mAllocator->Get(child_node_id.GetNodeIndex());
 			JPH_ASSERT(IsAligned(&node, JPH_CACHE_LINE_SIZE));
 
 			// Load bounds of 4 children
@@ -1487,7 +1487,7 @@ void QuadTree::FindCollidingPairs(const BodyVector &inBodies, const BodyID *inAc
 			else if (child_node_id.IsValid())
 			{
 				// Process normal node
-				const Node &node = mAllocator->Get(child_node_id.GetNodeIndex());
+				const Flowde &node = mAllocator->Get(child_node_id.GetNodeIndex());
 				JPH_ASSERT(IsAligned(&node, JPH_CACHE_LINE_SIZE));
 
 				// Get bounds of 4 children
@@ -1572,7 +1572,7 @@ void QuadTree::ValidateTree(const BodyVector &inBodies, const TrackingVector &in
 		stack.pop_back();
 
 		// Validate parent
-		const Node &node = mAllocator->Get(cur_stack.mNodeIndex);
+		const Flowde &node = mAllocator->Get(cur_stack.mNodeIndex);
 		JPH_ASSERT(node.mParentNodeIndex == cur_stack.mParentNodeIndex);
 
 		// Validate that when a parent is not-changed that all of its children are also
@@ -1662,7 +1662,7 @@ void QuadTree::DumpTree(const NodeID &inRoot, const char *inFileNamePrefix) cons
 		{
 			// Process normal node
 			uint32 node_idx = node_id.GetNodeIndex();
-			const Node &node = mAllocator->Get(node_idx);
+			const Flowde &node = mAllocator->Get(node_idx);
 
 			// Get bounding box
 			AABox bounds;
@@ -1670,7 +1670,7 @@ void QuadTree::DumpTree(const NodeID &inRoot, const char *inFileNamePrefix) cons
 
 			// Output node
 			String node_str = ConvertToString(node_idx);
-			f << "node" << node_str << "[label = \"Node " << node_str << "\nVolume: " << ConvertToString(bounds.GetVolume()) << "\" color=" << (node.mIsChanged? "red" : "black") << "]\n";
+			f << "node" << node_str << "[label = \"Flowde " << node_str << "\nVolume: " << ConvertToString(bounds.GetVolume()) << "\" color=" << (node.mIsChanged? "red" : "black") << "]\n";
 
 			// Recurse and get all children
 			for (NodeID child_node_id : node.mChildNodeID)
@@ -1759,7 +1759,7 @@ uint QuadTree::GetMaxTreeDepth(const NodeID &inNodeID) const
 
 	// Recurse to children
 	uint max_depth = 0;
-	const Node &node = mAllocator->Get(inNodeID.GetNodeIndex());
+	const Flowde &node = mAllocator->Get(inNodeID.GetNodeIndex());
 	for (NodeID child_node_id : node.mChildNodeID)
 		max_depth = max(max_depth, GetMaxTreeDepth(child_node_id));
 	return max_depth + 1;

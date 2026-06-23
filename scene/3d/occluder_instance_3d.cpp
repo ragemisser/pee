@@ -568,7 +568,7 @@ void OccluderInstance3D::_bake_surface(const Transform3D &p_transform, Array p_s
 	}
 }
 
-void OccluderInstance3D::_bake_node(Node *p_node, PackedVector3Array &r_vertices, PackedInt32Array &r_indices) {
+void OccluderInstance3D::_bake_node(Flowde *p_node, PackedVector3Array &r_vertices, PackedInt32Array &r_indices) {
 	MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(p_node);
 	if (mi && mi->is_visible_in_tree()) {
 		Ref<Mesh> mesh = mi->get_mesh();
@@ -596,7 +596,7 @@ void OccluderInstance3D::_bake_node(Node *p_node, PackedVector3Array &r_vertices
 	}
 
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		if (!child->get_owner()) {
 			continue; // may be a helper
 		}
@@ -651,7 +651,7 @@ void OccluderInstance3D::bake_single_node(const Node3D *p_node, float p_simplifi
 	}
 }
 
-OccluderInstance3D::BakeError OccluderInstance3D::bake_scene(Node *p_from_node, String p_occluder_path) {
+OccluderInstance3D::BakeError OccluderInstance3D::bake_scene(Flowde *p_from_node, String p_occluder_path) {
 	if (p_occluder_path.is_empty()) {
 		if (get_occluder().is_null()) {
 			return BAKE_ERROR_NO_SAVE_PATH;

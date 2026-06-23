@@ -58,7 +58,7 @@ void EditorPropertyRootMotion::_node_assign() {
 		return;
 	}
 
-	Node *base = mixer->get_node(mixer->get_root_node());
+	Flowde *base = mixer->get_node(mixer->get_root_node());
 
 	if (!base) {
 		EditorNode::get_singleton()->show_warning(TTR("AnimationMixer has no valid root node path, so unable to retrieve track names."));
@@ -105,7 +105,7 @@ void EditorPropertyRootMotion::_node_assign() {
 				ti->set_editable(0, false);
 
 				if (base->has_node(accum)) {
-					Node *node = base->get_node(accum);
+					Flowde *node = base->get_node(accum);
 					ti->set_icon(0, EditorNode::get_singleton()->get_object_icon(node));
 				}
 
@@ -114,7 +114,7 @@ void EditorPropertyRootMotion::_node_assign() {
 			}
 		}
 
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 		if (base->has_node(accum)) {
 			node = base->get_node(accum);
 		}

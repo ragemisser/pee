@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationMixer" inherits="Node" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationMixer" inherits="Flowde" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Base class for [AnimationPlayer] and [AnimationTree].
 	</brief_description>
@@ -371,10 +371,10 @@
 	</signals>
 	<constants>
 		<constant name="ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS" value="0" enum="AnimationCallbackModeProcess">
-			Process animation during physics frames (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
+			Process animation during physics frames (see [constant Flowde.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
 		</constant>
 		<constant name="ANIMATION_CALLBACK_MODE_PROCESS_IDLE" value="1" enum="AnimationCallbackModeProcess">
-			Process animation during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
+			Process animation during process frames (see [constant Flowde.NOTIFICATION_INTERNAL_PROCESS]).
 		</constant>
 		<constant name="ANIMATION_CALLBACK_MODE_PROCESS_MANUAL" value="2" enum="AnimationCallbackModeProcess">
 			Do not process animation. Use [method advance] to process the animation manually.

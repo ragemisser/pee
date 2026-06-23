@@ -49,7 +49,7 @@ class ConnectionInfoDialog : public AcceptDialog {
 	virtual void ok_pressed() override;
 
 public:
-	void popup_connections(const String &p_method, const Vector<Node *> &p_nodes);
+	void popup_connections(const String &p_method, const Vector<Flowde *> &p_nodes);
 
 	ConnectionInfoDialog();
 };

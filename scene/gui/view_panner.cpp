@@ -244,7 +244,7 @@ void ViewPanner::setup(ControlScheme p_scheme, Ref<Shortcut> p_shortcut, bool p_
 	set_simple_panning_enabled(p_simple_panning);
 }
 
-void ViewPanner::setup_warped_panning(Node *p_owner, bool p_allowed) {
+void ViewPanner::setup_warped_panning(Flowde *p_owner, bool p_allowed) {
 	warped_panning_owner = p_allowed ? p_owner : nullptr;
 }
 

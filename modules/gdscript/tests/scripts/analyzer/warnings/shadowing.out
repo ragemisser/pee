@@ -1,7 +1,7 @@
 GDTEST_OK
 ~~ WARNING at line 6: (SHADOWED_GLOBAL_IDENTIFIER) The variable "print_debug" has the same name as a built-in function.
 ~~ WARNING at line 12: (SHADOWED_GLOBAL_IDENTIFIER) The variable "Array" has the same name as a built-in type.
-~~ WARNING at line 13: (SHADOWED_GLOBAL_IDENTIFIER) The variable "Node" has the same name as a native class.
+~~ WARNING at line 13: (SHADOWED_GLOBAL_IDENTIFIER) The variable "Flowde" has the same name as a native class.
 ~~ WARNING at line 14: (SHADOWED_GLOBAL_IDENTIFIER) The variable "is_same" has the same name as a built-in function.
 ~~ WARNING at line 15: (SHADOWED_GLOBAL_IDENTIFIER) The variable "sqrt" has the same name as a built-in function.
 ~~ WARNING at line 16: (SHADOWED_VARIABLE) The local variable "member" is shadowing an already-declared variable at line 4 in the current class.

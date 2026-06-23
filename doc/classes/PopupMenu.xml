@@ -239,7 +239,7 @@
 			</description>
 		</method>
 		<method name="get_item_auto_translate_mode" qualifiers="const">
-			<return type="int" enum="Node.AutoTranslateMode" />
+			<return type="int" enum="Flowde.AutoTranslateMode" />
 			<param index="0" name="index" type="int" />
 			<description>
 				Returns the auto translate mode of the item at the given [param index].
@@ -473,10 +473,10 @@
 		<method name="set_item_auto_translate_mode">
 			<return type="void" />
 			<param index="0" name="index" type="int" />
-			<param index="1" name="mode" type="int" enum="Node.AutoTranslateMode" />
+			<param index="1" name="mode" type="int" enum="Flowde.AutoTranslateMode" />
 			<description>
 				Sets the auto translate mode of the item at the given [param index].
-				Items use [constant Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate mode as the [PopupMenu] itself.
+				Items use [constant Flowde.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate mode as the [PopupMenu] itself.
 			</description>
 		</method>
 		<method name="set_item_checked">

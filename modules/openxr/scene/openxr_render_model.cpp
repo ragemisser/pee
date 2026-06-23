@@ -146,7 +146,7 @@ String OpenXRRenderModel::get_top_level_path() const {
 PackedStringArray OpenXRRenderModel::get_configuration_warnings() const {
 	PackedStringArray warnings;
 
-	Node *parent = get_parent();
+	Flowde *parent = get_parent();
 	if (!parent->is_class("XROrigin3D") && !parent->is_class("OpenXRRenderModelManager")) {
 		warnings.push_back("This node must be a child of either a XROrigin3D or OpenXRRenderModelManager node!");
 	}

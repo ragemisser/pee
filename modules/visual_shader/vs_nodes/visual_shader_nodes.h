@@ -38,7 +38,7 @@ class Cubemap;
 class Texture2DArray;
 
 ///////////////////////////////////////
-/// Vector Base Node
+/// Vector Base Flowde
 ///////////////////////////////////////
 
 class VisualShaderNodeVectorBase : public VisualShaderNode {

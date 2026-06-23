@@ -179,32 +179,32 @@ void GDScriptEditorTranslationParserPlugin::_traverse_block(const GDScriptParser
 		return;
 	}
 
-	const Vector<GDScriptParser::Node *> &statements = p_suite->statements;
+	const Vector<GDScriptParser::Flowde *> &statements = p_suite->statements;
 	for (int i = 0; i < statements.size(); i++) {
-		const GDScriptParser::Node *statement = statements[i];
+		const GDScriptParser::Flowde *statement = statements[i];
 
 		// BREAK, BREAKPOINT, CONSTANT, CONTINUE, and PASS are skipped because they can't contain translatable strings.
 		switch (statement->type) {
-			case GDScriptParser::Node::ASSERT: {
+			case GDScriptParser::Flowde::ASSERT: {
 				const GDScriptParser::AssertNode *assert_node = static_cast<const GDScriptParser::AssertNode *>(statement);
 				_assess_expression(assert_node->condition);
 				_assess_expression(assert_node->message);
 			} break;
-			case GDScriptParser::Node::ASSIGNMENT: {
+			case GDScriptParser::Flowde::ASSIGNMENT: {
 				_assess_assignment(static_cast<const GDScriptParser::AssignmentNode *>(statement));
 			} break;
-			case GDScriptParser::Node::FOR: {
+			case GDScriptParser::Flowde::FOR: {
 				const GDScriptParser::ForNode *for_node = static_cast<const GDScriptParser::ForNode *>(statement);
 				_assess_expression(for_node->list);
 				_traverse_block(for_node->loop);
 			} break;
-			case GDScriptParser::Node::IF: {
+			case GDScriptParser::Flowde::IF: {
 				const GDScriptParser::IfNode *if_node = static_cast<const GDScriptParser::IfNode *>(statement);
 				_assess_expression(if_node->condition);
 				_traverse_block(if_node->true_block);
 				_traverse_block(if_node->false_block);
 			} break;
-			case GDScriptParser::Node::MATCH: {
+			case GDScriptParser::Flowde::MATCH: {
 				const GDScriptParser::MatchNode *match_node = static_cast<const GDScriptParser::MatchNode *>(statement);
 				_assess_expression(match_node->test);
 				for (int j = 0; j < match_node->branches.size(); j++) {
@@ -212,13 +212,13 @@ void GDScriptEditorTranslationParserPlugin::_traverse_block(const GDScriptParser
 					_traverse_block(match_node->branches[j]->block);
 				}
 			} break;
-			case GDScriptParser::Node::RETURN: {
+			case GDScriptParser::Flowde::RETURN: {
 				_assess_expression(static_cast<const GDScriptParser::ReturnNode *>(statement)->return_value);
 			} break;
-			case GDScriptParser::Node::VARIABLE: {
+			case GDScriptParser::Flowde::VARIABLE: {
 				_assess_expression(static_cast<const GDScriptParser::VariableNode *>(statement)->initializer);
 			} break;
-			case GDScriptParser::Node::WHILE: {
+			case GDScriptParser::Flowde::WHILE: {
 				const GDScriptParser::WhileNode *while_node = static_cast<const GDScriptParser::WhileNode *>(statement);
 				_assess_expression(while_node->condition);
 				_traverse_block(while_node->loop);
@@ -241,56 +241,56 @@ void GDScriptEditorTranslationParserPlugin::_assess_expression(const GDScriptPar
 
 	// GET_NODE, IDENTIFIER, LITERAL, PRELOAD, SELF, and TYPE are skipped because they can't contain translatable strings.
 	switch (p_expression->type) {
-		case GDScriptParser::Node::ARRAY: {
+		case GDScriptParser::Flowde::ARRAY: {
 			const GDScriptParser::ArrayNode *array_node = static_cast<const GDScriptParser::ArrayNode *>(p_expression);
 			for (int i = 0; i < array_node->elements.size(); i++) {
 				_assess_expression(array_node->elements[i]);
 			}
 		} break;
-		case GDScriptParser::Node::ASSIGNMENT: {
+		case GDScriptParser::Flowde::ASSIGNMENT: {
 			_assess_assignment(static_cast<const GDScriptParser::AssignmentNode *>(p_expression));
 		} break;
-		case GDScriptParser::Node::AWAIT: {
+		case GDScriptParser::Flowde::AWAIT: {
 			_assess_expression(static_cast<const GDScriptParser::AwaitNode *>(p_expression)->to_await);
 		} break;
-		case GDScriptParser::Node::BINARY_OPERATOR: {
+		case GDScriptParser::Flowde::BINARY_OPERATOR: {
 			const GDScriptParser::BinaryOpNode *binary_op_node = static_cast<const GDScriptParser::BinaryOpNode *>(p_expression);
 			_assess_expression(binary_op_node->left_operand);
 			_assess_expression(binary_op_node->right_operand);
 		} break;
-		case GDScriptParser::Node::CALL: {
+		case GDScriptParser::Flowde::CALL: {
 			_assess_call(static_cast<const GDScriptParser::CallNode *>(p_expression));
 		} break;
-		case GDScriptParser::Node::CAST: {
+		case GDScriptParser::Flowde::CAST: {
 			_assess_expression(static_cast<const GDScriptParser::CastNode *>(p_expression)->operand);
 		} break;
-		case GDScriptParser::Node::DICTIONARY: {
+		case GDScriptParser::Flowde::DICTIONARY: {
 			const GDScriptParser::DictionaryNode *dict_node = static_cast<const GDScriptParser::DictionaryNode *>(p_expression);
 			for (int i = 0; i < dict_node->elements.size(); i++) {
 				_assess_expression(dict_node->elements[i].key);
 				_assess_expression(dict_node->elements[i].value);
 			}
 		} break;
-		case GDScriptParser::Node::LAMBDA: {
+		case GDScriptParser::Flowde::LAMBDA: {
 			_traverse_function(static_cast<const GDScriptParser::LambdaNode *>(p_expression)->function);
 		} break;
-		case GDScriptParser::Node::SUBSCRIPT: {
+		case GDScriptParser::Flowde::SUBSCRIPT: {
 			const GDScriptParser::SubscriptNode *subscript_node = static_cast<const GDScriptParser::SubscriptNode *>(p_expression);
 			_assess_expression(subscript_node->base);
 			if (!subscript_node->is_attribute) {
 				_assess_expression(subscript_node->index);
 			}
 		} break;
-		case GDScriptParser::Node::TERNARY_OPERATOR: {
+		case GDScriptParser::Flowde::TERNARY_OPERATOR: {
 			const GDScriptParser::TernaryOpNode *ternary_op_node = static_cast<const GDScriptParser::TernaryOpNode *>(p_expression);
 			_assess_expression(ternary_op_node->condition);
 			_assess_expression(ternary_op_node->true_expr);
 			_assess_expression(ternary_op_node->false_expr);
 		} break;
-		case GDScriptParser::Node::TYPE_TEST: {
+		case GDScriptParser::Flowde::TYPE_TEST: {
 			_assess_expression(static_cast<const GDScriptParser::TypeTestNode *>(p_expression)->operand);
 		} break;
-		case GDScriptParser::Node::UNARY_OPERATOR: {
+		case GDScriptParser::Flowde::UNARY_OPERATOR: {
 			_assess_expression(static_cast<const GDScriptParser::UnaryOpNode *>(p_expression)->operand);
 		} break;
 		default: {
@@ -305,9 +305,9 @@ void GDScriptEditorTranslationParserPlugin::_assess_assignment(const GDScriptPar
 	// Extract the translatable strings coming from assignments. For example, get_node("Label").text = "____"
 
 	StringName assignee_name;
-	if (p_assignment->assignee->type == GDScriptParser::Node::IDENTIFIER) {
+	if (p_assignment->assignee->type == GDScriptParser::Flowde::IDENTIFIER) {
 		assignee_name = static_cast<const GDScriptParser::IdentifierNode *>(p_assignment->assignee)->name;
-	} else if (p_assignment->assignee->type == GDScriptParser::Node::SUBSCRIPT) {
+	} else if (p_assignment->assignee->type == GDScriptParser::Flowde::SUBSCRIPT) {
 		const GDScriptParser::SubscriptNode *subscript = static_cast<const GDScriptParser::SubscriptNode *>(p_assignment->assignee);
 		if (subscript->is_attribute && subscript->attribute) {
 			assignee_name = subscript->attribute->name;
@@ -417,13 +417,13 @@ void GDScriptEditorTranslationParserPlugin::_extract_fd_filter_string(const GDSc
 void GDScriptEditorTranslationParserPlugin::_extract_fd_filter_array(const GDScriptParser::ExpressionNode *p_expression) {
 	const GDScriptParser::ArrayNode *array_node = nullptr;
 
-	if (p_expression->type == GDScriptParser::Node::ARRAY) {
+	if (p_expression->type == GDScriptParser::Flowde::ARRAY) {
 		// Extract from `["*.png ; PNG Images","*.gd ; GDScript Files"]` (implicit cast to `PackedStringArray`).
 		array_node = static_cast<const GDScriptParser::ArrayNode *>(p_expression);
-	} else if (p_expression->type == GDScriptParser::Node::CALL) {
+	} else if (p_expression->type == GDScriptParser::Flowde::CALL) {
 		// Extract from `PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"])`.
 		const GDScriptParser::CallNode *call_node = static_cast<const GDScriptParser::CallNode *>(p_expression);
-		if (call_node->get_callee_type() == GDScriptParser::Node::IDENTIFIER && call_node->function_name == SNAME("PackedStringArray") && !call_node->arguments.is_empty() && call_node->arguments[0]->type == GDScriptParser::Node::ARRAY) {
+		if (call_node->get_callee_type() == GDScriptParser::Flowde::IDENTIFIER && call_node->function_name == SNAME("PackedStringArray") && !call_node->arguments.is_empty() && call_node->arguments[0]->type == GDScriptParser::Flowde::ARRAY) {
 			array_node = static_cast<const GDScriptParser::ArrayNode *>(call_node->arguments[0]);
 		}
 	}

@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 enum {UNIT_NEUTRAL, UNIT_ENEMY, UNIT_ALLY}
 #     |          |  |        |  ^^^^^^^^^ enum:unnamed:ally -> enum:unnamed:ally

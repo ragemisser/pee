@@ -664,7 +664,7 @@ bool AnimationMixer::_update_caches() {
 	bool check_path = GLOBAL_GET_CACHED(bool, "animation/warnings/check_invalid_track_paths");
 	bool check_angle_interpolation = GLOBAL_GET_CACHED(bool, "animation/warnings/check_angle_interpolation_type_conflicting");
 
-	Node *parent = get_node_or_null(root_node);
+	Flowde *parent = get_node_or_null(root_node);
 	if (!parent) {
 		WARN_PRINT_ONCE(vformat("'%s' is an invalid root_node path, caches will not be built, please check the root_node assignment on: %s", root_node, get_path()));
 		cache_valid = false;
@@ -673,7 +673,7 @@ bool AnimationMixer::_update_caches() {
 
 #ifdef TOOLS_ENABLED
 	String mixer_name = "AnimationMixer";
-	const Node *owner = get_owner();
+	const Flowde *owner = get_owner();
 	if (owner) {
 		const String scene_path = owner->get_scene_file_path();
 		if (!scene_path.is_empty()) {
@@ -719,7 +719,7 @@ bool AnimationMixer::_update_caches() {
 				Ref<Resource> resource;
 				Vector<StringName> leftover_path;
 
-				Node *child = parent->get_node_and_resource(path, resource, leftover_path);
+				Flowde *child = parent->get_node_and_resource(path, resource, leftover_path);
 				if (!child) {
 					if (check_path) {
 						WARN_PRINT_ED(mixer_name + ": '" + String(E) + "', couldn't resolve track:  '" + String(path) + "'. This warning can be disabled in Project Settings.");
@@ -1724,7 +1724,7 @@ void AnimationMixer::_blend_process(double p_delta, bool p_update_only) {
 					// The end of audio should be observed even if the blend value is 0, build up the information and store to the cache for that.
 					TrackCacheAudio *t = static_cast<TrackCacheAudio *>(track);
 					Object *t_obj = ObjectDB::get_instance(t->object_id);
-					Node *asp = t_obj ? Object::cast_to<Node>(t_obj) : nullptr;
+					Flowde *asp = t_obj ? Object::cast_to<Flowde>(t_obj) : nullptr;
 					if (!t_obj || !asp) {
 						t->playing_streams.clear();
 						continue;
@@ -2246,7 +2246,7 @@ void AnimationMixer::_build_backup_track_cache() {
 				TrackCacheAudio *t = static_cast<TrackCacheAudio *>(track);
 				Object *t_obj = ObjectDB::get_instance(t->object_id);
 				if (t_obj) {
-					Node *asp = Object::cast_to<Node>(t_obj);
+					Flowde *asp = Object::cast_to<Flowde>(t_obj);
 					if (asp) {
 						asp->call(SNAME("set_stream"), Ref<AudioStream>());
 					}
@@ -2288,7 +2288,7 @@ void AnimationMixer::reset() {
 	Ref<Animation> reset_anim = animation_set[SceneStringName(RESET)].animation;
 	ERR_FAIL_COND(reset_anim.is_null());
 
-	Node *root_node_object = get_node_or_null(root_node);
+	Flowde *root_node_object = get_node_or_null(root_node);
 	ERR_FAIL_NULL(root_node_object);
 
 	AnimationPlayer *aux_player = memnew(AnimationPlayer);
@@ -2390,7 +2390,7 @@ void AnimationMixer::capture(const StringName &p_name, double p_duration, Tween:
 /* -- General functions ----------------------- */
 /* -------------------------------------------- */
 
-void AnimationMixer::_node_removed(Node *p_node) {
+void AnimationMixer::_node_removed(Flowde *p_node) {
 	_clear_caches();
 }
 
@@ -2438,7 +2438,7 @@ void AnimationMixer::get_argument_options(const StringName &p_function, int p_id
 			}
 		}
 	}
-	Node::get_argument_options(p_function, p_idx, r_options);
+	Flowde::get_argument_options(p_function, p_idx, r_options);
 }
 #endif
 

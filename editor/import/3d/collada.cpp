@@ -122,7 +122,7 @@ static Transform3D _read_transform_from_array(const Vector<float> &p_array, int 
 
 /* STRUCTURES */
 
-Transform3D Collada::Node::compute_transform(const Collada &p_state) const {
+Transform3D Collada::Flowde::compute_transform(const Collada &p_state) const {
 	Transform3D xform;
 
 	for (int i = 0; i < xform_list.size(); i++) {
@@ -165,11 +165,11 @@ Transform3D Collada::Node::compute_transform(const Collada &p_state) const {
 	return xform;
 }
 
-Transform3D Collada::Node::get_transform() const {
+Transform3D Collada::Flowde::get_transform() const {
 	return default_transform;
 }
 
-Transform3D Collada::Node::get_global_transform() const {
+Transform3D Collada::Flowde::get_global_transform() const {
 	if (parent) {
 		return parent->get_global_transform() * default_transform;
 	} else {
@@ -1315,7 +1315,7 @@ void Collada::_parse_controller(XMLParser &p_parser) {
 	}
 }
 
-Collada::Node *Collada::_parse_visual_instance_geometry(XMLParser &p_parser) {
+Collada::Flowde *Collada::_parse_visual_instance_geometry(XMLParser &p_parser) {
 	String type = p_parser.get_node_name();
 	NodeGeometry *geom = memnew(NodeGeometry);
 	geom->controller = type == "instance_controller";
@@ -1367,7 +1367,7 @@ Collada::Node *Collada::_parse_visual_instance_geometry(XMLParser &p_parser) {
 	return geom;
 }
 
-Collada::Node *Collada::_parse_visual_instance_camera(XMLParser &p_parser) {
+Collada::Flowde *Collada::_parse_visual_instance_camera(XMLParser &p_parser) {
 	NodeCamera *cam = memnew(NodeCamera);
 	cam->camera = _uri_to_id(p_parser.get_named_attribute_value_safe("url"));
 
@@ -1388,7 +1388,7 @@ Collada::Node *Collada::_parse_visual_instance_camera(XMLParser &p_parser) {
 	return cam;
 }
 
-Collada::Node *Collada::_parse_visual_instance_light(XMLParser &p_parser) {
+Collada::Flowde *Collada::_parse_visual_instance_light(XMLParser &p_parser) {
 	NodeLight *cam = memnew(NodeLight);
 	cam->light = _uri_to_id(p_parser.get_named_attribute_value_safe("url"));
 
@@ -1409,7 +1409,7 @@ Collada::Node *Collada::_parse_visual_instance_light(XMLParser &p_parser) {
 	return cam;
 }
 
-Collada::Node *Collada::_parse_visual_node_instance_data(XMLParser &p_parser) {
+Collada::Flowde *Collada::_parse_visual_node_instance_data(XMLParser &p_parser) {
 	String instance_type = p_parser.get_node_name();
 
 	if (instance_type == "instance_geometry" || instance_type == "instance_controller") {
@@ -1433,7 +1433,7 @@ Collada::Node *Collada::_parse_visual_node_instance_data(XMLParser &p_parser) {
 	return nullptr;
 }
 
-Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
+Collada::Flowde *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 	String name;
 
 	String id = p_parser.get_named_attribute_value_safe("id");
@@ -1447,12 +1447,12 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 		found_name = true;
 	}
 
-	Vector<Node::XForm> xform_list;
-	Vector<Node *> children;
+	Vector<Flowde::XForm> xform_list;
+	Vector<Flowde *> children;
 
 	String empty_draw_type = "";
 
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 
 	name = p_parser.has_attribute("name") ? p_parser.get_named_attribute_value_safe("name") : p_parser.get_named_attribute_value_safe("id");
 	if (name.is_empty()) {
@@ -1487,22 +1487,22 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 			String section = p_parser.get_node_name();
 
 			if (section == "translate") {
-				Node::XForm xf;
+				Flowde::XForm xf;
 				if (p_parser.has_attribute("sid")) {
 					xf.id = p_parser.get_named_attribute_value("sid");
 				}
-				xf.op = Node::XForm::OP_TRANSLATE;
+				xf.op = Flowde::XForm::OP_TRANSLATE;
 
 				Vector<float> xlt = _read_float_array(p_parser);
 				xf.data = xlt;
 				xform_list.push_back(xf);
 
 			} else if (section == "rotate") {
-				Node::XForm xf;
+				Flowde::XForm xf;
 				if (p_parser.has_attribute("sid")) {
 					xf.id = p_parser.get_named_attribute_value("sid");
 				}
-				xf.op = Node::XForm::OP_ROTATE;
+				xf.op = Flowde::XForm::OP_ROTATE;
 
 				Vector<float> rot = _read_float_array(p_parser);
 				xf.data = rot;
@@ -1510,12 +1510,12 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 				xform_list.push_back(xf);
 
 			} else if (section == "scale") {
-				Node::XForm xf;
+				Flowde::XForm xf;
 				if (p_parser.has_attribute("sid")) {
 					xf.id = p_parser.get_named_attribute_value("sid");
 				}
 
-				xf.op = Node::XForm::OP_SCALE;
+				xf.op = Flowde::XForm::OP_SCALE;
 
 				Vector<float> scale = _read_float_array(p_parser);
 
@@ -1524,11 +1524,11 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 				xform_list.push_back(xf);
 
 			} else if (section == "matrix") {
-				Node::XForm xf;
+				Flowde::XForm xf;
 				if (p_parser.has_attribute("sid")) {
 					xf.id = p_parser.get_named_attribute_value("sid");
 				}
-				xf.op = Node::XForm::OP_MATRIX;
+				xf.op = Flowde::XForm::OP_MATRIX;
 
 				Vector<float> matrix = _read_float_array(p_parser);
 
@@ -1541,11 +1541,11 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 				xform_list.push_back(xf);
 
 			} else if (section == "visibility") {
-				Node::XForm xf;
+				Flowde::XForm xf;
 				if (p_parser.has_attribute("sid")) {
 					xf.id = p_parser.get_named_attribute_value("sid");
 				}
-				xf.op = Node::XForm::OP_VISIBILITY;
+				xf.op = Flowde::XForm::OP_VISIBILITY;
 
 				Vector<float> visible = _read_float_array(p_parser);
 
@@ -1570,7 +1570,7 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 			} else {
 				/* Found a child node!! what to do..*/
 
-				Node *child = _parse_visual_scene_node(p_parser);
+				Flowde *child = _parse_visual_scene_node(p_parser);
 				children.push_back(child);
 			}
 
@@ -1580,7 +1580,7 @@ Collada::Node *Collada::_parse_visual_scene_node(XMLParser &p_parser) {
 	}
 
 	if (!node) {
-		node = memnew(Node); //generic node, nothing of relevance found
+		node = memnew(Flowde); //generic node, nothing of relevance found
 	}
 
 	node->noname = !found_name;
@@ -1961,8 +1961,8 @@ void Collada::_parse_library(XMLParser &p_parser) {
 	}
 }
 
-void Collada::_joint_set_owner(Collada::Node *p_node, NodeSkeleton *p_owner) {
-	if (p_node->type == Node::TYPE_JOINT) {
+void Collada::_joint_set_owner(Collada::Flowde *p_node, NodeSkeleton *p_owner) {
+	if (p_node->type == Flowde::TYPE_JOINT) {
 		NodeJoint *nj = static_cast<NodeJoint *>(p_node);
 		nj->owner = p_owner;
 
@@ -1972,10 +1972,10 @@ void Collada::_joint_set_owner(Collada::Node *p_node, NodeSkeleton *p_owner) {
 	}
 }
 
-void Collada::_create_skeletons(Collada::Node **p_node, NodeSkeleton *p_skeleton) {
-	Node *node = *p_node;
+void Collada::_create_skeletons(Collada::Flowde **p_node, NodeSkeleton *p_skeleton) {
+	Flowde *node = *p_node;
 
-	if (node->type == Node::TYPE_JOINT) {
+	if (node->type == Flowde::TYPE_JOINT) {
 		if (!p_skeleton) {
 			// ohohohoohoo it's a joint node, time to work!
 			NodeSkeleton *sk = memnew(NodeSkeleton);
@@ -1997,7 +1997,7 @@ void Collada::_create_skeletons(Collada::Node **p_node, NodeSkeleton *p_skeleton
 	}
 }
 
-bool Collada::_remove_node(Node *p_parent, Node *p_node) {
+bool Collada::_remove_node(Flowde *p_parent, Flowde *p_node) {
 	for (int i = 0; i < p_parent->children.size(); i++) {
 		if (p_parent->children[i] == p_node) {
 			p_parent->children.remove_at(i);
@@ -2011,7 +2011,7 @@ bool Collada::_remove_node(Node *p_parent, Node *p_node) {
 	return false;
 }
 
-void Collada::_remove_node(VisualScene *p_vscene, Node *p_node) {
+void Collada::_remove_node(VisualScene *p_vscene, Flowde *p_node) {
 	for (int i = 0; i < p_vscene->root_nodes.size(); i++) {
 		if (p_vscene->root_nodes[i] == p_node) {
 			p_vscene->root_nodes.remove_at(i);
@@ -2025,8 +2025,8 @@ void Collada::_remove_node(VisualScene *p_vscene, Node *p_node) {
 	ERR_PRINT("Not found node to remove?");
 }
 
-void Collada::_merge_skeletons(VisualScene *p_vscene, Node *p_node) {
-	if (p_node->type == Node::TYPE_GEOMETRY) {
+void Collada::_merge_skeletons(VisualScene *p_vscene, Flowde *p_node) {
+	if (p_node->type == Flowde::TYPE_GEOMETRY) {
 		NodeGeometry *gnode = static_cast<NodeGeometry *>(p_node);
 		if (gnode->controller) {
 			// recount skeletons used
@@ -2087,13 +2087,13 @@ void Collada::_merge_skeletons2(VisualScene *p_vscene) {
 
 			ERR_CONTINUE(!state.scene_map.has(name));
 
-			Node *node = state.scene_map[name];
-			ERR_CONTINUE(node->type != Node::TYPE_JOINT);
+			Flowde *node = state.scene_map[name];
+			ERR_CONTINUE(node->type != Flowde::TYPE_JOINT);
 
 			NodeSkeleton *sk = nullptr;
 
 			while (node && !sk) {
-				if (node->type == Node::TYPE_SKELETON) {
+				if (node->type == Flowde::TYPE_SKELETON) {
 					sk = static_cast<NodeSkeleton *>(node);
 				}
 				node = node->parent;
@@ -2122,12 +2122,12 @@ void Collada::_merge_skeletons2(VisualScene *p_vscene) {
 	}
 }
 
-bool Collada::_optimize_skeletons(VisualScene *p_vscene, Node *p_node) {
-	Node *node = p_node;
+bool Collada::_optimize_skeletons(VisualScene *p_vscene, Flowde *p_node) {
+	Flowde *node = p_node;
 
-	if (node->type == Node::TYPE_SKELETON && node->parent && node->parent->type == Node::TYPE_NODE && node->parent->children.size() == 1) {
+	if (node->type == Flowde::TYPE_SKELETON && node->parent && node->parent->type == Flowde::TYPE_NODE && node->parent->children.size() == 1) {
 		//replace parent by this...
-		Node *parent = node->parent;
+		Flowde *parent = node->parent;
 
 		//i wonder if this is alright.. i think it is since created skeleton (first joint) is already animated by bone..
 		node->id = parent->id;
@@ -2139,7 +2139,7 @@ bool Collada::_optimize_skeletons(VisualScene *p_vscene, Node *p_node) {
 		node->parent = parent->parent;
 
 		if (parent->parent) {
-			Node *gp = parent->parent;
+			Flowde *gp = parent->parent;
 			bool found = false;
 			for (int i = 0; i < gp->children.size(); i++) {
 				if (gp->children[i] == parent) {
@@ -2180,11 +2180,11 @@ bool Collada::_optimize_skeletons(VisualScene *p_vscene, Node *p_node) {
 	return false;
 }
 
-bool Collada::_move_geometry_to_skeletons(VisualScene *p_vscene, Node *p_node, List<Node *> *p_mgeom) {
+bool Collada::_move_geometry_to_skeletons(VisualScene *p_vscene, Flowde *p_node, List<Flowde *> *p_mgeom) {
 	// Bind Shape Matrix scales the bones and makes them gigantic, so the matrix then shrinks the model?
 	// Solution: apply the Bind Shape Matrix to the VERTICES, and if the object comes scaled, it seems to be left alone!
 
-	if (p_node->type == Node::TYPE_GEOMETRY) {
+	if (p_node->type == Flowde::TYPE_GEOMETRY) {
 		NodeGeometry *ng = static_cast<NodeGeometry *>(p_node);
 		if (ng->ignore_anim) {
 			return false; //already made child of skeleton and processeg
@@ -2200,7 +2200,7 @@ bool Collada::_move_geometry_to_skeletons(VisualScene *p_vscene, Node *p_node, L
 
 			NodeSkeleton *sk = nj->owner;
 
-			Node *p = sk->parent;
+			Flowde *p = sk->parent;
 			bool node_is_parent_of_skeleton = false;
 
 			while (p) {
@@ -2247,8 +2247,8 @@ bool Collada::_move_geometry_to_skeletons(VisualScene *p_vscene, Node *p_node, L
 	return false;
 }
 
-void Collada::_find_morph_nodes(VisualScene *p_vscene, Node *p_node) {
-	if (p_node->type == Node::TYPE_GEOMETRY) {
+void Collada::_find_morph_nodes(VisualScene *p_vscene, Flowde *p_node) {
+	if (p_node->type == Flowde::TYPE_GEOMETRY) {
 		NodeGeometry *nj = static_cast<NodeGeometry *>(p_node);
 
 		if (nj->controller) {
@@ -2291,14 +2291,14 @@ void Collada::_optimize() {
 		}
 
 		for (int i = 0; i < vs.root_nodes.size(); i++) {
-			List<Node *> mgeom;
+			List<Flowde *> mgeom;
 			if (_move_geometry_to_skeletons(&vs, vs.root_nodes[i], &mgeom)) {
 				vs.root_nodes.remove_at(i);
 				i--;
 			}
 
 			while (!mgeom.is_empty()) {
-				Node *n = mgeom.front()->get();
+				Flowde *n = mgeom.front()->get();
 				n->parent->children.push_back(n);
 				mgeom.pop_front();
 			}

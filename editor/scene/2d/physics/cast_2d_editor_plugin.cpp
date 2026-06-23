@@ -51,7 +51,7 @@ void Cast2DEditor::_notification(int p_what) {
 	}
 }
 
-void Cast2DEditor::_node_removed(Node *p_node) {
+void Cast2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 	}

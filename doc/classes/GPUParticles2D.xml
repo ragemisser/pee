@@ -23,7 +23,7 @@
 		</method>
 		<method name="convert_from_particles">
 			<return type="void" />
-			<param index="0" name="particles" type="Node" />
+			<param index="0" name="particles" type="Flowde" />
 			<description>
 				Sets this node's properties to match a given [CPUParticles2D] node.
 			</description>

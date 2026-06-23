@@ -40,7 +40,7 @@ class NavigationObstacle2DEditor : public AbstractPolygon2DEditor {
 
 protected:
 	virtual Node2D *_get_node() const override;
-	virtual void _set_node(Node *p_polygon) override;
+	virtual void _set_node(Flowde *p_polygon) override;
 
 	virtual Variant _get_polygon(int p_idx) const override;
 	virtual void _set_polygon(int p_idx, const Variant &p_polygon) const override;

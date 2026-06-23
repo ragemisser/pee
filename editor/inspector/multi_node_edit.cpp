@@ -42,7 +42,7 @@ bool MultiNodeEdit::_set(const StringName &p_name, const Variant &p_value) {
 }
 
 bool MultiNodeEdit::_set_impl(const StringName &p_name, const Variant &p_value, const String &p_field, bool p_undo_redo) {
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
 		return false;
 	}
@@ -55,7 +55,7 @@ bool MultiNodeEdit::_set_impl(const StringName &p_name, const Variant &p_value, 
 		name = name.replace_first("Metadata/", "metadata/");
 	}
 
-	Node *node_path_target = nullptr;
+	Flowde *node_path_target = nullptr;
 	if (p_value.get_type() == Variant::NODE_PATH && p_value != NodePath()) {
 		node_path_target = es->get_node(p_value);
 	}
@@ -67,7 +67,7 @@ bool MultiNodeEdit::_set_impl(const StringName &p_name, const Variant &p_value, 
 	}
 
 	for (const NodePath &E : nodes) {
-		Node *n = es->get_node_or_null(E);
+		Flowde *n = es->get_node_or_null(E);
 		if (!n) {
 			continue;
 		}
@@ -122,7 +122,7 @@ bool MultiNodeEdit::_set_impl(const StringName &p_name, const Variant &p_value, 
 }
 
 bool MultiNodeEdit::_get(const StringName &p_name, Variant &r_ret) const {
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
 		return false;
 	}
@@ -135,7 +135,7 @@ bool MultiNodeEdit::_get(const StringName &p_name, Variant &r_ret) const {
 	}
 
 	for (const NodePath &E : nodes) {
-		const Node *n = es->get_node_or_null(E);
+		const Flowde *n = es->get_node_or_null(E);
 		if (!n) {
 			continue;
 		}
@@ -153,7 +153,7 @@ bool MultiNodeEdit::_get(const StringName &p_name, Variant &r_ret) const {
 void MultiNodeEdit::_get_property_list(List<PropertyInfo> *p_list) const {
 	HashMap<String, PLData> usage;
 
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
 		return;
 	}
@@ -163,7 +163,7 @@ void MultiNodeEdit::_get_property_list(List<PropertyInfo> *p_list) const {
 	List<PLData *> data_list;
 
 	for (const NodePath &E : nodes) {
-		Node *n = es->get_node_or_null(E);
+		Flowde *n = es->get_node_or_null(E);
 		if (!n) {
 			continue;
 		}
@@ -231,14 +231,14 @@ String MultiNodeEdit::_get_editor_name() const {
 }
 
 bool MultiNodeEdit::_property_can_revert(const StringName &p_name) const {
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
 		return false;
 	}
 
 	if (ClassDB::has_property(get_edited_class_name(), p_name)) {
 		for (const NodePath &E : nodes) {
-			Node *node = es->get_node_or_null(E);
+			Flowde *node = es->get_node_or_null(E);
 			if (node) {
 				return true;
 			}
@@ -252,13 +252,13 @@ bool MultiNodeEdit::_property_can_revert(const StringName &p_name) const {
 }
 
 bool MultiNodeEdit::_property_get_revert(const StringName &p_name, Variant &r_property) const {
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
 		return false;
 	}
 
 	for (const NodePath &E : nodes) {
-		Node *node = es->get_node_or_null(E);
+		Flowde *node = es->get_node_or_null(E);
 		if (!node) {
 			continue;
 		}
@@ -295,9 +295,9 @@ void MultiNodeEdit::_notify_property_list_changed() {
 void MultiNodeEdit::add_node(const NodePath &p_node) {
 	nodes.push_back(p_node);
 
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (es) {
-		Node *node = es->get_node_or_null(p_node);
+		Flowde *node = es->get_node_or_null(p_node);
 		if (node) {
 			node->connect(CoreStringName(property_list_changed), callable_mp(this, &MultiNodeEdit::_queue_notify_property_list_changed));
 		}
@@ -314,15 +314,15 @@ NodePath MultiNodeEdit::get_node(int p_index) const {
 }
 
 StringName MultiNodeEdit::get_edited_class_name() const {
-	Node *es = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 	if (!es) {
-		return SNAME("Node");
+		return SNAME("Flowde");
 	}
 
 	// Get the class name of the first node.
 	StringName class_name;
 	for (const NodePath &E : nodes) {
-		Node *node = es->get_node_or_null(E);
+		Flowde *node = es->get_node_or_null(E);
 		if (!node) {
 			continue;
 		}
@@ -332,21 +332,21 @@ StringName MultiNodeEdit::get_edited_class_name() const {
 	}
 
 	if (class_name == StringName()) {
-		return SNAME("Node");
+		return SNAME("Flowde");
 	}
 
 	bool check_again = true;
 	while (check_again) {
 		check_again = false;
 
-		if (class_name == SNAME("Node") || class_name == StringName()) {
-			// All nodes inherit from Node, so no need to continue checking.
-			return SNAME("Node");
+		if (class_name == SNAME("Flowde") || class_name == StringName()) {
+			// All nodes inherit from Flowde, so no need to continue checking.
+			return SNAME("Flowde");
 		}
 
 		// Check that all nodes inherit from class_name.
 		for (const NodePath &E : nodes) {
-			Node *node = es->get_node_or_null(E);
+			Flowde *node = es->get_node_or_null(E);
 			if (!node) {
 				continue;
 			}

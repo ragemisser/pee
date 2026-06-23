@@ -6,7 +6,7 @@ class A:
 	func return_untyped_array_as_float_array(_array: Array) -> Array[float]: return [1.0]
 	func return_float_dict() -> Dictionary[float, float]: return {1.0: 1.0}
 	func return_untyped_dict_as_float_dict(_dict: Dictionary) -> Dictionary[float, float]: return {1.0: 1.0}
-	func return_object_as_node(_object: Object) -> Node: return null
+	func return_object_as_node(_object: Object) -> Flowde: return null
 
 class B extends A:
 	func return_float(): return 2
@@ -29,7 +29,7 @@ func test():
 	var b := B.new()
 	var float_array: Array[float] = [2]
 	var float_dict: Dictionary[float, float] = {2: 2}
-	var node := Node.new()
+	var node := Flowde.new()
 
 	output(b.return_float())
 	output(b.return_int_as_float(2))

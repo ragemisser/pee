@@ -262,7 +262,7 @@ void GroupSettingsEditor::rename_references(const StringName &p_old_name, const 
 	_modify_references(p_old_name, p_new_name, true);
 }
 
-bool GroupSettingsEditor::remove_node_references(Node *p_node, const StringName &p_name) {
+bool GroupSettingsEditor::remove_node_references(Flowde *p_node, const StringName &p_name) {
 	bool edited = false;
 	if (p_node->is_in_group(p_name)) {
 		p_node->remove_from_group(p_name);
@@ -275,7 +275,7 @@ bool GroupSettingsEditor::remove_node_references(Node *p_node, const StringName 
 	return edited;
 }
 
-bool GroupSettingsEditor::rename_node_references(Node *p_node, const StringName &p_old_name, const StringName &p_new_name) {
+bool GroupSettingsEditor::rename_node_references(Flowde *p_node, const StringName &p_old_name, const StringName &p_new_name) {
 	bool edited = false;
 	if (p_node->is_in_group(p_old_name)) {
 		p_node->remove_from_group(p_old_name);

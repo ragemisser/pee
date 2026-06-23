@@ -62,7 +62,7 @@ class SceneImportSettingsDialog : public ConfirmationDialog {
 		ACTION_CHOOSE_ANIMATION_SAVE_PATHS,
 	};
 
-	Node *scene = nullptr;
+	Flowde *scene = nullptr;
 
 	HSplitContainer *tree_split = nullptr;
 	HSplitContainer *property_split = nullptr;
@@ -159,7 +159,7 @@ class SceneImportSettingsDialog : public ConfirmationDialog {
 	HashMap<String, AnimationData> animation_map;
 
 	struct NodeData {
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 		TreeItem *scene_node = nullptr;
 		HashMap<StringName, Variant> settings;
 	};
@@ -170,7 +170,7 @@ class SceneImportSettingsDialog : public ConfirmationDialog {
 	void _fill_material(Tree *p_tree, const Ref<Material> &p_material, TreeItem *p_parent);
 	void _fill_mesh(Tree *p_tree, const Ref<Mesh> &p_mesh, TreeItem *p_parent);
 	void _fill_animation(Tree *p_tree, const Ref<Animation> &p_anim, const String &p_name, TreeItem *p_parent);
-	void _fill_scene(Node *p_node, TreeItem *p_parent_item);
+	void _fill_scene(Flowde *p_node, TreeItem *p_parent_item);
 
 	HashSet<Ref<Mesh>> mesh_set;
 
@@ -249,7 +249,7 @@ public:
 	void update_view();
 	void open_settings(const String &p_path, const String &p_scene_import_type = "PackedScene");
 	static SceneImportSettingsDialog *get_singleton();
-	Node *get_selected_node();
+	Flowde *get_selected_node();
 	SceneImportSettingsDialog();
 	~SceneImportSettingsDialog();
 };

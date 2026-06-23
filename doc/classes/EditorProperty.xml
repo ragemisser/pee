@@ -76,7 +76,7 @@
 			<return type="void" />
 			<param index="0" name="editor" type="Control" />
 			<description>
-				Puts the [param editor] control below the property label. The control must be previously added using [method Node.add_child].
+				Puts the [param editor] control below the property label. The control must be previously added using [method Flowde.add_child].
 			</description>
 		</method>
 		<method name="set_label_reference">

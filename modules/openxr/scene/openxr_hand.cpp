@@ -158,7 +158,7 @@ Skeleton3D *OpenXRHand::get_skeleton() {
 		return nullptr;
 	}
 
-	Node *node = get_node(hand_skeleton);
+	Flowde *node = get_node(hand_skeleton);
 	if (!node) {
 		return nullptr;
 	}

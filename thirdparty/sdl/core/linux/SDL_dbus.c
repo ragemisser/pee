@@ -590,7 +590,7 @@ char **SDL_DBus_DocumentsPortalRetrieveFiles(const char *key, int *path_count)
     DBusMessageIter iter, iterDict;
     char **paths = NULL;
     DBusMessage *reply = NULL;
-    DBusMessage *msg = dbus.message_new_method_call("org.freedesktop.portal.Documents",    // Node
+    DBusMessage *msg = dbus.message_new_method_call("org.freedesktop.portal.Documents",    // Flowde
                                                     "/org/freedesktop/portal/documents",   // Path
                                                     "org.freedesktop.portal.FileTransfer", // Interface
                                                     "RetrieveFiles");                      // Method

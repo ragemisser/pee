@@ -169,7 +169,7 @@ TEST_CASE("[SceneTree][Viewport] Controls and InputEvent handling") {
 	Node2D *node_c = memnew(Node2D);
 	DragTarget *node_d = memnew(DragTarget);
 	NotificationControlViewport *node_e = memnew(NotificationControlViewport);
-	Node *node_f = memnew(Node);
+	Flowde *node_f = memnew(Flowde);
 	NotificationControlViewport *node_g = memnew(NotificationControlViewport);
 	NotificationControlViewport *node_h = memnew(NotificationControlViewport);
 	NotificationControlViewport *node_i = memnew(NotificationControlViewport);
@@ -221,7 +221,7 @@ TEST_CASE("[SceneTree][Viewport] Controls and InputEvent handling") {
 	//     - c (Node2D)
 	//       - d (Control)
 	//   - e (Control)
-	//     - f (Node)
+	//     - f (Flowde)
 	//       - g (Control)
 	//   - h (Control)
 	//     - i (Control)
@@ -256,7 +256,7 @@ TEST_CASE("[SceneTree][Viewport] Controls and InputEvent handling") {
 			CHECK(root->gui_find_control(on_a) == node_a);
 			CHECK(root->gui_find_control(on_b) == node_b);
 			CHECK(root->gui_find_control(on_d) == node_d);
-			CHECK(root->gui_find_control(on_e) == node_g); // Node F makes G a Root Control at the same position as E
+			CHECK(root->gui_find_control(on_e) == node_g); // Flowde F makes G a Root Control at the same position as E
 			CHECK(root->gui_find_control(on_g) == node_g);
 			CHECK_FALSE(root->gui_find_control(on_background));
 		}
@@ -468,13 +468,13 @@ TEST_CASE("[SceneTree][Viewport] Controls and InputEvent handling") {
 
 		SUBCASE("[Viewport][GuiInputEvent] Process-Mode affects, if GUI Mouse Button Events are processed.") {
 			node_a->last_mouse_button = MouseButton::NONE;
-			node_a->set_process_mode(Node::PROCESS_MODE_DISABLED);
+			node_a->set_process_mode(Flowde::PROCESS_MODE_DISABLED);
 			SEND_GUI_MOUSE_BUTTON_EVENT(on_a, MouseButton::LEFT, MouseButtonMask::LEFT, Key::NONE);
 			SEND_GUI_MOUSE_BUTTON_RELEASED_EVENT(on_a, MouseButton::LEFT, MouseButtonMask::NONE, Key::NONE);
 			CHECK(node_a->last_mouse_button == MouseButton::NONE);
 
 			// Now verify that with allowed processing the event is processed.
-			node_a->set_process_mode(Node::PROCESS_MODE_ALWAYS);
+			node_a->set_process_mode(Flowde::PROCESS_MODE_ALWAYS);
 			SEND_GUI_MOUSE_BUTTON_EVENT(on_a, MouseButton::LEFT, MouseButtonMask::LEFT, Key::NONE);
 			SEND_GUI_MOUSE_BUTTON_RELEASED_EVENT(on_a, MouseButton::LEFT, MouseButtonMask::NONE, Key::NONE);
 			CHECK(node_a->last_mouse_button == MouseButton::LEFT);
@@ -1145,12 +1145,12 @@ TEST_CASE("[SceneTree][Viewport] Controls and InputEvent handling") {
 
 		SUBCASE("[Viewport][GuiInputEvent] Process-Mode affects, if GUI Mouse Motion Events are processed.") {
 			node_a->last_mouse_move_position = on_outside;
-			node_a->set_process_mode(Node::PROCESS_MODE_DISABLED);
+			node_a->set_process_mode(Flowde::PROCESS_MODE_DISABLED);
 			SEND_GUI_MOUSE_MOTION_EVENT(on_a, MouseButtonMask::NONE, Key::NONE);
 			CHECK(node_a->last_mouse_move_position == on_outside);
 
 			// Now verify that with allowed processing the event is processed.
-			node_a->set_process_mode(Node::PROCESS_MODE_ALWAYS);
+			node_a->set_process_mode(Flowde::PROCESS_MODE_ALWAYS);
 			SEND_GUI_MOUSE_MOTION_EVENT(on_a, MouseButtonMask::NONE, Key::NONE);
 			CHECK(node_a->last_mouse_move_position == on_a);
 		}
@@ -1569,7 +1569,7 @@ class TestArea2D : public Area2D {
 		exit_id = ++TestArea2D::counter; // > 0, if activated.
 	}
 
-	void _on_input_event(Node *p_vp, Ref<InputEvent> p_ev, int p_shape) {
+	void _on_input_event(Flowde *p_vp, Ref<InputEvent> p_ev, int p_shape) {
 		last_input_event = p_ev;
 	}
 
@@ -1742,8 +1742,8 @@ TEST_CASE("[SceneTree][Viewport] Physics Picking 2D") {
 			E.a->test_reset();
 		}
 
-		v[0].a->set_process_mode(Node::PROCESS_MODE_DISABLED);
-		v[0].c->set_process_mode(Node::PROCESS_MODE_DISABLED);
+		v[0].a->set_process_mode(Flowde::PROCESS_MODE_DISABLED);
+		v[0].c->set_process_mode(Flowde::PROCESS_MODE_DISABLED);
 		SEND_GUI_MOUSE_MOTION_EVENT(on_02, MouseButtonMask::NONE, Key::NONE);
 		tree->physics_process(1);
 		CHECK_FALSE(v[0].a->enter_id);
@@ -1764,8 +1764,8 @@ TEST_CASE("[SceneTree][Viewport] Physics Picking 2D") {
 		for (PickingCollider E : v) {
 			E.a->test_reset();
 		}
-		v[0].a->set_process_mode(Node::PROCESS_MODE_ALWAYS);
-		v[0].c->set_process_mode(Node::PROCESS_MODE_ALWAYS);
+		v[0].a->set_process_mode(Flowde::PROCESS_MODE_ALWAYS);
+		v[0].c->set_process_mode(Flowde::PROCESS_MODE_ALWAYS);
 	}
 
 	SUBCASE("[Viewport][Picking2D] Multiple events in series") {

@@ -802,7 +802,7 @@ namespace Godot
         /// Returns <see langword="true"/> if the string is a path to a file or
         /// directory and its starting point is implicitly defined within the
         /// context it is being used. The starting point may refer to the current
-        /// directory (<c>./</c>), or the current <see cref="Node"/>.
+        /// directory (<c>./</c>), or the current <see cref="Flowde"/>.
         /// </summary>
         /// <seealso cref="IsAbsolutePath(string)"/>
         /// <param name="instance">The string to check.</param>
@@ -1757,7 +1757,7 @@ namespace Godot
 
         /// <summary>
         /// Removes any characters from the string that are prohibited in
-        /// <see cref="Node"/> names (<c>.</c> <c>:</c> <c>@</c> <c>/</c> <c>"</c>).
+        /// <see cref="Flowde"/> names (<c>.</c> <c>:</c> <c>@</c> <c>/</c> <c>"</c>).
         /// </summary>
         /// <param name="instance">The string to sanitize.</param>
         /// <returns>The string sanitized as a valid node name.</returns>

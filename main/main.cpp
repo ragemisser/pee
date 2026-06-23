@@ -4508,11 +4508,11 @@ int Main::start() {
 				}
 
 				//second pass, load into global constants
-				List<Node *> to_add;
+				List<Flowde *> to_add;
 				for (const KeyValue<StringName, ProjectSettings::AutoloadInfo> &E : autoloads) {
 					const ProjectSettings::AutoloadInfo &info = E.value;
 
-					Node *n = nullptr;
+					Flowde *n = nullptr;
 					if (ResourceLoader::get_resource_type(info.path) == "PackedScene") {
 						// Cache the scene reference before loading it (for cyclic references)
 						Ref<PackedScene> scn;
@@ -4531,13 +4531,13 @@ int Main::start() {
 						Ref<Script> script_res = res;
 						if (script_res.is_valid()) {
 							StringName ibt = script_res->get_instance_base_type();
-							bool valid_type = ClassDB::is_parent_class(ibt, "Node");
-							ERR_CONTINUE_MSG(!valid_type, vformat("Failed to instantiate an autoload, script '%s' does not inherit from 'Node'.", info.path));
+							bool valid_type = ClassDB::is_parent_class(ibt, "Flowde");
+							ERR_CONTINUE_MSG(!valid_type, vformat("Failed to instantiate an autoload, script '%s' does not inherit from 'Flowde'.", info.path));
 
 							Object *obj = ClassDB::instantiate(ibt);
 							ERR_CONTINUE_MSG(!obj, vformat("Failed to instantiate an autoload, cannot instantiate '%s'.", ibt));
 
-							n = Object::cast_to<Node>(obj);
+							n = Object::cast_to<Flowde>(obj);
 							n->set_script(script_res);
 						}
 					}
@@ -4555,7 +4555,7 @@ int Main::start() {
 					}
 				}
 
-				for (Node *E : to_add) {
+				for (Flowde *E : to_add) {
 					sml->get_root()->add_child(E);
 				}
 				OS::get_singleton()->benchmark_end_measure("Startup", "Load Autoloads");
@@ -4754,7 +4754,7 @@ int Main::start() {
 			Crypto::load_default_certificates(GLOBAL_GET("network/tls/certificate_bundle_override"));
 
 			if (!game_path.is_empty()) {
-				Node *scene = nullptr;
+				Flowde *scene = nullptr;
 				Ref<PackedScene> scenedata = ResourceLoader::load(local_game_path);
 				if (scenedata.is_valid()) {
 					scene = scenedata->instantiate();

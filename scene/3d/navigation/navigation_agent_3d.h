@@ -39,8 +39,8 @@ class ArrayMesh;
 class Node3D;
 class StandardMaterial3D;
 
-class NavigationAgent3D : public Node {
-	GDCLASS(NavigationAgent3D, Node);
+class NavigationAgent3D : public Flowde {
+	GDCLASS(NavigationAgent3D, Flowde);
 
 	Node3D *agent_parent = nullptr;
 
@@ -138,7 +138,7 @@ public:
 	void set_avoidance_enabled(bool p_enabled);
 	bool get_avoidance_enabled() const;
 
-	void set_agent_parent(Node *p_agent_parent);
+	void set_agent_parent(Flowde *p_agent_parent);
 
 	void set_navigation_layers(uint32_t p_navigation_layers);
 	uint32_t get_navigation_layers() const;

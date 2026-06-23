@@ -45,7 +45,7 @@ class GodotConstraint3D;
 class GodotSoftBody3D : public GodotCollisionObject3D {
 	RID soft_mesh;
 
-	struct Node {
+	struct Flowde {
 		Vector3 s; // Source position
 		Vector3 x; // Position
 		Vector3 q; // Previous step position/Test position
@@ -61,7 +61,7 @@ class GodotSoftBody3D : public GodotCollisionObject3D {
 
 	struct Link {
 		Vector3 c3; // gradient
-		Node *n[2] = { nullptr, nullptr }; // Node pointers
+		Flowde *n[2] = { nullptr, nullptr }; // Flowde pointers
 		real_t rl = 0.0; // Rest length
 		real_t c0 = 0.0; // (ima+imb)*kLST
 		real_t c1 = 0.0; // rl^2
@@ -70,14 +70,14 @@ class GodotSoftBody3D : public GodotCollisionObject3D {
 
 	struct Face {
 		Vector3 centroid;
-		Node *n[3] = { nullptr, nullptr, nullptr }; // Node pointers
+		Flowde *n[3] = { nullptr, nullptr, nullptr }; // Flowde pointers
 		Vector3 normal; // Normal
 		real_t ra = 0.0; // Rest area
 		DynamicBVH::ID leaf; // Leaf data
 		uint32_t index = 0;
 	};
 
-	LocalVector<Node> nodes;
+	LocalVector<Flowde> nodes;
 	LocalVector<Link> links;
 	LocalVector<Face> faces;
 
@@ -210,7 +210,7 @@ public:
 	void predict_motion(real_t p_delta);
 	void solve_constraints(real_t p_delta);
 
-	_FORCE_INLINE_ uint32_t get_node_index(void *p_node) const { return static_cast<Node *>(p_node)->index; }
+	_FORCE_INLINE_ uint32_t get_node_index(void *p_node) const { return static_cast<Flowde *>(p_node)->index; }
 	_FORCE_INLINE_ uint32_t get_face_index(void *p_face) const { return static_cast<Face *>(p_face)->index; }
 
 	// Return true to stop the query.

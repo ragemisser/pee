@@ -44,8 +44,8 @@ class StyleBox;
 class Window;
 class World2D;
 
-class CanvasItem : public Node {
-	GDCLASS(CanvasItem, Node);
+class CanvasItem : public Flowde {
+	GDCLASS(CanvasItem, Flowde);
 
 	friend class CanvasLayer;
 
@@ -86,7 +86,7 @@ public:
 	};
 
 private:
-	mutable SelfList<Node> xform_change;
+	mutable SelfList<Flowde> xform_change;
 
 	RID canvas_item;
 	StringName canvas_group;
@@ -98,7 +98,7 @@ private:
 
 	struct Data {
 		// An unordered vector of `CanvasItem` children only.
-		// This is a subset of the `Node::children`, purely
+		// This is a subset of the `Flowde::children`, purely
 		// an optimization for faster traversal.
 		LocalVector<CanvasItem *> canvas_item_children;
 		uint32_t index_in_parent = UINT32_MAX;

@@ -36,7 +36,7 @@
 #include "servers/navigation_3d/navigation_path_query_parameters_3d.h"
 #include "servers/navigation_3d/navigation_path_query_result_3d.h"
 
-class Node;
+class Flowde;
 
 struct NavMeshGeometryParser3D {
 	RID self;
@@ -141,7 +141,7 @@ public:
 	virtual void region_set_navigation_mesh(RID p_region, Ref<NavigationMesh> p_navigation_mesh) = 0;
 
 #ifndef DISABLE_DEPRECATED
-	virtual void region_bake_navigation_mesh(Ref<NavigationMesh> p_navigation_mesh, Node *p_root_node) = 0;
+	virtual void region_bake_navigation_mesh(Ref<NavigationMesh> p_navigation_mesh, Flowde *p_root_node) = 0;
 #endif // DISABLE_DEPRECATED
 
 	virtual int region_get_connections_count(RID p_region) const = 0;
@@ -282,7 +282,7 @@ public:
 	/* NAVMESH BAKE API */
 
 #ifndef _3D_DISABLED
-	virtual void parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, Node *p_root_node, const Callable &p_callback = Callable()) = 0;
+	virtual void parse_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, Flowde *p_root_node, const Callable &p_callback = Callable()) = 0;
 	virtual void bake_from_source_geometry_data(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, const Callable &p_callback = Callable()) = 0;
 	virtual void bake_from_source_geometry_data_async(const Ref<NavigationMesh> &p_navigation_mesh, const Ref<NavigationMeshSourceGeometryData3D> &p_source_geometry_data, const Callable &p_callback = Callable()) = 0;
 	virtual bool is_baking_navigation_mesh(Ref<NavigationMesh> p_navigation_mesh) const = 0;

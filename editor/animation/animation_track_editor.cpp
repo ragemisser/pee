@@ -89,12 +89,12 @@ void AnimationTrackKeyEdit::_fix_node_path(Variant &value) {
 		return;
 	}
 
-	Node *root = EditorNode::get_singleton()->get_tree()->get_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_root();
 
-	Node *np_node = root->get_node_or_null(np);
+	Flowde *np_node = root->get_node_or_null(np);
 	ERR_FAIL_NULL(np_node);
 
-	Node *edited_node = root->get_node_or_null(base);
+	Flowde *edited_node = root->get_node_or_null(base);
 	ERR_FAIL_NULL(edited_node);
 
 	value = edited_node->get_path_to(np_node);
@@ -679,7 +679,7 @@ void AnimationTrackKeyEdit::notify_change() {
 	notify_property_list_changed();
 }
 
-Node *AnimationTrackKeyEdit::get_root_path() {
+Flowde *AnimationTrackKeyEdit::get_root_path() {
 	return root_path;
 }
 
@@ -705,12 +705,12 @@ void AnimationMultiTrackKeyEdit::_fix_node_path(Variant &value, NodePath &base) 
 		return;
 	}
 
-	Node *root = EditorNode::get_singleton()->get_tree()->get_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_root();
 
-	Node *np_node = root->get_node_or_null(np);
+	Flowde *np_node = root->get_node_or_null(np);
 	ERR_FAIL_NULL(np_node);
 
-	Node *edited_node = root->get_node_or_null(base);
+	Flowde *edited_node = root->get_node_or_null(base);
 	ERR_FAIL_NULL(edited_node);
 
 	value = edited_node->get_path_to(np_node);
@@ -1279,7 +1279,7 @@ void AnimationMultiTrackKeyEdit::notify_change() {
 	notify_property_list_changed();
 }
 
-Node *AnimationMultiTrackKeyEdit::get_root_path() {
+Flowde *AnimationMultiTrackKeyEdit::get_root_path() {
 	return root_path;
 }
 
@@ -2210,7 +2210,7 @@ void AnimationTrackEdit::_notification(int p_what) {
 				ofs += key_type_icon->get_width() + h_separation;
 
 				NodePath anim_path = animation->track_get_path(track);
-				Node *node = nullptr;
+				Flowde *node = nullptr;
 				if (root) {
 					node = root->get_node_or_null(anim_path);
 				}
@@ -2819,7 +2819,7 @@ void AnimationTrackEdit::update_play_position() {
 	play_position->queue_redraw();
 }
 
-void AnimationTrackEdit::set_root(Node *p_root) {
+void AnimationTrackEdit::set_root(Flowde *p_root) {
 	root = p_root;
 }
 
@@ -2843,7 +2843,7 @@ bool AnimationTrackEdit::_is_value_key_valid(const Variant &p_key_value, Variant
 	}
 	Ref<Resource> res;
 	Vector<StringName> leftover_path;
-	Node *node = root->get_node_and_resource(animation->track_get_path(track), res, leftover_path);
+	Flowde *node = root->get_node_and_resource(animation->track_get_path(track), res, leftover_path);
 
 	Object *obj = nullptr;
 	if (res.is_valid()) {
@@ -3118,7 +3118,7 @@ void AnimationTrackEdit::gui_input(const Ref<InputEvent> &p_event) {
 			if (icon_rect.has_point(pos)) {
 				EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
 				editor_selection->clear();
-				Node *n = root->get_node_or_null(node_path);
+				Flowde *n = root->get_node_or_null(node_path);
 				if (n) {
 					editor_selection->add_node(n);
 				}
@@ -3172,9 +3172,9 @@ void AnimationTrackEdit::gui_input(const Ref<InputEvent> &p_event) {
 					AnimationPlayer *ap = ape->get_player();
 					if (ap) {
 						NodePath npath = animation->track_get_path(track);
-						Node *a_ap_root_node = ap->get_node_or_null(ap->get_root_node());
-						Node *nd = nullptr;
-						// We must test that we have a valid a_ap_root_node before trying to access its content to init the nd Node.
+						Flowde *a_ap_root_node = ap->get_node_or_null(ap->get_root_node());
+						Flowde *nd = nullptr;
+						// We must test that we have a valid a_ap_root_node before trying to access its content to init the nd Flowde.
 						if (a_ap_root_node) {
 							nd = a_ap_root_node->get_node_or_null(NodePath(npath.get_concatenated_names()));
 						}
@@ -3463,7 +3463,7 @@ bool AnimationTrackEdit::_lookup_key(int p_key_idx) const {
 	}
 
 	if (animation->track_get_type(track) == Animation::TYPE_METHOD) {
-		Node *target = root->get_node_or_null(animation->track_get_path(track));
+		Flowde *target = root->get_node_or_null(animation->track_get_path(track));
 		if (target) {
 			StringName method = animation->method_track_get_name(track, p_key_idx);
 			// First, check every script in the inheritance chain.
@@ -3829,7 +3829,7 @@ void AnimationTrackEditGroup::_notification(int p_what) {
 			const Ref<StyleBox> &stylebox_hover = get_theme_stylebox(SceneStringName(hover), SNAME("AnimationTrackEditGroup"));
 
 			if (root) {
-				Node *n = root->get_node_or_null(node);
+				Flowde *n = root->get_node_or_null(node);
 				if (n && EditorNode::get_singleton()->get_editor_selection()->is_selected(n)) {
 					color = get_theme_color(SNAME("accent_color"), EditorStringName(Editor));
 				}
@@ -4004,7 +4004,7 @@ void AnimationTrackEditGroup::gui_input(const Ref<InputEvent> &p_event) {
 			if (node_name_rect.has_point(pos)) {
 				EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
 				editor_selection->clear();
-				Node *n = root->get_node_or_null(node);
+				Flowde *n = root->get_node_or_null(node);
 				if (n) {
 					editor_selection->add_node(n);
 				}
@@ -4054,7 +4054,7 @@ void AnimationTrackEditGroup::set_timeline(AnimationTimelineEdit *p_timeline) {
 	timeline->connect("name_limit_changed", callable_mp(this, &AnimationTrackEditGroup::_zoom_changed));
 }
 
-void AnimationTrackEditGroup::set_root(Node *p_root) {
+void AnimationTrackEditGroup::set_root(Flowde *p_root) {
 	root = p_root;
 	queue_redraw();
 }
@@ -4193,7 +4193,7 @@ void AnimationTrackEditor::_root_removed() {
 	root = nullptr;
 }
 
-void AnimationTrackEditor::set_root(Node *p_root) {
+void AnimationTrackEditor::set_root(Flowde *p_root) {
 	if (root) {
 		root->disconnect(SceneStringName(tree_exiting), callable_mp(this, &AnimationTrackEditor::_root_removed));
 	}
@@ -4207,7 +4207,7 @@ void AnimationTrackEditor::set_root(Node *p_root) {
 	_update_tracks();
 }
 
-Node *AnimationTrackEditor::get_root() const {
+Flowde *AnimationTrackEditor::get_root() const {
 	return root;
 }
 
@@ -4217,7 +4217,7 @@ void AnimationTrackEditor::update_keying() {
 	EditorSelectionHistory *editor_history = EditorNode::get_singleton()->get_editor_selection_history();
 	if (is_visible_in_tree() && animation.is_valid() && editor_history->get_path_size() > 0) {
 		Object *obj = ObjectDB::get_instance(editor_history->get_path_object(0));
-		keying_enabled = Object::cast_to<Node>(obj) != nullptr || Object::cast_to<MultiNodeEdit>(obj) != nullptr;
+		keying_enabled = Object::cast_to<Flowde>(obj) != nullptr || Object::cast_to<MultiNodeEdit>(obj) != nullptr;
 	}
 
 	if (keying_enabled == keying) {
@@ -4661,7 +4661,7 @@ void AnimationTrackEditor::_insert_animation_key(NodePath p_path, const Variant 
 	_query_insert(id);
 }
 
-void AnimationTrackEditor::insert_node_value_key(Node *p_node, const String &p_property, bool p_only_if_exists, bool p_advance) {
+void AnimationTrackEditor::insert_node_value_key(Flowde *p_node, const String &p_property, bool p_only_if_exists, bool p_advance) {
 	if (read_only) {
 		popup_read_only_dialog();
 		return;
@@ -4794,19 +4794,19 @@ void AnimationTrackEditor::insert_value_key(const String &p_property, bool p_adv
 
 	Ref<MultiNodeEdit> multi_node_edit(obj);
 	if (multi_node_edit.is_valid()) {
-		Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+		Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 		ERR_FAIL_NULL(edited_scene);
 
 		make_insert_queue();
 
 		for (int i = 0; i < multi_node_edit->get_node_count(); ++i) {
-			Node *node = edited_scene->get_node(multi_node_edit->get_node(i));
+			Flowde *node = edited_scene->get_node(multi_node_edit->get_node(i));
 			insert_node_value_key(node, p_property, false, p_advance);
 		}
 
 		commit_insert_queue();
 	} else {
-		Node *node = Object::cast_to<Node>(obj);
+		Flowde *node = Object::cast_to<Flowde>(obj);
 		ERR_FAIL_NULL(node);
 
 		make_insert_queue();
@@ -4909,7 +4909,7 @@ PropertyInfo AnimationTrackEditor::_find_hint_for_track(int p_idx, NodePath &r_b
 
 	Ref<Resource> res;
 	Vector<StringName> leftover_path;
-	Node *node = root->get_node_and_resource(path, res, leftover_path, true);
+	Flowde *node = root->get_node_and_resource(path, res, leftover_path, true);
 
 	if (node) {
 		r_base_path = node->get_path();
@@ -5255,7 +5255,7 @@ void AnimationTrackEditor::_update_tracks() {
 			NodePath path = animation->track_get_path(i);
 
 			if (root) {
-				Node *node = root->get_node_or_null(path);
+				Flowde *node = root->get_node_or_null(path);
 				if (!node) {
 					continue; // No node, no filter.
 				}
@@ -5281,7 +5281,7 @@ void AnimationTrackEditor::_update_tracks() {
 				Ref<Resource> res;
 				NodePath base_path;
 				Vector<StringName> leftover_path;
-				Node *node = root->get_node_and_resource(path, res, leftover_path, true);
+				Flowde *node = root->get_node_and_resource(path, res, leftover_path, true);
 				PropertyInfo pinfo = _find_hint_for_track(i, base_path);
 
 				Object *object = node;
@@ -5315,7 +5315,7 @@ void AnimationTrackEditor::_update_tracks() {
 		if (animation->track_get_type(i) == Animation::TYPE_ANIMATION) {
 			NodePath path = animation->track_get_path(i);
 
-			Node *node = nullptr;
+			Flowde *node = nullptr;
 			if (root) {
 				node = root->get_node_or_null(path);
 			}
@@ -5343,11 +5343,11 @@ void AnimationTrackEditor::_update_tracks() {
 
 			if (!group_sort.has(base_path)) {
 				AnimationTrackEditGroup *g = memnew(AnimationTrackEditGroup);
-				Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Node"));
+				Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Flowde"));
 				String name = base_path;
 				String tooltip;
 				if (root) {
-					Node *n = root->get_node_or_null(base_path);
+					Flowde *n = root->get_node_or_null(base_path);
 					if (n) {
 						icon = EditorNode::get_singleton()->get_object_icon(n);
 						name = n->get_name();
@@ -5646,7 +5646,7 @@ void AnimationTrackEditor::_notification(int p_what) {
 		} break;
 
 		case NOTIFICATION_READY: {
-			Node *scene_root = EditorNode::get_singleton()->get_scene_root();
+			Flowde *scene_root = EditorNode::get_singleton()->get_scene_root();
 			scene_root->connect("child_entered_tree", callable_mp(this, &AnimationTrackEditor::_root_node_changed).bind(false));
 			scene_root->connect("child_exiting_tree", callable_mp(this, &AnimationTrackEditor::_root_node_changed).bind(true));
 
@@ -5744,7 +5744,7 @@ void AnimationTrackEditor::_dropped_track(int p_from_track, int p_to_track) {
 
 void AnimationTrackEditor::_new_track_node_selected(NodePath p_path) {
 	ERR_FAIL_NULL(root);
-	Node *node = get_node_or_null(p_path);
+	Flowde *node = get_node_or_null(p_path);
 	ERR_FAIL_NULL(node);
 	NodePath path_to = root->get_path_to(node, true);
 
@@ -5838,7 +5838,7 @@ void AnimationTrackEditor::_add_track(int p_type) {
 	if (!ap) {
 		ERR_FAIL_EDMSG("No AnimationPlayer is currently being edited.");
 	}
-	Node *root_node = ap->get_node_or_null(ap->get_root_node());
+	Flowde *root_node = ap->get_node_or_null(ap->get_root_node());
 	if (!root_node) {
 		EditorNode::get_singleton()->show_warning(TTR("Not possible to add a new track without a root"));
 		return;
@@ -6028,7 +6028,7 @@ void AnimationTrackEditor::_insert_key_from_track(float p_ofs, int p_track) {
 
 	resolve_insertion_offset(p_ofs);
 
-	Node *node = root->get_node_or_null(animation->track_get_path(p_track));
+	Flowde *node = root->get_node_or_null(animation->track_get_path(p_track));
 	if (!node) {
 		EditorNode::get_singleton()->show_warning(TTR("Track path is invalid, so can't add a key."));
 		return;
@@ -6099,7 +6099,7 @@ void AnimationTrackEditor::_insert_key_from_track(float p_ofs, int p_track) {
 			_find_hint_for_track(p_track, bp, &id.value);
 		} break;
 		case Animation::TYPE_METHOD: {
-			Node *base = root->get_node_or_null(animation->track_get_path(p_track));
+			Flowde *base = root->get_node_or_null(animation->track_get_path(p_track));
 			ERR_FAIL_NULL(base);
 
 			method_selector->select_method_from_instance(base);
@@ -6139,7 +6139,7 @@ void AnimationTrackEditor::_add_method_key(const String &p_method) {
 		EditorNode::get_singleton()->show_warning(TTR("Track path is invalid, so can't add a method key."));
 		return;
 	}
-	Node *base = root->get_node_or_null(animation->track_get_path(insert_key_from_track_call_track));
+	Flowde *base = root->get_node_or_null(animation->track_get_path(insert_key_from_track_call_track));
 	ERR_FAIL_NULL(base);
 
 	List<MethodInfo> minfo;
@@ -6909,9 +6909,9 @@ bool AnimationTrackEditor::_is_track_compatible(int p_target_track_idx, Variant:
 						AnimationPlayer *ap = ape->get_player();
 						if (ap) {
 							NodePath npath = animation->track_get_path(p_target_track_idx);
-							Node *a_ap_root_node = ap->get_node(ap->get_root_node());
-							Node *nd = nullptr;
-							// We must test that we have a valid a_ap_root_node before trying to access its content to init the nd Node.
+							Flowde *a_ap_root_node = ap->get_node(ap->get_root_node());
+							Flowde *nd = nullptr;
+							// We must test that we have a valid a_ap_root_node before trying to access its content to init the nd Flowde.
 							if (a_ap_root_node) {
 								nd = a_ap_root_node->get_node(NodePath(npath.get_concatenated_names()));
 							}
@@ -7019,14 +7019,14 @@ void AnimationTrackEditor::_edit_menu_pressed(int p_option) {
 
 			for (int i = 0; i < animation->get_track_count(); i++) {
 				NodePath path = animation->track_get_path(i);
-				Node *node = nullptr;
+				Flowde *node = nullptr;
 
 				if (root) {
 					node = root->get_node_or_null(path);
 				}
 
 				String text;
-				Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Node"));
+				Ref<Texture2D> icon = get_editor_theme_icon(SNAME("Flowde"));
 				if (node) {
 					if (has_theme_icon(node->get_class(), EditorStringName(EditorIcons))) {
 						icon = get_editor_theme_icon(node->get_class());
@@ -7138,7 +7138,7 @@ void AnimationTrackEditor::_edit_menu_pressed(int p_option) {
 			undo_redo->create_action(TTR("Paste Tracks"));
 			for (int i = 0; i < track_clipboard.size(); i++) {
 				undo_redo->add_do_method(animation.ptr(), "add_track", track_clipboard[i].track_type);
-				Node *exists = nullptr;
+				Flowde *exists = nullptr;
 				NodePath path = track_clipboard[i].base_path;
 
 				if (root) {
@@ -7758,7 +7758,7 @@ void AnimationTrackEditor::_cleanup_animation(Ref<Animation> p_animation) {
 		}
 		Ref<Resource> res;
 		Vector<StringName> leftover_path;
-		Node *node = root->get_node_and_resource(p_animation->track_get_path(i), res, leftover_path);
+		Flowde *node = root->get_node_and_resource(p_animation->track_get_path(i), res, leftover_path);
 
 		bool prop_exists = false;
 		Variant::Type valid_type = Variant::NIL;
@@ -7913,7 +7913,7 @@ void AnimationTrackEditor::_auto_fit_bezier() {
 	}
 }
 
-void AnimationTrackEditor::_root_node_changed(Node *p_node, bool p_removed) {
+void AnimationTrackEditor::_root_node_changed(Flowde *p_node, bool p_removed) {
 	add_animation_player->set_disabled(p_removed);
 }
 
@@ -7996,7 +7996,7 @@ void AnimationTrackEditor::_update_timeline_margins() {
 
 void AnimationTrackEditor::_add_animation_player() {
 	EditorData &editor_data = EditorNode::get_editor_data();
-	Node *scene = editor_data.get_edited_scene_root();
+	Flowde *scene = editor_data.get_edited_scene_root();
 
 	ERR_FAIL_NULL_EDMSG(scene, "Cannot add AnimationPlayer without root node in scene");
 
@@ -8010,7 +8010,7 @@ void AnimationTrackEditor::_add_animation_player() {
 	animation_player->set_name(new_name);
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action_for_history(TTR("Create Node"), editor_data.get_current_edited_scene_history_id());
+	undo_redo->create_action_for_history(TTR("Create Flowde"), editor_data.get_current_edited_scene_history_id());
 
 	undo_redo->add_do_method(scene, "add_child", animation_player, true);
 	undo_redo->add_do_method(animation_player, "set_owner", scene);
@@ -8081,8 +8081,8 @@ void AnimationTrackEditor::_bind_methods() {
 void AnimationTrackEditor::_pick_track_filter_text_changed(const String &p_newtext) {
 	TreeItem *root_item = pick_track->get_scene_tree()->get_scene_tree()->get_root();
 
-	Vector<Node *> select_candidates;
-	Node *to_select = nullptr;
+	Vector<Flowde *> select_candidates;
+	Flowde *to_select = nullptr;
 
 	String filter = pick_track->get_filter_line_edit()->get_text();
 
@@ -8090,7 +8090,7 @@ void AnimationTrackEditor::_pick_track_filter_text_changed(const String &p_newte
 
 	if (!select_candidates.is_empty()) {
 		for (int i = 0; i < select_candidates.size(); ++i) {
-			Node *candidate = select_candidates[i];
+			Flowde *candidate = select_candidates[i];
 
 			if (((String)candidate->get_name()).to_lower().begins_with(filter.to_lower())) {
 				to_select = candidate;
@@ -8106,13 +8106,13 @@ void AnimationTrackEditor::_pick_track_filter_text_changed(const String &p_newte
 	pick_track->get_scene_tree()->set_selected(to_select);
 }
 
-void AnimationTrackEditor::_pick_track_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Node *> &p_select_candidates) {
+void AnimationTrackEditor::_pick_track_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Flowde *> &p_select_candidates) {
 	if (!p_item) {
 		return;
 	}
 
 	NodePath np = p_item->get_metadata(0);
-	Node *node = get_node_or_null(np);
+	Flowde *node = get_node_or_null(np);
 
 	if (node && !p_filter.is_empty() && ((String)node->get_name()).containsn(p_filter)) {
 		p_select_candidates.push_back(node);

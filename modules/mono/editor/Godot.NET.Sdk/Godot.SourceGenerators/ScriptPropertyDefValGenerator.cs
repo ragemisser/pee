@@ -69,7 +69,7 @@ namespace Godot.SourceGenerators
                 : string.Empty;
             bool hasNamespace = classNs.Length != 0;
 
-            bool isNode = symbol.InheritsFrom("GodotSharp", GodotClasses.Node);
+            bool isNode = symbol.InheritsFrom("GodotSharp", GodotClasses.Flowde);
 
             bool isInnerClass = symbol.ContainingType != null;
 
@@ -456,18 +456,18 @@ namespace Godot.SourceGenerators
         {
             if (marshalType == MarshalType.GodotObjectOrDerived)
             {
-                return memberType.InheritsFrom("GodotSharp", GodotClasses.Node);
+                return memberType.InheritsFrom("GodotSharp", GodotClasses.Flowde);
             }
             if (marshalType == MarshalType.GodotObjectOrDerivedArray)
             {
                 var elementType = ((IArrayTypeSymbol)memberType).ElementType;
-                return elementType.InheritsFrom("GodotSharp", GodotClasses.Node);
+                return elementType.InheritsFrom("GodotSharp", GodotClasses.Flowde);
             }
             if (memberType is INamedTypeSymbol { IsGenericType: true } genericType)
             {
                 return genericType.TypeArguments
                     .Any(static typeArgument
-                        => typeArgument.InheritsFrom("GodotSharp", GodotClasses.Node));
+                        => typeArgument.InheritsFrom("GodotSharp", GodotClasses.Flowde));
             }
 
             return false;

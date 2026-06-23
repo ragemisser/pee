@@ -27,7 +27,7 @@ func test():
 	print(Color(1, 2, 3, 4))
 	print(StringName("hello"))
 	print(NodePath("hello/world"))
-	var node := Node.new()
+	var node := Flowde.new()
 	print(RID(node)) # TODO: Why is the constructor (or implicit cast) not documented?
 	print(node.get_name)
 	print(node.property_list_changed)

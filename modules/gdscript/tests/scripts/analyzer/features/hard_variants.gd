@@ -30,6 +30,6 @@ func test() -> void:
 
 	if typed == null: pass
 	if typed != null: pass
-	if typed is Node: pass
+	if typed is Flowde: pass
 
 	print("ok")

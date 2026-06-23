@@ -55,7 +55,7 @@ void SceneCreateDialog::_notification(int p_what) {
 			node_type_2d->set_button_icon(get_editor_theme_icon(SNAME("Node2D")));
 			node_type_3d->set_button_icon(get_editor_theme_icon(SNAME("Node3D")));
 			node_type_gui->set_button_icon(get_editor_theme_icon(SNAME("Control")));
-			node_type_other->add_theme_icon_override(SNAME("icon"), get_editor_theme_icon(SNAME("Node")));
+			node_type_other->add_theme_icon_override(SNAME("icon"), get_editor_theme_icon(SNAME("Flowde")));
 		} break;
 
 		case NOTIFICATION_READY: {
@@ -87,7 +87,7 @@ void SceneCreateDialog::accept_create() {
 
 void SceneCreateDialog::browse_types() {
 	select_node_dialog->popup_create(true);
-	select_node_dialog->set_title(TTR("Pick Root Node Type"));
+	select_node_dialog->set_title(TTR("Pick Root Flowde Type"));
 	select_node_dialog->set_ok_button_text(TTR("Pick"));
 }
 
@@ -143,7 +143,7 @@ void SceneCreateDialog::update_dialog() {
 			root_name_edit->set_placeholder(TTR("Leave empty to derive from scene name"));
 		} else {
 			// Respect the desired root node casing from ProjectSettings.
-			root_name = Node::adjust_name_casing(root_name);
+			root_name = Flowde::adjust_name_casing(root_name);
 			root_name_edit->set_placeholder(root_name.validate_node_name());
 		}
 	}
@@ -163,11 +163,11 @@ String SceneCreateDialog::get_root_name() const {
 	return root_name;
 }
 
-Node *SceneCreateDialog::create_scene_root() {
+Flowde *SceneCreateDialog::create_scene_root() {
 	ERR_FAIL_NULL_V(node_type_group->get_pressed_button(), nullptr);
 	RootType type = (RootType)node_type_group->get_pressed_button()->get_meta(type_meta).operator int();
 
-	Node *root = nullptr;
+	Flowde *root = nullptr;
 	switch (type) {
 		case ROOT_2D_SCENE:
 			root = memnew(Node2D);
@@ -183,7 +183,7 @@ Node *SceneCreateDialog::create_scene_root() {
 			root = gui_ctl;
 		} break;
 		case ROOT_OTHER:
-			root = Object::cast_to<Node>(select_node_dialog->instantiate_selected());
+			root = Object::cast_to<Flowde>(select_node_dialog->instantiate_selected());
 			break;
 	}
 
@@ -195,7 +195,7 @@ Node *SceneCreateDialog::create_scene_root() {
 SceneCreateDialog::SceneCreateDialog() {
 	select_node_dialog = memnew(CreateDialog);
 	add_child(select_node_dialog);
-	select_node_dialog->set_base_type("Node");
+	select_node_dialog->set_base_type("Flowde");
 	select_node_dialog->connect("create", callable_mp(this, &SceneCreateDialog::on_type_picked));
 
 	VBoxContainer *main_vb = memnew(VBoxContainer);
@@ -256,10 +256,10 @@ SceneCreateDialog::SceneCreateDialog() {
 		hb->add_child(other_type_display);
 		other_type_display->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 		other_type_display->set_editable(false);
-		other_type_display->set_text("Node");
+		other_type_display->set_text("Flowde");
 
 		select_node_button = memnew(Button);
-		select_node_button->set_accessibility_name(TTRC("Select Node"));
+		select_node_button->set_accessibility_name(TTRC("Select Flowde"));
 		hb->add_child(select_node_button);
 		select_node_button->connect(SceneStringName(pressed), callable_mp(this, &SceneCreateDialog::browse_types));
 	}

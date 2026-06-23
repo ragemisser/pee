@@ -124,14 +124,14 @@ const char *RenamesMap3To4::enum_renames[][2] = {
 	{ "MODE_STATIC", "FREEZE_MODE_STATIC" }, // RigidBody
 	{ "NOTIFICATION_APP_PAUSED", "NOTIFICATION_APPLICATION_PAUSED" }, // MainLoop
 	{ "NOTIFICATION_APP_RESUMED", "NOTIFICATION_APPLICATION_RESUMED" }, // MainLoop
-	{ "NOTIFICATION_INSTANCED", "NOTIFICATION_SCENE_INSTANTIATED" }, // Node
-	{ "NOTIFICATION_PATH_CHANGED", "NOTIFICATION_PATH_RENAMED" }, //Node
+	{ "NOTIFICATION_INSTANCED", "NOTIFICATION_SCENE_INSTANTIATED" }, // Flowde
+	{ "NOTIFICATION_PATH_CHANGED", "NOTIFICATION_PATH_RENAMED" }, //Flowde
 	{ "NOTIFICATION_WM_FOCUS_IN", "NOTIFICATION_APPLICATION_FOCUS_IN" }, // MainLoop
 	{ "NOTIFICATION_WM_FOCUS_OUT", "NOTIFICATION_APPLICATION_FOCUS_OUT" }, // MainLoop
-	{ "NOTIFICATION_WM_UNFOCUS_REQUEST", "NOTIFICATION_WM_WINDOW_FOCUS_OUT" }, //Node
-	{ "PAUSE_MODE_INHERIT", "PROCESS_MODE_INHERIT" }, // Node
-	{ "PAUSE_MODE_PROCESS", "PROCESS_MODE_ALWAYS" }, // Node
-	{ "PAUSE_MODE_STOP", "PROCESS_MODE_PAUSABLE" }, // Node
+	{ "NOTIFICATION_WM_UNFOCUS_REQUEST", "NOTIFICATION_WM_WINDOW_FOCUS_OUT" }, //Flowde
+	{ "PAUSE_MODE_INHERIT", "PROCESS_MODE_INHERIT" }, // Flowde
+	{ "PAUSE_MODE_PROCESS", "PROCESS_MODE_ALWAYS" }, // Flowde
+	{ "PAUSE_MODE_STOP", "PROCESS_MODE_PAUSABLE" }, // Flowde
 	{ "RENDER_DRAW_CALLS_IN_FRAME", "RENDER_TOTAL_DRAW_CALLS_IN_FRAME" }, // Performance
 	{ "RENDER_OBJECTS_IN_FRAME", "RENDER_TOTAL_OBJECTS_IN_FRAME" }, // Performance
 	{ "SOURCE_GEOMETRY_NAVMESH_CHILDREN", "SOURCE_GEOMETRY_ROOT_NODE_CHILDREN" }, // NavigationMesh
@@ -148,7 +148,7 @@ const char *RenamesMap3To4::enum_renames[][2] = {
 	{ "CubeMapSide", "CubeMapLayer" }, // RenderingServer
 	{ "DampedStringParam", "DampedSpringParam" }, // PhysicsServer2D
 	{ "FFT_Size", "FFTSize" }, // AudioEffectPitchShift, AudioEffectSpectrumAnalyzer
-	{ "PauseMode", "ProcessMode" }, // Node
+	{ "PauseMode", "ProcessMode" }, // Flowde
 	{ "TimerProcessMode", "TimerProcessCallback" }, // Timer
 	{ "Tracking_status", "TrackingStatus" }, // XRInterface
 	{ nullptr, nullptr },
@@ -162,7 +162,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// make sure to add it to the C# rename map too.
 
 	// { "_set_name", "get_tracker_name" }, // XRPositionalTracker -- CameraFeed uses this.
-	// { "_unhandled_input", "_unhandled_key_input" }, // BaseButton, ViewportContainer -- Breaks Node, FileDialog, SubViewportContainer.
+	// { "_unhandled_input", "_unhandled_key_input" }, // BaseButton, ViewportContainer -- Breaks Flowde, FileDialog, SubViewportContainer.
 	// { "add_animation", "add_animation_library" }, // AnimationPlayer -- Breaks SpriteFrames (and isn't a correct conversion).
 	// { "create_gizmo", "_create_gizmo" }, // EditorNode3DGizmoPlugin -- May be used.
 	// { "get_dependencies", "_get_dependencies" }, // ResourceFormatLoader -- Breaks ResourceLoader.
@@ -170,14 +170,14 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// { "get_h_offset", "get_drag_horizontal_offset" }, // Camera2D -- Breaks PathFollow, Camera.
 	// { "get_mode", "get_file_mode" }, // FileDialog -- Breaks Panel, Shader, CSGPolygon, TileMap.
 	// { "get_motion", "get_travel" }, // PhysicsTestMotionResult2D -- Breaks ParallaxLayer.
-	// { "get_name", "get_tracker_name" }, // XRPositionalTracker -- Breaks OS, Node
+	// { "get_name", "get_tracker_name" }, // XRPositionalTracker -- Breaks OS, Flowde
 	// { "get_network_connected_peers", "get_peers" }, // MultiplayerAPI -- Breaks SceneTree.
 	// { "get_network_peer", "has_multiplayer_peer" }, // MultiplayerAPI -- Breaks SceneTree.
 	// { "get_network_unique_id", "get_unique_id"}, // MultiplayerAPI -- Breaks SceneTree.
 	// { "get_offset", "get_position_offset" }, // GraphNode -- Breaks Gradient.
 	// { "get_peer_port", "get_peer" }, // ENetMultiplayerPeer -- Breaks WebSocketServer.
 	// { "get_points", "get_points_id" }, // AStar -- Breaks Line2D, ConvexPolygonShape.
-	// { "get_process_mode", "get_process_callback" }, // ClippedCamera3D -- Breaks Node, Sky.
+	// { "get_process_mode", "get_process_callback" }, // ClippedCamera3D -- Breaks Flowde, Sky.
 	// { "get_render_info", "get_rendering_info" }, // RenderingServer -- Breaks Viewport.
 	// { "get_stylebox", "get_theme_stylebox" }, // Control -- Would rename the method in Theme as well, skipping.
 	// { "get_type", "get_tracker_type" }, // XRPositionalTracker -- Breaks GLTFAccessor, GLTFLight.
@@ -204,20 +204,20 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// { "set_mode", "set_mode_file_mode" }, // FileDialog -- Breaks Panel, Shader, CSGPolygon, TileMap.
 	// { "set_normal", "surface_set_normal"}, // ImmediateGeometry -- Breaks SurfaceTool, WorldMarginShape2D.
 	// { "set_offset", "set_progress" }, // PathFollow2D, PathFollow3D -- Too common.
-	// { "set_process_mode", "set_process_callback" }, // AnimationTree -- Breaks Node, Tween, Sky.
+	// { "set_process_mode", "set_process_callback" }, // AnimationTree -- Breaks Flowde, Tween, Sky.
 	// { "set_refuse_new_network_connections", "set_refuse_new_connections"}, // MultiplayerAPI -- Breaks SceneTree.
 	// { "set_tooltip", "set_tooltip_text" }, // Control -- Breaks TreeItem, at least for now.
 	// { "set_uv", "surface_set_uv" }, // ImmediateMesh -- Breaks Polygon2D.
 	// { "set_v_offset", "set_drag_vertical_offset" }, // Camera2D -- Breaks Camera3D, PathFollow3D, PathFollow2D.
 
 	{ "_about_to_show", "_about_to_popup" }, // ColorPickerButton
-	{ "_get_configuration_warning", "_get_configuration_warnings" }, // Node
+	{ "_get_configuration_warning", "_get_configuration_warnings" }, // Flowde
 	{ "_set_current", "set_current" }, // Camera2D
-	{ "_set_editor_description", "set_editor_description" }, // Node
+	{ "_set_editor_description", "set_editor_description" }, // Flowde
 	{ "_toplevel_raise_self", "_top_level_raise_self" }, // CanvasItem
 	{ "add_cancel", "add_cancel_button" }, // AcceptDialog
 	{ "add_central_force", "apply_central_force" }, //RigidBody2D
-	{ "add_child_below_node", "add_sibling" }, // Node
+	{ "add_child_below_node", "add_sibling" }, // Flowde
 	{ "add_color_override", "add_theme_color_override" }, // Control
 	{ "add_constant_override", "add_theme_constant_override" }, // Control
 	{ "add_font_override", "add_theme_font_override" }, // Control
@@ -264,7 +264,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "disable_plugin", "_disable_plugin" }, // EditorPlugin
 	{ "drop_data", "_drop_data" }, // Control
 	{ "exclude_polygons_2d", "exclude_polygons" }, // Geometry2D
-	{ "find_node", "find_child" }, // Node
+	{ "find_node", "find_child" }, // Flowde
 	{ "find_scancode_from_string", "find_keycode_from_string" }, // OS
 	{ "forward_canvas_draw_over_viewport", "_forward_canvas_draw_over_viewport" }, // EditorPlugin
 	{ "forward_canvas_force_draw_over_viewport", "_forward_canvas_force_draw_over_viewport" }, // EditorPlugin
@@ -308,7 +308,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "get_enabled_focus_mode", "get_focus_mode" }, // BaseButton
 	{ "get_endian_swap", "is_big_endian" }, // File
 	{ "get_error_string", "get_error_message" }, // JSON
-	{ "get_filename", "get_scene_file_path" }, // Node -- WARNING: This may be used in a lot of other places.
+	{ "get_filename", "get_scene_file_path" }, // Flowde -- WARNING: This may be used in a lot of other places.
 	{ "get_final_location", "get_final_position" }, // NavigationAgent2D, NavigationAgent3D
 	{ "get_focus_neighbour", "get_focus_neighbor" }, // Control
 	{ "get_follow_smoothing", "get_position_smoothing_speed" }, // Camera2D
@@ -343,7 +343,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "get_nav_path_index", "get_current_navigation_path_index" }, // NavigationAgent2D, NavigationAgent3D
 	{ "get_neighbor_dist", "get_neighbor_distance" }, // NavigationAgent2D, NavigationAgent3D
 	{ "get_network_connected_peers", "get_peers" }, // Multiplayer API
-	{ "get_network_master", "get_multiplayer_authority" }, // Node
+	{ "get_network_master", "get_multiplayer_authority" }, // Flowde
 	{ "get_network_peer", "get_multiplayer_peer" }, // Multiplayer API
 	{ "get_network_unique_id", "get_unique_id" }, // Multiplayer API
 	{ "get_next_location", "get_next_path_position" }, // NavigationAgent2D, NavigationAgent3D
@@ -353,7 +353,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "get_parameter_default_value", "_get_parameter_default_value" }, // AnimationNode
 	{ "get_parameter_list", "_get_parameter_list" }, // AnimationNode
 	{ "get_parent_spatial", "get_parent_node_3d" }, // Node3D
-	{ "get_pause_mode", "get_process_mode" }, // Node
+	{ "get_pause_mode", "get_process_mode" }, // Flowde
 	{ "get_physical_scancode", "get_physical_keycode" }, // InputEventKey
 	{ "get_physical_scancode_with_modifiers", "get_physical_keycode_with_modifiers" }, // InputEventKey
 	{ "get_plugin_icon", "_get_plugin_icon" }, // EditorPlugin
@@ -425,7 +425,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "interpolate", "sample" }, // Curve, Curve2D, Curve3D, Gradient
 	{ "intersect_polygons_2d", "intersect_polygons" }, // Geometry2D
 	{ "intersect_polyline_with_polygon_2d", "intersect_polyline_with_polygon" }, // Geometry2D
-	{ "is_a_parent_of", "is_ancestor_of" }, // Node
+	{ "is_a_parent_of", "is_ancestor_of" }, // Flowde
 	{ "is_commiting_action", "is_committing_action" }, // UndoRedo
 	{ "is_doubleclick", "is_double_click" }, // InputEventMouseButton
 	{ "is_draw_red", "is_draw_warning" }, // EditorProperty
@@ -433,7 +433,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "is_h_drag_enabled", "is_drag_horizontal_enabled" }, // Camera2D
 	{ "is_handle_highlighted", "_is_handle_highlighted" }, // EditorNode3DGizmo, EditorNode3DGizmoPlugin
 	{ "is_inverting_faces", "get_flip_faces" }, // CSGPrimitive3D
-	{ "is_network_master", "is_multiplayer_authority" }, // Node
+	{ "is_network_master", "is_multiplayer_authority" }, // Flowde
 	{ "is_network_server", "is_server" }, // Multiplayer API
 	{ "is_normalmap", "is_normal_map" }, // NoiseTexture
 	{ "is_refusing_new_network_connections", "is_refusing_new_connections" }, // Multiplayer API
@@ -471,7 +471,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "pin_joint_create", "joint_make_pin" }, // PhysicsServer2D
 	{ "popup_centered_minsize", "popup_centered_clamped" }, // Window
 	{ "post_import", "_post_import" }, // EditorScenePostImport
-	{ "print_stray_nodes", "print_orphan_nodes" }, // Node
+	{ "print_stray_nodes", "print_orphan_nodes" }, // Flowde
 	{ "property_list_changed_notify", "notify_property_list_changed" }, // Object
 	{ "recognize", "_recognize" }, // ResourceFormatLoader
 	{ "regen_normalmaps", "regen_normal_maps" }, // ArrayMesh
@@ -520,7 +520,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "set_enabled_focus_mode", "set_focus_mode" }, // BaseButton
 	{ "set_endian_swap", "set_big_endian" }, // File
 	{ "set_expand_to_text_length", "set_expand_to_text_length_enabled" }, // LineEdit
-	{ "set_filename", "set_scene_file_path" }, // Node -- WARNING: This may be used in a lot of other places.
+	{ "set_filename", "set_scene_file_path" }, // Flowde -- WARNING: This may be used in a lot of other places.
 	{ "set_focus_neighbour", "set_focus_neighbor" }, // Control
 	{ "set_follow_smoothing", "set_position_smoothing_speed" }, // Camera2D
 	{ "set_frame_color", "set_color" }, // ColorRect
@@ -543,10 +543,10 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "set_metakey", "set_meta_pressed" }, // InputEventWithModifiers
 	{ "set_mid_height", "set_height" }, // CapsuleMesh
 	{ "set_neighbor_dist", "set_neighbor_distance" }, // NavigationAgent2D, NavigationAgent3D
-	{ "set_network_master", "set_multiplayer_authority" }, // Node
+	{ "set_network_master", "set_multiplayer_authority" }, // Flowde
 	{ "set_network_peer", "set_multiplayer_peer" }, // Multiplayer API
 	{ "set_oneshot", "set_one_shot" }, // AnimatedTexture
-	{ "set_pause_mode", "set_process_mode" }, // Node
+	{ "set_pause_mode", "set_process_mode" }, // Flowde
 	{ "set_physical_scancode", "set_physical_keycode" }, // InputEventKey
 	{ "set_proximity_fade", "set_proximity_fade_enabled" }, // Material
 	{ "set_refuse_new_network_connections", "set_refuse_new_connections" }, // Multiplayer API
@@ -589,7 +589,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "triangulate_delaunay_2d", "triangulate_delaunay" }, // Geometry2D
 	{ "unselect", "deselect" }, // ItemList
 	{ "unselect_all", "deselect_all" }, // ItemList
-	{ "update_configuration_warning", "update_configuration_warnings" }, // Node
+	{ "update_configuration_warning", "update_configuration_warnings" }, // Flowde
 	{ "update_gizmo", "update_gizmos" }, // Node3D
 	{ "viewport_set_use_arvr", "viewport_set_use_xr" }, // RenderingServer
 	{ "warp_mouse_position", "warp_mouse" }, // Input
@@ -638,14 +638,14 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 // gdscript_function_renames clone with CamelCase
 const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "_AboutToShow", "_AboutToPopup" }, // ColorPickerButton
-	{ "_GetConfigurationWarning", "_GetConfigurationWarnings" }, // Node
+	{ "_GetConfigurationWarning", "_GetConfigurationWarnings" }, // Flowde
 	{ "_SetCurrent", "SetCurrent" }, // Camera2D
-	{ "_SetEditorDescription", "SetEditorDescription" }, // Node
+	{ "_SetEditorDescription", "SetEditorDescription" }, // Flowde
 	{ "_SetPlaying", "SetPlaying" }, // AnimatedSprite3D
 	{ "_ToplevelRaiseSelf", "_TopLevelRaiseSelf" }, // CanvasItem
 	{ "AddCancel", "AddCancelButton" }, // AcceptDialog
 	{ "AddCentralForce", "AddConstantCentralForce" }, //RigidBody2D
-	{ "AddChildBelowNode", "AddSibling" }, // Node
+	{ "AddChildBelowNode", "AddSibling" }, // Flowde
 	{ "AddColorOverride", "AddThemeColorOverride" }, // Control
 	{ "AddConstantOverride", "AddThemeConstantOverride" }, // Control
 	{ "AddFontOverride", "AddThemeFontOverride" }, // Control
@@ -766,7 +766,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "GetNavPathIndex", "GetCurrentNavigationPathIndex" }, // NavigationAgent2D, NavigationAgent3D
 	{ "GetNeighborDist", "GetNeighborDistance" }, // NavigationAgent2D, NavigationAgent3D
 	{ "GetNetworkConnectedPeers", "GetPeers" }, // Multiplayer API
-	{ "GetNetworkMaster", "GetMultiplayerAuthority" }, // Node
+	{ "GetNetworkMaster", "GetMultiplayerAuthority" }, // Flowde
 	{ "GetNetworkPeer", "GetMultiplayerPeer" }, // Multiplayer API
 	{ "GetNetworkUniqueId", "GetUniqueId" }, // Multiplayer API
 	{ "GetNextLocation", "GetNextPathPosition" }, // NavigationAgent2D, NavigationAgent3D
@@ -845,13 +845,13 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "InstanceSetSurfaceMaterial", "InstanceSetSurfaceOverrideMaterial" }, // RenderingServer
 	{ "IntersectPolygons2d", "IntersectPolygons" }, // Geometry2D
 	{ "IntersectPolylineWithPolygon2d", "IntersectPolylineWithPolygon" }, // Geometry2D
-	{ "IsAParentOf", "IsAncestorOf" }, // Node
+	{ "IsAParentOf", "IsAncestorOf" }, // Flowde
 	{ "IsCommitingAction", "IsCommittingAction" }, // UndoRedo
 	{ "IsDoubleclick", "IsDoubleClick" }, // InputEventMouseButton
 	{ "IsFollowSmoothingEnabled", "IsPositionSmoothingEnabled" }, // Camera2D
 	{ "IsHDragEnabled", "IsDragHorizontalEnabled" }, // Camera2D
 	{ "IsHandleHighlighted", "_IsHandleHighlighted" }, // EditorNode3DGizmo, EditorNode3DGizmoPlugin
-	{ "IsNetworkMaster", "IsMultiplayerAuthority" }, // Node
+	{ "IsNetworkMaster", "IsMultiplayerAuthority" }, // Flowde
 	{ "IsNetworkServer", "IsServer" }, // Multiplayer API
 	{ "IsNormalmap", "IsNormalMap" }, // NoiseTexture
 	{ "IsRefusingNewNetworkConnections", "IsRefusingNewConnections" }, // Multiplayer API
@@ -887,7 +887,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "PinJointCreate", "JointMakePin" }, // PhysicsServer2D
 	{ "PopupCenteredMinsize", "PopupCenteredClamped" }, // Window
 	{ "PostImport", "_PostImport" }, // EditorScenePostImport
-	{ "PrintStrayNodes", "PrintOrphanNodes" }, // Node
+	{ "PrintStrayNodes", "PrintOrphanNodes" }, // Flowde
 	{ "PropertyListChangedNotify", "NotifyPropertyListChanged" }, // Object
 	{ "Recognize", "_Recognize" }, // ResourceFormatLoader
 	{ "RegenNormalmaps", "RegenNormalMaps" }, // ArrayMesh
@@ -954,7 +954,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "SetMetakey", "SetMetaPressed" }, // InputEventWithModifiers
 	{ "SetMidHeight", "SetHeight" }, // CapsuleMesh
 	{ "SetNeighborDist", "SetNeighborDistance" }, // NavigationAgent2D, NavigationAgent3D
-	{ "SetNetworkMaster", "SetMultiplayerAuthority" }, // Node
+	{ "SetNetworkMaster", "SetMultiplayerAuthority" }, // Flowde
 	{ "SetNetworkPeer", "SetMultiplayerPeer" }, // Multiplayer API
 	{ "SetOneshot", "SetOneShot" }, // AnimatedTexture
 	{ "SetPhysicalScancode", "SetPhysicalKeycode" }, // InputEventKey
@@ -1001,7 +1001,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "UnbindChildNodeFromBone", "RemoveBoneChild" }, // Skeleton3D
 	{ "Unselect", "Deselect" }, // ItemList
 	{ "UnselectAll", "DeselectAll" }, // ItemList
-	{ "UpdateConfigurationWarning", "UpdateConfigurationWarnings" }, // Node
+	{ "UpdateConfigurationWarning", "UpdateConfigurationWarnings" }, // Flowde
 	{ "UpdateGizmo", "UpdateGizmos" }, // Node3D
 	{ "ViewportSetUseArvr", "ViewportSetUseXr" }, // RenderingServer
 	{ "WarpMousePosition", "WarpMouse" }, // Input
@@ -1054,7 +1054,7 @@ const char *RenamesMap3To4::gdscript_properties_renames[][2] = {
 	// { "d", "distance" }, // WorldMarginShape2D
 	// { "device", "output_device" }, // AudioServer
 	// { "doubleclick", "double_click" }, // InputEventMouseButton
-	// { "filename", "scene_file_path" }, // Node
+	// { "filename", "scene_file_path" }, // Flowde
 	// { "group", "button_group" }, // BaseButton
 	// { "meta", "meta_pressed" }, // InputEventWithModifiers
 	// { "rotate", "rotates" }, // PathFollow2D
@@ -1073,7 +1073,7 @@ const char *RenamesMap3To4::gdscript_properties_renames[][2] = {
 	// { "frames", "sprite_frames" }, // AnimatedSprite2D, AnimatedSprite3D -- GH-73696
 	// { "percent_visible, "show_percentage }, // ProgressBar -- Breaks Label and RichTextLabel.
 	// { "pressed", "button_pressed" }, // BaseButton -- Would also rename the signal.
-	// { "process_mode", "process_callback" }, // AnimationTree, Camera2D -- conflicts with Node.
+	// { "process_mode", "process_callback" }, // AnimationTree, Camera2D -- conflicts with Flowde.
 	// { "wrap_enabled", "wrap_mode" }, // TextEdit -- Changed from bool to enum.
 
 	{ "as_normalmap", "as_normal_map" }, // NoiseTexture
@@ -1131,7 +1131,7 @@ const char *RenamesMap3To4::gdscript_properties_renames[][2] = {
 	{ "on_disabled", "checked_disabled" }, // Theme
 	{ "oneshot", "one_shot" }, // AnimatedTexture
 	{ "out_of_range_mode", "max_polyphony" }, // AudioStreamPlayer3D
-	{ "pause_mode", "process_mode" }, // Node
+	{ "pause_mode", "process_mode" }, // Flowde
 	{ "physical_scancode", "physical_keycode" }, // InputEventKey
 	{ "polygon_verts_per_poly", "polygon_vertices_per_polyon" }, // NavigationMesh
 	{ "popup_exclusive", "exclusive" }, // Window
@@ -1165,7 +1165,7 @@ const char *RenamesMap3To4::gdscript_properties_renames[][2] = {
 	{ "table_vseparation", "table_v_separation" }, // Theme
 	{ "tangent", "orthogonal" }, // Vector2
 	{ "target_location", "target_position" }, // NavigationAgent2D, NavigationAgent3D
-	{ "toplevel", "top_level" }, // Node
+	{ "toplevel", "top_level" }, // Flowde
 	{ "translation", "position" }, // Node3D
 	{ "unit_db", "volume_db" }, // AudioStreamPlayer3D
 	{ "unit_offset", "progress_ratio" }, // PathFollow2D, PathFollow3D
@@ -1229,7 +1229,7 @@ const char *RenamesMap3To4::csharp_properties_renames[][2] = {
 	{ "OnDisabled", "CheckedDisabled" }, // Theme
 	{ "Oneshot", "OneShot" }, // AnimatedTexture
 	{ "OutOfRangeMode", "MaxPolyphony" }, // AudioStreamPlayer3D
-	{ "PauseMode", "ProcessMode" }, // Node
+	{ "PauseMode", "ProcessMode" }, // Flowde
 	{ "Perpendicular", "Orthogonal" }, // Vector2 - Only exists in C#
 	{ "PhysicalScancode", "PhysicalKeycode" }, // InputEventKey
 	{ "PopupExclusive", "Exclusive" }, // Window
@@ -1263,7 +1263,7 @@ const char *RenamesMap3To4::csharp_properties_renames[][2] = {
 	{ "TableVseparation", "TableVSeparation" }, // Theme
 	{ "Tangent", "Orthogonal" }, // Vector2
 	{ "TargetLocation", "TargetPosition" }, // NavigationAgent2D, NavigationAgent3D
-	{ "Toplevel", "TopLevel" }, // Node
+	{ "Toplevel", "TopLevel" }, // Flowde
 	{ "Translation", "Position" }, // Node3D
 	{ "UnitDb", "VolumeDb" }, // AudioStreamPlayer3D
 	{ "UnitOffset", "ProgressRatio" }, // PathFollow2D, PathFollow3D

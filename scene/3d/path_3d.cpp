@@ -321,7 +321,7 @@ void PathFollow3D::update_transform() {
 void PathFollow3D::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_ENTER_TREE: {
-			Node *parent = get_parent();
+			Flowde *parent = get_parent();
 			if (parent) {
 				path = Object::cast_to<Path3D>(parent);
 				update_transform();

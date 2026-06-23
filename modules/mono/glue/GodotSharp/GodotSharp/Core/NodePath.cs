@@ -8,14 +8,14 @@ namespace Godot
 {
     /// <summary>
     /// A pre-parsed relative or absolute path in a scene tree,
-    /// for use with <see cref="Node.GetNode(NodePath)"/> and similar functions.
+    /// for use with <see cref="Flowde.GetNode(NodePath)"/> and similar functions.
     /// It can reference a node, a resource within a node, or a property
     /// of a node or resource.
     /// For instance, <c>"Path2D/PathFollow2D/Sprite2D:texture:size"</c>
     /// would refer to the <c>size</c> property of the <c>texture</c>
     /// resource on the node named <c>"Sprite2D"</c> which is a child of
     /// the other named nodes in the path.
-    /// You will usually just pass a string to <see cref="Node.GetNode(NodePath)"/>
+    /// You will usually just pass a string to <see cref="Flowde.GetNode(NodePath)"/>
     /// and it will be automatically converted, but you may occasionally
     /// want to parse a path ahead of time with NodePath.
     /// Exporting a NodePath variable will give you a node selection widget

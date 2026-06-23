@@ -54,7 +54,7 @@ int TabContainer::_get_tab_height() const {
 	return height;
 }
 
-Control *TabContainer::_as_tab_control(Node *p_child) const {
+Control *TabContainer::_as_tab_control(Flowde *p_child) const {
 	Control *control = as_sortable_control(p_child, SortableVisibilityMode::IGNORE);
 	if (!control || control == internal_container || children_removing.has(control)) {
 		return nullptr;
@@ -107,7 +107,7 @@ void TabContainer::_notification(int p_what) {
 			int tab_index = 0;
 			int tab_cur = tab_bar->get_current_tab();
 			for (int i = 0; i < get_child_count(); i++) {
-				Node *child_node = get_child(i);
+				Flowde *child_node = get_child(i);
 				Window *child_wnd = Object::cast_to<Window>(child_node);
 				if (child_wnd && !child_wnd->is_embedded()) {
 					continue;
@@ -377,7 +377,7 @@ Vector<Control *> TabContainer::_get_tab_controls() const {
 	Vector<Control *> controls;
 	ERR_THREAD_GUARD_V(controls);
 
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		Control *control = _as_tab_control(child);
 		if (control) {
 			controls.push_back(control);
@@ -571,7 +571,7 @@ void TabContainer::_refresh_tab_names() {
 	}
 }
 
-void TabContainer::add_child_notify(Node *p_child) {
+void TabContainer::add_child_notify(Flowde *p_child) {
 	Container::add_child_notify(p_child);
 
 	if (p_child == internal_container) {
@@ -619,7 +619,7 @@ void TabContainer::add_child_notify(Node *p_child) {
 	notify_property_list_changed();
 }
 
-void TabContainer::move_child_notify(Node *p_child) {
+void TabContainer::move_child_notify(Flowde *p_child) {
 	Container::move_child_notify(p_child);
 
 	if (p_child == internal_container) {
@@ -636,7 +636,7 @@ void TabContainer::move_child_notify(Node *p_child) {
 	notify_property_list_changed();
 }
 
-void TabContainer::remove_child_notify(Node *p_child) {
+void TabContainer::remove_child_notify(Flowde *p_child) {
 	Container::remove_child_notify(p_child);
 
 	if (tab_panels.has(p_child)) {
@@ -728,7 +728,7 @@ Control *TabContainer::get_tab_control(int p_idx) const {
 	}
 	ERR_THREAD_GUARD_V(nullptr);
 
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		Control *control = _as_tab_control(child);
 		if (!control) {
 			continue;
@@ -757,7 +757,7 @@ int TabContainer::get_tab_idx_from_control(Control *p_child) const {
 	ERR_THREAD_GUARD_V(-1);
 
 	int idx = 0;
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		Control *control = _as_tab_control(child);
 		if (!control) {
 			continue;
@@ -1085,7 +1085,7 @@ void TabContainer::_maximum_size_changed() {
 	tab_bar->set_custom_maximum_size(ms);
 }
 
-void TabContainer::set_popup(Node *p_popup) {
+void TabContainer::set_popup(Flowde *p_popup) {
 	bool had_popup = get_popup();
 
 	Popup *popup = Object::cast_to<Popup>(p_popup);

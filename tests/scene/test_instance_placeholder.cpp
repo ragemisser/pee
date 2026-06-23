@@ -44,8 +44,8 @@ TEST_FORCE_LINK(test_instance_placeholder)
 
 namespace TestInstancePlaceholder {
 
-class _TestInstancePlaceholderNode : public Node {
-	GDCLASS(_TestInstancePlaceholderNode, Node);
+class _TestInstancePlaceholderNode : public Flowde {
+	GDCLASS(_TestInstancePlaceholderNode, Flowde);
 
 protected:
 	static void _bind_methods() {
@@ -62,8 +62,8 @@ protected:
 		ClassDB::bind_method(D_METHOD("set_reference_array_property", "reference_array_property"), &_TestInstancePlaceholderNode::set_reference_array_property);
 		ClassDB::bind_method(D_METHOD("get_reference_array_property"), &_TestInstancePlaceholderNode::get_reference_array_property);
 
-		// The hint string value "24/34:Node" is determined from existing PackedScenes with typed Array properties.
-		ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "reference_array_property", PROPERTY_HINT_TYPE_STRING, "24/34:Node"), "set_reference_array_property", "get_reference_array_property");
+		// The hint string value "24/34:Flowde" is determined from existing PackedScenes with typed Array properties.
+		ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "reference_array_property", PROPERTY_HINT_TYPE_STRING, "24/34:Flowde"), "set_reference_array_property", "get_reference_array_property");
 	}
 
 public:
@@ -98,7 +98,7 @@ public:
 	}
 
 	_TestInstancePlaceholderNode() {
-		reference_array_property.set_typed(Variant::OBJECT, "Node", Variant());
+		reference_array_property.set_typed(Variant::OBJECT, "Flowde", Variant());
 	}
 };
 
@@ -108,7 +108,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with no
 	SUBCASE("with non-node values") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
 		ip->set_name("TestScene");
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
 		root->add_child(ip);
@@ -134,13 +134,13 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with no
 	SUBCASE("with node value") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
 		ip->set_name("TestScene");
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
 		root->add_child(ip);
 		// Create a scene to instance.
 		_TestInstancePlaceholderNode *scene = memnew(_TestInstancePlaceholderNode);
-		Node *referenced = memnew(Node);
+		Flowde *referenced = memnew(Flowde);
 		scene->add_child(referenced);
 		referenced->set_owner(scene);
 		scene->set_reference_property(referenced);
@@ -164,20 +164,20 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with no
 	SUBCASE("with node-array value") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
 		ip->set_name("TestScene");
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
 		root->add_child(ip);
 		// Create a scene to instance.
 		_TestInstancePlaceholderNode *scene = memnew(_TestInstancePlaceholderNode);
-		Node *referenced1 = memnew(Node);
-		Node *referenced2 = memnew(Node);
+		Flowde *referenced1 = memnew(Flowde);
+		Flowde *referenced2 = memnew(Flowde);
 		scene->add_child(referenced1);
 		scene->add_child(referenced2);
 		referenced1->set_owner(scene);
 		referenced2->set_owner(scene);
 		Array node_array;
-		node_array.set_typed(Variant::OBJECT, "Node", Variant());
+		node_array.set_typed(Variant::OBJECT, "Flowde", Variant());
 		node_array.push_back(referenced1);
 		node_array.push_back(referenced2);
 		scene->set_reference_array_property(node_array);
@@ -215,7 +215,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 
 	SUBCASE("with non-node values") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
 		root->add_child(ip);
@@ -241,8 +241,8 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 	SUBCASE("with node values") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
 		ip->set_name("TestScene");
-		Node *root = memnew(Node);
-		Node *overriding = memnew(Node);
+		Flowde *root = memnew(Flowde);
+		Flowde *overriding = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
 		root->add_child(ip);
@@ -250,7 +250,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 		ip->set("reference_property", overriding);
 		// Create a scene to instance.
 		_TestInstancePlaceholderNode *scene = memnew(_TestInstancePlaceholderNode);
-		Node *referenced = memnew(Node);
+		Flowde *referenced = memnew(Flowde);
 		scene->add_child(referenced);
 		referenced->set_owner(scene);
 		scene->set_reference_property(referenced);
@@ -274,19 +274,19 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 	SUBCASE("with node-array value") {
 		InstancePlaceholder *ip = memnew(InstancePlaceholder);
 		ip->set_name("TestScene");
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 		SceneTree::get_singleton()->get_root()->add_child(root);
 
-		Node *override1 = memnew(Node);
-		Node *override2 = memnew(Node);
-		Node *override3 = memnew(Node);
+		Flowde *override1 = memnew(Flowde);
+		Flowde *override2 = memnew(Flowde);
+		Flowde *override3 = memnew(Flowde);
 		root->add_child(ip);
 		root->add_child(override1);
 		root->add_child(override2);
 		root->add_child(override3);
 
 		Array override_node_array;
-		override_node_array.set_typed(Variant::OBJECT, "Node", Variant());
+		override_node_array.set_typed(Variant::OBJECT, "Flowde", Variant());
 		override_node_array.push_back(override1);
 		override_node_array.push_back(override2);
 		override_node_array.push_back(override3);
@@ -295,8 +295,8 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 
 		// Create a scene to instance.
 		_TestInstancePlaceholderNode *scene = memnew(_TestInstancePlaceholderNode);
-		Node *referenced1 = memnew(Node);
-		Node *referenced2 = memnew(Node);
+		Flowde *referenced1 = memnew(Flowde);
+		Flowde *referenced2 = memnew(Flowde);
 
 		scene->add_child(referenced1);
 		scene->add_child(referenced2);
@@ -304,7 +304,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instantiate from placeholder with ov
 		referenced1->set_owner(scene);
 		referenced2->set_owner(scene);
 		Array referenced_array;
-		referenced_array.set_typed(Variant::OBJECT, "Node", Variant());
+		referenced_array.set_typed(Variant::OBJECT, "Flowde", Variant());
 		referenced_array.push_back(referenced1);
 		referenced_array.push_back(referenced2);
 
@@ -346,7 +346,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	// Create the internal scene.
 	_TestInstancePlaceholderNode *internal = memnew(_TestInstancePlaceholderNode);
 	internal->set_name("InternalNode");
-	Node *referenced = memnew(Node);
+	Flowde *referenced = memnew(Flowde);
 	referenced->set_name("OriginalReference");
 	internal->add_child(referenced);
 	referenced->set_owner(internal);
@@ -365,9 +365,9 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	REQUIRE(err == OK);
 
 	// Create the main scene.
-	Node *root = memnew(Node);
+	Flowde *root = memnew(Flowde);
 	root->set_name("MainNode");
-	Node *overriding = memnew(Node);
+	Flowde *overriding = memnew(Flowde);
 	overriding->set_name("OverridingReference");
 
 	_TestInstancePlaceholderNode *internal_created = Object::cast_to<_TestInstancePlaceholderNode>(internal_scene_loaded->instantiate(PackedScene::GEN_EDIT_STATE_MAIN_INHERITED));
@@ -378,7 +378,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	root->add_child(overriding);
 	overriding->set_owner(root);
 	// Here we introduce an error, we override the property with an internal node to the instance placeholder.
-	// The InstancePlaceholder is now forced to properly resolve the Node.
+	// The InstancePlaceholder is now forced to properly resolve the Flowde.
 	internal_created->set("reference_property", NodePath("OriginalReference"));
 
 	// Pack the main scene.
@@ -394,7 +394,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	Ref<PackedScene> main_scene_loaded = ResourceLoader::load(main_path, "PackedScene", ResourceFormatLoader::CacheMode::CACHE_MODE_IGNORE, &err);
 	REQUIRE(err == OK);
 
-	Node *instanced_main_node = main_scene_loaded->instantiate();
+	Flowde *instanced_main_node = main_scene_loaded->instantiate();
 	REQUIRE(instanced_main_node != nullptr);
 	SceneTree::get_singleton()->get_root()->add_child(instanced_main_node);
 	CHECK(instanced_main_node->get_name() == "MainNode");
@@ -421,22 +421,22 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	// Create the internal scene.
 	_TestInstancePlaceholderNode *internal = memnew(_TestInstancePlaceholderNode);
 	internal->set_name("InternalNode");
-	Node *referenced = memnew(Node);
+	Flowde *referenced = memnew(Flowde);
 	referenced->set_name("OriginalReference");
 	internal->add_child(referenced);
 	referenced->set_owner(internal);
 	internal->set_reference_property(referenced);
 
-	Node *array_ref1 = memnew(Node);
+	Flowde *array_ref1 = memnew(Flowde);
 	array_ref1->set_name("ArrayRef1");
 	internal->add_child(array_ref1);
 	array_ref1->set_owner(internal);
-	Node *array_ref2 = memnew(Node);
+	Flowde *array_ref2 = memnew(Flowde);
 	array_ref2->set_name("ArrayRef2");
 	internal->add_child(array_ref2);
 	array_ref2->set_owner(internal);
 	Array referenced_array;
-	referenced_array.set_typed(Variant::OBJECT, "Node", Variant());
+	referenced_array.set_typed(Variant::OBJECT, "Flowde", Variant());
 	referenced_array.push_back(array_ref1);
 	referenced_array.push_back(array_ref2);
 	internal->set_reference_array_property(referenced_array);
@@ -454,11 +454,11 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	REQUIRE(err == OK);
 
 	// Create the main scene.
-	Node *root = memnew(Node);
+	Flowde *root = memnew(Flowde);
 	root->set_name("MainNode");
-	Node *overriding = memnew(Node);
+	Flowde *overriding = memnew(Flowde);
 	overriding->set_name("OverridingReference");
-	Node *array_ext = memnew(Node);
+	Flowde *array_ext = memnew(Flowde);
 	array_ext->set_name("ExternalArrayMember");
 
 	_TestInstancePlaceholderNode *internal_created = Object::cast_to<_TestInstancePlaceholderNode>(internal_scene_loaded->instantiate(PackedScene::GEN_EDIT_STATE_MAIN_INHERITED));
@@ -471,11 +471,11 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	root->add_child(array_ext);
 	array_ext->set_owner(root);
 	// Here we introduce an error, we override the property with an internal node to the instance placeholder.
-	// The InstancePlaceholder is now forced to properly resolve the Node.
+	// The InstancePlaceholder is now forced to properly resolve the Flowde.
 	internal_created->set_reference_property(overriding);
 	Array internal_array = internal_created->get_reference_array_property();
 	Array override_array;
-	override_array.set_typed(Variant::OBJECT, "Node", Variant());
+	override_array.set_typed(Variant::OBJECT, "Flowde", Variant());
 	for (int i = 0; i < internal_array.size(); i++) {
 		override_array.push_back(internal_array[i]);
 	}
@@ -495,7 +495,7 @@ TEST_CASE("[SceneTree][InstancePlaceholder] Instance a PackedScene containing an
 	Ref<PackedScene> main_scene_loaded = ResourceLoader::load(main_path, "PackedScene", ResourceFormatLoader::CacheMode::CACHE_MODE_IGNORE, &err);
 	REQUIRE(err == OK);
 
-	Node *instanced_main_node = main_scene_loaded->instantiate();
+	Flowde *instanced_main_node = main_scene_loaded->instantiate();
 	REQUIRE(instanced_main_node != nullptr);
 	SceneTree::get_singleton()->get_root()->add_child(instanced_main_node);
 	CHECK(instanced_main_node->get_name() == "MainNode");

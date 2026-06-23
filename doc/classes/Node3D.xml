@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Node3D" inherits="Node" api_type="core" keywords="spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Node3D" inherits="Flowde" api_type="core" keywords="spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Base object in 3D space, inherited by all 3D nodes.
 	</brief_description>
@@ -51,7 +51,7 @@
 			<return type="Transform3D" />
 			<description>
 				When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
-				This is particularly important for frame-based operations that take place in [method Node._process], rather than [method Node._physics_process]. Examples include [Camera3D]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
+				This is particularly important for frame-based operations that take place in [method Flowde._process], rather than [method Flowde._physics_process]. Examples include [Camera3D]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
 				[b]Note:[/b] This function creates an interpolation pump on the [Node3D] the first time it is called, which can respond to physics interpolation resets. If you get problems with "streaking" when initially following a [Node3D], be sure to call [method get_global_transform_interpolated] at least once [i]before[/i] resetting the [Node3D] physics interpolation.
 			</description>
 		</method>
@@ -59,14 +59,14 @@
 			<return type="Node3D" />
 			<description>
 				Returns the parent [Node3D] that directly affects this node's [member global_transform]. Returns [code]null[/code] if no parent exists, the parent is not a [Node3D], or [member top_level] is [code]true[/code].
-				[b]Note:[/b] This method is not always equivalent to [method Node.get_parent], which does not take [member top_level] into account.
+				[b]Note:[/b] This method is not always equivalent to [method Flowde.get_parent], which does not take [member top_level] into account.
 			</description>
 		</method>
 		<method name="get_world_3d" qualifiers="const">
 			<return type="World3D" />
 			<description>
 				Returns the [World3D] this node is registered to.
-				Usually, this is the same as the world used by this node's viewport (see [method Node.get_viewport] and [method Viewport.find_world_3d]).
+				Usually, this is the same as the world used by this node's viewport (see [method Flowde.get_viewport] and [method Viewport.find_world_3d]).
 			</description>
 		</method>
 		<method name="global_rotate">
@@ -120,7 +120,7 @@
 		<method name="is_visible_in_tree" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this node is inside the scene tree and the [member visible] property is [code]true[/code] for this node and all of its [Node3D] ancestors [i]in sequence[/i]. An ancestor of any other type (such as [Node] or [Node2D]) breaks the sequence. See also [method Node.get_parent].
+				Returns [code]true[/code] if this node is inside the scene tree and the [member visible] property is [code]true[/code] for this node and all of its [Node3D] ancestors [i]in sequence[/i]. An ancestor of any other type (such as [Flowde] or [Node2D]) breaks the sequence. See also [method Flowde.get_parent].
 				[b]Note:[/b] This method cannot take [member VisualInstance3D.layers] into account, so even if this method returns [code]true[/code], the node may not be rendered.
 			</description>
 		</method>

@@ -62,7 +62,7 @@ private:
 	Ref<MultiplayerEditorDebugger> debugger;
 
 	void _open_request(const String &p_path);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	void _pinned();
 

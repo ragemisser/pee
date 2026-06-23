@@ -333,10 +333,10 @@ msgstr "Интернационализация"
 msgid "Force Right to Left Layout Direction"
 msgstr "Форсирай Посока за Оформление Дясно към Ляво"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Посока на Оформление на Root Възел"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Автоматично Превеждане на Root Възела"
 
 msgid "GUI"
@@ -1158,7 +1158,7 @@ msgstr "Преименувач на Кост"
 msgid "Rename Bones"
 msgstr "Преименувай Кости"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Уникален Възел"
 
 msgid "Make Unique"
@@ -1170,7 +1170,7 @@ msgstr "Име на Скелетон"
 msgid "Rest Fixer"
 msgstr "Поправка на Състояние в Покой"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Прилагане на Трансформации върху Възели"
 
 msgid "Normalize Position Tracks"
@@ -1239,10 +1239,10 @@ msgstr "Отмести Mesh"
 msgid "Force Disable Mesh Compression"
 msgstr "Принуди Изключване на Mesh Компресия"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Възел"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Тип Възел"
 
 msgid "Script"
@@ -1452,7 +1452,7 @@ msgstr "Импортирай като Кости на Скелет"
 msgid "Use Name Suffixes"
 msgstr "Използвай Имена на Наставки"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Използвай Наставки за Тип Възел"
 
 msgid "Meshes"
@@ -2359,7 +2359,7 @@ msgstr "Стартиране на Диалоговия Прозорец „Съ�
 msgid "Auto Expand to Selected"
 msgstr "Автоматично Разширяване до Избраното"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Центрирай Възел при Промяна на Родител"
 
 msgid "Hide Filtered Out Parents"
@@ -2503,7 +2503,7 @@ msgstr "Вертикална Скорост на Превъртане"
 msgid "Drag and Drop Selection"
 msgstr "Избор чрез Плъзгане и Пускане"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Остани в Редактор на Скрипт при Избор на Възел"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2629,7 +2629,7 @@ msgstr "Добави Намеци за Типове"
 msgid "Add String Name Literals"
 msgstr "Добави Литерали на Имена на Низове"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Добави Литерали на Пътища на Възели"
 
 msgid "Use Single Quotes"
@@ -3145,7 +3145,7 @@ msgstr "Автоматично Превключи към Отдалечено Д
 msgid "Auto Switch to Stack Trace"
 msgstr "Автоматично Превключи към Stack Trace"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "Макс. Избор на Възели"
 
 msgid "Profiler Frame History Size"
@@ -3751,7 +3751,7 @@ msgstr "Въртене Степени"
 msgid "Spin Sides"
 msgstr "Въртене Страни"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Path Възел"
 
 msgid "Path Interval Type"
@@ -3940,7 +3940,7 @@ msgstr "Извод на Тип за Variant"
 msgid "Native Method Override"
 msgstr "Преопредели Роден Метод"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "Вземи Стандартния Възел Без Onready"
 
 msgid "Onready With Export"
@@ -4027,7 +4027,7 @@ msgstr "Резерва на Изображението"
 msgid "Fallback Image Quality"
 msgstr "Резервно Ниво на Качество на Изображението"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Root Възел Режим"
 
 msgid "Visibility Mode"
@@ -4207,7 +4207,7 @@ msgstr "glTF към Godot Израз"
 msgid "Godot to glTF Expression"
 msgstr "Godot към glTF Израз"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Пътища на Възели"
 
 msgid "Object Model Type"
@@ -4225,7 +4225,7 @@ msgstr "Стави"
 msgid "Roots"
 msgstr "Корени"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Godot Кост Възел"
 
 msgid "Skin Root"
@@ -4378,7 +4378,7 @@ msgstr "Фракция на Границата на Сблъсък"
 msgid "Active Edge Threshold"
 msgstr "Праг на Активния Ръб"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Свят Възел"
 
 msgid "Temporary Memory Buffer Size"
@@ -5443,7 +5443,7 @@ msgstr "Обновяване"
 msgid "Editor Settings"
 msgstr "Настройки на редактора"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Път към Възел"
 
 msgid "Degrees"
@@ -5554,7 +5554,7 @@ msgstr "Отместване на Ротация"
 msgid "Sync"
 msgstr "Синхронизиране"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Коренен Връх"
 
 msgid "Reset"

@@ -67,8 +67,8 @@ int EditorUndoRedoManager::get_history_id_for_object(Object *p_object) const {
 		return REMOTE_HISTORY;
 	}
 
-	if (Node *node = Object::cast_to<Node>(p_object)) {
-		Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	if (Flowde *node = Object::cast_to<Flowde>(p_object)) {
+		Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 
 		if (edited_scene && (node == edited_scene || edited_scene->is_ancestor_of(node))) {
 			int idx = EditorNode::get_editor_data().get_current_edited_scene_history_id();

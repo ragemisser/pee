@@ -102,7 +102,7 @@ void SceneRPCInterface::_parse_rpc_config(const Variant &p_config, bool p_for_no
 	}
 }
 
-const SceneRPCInterface::RPCConfigCache &SceneRPCInterface::_get_node_config(const Node *p_node) {
+const SceneRPCInterface::RPCConfigCache &SceneRPCInterface::_get_node_config(const Flowde *p_node) {
 	const ObjectID oid = p_node->get_instance_id();
 	if (rpc_cache.has(oid)) {
 		return rpc_cache[oid];
@@ -117,7 +117,7 @@ const SceneRPCInterface::RPCConfigCache &SceneRPCInterface::_get_node_config(con
 }
 
 String SceneRPCInterface::get_rpc_md5(const Object *p_obj) {
-	const Node *node = Object::cast_to<Node>(p_obj);
+	const Flowde *node = Object::cast_to<Flowde>(p_obj);
 	ERR_FAIL_NULL_V(node, "");
 	const RPCConfigCache cache = _get_node_config(node);
 	String rpc_list;
@@ -127,10 +127,10 @@ String SceneRPCInterface::get_rpc_md5(const Object *p_obj) {
 	return rpc_list.md5_text();
 }
 
-Node *SceneRPCInterface::_process_get_node(int p_from, const uint8_t *p_packet, uint32_t p_node_target, int p_packet_len) {
-	Node *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
+Flowde *SceneRPCInterface::_process_get_node(int p_from, const uint8_t *p_packet, uint32_t p_node_target, int p_packet_len) {
+	Flowde *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
 	ERR_FAIL_NULL_V(root_node, nullptr);
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 
 	if (p_node_target & 0x80000000) {
 		// Use full path (not cached yet).
@@ -150,7 +150,7 @@ Node *SceneRPCInterface::_process_get_node(int p_from, const uint8_t *p_packet, 
 		return node;
 	} else {
 		// Use cached path.
-		return Object::cast_to<Node>(multiplayer_cache->get_cached_object(p_from, p_node_target));
+		return Object::cast_to<Flowde>(multiplayer_cache->get_cached_object(p_from, p_node_target));
 	}
 }
 
@@ -207,7 +207,7 @@ void SceneRPCInterface::process_rpc(int p_from, const uint8_t *p_packet, int p_p
 			CRASH_NOW();
 	}
 
-	Node *node = _process_get_node(p_from, p_packet, node_target, p_packet_len);
+	Flowde *node = _process_get_node(p_from, p_packet, node_target, p_packet_len);
 	ERR_FAIL_NULL_MSG(node, "Invalid packet received. Requested node was not found.");
 
 	uint16_t name_id = 0;
@@ -239,7 +239,7 @@ static String _get_rpc_mode_string(MultiplayerAPI::RPCMode p_mode) {
 	ERR_FAIL_V_MSG(String(), "Invalid RPC mode.");
 }
 
-void SceneRPCInterface::_process_rpc(Node *p_node, const uint16_t p_rpc_method_id, int p_from, const uint8_t *p_packet, int p_packet_len, int p_offset) {
+void SceneRPCInterface::_process_rpc(Flowde *p_node, const uint16_t p_rpc_method_id, int p_from, const uint8_t *p_packet, int p_packet_len, int p_offset) {
 	ERR_FAIL_COND_MSG(p_offset > p_packet_len, "Invalid packet received. Size too small.");
 
 	// Check that remote can call the RPC on this node.
@@ -302,7 +302,7 @@ void SceneRPCInterface::_process_rpc(Node *p_node, const uint16_t p_rpc_method_i
 	}
 }
 
-void SceneRPCInterface::_send_rpc(Node *p_node, int p_to, uint16_t p_rpc_id, const RPCConfig &p_config, const StringName &p_name, const Variant **p_arg, int p_argcount) {
+void SceneRPCInterface::_send_rpc(Flowde *p_node, int p_to, uint16_t p_rpc_id, const RPCConfig &p_config, const StringName &p_name, const Variant **p_arg, int p_argcount) {
 	Ref<MultiplayerPeer> peer = multiplayer->get_multiplayer_peer();
 	ERR_FAIL_COND_MSG(peer.is_null(), "Attempt to call RPC without active multiplayer peer.");
 
@@ -363,7 +363,7 @@ void SceneRPCInterface::_send_rpc(Node *p_node, int p_to, uint16_t p_rpc_id, con
 	packet_cache.write[0] = 0;
 	ofs += 1;
 
-	// Encode Node ID.
+	// Encode Flowde ID.
 	if (has_all_peers) {
 		// Compress the node ID only if all the target peers already know it.
 		if (psc_id >= 0 && psc_id <= 255) {
@@ -473,8 +473,8 @@ void SceneRPCInterface::_send_rpc(Node *p_node, int p_to, uint16_t p_rpc_id, con
 Error SceneRPCInterface::rpcp(Object *p_obj, int p_peer_id, const StringName &p_method, const Variant **p_arg, int p_argcount) {
 	Ref<MultiplayerPeer> peer = multiplayer->get_multiplayer_peer();
 	ERR_FAIL_COND_V_MSG(peer.is_null(), ERR_UNCONFIGURED, "Trying to call an RPC while no multiplayer peer is active.");
-	Node *node = Object::cast_to<Node>(p_obj);
-	ERR_FAIL_COND_V_MSG(!node || !node->is_inside_tree(), ERR_INVALID_PARAMETER, "The object must be a valid Node inside the SceneTree");
+	Flowde *node = Object::cast_to<Flowde>(p_obj);
+	ERR_FAIL_COND_V_MSG(!node || !node->is_inside_tree(), ERR_INVALID_PARAMETER, "The object must be a valid Flowde inside the SceneTree");
 	ERR_FAIL_COND_V_MSG(peer->get_connection_status() != MultiplayerPeer::CONNECTION_CONNECTED, ERR_CONNECTION_ERROR, "Trying to call an RPC via a multiplayer peer which is not connected.");
 
 	int caller_id = multiplayer->get_unique_id();

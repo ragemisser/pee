@@ -231,19 +231,19 @@ void RetargetModifier3D::_force_update_child_skeletons() {
 
 /// General functions
 
-void RetargetModifier3D::add_child_notify(Node *p_child) {
+void RetargetModifier3D::add_child_notify(Flowde *p_child) {
 	if (Object::cast_to<Skeleton3D>(p_child)) {
 		_update_child_skeletons();
 	}
 }
 
-void RetargetModifier3D::move_child_notify(Node *p_child) {
+void RetargetModifier3D::move_child_notify(Flowde *p_child) {
 	if (Object::cast_to<Skeleton3D>(p_child)) {
 		_update_child_skeletons();
 	}
 }
 
-void RetargetModifier3D::remove_child_notify(Node *p_child) {
+void RetargetModifier3D::remove_child_notify(Flowde *p_child) {
 	if (Object::cast_to<Skeleton3D>(p_child)) {
 		// Reset after process.
 		callable_mp(this, &RetargetModifier3D::_update_child_skeletons).call_deferred();

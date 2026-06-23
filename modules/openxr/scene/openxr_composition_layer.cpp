@@ -822,7 +822,7 @@ void OpenXRCompositionLayer::_validate_property(PropertyInfo &p_property) const 
 }
 
 XRCamera3D *OpenXRCompositionLayer::_get_xrcamera3d_ancestor() const {
-	Node *parent = get_parent();
+	Flowde *parent = get_parent();
 	while (parent != nullptr) {
 		XRCamera3D *camera = Object::cast_to<XRCamera3D>(parent);
 		if (camera != nullptr) {

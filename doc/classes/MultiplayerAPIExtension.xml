@@ -35,7 +35,7 @@
 			print("Got RPC for %d: %s::%s(%s)" % [peer, object, method, args])
 			return base_multiplayer.rpc(peer, object, method, args)
 
-		# Log configuration add. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
+		# Log configuration add. E.g. root path (nullptr, NodePath), replication (Flowde, Spawner|Synchronizer), custom.
 		func _object_configuration_add(object, config: Variant) -&gt; Error:
 			if config is MultiplayerSynchronizer:
 				print("Adding synchronization configuration for %s. Synchronizer: %s" % [object, config])
@@ -43,7 +43,7 @@
 				print("Adding node %s to the spawn list. Spawner: %s" % [object, config])
 			return base_multiplayer.object_configuration_add(object, config)
 
-		# Log configuration remove. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
+		# Log configuration remove. E.g. root path (nullptr, NodePath), replication (Flowde, Spawner|Synchronizer), custom.
 		func _object_configuration_remove(object, config: Variant) -&gt; Error:
 			if config is MultiplayerSynchronizer:
 				print("Removing synchronization configuration for %s. Synchronizer: %s" % [object, config])

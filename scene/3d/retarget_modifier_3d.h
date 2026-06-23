@@ -91,9 +91,9 @@ protected:
 	static void _bind_methods();
 	virtual void _notification(int p_what);
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	virtual void _set_active(bool p_active) override;
 	virtual void _process_modification(double p_delta) override;

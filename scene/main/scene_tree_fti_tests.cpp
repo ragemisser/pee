@@ -69,7 +69,7 @@ void SceneTreeFTITests::debug_verify_failed(const Node3D *p_node_3d, const Trans
 	}
 }
 
-void SceneTreeFTITests::update_dirty_nodes(Node *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform, int p_depth) {
+void SceneTreeFTITests::update_dirty_nodes(Flowde *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform, int p_depth) {
 	SceneTreeFTI::Data &data = _fti.data;
 
 	// There are two runs going on here.
@@ -193,7 +193,7 @@ void SceneTreeFTITests::update_dirty_nodes(Node *p_node, uint32_t p_current_half
 	}
 }
 
-void SceneTreeFTITests::frame_update(Node *p_root, uint32_t p_half_frame, float p_interpolation_fraction) {
+void SceneTreeFTITests::frame_update(Flowde *p_root, uint32_t p_half_frame, float p_interpolation_fraction) {
 	SceneTreeFTI::Data &data = _fti.data;
 
 	// For testing, use both methods.

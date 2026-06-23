@@ -563,12 +563,12 @@ def generate_cpp_hint_file(filename):
 
 
 def glob_recursive(pattern, node="."):
-    from SCons import Node
+    from SCons import Flowde
     from SCons.Script import Glob
 
     results = []
     for f in Glob(str(node) + "/*", source=True):
-        if type(f) is Node.FS.Dir:
+        if type(f) is Flowde.FS.Dir:
             results += glob_recursive(pattern, f)
     results += Glob(str(node) + "/" + pattern, source=True)
     return results
@@ -1003,12 +1003,12 @@ def dump(env):
 def generate_vs_project(env, original_args, project_name="godot"):
     # Augmented glob_recursive that also fills the dirs argument with traversed directories that have content.
     def glob_recursive_2(pattern, dirs, node="."):
-        from SCons import Node
+        from SCons import Flowde
         from SCons.Script import Glob
 
         results = []
         for f in Glob(str(node) + "/*", source=True):
-            if type(f) is Node.FS.Dir:
+            if type(f) is Flowde.FS.Dir:
                 results += glob_recursive_2(pattern, dirs, f)
         r = Glob(str(node) + "/" + pattern, source=True)
         if len(r) > 0 and str(node) not in dirs:

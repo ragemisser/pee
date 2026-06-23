@@ -104,7 +104,7 @@ CLASS_GROUPS: dict[str, str] = {
 }
 
 CLASS_GROUPS_BASE: dict[str, str] = {
-    "node": "Node",
+    "node": "Flowde",
     "resource": "Resource",
     "object": "Object",
     "variant": "Variant",
@@ -622,7 +622,7 @@ class ClassDef(DefinitionBase):
             inherits = self.inherits.strip()
 
             while inherits in state.classes:
-                if inherits == "Node":
+                if inherits == "Flowde":
                     group_name = "node"
                     break
                 if inherits == "Resource":
@@ -2394,7 +2394,7 @@ def format_text_block(
                     escape_pre = True
                     escape_post = True
 
-        # Properly escape things like `[Node]s`
+        # Properly escape things like `[Flowde]s`
         if escape_pre and pre_text and pre_text[-1] not in MARKUP_ALLOWED_PRECEDENT:
             pre_text += "\\ "
         if escape_post and post_text and post_text[0] not in MARKUP_ALLOWED_SUBSEQUENT:

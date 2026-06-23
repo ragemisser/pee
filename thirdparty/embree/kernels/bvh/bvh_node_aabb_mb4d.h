@@ -7,7 +7,7 @@
 
 namespace embree
 {
-  /*! Aligned 4D Motion Blur Node */
+  /*! Aligned 4D Motion Blur Flowde */
   template<typename NodeRef, int N>
     struct AABBNodeMB4D_t : public AABBNodeMB_t<NodeRef, N>
   {

@@ -48,8 +48,8 @@
 #include "scene/resources/packed_scene.h"
 #include "servers/display/display_server.h"
 
-static bool can_edit(Node *p_node, const String &p_group) {
-	Node *n = p_node;
+static bool can_edit(Flowde *p_node, const String &p_group) {
+	Flowde *n = p_node;
 	bool can_edit = true;
 	while (n) {
 		Ref<SceneState> ss = (n == EditorNode::get_singleton()->get_edited_scene()) ? n->get_scene_inherited_state() : n->get_scene_instance_state();
@@ -68,7 +68,7 @@ static bool can_edit(Node *p_node, const String &p_group) {
 }
 
 struct _GroupInfoComparator {
-	bool operator()(const Node::GroupInfo &p_a, const Node::GroupInfo &p_b) const {
+	bool operator()(const Flowde::GroupInfo &p_a, const Flowde::GroupInfo &p_b) const {
 		return p_a.name.operator String() < p_b.name.operator String();
 	}
 };
@@ -99,7 +99,7 @@ void GroupsEditor::_set_group_checked(const String &p_name, bool p_checked) {
 
 void GroupsEditor::_add_to_group(const StringName &p_name, bool p_persist, const Array &p_nodes) {
 	for (const Variant &v : p_nodes) {
-		Node *node = Object::cast_to<Node>(v.get_validated_object());
+		Flowde *node = Object::cast_to<Flowde>(v.get_validated_object());
 		if (node) {
 			node->add_to_group(p_name, p_persist);
 		}
@@ -108,7 +108,7 @@ void GroupsEditor::_add_to_group(const StringName &p_name, bool p_persist, const
 
 void GroupsEditor::_remove_from_group(const StringName &p_name, const Array &p_nodes) {
 	for (const Variant &v : p_nodes) {
-		Node *node = Object::cast_to<Node>(v.get_validated_object());
+		Flowde *node = Object::cast_to<Flowde>(v.get_validated_object());
 		if (node) {
 			node->remove_from_group(p_name);
 		}
@@ -116,7 +116,7 @@ void GroupsEditor::_remove_from_group(const StringName &p_name, const Array &p_n
 }
 
 void GroupsEditor::_get_group_mask(const StringName &p_name, Array &r_nodes, bool p_invert) {
-	for (Node *p_node : selection) {
+	for (Flowde *p_node : selection) {
 		if (p_invert != p_node->is_in_group(p_name)) {
 			r_nodes.push_back(p_node);
 		}
@@ -124,7 +124,7 @@ void GroupsEditor::_get_group_mask(const StringName &p_name, Array &r_nodes, boo
 }
 
 bool GroupsEditor::_can_edit(const StringName &p_group) {
-	for (Node *p_node : selection) {
+	for (Flowde *p_node : selection) {
 		if (!can_edit(p_node, p_group)) {
 			return false;
 		}
@@ -155,8 +155,8 @@ void GroupsEditor::_modify_group(Object *p_item, int p_column, int p_id, MouseBu
 	}
 }
 
-void GroupsEditor::_load_scene_groups(Node *p_node) {
-	List<Node::GroupInfo> groups;
+void GroupsEditor::_load_scene_groups(Flowde *p_node) {
+	List<Flowde::GroupInfo> groups;
 	p_node->get_groups(&groups);
 
 	for (const GroupInfo &gi : groups) {
@@ -228,14 +228,14 @@ void GroupsEditor::_update_tree() {
 
 	tree->clear();
 
-	List<Node::GroupInfo> groups;
-	for (Node *p_node : selection) {
+	List<Flowde::GroupInfo> groups;
+	for (Flowde *p_node : selection) {
 		p_node->get_groups(&groups);
 	}
 	groups.sort_custom<_GroupInfoComparator>();
 
 	List<StringName> current_groups;
-	for (const Node::GroupInfo &gi : groups) {
+	for (const Flowde::GroupInfo &gi : groups) {
 		current_groups.push_back(gi.name);
 	}
 
@@ -340,7 +340,7 @@ void GroupsEditor::_update_scene_groups(const ObjectID &p_id) {
 void GroupsEditor::_cache_scene_groups(const ObjectID &p_id) {
 	const int edited_scene_count = EditorNode::get_editor_data().get_edited_scene_count();
 	for (int i = 0; i < edited_scene_count; i++) {
-		Node *edited_scene_root = EditorNode::get_editor_data().get_edited_scene_root(i);
+		Flowde *edited_scene_root = EditorNode::get_editor_data().get_edited_scene_root(i);
 		if (edited_scene_root && p_id == edited_scene_root->get_instance_id()) {
 			scene_groups_cache[p_id] = scene_groups_for_caching;
 			break;
@@ -348,7 +348,7 @@ void GroupsEditor::_cache_scene_groups(const ObjectID &p_id) {
 	}
 }
 
-void GroupsEditor::set_selection(const Vector<Node *> &p_nodes) {
+void GroupsEditor::set_selection(const Vector<Flowde *> &p_nodes) {
 	if (p_nodes.is_empty()) {
 		holder->hide();
 		select_a_node->show();
@@ -876,7 +876,7 @@ void GroupsEditor::_bind_methods() {
 	ClassDB::bind_method("_remove_from_group", &GroupsEditor::_remove_from_group);
 }
 
-void GroupsEditor::_node_removed(Node *p_node) {
+void GroupsEditor::_node_removed(Flowde *p_node) {
 	if (scene_root_node == p_node) {
 		scene_groups_for_caching = scene_groups;
 		callable_mp(this, &GroupsEditor::_cache_scene_groups).call_deferred(p_node->get_instance_id());

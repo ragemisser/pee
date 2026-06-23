@@ -52,9 +52,9 @@ class RenameDialog : public ConfirmationDialog {
 	void _update_substitute();
 	bool _is_main_field(LineEdit *line_edit);
 
-	void _iterate_scene(const Node *node, const Array &selection, int *count);
-	String _apply_rename(const Node *node, int count);
-	String _substitute(const String &subject, const Node *node, int count);
+	void _iterate_scene(const Flowde *node, const Array &selection, int *count);
+	String _apply_rename(const Flowde *node, int count);
+	String _substitute(const String &subject, const Flowde *node, int count);
 	String _regex(const String &pattern, const String &subject, const String &replacement);
 	String _postprocess(const String &subject);
 	void _update_preview(const String &new_text = "");
@@ -94,7 +94,7 @@ class RenameDialog : public ConfirmationDialog {
 	Label *lbl_preview = nullptr;
 
 	List<Pair<NodePath, String>> to_rename;
-	Node *preview_node = nullptr;
+	Flowde *preview_node = nullptr;
 	bool lock_preview_update = false;
 	ErrorHandlerList eh;
 	bool has_errors = false;

@@ -84,7 +84,7 @@ Variant PostImportPluginSkeletonRestFixer::get_internal_option_visibility(Intern
 	return Variant();
 }
 
-void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory p_category, Node *p_base_scene, Node *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
+void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory p_category, Flowde *p_base_scene, Flowde *p_node, Ref<Resource> p_resource, const Dictionary &p_options) {
 	if (p_category == INTERNAL_IMPORT_CATEGORY_SKELETON_3D_NODE) {
 		// Prepare objects.
 		Object *map = p_options["retarget/bone_map"].get_validated_object();
@@ -126,7 +126,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 		// Get global transform.
 		Transform3D global_transform;
 		if (bool(p_options["retarget/rest_fixer/apply_node_transforms"])) {
-			Node *pr = src_skeleton;
+			Flowde *pr = src_skeleton;
 			while (pr) {
 				Node3D *pr3d = Object::cast_to<Node3D>(pr);
 				if (pr3d) {
@@ -135,7 +135,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 				}
 				pr = pr->get_parent();
 			}
-			global_transform.origin = Vector3(); // Translation by a Node is not a bone animation, so the retargeted model should be at the origin.
+			global_transform.origin = Vector3(); // Translation by a Flowde is not a bone animation, so the retargeted model should be at the origin.
 		}
 
 		// Apply node transforms.
@@ -165,7 +165,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 			// Fix animation by changing node transform.
 			bones_to_process = src_skeleton->get_parentless_bones();
 			{
-				TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+				TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 				while (nodes.size()) {
 					AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 					for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -181,7 +181,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 							}
 
 							String track_path = String(anim->track_get_path(i).get_concatenated_names());
-							Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+							Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 							ERR_CONTINUE(!node);
 
 							Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
@@ -231,7 +231,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 
 		// Complement Rotation track for compatibility between different rests.
 		{
-			TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+			TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 			while (nodes.size()) {
 				AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 				for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -250,7 +250,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 							continue;
 						}
 						track_path = String(anim->track_get_path(i).get_concatenated_names());
-						Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+						Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 						if (node) {
 							Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
 							if (track_skeleton && track_skeleton == src_skeleton) {
@@ -401,7 +401,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 					Transform3D src_rest = src_skeleton->get_bone_rest(src_bone_idx);
 					src_skeleton->set_bone_rest(src_bone_idx, Transform3D(src_rest.basis, src_rest.origin + up_vector));
 
-					TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+					TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 					while (nodes.size()) {
 						AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 						for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -417,7 +417,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 								}
 
 								String track_path = String(anim->track_get_path(i).get_concatenated_names());
-								Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+								Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 								ERR_CONTINUE(!node);
 
 								Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
@@ -547,9 +547,9 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 				profile_skeleton->set_motion_scale(orig_skeleton->get_motion_scale());
 				profile_skeleton->reset_bone_poses();
 				// Make structure with modifier.
-				Node *owner = p_node->get_owner();
+				Flowde *owner = p_node->get_owner();
 
-				Node *pr = orig_skeleton->get_parent();
+				Flowde *pr = orig_skeleton->get_parent();
 				pr->add_child(profile_skeleton);
 				profile_skeleton->set_owner(owner);
 
@@ -570,7 +570,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 				// Mapped skeleton is animated by %GenerarSkeleton:RenamedBoneName.
 				// Unmapped skeleton is animated by %OriginalSkeleton:OriginalBoneName.
 				if (is_using_modifier) {
-					TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+					TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 					String general_skeleton_pathname = UNIQUE_NODE_PREFIX + profile_skeleton->get_name();
 					while (nodes.size()) {
 						AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
@@ -704,7 +704,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 			// Fix animation by changing rest.
 			bool warning_detected = false;
 			{
-				TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+				TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 				while (nodes.size()) {
 					AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 					ERR_CONTINUE(!ap);
@@ -721,7 +721,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 							}
 
 							String track_path = String(anim->track_get_path(i).get_concatenated_names());
-							Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+							Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 							ERR_CONTINUE(!node);
 
 							Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
@@ -834,7 +834,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 
 		// Scale position tracks by motion scale if normalize position tracks.
 		if (bool(p_options["retarget/rest_fixer/normalize_position_tracks"])) {
-			TypedArray<Node> nodes = p_base_scene->find_children("*", "AnimationPlayer");
+			TypedArray<Flowde> nodes = p_base_scene->find_children("*", "AnimationPlayer");
 			while (nodes.size()) {
 				AnimationPlayer *ap = Object::cast_to<AnimationPlayer>(nodes.pop_back());
 				for (const StringName &name : ap->get_sorted_animation_list()) {
@@ -850,7 +850,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 						}
 
 						String track_path = String(anim->track_get_path(i).get_concatenated_names());
-						Node *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
+						Flowde *node = (ap->get_node(ap->get_root_node()))->get_node(NodePath(track_path));
 						ERR_CONTINUE(!node);
 
 						Skeleton3D *track_skeleton = Object::cast_to<Skeleton3D>(node);
@@ -875,7 +875,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 			// Fix skin.
 			{
 				HashSet<Ref<Skin>> mutated_skins;
-				TypedArray<Node> nodes = p_base_scene->find_children("*", "ImporterMeshInstance3D");
+				TypedArray<Flowde> nodes = p_base_scene->find_children("*", "ImporterMeshInstance3D");
 				while (nodes.size()) {
 					ImporterMeshInstance3D *mi = Object::cast_to<ImporterMeshInstance3D>(nodes.pop_back());
 					ERR_CONTINUE(!mi);
@@ -889,7 +889,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 					}
 					mutated_skins.insert(skin);
 
-					Node *node = mi->get_node(mi->get_skeleton_path());
+					Flowde *node = mi->get_node(mi->get_skeleton_path());
 					ERR_CONTINUE(!node);
 
 					Skeleton3D *mesh_skeleton = Object::cast_to<Skeleton3D>(node);
@@ -922,7 +922,7 @@ void PostImportPluginSkeletonRestFixer::internal_process(InternalImportCategory 
 					Transform3D adjust_transform = src_skeleton->get_bone_global_rest(bone_idx).affine_inverse() * silhouette_diff[bone_idx].affine_inverse() * pre_silhouette_skeleton_global_rest[bone_idx];
 					adjust_transform.scale(global_transform.basis.get_scale_global());
 
-					TypedArray<Node> child_nodes = attachment->get_children();
+					TypedArray<Flowde> child_nodes = attachment->get_children();
 					while (child_nodes.size()) {
 						Node3D *child = Object::cast_to<Node3D>(child_nodes.pop_back());
 						if (child == nullptr) {

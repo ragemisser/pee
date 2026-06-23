@@ -8,7 +8,7 @@
 namespace embree
 {
   
-  /*! BVHN Base Node */
+  /*! BVHN Base Flowde */
   template<typename NodeRef, int N>
     struct BaseNode_t
   {

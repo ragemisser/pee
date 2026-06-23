@@ -730,7 +730,7 @@ msgstr "Thêm %s"
 msgid "Load..."
 msgstr "Nạp ..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Di chuyển điểm nút BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -745,7 +745,7 @@ msgstr "Không thể sử dụng loại node này. Chỉ các node hoạt ảnh 
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Loại nút này không thể sử dụng. Chỉ các nút gốc được phép."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Thêm điểm Nút"
 
 msgid "Add Animation Point"
@@ -799,7 +799,7 @@ msgstr "T.đa"
 msgid "Value"
 msgstr "Giá trị"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Mở nút Hoạt ảnh"
 
 msgid "Triangle already exists."
@@ -871,10 +871,10 @@ msgstr "Sửa bộ lọc"
 msgid "Output node can't be added to the blend tree."
 msgstr "Nút đầu ra không thể thêm vào Cây Trộn."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Thêm nút vào cây Trộn"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Đã di chuyển Nút"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -890,10 +890,10 @@ msgstr "Các Nút đã ngắt Kết nối"
 msgid "Set Animation"
 msgstr "Gán Hoạt ảnh"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Xoá Nút"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Xoá các Nút"
 
 msgid "Toggle Filter On/Off"
@@ -932,10 +932,10 @@ msgstr "Xem xét các track đã lọc:"
 msgid "Edit Filtered Tracks:"
 msgstr "Thay đổi các track đã lọc:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nút đã đổi tên"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Thêm Nút ..."
 
 msgid "Enable Filtering"
@@ -1325,7 +1325,7 @@ msgstr "Thời gian trộn:"
 msgid "Next (Auto Queue):"
 msgstr "Tiếp theo (Tự động xếp hàng):"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Di chuyển Nút"
 
 msgid "Transition exists!"
@@ -1337,8 +1337,8 @@ msgstr "Phát/Chuyển tới %s"
 msgid "Edit %s"
 msgstr "Chỉnh sửa %s"
 
-msgid "Add Node and Transition"
-msgstr "Thêm Node và Transition"
+msgid "Add Flowde and Transition"
+msgstr "Thêm Flowde và Transition"
 
 msgid "Add Transition"
 msgstr "Thêm Chuyển tiếp"
@@ -1355,7 +1355,7 @@ msgstr "Di chuyển"
 msgid "No playback resource set at path: %s."
 msgstr "Không có tài nguyên phát lại nào được thiết lập tại đường dẫn: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nút đã được gỡ"
 
 msgid "Transition Removed"
@@ -1805,7 +1805,7 @@ msgstr "Thêm các khóa RESET cho hoạt ảnh"
 msgid "Bake Animation as Linear Keys"
 msgstr "Bake hoạt ảnh dưới dạng các khóa tuyến tính"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Tạo Nút"
 
 msgid ""
@@ -2347,7 +2347,7 @@ msgstr "Phiên %d"
 msgid "Debug"
 msgstr "Gỡ lỗi"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Sao chép đường dẫn nút"
 
 msgid "Instance:"
@@ -3069,7 +3069,7 @@ msgstr "Thao tác này không thể áp dụng lên gốc của cây."
 msgid "Detach Script"
 msgstr "Tách tập lệnh ra"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Nhân đôi các nút"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -3077,7 +3077,7 @@ msgstr ""
 "Không thể đổi mẹ của các nút trong cảnh kế thừa, thứ tự các nút không thể "
 "được thay đổi."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Nút phải thuộc cảnh đã chỉnh sửa để trở thành gốc."
 
 msgid "Instantiated scenes can't become root"
@@ -3104,7 +3104,7 @@ msgstr "Xoá nút \"%s\"?"
 msgid "Save New Scene As..."
 msgstr "Lưu Cảnh Mới Thành..."
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Tạo Nút Gốc:"
 
 msgid "2D Scene"
@@ -3116,7 +3116,7 @@ msgstr "Cảnh 3D"
 msgid "User Interface"
 msgstr "Giao diện người dùng"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Nút khác"
 
 msgid "Can't operate on nodes from a foreign scene!"
@@ -3125,13 +3125,13 @@ msgstr "Không thể hoạt động trên các nút từ ngoại cảnh!"
 msgid "Can't operate on nodes the current scene inherits from!"
 msgstr "Không thể hoạt động các nút mà cảnh hiện tại kế thừa từ nó!"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Đổi mẹ của nút"
 
 msgid "Attach Script"
 msgstr "Đính kèm tập lệnh"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Xóa các nút"
 
 msgid "Change type of node(s)"
@@ -3182,13 +3182,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Không thể dán Nút Gốc vào cùng một Cảnh."
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Dán nút với tư cách là nút con của %s"
 
 msgid "<Unnamed> at %s"
 msgstr "<Unnamed> tại %s"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Thêm nút con..."
 
 msgid "Attach Script..."
@@ -3212,7 +3212,7 @@ msgstr "Biến Cảnh thành Gốc"
 msgid "Delete (No Confirm)"
 msgstr "Xóa (Không hỏi lại)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Thêm/Tạo một nút mới."
 
 msgid "Filter Nodes"
@@ -5261,7 +5261,7 @@ msgstr "Năng lượng bầu trời"
 msgid "Add Environment to Scene"
 msgstr "Thêm môi trường vào Cảnh"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Tạo điểm phát xạ từ nút"
 
 msgid "Emission Source:"
@@ -5357,7 +5357,7 @@ msgstr "Xóa đường căn ngang"
 msgid "Create Horizontal and Vertical Guides"
 msgstr "Tạo đường căn ngang và dọc"
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Dán các nút tại đây"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -5408,8 +5408,8 @@ msgstr "Dán tư thé"
 msgid "Clear Guides"
 msgstr "Xóa hết đường căn"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
-msgstr "Tạo Bone2D tuỳ chỉnh từ Node"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
+msgstr "Tạo Bone2D tuỳ chỉnh từ Flowde"
 
 msgid "Zoom to 3.125%"
 msgstr "Thu nhỏ đến 3.125%"
@@ -5468,13 +5468,13 @@ msgstr "Dính điểm ảnh"
 msgid "Snap to Parent"
 msgstr "Dính về nút Mẹ"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Dính nút vào điểm neo"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Dính vào các cạnh của Nút"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Dính vào tâm Nút"
 
 msgid "Snap to Other Nodes"
@@ -5562,7 +5562,7 @@ msgstr ""
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s : Mã gọi lại sẽ không được tạo, vui lòng thêm thủ công."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Kết nối đến Nút:"
 
 msgid "Connect to Script:"
@@ -5903,10 +5903,10 @@ msgstr "Tệp đã tồn tại."
 msgid "Scene name is valid."
 msgstr "Tên Cảnh hợp lệ."
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Mở khoá nút"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Cảnh báo cấu hình nút:"
 
 msgid "Click to show signals dock."
@@ -5919,7 +5919,7 @@ msgid "Open Script:"
 msgstr "Mở tập lệnh:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Nút hiện khoá.\n"
@@ -5938,10 +5938,10 @@ msgstr "Tên nút không hợp lệ, các ký tự sau bị cấm:"
 msgid "Scene Tree (Nodes):"
 msgstr "Cây (nút):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Cảnh báo cấu hình nút!"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Chọn một Nút"
 
 msgid "Show All"
@@ -6120,7 +6120,7 @@ msgstr "Sẽ tạo một tệp tập lệnh mới."
 msgid "Built-in Script:"
 msgstr "Tệp lệnh có sẵn:"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Đính kèm tập lệnh của nút"
 
 msgid "Line"
@@ -6824,7 +6824,7 @@ msgstr "Không đủ byte để giải mã, hoặc định dạng không hợp l
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nút"
 
 msgid "Incoming RPC"
@@ -6896,7 +6896,7 @@ msgstr "Xóa cổng ra"
 msgid "Set Input Default Port"
 msgstr "Đặt cổng đầu vào mặc định"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Thêm nút vào Visual Shader"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -6914,10 +6914,10 @@ msgstr "Mảnh"
 msgid "Light"
 msgstr "Ánh sáng"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Thêm Nút"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Tạo nút Shader"
 
 msgid "Color function."
@@ -7409,19 +7409,19 @@ msgstr ""
 "CollisionShape2D cần một khối hình mới hoạt động được. Hãy tạo một tài nguyên "
 "khối hình cho nó!"
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Nút A và Nút B phải là PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Nút A phải là PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Nút B phải là PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Khớp nối chưa kết nối tới hai PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Nút A và Nút B phải là 2 PhysicsBody2D khác nhau"
 
 msgid "Path property must point to a valid Node2D node to work."

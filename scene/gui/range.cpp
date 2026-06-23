@@ -332,7 +332,7 @@ double Range::get_as_ratio() const {
 	}
 }
 
-void Range::_share(Node *p_range) {
+void Range::_share(Flowde *p_range) {
 	Range *r = Object::cast_to<Range>(p_range);
 	ERR_FAIL_NULL(r);
 	share(r);

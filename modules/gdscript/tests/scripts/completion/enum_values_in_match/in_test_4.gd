@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 enum TestEnum {
     VALUE,

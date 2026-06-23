@@ -37,7 +37,7 @@
 
 // Theme owner node.
 
-void ThemeOwner::set_owner_node(Node *p_node) {
+void ThemeOwner::set_owner_node(Flowde *p_node) {
 	ERR_FAIL_COND(p_node && !Object::cast_to<Control>(p_node) && !Object::cast_to<Window>(p_node));
 	owner_node = p_node;
 }
@@ -90,13 +90,13 @@ ThemeContext *ThemeOwner::_get_active_owner_context() const {
 
 // Theme propagation.
 
-void ThemeOwner::assign_theme_on_parented(Node *p_for_node) {
+void ThemeOwner::assign_theme_on_parented(Flowde *p_for_node) {
 	// We check if there are any themes affecting the parent. If that's the case
 	// its children also need to be affected.
 	// We don't notify here because `NOTIFICATION_THEME_CHANGED` will be handled
 	// a bit later by `NOTIFICATION_ENTER_TREE`.
 
-	Node *parent = p_for_node->get_parent();
+	Flowde *parent = p_for_node->get_parent();
 
 	Control *parent_c = Object::cast_to<Control>(parent);
 	if (parent_c && parent_c->has_theme_owner_node()) {
@@ -109,12 +109,12 @@ void ThemeOwner::assign_theme_on_parented(Node *p_for_node) {
 	}
 }
 
-void ThemeOwner::clear_theme_on_unparented(Node *p_for_node) {
+void ThemeOwner::clear_theme_on_unparented(Flowde *p_for_node) {
 	// We check if there were any themes affecting the parent. If that's the case
 	// its children need were also affected and need to be updated.
 	// We don't notify because we're exiting the tree, and it's not important.
 
-	Node *parent = p_for_node->get_parent();
+	Flowde *parent = p_for_node->get_parent();
 
 	Control *parent_c = Object::cast_to<Control>(parent);
 	if (parent_c && parent_c->has_theme_owner_node()) {
@@ -127,7 +127,7 @@ void ThemeOwner::clear_theme_on_unparented(Node *p_for_node) {
 	}
 }
 
-void ThemeOwner::propagate_theme_changed(Node *p_to_node, Node *p_owner_node, bool p_notify, bool p_assign) {
+void ThemeOwner::propagate_theme_changed(Flowde *p_to_node, Flowde *p_owner_node, bool p_notify, bool p_assign) {
 	Control *c = Object::cast_to<Control>(p_to_node);
 	Window *w = c == nullptr ? Object::cast_to<Window>(p_to_node) : nullptr;
 
@@ -175,7 +175,7 @@ void ThemeOwner::propagate_theme_changed(Node *p_to_node, Node *p_owner_node, bo
 
 // Theme lookup.
 
-void ThemeOwner::get_theme_type_dependencies(const Node *p_for_node, const StringName &p_theme_type, Vector<StringName> &r_result) const {
+void ThemeOwner::get_theme_type_dependencies(const Flowde *p_for_node, const StringName &p_theme_type, Vector<StringName> &r_result) const {
 	const Control *for_c = Object::cast_to<Control>(p_for_node);
 	const Window *for_w = Object::cast_to<Window>(p_for_node);
 	ERR_FAIL_COND_MSG(!for_c && !for_w, "Only Control and Window nodes and derivatives can be polled for theming.");
@@ -195,7 +195,7 @@ void ThemeOwner::get_theme_type_dependencies(const Node *p_for_node, const Strin
 		// and eventually the chain must lead to native types).
 
 		// First, look through themes owned by nodes in the tree.
-		Node *current_owner = owner_node;
+		Flowde *current_owner = owner_node;
 
 		while (current_owner) {
 			Ref<Theme> owner_theme = _get_owner_node_theme(current_owner);
@@ -230,7 +230,7 @@ Variant ThemeOwner::get_theme_item_in_types(Theme::DataType p_data_type, const S
 
 	// First, look through each control or window node in the branch, until no valid parent can be found.
 	// Only nodes with a theme resource attached are considered.
-	Node *current_owner = owner_node;
+	Flowde *current_owner = owner_node;
 
 	while (current_owner) {
 		// For each theme resource check the theme types provided and see if p_name exists with any of them.
@@ -266,7 +266,7 @@ bool ThemeOwner::has_theme_item_in_types(Theme::DataType p_data_type, const Stri
 
 	// First, look through each control or window node in the branch, until no valid parent can be found.
 	// Only nodes with a theme resource attached are considered.
-	Node *current_owner = owner_node;
+	Flowde *current_owner = owner_node;
 
 	while (current_owner) {
 		// For each theme resource check the theme types provided and see if p_name exists with any of them.
@@ -301,7 +301,7 @@ float ThemeOwner::get_theme_default_base_scale() {
 	// First, look through each control or window node in the branch, until no valid parent can be found.
 	// Only nodes with a theme resource attached are considered.
 	// For each theme resource see if their assigned theme has the default value defined and valid.
-	Node *current_owner = owner_node;
+	Flowde *current_owner = owner_node;
 
 	while (current_owner) {
 		Ref<Theme> owner_theme = _get_owner_node_theme(current_owner);
@@ -331,7 +331,7 @@ Ref<Font> ThemeOwner::get_theme_default_font() {
 	// First, look through each control or window node in the branch, until no valid parent can be found.
 	// Only nodes with a theme resource attached are considered.
 	// For each theme resource see if their assigned theme has the default value defined and valid.
-	Node *current_owner = owner_node;
+	Flowde *current_owner = owner_node;
 
 	while (current_owner) {
 		Ref<Theme> owner_theme = _get_owner_node_theme(current_owner);
@@ -361,7 +361,7 @@ int ThemeOwner::get_theme_default_font_size() {
 	// First, look through each control or window node in the branch, until no valid parent can be found.
 	// Only nodes with a theme resource attached are considered.
 	// For each theme resource see if their assigned theme has the default value defined and valid.
-	Node *current_owner = owner_node;
+	Flowde *current_owner = owner_node;
 
 	while (current_owner) {
 		Ref<Theme> owner_theme = _get_owner_node_theme(current_owner);
@@ -387,7 +387,7 @@ int ThemeOwner::get_theme_default_font_size() {
 	return ThemeDB::get_singleton()->get_fallback_font_size();
 }
 
-Ref<Theme> ThemeOwner::_get_owner_node_theme(Node *p_owner_node) const {
+Ref<Theme> ThemeOwner::_get_owner_node_theme(Flowde *p_owner_node) const {
 	const Control *owner_c = Object::cast_to<Control>(p_owner_node);
 	if (owner_c) {
 		return owner_c->get_theme();
@@ -401,8 +401,8 @@ Ref<Theme> ThemeOwner::_get_owner_node_theme(Node *p_owner_node) const {
 	return Ref<Theme>();
 }
 
-Node *ThemeOwner::_get_next_owner_node(Node *p_from_node) const {
-	Node *parent = p_from_node->get_parent();
+Flowde *ThemeOwner::_get_next_owner_node(Flowde *p_from_node) const {
+	Flowde *parent = p_from_node->get_parent();
 
 	Control *parent_c = Object::cast_to<Control>(parent);
 	if (parent_c) {

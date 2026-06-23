@@ -101,7 +101,7 @@ void Bone2D::_get_property_list(List<PropertyInfo> *p_list) const {
 void Bone2D::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_ENTER_TREE: {
-			Node *parent = get_parent();
+			Flowde *parent = get_parent();
 			parent_bone = Object::cast_to<Bone2D>(parent);
 			skeleton = nullptr;
 			while (parent) {

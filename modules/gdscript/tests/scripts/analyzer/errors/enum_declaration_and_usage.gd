@@ -8,7 +8,7 @@ enum CustomEnum { A, B }
 func test():
 	print(Variant.Operator) # Global.
 	print(Vector3.Axis) # Built-in.
-	print(Node.ProcessMode) # Native.
+	print(Flowde.ProcessMode) # Native.
 
 	print(Side.NOT_EXIST) # Global.
 	print(Vector3.Axis.NOT_EXIST) # Built-in.

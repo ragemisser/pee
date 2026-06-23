@@ -40,7 +40,7 @@
 #include "scene/main/viewport.h"
 #include "servers/rendering/rendering_server.h"
 
-void Camera3DEditor::_node_removed(Node *p_node) {
+void Camera3DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		Node3DEditor::get_singleton()->set_custom_camera(nullptr);
@@ -49,11 +49,11 @@ void Camera3DEditor::_node_removed(Node *p_node) {
 }
 
 void Camera3DEditor::_pressed() {
-	Node *sn = (node && preview->is_pressed()) ? node : nullptr;
+	Flowde *sn = (node && preview->is_pressed()) ? node : nullptr;
 	Node3DEditor::get_singleton()->set_custom_camera(sn);
 }
 
-void Camera3DEditor::edit(Node *p_camera) {
+void Camera3DEditor::edit(Flowde *p_camera) {
 	node = p_camera;
 
 	if (!node) {

@@ -320,17 +320,17 @@ private:
 	void _zoom_plus();
 	void _update_zoom_label();
 
-	void _graph_element_selected(Node *p_node);
-	void _graph_element_deselected(Node *p_node);
+	void _graph_element_selected(Flowde *p_node);
+	void _graph_element_deselected(Flowde *p_node);
 	void _graph_element_visibility_changed(GraphElement *p_graph_element);
-	void _graph_element_resize_request(const Vector2 &p_new_minsize, Node *p_node);
+	void _graph_element_resize_request(const Vector2 &p_new_minsize, Flowde *p_node);
 	void _graph_frame_autoshrink_changed(const Vector2 &p_new_minsize, GraphFrame *p_frame);
-	void _graph_element_moved(Node *p_node);
-	void _graph_node_slot_updated(int p_index, Node *p_node);
+	void _graph_element_moved(Flowde *p_node);
+	void _graph_node_slot_updated(int p_index, Flowde *p_node);
 	void _graph_node_rect_changed(GraphNode *p_node);
 
 	void _ensure_node_order_from_root(const StringName &p_node);
-	void _ensure_node_order_from(Node *p_node);
+	void _ensure_node_order_from(Flowde *p_node);
 
 	void _update_scrollbars();
 	void _update_scroll_offset();
@@ -381,8 +381,8 @@ private:
 protected:
 	virtual void _update_theme_item_cache() override;
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	void _notification(int p_what);
 	static void _bind_methods();
@@ -502,7 +502,7 @@ public:
 	void set_scroll_offset(const Vector2 &p_ofs);
 	Vector2 get_scroll_offset() const;
 
-	void set_selected(Node *p_child);
+	void set_selected(Flowde *p_child);
 
 	void set_snapping_enabled(bool p_enable);
 	bool is_snapping_enabled() const;

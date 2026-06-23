@@ -42,7 +42,7 @@
 		</method>
 		<method name="add_root_node" deprecated="Use [method EditorInterface.add_root_node] instead.">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Makes [param node] root of the currently opened scene. Only works if the scene is empty. If the [param node] is a scene instance, an inheriting scene will be created.
 			</description>
@@ -54,9 +54,9 @@
 			</description>
 		</method>
 		<method name="get_scene" qualifiers="const" deprecated="Use [method EditorInterface.get_edited_scene_root] instead.">
-			<return type="Node" />
+			<return type="Flowde" />
 			<description>
-				Returns the edited (current) scene's root [Node]. Equivalent of [method EditorInterface.get_edited_scene_root].
+				Returns the edited (current) scene's root [Flowde]. Equivalent of [method EditorInterface.get_edited_scene_root].
 			</description>
 		</method>
 	</methods>

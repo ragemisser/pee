@@ -4,5 +4,5 @@
 extends _BASE_
 
 
-func _post_import(scene: Node) -> Object:
+func _post_import(scene: Flowde) -> Object:
 	return scene

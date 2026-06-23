@@ -245,7 +245,7 @@ AABB MeshInstance3D::get_aabb() const {
 }
 
 #ifndef PHYSICS_3D_DISABLED
-Node *MeshInstance3D::create_trimesh_collision_node() {
+Flowde *MeshInstance3D::create_trimesh_collision_node() {
 	if (mesh.is_null()) {
 		return nullptr;
 	}
@@ -275,7 +275,7 @@ void MeshInstance3D::create_trimesh_collision() {
 	}
 }
 
-Node *MeshInstance3D::create_convex_collision_node(bool p_clean, bool p_simplify) {
+Flowde *MeshInstance3D::create_convex_collision_node(bool p_clean, bool p_simplify) {
 	if (mesh.is_null()) {
 		return nullptr;
 	}
@@ -305,7 +305,7 @@ void MeshInstance3D::create_convex_collision(bool p_clean, bool p_simplify) {
 	}
 }
 
-Node *MeshInstance3D::create_multiple_convex_collisions_node(const Ref<MeshConvexDecompositionSettings> &p_settings) {
+Flowde *MeshInstance3D::create_multiple_convex_collisions_node(const Ref<MeshConvexDecompositionSettings> &p_settings) {
 	if (mesh.is_null()) {
 		return nullptr;
 	}
@@ -882,7 +882,7 @@ void MeshInstance3D::navmesh_parse_init() {
 	}
 }
 
-void MeshInstance3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node) {
+void MeshInstance3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node) {
 	MeshInstance3D *mesh_instance = Object::cast_to<MeshInstance3D>(p_node);
 
 	if (mesh_instance == nullptr) {

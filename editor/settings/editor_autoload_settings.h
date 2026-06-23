@@ -56,7 +56,7 @@ class EditorAutoloadSettings : public VBoxContainer {
 		bool is_singleton = false;
 		bool in_editor = false;
 		int order = 0;
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 
 		bool operator==(const AutoloadInfo &p_info) const {
 			return order == p_info.order;
@@ -84,7 +84,7 @@ class EditorAutoloadSettings : public VBoxContainer {
 	void _autoload_button_pressed(Object *p_item, int p_column, int p_button, MouseButton p_mouse_button);
 	void _autoload_activated();
 	void _autoload_open(const String &fpath);
-	Node *_create_autoload(const String &p_path);
+	Flowde *_create_autoload(const String &p_path);
 
 	void _create_script_autoload();
 	void _create_scene_autoload();

@@ -32,13 +32,13 @@
 				[codeblocks]
 				[gdscript]
 				class_name MyNode
-				extends Node
+				extends Flowde
 				[/gdscript]
 				[csharp]
 				using Godot;
 
 				[GlobalClass]
-				public partial class MyNode : Node
+				public partial class MyNode : Flowde
 				{
 				}
 				[/csharp]

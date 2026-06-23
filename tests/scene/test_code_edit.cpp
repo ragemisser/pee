@@ -5547,7 +5547,7 @@ TEST_CASE("[SceneTree][CodeEdit] text manipulation") {
 	}
 
 	SUBCASE("[SceneTree][CodeEdit] duplicate lines") {
-		String reset_text = R"(extends Node
+		String reset_text = R"(extends Flowde
 
 func _ready():
 	var a := len(OS.get_cmdline_args())
@@ -5564,8 +5564,8 @@ func _ready():
 		// Duplicate a single line without selection.
 		code_edit->set_caret_line(0);
 		code_edit->duplicate_lines();
-		CHECK(code_edit->get_line(0) == "extends Node");
-		CHECK(code_edit->get_line(1) == "extends Node");
+		CHECK(code_edit->get_line(0) == "extends Flowde");
+		CHECK(code_edit->get_line(1) == "extends Flowde");
 		CHECK(code_edit->get_line(2) == "");
 		CHECK(code_edit->get_caret_line() == 1);
 		CHECK(code_edit->get_caret_column() == 0);
@@ -5574,7 +5574,7 @@ func _ready():
 		code_edit->set_text(reset_text);
 		code_edit->select(4, 8, 6, 15);
 		code_edit->duplicate_lines();
-		CHECK(code_edit->get_text() == R"(extends Node
+		CHECK(code_edit->get_text() == R"(extends Flowde
 
 func _ready():
 	var a := len(OS.get_cmdline_args())
@@ -5598,7 +5598,7 @@ func _ready():
 		code_edit->set_text(reset_text);
 		code_edit->select(6, 15, 4, 8);
 		code_edit->duplicate_lines();
-		CHECK(code_edit->get_text() == R"(extends Node
+		CHECK(code_edit->get_text() == R"(extends Flowde
 
 func _ready():
 	var a := len(OS.get_cmdline_args())
@@ -5628,7 +5628,7 @@ func _ready():
 		code_edit->add_caret(5, 5);
 		code_edit->add_caret(4, 2);
 		code_edit->duplicate_lines();
-		CHECK(code_edit->get_text() == R"(extends Node
+		CHECK(code_edit->get_text() == R"(extends Flowde
 
 func _ready():
 	var a := len(OS.get_cmdline_args())
@@ -5667,10 +5667,10 @@ func _ready():
 		code_edit->select(7, 1, 6, 0, 2);
 		code_edit->select(7, 3, 7, 8, 3);
 		code_edit->duplicate_lines();
-		CHECK(code_edit->get_text() == R"(extends Node
+		CHECK(code_edit->get_text() == R"(extends Flowde
 
 func _ready():
-extends Node
+extends Flowde
 
 func _ready():
 	var a := len(OS.get_cmdline_args())

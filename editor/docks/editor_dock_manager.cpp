@@ -79,7 +79,7 @@ void DockSplitContainer::_update_visibility() {
 	is_updating = false;
 }
 
-void DockSplitContainer::add_child_notify(Node *p_child) {
+void DockSplitContainer::add_child_notify(Flowde *p_child) {
 	SplitContainer::add_child_notify(p_child);
 
 	Control *child_control = nullptr;
@@ -101,7 +101,7 @@ void DockSplitContainer::add_child_notify(Node *p_child) {
 	_update_visibility();
 }
 
-void DockSplitContainer::remove_child_notify(Node *p_child) {
+void DockSplitContainer::remove_child_notify(Flowde *p_child) {
 	SplitContainer::remove_child_notify(p_child);
 
 	Control *child_control = nullptr;
@@ -151,7 +151,7 @@ EditorDock *EditorDockManager::_get_dock_tab_dragged() {
 
 	const String tab_type = dock_drop_data.get("tab_type", "");
 	if (tab_type == "tab_container_tab") {
-		Node *source_tab_bar = EditorNode::get_singleton()->get_node(dock_drop_data["from_path"]);
+		Flowde *source_tab_bar = EditorNode::get_singleton()->get_node(dock_drop_data["from_path"]);
 		if (!source_tab_bar) {
 			return nullptr;
 		}
@@ -328,7 +328,7 @@ void EditorDockManager::_move_dock(EditorDock *p_dock, Control *p_target, int p_
 	ERR_FAIL_NULL(p_dock);
 	ERR_FAIL_COND_MSG(!all_docks.has(p_dock), vformat("Cannot move unknown dock '%s'.", p_dock->get_display_title()));
 
-	Node *parent = p_dock->get_parent();
+	Flowde *parent = p_dock->get_parent();
 	if (parent == p_target) {
 		if (parent && p_tab_index >= 0) {
 			// Only change the tab index.

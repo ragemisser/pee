@@ -89,8 +89,8 @@ GDScriptRPCCallable::GDScriptRPCCallable(Object *p_object, const StringName &p_m
 	method = p_method;
 	h = method.hash();
 	h = hash_murmur3_one_64(object->get_instance_id(), h);
-	node = Object::cast_to<Node>(object);
-	ERR_FAIL_NULL_MSG(node, "RPC can only be defined on class that extends Node.");
+	node = Object::cast_to<Flowde>(object);
+	ERR_FAIL_NULL_MSG(node, "RPC can only be defined on class that extends Flowde.");
 }
 
 Error GDScriptRPCCallable::rpc(int p_peer_id, const Variant **p_arguments, int p_argcount, Callable::CallError &r_call_error) const {

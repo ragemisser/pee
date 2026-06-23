@@ -51,8 +51,8 @@
 void ReplicationEditor::_pick_node_filter_text_changed(const String &p_newtext) {
 	TreeItem *root_item = pick_node->get_scene_tree()->get_scene_tree()->get_root();
 
-	Vector<Node *> select_candidates;
-	Node *to_select = nullptr;
+	Vector<Flowde *> select_candidates;
+	Flowde *to_select = nullptr;
 
 	String filter = pick_node->get_filter_line_edit()->get_text();
 
@@ -60,7 +60,7 @@ void ReplicationEditor::_pick_node_filter_text_changed(const String &p_newtext) 
 
 	if (!select_candidates.is_empty()) {
 		for (int i = 0; i < select_candidates.size(); ++i) {
-			Node *candidate = select_candidates[i];
+			Flowde *candidate = select_candidates[i];
 
 			if (((String)candidate->get_name()).to_lower().begins_with(filter.to_lower())) {
 				to_select = candidate;
@@ -76,13 +76,13 @@ void ReplicationEditor::_pick_node_filter_text_changed(const String &p_newtext) 
 	pick_node->get_scene_tree()->set_selected(to_select);
 }
 
-void ReplicationEditor::_pick_node_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Node *> &p_select_candidates) {
+void ReplicationEditor::_pick_node_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Flowde *> &p_select_candidates) {
 	if (!p_item) {
 		return;
 	}
 
 	NodePath np = p_item->get_metadata(0);
-	Node *node = get_node(np);
+	Flowde *node = get_node(np);
 
 	if (!p_filter.is_empty() && ((String)node->get_name()).containsn(p_filter)) {
 		p_select_candidates.push_back(node);
@@ -97,9 +97,9 @@ void ReplicationEditor::_pick_node_select_recursive(TreeItem *p_item, const Stri
 }
 
 void ReplicationEditor::_pick_node_selected(NodePath p_path) {
-	Node *root = current->get_node(current->get_root_path());
+	Flowde *root = current->get_node(current->get_root_path());
 	ERR_FAIL_NULL(root);
-	Node *node = get_node(p_path);
+	Flowde *node = get_node(p_path);
 	ERR_FAIL_NULL(node);
 	NodePath path_to = root->get_path_to(node);
 	adding_node_path = path_to;
@@ -111,7 +111,7 @@ void ReplicationEditor::_pick_new_property() {
 		EditorNode::get_singleton()->show_warning(TTRC("Select a replicator node in order to pick a property to add to it."));
 		return;
 	}
-	Node *root = current->get_node(current->get_root_path());
+	Flowde *root = current->get_node(current->get_root_path());
 	if (!root) {
 		EditorNode::get_singleton()->show_warning(TTRC("Not possible to add a new property to synchronize without a root."));
 		return;
@@ -310,7 +310,7 @@ bool ReplicationEditor::_can_drop_data_fw(const Point2 &p_point, const Variant &
 	if (!obj) {
 		return false;
 	}
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	if (!node) {
 		return false;
 	}
@@ -323,7 +323,7 @@ void ReplicationEditor::_drop_data_fw(const Point2 &p_point, const Variant &p_da
 		EditorNode::get_singleton()->show_warning(TTRC("Select a replicator node in order to pick a property to add to it."));
 		return;
 	}
-	Node *root = current->get_node(current->get_root_path());
+	Flowde *root = current->get_node(current->get_root_path());
 	if (!root) {
 		EditorNode::get_singleton()->show_warning(TTRC("Not possible to add a new property to synchronize without a root."));
 		return;
@@ -341,7 +341,7 @@ void ReplicationEditor::_drop_data_fw(const Point2 &p_point, const Variant &p_da
 	if (!obj) {
 		return;
 	}
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	if (!node) {
 		return;
 	}
@@ -539,7 +539,7 @@ void ReplicationEditor::edit(MultiplayerSynchronizer *p_sync) {
 	_update_config();
 }
 
-Ref<Texture2D> ReplicationEditor::_get_class_icon(const Node *p_node) {
+Ref<Texture2D> ReplicationEditor::_get_class_icon(const Flowde *p_node) {
 	if (!p_node || !has_theme_icon(p_node->get_class(), EditorStringName(EditorIcons))) {
 		return get_theme_icon(SNAME("ImportFail"), EditorStringName(EditorIcons));
 	}
@@ -574,12 +574,12 @@ void ReplicationEditor::_add_property(const NodePath &p_property, bool p_spawn, 
 	item->set_text(0, prop);
 	item->set_auto_translate_mode(0, AUTO_TRANSLATE_MODE_DISABLED);
 	item->set_metadata(0, prop);
-	Node *root_node = current && !current->get_root_path().is_empty() ? current->get_node(current->get_root_path()) : nullptr;
+	Flowde *root_node = current && !current->get_root_path().is_empty() ? current->get_node(current->get_root_path()) : nullptr;
 	Ref<Texture2D> icon = _get_class_icon(root_node);
 	if (root_node) {
 		String path = prop.substr(0, prop.find_char(':'));
 		String subpath = prop.substr(path.size());
-		Node *node = root_node->get_node_or_null(path);
+		Flowde *node = root_node->get_node_or_null(path);
 		if (!node) {
 			node = root_node;
 		}

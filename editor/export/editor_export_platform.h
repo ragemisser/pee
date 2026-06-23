@@ -38,7 +38,7 @@ class EditorExportPlugin;
 class EditorFileSystemDirectory;
 class FileAccess;
 class Image;
-class Node;
+class Flowde;
 class RichTextLabel;
 class Texture2D;
 struct EditorProgress;
@@ -164,8 +164,8 @@ private:
 	bool _export_customize_dictionary(Dictionary &dict, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins);
 	bool _export_customize_array(Array &array, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins);
 	bool _export_customize_object(Object *p_object, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins);
-	bool _export_customize_scene_resources(Node *p_root, Node *p_node, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins);
-	bool _is_editable_ancestor(Node *p_root, Node *p_node);
+	bool _export_customize_scene_resources(Flowde *p_root, Flowde *p_node, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins);
+	bool _is_editable_ancestor(Flowde *p_root, Flowde *p_node);
 
 	String _export_customize(const String &p_path, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins, LocalVector<Ref<EditorExportPlugin>> &customize_scenes_plugins, HashMap<String, FileExportCache> &export_cache, const String &export_base_path, bool p_force_save);
 

@@ -40,7 +40,7 @@ void EditorSceneFormatImporterGLTF::get_extensions(List<String> *r_extensions) c
 	r_extensions->push_back("glb");
 }
 
-Node *EditorSceneFormatImporterGLTF::import_scene(const String &p_path, uint32_t p_flags,
+Flowde *EditorSceneFormatImporterGLTF::import_scene(const String &p_path, uint32_t p_flags,
 		const HashMap<StringName, Variant> &p_options,
 		List<String> *r_missing_deps, Error *r_err) {
 	Ref<GLTFDocument> gltf_doc;

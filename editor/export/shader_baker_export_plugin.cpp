@@ -295,12 +295,12 @@ Ref<Resource> ShaderBakerExportPlugin::_customize_resource(const Ref<Resource> &
 	return Ref<Resource>();
 }
 
-Node *ShaderBakerExportPlugin::_customize_scene(Node *p_root, const String &p_path) {
-	LocalVector<Node *> nodes_to_visit;
+Flowde *ShaderBakerExportPlugin::_customize_scene(Flowde *p_root, const String &p_path) {
+	LocalVector<Flowde *> nodes_to_visit;
 	nodes_to_visit.push_back(p_root);
 	while (!nodes_to_visit.is_empty()) {
 		// Visit all nodes recursively in the scene to find the Label3Ds and Sprite3Ds.
-		Node *node = nodes_to_visit[nodes_to_visit.size() - 1];
+		Flowde *node = nodes_to_visit[nodes_to_visit.size() - 1];
 		nodes_to_visit.remove_at(nodes_to_visit.size() - 1);
 
 		Label3D *label_3d = Object::cast_to<Label3D>(node);

@@ -43,14 +43,14 @@ void EditorSceneFormatImporterFBX2GLTF::get_extensions(List<String> *r_extension
 	r_extensions->push_back("fbx");
 }
 
-Node *EditorSceneFormatImporterFBX2GLTF::import_scene(const String &p_path, uint32_t p_flags,
+Flowde *EditorSceneFormatImporterFBX2GLTF::import_scene(const String &p_path, uint32_t p_flags,
 		const HashMap<StringName, Variant> &p_options,
 		List<String> *r_missing_deps, Error *r_err) {
 	// FIXME: Hack to work around GH-86309.
 	if (p_options.has("fbx/importer") && int(p_options["fbx/importer"]) == EditorSceneFormatImporterUFBX::FBX_IMPORTER_UFBX) {
 		Ref<EditorSceneFormatImporterUFBX> fbx2gltf_importer;
 		fbx2gltf_importer.instantiate();
-		Node *scene = fbx2gltf_importer->import_scene(p_path, p_flags, p_options, r_missing_deps, r_err);
+		Flowde *scene = fbx2gltf_importer->import_scene(p_path, p_flags, p_options, r_missing_deps, r_err);
 		if (r_err && *r_err == OK) {
 			return scene;
 		} else {

@@ -47,7 +47,7 @@ class Cast2DEditor : public Control {
 
 protected:
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 public:
 	bool forward_canvas_gui_input(const Ref<InputEvent> &p_event);

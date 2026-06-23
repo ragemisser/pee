@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="CanvasItem" inherits="Node" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="CanvasItem" inherits="Flowde" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Abstract base class for everything in 2D space.
 	</brief_description>
@@ -8,7 +8,7 @@
 		Any [CanvasItem] can draw. For this, [method queue_redraw] is called by the engine, then [constant NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [CanvasItem] are provided (see [code]draw_*[/code] functions). However, they can only be used inside [method _draw], its corresponding [method Object._notification] or methods connected to the [signal draw] signal.
 		Canvas items are drawn in tree order on their canvas layer. By default, children are on top of their parents, so a root [CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
 		A [CanvasItem] can be hidden, which will also hide its children. By adjusting various other properties of a [CanvasItem], you can also modulate its color (via [member modulate] or [member self_modulate]), change its Z-index, blend mode, and more.
-		Note that properties like transform, modulation, and visibility are only propagated to [i]direct[/i] [CanvasItem] child nodes. If there is a non-[CanvasItem] node in between, like [Node] or [AnimationPlayer], the [CanvasItem] nodes below will have an independent position and [member modulate] chain. See also [member top_level].
+		Note that properties like transform, modulation, and visibility are only propagated to [i]direct[/i] [CanvasItem] child nodes. If there is a non-[CanvasItem] node in between, like [Flowde] or [AnimationPlayer], the [CanvasItem] nodes below will have an independent position and [member modulate] chain. See also [member top_level].
 	</description>
 	<tutorials>
 		<link title="Viewport and canvas transforms">$DOCS_URL/tutorials/2d/2d_transforms.html</link>
@@ -482,7 +482,7 @@
 		<method name="get_canvas_transform" qualifiers="const">
 			<return type="Transform2D" />
 			<description>
-				Returns the transform of this node, converted from its registered canvas's coordinate system to its viewport's coordinate system. See also [method Node.get_viewport].
+				Returns the transform of this node, converted from its registered canvas's coordinate system to its viewport's coordinate system. See also [method Flowde.get_viewport].
 			</description>
 		</method>
 		<method name="get_global_mouse_position" qualifiers="const">
@@ -533,13 +533,13 @@
 		<method name="get_viewport_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns this node's viewport boundaries as a [Rect2]. See also [method Node.get_viewport].
+				Returns this node's viewport boundaries as a [Rect2]. See also [method Flowde.get_viewport].
 			</description>
 		</method>
 		<method name="get_viewport_transform" qualifiers="const">
 			<return type="Transform2D" />
 			<description>
-				Returns the transform of this node, converted from its registered canvas's coordinate system to its viewport embedder's coordinate system. See also [method Viewport.get_final_transform] and [method Node.get_viewport].
+				Returns the transform of this node, converted from its registered canvas's coordinate system to its viewport embedder's coordinate system. See also [method Viewport.get_final_transform] and [method Flowde.get_viewport].
 			</description>
 		</method>
 		<method name="get_visibility_layer_bit" qualifiers="const">
@@ -553,7 +553,7 @@
 			<return type="World2D" />
 			<description>
 				Returns the [World2D] this node is registered to.
-				Usually, this is the same as this node's viewport (see [method Node.get_viewport] and [method Viewport.find_world_2d]).
+				Usually, this is the same as this node's viewport (see [method Flowde.get_viewport] and [method Viewport.find_world_2d]).
 			</description>
 		</method>
 		<method name="hide">
@@ -578,7 +578,7 @@
 			<return type="bool" />
 			<description>
 				Returns [code]true[/code] if the node is present in the [SceneTree], its [member visible] property is [code]true[/code] and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is therefore not drawn (see [method _draw]).
-				Visibility is checked only in parent nodes that inherit from [CanvasItem], [CanvasLayer], and [Window]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node3D]), it is assumed to be visible.
+				Visibility is checked only in parent nodes that inherit from [CanvasItem], [CanvasLayer], and [Window]. If the parent is of any other type (such as [Flowde], [AnimationPlayer], or [Node3D]), it is assumed to be visible.
 				[b]Note:[/b] This method does not take [member visibility_layer] into account, so even if this method returns [code]true[/code], the node might end up not being rendered.
 			</description>
 		</method>
@@ -603,7 +603,7 @@
 		<method name="move_to_front">
 			<return type="void" />
 			<description>
-				Moves this node below its siblings, usually causing the node to draw on top of its siblings. Does nothing if this node does not have a parent. See also [method Node.move_child].
+				Moves this node below its siblings, usually causing the node to draw on top of its siblings. Does nothing if this node does not have a parent. See also [method Flowde.move_child].
 			</description>
 		</method>
 		<method name="queue_redraw">
@@ -673,7 +673,7 @@
 		</member>
 		<member name="self_modulate" type="Color" setter="set_self_modulate" getter="get_self_modulate" default="Color(1, 1, 1, 1)">
 			The color applied to this [CanvasItem]. This property does [b]not[/b] affect child [CanvasItem]s, unlike [member modulate] which affects both the node itself and its children.
-			[b]Note:[/b] Internal children are also not affected by this property (see the [code]include_internal[/code] parameter in [method Node.add_child]). For built-in nodes this includes sliders in [ColorPicker], and the tab bar in [TabContainer].
+			[b]Note:[/b] Internal children are also not affected by this property (see the [code]include_internal[/code] parameter in [method Flowde.add_child]). For built-in nodes this includes sliders in [ColorPicker], and the tab bar in [TabContainer].
 		</member>
 		<member name="show_behind_parent" type="bool" setter="set_draw_behind_parent" getter="is_draw_behind_parent_enabled" default="false">
 			If [code]true[/code], this node draws behind its parent.
@@ -686,7 +686,7 @@
 			[b]Note:[/b] [TextureRect] is not affected by [member texture_repeat], as it uses its own texture repeating implementation.
 		</member>
 		<member name="top_level" type="bool" setter="set_as_top_level" getter="is_set_as_top_level" default="false">
-			If [code]true[/code], this [CanvasItem] will [i]not[/i] inherit its transform from parent [CanvasItem]s. Its draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have [member top_level] set to [code]true[/code]. The [CanvasItem] will effectively act as if it was placed as a child of a bare [Node].
+			If [code]true[/code], this [CanvasItem] will [i]not[/i] inherit its transform from parent [CanvasItem]s. Its draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have [member top_level] set to [code]true[/code]. The [CanvasItem] will effectively act as if it was placed as a child of a bare [Flowde].
 		</member>
 		<member name="use_parent_material" type="bool" setter="set_use_parent_material" getter="get_use_parent_material" default="false">
 			If [code]true[/code], the parent [CanvasItem]'s [member material] is used as this node's material.

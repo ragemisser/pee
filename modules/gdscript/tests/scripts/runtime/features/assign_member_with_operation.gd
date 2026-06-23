@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func test():
 	process_priority = 10

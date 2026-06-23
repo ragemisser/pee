@@ -3595,7 +3595,7 @@ static ufbxi_noinline void ufbxi_fix_error_type(ufbx_error *error, const char *d
 		error->type = UFBX_ERROR_BAD_NURBS;
 	} else if (!strcmp(desc, "Bad index")) {
 		error->type = UFBX_ERROR_BAD_INDEX;
-	} else if (!strcmp(desc, "Node depth limit exceeded")) {
+	} else if (!strcmp(desc, "Flowde depth limit exceeded")) {
 		error->type = UFBX_ERROR_NODE_DEPTH_LIMIT;
 	} else if (!strcmp(desc, "Threaded ASCII parse error")) {
 		error->type = UFBX_ERROR_THREADED_ASCII_PARSE;
@@ -5464,7 +5464,7 @@ static const char ufbxi_Name[] = "Name";
 static const char ufbxi_NearPlane[] = "NearPlane";
 static const char ufbxi_NodeAttributeName[] = "NodeAttributeName";
 static const char ufbxi_NodeAttribute[] = "NodeAttribute";
-static const char ufbxi_Node[] = "Node";
+static const char ufbxi_Node[] = "Flowde";
 static const char ufbxi_Normals[] = "Normals";
 static const char ufbxi_NormalsIndex[] = "NormalsIndex";
 static const char ufbxi_NormalsW[] = "NormalsW";
@@ -6507,11 +6507,11 @@ typedef struct {
 	ufbxi_map anim_stack_map;    // < `ufbxi_tmp_anim_stack` anim stacks by name before finalization
 
 	// 6x00 specific maps
-	ufbxi_map fbx_attr_map;  // < `ufbxi_fbx_attr_entry` Node ID to attrib ID
-	ufbxi_map node_prop_set; // < `const char*` Node property names
+	ufbxi_map fbx_attr_map;  // < `ufbxi_fbx_attr_entry` Flowde ID to attrib ID
+	ufbxi_map node_prop_set; // < `const char*` Flowde property names
 
 	// DOM nodes
-	ufbxi_map dom_node_map; // < `const char*` Node property names
+	ufbxi_map dom_node_map; // < `const char*` Flowde property names
 
 	// Temporary array
 	char *tmp_arr;
@@ -7702,7 +7702,7 @@ static ufbxi_noinline size_t ufbxi_array_type_size(char type)
 	}
 }
 
-// -- Node operations
+// -- Flowde operations
 
 static ufbxi_noinline ufbxi_node *ufbxi_find_child(ufbxi_node *node, const char *name)
 {
@@ -10285,7 +10285,7 @@ ufbxi_nodiscard ufbxi_noinline static int ufbxi_ascii_parse_node(ufbxi_context *
 		return 1;
 	}
 
-	// Parse the name eg. "Node:" token and intern the name
+	// Parse the name eg. "Flowde:" token and intern the name
 	ufbxi_check(depth < UFBXI_MAX_NODE_DEPTH);
 	if (!uc->sure_fbx && depth == 0 && ua->token.type != UFBXI_ASCII_NAME) {
 		ufbxi_fail_msg("Expected a 'Name:' token", "Not an FBX file");
@@ -18872,7 +18872,7 @@ ufbxi_nodiscard ufbxi_noinline static int ufbxi_linearize_nodes(ufbxi_context *u
 		}
 
 		if (uc->opts.node_depth_limit > 0) {
-			ufbxi_check_msg(depth <= uc->opts.node_depth_limit, "Node depth limit exceeded");
+			ufbxi_check_msg(depth <= uc->opts.node_depth_limit, "Flowde depth limit exceeded");
 		}
 		node->node_depth = depth;
 

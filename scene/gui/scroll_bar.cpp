@@ -350,7 +350,7 @@ void ScrollBar::_notification(int p_what) {
 
 		case NOTIFICATION_ENTER_TREE: {
 			if (has_node(drag_node_path)) {
-				Node *n = get_node(drag_node_path);
+				Flowde *n = get_node(drag_node_path);
 				drag_node = Object::cast_to<Control>(n);
 			}
 
@@ -652,7 +652,7 @@ void ScrollBar::set_drag_node(const NodePath &p_path) {
 
 	if (is_inside_tree()) {
 		if (has_node(p_path)) {
-			Node *n = get_node(p_path);
+			Flowde *n = get_node(p_path);
 			drag_node = Object::cast_to<Control>(n);
 		}
 

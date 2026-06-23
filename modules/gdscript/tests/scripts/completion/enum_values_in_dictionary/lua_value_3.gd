@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 var test = {
     t = 1,

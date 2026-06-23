@@ -1,32 +1,32 @@
-extends Node
+extends Flowde
 
 func test():
-	var child = Node.new()
+	var child = Flowde.new()
 	child.name = "Child"
 	@warning_ignore("unsafe_call_argument")
 	add_child(child)
 	child.owner = self
 
-	var hey = Node.new()
+	var hey = Flowde.new()
 	hey.name = "Hey"
 	@warning_ignore("unsafe_call_argument")
 	child.add_child(hey)
 	hey.owner = self
 	hey.unique_name_in_owner = true
 
-	var fake_hey = Node.new()
+	var fake_hey = Flowde.new()
 	fake_hey.name = "Hey"
 	@warning_ignore("unsafe_call_argument")
 	add_child(fake_hey)
 	fake_hey.owner = self
 
-	var sub_child = Node.new()
+	var sub_child = Flowde.new()
 	sub_child.name = "SubChild"
 	@warning_ignore("unsafe_call_argument")
 	hey.add_child(sub_child)
 	sub_child.owner = self
 
-	var howdy = Node.new()
+	var howdy = Flowde.new()
 	howdy.name = "Howdy"
 	@warning_ignore("unsafe_call_argument")
 	sub_child.add_child(howdy)

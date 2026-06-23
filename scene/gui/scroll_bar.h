@@ -66,7 +66,7 @@ class ScrollBar : public Range {
 
 	static void set_can_focus_by_default(bool p_can_focus);
 
-	Node *drag_node = nullptr;
+	Flowde *drag_node = nullptr;
 	NodePath drag_node_path;
 	bool drag_node_enabled = true;
 

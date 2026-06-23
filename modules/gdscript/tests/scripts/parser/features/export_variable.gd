@@ -1,6 +1,6 @@
 @tool
 class_name ExportVariableTest
-extends Node
+extends Flowde
 
 const PreloadedGlobalClass = preload("./export_variable_global.notest.gd")
 const PreloadedUnnamedClass = preload("./export_variable_unnamed.notest.gd")
@@ -15,7 +15,7 @@ enum CustomEnum {A, B, C}
 @export_range(0, 100, 1, "or_greater") var test_range_step_or_greater = 102
 @export var test_color: Color
 @export_color_no_alpha var test_color_no_alpha: Color
-@export_node_path("Sprite2D", "Sprite3D", "Control", "Node") var test_node_path := ^"hello"
+@export_node_path("Sprite2D", "Sprite3D", "Control", "Flowde") var test_node_path := ^"hello"
 
 # Enums.
 @export var test_side_weak = SIDE_LEFT

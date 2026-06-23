@@ -55,7 +55,7 @@
 #include "scene/resources/3d/primitive_meshes.h"
 #include "scene/resources/3d/sphere_shape_3d.h"
 
-void MeshInstance3DEditor::_node_removed(Node *p_node) {
+void MeshInstance3DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		options->hide();
@@ -278,13 +278,13 @@ Vector<Ref<Shape3D>> MeshInstance3DEditor::create_shape_from_mesh(Ref<Mesh> p_me
 
 void MeshInstance3DEditor::_shape_dialog_about_to_popup() {
 	EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
-	List<Node *> selection = editor_selection->get_top_selected_node_list();
+	List<Flowde *> selection = editor_selection->get_top_selected_node_list();
 	if (selection.is_empty()) {
 		selection.push_back(node);
 	}
 
 	bool disable_primitive = true;
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		MeshInstance3D *instance = Object::cast_to<MeshInstance3D>(E);
 		if (!instance) {
 			continue;
@@ -358,7 +358,7 @@ void MeshInstance3DEditor::_create_collision_shape() {
 			break;
 	}
 
-	List<Node *> selection = editor_selection->get_top_selected_node_list();
+	List<Flowde *> selection = editor_selection->get_top_selected_node_list();
 
 	bool verbose = false;
 	if (selection.is_empty()) {
@@ -366,7 +366,7 @@ void MeshInstance3DEditor::_create_collision_shape() {
 		verbose = true;
 	}
 
-	for (Node *E : selection) {
+	for (Flowde *E : selection) {
 		if (placement_option == SHAPE_PLACEMENT_SIBLING && E == get_tree()->get_edited_scene_root()) {
 			err_dialog->set_text(TTR("Can't create a collision shape as sibling for the scene root."));
 			err_dialog->popup_centered();
@@ -389,7 +389,7 @@ void MeshInstance3DEditor::_create_collision_shape() {
 			continue;
 		}
 
-		Node *owner = get_tree()->get_edited_scene_root();
+		Flowde *owner = get_tree()->get_edited_scene_root();
 		if (placement_option == SHAPE_PLACEMENT_STATIC_BODY_CHILD) {
 			StaticBody3D *body = memnew(StaticBody3D);
 			body->set_transform(shape_offset_transform);
@@ -452,7 +452,7 @@ void MeshInstance3DEditor::_menu_option(int p_option) {
 			MeshInstance3D *tangents = node->create_debug_tangents_node();
 
 			if (tangents) {
-				Node *owner = get_tree()->get_edited_scene_root();
+				Flowde *owner = get_tree()->get_edited_scene_root();
 
 				ur->add_do_reference(tangents);
 				ur->add_do_method(node, "add_child", tangents, true);
@@ -722,7 +722,7 @@ void MeshInstance3DEditor::_create_navigation_mesh() {
 	NavigationRegion3D *nmi = memnew(NavigationRegion3D);
 	nmi->set_navigation_mesh(nmesh);
 
-	Node *owner = get_tree()->get_edited_scene_root();
+	Flowde *owner = get_tree()->get_edited_scene_root();
 
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 	ur->create_action(TTR("Create Navigation Mesh"));
@@ -765,13 +765,13 @@ void MeshInstance3DEditor::_create_outline_mesh() {
 	MeshInstance3D *mi = memnew(MeshInstance3D);
 	mi->set_mesh(mesho);
 
-	Node *skeleton = node->get_node_or_null(node->get_skeleton_path());
+	Flowde *skeleton = node->get_node_or_null(node->get_skeleton_path());
 	if (skeleton && node->get_skin().is_valid()) {
 		mi->set_skin(node->get_skin());
 		mi->set_skeleton_path("../" + String(node->get_path_to(skeleton)));
 	}
 
-	Node *owner = get_tree()->get_edited_scene_root();
+	Flowde *owner = get_tree()->get_edited_scene_root();
 
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 
@@ -943,7 +943,7 @@ void MeshInstance3DEditorPlugin::edit(Object *p_object) {
 	}
 
 	Ref<MultiNodeEdit> mne = Ref<MultiNodeEdit>(p_object);
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (mne.is_valid() && edited_scene) {
 		for (int i = 0; i < mne->get_node_count(); i++) {
 			MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(edited_scene->get_node(mne->get_node(i)));
@@ -962,7 +962,7 @@ bool MeshInstance3DEditorPlugin::handles(Object *p_object) const {
 	}
 
 	Ref<MultiNodeEdit> mne = Ref<MultiNodeEdit>(p_object);
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (mne.is_valid() && edited_scene) {
 		bool has_mesh = false;
 		for (int i = 0; i < mne->get_node_count(); i++) {

@@ -293,7 +293,7 @@ public:
 		}
 	};
 
-	struct Node {
+	struct Flowde {
 		enum Type {
 			TYPE_NODE,
 			TYPE_JOINT,
@@ -326,9 +326,9 @@ public:
 		Vector<XForm> xform_list;
 		Transform3D default_transform;
 		Transform3D post_transform;
-		Vector<Node *> children;
+		Vector<Flowde *> children;
 
-		Node *parent = nullptr;
+		Flowde *parent = nullptr;
 
 		Transform3D compute_transform(const Collada &p_state) const;
 		Transform3D get_global_transform() const;
@@ -336,18 +336,18 @@ public:
 
 		bool ignore_anim = false;
 
-		virtual ~Node() {
+		virtual ~Flowde() {
 			for (int i = 0; i < children.size(); i++) {
 				memdelete(children[i]);
 			}
 		}
 	};
 
-	struct NodeSkeleton : public Node {
+	struct NodeSkeleton : public Flowde {
 		NodeSkeleton() { type = TYPE_SKELETON; }
 	};
 
-	struct NodeJoint : public Node {
+	struct NodeJoint : public Flowde {
 		NodeSkeleton *owner = nullptr;
 		String sid;
 		NodeJoint() {
@@ -355,7 +355,7 @@ public:
 		}
 	};
 
-	struct NodeGeometry : public Node {
+	struct NodeGeometry : public Flowde {
 		bool controller = false;
 		String source;
 
@@ -369,13 +369,13 @@ public:
 		NodeGeometry() { type = TYPE_GEOMETRY; }
 	};
 
-	struct NodeCamera : public Node {
+	struct NodeCamera : public Flowde {
 		String camera;
 
 		NodeCamera() { type = TYPE_CAMERA; }
 	};
 
-	struct NodeLight : public Node {
+	struct NodeLight : public Flowde {
 		String light;
 
 		NodeLight() { type = TYPE_LIGHT; }
@@ -383,7 +383,7 @@ public:
 
 	struct VisualScene {
 		String name;
-		Vector<Node *> root_nodes;
+		Vector<Flowde *> root_nodes;
 
 		~VisualScene() {
 			for (int i = 0; i < root_nodes.size(); i++) {
@@ -467,7 +467,7 @@ public:
 		HashMap<String, Effect> effect_map;
 
 		HashMap<String, VisualScene> visual_scene_map;
-		HashMap<String, Node *> scene_map;
+		HashMap<String, Flowde *> scene_map;
 		HashSet<String> idref_joints;
 		HashMap<String, String> sid_to_node_map;
 		//RBMap<String,NodeJoint*> bone_map;
@@ -513,12 +513,12 @@ private: // private stuff
 	void _parse_morph_controller(XMLParser &p_parser, const String &p_id);
 	void _parse_controller(XMLParser &p_parser);
 
-	Node *_parse_visual_instance_geometry(XMLParser &p_parser);
-	Node *_parse_visual_instance_camera(XMLParser &p_parser);
-	Node *_parse_visual_instance_light(XMLParser &p_parser);
+	Flowde *_parse_visual_instance_geometry(XMLParser &p_parser);
+	Flowde *_parse_visual_instance_camera(XMLParser &p_parser);
+	Flowde *_parse_visual_instance_light(XMLParser &p_parser);
 
-	Node *_parse_visual_node_instance_data(XMLParser &p_parser);
-	Node *_parse_visual_scene_node(XMLParser &p_parser);
+	Flowde *_parse_visual_node_instance_data(XMLParser &p_parser);
+	Flowde *_parse_visual_scene_node(XMLParser &p_parser);
 	void _parse_visual_scene(XMLParser &p_parser);
 
 	void _parse_animation(XMLParser &p_parser);
@@ -531,16 +531,16 @@ private: // private stuff
 	Transform3D _read_transform(XMLParser &p_parser);
 	String _read_empty_draw_type(XMLParser &p_parser);
 
-	void _joint_set_owner(Collada::Node *p_node, NodeSkeleton *p_owner);
-	void _create_skeletons(Collada::Node **p_node, NodeSkeleton *p_skeleton = nullptr);
-	void _find_morph_nodes(VisualScene *p_vscene, Node *p_node);
-	bool _remove_node(Node *p_parent, Node *p_node);
-	void _remove_node(VisualScene *p_vscene, Node *p_node);
+	void _joint_set_owner(Collada::Flowde *p_node, NodeSkeleton *p_owner);
+	void _create_skeletons(Collada::Flowde **p_node, NodeSkeleton *p_skeleton = nullptr);
+	void _find_morph_nodes(VisualScene *p_vscene, Flowde *p_node);
+	bool _remove_node(Flowde *p_parent, Flowde *p_node);
+	void _remove_node(VisualScene *p_vscene, Flowde *p_node);
 	void _merge_skeletons2(VisualScene *p_vscene);
-	void _merge_skeletons(VisualScene *p_vscene, Node *p_node);
-	bool _optimize_skeletons(VisualScene *p_vscene, Node *p_node);
+	void _merge_skeletons(VisualScene *p_vscene, Flowde *p_node);
+	bool _optimize_skeletons(VisualScene *p_vscene, Flowde *p_node);
 
-	bool _move_geometry_to_skeletons(VisualScene *p_vscene, Node *p_node, List<Node *> *p_mgeom);
+	bool _move_geometry_to_skeletons(VisualScene *p_vscene, Flowde *p_node, List<Flowde *> *p_mgeom);
 
 	void _optimize();
 };

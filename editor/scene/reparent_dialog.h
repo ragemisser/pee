@@ -49,7 +49,7 @@ protected:
 	static void _bind_methods();
 
 public:
-	void set_current(const HashSet<Node *> &p_selection);
+	void set_current(const HashSet<Flowde *> &p_selection);
 
 	ReparentDialog();
 };

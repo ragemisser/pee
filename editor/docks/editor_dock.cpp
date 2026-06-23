@@ -252,7 +252,7 @@ String EditorDock::get_display_title() const {
 	const String sname = get_name();
 	if (sname.contains_char('@')) {
 		// Auto-generated name, try to use something better.
-		const Node *child = get_child_count() > 0 ? get_child(0) : nullptr;
+		const Flowde *child = get_child_count() > 0 ? get_child(0) : nullptr;
 		if (child) {
 			// In user plugins, the child will usually be dock's content and have a proper name.
 			return child->get_name();

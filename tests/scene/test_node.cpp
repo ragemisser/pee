@@ -43,8 +43,8 @@ TEST_FORCE_LINK(test_node)
 
 namespace TestNode {
 
-class TestNode : public Node {
-	GDCLASS(TestNode, Node);
+class TestNode : public Flowde {
+	GDCLASS(TestNode, Flowde);
 
 protected:
 	void _notification(int p_what) {
@@ -71,11 +71,11 @@ protected:
 	static void _bind_methods() {
 		ClassDB::bind_method(D_METHOD("set_exported_node", "node"), &TestNode::set_exported_node);
 		ClassDB::bind_method(D_METHOD("get_exported_node"), &TestNode::get_exported_node);
-		ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "exported_node", PROPERTY_HINT_NODE_TYPE, "Node"), "set_exported_node", "get_exported_node");
+		ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "exported_node", PROPERTY_HINT_NODE_TYPE, "Flowde"), "set_exported_node", "get_exported_node");
 
 		ClassDB::bind_method(D_METHOD("set_exported_nodes", "node"), &TestNode::set_exported_nodes);
 		ClassDB::bind_method(D_METHOD("get_exported_nodes"), &TestNode::get_exported_nodes);
-		ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "exported_nodes", PROPERTY_HINT_TYPE_STRING, "24/34:Node"), "set_exported_nodes", "get_exported_nodes");
+		ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "exported_nodes", PROPERTY_HINT_TYPE_STRING, "24/34:Flowde"), "set_exported_nodes", "get_exported_nodes");
 	}
 
 private:
@@ -91,27 +91,27 @@ public:
 	int process_counter = 0;
 	int physics_process_counter = 0;
 
-	Node *exported_node = nullptr;
+	Flowde *exported_node = nullptr;
 	Array exported_nodes;
 
-	List<Node *> *callback_list = nullptr;
+	List<Flowde *> *callback_list = nullptr;
 
-	void set_exported_node(Node *p_node) { exported_node = p_node; }
-	Node *get_exported_node() const { return exported_node; }
+	void set_exported_node(Flowde *p_node) { exported_node = p_node; }
+	Flowde *get_exported_node() const { return exported_node; }
 
 	void set_exported_nodes(const Array &p_nodes) { exported_nodes = p_nodes; }
 	Array get_exported_nodes() const { return exported_nodes; }
 
 	TestNode() {
-		Node *internal = memnew(Node);
+		Flowde *internal = memnew(Flowde);
 		add_child(internal, false, INTERNAL_MODE_FRONT);
-		internal = memnew(Node);
+		internal = memnew(Flowde);
 		add_child(internal, false, INTERNAL_MODE_BACK);
 	}
 };
 
-TEST_CASE("[SceneTree][Node] Testing node operations with a very simple scene tree") {
-	Node *node = memnew(Node);
+TEST_CASE("[SceneTree][Flowde] Testing node operations with a very simple scene tree") {
+	Flowde *node = memnew(Flowde);
 
 	// Check initial scene tree setup.
 	CHECK_EQ(SceneTree::get_singleton()->get_root()->get_child_count(), 0);
@@ -137,56 +137,56 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a very simple scene tr
 	CHECK_FALSE(node->get_path().is_empty());
 	CHECK_EQ(node->get_child_count(), 0);
 
-	SUBCASE("Node should be accessible as first child") {
-		Node *child = SceneTree::get_singleton()->get_root()->get_child(0);
+	SUBCASE("Flowde should be accessible as first child") {
+		Flowde *child = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child, node);
 	}
 
-	SUBCASE("Node should be accessible via the node path") {
-		Node *child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node->get_path());
+	SUBCASE("Flowde should be accessible via the node path") {
+		Flowde *child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node->get_path());
 		CHECK_EQ(child_by_path, node);
 
-		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("Node"));
+		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("Flowde"));
 		CHECK_EQ(child_by_path, nullptr);
 
-		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("/root/Node"));
+		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("/root/Flowde"));
 		CHECK_EQ(child_by_path, nullptr);
 
-		node->set_name("Node");
+		node->set_name("Flowde");
 
 		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node->get_path());
 		CHECK_EQ(child_by_path, node);
 
-		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("Node"));
+		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("Flowde"));
 		CHECK_EQ(child_by_path, node);
 
-		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("/root/Node"));
+		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(NodePath("/root/Flowde"));
 		CHECK_EQ(child_by_path, node);
 	}
 
-	SUBCASE("Node should be accessible via group") {
-		Vector<Node *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
+	SUBCASE("Flowde should be accessible via group") {
+		Vector<Flowde *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
 		CHECK(nodes.is_empty());
 
 		node->add_to_group("nodes");
 
 		nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
 		CHECK_EQ(nodes.size(), 1);
-		Node *E = nodes.get(0);
+		Flowde *E = nodes.get(0);
 		CHECK_EQ(E, node);
 	}
 
-	SUBCASE("Node should be possible to find") {
-		Node *child = SceneTree::get_singleton()->get_root()->find_child("Node", true, false);
+	SUBCASE("Flowde should be possible to find") {
+		Flowde *child = SceneTree::get_singleton()->get_root()->find_child("Flowde", true, false);
 		CHECK_EQ(child, nullptr);
 
-		node->set_name("Node");
+		node->set_name("Flowde");
 
-		child = SceneTree::get_singleton()->get_root()->find_child("Node", true, false);
+		child = SceneTree::get_singleton()->get_root()->find_child("Flowde", true, false);
 		CHECK_EQ(child, node);
 	}
 
-	SUBCASE("Node should be possible to remove") {
+	SUBCASE("Flowde should be possible to remove") {
 		SceneTree::get_singleton()->get_root()->remove_child(node);
 
 		CHECK_EQ(SceneTree::get_singleton()->get_root()->get_child_count(), 0);
@@ -199,26 +199,26 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a very simple scene tr
 		ERR_PRINT_ON;
 	}
 
-	SUBCASE("Node should be possible to move") {
+	SUBCASE("Flowde should be possible to move") {
 		SceneTree::get_singleton()->get_root()->move_child(node, 0);
 
-		Node *child = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child, node);
 		CHECK(node->is_inside_tree());
 	}
 
-	SUBCASE("Node should be possible to reparent") {
+	SUBCASE("Flowde should be possible to reparent") {
 		node->reparent(SceneTree::get_singleton()->get_root());
 
-		Node *child = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child, node);
 		CHECK(node->is_inside_tree());
 	}
 
-	SUBCASE("Node should be possible to duplicate") {
+	SUBCASE("Flowde should be possible to duplicate") {
 		node->set_name("MyName");
 
-		Node *duplicate = node->duplicate();
+		Flowde *duplicate = node->duplicate();
 
 		CHECK_FALSE(node == duplicate);
 		CHECK_FALSE(duplicate->is_inside_tree());
@@ -230,10 +230,10 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a very simple scene tr
 	memdelete(node);
 }
 
-TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple scene tree") {
-	Node *node1 = memnew(Node);
-	Node *node2 = memnew(Node);
-	Node *node1_1 = memnew(Node);
+TEST_CASE("[SceneTree][Flowde] Testing node operations with a more complex simple scene tree") {
+	Flowde *node1 = memnew(Flowde);
+	Flowde *node2 = memnew(Flowde);
+	Flowde *node1_1 = memnew(Flowde);
 
 	SceneTree::get_singleton()->get_root()->add_child(node1);
 	SceneTree::get_singleton()->get_root()->add_child(node2);
@@ -248,13 +248,13 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 	CHECK_EQ(SceneTree::get_singleton()->get_node_count(), 4);
 
 	SUBCASE("Nodes should be accessible via get_child(..)") {
-		Node *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child1, node1);
 
-		Node *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
+		Flowde *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
 		CHECK_EQ(child2, node2);
 
-		Node *child1_1 = node1->get_child(0);
+		Flowde *child1_1 = node1->get_child(0);
 		CHECK_EQ(child1_1, node1_1);
 	}
 
@@ -268,7 +268,7 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 		CHECK_EQ(SceneTree::get_singleton()->get_node_count(), 2);
 
 		// First child should now be the second node.
-		Node *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child1, node2);
 	}
 
@@ -284,20 +284,20 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 	SUBCASE("Nodes should be in the expected order when a node is moved to the back") {
 		SceneTree::get_singleton()->get_root()->move_child(node1, 1);
 
-		Node *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child1, node2);
 
-		Node *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
+		Flowde *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
 		CHECK_EQ(child2, node1);
 	}
 
 	SUBCASE("Nodes should be in the expected order when a node is moved to the front") {
 		SceneTree::get_singleton()->get_root()->move_child(node2, 0);
 
-		Node *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
+		Flowde *child1 = SceneTree::get_singleton()->get_root()->get_child(0);
 		CHECK_EQ(child1, node2);
 
-		Node *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
+		Flowde *child2 = SceneTree::get_singleton()->get_root()->get_child(1);
 		CHECK_EQ(child2, node1);
 	}
 
@@ -312,7 +312,7 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 		CHECK_EQ(node2->get_child_count(), 1);
 		CHECK_EQ(node1_1->get_parent(), node2);
 
-		Node *child = node2->get_child(0);
+		Flowde *child = node2->get_child(0);
 		CHECK_EQ(child, node1_1);
 
 		CHECK_EQ(SceneTree::get_singleton()->get_root()->get_child_count(), 2);
@@ -328,7 +328,7 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 		CHECK_EQ(node2->get_child_count(), 1);
 		CHECK_EQ(node1_1->get_parent(), node2);
 
-		Node *child = node2->get_child(0);
+		Flowde *child = node2->get_child(0);
 		CHECK_EQ(child, node1_1);
 
 		CHECK_EQ(SceneTree::get_singleton()->get_root()->get_child_count(), 2);
@@ -336,10 +336,10 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 	}
 
 	SUBCASE("Nodes should be possible to find") {
-		Node *child = SceneTree::get_singleton()->get_root()->find_child("NestedNode", true, false);
+		Flowde *child = SceneTree::get_singleton()->get_root()->find_child("NestedNode", true, false);
 		CHECK_EQ(child, nullptr);
 
-		TypedArray<Node> children = SceneTree::get_singleton()->get_root()->find_children("NestedNode", "", true, false);
+		TypedArray<Flowde> children = SceneTree::get_singleton()->get_root()->find_children("NestedNode", "", true, false);
 		CHECK_EQ(children.size(), 0);
 
 		node1->set_name("Node1");
@@ -351,31 +351,31 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 
 		children = SceneTree::get_singleton()->get_root()->find_children("NestedNode", "", true, false);
 		CHECK_EQ(children.size(), 1);
-		CHECK_EQ(Object::cast_to<Node>(children[0]), node1_1);
+		CHECK_EQ(Object::cast_to<Flowde>(children[0]), node1_1);
 
 		// First node that matches with the name is node1.
-		child = SceneTree::get_singleton()->get_root()->find_child("Node?", true, false);
+		child = SceneTree::get_singleton()->get_root()->find_child("Flowde?", true, false);
 		CHECK_EQ(child, node1);
 
-		children = SceneTree::get_singleton()->get_root()->find_children("Node?", "", true, false);
+		children = SceneTree::get_singleton()->get_root()->find_children("Flowde?", "", true, false);
 		CHECK_EQ(children.size(), 2);
-		CHECK_EQ(Object::cast_to<Node>(children[0]), node1);
-		CHECK_EQ(Object::cast_to<Node>(children[1]), node2);
+		CHECK_EQ(Object::cast_to<Flowde>(children[0]), node1);
+		CHECK_EQ(Object::cast_to<Flowde>(children[1]), node2);
 
 		SceneTree::get_singleton()->get_root()->move_child(node2, 0);
 
 		// It should be node2, as it is now the first one in the tree.
-		child = SceneTree::get_singleton()->get_root()->find_child("Node?", true, false);
+		child = SceneTree::get_singleton()->get_root()->find_child("Flowde?", true, false);
 		CHECK_EQ(child, node2);
 
-		children = SceneTree::get_singleton()->get_root()->find_children("Node?", "", true, false);
+		children = SceneTree::get_singleton()->get_root()->find_children("Flowde?", "", true, false);
 		CHECK_EQ(children.size(), 2);
-		CHECK_EQ(Object::cast_to<Node>(children[0]), node2);
-		CHECK_EQ(Object::cast_to<Node>(children[1]), node1);
+		CHECK_EQ(Object::cast_to<Flowde>(children[0]), node2);
+		CHECK_EQ(Object::cast_to<Flowde>(children[1]), node1);
 	}
 
 	SUBCASE("Nodes should be accessible via their node path") {
-		Node *child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node1->get_path());
+		Flowde *child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node1->get_path());
 		CHECK_EQ(child_by_path, node1);
 
 		child_by_path = SceneTree::get_singleton()->get_root()->get_node_or_null(node2->get_path());
@@ -398,7 +398,7 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 	}
 
 	SUBCASE("Nodes should be accessible via their groups") {
-		Vector<Node *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
+		Vector<Flowde *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
 		CHECK(nodes.is_empty());
 
 		nodes = SceneTree::get_singleton()->get_nodes_in_group("other_nodes");
@@ -412,7 +412,7 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 		nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
 		CHECK_EQ(nodes.size(), 2);
 
-		Node *E = nodes.get(0);
+		Flowde *E = nodes.get(0);
 		CHECK_EQ(E, node1);
 		E = nodes.get(1);
 		CHECK_EQ(E, node1_1);
@@ -475,20 +475,20 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 		node1->add_to_group("nodes");
 		node1->replace_by(node2, true);
 
-		Vector<Node *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
+		Vector<Flowde *> nodes = SceneTree::get_singleton()->get_nodes_in_group("nodes");
 		CHECK_EQ(nodes.size(), 1);
 
-		Node *E = nodes.get(0);
+		Flowde *E = nodes.get(0);
 		CHECK_EQ(E, node2);
 	}
 
 	SUBCASE("Duplicating a node should also duplicate the children") {
 		node1->set_name("MyName1");
 		node1_1->set_name("MyName1_1");
-		Node *duplicate1 = node1->duplicate();
+		Flowde *duplicate1 = node1->duplicate();
 
 		CHECK_EQ(duplicate1->get_child_count(), node1->get_child_count());
-		Node *duplicate1_1 = duplicate1->get_child(0);
+		Flowde *duplicate1_1 = duplicate1->get_child(0);
 
 		CHECK_EQ(duplicate1_1->get_child_count(), node1_1->get_child_count());
 
@@ -507,17 +507,17 @@ TEST_CASE("[SceneTree][Node] Testing node operations with a more complex simple 
 	memdelete(node2);
 }
 
-TEST_CASE("[SceneTree][Node] Duplicating node with internal children") {
+TEST_CASE("[SceneTree][Flowde] Duplicating node with internal children") {
 	GDREGISTER_CLASS(TestNode);
 
 	TestNode *node = memnew(TestNode);
-	Node *child = memnew(Node);
+	Flowde *child = memnew(Flowde);
 	child->set_name("Child");
 	node->add_child(child);
 
 	int child_count = node->get_child_count();
 
-	Node *dup = node->duplicate();
+	Flowde *dup = node->duplicate();
 	CHECK(dup->get_child_count() == child_count);
 	CHECK(dup->has_node(String("Child")));
 
@@ -525,16 +525,16 @@ TEST_CASE("[SceneTree][Node] Duplicating node with internal children") {
 	memdelete(dup);
 }
 
-TEST_CASE("[SceneTree][Node]Exported node checks") {
+TEST_CASE("[SceneTree][Flowde]Exported node checks") {
 	TestNode *node = memnew(TestNode);
 	SceneTree::get_singleton()->get_root()->add_child(node);
 
-	Node *child = memnew(Node);
+	Flowde *child = memnew(Flowde);
 	child->set_name("Child");
 	node->add_child(child);
 	child->set_owner(node);
 
-	Node *child2 = memnew(Node);
+	Flowde *child2 = memnew(Flowde);
 	child2->set_name("Child2");
 	node->add_child(child2);
 	child2->set_owner(node);
@@ -549,7 +549,7 @@ TEST_CASE("[SceneTree][Node]Exported node checks") {
 		GDREGISTER_CLASS(TestNode);
 
 		TestNode *dup = Object::cast_to<TestNode>(node->duplicate());
-		Node *new_exported = Object::cast_to<Node>(dup->get("exported_node"));
+		Flowde *new_exported = Object::cast_to<Flowde>(dup->get("exported_node"));
 		CHECK(new_exported == dup->get_child(0, false));
 
 		memdelete(dup);
@@ -564,9 +564,9 @@ TEST_CASE("[SceneTree][Node]Exported node checks") {
 		String scene_path = TestUtils::get_temp_path("test_scene.tscn");
 		ps->set_path(scene_path);
 
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 
-		Node *sub_child = ps->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
+		Flowde *sub_child = ps->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
 		root->add_child(sub_child);
 		sub_child->set_owner(root);
 
@@ -599,9 +599,9 @@ TEST_CASE("[SceneTree][Node]Exported node checks") {
 		String scene_path = TestUtils::get_temp_path("test_scene.tscn");
 		ps->set_path(scene_path);
 
-		Node *root = memnew(Node);
+		Flowde *root = memnew(Flowde);
 
-		Node *sub_child = ps->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
+		Flowde *sub_child = ps->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
 		root->add_child(sub_child);
 		sub_child->set_owner(root);
 
@@ -634,8 +634,8 @@ TEST_CASE("[SceneTree][Node]Exported node checks") {
 	memdelete(node);
 }
 
-TEST_CASE("[Node] Processing checks") {
-	Node *node = memnew(Node);
+TEST_CASE("[Flowde] Processing checks") {
+	Flowde *node = memnew(Flowde);
 
 	SUBCASE("Processing") {
 		CHECK_FALSE(node->is_processing());
@@ -740,7 +740,7 @@ TEST_CASE("[Node] Processing checks") {
 	memdelete(node);
 }
 
-TEST_CASE("[SceneTree][Node] Test the processing") {
+TEST_CASE("[SceneTree][Flowde] Test the processing") {
 	TestNode *node = memnew(TestNode);
 	SceneTree::get_singleton()->get_root()->add_child(node);
 
@@ -847,8 +847,8 @@ TEST_CASE("[SceneTree][Node] Test the processing") {
 	memdelete(node);
 }
 
-TEST_CASE("[SceneTree][Node] Test the process priority") {
-	List<Node *> process_order;
+TEST_CASE("[SceneTree][Flowde] Test the process priority") {
+	List<Flowde *> process_order;
 
 	TestNode *node = memnew(TestNode);
 	node->callback_list = &process_order;
@@ -879,7 +879,7 @@ TEST_CASE("[SceneTree][Node] Test the process priority") {
 		SceneTree::get_singleton()->process(0);
 
 		CHECK_EQ(4, process_order.size());
-		List<Node *>::Element *E = process_order.front();
+		List<Flowde *>::Element *E = process_order.front();
 		CHECK_EQ(E->get(), node2);
 		E = E->next();
 		CHECK_EQ(E->get(), node);
@@ -902,7 +902,7 @@ TEST_CASE("[SceneTree][Node] Test the process priority") {
 		SceneTree::get_singleton()->physics_process(0);
 
 		CHECK_EQ(4, process_order.size());
-		List<Node *>::Element *E = process_order.front();
+		List<Flowde *>::Element *E = process_order.front();
 		CHECK_EQ(E->get(), node2);
 		E = E->next();
 		CHECK_EQ(E->get(), node);

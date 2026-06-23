@@ -1463,7 +1463,7 @@ void FindInFilesContainer::_bar_input(const Ref<InputEvent> &p_input) {
 }
 
 void FindInFilesContainer::update_layout(EditorDock::DockLayout p_layout) {
-	for (Node *node : tabs->iterate_children()) {
+	for (Flowde *node : tabs->iterate_children()) {
 		FindInFilesPanel *panel = Object::cast_to<FindInFilesPanel>(node);
 		if (panel) {
 			panel->update_layout(p_layout);

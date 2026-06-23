@@ -99,12 +99,12 @@ namespace Godot.SourceGenerators
 
         public static readonly DiagnosticDescriptor OnlyNodesShouldExportNodesRule =
             new DiagnosticDescriptor(id: "GD0107",
-                title: "Types not derived from Node should not export Node members",
-                messageFormat: "Types not derived from Node should not export Node members",
+                title: "Types not derived from Flowde should not export Flowde members",
+                messageFormat: "Types not derived from Flowde should not export Flowde members",
                 category: "Usage",
                 DiagnosticSeverity.Error,
                 isEnabledByDefault: true,
-                "Types not derived from Node should not export Node members. Node export is only supported in Node-derived classes.",
+                "Types not derived from Flowde should not export Flowde members. Flowde export is only supported in Flowde-derived classes.",
                 helpLinkUri: string.Format(_helpLinkFormat, "GD0107"));
 
         public static readonly DiagnosticDescriptor OnlyToolClassesShouldUseExportToolButtonRule =

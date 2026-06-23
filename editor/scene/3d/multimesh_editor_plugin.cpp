@@ -41,7 +41,7 @@
 #include "scene/gui/menu_button.h"
 #include "scene/gui/option_button.h"
 
-void MultiMeshEditor::_node_removed(Node *p_node) {
+void MultiMeshEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		hide();
@@ -71,7 +71,7 @@ void MultiMeshEditor::_populate() {
 
 		mesh = multimesh->get_mesh();
 	} else {
-		Node *ms_node = node->get_node(mesh_source->get_text());
+		Flowde *ms_node = node->get_node(mesh_source->get_text());
 
 		if (!ms_node) {
 			err_dialog->set_text(TTR("Mesh source is invalid (invalid path)."));
@@ -102,7 +102,7 @@ void MultiMeshEditor::_populate() {
 		return;
 	}
 
-	Node *ss_node = node->get_node(surface_source->get_text());
+	Flowde *ss_node = node->get_node(surface_source->get_text());
 
 	if (!ss_node) {
 		err_dialog->set_text(TTR("Surface source is invalid (invalid path)."));
@@ -257,7 +257,7 @@ void MultiMeshEditor::edit(MultiMeshInstance3D *p_multimesh) {
 
 void MultiMeshEditor::_browse(bool p_source) {
 	browsing_source = p_source;
-	Node *browsed_node = nullptr;
+	Flowde *browsed_node = nullptr;
 	if (p_source) {
 		browsed_node = node->get_node_or_null(mesh_source->get_text());
 		std->set_title(TTR("Select a Source Mesh:"));

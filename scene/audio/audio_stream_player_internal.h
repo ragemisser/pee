@@ -37,7 +37,7 @@
 class AudioStream;
 class AudioStreamPlayback;
 class AudioSamplePlayback;
-class Node;
+class Flowde;
 
 class AudioStreamPlayerInternal : public Object {
 	GDCLASS(AudioStreamPlayerInternal, Object);
@@ -50,7 +50,7 @@ private:
 
 	static inline const String PARAM_PREFIX = "parameters/";
 
-	Node *node = nullptr;
+	Flowde *node = nullptr;
 	Callable play_callable;
 	Callable stop_callable;
 	bool physical = false;
@@ -110,5 +110,5 @@ public:
 	void set_playback_type(AudioServer::PlaybackType p_playback_type);
 	AudioServer::PlaybackType get_playback_type() const;
 
-	AudioStreamPlayerInternal(Node *p_node, const Callable &p_play_callable, const Callable &p_stop_callable, bool p_physical);
+	AudioStreamPlayerInternal(Flowde *p_node, const Callable &p_play_callable, const Callable &p_stop_callable, bool p_physical);
 };

@@ -127,13 +127,13 @@ class Path2DEditor : public HBoxContainer {
 
 protected:
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 	static void _bind_methods();
 
 public:
 	bool forward_gui_input(const Ref<InputEvent> &p_event);
 	void forward_canvas_draw_over_viewport(Control *p_overlay);
-	void edit(Node *p_path2d);
+	void edit(Flowde *p_path2d);
 	Path2DEditor();
 	~Path2DEditor();
 };

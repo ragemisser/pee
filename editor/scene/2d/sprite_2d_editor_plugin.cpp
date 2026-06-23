@@ -56,7 +56,7 @@
 
 #define PRECISION 1
 
-void Sprite2DEditor::_node_removed(Node *p_node) {
+void Sprite2DEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		options->hide();
@@ -439,7 +439,7 @@ void Sprite2DEditor::_create_light_occluder_2d_node() {
 	}
 }
 
-void Sprite2DEditor::_add_as_sibling_or_child(Node *p_own_node, Node *p_new_node) {
+void Sprite2DEditor::_add_as_sibling_or_child(Flowde *p_own_node, Flowde *p_new_node) {
 	// Can't make sibling if own node is scene root
 	if (p_own_node != get_tree()->get_edited_scene_root()) {
 		p_own_node->get_parent()->add_child(p_new_node, true);

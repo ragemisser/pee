@@ -16,7 +16,7 @@
 			<param index="1" name="role" type="int" enum="DisplayServer.AccessibilityRole" />
 			<description>
 				Creates a new, empty accessibility element resource.
-				[b]Note:[/b] An accessibility element is created and freed automatically for each [Node]. In general, this function should not be called manually.
+				[b]Note:[/b] An accessibility element is created and freed automatically for each [Flowde]. In general, this function should not be called manually.
 			</description>
 		</method>
 		<method name="accessibility_create_sub_element" deprecated="Use [AccessibilityServer] instead.">
@@ -25,7 +25,7 @@
 			<param index="1" name="role" type="int" enum="DisplayServer.AccessibilityRole" />
 			<param index="2" name="insert_pos" type="int" default="-1" />
 			<description>
-				Creates a new, empty accessibility sub-element resource. Sub-elements can be used to provide accessibility information for objects which are not [Node]s, such as list items, table cells, or menu items. Sub-elements are freed automatically when the parent element is freed, or can be freed early using the [method accessibility_free_element] method.
+				Creates a new, empty accessibility sub-element resource. Sub-elements can be used to provide accessibility information for objects which are not [Flowde]s, such as list items, table cells, or menu items. Sub-elements are freed automatically when the parent element is freed, or can be freed early using the [method accessibility_free_element] method.
 			</description>
 		</method>
 		<method name="accessibility_create_sub_text_edit_elements" deprecated="Use [AccessibilityServer] instead.">
@@ -141,7 +141,7 @@
 			<param index="1" name="child_id" type="RID" />
 			<description>
 				Adds a child accessibility element.
-				[b]Note:[/b] [Node] children and sub-elements are added to the child list automatically.
+				[b]Note:[/b] [Flowde] children and sub-elements are added to the child list automatically.
 			</description>
 		</method>
 		<method name="accessibility_update_add_custom_action" deprecated="Use [AccessibilityServer] instead.">

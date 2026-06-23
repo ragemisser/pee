@@ -807,7 +807,7 @@ msgstr "Aggiungi %s"
 msgid "Load..."
 msgstr "Carica..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Sposta un punto di nodo di BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -826,7 +826,7 @@ msgstr ""
 "Questo tipo di nodo non può essere utilizzato. Solo i nodi radice sono "
 "consentiti."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Aggiungi un punto di nodo"
 
 msgid "Add Animation Point"
@@ -883,7 +883,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Valore"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Apri nodo di animazione"
 
 msgid "Triangle already exists."
@@ -955,10 +955,10 @@ msgstr "Modifica filtri"
 msgid "Output node can't be added to the blend tree."
 msgstr "Il nodo in output non può essere aggiunto al BlendTree."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Aggiungi un nodo al BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nodo spostato"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -975,10 +975,10 @@ msgstr "Nodi scollegati"
 msgid "Set Animation"
 msgstr "Imposta un animazione"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Elimina un nodo"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Elimina nodo(i)"
 
 msgid "Toggle Filter On/Off"
@@ -1018,10 +1018,10 @@ msgstr "Ispeziona le tracce filtrate:"
 msgid "Edit Filtered Tracks:"
 msgstr "Modifica le tracce filtrate:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nodo rinominato"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Aggiungi nodo..."
 
 msgid "Enable Filtering"
@@ -1449,7 +1449,7 @@ msgstr "Seguente (coda automatica):"
 msgid "Reconnect Transition"
 msgstr "Riconnetti transizione"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Sposta un nodo"
 
 msgid "Transition exists!"
@@ -1473,7 +1473,7 @@ msgstr "Riproduci/Raggiungi a %s"
 msgid "Edit %s"
 msgstr "Modifica %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Aggiungi un nodo e una transizione"
 
 msgid "Transition already exists!"
@@ -1494,7 +1494,7 @@ msgstr "Raggiungi"
 msgid "No playback resource set at path: %s."
 msgstr "Nessuna risorsa di riproduzione impostata sul percorso: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nodo rimosso"
 
 msgid "Transition Removed"
@@ -2007,7 +2007,7 @@ msgstr "Aggiungi le chiavi RESET di un'animazione"
 msgid "Bake Animation as Linear Keys"
 msgstr "Precalcola l'animazione come chiavi lineari"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Crea nodo"
 
 msgid ""
@@ -2955,7 +2955,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Salva ramo come scena..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Copia percorso del nodo"
 
 msgid "Expand/Collapse Branch"
@@ -4354,13 +4354,13 @@ msgstr "Questa operazione non può essere eseguita sulla radice dell'albero."
 msgid "Detach Script"
 msgstr "Rimuovi script"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Sposta un nodo dentro il genitore"
 
 msgid "Move Nodes in Parent"
 msgstr "Sposta nodi dentro il genitore"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplica nodo(i)"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4368,7 +4368,7 @@ msgstr ""
 "Impossibile cambiare i genitori dei nodi nelle scene ereditate, l'ordine dei "
 "nodi non può cambiare."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr ""
 "Il nodo deve appartenere direttamente alla scena modificata per diventare la "
 "radice."
@@ -4476,7 +4476,7 @@ msgstr "Revoca nome(i) unico(i) nella scena"
 msgid "New Scene Root"
 msgstr "Nuova radice di scena"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Crea un nodo radice:"
 
 msgid "Favorite Nodes"
@@ -4494,7 +4494,7 @@ msgstr "Scena 3D"
 msgid "User Interface"
 msgstr "Interfaccia utente"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Altro nodo"
 
 msgid "Paste From Clipboard"
@@ -4509,7 +4509,7 @@ msgstr "Impossibile operare su nodi ereditati dalla scena attuale!"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Questa operazione non può essere eseguita su delle scene istanziate."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Cambia il genitore di un nodo"
 
 msgid "Attach Script"
@@ -4521,16 +4521,16 @@ msgstr "Imposta uno shader"
 msgid "Toggle Editable Children"
 msgstr "Commuta figli modificabili"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Taglia un nodo(i)"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Rimuovi un nodo(i)"
 
 msgid "Change type of node(s)"
 msgstr "Cambia il tipo di nodo(i)"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Riaccoppia a nuovo nodo"
 
 msgid "This operation requires a single selected node."
@@ -4588,11 +4588,11 @@ msgstr "Apri nell'editor"
 msgid "Auto Expand to Selected"
 msgstr "Espandi automaticamente alla selezione"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Centra nodo sul nuovo genitore"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
 "Se abilitato, \"Riaccoppia a nuovo nodo\" creerà il nuovo nodo al centro dei "
@@ -4633,7 +4633,7 @@ msgstr "Filtra per gruppo"
 
 msgid ""
 "Selects all Nodes belonging to the given group.\n"
-"If empty, selects any Node belonging to any group.\n"
+"If empty, selects any Flowde belonging to any group.\n"
 "Inserts \"group:\". You can also use the shorthand \"g:\"."
 msgstr ""
 "Seleziona tutti i nodi che appartengono a un determinato gruppo.\n"
@@ -4652,13 +4652,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Non è possibile incollare il nodo radice nella stessa scena."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Incolla nodo(i) come fratello(i) di %s"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Incolla nodo(i) come figli di %s"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Incolla nodo(i) come radice"
 
 msgid "<Unnamed> at %s"
@@ -4673,7 +4673,7 @@ msgstr "Apri pannello Scena"
 msgid "Batch Rename..."
 msgstr "Rinomina in blocco..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Aggiungi nodo figlio..."
 
 msgid "Instantiate Child Scene..."
@@ -4703,7 +4703,7 @@ msgstr "Duplica"
 msgid "Reparent..."
 msgstr "Riaccoppia..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Riaccoppia a nuovo nodo..."
 
 msgid "Make Scene Root"
@@ -4715,11 +4715,11 @@ msgstr "Commuta l'accesso come nome unico"
 msgid "Delete (No Confirm)"
 msgstr "Elimina (senza conferma)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Aggiungi/Crea un nuovo nodo."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Istanzia un file di scena come nodo. Crea una scena ereditata se nessun nodo "
@@ -5515,16 +5515,16 @@ msgstr ""
 msgid "Main Menu"
 msgstr "Menù principale"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Blocca nodo(i) selezionato(i)"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Sblocca nodo(i) selezionato(i)"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Raggruppa nodo(i) selezionato(i)"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Separa nodo(i) selezionato(i)"
 
 msgid "Pan View"
@@ -7035,8 +7035,8 @@ msgstr ""
 msgid "Error running post-import script:"
 msgstr "Errore di esecuzione dello script di post-importazione:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
-msgstr "Hai restituito un oggetto derivato da Node nel metodo `post_import()`?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
+msgstr "Hai restituito un oggetto derivato da Flowde nel metodo `post_import()`?"
 
 msgid "Saving..."
 msgstr "Salvataggio..."
@@ -7743,16 +7743,16 @@ msgstr "Eulero temporaneo %s"
 msgid "Assign..."
 msgstr "Assegna..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Assegna un nodo"
 
 msgid "Copy as Text"
 msgstr "Copia come testo"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Mostra nodo nell'albero"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Percorso di nodo"
 
 msgid "Invalid RID"
@@ -12270,7 +12270,7 @@ msgstr "La mesh \"%s\" non contiene facce."
 msgid "Generate AABB"
 msgstr "Genera AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Crea punti emissione da un nodo"
 
 msgid "The geometry's faces don't contain any area."
@@ -12558,7 +12558,7 @@ msgstr ""
 "I figli di un Container derivano la loro posizione e dimensioni solo dal loro "
 "genitore."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Muovi nodi in posizione"
 
 msgid "Move Vertical Guide"
@@ -12585,10 +12585,10 @@ msgstr "Crea guide orizzontali e verticali"
 msgid "Instantiate Scene Here..."
 msgstr "Istanzia scena qui..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Incolla nodi qui"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Muovi nodi qui"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -12676,7 +12676,7 @@ msgstr "Incolla posa"
 msgid "Clear Guides"
 msgstr "Cancella guide"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Crea ossa Bone2D personalizzate a partire da uno o più nodi"
 
 msgid "Zoom to 3.125%"
@@ -12739,13 +12739,13 @@ msgstr "Scatta sui pixel"
 msgid "Snap to Parent"
 msgstr "Aggancia sul genitore"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Aggancia all'ancora del nodo"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Aggancia ai lati del nodo"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Aggancia al centro del nodo"
 
 msgid "Snap to Other Nodes"
@@ -12771,7 +12771,7 @@ msgstr "Opzioni di scheletro"
 msgid "Show Bones"
 msgstr "Mostra ossa"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Crea nodi Bone2D a partire da uno o più nodi"
 
 msgid "Show"
@@ -12901,7 +12901,7 @@ msgstr ""
 "%s: Il codice di callback non sarà generato, si prega di aggiungerlo "
 "manualmente."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Connetti al nodo:"
 
 msgid "Connect to Script:"
@@ -13689,7 +13689,7 @@ msgstr "Altro tema"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Filtra la lista dei tipi o creane uno nuovo personalizzato:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Tipi disponibili basati su nodi:"
 
 msgid "Type name is empty!"
@@ -13949,13 +13949,13 @@ msgstr "Usa espressioni regolari"
 msgid "Substitute"
 msgstr "Sostituisci"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Nome del nodo."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Nome del nodo genitore, se disponibile."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Tipo del nodo."
 
 msgid "Current scene name."
@@ -14063,7 +14063,7 @@ msgstr "Commuta il pannello ResourcePreloader"
 msgid "Load Resource"
 msgstr "Carica una risorsa"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Scegli il tipo del nodo radice"
 
 msgid "Scene name is empty."
@@ -14091,7 +14091,7 @@ msgstr "Tipo di radice:"
 msgid "Other Type"
 msgstr "Altro tipo"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Seleziona nodo"
 
 msgid "Scene Name:"
@@ -14128,7 +14128,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Commuta visibilità"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Sblocca nodo"
 
 msgid "Ungroup Children"
@@ -14143,7 +14143,7 @@ msgstr "Disattiva un nome univoco nella scena"
 msgid "(Connecting From)"
 msgstr "(Collegamento da)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Avviso sulla configurazione del nodo:"
 
 msgid ""
@@ -14156,13 +14156,13 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Clicca per disabilitarlo."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Il nodo ha una connessione."
 msgstr[1] "Il nodo ha {num} connessioni."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Il nodo è in questo gruppo:"
 msgstr[1] "I nodi sono nei gruppi seguenti:"
 
@@ -14189,7 +14189,7 @@ msgid "Open Script:"
 msgstr "Apri lo script:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Il nodo è bloccato.\n"
@@ -14225,7 +14225,7 @@ msgstr "Nome di nodo invalido, i caratteri seguenti non sono consentiti:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "Un nodo con il nome unico %s esiste già in questa scena."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Rinomina un nodo"
 
 msgid "Rename Nodes"
@@ -14234,7 +14234,7 @@ msgstr "Rinomina nodi"
 msgid "Scene Tree (Nodes):"
 msgstr "Albero di scena (nodi):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Avviso sulla configurazione del nodo!"
 
 msgid "Revoke"
@@ -14251,7 +14251,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "Consentiti:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Seleziona un nodo"
 
 msgid "Show All"
@@ -14708,7 +14708,7 @@ msgstr "Script integrato:"
 msgid "Select File"
 msgstr "Seleziona file"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Allega uno script al nodo"
 
 msgid "Line"
@@ -14959,8 +14959,8 @@ msgstr "Precaricare le risorse interne non è supportato."
 msgid "Can't drop nodes without an open scene."
 msgstr "Non è possibile trascinare nodi senza una scena aperta."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
-msgstr "Impossibile rilasciare nodi perché lo script '%s' non eredita da Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
+msgstr "Impossibile rilasciare nodi perché lo script '%s' non eredita da Flowde."
 
 msgid "Pick Color"
 msgstr "Scegli colore"
@@ -15431,7 +15431,7 @@ msgstr "Editor 3D"
 msgid "Scene Tree Editing"
 msgstr "Modifica dell'albero di scena"
 
-msgid "Node Dock (deprecated)"
+msgid "Flowde Dock (deprecated)"
 msgstr "Pannello Nodo (deprecato)"
 
 msgid "FileSystem Dock"
@@ -16805,7 +16805,7 @@ msgstr "Larghezza di banda in entrata"
 msgid "Outgoing Bandwidth"
 msgstr "Larghezza di banda in uscita"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nodo"
 
 msgid "Incoming RPC"
@@ -17572,7 +17572,7 @@ msgstr "Rimuovi una porta di uscita"
 msgid "Set VisualShader Expression"
 msgstr "Imposta un'espressione di un VisualShader"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "Ridimensiona un nodo VisualShader"
 
 msgid "Hide Port Preview"
@@ -17602,10 +17602,10 @@ msgstr "Imposta il nome di un parametro"
 msgid "Set Input Default Port"
 msgstr "Imposta la porta predefinita d'ingresso"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Imposta un'opzione di un nodo personalizzato"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Aggiungi un nodo al Visual Shader"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -17614,28 +17614,28 @@ msgstr "Aggiungi un varying al Visual Shader: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Rimuovi un varying dal Visual Shader: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "Muovi nodo(i) di VisualShader"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "Muovi e attacca nodo(i) di VisualShader a una cornice genitore"
 
 msgid "Insert node"
 msgstr "Inserisci un nodo"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Converti dei nodi costanti in dei parametri"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Converti dei nodi parametri in delle costanti"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "Stacca nodo(i) di VisualShader da una cornice"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Elimina un nodo di VisualShader"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Elimina dei nodi di VisualShader"
 
 msgid "Float Constants"
@@ -17659,13 +17659,13 @@ msgstr "Abilita colore di tinta"
 msgid "Edit Preview Parameter: %s"
 msgstr "Anteprima di modifica del parametro: %s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "Duplica dei nodi di VisualShader"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Incolla dei nodi di VisualShader"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Taglia dei nodi di VisualShader"
 
 msgid "Visual Shader Input Type Changed"
@@ -17689,7 +17689,7 @@ msgstr "Un varying con quel nome esiste già."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Il tipo booleano non può essere usato con la modalità di varying `%s`."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Aggiungi dei nodi a uno shader visivo"
 
 msgid "Hold %s Key To Swap Connections"
@@ -17734,13 +17734,13 @@ msgstr "Commuta l'anteprima dello shader."
 msgid "Generated Shader Code"
 msgstr "Codice di shader generato"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Aggiungi nodo"
 
 msgid "Clear Copy Buffer"
 msgstr "Pulisci buffer di copia"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Inserisci nuovo nodo"
 
 msgid "Insert New Reroute"
@@ -17765,7 +17765,7 @@ msgstr ""
 "Supportato solo nei metodi di rendering Forward+ e Mobile, non in "
 "Compatibilità."
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Crea un nodo di shader"
 
 msgid "Create Shader Varying"
@@ -18375,7 +18375,7 @@ msgstr ""
 "Restituisce il valore di profondità ottenuto dal pre-passaggio di profondità "
 "in uno spazio lineare."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr ""
 "Ricostruisce la Posizione Globale del Nodo dalla sua texture di profondità."
 
@@ -20104,19 +20104,19 @@ msgstr ""
 "Il nodo CollisionShape2D ha opzioni di modifica limitate per le forme basate "
 "su poligoni. Considera di usare invece un nodo CollisionPolygon2D."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Il Nodo A e il Nodo B devono essere di tipo PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Il Nodo A deve essere un PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Il Nodo B deve essere un PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Il giunto non è collegato a due PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Il Nodo A e il Nodo B devono essere due PhysicsBody2D diversi"
 
 msgid ""
@@ -20663,19 +20663,19 @@ msgstr ""
 "Si prega di rendere la sua scala uniforme (cioè la stessa su tutti gli assi), "
 "e di invece cambiare le dimensioni della sua risorsa di forma."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "Il Nodo A e il Nodo B devono essere di tipo PhysicsBody3D"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "Il Nodo A deve essere un PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "Il Nodo B deve essere un PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Il giunto non è collegato ad alcun PhysicsBody3D"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Il Nodo A e il Nodo B devono essere due PhysicsBody3D diversi"
 
 msgid ""
@@ -20989,7 +20989,7 @@ msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr ""
 "Il nome di accessibilità non deve essere vuoto, o contenere solo spazzi."
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr ""
 "Il nome di accessibilità non deve includere il nome della classe del nodo."
 

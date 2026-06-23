@@ -343,10 +343,10 @@ msgstr "Internationalisering"
 msgid "Force Right to Left Layout Direction"
 msgstr "Tvinga layout i höger‑till‑vänster‑riktning"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Rotnodens layoutriktning"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Automatisk översättning av rotnod"
 
 msgid "GUI"
@@ -1168,7 +1168,7 @@ msgstr "Ben‑omdöpare"
 msgid "Rename Bones"
 msgstr "Byt namn på ben"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Unik nod"
 
 msgid "Make Unique"
@@ -1180,7 +1180,7 @@ msgstr "Skelettnamn"
 msgid "Rest Fixer"
 msgstr "Vilopos‑korrigerare"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Tillämpa nodtransformationer"
 
 msgid "Normalize Position Tracks"
@@ -1249,10 +1249,10 @@ msgstr "Förskjutning av mesh"
 msgid "Force Disable Mesh Compression"
 msgstr "Tvinga avstängning av mesh‑komprimering"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nod"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Nodtyp"
 
 msgid "Script"
@@ -1462,7 +1462,7 @@ msgstr "Importera som skelettben"
 msgid "Use Name Suffixes"
 msgstr "Använd namnsuffixer"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Använd nodtypssuffix"
 
 msgid "Meshes"
@@ -2390,7 +2390,7 @@ msgstr "Starta skapa‑dialog helt expanderad"
 msgid "Auto Expand to Selected"
 msgstr "Expandera automatiskt till markerat"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Centrera nod vid omföräldrande"
 
 msgid "Hide Filtered Out Parents"
@@ -2534,7 +2534,7 @@ msgstr "Vertikal skrollhastighet"
 msgid "Drag and Drop Selection"
 msgstr "Dra och släpp markering"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Stanna i skripteditorn vid nodval"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2660,7 +2660,7 @@ msgstr "Lägg till typanvisningar"
 msgid "Add String Name Literals"
 msgstr "Lägg till strängnamnslitteraler"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Lägg till nodsökvägslitteraler"
 
 msgid "Use Single Quotes"
@@ -3182,7 +3182,7 @@ msgstr "Växla automatiskt till fjärr‑scenträdet"
 msgid "Auto Switch to Stack Trace"
 msgstr "Växla automatiskt till stackspårning"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "Maximalt nodval"
 
 msgid "Profiler Frame History Size"
@@ -3791,7 +3791,7 @@ msgstr "Rotationsgrader"
 msgid "Spin Sides"
 msgstr "Rotationssidor"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Nodsökväg"
 
 msgid "Path Interval Type"
@@ -3980,7 +3980,7 @@ msgstr "Typinferens på Variant"
 msgid "Native Method Override"
 msgstr "Överskuggning av inbyggd metod"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "Hämtar nod som standard utan onready"
 
 msgid "Onready With Export"
@@ -4067,7 +4067,7 @@ msgstr "Reservbildformat"
 msgid "Fallback Image Quality"
 msgstr "Reservbildkvalitet"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Rotnodsläge"
 
 msgid "Visibility Mode"
@@ -4247,7 +4247,7 @@ msgstr "glTF‑ till Godot‑uttryck"
 msgid "Godot to glTF Expression"
 msgstr "Godot‑ till glTF‑uttryck"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Nodvägar"
 
 msgid "Object Model Type"
@@ -4265,7 +4265,7 @@ msgstr "Leder"
 msgid "Roots"
 msgstr "Rötter"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Godot‑bennod"
 
 msgid "Skin Root"
@@ -4418,7 +4418,7 @@ msgstr "Kollisionsmarginalfraktion"
 msgid "Active Edge Threshold"
 msgstr "Tröskel för aktiv kant"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Världs‑nod"
 
 msgid "Temporary Memory Buffer Size"
@@ -6419,10 +6419,10 @@ msgstr "Styvhet"
 msgid "Initial Offset"
 msgstr "Initialt avstånd"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "Nod A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "Nod B"
 
 msgid "Bias"
@@ -6660,7 +6660,7 @@ msgstr "Visa rektangel"
 msgid "Enabling"
 msgstr "Aktivering"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Nodsökväg"
 
 msgid "Doppler Tracking"
@@ -7099,7 +7099,7 @@ msgstr "Exkludera"
 msgid "Chains"
 msgstr "Kedjor"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "Målnod"
 
 msgid "Forward Axis"
@@ -7117,7 +7117,7 @@ msgstr "Ursprungsinställningar"
 msgid "From"
 msgstr "Från"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Extern nod"
 
 msgid "Time Based Interpolation"
@@ -7780,7 +7780,7 @@ msgstr "Övergångsbegäran"
 msgid "Reset on Save"
 msgstr "Återställ vid sparning"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Rotnod"
 
 msgid "Root Motion"
@@ -7846,7 +7846,7 @@ msgstr "Avsluta film vid slut"
 msgid "Tree Root"
 msgstr "Trädrot"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "Basnod för avancerat uttryck"
 
 msgid "Anim Player"
@@ -8969,10 +8969,10 @@ msgstr "Överföringsläge"
 msgid "Transfer Channel"
 msgstr "Överföringskanal"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "Nodnamns‑nummeravgränsare"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "Nodnamns‑skiftläge"
 
 msgid "Physics Priority"
@@ -9383,7 +9383,7 @@ msgstr "Använd gravitation"
 msgid "Bone Index"
 msgstr "Benindex"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "Bone2D‑nod"
 
 msgid "Physical Bone Chain Length"

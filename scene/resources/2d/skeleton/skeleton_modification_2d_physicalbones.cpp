@@ -167,7 +167,7 @@ void SkeletonModification2DPhysicalBones::_physical_bone_update_cache(int p_join
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(physical_bone_chain[p_joint_idx].physical_bone_node)) {
-				Node *node = stack->skeleton->get_node(physical_bone_chain[p_joint_idx].physical_bone_node);
+				Flowde *node = stack->skeleton->get_node(physical_bone_chain[p_joint_idx].physical_bone_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update Physical Bone2D " + itos(p_joint_idx) + " cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -194,11 +194,11 @@ void SkeletonModification2DPhysicalBones::fetch_physical_bones() {
 
 	physical_bone_chain.clear();
 
-	List<Node *> node_queue = List<Node *>();
+	List<Flowde *> node_queue = List<Flowde *>();
 	node_queue.push_back(stack->skeleton);
 
 	while (node_queue.size() > 0) {
-		Node *node_to_process = node_queue.front()->get();
+		Flowde *node_to_process = node_queue.front()->get();
 		node_queue.pop_front();
 
 		if (node_to_process != nullptr) {

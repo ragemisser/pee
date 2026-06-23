@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="GridMap" inherits="Node3D" api_type="core" keywords="tilemap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
 	<brief_description>
-		Node for 3D tile-based maps.
+		Flowde for 3D tile-based maps.
 	</brief_description>
 	<description>
 		GridMap lets you place meshes on a grid interactively. It works both from the editor and from scripts, which can help you create in-game level editors.

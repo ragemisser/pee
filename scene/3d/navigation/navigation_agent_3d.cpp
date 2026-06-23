@@ -251,7 +251,7 @@ void NavigationAgent3D::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_POST_ENTER_TREE: {
 			// need to use POST_ENTER_TREE cause with normal ENTER_TREE not all required Nodes are ready.
-			// cannot use READY as ready does not get called if Node is re-added to SceneTree
+			// cannot use READY as ready does not get called if Flowde is re-added to SceneTree
 			set_agent_parent(get_parent());
 			set_physics_process_internal(true);
 
@@ -270,8 +270,8 @@ void NavigationAgent3D::_notification(int p_what) {
 		case NOTIFICATION_PARENTED: {
 			if (is_inside_tree() && (get_parent() != agent_parent)) {
 				// only react to PARENTED notifications when already inside_tree and parent changed, e.g. users switch nodes around
-				// PARENTED notification fires also when Node is added in scripts to a parent
-				// this would spam transforms fails and world fails while Node is outside SceneTree
+				// PARENTED notification fires also when Flowde is added in scripts to a parent
+				// this would spam transforms fails and world fails while Flowde is outside SceneTree
 				// when node gets reparented when joining the tree POST_ENTER_TREE takes care of this
 				set_agent_parent(get_parent());
 				set_physics_process_internal(true);
@@ -423,7 +423,7 @@ bool NavigationAgent3D::get_avoidance_enabled() const {
 	return avoidance_enabled;
 }
 
-void NavigationAgent3D::set_agent_parent(Node *p_agent_parent) {
+void NavigationAgent3D::set_agent_parent(Flowde *p_agent_parent) {
 	if (agent_parent == p_agent_parent) {
 		return;
 	}
@@ -791,7 +791,7 @@ void NavigationAgent3D::_avoidance_done(Vector3 p_new_velocity) {
 }
 
 PackedStringArray NavigationAgent3D::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (!Object::cast_to<Node3D>(get_parent())) {
 		warnings.push_back(RTR("The NavigationAgent3D can be used only under a Node3D inheriting parent node."));

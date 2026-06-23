@@ -142,8 +142,8 @@ public:
 	}
 };
 
-class EditorFileSystem : public Node {
-	GDCLASS(EditorFileSystem, Node);
+class EditorFileSystem : public Flowde {
+	GDCLASS(EditorFileSystem, Flowde);
 
 	_THREAD_SAFE_CLASS_
 

@@ -73,7 +73,7 @@ PackedStringArray CanvasGroup::get_configuration_warnings() const {
 	if (is_inside_tree()) {
 		bool warned_about_ancestor_clipping = false;
 		bool warned_about_canvasgroup_ancestor = false;
-		Node *n = get_parent();
+		Flowde *n = get_parent();
 		while (n) {
 			CanvasItem *as_canvas_item = Object::cast_to<CanvasItem>(n);
 			if (!warned_about_ancestor_clipping && as_canvas_item && as_canvas_item->get_clip_children_mode() != CLIP_CHILDREN_DISABLED) {

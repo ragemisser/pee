@@ -775,7 +775,7 @@ msgstr "Voeg %s Toe"
 msgid "Load..."
 msgstr "Laden..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Verplaats BlendSpace1D-knooppunt"
 
 msgid "Change BlendSpace1D Config"
@@ -793,7 +793,7 @@ msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr ""
 "Dit knooptype kan niet gebruikt worden. Alleen wortelknopen zijn toegestaan."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Knooppunt toevoegen"
 
 msgid "Add Animation Point"
@@ -850,7 +850,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Waarde"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Animatieknoop openen"
 
 msgid "Triangle already exists."
@@ -925,10 +925,10 @@ msgstr "Filters bewerken"
 msgid "Output node can't be added to the blend tree."
 msgstr "Uitvoerknoop kan niet worden toegevoegd aan de overgangsboom."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Voeg knoop toe aan BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Knoop verplaatst"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -945,10 +945,10 @@ msgstr "Knopen losgekoppeld"
 msgid "Set Animation"
 msgstr "Animatie Instellen"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Knoop Verwijderen"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Knoop/knopen verwijderen"
 
 msgid "Toggle Filter On/Off"
@@ -988,10 +988,10 @@ msgstr "Gefilterde Sporen Inspecteren:"
 msgid "Edit Filtered Tracks:"
 msgstr "Bewerk gefilterde sporen:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Knoop Hernoemd"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Voeg knoop toe..."
 
 msgid "Enable Filtering"
@@ -1382,7 +1382,7 @@ msgstr "Volgende (Auto wachtrij):"
 msgid "Reconnect Transition"
 msgstr "Herconnecteer Overgang"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Knoop verplaatsen"
 
 msgid "Transition exists!"
@@ -1403,7 +1403,7 @@ msgstr "Overgang van \"%s\" naar \"%s\" bestaat al!"
 msgid "Edit %s"
 msgstr "Bewerk %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Voeg Knoop en Overgang toe"
 
 msgid "Transition already exists!"
@@ -1424,7 +1424,7 @@ msgstr "Verplaats"
 msgid "No playback resource set at path: %s."
 msgstr "Geen afspeelbron ingesteld op pad: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Knoop verwijderd"
 
 msgid "Transition Removed"
@@ -1896,7 +1896,7 @@ msgstr "Animatie-RESET-sleutels toevoegen"
 msgid "Bake Animation as Linear Keys"
 msgstr "Animatie bakken als lineaire sleutels"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Knoop maken"
 
 msgid ""
@@ -2748,7 +2748,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Tak als scène opslaan..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Knoop­pad kopiëren"
 
 msgid "Expand/Collapse Branch"
@@ -3850,7 +3850,7 @@ msgstr "Deze bewerking kan niet op de wortelknoop worden uitgevoerd."
 msgid "Detach Script"
 msgstr "Script losmaken"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Dupliceer knoop/knopen"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -3858,7 +3858,7 @@ msgstr ""
 "Kan ouderschap van knopen in geërfde scènes niet aanpassen, volgorde van "
 "knopen kan niet veranderen."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Knoop moet bij de bewerkte scène horen om wortelknoop te worden."
 
 msgid "Instantiated scenes can't become root"
@@ -3888,7 +3888,7 @@ msgstr "Maak locaal"
 msgid "New Scene Root"
 msgstr "Nieuwe scènewortel"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Maak de wortelknoop:"
 
 msgid "2D Scene"
@@ -3900,7 +3900,7 @@ msgstr "3D Scène"
 msgid "User Interface"
 msgstr "Gebruikersomgeving"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Andere knoop"
 
 msgid "Can't operate on nodes from a foreign scene!"
@@ -3909,13 +3909,13 @@ msgstr "Kan deze operatie niet uitvoeren op knopen uit een vreemde scène!"
 msgid "Can't operate on nodes the current scene inherits from!"
 msgstr "Kan niet werken aan knopen waar de huidige scène van erft!"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Knoopouder wijzigen"
 
 msgid "Attach Script"
 msgstr "Script toevoegen"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Verwijder knoop/knopen"
 
 msgid "Change type of node(s)"
@@ -3966,7 +3966,7 @@ msgstr "Kan de wortelknoop niet in dezelfde scène plakken."
 msgid "Batch Rename..."
 msgstr "In bulk hernoemen…"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Onderliggende knoop toevoegen…"
 
 msgid "Change Type..."
@@ -3993,7 +3993,7 @@ msgstr "Als scènewortel instellen"
 msgid "Delete (No Confirm)"
 msgstr "Verwijderen (zonder bevestiging)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Nieuwe knoop toevoegen/aanmaken."
 
 msgid "Filter Nodes"
@@ -4529,10 +4529,10 @@ msgid "Copies the system info as a single-line text into the clipboard."
 msgstr ""
 "Kopiëert de systeeminformatie als een enkele regel tekst naar het klembord."
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Vergrendel geselecteerde knop(en)"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Ontgrendel geselecteerde knop(en)"
 
 msgid "Pan View"
@@ -6973,7 +6973,7 @@ msgstr "\"%s\" bevat geen geometrie."
 msgid "\"%s\" doesn't contain face geometry."
 msgstr "\"%s\" bevat geen vlak geometrie."
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Produceer emissiepunt vanuit knoop"
 
 msgid "The geometry's faces don't contain any area."
@@ -7183,13 +7183,13 @@ msgstr "Aan pixelraster kleven"
 msgid "Snap to Parent"
 msgstr "Aan ouder kleven"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Aan knoopanker kleven"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Aan knoopzijden kleven"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Aan knoopmiddelpunt kleven"
 
 msgid "Snap to Other Nodes"
@@ -7301,7 +7301,7 @@ msgstr "Bijgevoegd script"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Er wordt geen terug­roep­code gegenereerd. Voeg deze hand­matig toe."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Met knoop verbinden:"
 
 msgid "Connect to Script:"
@@ -7767,24 +7767,24 @@ msgstr "Root Naam:"
 msgid "Toggle Visible"
 msgstr "Zichtbaarheid aan-/uitzetten"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Knoop ontgrendelen"
 
 msgid "(Connecting From)"
 msgstr "(Verbonden vanaf)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Waarschuwing over knoopconfiguratie:"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
-msgstr[0] "Node heeft een connectie."
-msgstr[1] "Node heeft {num} connecties."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
+msgstr[0] "Flowde heeft een connectie."
+msgstr[1] "Flowde heeft {num} connecties."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
-msgstr[0] "Node is in deze groep:"
-msgstr[1] "Node is in de volgende groepen:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
+msgstr[0] "Flowde is in deze groep:"
+msgstr[1] "Flowde is in de volgende groepen:"
 
 msgid "This script is currently running in the editor."
 msgstr "Dit script loopt huidelijk in de editor."
@@ -7796,7 +7796,7 @@ msgid "Open Script:"
 msgstr "Open Script:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Knoop is vergrendeld.\n"
@@ -7818,13 +7818,13 @@ msgstr "Ongeldige knoopnaam, deze karakters zijn niet toegestaan:"
 msgid "Scene Tree (Nodes):"
 msgstr "Scèneboom (knopen):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Knoop configuratie waarschuwing!"
 
 msgid "Allowed:"
 msgstr "Toegestaan:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Knoop uitkiezen"
 
 msgid "No Frames Selected"
@@ -8021,7 +8021,7 @@ msgstr "Maak nieuw script bestand."
 msgid "Built-in Script:"
 msgstr "Ingebouwd script:"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Verbind knoopscript"
 
 msgid "Line"
@@ -9178,7 +9178,7 @@ msgstr "Uit"
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Knoop"
 
 msgid "Incoming RPC"
@@ -9305,7 +9305,7 @@ msgstr "Uitvoerpoort verwijderen"
 msgid "Set Input Default Port"
 msgstr "Stel standaard invoer poort in"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "VisualShader-knoop toevoegen"
 
 msgid "Visual Shader Input Type Changed"
@@ -9332,10 +9332,10 @@ msgstr "Lucht"
 msgid "Fog"
 msgstr "Mist"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Knoop toevoegen"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Shader-knoop maken"
 
 msgid "Color function."
@@ -10003,16 +10003,16 @@ msgid ""
 "shape resource for it!"
 msgstr "Een CollisionShape2D heeft een vorm nodig."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Knoop A en Knoop B moeten PhysicsBody2D zijn"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Knoop A moet een PhysicsBody2D zijn"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Knoop B moet een PhysicsBody2D zijn"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Knoop A en Knoop B moeten verschillende PhysicsBody2D's zijn"
 
 msgid "Path property must point to a valid Node2D node to work."

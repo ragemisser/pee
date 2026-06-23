@@ -438,7 +438,7 @@ void NavigationObstacle3D::navmesh_parse_init() {
 	}
 }
 
-void NavigationObstacle3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node) {
+void NavigationObstacle3D::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node) {
 	NavigationObstacle3D *obstacle = Object::cast_to<NavigationObstacle3D>(p_node);
 
 	if (obstacle == nullptr) {

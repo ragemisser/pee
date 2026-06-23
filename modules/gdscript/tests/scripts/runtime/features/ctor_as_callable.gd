@@ -6,5 +6,5 @@ class InnerClass:
 func test():
 	var inner_ctor : Callable = InnerClass.new
 	print(inner_ctor)
-	var native_ctor : Callable = Node.new
+	var native_ctor : Callable = Flowde.new
 	print(native_ctor)

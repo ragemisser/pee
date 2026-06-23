@@ -175,7 +175,7 @@ void CanvasLayer::_notification(int p_what) {
 			if (custom_viewport && ObjectDB::get_instance(custom_viewport_id)) {
 				vp = custom_viewport;
 			} else {
-				vp = Node::get_viewport();
+				vp = Flowde::get_viewport();
 			}
 			ERR_FAIL_NULL_MSG(vp, "Viewport is not initialized.");
 
@@ -225,7 +225,7 @@ RID CanvasLayer::get_viewport() const {
 	return viewport;
 }
 
-void CanvasLayer::set_custom_viewport(Node *p_viewport) {
+void CanvasLayer::set_custom_viewport(Flowde *p_viewport) {
 	ERR_FAIL_NULL_MSG(p_viewport, "Cannot set viewport to nullptr.");
 	if (is_inside_tree()) {
 		vp->_canvas_layer_remove(this);
@@ -245,7 +245,7 @@ void CanvasLayer::set_custom_viewport(Node *p_viewport) {
 		if (custom_viewport) {
 			vp = custom_viewport;
 		} else {
-			vp = Node::get_viewport();
+			vp = Flowde::get_viewport();
 		}
 
 		vp->_canvas_layer_add(this);
@@ -257,7 +257,7 @@ void CanvasLayer::set_custom_viewport(Node *p_viewport) {
 	}
 }
 
-Node *CanvasLayer::get_custom_viewport() const {
+Flowde *CanvasLayer::get_custom_viewport() const {
 	return custom_viewport;
 }
 

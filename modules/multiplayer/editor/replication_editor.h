@@ -67,7 +67,7 @@ private:
 
 	Button *pin = nullptr;
 
-	Ref<Texture2D> _get_class_icon(const Node *p_node);
+	Ref<Texture2D> _get_class_icon(const Flowde *p_node);
 
 	void _add_pressed();
 	void _np_text_submitted(const String &p_newtext);
@@ -79,7 +79,7 @@ private:
 	void _add_property(const NodePath &p_property, bool p_spawn, SceneReplicationConfig::ReplicationMode p_mode);
 
 	void _pick_node_filter_text_changed(const String &p_newtext);
-	void _pick_node_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Node *> &p_select_candidates);
+	void _pick_node_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Flowde *> &p_select_candidates);
 	void _pick_node_selected(NodePath p_path);
 
 	void _pick_new_property();

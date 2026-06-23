@@ -38,7 +38,7 @@
 		</method>
 		<method name="append_from_scene">
 			<return type="int" enum="Error" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<param index="1" name="state" type="GLTFState" />
 			<param index="2" name="flags" type="int" default="0" />
 			<description>
@@ -49,7 +49,7 @@
 			<return type="GLTFObjectModelProperty" />
 			<param index="0" name="state" type="GLTFState" />
 			<param index="1" name="node_path" type="NodePath" />
-			<param index="2" name="godot_node" type="Node" />
+			<param index="2" name="godot_node" type="Flowde" />
 			<param index="3" name="gltf_node_index" type="int" />
 			<description>
 				Determines a mapping between the given Godot [param node_path] and the corresponding glTF Object Model JSON pointer(s) in the generated glTF file. The details of this mapping are returned in a [GLTFObjectModelProperty] object. Additional mappings can be supplied via the [method GLTFDocumentExtension._import_object_model_property] callback method.
@@ -63,7 +63,7 @@
 			</description>
 		</method>
 		<method name="generate_scene">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="state" type="GLTFState" />
 			<param index="1" name="bake_fps" type="float" default="30" />
 			<param index="2" name="trimming" type="bool" default="false" />

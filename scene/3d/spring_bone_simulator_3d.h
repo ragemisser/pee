@@ -191,9 +191,9 @@ protected:
 	void _redraw_gizmo();
 #endif // TOOLS_ENABLED
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void move_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void move_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	void _validate_rotation_axes(Skeleton3D *p_skeleton) const;
 	void _validate_rotation_axis(Skeleton3D *p_skeleton, int p_index, int p_joint) const;

@@ -25,7 +25,7 @@
 		</method>
 		<method name="share">
 			<return type="void" />
-			<param index="0" name="with" type="Node" />
+			<param index="0" name="with" type="Flowde" />
 			<description>
 				Binds two [Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
 			</description>

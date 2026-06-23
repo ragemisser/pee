@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 @onready var anim = $AnimationPlayer
 

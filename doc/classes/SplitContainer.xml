@@ -31,7 +31,7 @@
 		<method name="get_drag_area_controls">
 			<return type="Control[]" />
 			<description>
-				Returns an [Array] of the drag area [Control]s. These are the interactable [Control] nodes between each child. For example, this can be used to add a pre-configured button to a drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to [code]center[/code] prior to the [method Node.reparent] call.
+				Returns an [Array] of the drag area [Control]s. These are the interactable [Control] nodes between each child. For example, this can be used to add a pre-configured button to a drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to [code]center[/code] prior to the [method Flowde.reparent] call.
 				[codeblock]
 				$BarnacleButton.reparent($SplitContainer.get_drag_area_controls()[0])
 				[/codeblock]

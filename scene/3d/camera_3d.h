@@ -87,7 +87,7 @@ private:
 	Ref<Compositor> compositor;
 	void _attributes_changed();
 
-	// void _camera_make_current(Node *p_camera);
+	// void _camera_make_current(Flowde *p_camera);
 	friend class Viewport;
 	void _update_audio_listener_state();
 	TypedArray<Plane> _get_frustum() const;

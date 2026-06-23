@@ -7,7 +7,7 @@
 
 namespace embree
 {
-  /*! BVHN Quantized Node */
+  /*! BVHN Quantized Flowde */
   template<int N>
     struct __aligned(8) QuantizedBaseNode_t
   {
@@ -212,7 +212,7 @@ namespace embree
     
   }; 
   
-  /*! BVHN Quantized Node */
+  /*! BVHN Quantized Flowde */
   template<int N>
     struct __aligned(8) QuantizedBaseNodeMB_t
   {

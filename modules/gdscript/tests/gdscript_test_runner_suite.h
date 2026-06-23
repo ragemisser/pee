@@ -96,7 +96,7 @@ TEST_CASE("[Modules][GDScript] Loading keeps ResourceCache and GDScriptCache in 
 
 	{
 		Ref<FileAccess> fa = FileAccess::open(path, FileAccess::ModeFlags::WRITE);
-		fa->store_string("extends Node\n");
+		fa->store_string("extends Flowde\n");
 		fa->close();
 	}
 

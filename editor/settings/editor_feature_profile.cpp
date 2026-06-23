@@ -50,7 +50,7 @@ const char *EditorFeatureProfile::feature_names[FEATURE_MAX] = {
 	TTRC("Asset Store"),
 	TTRC("Scene Tree Editing"),
 #ifndef DISABLE_DEPRECATED
-	TTRC("Node Dock (deprecated)"),
+	TTRC("Flowde Dock (deprecated)"),
 #endif
 	TTRC("FileSystem Dock"),
 	TTRC("Import Dock"),
@@ -816,7 +816,7 @@ void EditorFeatureProfileManager::_update_selected_profile() {
 	TreeItem *classes = class_list->create_item(root);
 	classes->set_text(0, TTR("Nodes and Classes:"));
 
-	_fill_classes_from(classes, "Node", class_selected);
+	_fill_classes_from(classes, "Flowde", class_selected);
 	_fill_classes_from(classes, "Resource", class_selected);
 
 	updating_features = false;

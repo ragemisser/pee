@@ -29,7 +29,7 @@
 		</method>
 		<method name="get_relative_transform_to_parent" qualifiers="const">
 			<return type="Transform2D" />
-			<param index="0" name="parent" type="Node" />
+			<param index="0" name="parent" type="Flowde" />
 			<description>
 				Returns the [Transform2D] relative to this node's parent.
 			</description>

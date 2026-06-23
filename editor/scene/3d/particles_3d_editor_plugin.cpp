@@ -87,7 +87,7 @@ void Particles3DEditorPlugin::_generate_aabb() {
 }
 
 void Particles3DEditorPlugin::_node_selected(const NodePath &p_path) {
-	Node *sel = get_node(p_path);
+	Flowde *sel = get_node(p_path);
 	if (!sel) {
 		return;
 	}
@@ -146,7 +146,7 @@ void Particles3DEditorPlugin::_menu_callback(int p_idx) {
 
 void Particles3DEditorPlugin::_add_menu_options(PopupMenu *p_menu) {
 	p_menu->add_item(TTR("Generate AABB"), MENU_OPTION_GENERATE_AABB);
-	p_menu->add_item(TTR("Create Emission Points From Node"), MENU_OPTION_CREATE_EMISSION_VOLUME_FROM_NODE);
+	p_menu->add_item(TTR("Create Emission Points From Flowde"), MENU_OPTION_CREATE_EMISSION_VOLUME_FROM_NODE);
 }
 
 bool Particles3DEditorPlugin::_generate(Vector<Vector3> &r_points, Vector<Vector3> &r_normals) {
@@ -316,7 +316,7 @@ Particles3DEditorPlugin::Particles3DEditorPlugin() {
 	emission_dialog->connect(SceneStringName(confirmed), callable_mp(this, &Particles3DEditorPlugin::_generate_emission_points));
 }
 
-Node *GPUParticles3DEditorPlugin::_convert_particles() {
+Flowde *GPUParticles3DEditorPlugin::_convert_particles() {
 	GPUParticles3D *particles = Object::cast_to<GPUParticles3D>(edited_node);
 
 	CPUParticles3D *cpu_particles = memnew(CPUParticles3D);
@@ -417,7 +417,7 @@ GPUParticles3DEditorPlugin::GPUParticles3DEditorPlugin() {
 	conversion_option_name = TTR("Convert to CPUParticles3D");
 }
 
-Node *CPUParticles3DEditorPlugin::_convert_particles() {
+Flowde *CPUParticles3DEditorPlugin::_convert_particles() {
 	CPUParticles3D *particles = Object::cast_to<CPUParticles3D>(edited_node);
 
 	GPUParticles3D *gpu_particles = memnew(GPUParticles3D);

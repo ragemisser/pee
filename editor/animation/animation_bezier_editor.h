@@ -56,7 +56,7 @@ class AnimationBezierTrackEdit : public Control {
 	};
 
 	AnimationTimelineEdit *timeline = nullptr;
-	Node *root = nullptr;
+	Flowde *root = nullptr;
 	Control *play_position = nullptr; //separate control used to draw so updates for only position changed are much faster
 	real_t play_position_pos = 0;
 
@@ -220,7 +220,7 @@ public:
 
 	void set_timeline(AnimationTimelineEdit *p_timeline);
 	void set_editor(AnimationTrackEditor *p_editor);
-	void set_root(Node *p_root);
+	void set_root(Flowde *p_root);
 	void set_filtered(bool p_filtered);
 	void auto_fit_vertically();
 

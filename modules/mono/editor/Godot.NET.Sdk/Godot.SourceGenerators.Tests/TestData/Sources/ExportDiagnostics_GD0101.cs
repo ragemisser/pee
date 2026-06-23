@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ExportDiagnostics_GD0101 : Node
+public partial class ExportDiagnostics_GD0101 : Flowde
 {
     [Export]
     public static string {|GD0101:StaticField|};

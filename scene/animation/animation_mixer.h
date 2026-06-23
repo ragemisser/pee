@@ -39,8 +39,8 @@
 
 class AnimatedValuesBackup;
 
-class AnimationMixer : public Node {
-	GDCLASS(AnimationMixer, Node);
+class AnimationMixer : public Flowde {
+	GDCLASS(AnimationMixer, Flowde);
 	friend AnimatedValuesBackup;
 #ifdef TOOLS_ENABLED
 	bool editing = false;
@@ -307,7 +307,7 @@ protected:
 	AHashMap<Animation::TrackCacheID, TrackCache *, HashHasher> track_cache;
 	AHashMap<Ref<Animation>, LocalVector<TrackCache *>> animation_track_num_to_track_cache;
 	HashSet<TrackCache *> playing_caches;
-	Vector<Node *> playing_audio_stream_players;
+	Vector<Flowde *> playing_audio_stream_players;
 
 	// Helpers.
 	void _clear_caches();
@@ -350,7 +350,7 @@ protected:
 #endif
 
 	static void _bind_methods();
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	// Helper for extended class.
 	virtual void _set_active(bool p_active);

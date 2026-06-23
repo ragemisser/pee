@@ -36,7 +36,7 @@ Node2D *NavigationObstacle2DEditor::_get_node() const {
 	return node;
 }
 
-void NavigationObstacle2DEditor::_set_node(Node *p_polygon) {
+void NavigationObstacle2DEditor::_set_node(Flowde *p_polygon) {
 	node = Object::cast_to<NavigationObstacle2D>(p_polygon);
 }
 

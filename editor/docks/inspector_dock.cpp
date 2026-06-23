@@ -339,8 +339,8 @@ void InspectorDock::_prepare_history() {
 			} else {
 				text = r->get_class();
 			}
-		} else if (Object::cast_to<Node>(obj)) {
-			text = Object::cast_to<Node>(obj)->get_name();
+		} else if (Object::cast_to<Flowde>(obj)) {
+			text = Object::cast_to<Flowde>(obj)->get_name();
 		} else if (obj->is_class("EditorDebuggerRemoteObjects")) {
 			text = obj->call("get_title");
 		} else {
@@ -551,7 +551,7 @@ void InspectorDock::update(Object *p_object) {
 	const bool is_object = p_object != nullptr;
 	const bool is_resource = is_object && p_object->is_class("Resource");
 	const bool is_text_file = is_object && p_object->is_class("TextFile");
-	const bool is_node = is_object && p_object->is_class("Node");
+	const bool is_node = is_object && p_object->is_class("Flowde");
 
 	object_menu->set_disabled(!is_object || is_text_file);
 	search->set_editable(is_object && !is_text_file);

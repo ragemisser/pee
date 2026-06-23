@@ -383,8 +383,8 @@ void RuntimeNodeSelect::_root_window_input(const Ref<InputEvent> &p_event) {
 void RuntimeNodeSelect::_items_popup_index_pressed(int p_index, PopupMenu *p_popup) {
 	Object *obj = p_popup->get_item_metadata(p_index).get_validated_object();
 	if (obj) {
-		Vector<Node *> node;
-		node.append(Object::cast_to<Node>(obj));
+		Vector<Flowde *> node;
+		node.append(Object::cast_to<Flowde>(obj));
 		_send_ids(node);
 	}
 }
@@ -465,8 +465,8 @@ void RuntimeNodeSelect::_physics_frame() {
 
 	if ((prefer_group_selection || avoid_locked_nodes) && !list_shortcut_pressed && node_select_mode == SELECT_MODE_SINGLE) {
 		for (int i = 0; i < items.size(); i++) {
-			Node *node = items[i].item;
-			Node *final_node = node;
+			Flowde *node = items[i].item;
+			Flowde *final_node = node;
 			real_t order = items[i].order;
 
 			// Replace the node by the group if grouped.
@@ -505,7 +505,7 @@ void RuntimeNodeSelect::_physics_frame() {
 
 	// Remove possible duplicates.
 	for (int i = 0; i < items.size(); i++) {
-		Node *item = items[i].item;
+		Flowde *item = items[i].item;
 		for (int j = 0; j < i; j++) {
 			if (items[j].item == item) {
 				items.remove_at(i);
@@ -525,7 +525,7 @@ void RuntimeNodeSelect::_physics_frame() {
 
 			if (selection_drag_area.get_area() > SELECTION_MIN_AREA) {
 				if (!items.is_empty()) {
-					Vector<Node *> nodes;
+					Vector<Flowde *> nodes;
 					for (const SelectResult item : items) {
 						nodes.append(item.item);
 					}
@@ -582,7 +582,7 @@ void RuntimeNodeSelect::_physics_frame() {
 	if ((!list_shortcut_pressed && node_select_mode == SELECT_MODE_SINGLE) || items.size() == 1) {
 		selection_position = Point2(Math::INF, Math::INF);
 
-		Vector<Node *> node;
+		Vector<Flowde *> node;
 		node.append(items[0].item);
 		_send_ids(node);
 
@@ -596,10 +596,10 @@ void RuntimeNodeSelect::_physics_frame() {
 	selection_position = Point2(Math::INF, Math::INF);
 }
 
-void RuntimeNodeSelect::_send_ids(const Vector<Node *> &p_picked_nodes, bool p_invert_new_selections) {
+void RuntimeNodeSelect::_send_ids(const Vector<Flowde *> &p_picked_nodes, bool p_invert_new_selections) {
 	ERR_FAIL_COND(p_picked_nodes.is_empty());
 
-	Vector<Node *> picked_nodes = p_picked_nodes;
+	Vector<Flowde *> picked_nodes = p_picked_nodes;
 	Array message;
 
 	if (!multi_shortcut_pressed) {
@@ -608,7 +608,7 @@ void RuntimeNodeSelect::_send_ids(const Vector<Node *> &p_picked_nodes, bool p_i
 			EngineDebugger::get_singleton()->send_message("show_selection_limit_warning", Array());
 		}
 
-		for (const Node *node : picked_nodes) {
+		for (const Flowde *node : picked_nodes) {
 			SceneDebuggerObject obj(node->get_instance_id());
 			Array arr;
 			obj.serialize(arr);
@@ -621,9 +621,9 @@ void RuntimeNodeSelect::_send_ids(const Vector<Node *> &p_picked_nodes, bool p_i
 		return;
 	}
 
-	LocalVector<Node *> nodes;
+	LocalVector<Flowde *> nodes;
 	LocalVector<ObjectID> ids;
-	for (Node *node : picked_nodes) {
+	for (Flowde *node : picked_nodes) {
 		ObjectID id = node->get_instance_id();
 		if (CanvasItem *ci = Object::cast_to<CanvasItem>(node)) {
 			if (selected_ci_nodes.has(id)) {
@@ -662,12 +662,12 @@ void RuntimeNodeSelect::_send_ids(const Vector<Node *> &p_picked_nodes, bool p_i
 
 	for (ObjectID id : selected_ci_nodes) {
 		ids.push_back(id);
-		nodes.push_back(ObjectDB::get_instance<Node>(id));
+		nodes.push_back(ObjectDB::get_instance<Flowde>(id));
 	}
 #ifndef _3D_DISABLED
 	for (const KeyValue<ObjectID, Ref<SelectionBox>> &KV : selected_3d_nodes) {
 		ids.push_back(KV.key);
-		nodes.push_back(ObjectDB::get_instance<Node>(KV.key));
+		nodes.push_back(ObjectDB::get_instance<Flowde>(KV.key));
 	}
 #endif // _3D_DISABLED
 
@@ -684,10 +684,10 @@ void RuntimeNodeSelect::_send_ids(const Vector<Node *> &p_picked_nodes, bool p_i
 		EngineDebugger::get_singleton()->send_message("remote_objects_selected", message);
 	}
 
-	_set_selected_nodes(Vector<Node *>(nodes));
+	_set_selected_nodes(Vector<Flowde *>(nodes));
 }
 
-void RuntimeNodeSelect::_set_selected_nodes(const Vector<Node *> &p_nodes) {
+void RuntimeNodeSelect::_set_selected_nodes(const Vector<Flowde *> &p_nodes) {
 	if (p_nodes.is_empty()) {
 		_clear_selection();
 		return;
@@ -699,7 +699,7 @@ void RuntimeNodeSelect::_set_selected_nodes(const Vector<Node *> &p_nodes) {
 	HashMap<ObjectID, Ref<SelectionBox>> nodes_3d;
 #endif // _3D_DISABLED
 
-	for (Node *node : p_nodes) {
+	for (Flowde *node : p_nodes) {
 		ObjectID id = node->get_instance_id();
 		if (Object::cast_to<CanvasItem>(node)) {
 			if (!changed || !selected_ci_nodes.has(id)) {
@@ -960,7 +960,7 @@ void RuntimeNodeSelect::_open_selection_list(const Vector<SelectResult> &p_items
 
 	selection_list = memnew(PopupMenu);
 	selection_list->set_theme(ThemeDB::get_singleton()->get_default_theme());
-	selection_list->set_auto_translate_mode(Node::AUTO_TRANSLATE_MODE_DISABLED);
+	selection_list->set_auto_translate_mode(Flowde::AUTO_TRANSLATE_MODE_DISABLED);
 	selection_list->set_force_native(true);
 	selection_list->connect("index_pressed", callable_mp(this, &RuntimeNodeSelect::_items_popup_index_pressed).bind(selection_list));
 	selection_list->connect("popup_hide", callable_mp(this, &RuntimeNodeSelect::_close_selection_list));
@@ -972,8 +972,8 @@ void RuntimeNodeSelect::_open_selection_list(const Vector<SelectResult> &p_items
 		if (I.item->get_meta("_edit_lock_", false)) {
 			locked = 1;
 		} else {
-			Node *scene = SceneTree::get_singleton()->get_root();
-			Node *node = I.item;
+			Flowde *scene = SceneTree::get_singleton()->get_root();
+			Flowde *node = I.item;
 
 			while (node && node != scene->get_parent()) {
 				if (node->has_meta("_edit_group_")) {
@@ -1028,7 +1028,7 @@ void RuntimeNodeSelect::_set_prefer_group(bool p_enabled) {
 }
 
 // Copied and trimmed from the CanvasItemEditor implementation.
-void RuntimeNodeSelect::_find_canvas_items_at_pos(const Point2 &p_pos, Node *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void RuntimeNodeSelect::_find_canvas_items_at_pos(const Point2 &p_pos, Flowde *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	if (!p_node || Object::cast_to<Viewport>(p_node)) {
 		return;
 	}
@@ -1091,7 +1091,7 @@ void RuntimeNodeSelect::_find_canvas_items_at_pos(const Point2 &p_pos, Node *p_n
 }
 
 // Copied and trimmed from the CanvasItemEditor implementation.
-void RuntimeNodeSelect::_find_canvas_items_at_rect(const Rect2 &p_rect, Node *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void RuntimeNodeSelect::_find_canvas_items_at_rect(const Rect2 &p_rect, Flowde *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	if (!p_node || Object::cast_to<Viewport>(p_node)) {
 		return;
 	}
@@ -1240,7 +1240,7 @@ void RuntimeNodeSelect::_find_3d_items_at_pos(const Point2 &p_pos, Vector<Select
 		ray_params.exclude = excluded;
 		if (ss->intersect_ray(ray_params, result)) {
 			SelectResult res;
-			res.item = Object::cast_to<Node>(result.collider);
+			res.item = Object::cast_to<Flowde>(result.collider);
 			res.order = -pos.distance_to(result.position);
 
 			// Fetch collision shapes.
@@ -1250,7 +1250,7 @@ void RuntimeNodeSelect::_find_3d_items_at_pos(const Point2 &p_pos, Vector<Select
 				collision->get_shape_owners(&owners);
 				for (uint32_t &I : owners) {
 					SelectResult res_shape;
-					res_shape.item = Object::cast_to<Node>(collision->shape_owner_get_owner(I));
+					res_shape.item = Object::cast_to<Flowde>(collision->shape_owner_get_owner(I));
 					res_shape.order = res.order;
 					r_items.push_back(res_shape);
 				}
@@ -1280,7 +1280,7 @@ void RuntimeNodeSelect::_find_3d_items_at_pos(const Point2 &p_pos, Vector<Select
 				Vector3 point, normal;
 				if (mesh_collision->intersect_ray(ai.xform(pos), ai.basis.xform(ray).normalized(), point, normal)) {
 					SelectResult res;
-					res.item = Object::cast_to<Node>(obj);
+					res.item = Object::cast_to<Flowde>(obj);
 					res.order = -pos.distance_to(gt.xform(point));
 					r_items.push_back(res);
 
@@ -1346,7 +1346,7 @@ void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<Selec
 	frustum.push_back(far_plane);
 
 	// Keep track of the currently listed nodes, so repeats can be ignored.
-	HashSet<Node *> node_list;
+	HashSet<Flowde *> node_list;
 
 #ifndef PHYSICS_3D_DISABLED
 	Vector<Vector3> points = Geometry3D::compute_convex_mesh_points(&frustum[0], frustum.size());
@@ -1364,7 +1364,7 @@ void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<Selec
 	for (int i = 0; i < num_hits; i++) {
 		const PhysicsDirectSpaceState3D::ShapeResult &result = results[i];
 		SelectResult res;
-		res.item = Object::cast_to<Node>(result.collider);
+		res.item = Object::cast_to<Flowde>(result.collider);
 		res.order = -dist_pos.distance_to(Object::cast_to<Node3D>(res.item)->get_global_transform().origin);
 
 		// Fetch collision shapes.
@@ -1374,7 +1374,7 @@ void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<Selec
 			collision->get_shape_owners(&owners);
 			for (uint32_t &I : owners) {
 				SelectResult res_shape;
-				res_shape.item = Object::cast_to<Node>(collision->shape_owner_get_owner(I));
+				res_shape.item = Object::cast_to<Flowde>(collision->shape_owner_get_owner(I));
 				if (!node_list.has(res_shape.item)) {
 					node_list.insert(res_shape.item);
 					res_shape.order = res.order;
@@ -1415,7 +1415,7 @@ void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<Selec
 				Vector<Vector3> convex_points = Geometry3D::compute_convex_mesh_points(transformed_frustum.ptr(), plane_count);
 				if (mesh_collision->inside_convex_shape(transformed_frustum.ptr(), transformed_frustum.size(), convex_points.ptr(), convex_points.size(), mesh_scale)) {
 					SelectResult res;
-					res.item = Object::cast_to<Node>(obj);
+					res.item = Object::cast_to<Flowde>(obj);
 					if (!node_list.has(res.item)) {
 						node_list.insert(res.item);
 						res.order = -dist_pos.distance_to(gt.origin);

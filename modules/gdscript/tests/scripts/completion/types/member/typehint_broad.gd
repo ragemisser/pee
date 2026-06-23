@@ -1,8 +1,8 @@
-extends Node
+extends Flowde
 
 const A := preload("res://completion/class_a.notest.gd")
 
-var test: Node = A.new()
+var test: Flowde = A.new()
 
 func a():
     test.➡

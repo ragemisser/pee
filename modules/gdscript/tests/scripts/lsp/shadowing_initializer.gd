@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 var value := 42
 #   ^^^^^ member:value -> member:value

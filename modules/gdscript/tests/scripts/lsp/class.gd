@@ -1,6 +1,6 @@
-extends Node
+extends Flowde
 
-class Inner1 extends Node:
+class Inner1 extends Flowde:
 #     ^^^^^^ class1 -> class1
 	var member1 := 42
 	#   ^^^^^^^ class1:member1 -> class1:member1

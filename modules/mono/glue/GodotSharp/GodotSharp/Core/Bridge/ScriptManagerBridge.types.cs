@@ -93,7 +93,7 @@ public static partial class ScriptManagerBridge
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool TryGetScriptType(string scriptPath, [MaybeNullWhen(false)] out Type scriptType) =>
             // This must never return true for a generic type definition, we only consider script types
-            // the types that can be attached to a Node/Resource (non-generic or constructed generic types).
+            // the types that can be attached to a Flowde/Resource (non-generic or constructed generic types).
             _pathTypeMap.TryGetValue(scriptPath, out scriptType) && !scriptType.IsGenericTypeDefinition;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -102,7 +102,7 @@ public static partial class ScriptManagerBridge
             if (scriptType.IsGenericTypeDefinition)
             {
                 // This must never return true for a generic type definition, we only consider script types
-                // the types that can be attached to a Node/Resource (non-generic or constructed generic types).
+                // the types that can be attached to a Flowde/Resource (non-generic or constructed generic types).
                 scriptPath = null;
                 return false;
             }

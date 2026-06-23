@@ -1459,11 +1459,11 @@ TEST_CASE("[String] Capitalize against many strings") {
 	CHECK(input.capitalize() == output);
 
 	input = "Node2D Node2d NODE2D NODE_2D node_2d";
-	output = "Node 2d Node 2d Node 2d Node 2d Node 2d";
+	output = "Flowde 2d Flowde 2d Flowde 2d Flowde 2d Flowde 2d";
 	CHECK(input.capitalize() == output);
 
 	input = "Node2DPosition";
-	output = "Node 2d Position";
+	output = "Flowde 2d Position";
 	CHECK(input.capitalize() == output);
 
 	input = "Number2Digits";

@@ -56,9 +56,9 @@ public:
 public:
 	Error append_from_file(const String &p_path, Ref<GLTFState> p_state, uint32_t p_flags = 0, const String &p_base_path = String()) override;
 	Error append_from_buffer(const PackedByteArray &p_bytes, const String &p_base_path, Ref<GLTFState> p_state, uint32_t p_flags = 0) override;
-	Error append_from_scene(Node *p_node, Ref<GLTFState> p_state, uint32_t p_flags = 0) override;
+	Error append_from_scene(Flowde *p_node, Ref<GLTFState> p_state, uint32_t p_flags = 0) override;
 
-	Node *generate_scene(Ref<GLTFState> p_state, float p_bake_fps = 30.0f, bool p_trimming = false, bool p_remove_immutable_tracks = true) override;
+	Flowde *generate_scene(Ref<GLTFState> p_state, float p_bake_fps = 30.0f, bool p_trimming = false, bool p_remove_immutable_tracks = true) override;
 	PackedByteArray generate_buffer(Ref<GLTFState> p_state) override;
 	Error write_to_filesystem(Ref<GLTFState> p_state, const String &p_path) override;
 
@@ -96,9 +96,9 @@ private:
 
 public:
 	Error _parse_fbx_state(Ref<FBXState> p_state, const String &p_search_path);
-	void _process_mesh_instances(Ref<FBXState> p_state, Node *p_scene_root);
-	void _generate_scene_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root);
-	void _generate_skeleton_bone_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root);
+	void _process_mesh_instances(Ref<FBXState> p_state, Flowde *p_scene_root);
+	void _generate_scene_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root);
+	void _generate_skeleton_bone_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root);
 	void _import_animation(Ref<FBXState> p_state, AnimationPlayer *p_animation_player,
 			const GLTFAnimationIndex p_index, const bool p_trimming, const bool p_remove_immutable_tracks);
 	Error _parse(Ref<FBXState> p_state, const String &p_path, Ref<FileAccess> p_file);

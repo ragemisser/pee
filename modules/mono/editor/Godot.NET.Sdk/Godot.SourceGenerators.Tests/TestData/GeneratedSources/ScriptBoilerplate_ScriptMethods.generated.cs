@@ -7,7 +7,7 @@ partial class ScriptBoilerplate
     /// <summary>
     /// Cached StringNames for the methods contained in this class, for fast lookup.
     /// </summary>
-    public new class MethodName : global::Godot.Node.MethodName {
+    public new class MethodName : global::Godot.Flowde.MethodName {
         /// <summary>
         /// Cached name for the '_Process' method.
         /// </summary>

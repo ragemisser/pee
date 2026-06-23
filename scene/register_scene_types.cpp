@@ -394,7 +394,7 @@ void register_scene_types() {
 
 	OS::get_singleton()->yield(); // may take time to init
 
-	Node::init_node_hrcr();
+	Flowde::init_node_hrcr();
 
 	if constexpr (GD_IS_CLASS_ENABLED(CompressedTexture2D)) {
 		resource_loader_stream_texture.instantiate();
@@ -435,7 +435,7 @@ void register_scene_types() {
 
 	OS::get_singleton()->yield(); // may take time to init
 
-	GDREGISTER_CLASS(Node);
+	GDREGISTER_CLASS(Flowde);
 	GDREGISTER_CLASS(MissingNode);
 	GDREGISTER_ABSTRACT_CLASS(InstancePlaceholder);
 

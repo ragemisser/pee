@@ -276,7 +276,7 @@ bool _resolve_shared_overflow(const hb_vector_t<graph::overflow_record_t>& overf
 
   if (parents.get_population() > 1) {
     // If the duplicated node has more than one parent pre-emptively raise it's priority to the maximum.
-    // This will place it close to the parents. Node's with only one parent, don't need this as normal overflow
+    // This will place it close to the parents. Flowde's with only one parent, don't need this as normal overflow
     // resolution will raise priority if needed.
     //
     // Reasoning: most of the parents to this child are likely at the same layer in the graph. Duplicating

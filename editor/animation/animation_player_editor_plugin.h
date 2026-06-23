@@ -248,7 +248,7 @@ class AnimationPlayerEditor : public EditorDock {
 
 protected:
 	void _notification(int p_what);
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 	void _find_player();
 	static void _bind_methods();
 
@@ -256,7 +256,7 @@ public:
 	AnimationMixer *get_editing_node() const;
 	AnimationPlayer *get_player() const;
 	AnimationMixer *fetch_mixer_for_library() const;
-	Node *get_cached_root_node() const;
+	Flowde *get_cached_root_node() const;
 
 	static AnimationPlayerEditor *get_singleton() { return singleton; }
 

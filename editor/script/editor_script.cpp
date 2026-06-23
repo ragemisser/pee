@@ -36,12 +36,12 @@
 #include "scene/main/node.h"
 
 #ifndef DISABLE_DEPRECATED
-void EditorScript::add_root_node(Node *p_node) {
+void EditorScript::add_root_node(Flowde *p_node) {
 	WARN_DEPRECATED_MSG("EditorScript::add_root_node is deprecated. Use EditorInterface::add_root_node instead.");
 	EditorInterface::get_singleton()->add_root_node(p_node);
 }
 
-Node *EditorScript::get_scene() const {
+Flowde *EditorScript::get_scene() const {
 	WARN_DEPRECATED_MSG("EditorScript::get_scene is deprecated. Use EditorInterface::get_edited_scene_root instead.");
 	if (!EditorNode::get_singleton()) {
 		EditorNode::add_io_error("EditorScript::get_scene: " + TTR("Write your logic in the _run() method."));

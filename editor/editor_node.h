@@ -117,8 +117,8 @@ struct EditorProgress {
 	~EditorProgress();
 };
 
-class EditorNode : public Node {
-	GDCLASS(EditorNode, Node);
+class EditorNode : public Flowde {
+	GDCLASS(EditorNode, Flowde);
 
 public:
 	enum SceneNameCasing {
@@ -370,7 +370,7 @@ private:
 	String _recent_scene;
 	List<String> prev_closed_scenes;
 	String defer_load_scene;
-	Node *_last_instantiated_scene = nullptr;
+	Flowde *_last_instantiated_scene = nullptr;
 
 	ConfirmationDialog *confirmation = nullptr;
 	bool stop_project_confirmation = false;
@@ -461,7 +461,7 @@ private:
 
 	Ref<Resource> saving_resource;
 	HashSet<Ref<Resource>> saving_resources_in_path;
-	HashMap<Ref<Resource>, List<Node *>> resource_count; // Keeps track of linked Resources from a Scene.
+	HashMap<Ref<Resource>, List<Flowde *>> resource_count; // Keeps track of linked Resources from a Scene.
 
 	uint64_t update_spinner_step_msec = 0;
 	uint64_t update_spinner_step_frame = 0;
@@ -587,7 +587,7 @@ private:
 	void _set_current_scene(int p_idx);
 	void _set_current_scene_nocheck(int p_idx, bool p_ignore_state = false);
 	void _nav_to_selected_scene();
-	bool _validate_scene_recursive(const String &p_filename, Node *p_node);
+	bool _validate_scene_recursive(const String &p_filename, Flowde *p_node);
 	void _save_scene(String p_file, int idx = -1);
 	void _save_all_scenes();
 	int _next_unsaved_scene(bool p_valid_filename, int p_start = 0);
@@ -638,14 +638,14 @@ private:
 	void _remove_scene(int p_idx, bool p_change_tab = true);
 	bool _find_and_save_resource(Ref<Resource> p_res, HashMap<Ref<Resource>, bool> &processed, int32_t flags);
 	bool _find_and_save_edited_subresources(Object *obj, HashMap<Ref<Resource>, bool> &processed, int32_t flags);
-	void _save_edited_subresources(Node *scene, HashMap<Ref<Resource>, bool> &processed, int32_t flags);
+	void _save_edited_subresources(Flowde *scene, HashMap<Ref<Resource>, bool> &processed, int32_t flags);
 	void _mark_unsaved_scenes();
 
-	void _find_node_types(Node *p_node, int &count_2d, int &count_3d);
+	void _find_node_types(Flowde *p_node, int &count_2d, int &count_3d);
 	void _save_scene_with_preview(String p_file, int p_idx = -1);
 	void _close_save_scene_progress();
 
-	bool _find_scene_in_use(Node *p_node, const String &p_path) const;
+	bool _find_scene_in_use(Flowde *p_node, const String &p_path) const;
 
 	void _proceed_closing_scene_tabs();
 	void _proceed_save_asing_scene_tabs();
@@ -696,9 +696,9 @@ private:
 
 	void _begin_first_scan();
 
-	void _notify_nodes_scene_reimported(Node *p_node, Array p_reimported_nodes);
+	void _notify_nodes_scene_reimported(Flowde *p_node, Array p_reimported_nodes);
 
-	void _remove_all_not_owned_children(Node *p_node, Node *p_owner);
+	void _remove_all_not_owned_children(Flowde *p_node, Flowde *p_owner);
 
 	void _progress_dialog_visibility_changed();
 	void _load_error_dialog_visibility_changed();
@@ -818,7 +818,7 @@ public:
 	void set_addon_plugin_enabled(const String &p_addon, bool p_enabled, bool p_config_changed = false);
 	bool is_addon_plugin_enabled(const String &p_addon) const;
 
-	void edit_node(Node *p_node);
+	void edit_node(Flowde *p_node);
 	void edit_resource(const Ref<Resource> &p_resource);
 
 	void save_resource_in_path(const Ref<Resource> &p_resource, const String &p_path);
@@ -826,11 +826,11 @@ public:
 	void save_resource_as(const Ref<Resource> &p_resource, const String &p_at_path = String());
 	bool is_resource_internal_to_scene(Ref<Resource> p_resource);
 	void gather_resources(const Variant &p_variant, List<Ref<Resource>> &r_list, HashSet<Object *> &r_scanned_objects, bool p_subresources = false, bool p_allow_external = false);
-	void update_resource_count(Node *p_node, bool p_remove = false);
-	void update_node_reference(const Variant &p_value, Node *p_node, bool p_remove = false);
+	void update_resource_count(Flowde *p_node, bool p_remove = false);
+	void update_node_reference(const Variant &p_value, Flowde *p_node, bool p_remove = false);
 	void clear_node_reference(Ref<Resource> p_res);
 	int get_resource_count(Ref<Resource> p_res);
-	List<Node *> get_resource_node_list(Ref<Resource> p_res);
+	List<Flowde *> get_resource_node_list(Ref<Resource> p_res);
 
 	void show_about() { _menu_option_confirm(HELP_ABOUT, false); }
 
@@ -838,7 +838,7 @@ public:
 	void push_item_no_inspector(Object *p_object);
 	void edit_previous_item();
 	void edit_item(Object *p_object, Object *p_editing_owner, bool p_set_current = true);
-	void push_node_item(Node *p_node);
+	void push_node_item(Flowde *p_node);
 	void hide_unused_editors(const Object *p_editing_owner = nullptr);
 
 	void replace_resources_in_object(
@@ -858,9 +858,9 @@ public:
 
 	SubViewport *get_scene_root() { return scene_root; } // Root of the scene being edited.
 
-	void set_edited_scene(Node *p_scene);
-	void set_edited_scene_root(Node *p_scene, bool p_auto_add);
-	Node *get_edited_scene() { return editor_data.get_edited_scene_root(); }
+	void set_edited_scene(Flowde *p_scene);
+	void set_edited_scene_root(Flowde *p_scene, bool p_auto_add);
+	Flowde *get_edited_scene() { return editor_data.get_edited_scene_root(); }
 
 	String get_preview_locale() const;
 	void set_preview_locale(const String &p_locale);
@@ -871,15 +871,15 @@ public:
 	Error load_resource(const String &p_resource, bool p_ignore_broken_deps = false);
 	Error load_scene_or_resource(const String &p_file, bool p_ignore_broken_deps = false, bool p_change_scene_tab_if_already_open = true);
 
-	HashMap<StringName, Variant> get_modified_properties_for_node(Node *p_node, bool p_node_references_only);
-	HashMap<StringName, Variant> get_modified_properties_reference_to_nodes(Node *p_node, List<Node *> &p_nodes_referenced_by);
+	HashMap<StringName, Variant> get_modified_properties_for_node(Flowde *p_node, bool p_node_references_only);
+	HashMap<StringName, Variant> get_modified_properties_reference_to_nodes(Flowde *p_node, List<Flowde *> &p_nodes_referenced_by);
 
 	void set_unfocused_low_processor_usage_mode_enabled(bool p_enabled);
 
 	struct AdditiveNodeEntry {
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 		NodePath parent;
-		Node *owner = nullptr;
+		Flowde *owner = nullptr;
 		int index = 0;
 		// Used if the original parent node is lost
 		Transform2D transform_2d;
@@ -895,13 +895,13 @@ public:
 		HashMap<StringName, Variant> property_table;
 		List<ConnectionWithNodePath> connections_to;
 		List<Connection> connections_from;
-		List<Node::GroupInfo> groups;
+		List<Flowde::GroupInfo> groups;
 	};
 
 	struct InstanceModificationsEntry {
-		Node *original_node;
+		Flowde *original_node;
 		String instance_path;
-		List<Node *> instance_list;
+		List<Flowde *> instance_list;
 		HashMap<NodePath, ModificationNodeEntry> modifications;
 		List<AdditiveNodeEntry> addition_list;
 	};
@@ -920,25 +920,25 @@ public:
 	List<String> scenes_reimported;
 	List<String> resources_reimported;
 
-	void update_node_from_node_modification_entry(Node *p_node, ModificationNodeEntry &p_node_modification);
+	void update_node_from_node_modification_entry(Flowde *p_node, ModificationNodeEntry &p_node_modification);
 
-	void get_scene_editor_data_for_node(Node *p_root, Node *p_node, HashMap<NodePath, SceneEditorDataEntry> &p_table);
+	void get_scene_editor_data_for_node(Flowde *p_root, Flowde *p_node, HashMap<NodePath, SceneEditorDataEntry> &p_table);
 
 	void get_preload_scene_modification_table(
-			Node *p_edited_scene,
-			Node *p_reimported_root,
-			Node *p_node, InstanceModificationsEntry &p_instance_modifications);
+			Flowde *p_edited_scene,
+			Flowde *p_reimported_root,
+			Flowde *p_node, InstanceModificationsEntry &p_instance_modifications);
 
 	void get_preload_modifications_reference_to_nodes(
-			Node *p_root,
-			Node *p_node,
-			HashSet<Node *> &p_excluded_nodes,
-			List<Node *> &p_instance_list_with_children,
+			Flowde *p_root,
+			Flowde *p_node,
+			HashSet<Flowde *> &p_excluded_nodes,
+			List<Flowde *> &p_instance_list_with_children,
 			HashMap<NodePath, ModificationNodeEntry> &p_modification_table);
-	void get_children_nodes(Node *p_node, List<Node *> &p_nodes);
-	bool is_additional_node_in_scene(Node *p_edited_scene, Node *p_reimported_root, Node *p_node);
+	void get_children_nodes(Flowde *p_node, List<Flowde *> &p_nodes);
+	bool is_additional_node_in_scene(Flowde *p_edited_scene, Flowde *p_reimported_root, Flowde *p_node);
 
-	void replace_history_reimported_nodes(Node *p_original_root_node, Node *p_new_root_node, Node *p_node);
+	void replace_history_reimported_nodes(Flowde *p_original_root_node, Flowde *p_new_root_node, Flowde *p_node);
 
 	bool is_scene_open(const String &p_path);
 	bool is_multi_window_enabled() const;
@@ -997,7 +997,7 @@ public:
 
 	void reload_scene(const String &p_path);
 
-	void find_all_instances_inheriting_path_in_node(Node *p_root, Node *p_node, const String &p_instance_path, HashSet<Node *> &p_instance_list);
+	void find_all_instances_inheriting_path_in_node(Flowde *p_root, Flowde *p_node, const String &p_instance_path, HashSet<Flowde *> &p_instance_list);
 	void preload_reimporting_with_path_in_edited_scenes(const List<String> &p_scenes);
 	void reload_instances_with_path_in_edited_scenes();
 

@@ -205,7 +205,7 @@ void PhysicalBoneSimulator3D::_rebuild_physical_bones_cache() {
 }
 
 #ifndef DISABLE_DEPRECATED
-void _pb_stop_simulation_compat(Node *p_node) {
+void _pb_stop_simulation_compat(Flowde *p_node) {
 	PhysicalBoneSimulator3D *ps = Object::cast_to<PhysicalBoneSimulator3D>(p_node);
 	if (ps) {
 		return; // Prevent conflict.
@@ -220,7 +220,7 @@ void _pb_stop_simulation_compat(Node *p_node) {
 }
 #endif // _DISABLE_DEPRECATED
 
-void _pb_stop_simulation(Node *p_node) {
+void _pb_stop_simulation(Flowde *p_node) {
 	for (int i = p_node->get_child_count() - 1; i >= 0; --i) {
 		PhysicalBone3D *pb = Object::cast_to<PhysicalBone3D>(p_node->get_child(i));
 		if (!pb) {
@@ -252,7 +252,7 @@ void PhysicalBoneSimulator3D::physical_bones_stop_simulation() {
 }
 
 #ifndef DISABLE_DEPRECATED
-void _pb_start_simulation_compat(const PhysicalBoneSimulator3D *p_simulator, Node *p_node, const Vector<int> &p_sim_bones) {
+void _pb_start_simulation_compat(const PhysicalBoneSimulator3D *p_simulator, Flowde *p_node, const Vector<int> &p_sim_bones) {
 	PhysicalBoneSimulator3D *ps = Object::cast_to<PhysicalBoneSimulator3D>(p_node);
 	if (ps) {
 		return; // Prevent conflict.
@@ -276,7 +276,7 @@ void _pb_start_simulation_compat(const PhysicalBoneSimulator3D *p_simulator, Nod
 }
 #endif // _DISABLE_DEPRECATED
 
-void _pb_start_simulation(const PhysicalBoneSimulator3D *p_simulator, Node *p_node, const Vector<int> &p_sim_bones) {
+void _pb_start_simulation(const PhysicalBoneSimulator3D *p_simulator, Flowde *p_node, const Vector<int> &p_sim_bones) {
 	for (int i = p_node->get_child_count() - 1; i >= 0; --i) {
 		PhysicalBone3D *pb = Object::cast_to<PhysicalBone3D>(p_node->get_child(i));
 		if (!pb) {
@@ -332,7 +332,7 @@ void PhysicalBoneSimulator3D::physical_bones_start_simulation_on(const TypedArra
 #endif // _DISABLE_DEPRECATED
 }
 
-void _physical_bones_add_remove_collision_exception(bool p_add, Node *p_node, RID p_exception) {
+void _physical_bones_add_remove_collision_exception(bool p_add, Flowde *p_node, RID p_exception) {
 	for (int i = p_node->get_child_count() - 1; i >= 0; --i) {
 		_physical_bones_add_remove_collision_exception(p_add, p_node->get_child(i), p_exception);
 	}

@@ -706,7 +706,7 @@ class EditorPropertyNodePath : public EditorProperty {
 	void _node_selected(const NodePath &p_path, bool p_absolute = true);
 	void _node_assign();
 	void _assign_draw();
-	Node *get_base_node();
+	Flowde *get_base_node();
 	void _update_menu();
 	void _menu_option(int p_idx);
 	void _accept_text();
@@ -753,7 +753,7 @@ class EditorPropertyResource : public EditorProperty {
 	void _resource_selected(const Ref<Resource> &p_resource, bool p_inspect);
 	void _resource_changed(const Ref<Resource> &p_resource);
 
-	Node *_get_base_node();
+	Flowde *_get_base_node();
 	void _viewport_selected(const NodePath &p_path);
 
 	void _sub_inspector_property_keyed(const String &p_property, const Variant &p_value, bool p_advance);

@@ -34,8 +34,8 @@
 
 class PackedScene;
 
-class InstancePlaceholder : public Node {
-	GDCLASS(InstancePlaceholder, Node);
+class InstancePlaceholder : public Flowde {
+	GDCLASS(InstancePlaceholder, Flowde);
 
 	String path;
 	struct PropSet {
@@ -46,8 +46,8 @@ class InstancePlaceholder : public Node {
 	List<PropSet> stored_values;
 
 private:
-	void set_value_on_instance(InstancePlaceholder *p_placeholder, Node *p_instance, const PropSet &p_set);
-	Node *try_get_node(InstancePlaceholder *p_placeholder, Node *p_instance, const NodePath &p_path);
+	void set_value_on_instance(InstancePlaceholder *p_placeholder, Flowde *p_instance, const PropSet &p_set);
+	Flowde *try_get_node(InstancePlaceholder *p_placeholder, Flowde *p_instance, const NodePath &p_path);
 
 protected:
 	bool _set(const StringName &p_name, const Variant &p_value);
@@ -62,7 +62,7 @@ public:
 
 	Dictionary get_stored_values(bool p_with_order = false);
 
-	Node *create_instance(bool p_replace = false, const Ref<PackedScene> &p_custom_scene = Ref<PackedScene>());
+	Flowde *create_instance(bool p_replace = false, const Ref<PackedScene> &p_custom_scene = Ref<PackedScene>());
 
 	InstancePlaceholder();
 };

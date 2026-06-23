@@ -729,7 +729,7 @@ msgstr "新增 %s"
 msgid "Load..."
 msgstr "載入..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "移動 BlendSpace1D 節點頂點"
 
 msgid "Change BlendSpace1D Config"
@@ -744,7 +744,7 @@ msgstr "此類型的節點無法使用，僅允許動畫節點。"
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "此類型的節點無法使用，僅允許根節點。"
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "新增節點頂點"
 
 msgid "Add Animation Point"
@@ -798,7 +798,7 @@ msgstr "最大"
 msgid "Value"
 msgstr "值"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "開啟動畫節點"
 
 msgid "Triangle already exists."
@@ -870,10 +870,10 @@ msgstr "編輯篩選條件"
 msgid "Output node can't be added to the blend tree."
 msgstr "輸出節點無法新增至混合樹。"
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "新增節點至 BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "已移動節點"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -888,10 +888,10 @@ msgstr "已斷開節點連接"
 msgid "Set Animation"
 msgstr "設定動畫"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "刪除節點"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "刪除節點"
 
 msgid "Toggle Filter On/Off"
@@ -929,10 +929,10 @@ msgstr "檢視已篩選的軌道："
 msgid "Edit Filtered Tracks:"
 msgstr "編輯已篩選的軌道："
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "已重新命名節點"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "新增節點..."
 
 msgid "Enable Filtering"
@@ -1313,7 +1313,7 @@ msgstr "混合時間："
 msgid "Next (Auto Queue):"
 msgstr "下一個（自動佇列）："
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "移動節點"
 
 msgid "Transition exists!"
@@ -1334,7 +1334,7 @@ msgstr "播放/跳轉到 %s"
 msgid "Edit %s"
 msgstr "編輯 %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "新增節點與轉場"
 
 msgid "Add Transition"
@@ -1352,7 +1352,7 @@ msgstr "跳轉"
 msgid "No playback resource set at path: %s."
 msgstr "路徑 %s 中沒有可播放的資源。"
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "已刪除節點"
 
 msgid "Transition Removed"
@@ -1815,7 +1815,7 @@ msgstr "新增動畫 RESET 關鍵影格"
 msgid "Bake Animation as Linear Keys"
 msgstr "將動畫烘焙為線性關鍵影格"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "建立節點"
 
 msgid ""
@@ -2693,7 +2693,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "儲存分支為場景…"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "複製節點路徑"
 
 msgid "Expand/Collapse Branch"
@@ -4020,19 +4020,19 @@ msgstr "此操作無法在樹狀根節點執行。"
 msgid "Detach Script"
 msgstr "取消附加腳本"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "更改節點順序"
 
 msgid "Move Nodes in Parent"
 msgstr "更改多個節點順序"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "重複節點"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
 msgstr "無法重新設定繼承場景節點的父節點，節點順序無法改變。"
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "節點必須屬於已編輯的場景才能轉為根節點。"
 
 msgid "Instantiated scenes can't become root"
@@ -4126,7 +4126,7 @@ msgstr "禁用場景唯一名稱"
 msgid "New Scene Root"
 msgstr "新場景根"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "建立根節點："
 
 msgid "Favorite Nodes"
@@ -4144,7 +4144,7 @@ msgstr "3D 場景"
 msgid "User Interface"
 msgstr "使用者界面"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "其他節點"
 
 msgid "Paste From Clipboard"
@@ -4159,7 +4159,7 @@ msgstr "無法對目前場景繼承來源的節點進行操作！"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "無法在實例化的場景上執行此操作。"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "重新指定父節點"
 
 msgid "Attach Script"
@@ -4171,16 +4171,16 @@ msgstr "設定著色器"
 msgid "Toggle Editable Children"
 msgstr "切換是否能編輯子節點"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "剪下節點"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "移除節點"
 
 msgid "Change type of node(s)"
 msgstr "更改節點的型別"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "重新指定父節點為新節點"
 
 msgid "This operation requires a single selected node."
@@ -4236,11 +4236,11 @@ msgstr "在編輯器中開啟"
 msgid "Auto Expand to Selected"
 msgstr "自動展開至選定項"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "重新指定父節點後置中"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr "若啟用，重新指定父節點為新節點時，會盡可能在所選節點中心建立新節點。"
 
@@ -4279,13 +4279,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "無法將根節點貼到相同場景。"
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "貼上並設為 %s 的兄弟節點"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "貼上為 %s 的子節點"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "貼上為根節點"
 
 msgid "<Unnamed> at %s"
@@ -4300,7 +4300,7 @@ msgstr "開啟場景面板"
 msgid "Batch Rename..."
 msgstr "批次重新命名…"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "新增子節點..."
 
 msgid "Instantiate Child Scene..."
@@ -4330,7 +4330,7 @@ msgstr "複製"
 msgid "Reparent..."
 msgstr "重設父節點…"
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "重新指定父節點為新節點..."
 
 msgid "Make Scene Root"
@@ -4342,11 +4342,11 @@ msgstr "切換以唯一名稱存取"
 msgid "Delete (No Confirm)"
 msgstr "刪除（無確認）"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "新增／建立新節點。"
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr "將場景檔案實例化為節點；若不存在根節點則建立繼承場景。"
 
@@ -5006,16 +5006,16 @@ msgstr "複製系統資訊到clipboard為單行文字。"
 msgid "Main Menu"
 msgstr "主選單"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "鎖定所選的節點"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "取消鎖定所選的節點"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "為所選的節點建立群組"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "取消所選節點的群組"
 
 msgid "Pan View"
@@ -6351,8 +6351,8 @@ msgstr "匯入後腳本無效或已損毀（請檢查主控台）："
 msgid "Error running post-import script:"
 msgstr "執行匯入後腳本時發生錯誤："
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
-msgstr "您是否在 `_post_import()` 方法中傳回了繼承自 Node 的物件？"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
+msgstr "您是否在 `_post_import()` 方法中傳回了繼承自 Flowde 的物件？"
 
 msgid "Saving..."
 msgstr "正在儲存..."
@@ -6991,16 +6991,16 @@ msgstr "臨時歐拉角 %s"
 msgid "Assign..."
 msgstr "指派..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "指派節點"
 
 msgid "Copy as Text"
 msgstr "複製為文字"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "在節點樹中顯示"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "節點路徑"
 
 msgid "Invalid RID"
@@ -10870,7 +10870,7 @@ msgstr "「%s」未包含面幾何體。"
 msgid "Generate AABB"
 msgstr "產生 AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "從節點建立發射點"
 
 msgid "The geometry's faces don't contain any area."
@@ -11150,7 +11150,7 @@ msgid ""
 "parent."
 msgstr "容器子項目的位置與大小僅由其父項決定。"
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "將節點移動到指定位置"
 
 msgid "Move Vertical Guide"
@@ -11177,10 +11177,10 @@ msgstr "建立水平與垂直參考線"
 msgid "Instantiate Scene Here..."
 msgstr "在此實例化場景..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "將節點貼到此處"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "將節點移到此處"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -11261,7 +11261,7 @@ msgstr "貼上姿勢"
 msgid "Clear Guides"
 msgstr "清除參考線"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "從節點建立自訂 Bone2D"
 
 msgid "Zoom to 3.125%"
@@ -11324,13 +11324,13 @@ msgstr "使用像素吸附"
 msgid "Snap to Parent"
 msgstr "吸附至父級"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "吸附至節點錨點"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "吸附至節點側邊"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "吸附至節點中央"
 
 msgid "Snap to Other Nodes"
@@ -11355,7 +11355,7 @@ msgstr "骨架選項"
 msgid "Show Bones"
 msgstr "顯示骨骼"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "從節點建立 Bone2D 節點"
 
 msgid "Show"
@@ -11474,7 +11474,7 @@ msgstr "附加腳本"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s：不會產生回呼程式碼，請手動新增。"
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "連接至節點："
 
 msgid "Connect to Script:"
@@ -12232,7 +12232,7 @@ msgstr "其他主題"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "篩選型別清單，或建立新的自訂型別："
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "可用的節點型別："
 
 msgid "Type name is empty!"
@@ -12475,13 +12475,13 @@ msgstr "使用正規表示式"
 msgid "Substitute"
 msgstr "取代"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "節點名稱。"
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "父節點名稱（若有）。"
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "節點型別。"
 
 msgid "Current scene name."
@@ -12585,7 +12585,7 @@ msgstr "資源預載器"
 msgid "Load Resource"
 msgstr "載入資源"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "選取根節點型別"
 
 msgid "Scene name is empty."
@@ -12612,7 +12612,7 @@ msgstr "根型別："
 msgid "Other Type"
 msgstr "其他型別"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "選擇節點"
 
 msgid "Scene Name:"
@@ -12648,7 +12648,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "切換可見／隱藏"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "解鎖節點"
 
 msgid "Ungroup Children"
@@ -12663,7 +12663,7 @@ msgstr "禁用場景唯一名稱"
 msgid "(Connecting From)"
 msgstr "（連接自）"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "節點組態設定警告："
 
 msgid ""
@@ -12675,12 +12675,12 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "點擊以停用此項。"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "節點有 {num} 個連結。"
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "節點在這些群組中："
 
 msgid "Click to show signals dock."
@@ -12706,7 +12706,7 @@ msgid "Open Script:"
 msgstr "開啟腳本："
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "節點已鎖定。\n"
@@ -12740,7 +12740,7 @@ msgstr "無效的節點名稱，名稱不可包含下列字元："
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "場景中已經存在名稱為 %s 的唯一節點。"
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "重新命名節點"
 
 msgid "Rename Nodes"
@@ -12749,7 +12749,7 @@ msgstr "重新命名所選節點"
 msgid "Scene Tree (Nodes):"
 msgstr "場景樹（節點）："
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "節點組態設定警告！"
 
 msgid "Revoke"
@@ -12765,7 +12765,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "允許："
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "選擇一個節點"
 
 msgid "Show All"
@@ -13185,7 +13185,7 @@ msgstr "內建腳本："
 msgid "Select File"
 msgstr "選擇檔案"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "附加節點腳本"
 
 msgid "Line"
@@ -13426,8 +13426,8 @@ msgstr "不支援預載入內部資源。"
 msgid "Can't drop nodes without an open scene."
 msgstr "尚未開啟場景，無法放置節點。"
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
-msgstr "無法放置節點，因腳本「%s」未繼承自 Node。"
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
+msgstr "無法放置節點，因腳本「%s」未繼承自 Flowde。"
 
 msgid "Pick Color"
 msgstr "選擇顏色"
@@ -15138,7 +15138,7 @@ msgstr "下行頻寬"
 msgid "Outgoing Bandwidth"
 msgstr "上行頻寬"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "節點"
 
 msgid "Incoming RPC"
@@ -15661,7 +15661,7 @@ msgstr "移除輸出埠"
 msgid "Set VisualShader Expression"
 msgstr "設定 VisualShader 運算式"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "調整 VisualShader 節點大小"
 
 msgid "Hide Port Preview"
@@ -15691,10 +15691,10 @@ msgstr "設定參數名稱"
 msgid "Set Input Default Port"
 msgstr "設定輸入預設埠"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "設定自訂節點選項"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "將節點新增至 Visual Shader"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -15703,28 +15703,28 @@ msgstr "新增 Varying 至 Visual Shader：%s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "從 Visual Shader 移除 Varying：%s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "移動 Visual Shader 節點"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "移動並附加 Visual Shader 節點至父框格"
 
 msgid "Insert node"
 msgstr "插入節點"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "將常數節點轉換為參數"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "將參數節點轉換為常數"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "從框格中移除 Visual Shader 節點"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "刪除 Visual Shader 節點"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "刪除 Visual Shader 節點"
 
 msgid "Float Constants"
@@ -15748,13 +15748,13 @@ msgstr "啟用色調"
 msgid "Edit Preview Parameter: %s"
 msgstr "編輯預覽參數：%s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "複製 Visual Shader 節點"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "貼上 Visual Shader 節點"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "剪下 Visual Shader 節點"
 
 msgid "Visual Shader Input Type Changed"
@@ -15778,7 +15778,7 @@ msgstr "同名的 Varying 已存在。"
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "布林型別無法用於 `%s` varying 模式。"
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "將節點新增至 Visual Shader"
 
 msgid "Hold %s Key To Swap Connections"
@@ -15823,13 +15823,13 @@ msgstr "切換著色器預覽。"
 msgid "Generated Shader Code"
 msgstr "產生的著色器程式碼"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "新增節點"
 
 msgid "Clear Copy Buffer"
 msgstr "清除複製緩衝區"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "插入新節點"
 
 msgid "Insert New Reroute"
@@ -15844,7 +15844,7 @@ msgstr "從材質複製參數"
 msgid "Paste Parameters To Material"
 msgstr "貼上參數到材質"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "建立著色器節點"
 
 msgid "Create Shader Varying"
@@ -16385,7 +16385,7 @@ msgid ""
 "Returns the depth value obtained from the depth prepass in a linear space."
 msgstr "回傳在線性空間中從深度預通道取得的深度值。"
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "從深度紋理重建節點的世界位置。"
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -17848,20 +17848,20 @@ msgstr ""
 "CollisionShape2D 節點對多邊形形狀的編輯功能有限，建議改用 CollisionPolygon2D "
 "節點。"
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
-msgstr "Node A 與 Node B 必須為 PhysicsBody2D"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
+msgstr "Flowde A 與 Flowde B 必須為 PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
-msgstr "Node A 必須為 PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
+msgstr "Flowde A 必須為 PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
-msgstr "Node B 必須為 PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
+msgstr "Flowde B 必須為 PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Joint 未連結至兩個 PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
-msgstr "Node A 與 Node B 必須為不同的 PhysicsBody2D"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
+msgstr "Flowde A 與 Flowde B 必須為不同的 PhysicsBody2D"
 
 msgid ""
 "A PhysicalBone2D only works with a Skeleton2D or another PhysicalBone2D as a "
@@ -18292,20 +18292,20 @@ msgstr ""
 "非等比例縮放的 CollisionShape3D 節點可能無法按預期運作。\n"
 "請將其縮放比例統一（所有軸向相同），並改為調整形狀資源的大小。"
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
-msgstr "Node A 與 Node B 必須為 PhysicsBody3D"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
+msgstr "Flowde A 與 Flowde B 必須為 PhysicsBody3D"
 
-msgid "Node A must be a PhysicsBody3D"
-msgstr "Node A 必須為 PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
+msgstr "Flowde A 必須為 PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
-msgstr "Node B 必須為 PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
+msgstr "Flowde B 必須為 PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Joint 尚未連結至任何 PhysicsBody3D"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
-msgstr "Node A 與 Node B 必須為不同的 PhysicsBody3D"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
+msgstr "Flowde A 與 Flowde B 必須為不同的 PhysicsBody3D"
 
 msgid ""
 "PhysicsBody3D will not work correctly on a non-interpolated branch of the "
@@ -18543,7 +18543,7 @@ msgstr ""
 msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr "無障礙名稱不得為空或僅包含空白字元。"
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr "無障礙名稱不得包含節點類別名稱。"
 
 msgid "Accessibility Name must not include control character."

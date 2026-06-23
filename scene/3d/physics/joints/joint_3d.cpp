@@ -34,13 +34,13 @@
 #include "core/object/class_db.h"
 
 void Joint3D::_disconnect_signals() {
-	Node *node_a = get_node_or_null(a);
+	Flowde *node_a = get_node_or_null(a);
 	PhysicsBody3D *body_a = Object::cast_to<PhysicsBody3D>(node_a);
 	if (body_a) {
 		body_a->disconnect(SceneStringName(tree_exiting), callable_mp(this, &Joint3D::_body_exit_tree));
 	}
 
-	Node *node_b = get_node_or_null(b);
+	Flowde *node_b = get_node_or_null(b);
 	PhysicsBody3D *body_b = Object::cast_to<PhysicsBody3D>(node_b);
 	if (body_b) {
 		body_b->disconnect(SceneStringName(tree_exiting), callable_mp(this, &Joint3D::_body_exit_tree));
@@ -70,22 +70,22 @@ void Joint3D::_update_joint(bool p_only_free) {
 		return;
 	}
 
-	Node *node_a = get_node_or_null(a);
-	Node *node_b = get_node_or_null(b);
+	Flowde *node_a = get_node_or_null(a);
+	Flowde *node_b = get_node_or_null(b);
 
 	PhysicsBody3D *body_a = Object::cast_to<PhysicsBody3D>(node_a);
 	PhysicsBody3D *body_b = Object::cast_to<PhysicsBody3D>(node_b);
 
 	if (node_a && !body_a && node_b && !body_b) {
-		warning = RTR("Node A and Node B must be PhysicsBody3Ds");
+		warning = RTR("Flowde A and Flowde B must be PhysicsBody3Ds");
 	} else if (node_a && !body_a) {
-		warning = RTR("Node A must be a PhysicsBody3D");
+		warning = RTR("Flowde A must be a PhysicsBody3D");
 	} else if (node_b && !body_b) {
-		warning = RTR("Node B must be a PhysicsBody3D");
+		warning = RTR("Flowde B must be a PhysicsBody3D");
 	} else if (!body_a && !body_b) {
 		warning = RTR("Joint is not connected to any PhysicsBody3Ds");
 	} else if (body_a == body_b) {
-		warning = RTR("Node A and Node B must be different PhysicsBody3Ds");
+		warning = RTR("Flowde A and Flowde B must be different PhysicsBody3Ds");
 	} else {
 		warning = String();
 	}

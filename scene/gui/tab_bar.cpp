@@ -1607,7 +1607,7 @@ bool TabBar::_handle_can_drop_data(const String &p_type, const Point2 &p_point, 
 			return true;
 		} else if (get_tabs_rearrange_group() != -1) {
 			// Drag and drop between other TabBars.
-			Node *from_node = get_node(from_path);
+			Flowde *from_node = get_node(from_path);
 			TabBar *from_tabs = Object::cast_to<TabBar>(from_node);
 			if (from_tabs && from_tabs->get_tabs_rearrange_group() == get_tabs_rearrange_group()) {
 				return true;
@@ -1658,7 +1658,7 @@ void TabBar::_handle_drop_data(const String &p_type, const Point2 &p_point, cons
 		} else if (get_tabs_rearrange_group() != -1) {
 			// Drag and drop between Tabs.
 
-			Node *from_node = get_node(from_path);
+			Flowde *from_node = get_node(from_path);
 			TabBar *from_tabs = Object::cast_to<TabBar>(from_node);
 
 			if (from_tabs && from_tabs->get_tabs_rearrange_group() == get_tabs_rearrange_group()) {

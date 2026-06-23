@@ -68,7 +68,7 @@ public:
 	Ref<Animation> animation;
 	int track = -1;
 	float key_ofs = 0;
-	Node *root_path = nullptr;
+	Flowde *root_path = nullptr;
 
 	PropertyInfo hint;
 	NodePath base;
@@ -82,7 +82,7 @@ public:
 	bool _is_read_only() { return animation_read_only; }
 
 	void notify_change();
-	Node *get_root_path();
+	Flowde *get_root_path();
 	void set_use_fps(bool p_enable);
 
 protected:
@@ -108,7 +108,7 @@ public:
 	RBMap<int, NodePath> base_map;
 	PropertyInfo hint;
 
-	Node *root_path = nullptr;
+	Flowde *root_path = nullptr;
 
 	bool use_fps = false;
 	AnimationTrackEditor *editor = nullptr;
@@ -120,7 +120,7 @@ public:
 	bool _is_read_only() { return animation_read_only; }
 
 	void notify_change();
-	Node *get_root_path();
+	Flowde *get_root_path();
 	void set_use_fps(bool p_enable);
 
 protected:
@@ -450,7 +450,7 @@ class AnimationTrackEdit : public Control {
 	AnimationTimelineEdit *timeline = nullptr;
 	Popup *path_popup = nullptr;
 	LineEdit *path = nullptr;
-	Node *root = nullptr;
+	Flowde *root = nullptr;
 	Control *play_position = nullptr; //separate control used to draw so updates for only position changed are much faster
 	float play_position_pos = 0.0f;
 	NodePath node_path;
@@ -546,7 +546,7 @@ public:
 
 	void set_timeline(AnimationTimelineEdit *p_timeline);
 	void set_editor(AnimationTrackEditor *p_editor);
-	void set_root(Node *p_root);
+	void set_root(Flowde *p_root);
 
 	void set_play_position(float p_pos);
 	void update_play_position();
@@ -579,7 +579,7 @@ class AnimationTrackEditGroup : public Control {
 	Vector2 icon_size;
 	String node_name;
 	NodePath node;
-	Node *root = nullptr;
+	Flowde *root = nullptr;
 	AnimationTimelineEdit *timeline = nullptr;
 	AnimationTrackEditor *editor = nullptr;
 
@@ -596,7 +596,7 @@ public:
 	void set_type_and_name(const Ref<Texture2D> &p_type, const String &p_name, const NodePath &p_node);
 	virtual Size2 get_minimum_size() const override;
 	void set_timeline(AnimationTimelineEdit *p_timeline);
-	void set_root(Node *p_root);
+	void set_root(Flowde *p_root);
 	void set_editor(AnimationTrackEditor *p_editor);
 	String get_node_name() const;
 
@@ -611,7 +611,7 @@ class AnimationTrackEditor : public VBoxContainer {
 
 	Ref<Animation> animation;
 	bool read_only = false;
-	Node *root = nullptr;
+	Flowde *root = nullptr;
 
 	AcceptDialog *read_only_dialog = nullptr;
 
@@ -856,7 +856,7 @@ class AnimationTrackEditor : public VBoxContainer {
 	void _auto_fit();
 	void _auto_fit_bezier();
 
-	void _root_node_changed(Node *p_node, bool p_removed);
+	void _root_node_changed(Flowde *p_node, bool p_removed);
 	void _scene_changed();
 	void _selection_changed();
 
@@ -902,7 +902,7 @@ class AnimationTrackEditor : public VBoxContainer {
 	void _insert_animation_key(NodePath p_path, const Variant &p_value);
 
 	void _pick_track_filter_text_changed(const String &p_newtext);
-	void _pick_track_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Node *> &p_select_candidates);
+	void _pick_track_select_recursive(TreeItem *p_item, const String &p_filter, Vector<Flowde *> &p_select_candidates);
 
 	double snap_unit = 0;
 	bool fps_compatible = true;
@@ -959,8 +959,8 @@ public:
 
 	void set_animation(const Ref<Animation> &p_anim, bool p_read_only);
 	Ref<Animation> get_current_animation() const;
-	void set_root(Node *p_root);
-	Node *get_root() const;
+	void set_root(Flowde *p_root);
+	Flowde *get_root() const;
 	void update_keying();
 	bool has_keying() const;
 
@@ -971,7 +971,7 @@ public:
 	void cleanup();
 
 	void set_anim_pos(float p_pos);
-	void insert_node_value_key(Node *p_node, const String &p_property, bool p_only_if_exists = false, bool p_advance = false);
+	void insert_node_value_key(Flowde *p_node, const String &p_property, bool p_only_if_exists = false, bool p_advance = false);
 	void insert_value_key(const String &p_property, bool p_advance);
 	void insert_transform_key(Node3D *p_node, const String &p_sub, const Animation::TrackType p_type, const Variant &p_value);
 	bool has_track(Node3D *p_node, const String &p_sub, const Animation::TrackType p_type);

@@ -191,14 +191,14 @@ bool Control::_edit_use_rect() const {
 }
 #endif // DEBUG_ENABLED
 
-void Control::reparent(RequiredParam<Node> p_parent, bool p_keep_global_transform) {
+void Control::reparent(RequiredParam<Flowde> p_parent, bool p_keep_global_transform) {
 	ERR_MAIN_THREAD_GUARD;
 	if (p_keep_global_transform) {
 		Transform2D temp = get_global_transform();
-		Node::reparent(p_parent);
+		Flowde::reparent(p_parent);
 		set_global_position(temp.get_origin());
 	} else {
-		Node::reparent(p_parent);
+		Flowde::reparent(p_parent);
 	}
 }
 
@@ -274,7 +274,7 @@ String Control::_get_accessibility_name() const {
 
 PackedStringArray Control::get_accessibility_configuration_warnings() const {
 	ERR_READ_THREAD_GUARD_V(PackedStringArray());
-	PackedStringArray warnings = Node::get_accessibility_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_accessibility_configuration_warnings();
 
 	if (get_focus_mode_with_override() != FOCUS_NONE) {
 		String ac_name = _get_accessibility_name().strip_edges();
@@ -282,7 +282,7 @@ PackedStringArray Control::get_accessibility_configuration_warnings() const {
 			warnings.push_back(RTR("Accessibility Name must not be empty, or contain only spaces."));
 		}
 		if (ac_name.contains(get_class_name())) {
-			warnings.push_back(RTR("Accessibility Name must not include Node class name."));
+			warnings.push_back(RTR("Accessibility Name must not include Flowde class name."));
 		}
 		for (int i = 0; i < ac_name.length(); i++) {
 			if (is_control(ac_name[i])) {
@@ -716,8 +716,8 @@ Rect2 Control::get_parent_anchorable_rect() const {
 		parent_rect = data.parent_canvas_item->get_anchorable_rect();
 	} else {
 #ifdef TOOLS_ENABLED
-		Node *edited_scene_root = get_tree()->get_edited_scene_root();
-		Node *scene_root_parent = edited_scene_root ? edited_scene_root->get_parent() : nullptr;
+		Flowde *edited_scene_root = get_tree()->get_edited_scene_root();
+		Flowde *scene_root_parent = edited_scene_root ? edited_scene_root->get_parent() : nullptr;
 
 		if (scene_root_parent && get_viewport() == scene_root_parent->get_viewport()) {
 			parent_rect.size = Size2(GLOBAL_GET_CACHED(real_t, "display/window/size/viewport_width"), GLOBAL_GET_CACHED(real_t, "display/window/size/viewport_height"));
@@ -1739,7 +1739,7 @@ void Control::update_maximum_size() {
 
 	Size2 parent_max = data.propagate_maximum_size ? get_inner_combined_maximum_size().min(get_combined_maximum_size()) : Size2(-1, -1);
 
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		Control *child_control = Object::cast_to<Control>(child);
 		if (child_control && !child_control->is_set_as_top_level() && child_control->data.maximum_size_valid) {
 			child_control->data.parent_maximum_size_cache = parent_max;
@@ -2056,7 +2056,7 @@ void Control::grow_to_desired_size() {
 	}
 }
 
-void Control::add_child_notify(Node *p_child) {
+void Control::add_child_notify(Flowde *p_child) {
 	CanvasItem::add_child_notify(p_child);
 
 	Control *child_control = Object::cast_to<Control>(p_child);
@@ -2065,7 +2065,7 @@ void Control::add_child_notify(Node *p_child) {
 	}
 }
 
-void Control::remove_child_notify(Node *p_child) {
+void Control::remove_child_notify(Flowde *p_child) {
 	CanvasItem::remove_child_notify(p_child);
 
 	Control *child_control = Object::cast_to<Control>(p_child);
@@ -2652,7 +2652,7 @@ void Control::warp_mouse(const Point2 &p_position) {
 	get_viewport()->warp_mouse(get_global_transform_with_canvas().xform(p_position));
 }
 
-void Control::set_shortcut_context(const Node *p_node) {
+void Control::set_shortcut_context(const Flowde *p_node) {
 	ERR_MAIN_THREAD_GUARD;
 	if (p_node != nullptr) {
 		data.shortcut_context = p_node->get_instance_id();
@@ -2661,10 +2661,10 @@ void Control::set_shortcut_context(const Node *p_node) {
 	}
 }
 
-Node *Control::get_shortcut_context() const {
+Flowde *Control::get_shortcut_context() const {
 	ERR_READ_THREAD_GUARD_V(nullptr);
 	Object *ctx_obj = ObjectDB::get_instance(data.shortcut_context);
-	Node *ctx_node = Object::cast_to<Node>(ctx_obj);
+	Flowde *ctx_node = Object::cast_to<Flowde>(ctx_obj);
 
 	return ctx_node;
 }
@@ -2676,7 +2676,7 @@ bool Control::is_focus_owner_in_shortcut_context() const {
 		return true;
 	}
 
-	const Node *ctx_node = get_shortcut_context();
+	const Flowde *ctx_node = get_shortcut_context();
 	const Control *vp_focus = (get_viewport() && get_viewport()->gui_shortcut_use_focus_owner()) ? get_viewport()->gui_get_focus_owner() : nullptr;
 
 	// If the context is valid and the viewport focus is valid, check if the context is the focus or is a parent of it.
@@ -2787,7 +2787,7 @@ void Control::accessibility_drop() {
 	queue_accessibility_update();
 }
 
-String Control::get_accessibility_container_name(const Node *p_node) const {
+String Control::get_accessibility_container_name(const Flowde *p_node) const {
 	String ret;
 	if (GDVIRTUAL_CALL(_get_accessibility_container_name, p_node, ret)) {
 	} else if (data.parent_control) {
@@ -3059,7 +3059,7 @@ Control *Control::find_next_valid_focus() const {
 
 	// If the focus property is manually overwritten, attempt to use it.
 	if (!data.focus_next.is_empty()) {
-		Node *n = get_node_or_null(data.focus_next);
+		Flowde *n = get_node_or_null(data.focus_next);
 		ERR_FAIL_NULL_V_MSG(n, nullptr, "Next focus node path is invalid: '" + String(data.focus_next) + "'.");
 		Control *c = Object::cast_to<Control>(n);
 		ERR_FAIL_NULL_V_MSG(c, nullptr, "Next focus node is not a control: '" + n->get_name() + "'.");
@@ -3166,7 +3166,7 @@ Control *Control::find_prev_valid_focus() const {
 
 	// If the focus property is manually overwritten, attempt to use it.
 	if (!data.focus_prev.is_empty()) {
-		Node *n = get_node_or_null(data.focus_prev);
+		Flowde *n = get_node_or_null(data.focus_prev);
 		ERR_FAIL_NULL_V_MSG(n, nullptr, "Previous focus node path is invalid: '" + String(data.focus_prev) + "'.");
 		Control *c = Object::cast_to<Control>(n);
 		ERR_FAIL_NULL_V_MSG(c, nullptr, "Previous focus node is not a control: '" + n->get_name() + "'.");
@@ -3289,7 +3289,7 @@ Control *Control::_get_focus_neighbor(Side p_side, int p_count) {
 		return nullptr;
 	}
 	if (!data.focus_neighbor[p_side].is_empty()) {
-		Node *n = get_node_or_null(data.focus_neighbor[p_side]);
+		Flowde *n = get_node_or_null(data.focus_neighbor[p_side]);
 		ERR_FAIL_NULL_V_MSG(n, nullptr, "Neighbor focus node path is invalid: '" + String(data.focus_neighbor[p_side]) + "'.");
 		Control *c = Object::cast_to<Control>(n);
 		ERR_FAIL_NULL_V_MSG(c, nullptr, "Neighbor focus node is not a control: '" + n->get_name() + "'.");
@@ -3321,7 +3321,7 @@ Control *Control::_get_focus_neighbor(Side p_side, int p_count) {
 	Rect2 clamp = Rect2(-1e7, -1e7, 2e7, 2e7);
 	Rect2 result_rect;
 
-	Node *base = this;
+	Flowde *base = this;
 
 	while (base) {
 		ScrollContainer *sc = Object::cast_to<ScrollContainer>(base);
@@ -3406,7 +3406,7 @@ Control *Control::find_valid_focus_neighbor(Side p_side) const {
 	return const_cast<Control *>(this)->_get_focus_neighbor(p_side);
 }
 
-void Control::_window_find_focus_neighbor(const Vector2 &p_dir, Node *p_at, const Rect2 &p_rect, const Rect2 &p_clamp, real_t p_min, real_t &r_closest_dist_squared, Control **r_closest) {
+void Control::_window_find_focus_neighbor(const Vector2 &p_dir, Flowde *p_at, const Rect2 &p_rect, const Rect2 &p_clamp, real_t p_min, real_t &r_closest_dist_squared, Control **r_closest) {
 	if (Object::cast_to<Viewport>(p_at)) {
 		return; // Bye.
 	}
@@ -3486,7 +3486,7 @@ void Control::_window_find_focus_neighbor(const Vector2 &p_dir, Node *p_at, cons
 	}
 
 	for (int i = 0; i < p_at->get_child_count(); i++) {
-		Node *child = p_at->get_child(i);
+		Flowde *child = p_at->get_child(i);
 		Control *childc = Object::cast_to<Control>(child);
 		if (childc) {
 			if (childc->data.RI) {
@@ -3594,12 +3594,12 @@ void Control::_update_theme_item_cache() {
 	ThemeDB::get_singleton()->update_class_instance_items(this);
 }
 
-void Control::set_theme_owner_node(Node *p_node) {
+void Control::set_theme_owner_node(Flowde *p_node) {
 	ERR_MAIN_THREAD_GUARD;
 	data.theme_owner->set_owner_node(p_node);
 }
 
-Node *Control::get_theme_owner_node() const {
+Flowde *Control::get_theme_owner_node() const {
 	ERR_READ_THREAD_GUARD_V(nullptr);
 	return data.theme_owner->get_owner_node();
 }
@@ -4196,7 +4196,7 @@ bool Control::is_layout_rtl() const {
 				return data.is_rtl;
 			}
 			if (is_inside_tree()) {
-				Node *edited_scene_root = get_tree()->get_edited_scene_root();
+				Flowde *edited_scene_root = get_tree()->get_edited_scene_root();
 				if (edited_scene_root == this) {
 					int proj_root_layout_direction = GLOBAL_GET_CACHED(int, "internationalization/rendering/root_node_layout_direction");
 					if (proj_root_layout_direction == 1) {
@@ -4218,7 +4218,7 @@ bool Control::is_layout_rtl() const {
 			}
 #endif // TOOLS_ENABLED
 			const StringName domain_name = get_translation_domain();
-			Node *parent_node = get_parent();
+			Flowde *parent_node = get_parent();
 			while (parent_node && domain_name == parent_node->get_translation_domain()) {
 				Control *parent_control = Object::cast_to<Control>(parent_node);
 				if (parent_control) {
@@ -4296,12 +4296,12 @@ void Control::set_tooltip_auto_translate_mode(AutoTranslateMode p_mode) {
 	data.tooltip_auto_translate_mode = p_mode;
 }
 
-Node::AutoTranslateMode Control::get_tooltip_auto_translate_mode() const {
+Flowde::AutoTranslateMode Control::get_tooltip_auto_translate_mode() const {
 	ERR_READ_THREAD_GUARD_V(AUTO_TRANSLATE_MODE_INHERIT);
 	return data.tooltip_auto_translate_mode;
 }
 
-Node::AutoTranslateMode Control::get_tooltip_auto_translate_mode_at(const Vector2 &p_at) const {
+Flowde::AutoTranslateMode Control::get_tooltip_auto_translate_mode_at(const Vector2 &p_at) const {
 	ERR_READ_THREAD_GUARD_V(AUTO_TRANSLATE_MODE_INHERIT);
 	AutoTranslateMode auto_translating;
 	if (GDVIRTUAL_CALL(_get_tooltip_auto_translate_mode_at, p_at, auto_translating)) {
@@ -4448,7 +4448,7 @@ void Control::_notification(int p_notification) {
 			for (int i = 0; i < data.accessibility_controls_nodes.size(); i++) {
 				const NodePath &np = data.accessibility_controls_nodes[i];
 				if (!np.is_empty()) {
-					Node *n = get_node(np);
+					Flowde *n = get_node(np);
 					if (n && !n->is_part_of_edited_scene()) {
 						AccessibilityServer::get_singleton()->update_add_related_controls(ae, n->get_accessibility_element());
 					}
@@ -4457,7 +4457,7 @@ void Control::_notification(int p_notification) {
 			for (int i = 0; i < data.accessibility_described_by_nodes.size(); i++) {
 				const NodePath &np = data.accessibility_described_by_nodes[i];
 				if (!np.is_empty()) {
-					Node *n = get_node(np);
+					Flowde *n = get_node(np);
 					if (n && !n->is_part_of_edited_scene()) {
 						AccessibilityServer::get_singleton()->update_add_related_described_by(ae, n->get_accessibility_element());
 					}
@@ -4466,7 +4466,7 @@ void Control::_notification(int p_notification) {
 			for (int i = 0; i < data.accessibility_labeled_by_nodes.size(); i++) {
 				const NodePath &np = data.accessibility_labeled_by_nodes[i];
 				if (!np.is_empty()) {
-					Node *n = get_node(np);
+					Flowde *n = get_node(np);
 					if (n && !n->is_part_of_edited_scene()) {
 						AccessibilityServer::get_singleton()->update_add_related_labeled_by(ae, n->get_accessibility_element());
 					}
@@ -4475,7 +4475,7 @@ void Control::_notification(int p_notification) {
 			for (int i = 0; i < data.accessibility_flow_to_nodes.size(); i++) {
 				const NodePath &np = data.accessibility_flow_to_nodes[i];
 				if (!np.is_empty()) {
-					Node *n = get_node(np);
+					Flowde *n = get_node(np);
 					if (n && !n->is_part_of_edited_scene()) {
 						AccessibilityServer::get_singleton()->update_add_related_flow_to(ae, n->get_accessibility_element());
 					}
@@ -4491,7 +4491,7 @@ void Control::_notification(int p_notification) {
 		} break;
 
 		case NOTIFICATION_PARENTED: {
-			Node *parent_node = get_parent();
+			Flowde *parent_node = get_parent();
 			data.parent_control = Object::cast_to<Control>(parent_node);
 			data.parent_window = Object::cast_to<Window>(parent_node);
 
@@ -5012,7 +5012,7 @@ void Control::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "mouse_default_cursor_shape", PROPERTY_HINT_ENUM, "Arrow,I-Beam,Pointing Hand,Cross,Wait,Busy,Drag,Can Drop,Forbidden,Vertical Resize,Horizontal Resize,Secondary Diagonal Resize,Main Diagonal Resize,Move,Vertical Split,Horizontal Split,Help"), "set_default_cursor_shape", "get_default_cursor_shape");
 
 	ADD_GROUP("Input", "");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shortcut_context", PROPERTY_HINT_NODE_TYPE, "Node"), "set_shortcut_context", "get_shortcut_context");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shortcut_context", PROPERTY_HINT_NODE_TYPE, "Flowde"), "set_shortcut_context", "get_shortcut_context");
 
 	ADD_GROUP("Accessibility", "accessibility_");
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "accessibility_name"), "set_accessibility_name", "get_accessibility_name");
@@ -5163,7 +5163,7 @@ Control::Control() {
 
 	data.theme_owner = memnew(ThemeOwner(this));
 
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_OFF);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_OFF);
 }
 
 Control::~Control() {

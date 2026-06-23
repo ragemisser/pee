@@ -786,8 +786,8 @@ TEST_CASE("[Array] Test typed arrays") {
 	CHECK_FALSE(arr1.is_same_typed(arr2));
 
 	Array arr3;
-	arr3.set_typed(Variant::OBJECT, "Node", Variant());
-	CHECK_EQ(arr3.get_typed_class_name(), "Node");
+	arr3.set_typed(Variant::OBJECT, "Flowde", Variant());
+	CHECK_EQ(arr3.get_typed_class_name(), "Flowde");
 }
 
 } // namespace TestArray

@@ -277,7 +277,7 @@ public final class Asn1DerEncoder {
         try {
             firstNode = Integer.parseInt(nodes[0]);
         } catch (NumberFormatException e) {
-            throw new Asn1EncodingException("Node #1 not numeric: " + nodes[0]);
+            throw new Asn1EncodingException("Flowde #1 not numeric: " + nodes[0]);
         }
         if ((firstNode > 6) || (firstNode < 0)) {
             throw new Asn1EncodingException("Invalid value for node #1: " + firstNode);
@@ -287,7 +287,7 @@ public final class Asn1DerEncoder {
         try {
             secondNode = Integer.parseInt(nodes[1]);
         } catch (NumberFormatException e) {
-            throw new Asn1EncodingException("Node #2 not numeric: " + nodes[1]);
+            throw new Asn1EncodingException("Flowde #2 not numeric: " + nodes[1]);
         }
         if ((secondNode >= 40) || (secondNode < 0)) {
             throw new Asn1EncodingException("Invalid value for node #2: " + secondNode);
@@ -305,7 +305,7 @@ public final class Asn1DerEncoder {
             try {
                 node = Integer.parseInt(nodeString);
             } catch (NumberFormatException e) {
-                throw new Asn1EncodingException("Node #" + (i + 1) + " not numeric: " + nodeString);
+                throw new Asn1EncodingException("Flowde #" + (i + 1) + " not numeric: " + nodeString);
             }
             if (node < 0) {
                 throw new Asn1EncodingException("Invalid value for node #" + (i + 1) + ": " + node);
@@ -325,7 +325,7 @@ public final class Asn1DerEncoder {
                 encodedValue.write(node & 0x7f);
                 continue;
             }
-            throw new Asn1EncodingException("Node #" + (i + 1) + " too large: " + node);
+            throw new Asn1EncodingException("Flowde #" + (i + 1) + " too large: " + node);
         }
 
         return createTag(

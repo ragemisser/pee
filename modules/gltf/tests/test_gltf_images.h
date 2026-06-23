@@ -42,7 +42,7 @@
 #include "scene/resources/image_texture.h"
 
 namespace TestGltf {
-Ref<Texture2D> _check_texture(Node *p_node) {
+Ref<Texture2D> _check_texture(Flowde *p_node) {
 	MeshInstance3D *mesh_instance_3d = Object::cast_to<MeshInstance3D>(p_node->find_child("mesh_instance_3d", true, true));
 	Ref<StandardMaterial3D> material = mesh_instance_3d->get_active_material(0);
 	Ref<Texture2D> texture = material->get_texture(StandardMaterial3D::TextureParam::TEXTURE_ALBEDO);
@@ -60,7 +60,7 @@ Ref<Texture2D> _check_texture(Node *p_node) {
 	return texture;
 }
 
-TEST_CASE("[SceneTree][Node] Export GLTF with external texture and import") {
+TEST_CASE("[SceneTree][Flowde] Export GLTF with external texture and import") {
 	init("gltf_images_external_export_import");
 	// Setup scene.
 	Ref<ImageTexture> original_texture;
@@ -97,7 +97,7 @@ TEST_CASE("[SceneTree][Node] Export GLTF with external texture and import") {
 	original_mesh_instance->set_owner(SceneTree::get_singleton()->get_root());
 
 	// Convert to GLFT and back.
-	Node *loaded = gltf_export_then_import(original, "gltf_images");
+	Flowde *loaded = gltf_export_then_import(original, "gltf_images");
 	_check_texture(loaded);
 
 	memdelete(original_mesh_instance);
@@ -105,14 +105,14 @@ TEST_CASE("[SceneTree][Node] Export GLTF with external texture and import") {
 	memdelete(loaded);
 }
 
-TEST_CASE("[SceneTree][Node][Editor] Import GLTF from .godot/imported folder with external texture") {
+TEST_CASE("[SceneTree][Flowde][Editor] Import GLTF from .godot/imported folder with external texture") {
 	init("gltf_placed_in_dot_godot_imported", "res://.godot/imported");
 
 	EditorFileSystem *efs = memnew(EditorFileSystem);
 	EditorResourcePreview *erp = memnew(EditorResourcePreview);
 
 	ERR_PRINT_OFF
-	Node *loaded = gltf_import("res://.godot/imported/gltf_placed_in_dot_godot_imported.gltf");
+	Flowde *loaded = gltf_import("res://.godot/imported/gltf_placed_in_dot_godot_imported.gltf");
 	Ref<Texture2D> texture = _check_texture(loaded);
 	ERR_PRINT_ON
 
@@ -124,7 +124,7 @@ TEST_CASE("[SceneTree][Node][Editor] Import GLTF from .godot/imported folder wit
 	memdelete(efs);
 }
 
-TEST_CASE("[SceneTree][Node][Editor] Import GLTF with texture outside of res:// directory") {
+TEST_CASE("[SceneTree][Flowde][Editor] Import GLTF with texture outside of res:// directory") {
 	init("gltf_pointing_to_texture_outside_of_res_folder", "res://");
 
 	EditorFileSystem *efs = memnew(EditorFileSystem);
@@ -139,7 +139,7 @@ TEST_CASE("[SceneTree][Node][Editor] Import GLTF with texture outside of res:// 
 	output->close();
 
 	ERR_PRINT_OFF
-	Node *loaded = gltf_import("res://gltf_pointing_to_texture_outside_of_res_folder.gltf");
+	Flowde *loaded = gltf_import("res://gltf_pointing_to_texture_outside_of_res_folder.gltf");
 	Ref<Texture2D> texture = _check_texture(loaded);
 	ERR_PRINT_ON
 
@@ -151,14 +151,14 @@ TEST_CASE("[SceneTree][Node][Editor] Import GLTF with texture outside of res:// 
 	memdelete(efs);
 }
 
-TEST_CASE("[SceneTree][Node][Editor] Import GLTF with embedded texture, check how it got extracted") {
+TEST_CASE("[SceneTree][Flowde][Editor] Import GLTF with embedded texture, check how it got extracted") {
 	init("gltf_embedded_texture", "res://");
 
 	EditorFileSystem *efs = memnew(EditorFileSystem);
 	EditorResourcePreview *erp = memnew(EditorResourcePreview);
 
 	ERR_PRINT_OFF
-	Node *loaded = gltf_import("res://embedded_texture.gltf");
+	Flowde *loaded = gltf_import("res://embedded_texture.gltf");
 	Ref<Texture2D> texture = _check_texture(loaded);
 	ERR_PRINT_ON
 

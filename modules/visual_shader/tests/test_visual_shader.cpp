@@ -49,7 +49,7 @@ TEST_CASE("[SceneTree][VisualShader] Object creation and parameter") {
 }
 
 TEST_CASE("[SceneTree][VisualShader] Testing VisualShaderNodes") {
-	SUBCASE("Testing Node Creation") {
+	SUBCASE("Testing Flowde Creation") {
 		Ref<VisualShader> vs = memnew(VisualShader);
 		CHECK(vs.is_valid());
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Timer" inherits="Node" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Timer" inherits="Flowde" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		A countdown timer.
 	</brief_description>
@@ -76,10 +76,10 @@
 	</signals>
 	<constants>
 		<constant name="TIMER_PROCESS_PHYSICS" value="0" enum="TimerProcessCallback">
-			Update the timer every physics process frame (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+			Update the timer every physics process frame (see [constant Flowde.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
 		</constant>
 		<constant name="TIMER_PROCESS_IDLE" value="1" enum="TimerProcessCallback">
-			Update the timer every process (rendered) frame (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
+			Update the timer every process (rendered) frame (see [constant Flowde.NOTIFICATION_INTERNAL_PROCESS]).
 		</constant>
 	</constants>
 </class>

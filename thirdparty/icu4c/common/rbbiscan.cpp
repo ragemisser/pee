@@ -173,7 +173,7 @@ RBBIRuleScanner::~RBBIRuleScanner() {
     }
 
 
-    // Node Stack.
+    // Flowde Stack.
     //   Normally has one entry, which is the entire parse tree for the rules.
     //   If errors occurred, there may be additional subtrees left on the stack.
     while (fNodeStackPtr > 0) {
@@ -385,7 +385,7 @@ UBool RBBIRuleScanner::doParseActions(int32_t action)
         if (*destRules != nullptr) {
             // This is not the first rule encountered.
             // OR previous stuff  (from *destRules)
-            // with the current rule expression (on the Node Stack)
+            // with the current rule expression (on the Flowde Stack)
             //  with the resulting OR expression going to *destRules
             //
                        thisRule    = fNodeStack[fNodeStackPtr];

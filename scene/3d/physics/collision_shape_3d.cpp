@@ -41,7 +41,7 @@
 #include "scene/resources/3d/world_boundary_shape_3d.h"
 
 void CollisionShape3D::make_convex_from_siblings() {
-	Node *p = get_parent();
+	Flowde *p = get_parent();
 	if (!p) {
 		return;
 	}
@@ -49,7 +49,7 @@ void CollisionShape3D::make_convex_from_siblings() {
 	Vector<Vector3> vertices;
 
 	for (int i = 0; i < p->get_child_count(); i++) {
-		Node *n = p->get_child(i);
+		Flowde *n = p->get_child(i);
 		MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(n);
 		if (mi) {
 			Ref<Mesh> m = mi->get_mesh();

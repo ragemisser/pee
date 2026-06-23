@@ -268,8 +268,8 @@ protected:
 	virtual void _pre_popup() override;
 	virtual Rect2i _popup_adjust_rect() const override;
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 	virtual void _input_from_window(const Ref<InputEvent> &p_event) override;
 
 	virtual void _popup_base(const Rect2i &p_bounds = Rect2i()) override;

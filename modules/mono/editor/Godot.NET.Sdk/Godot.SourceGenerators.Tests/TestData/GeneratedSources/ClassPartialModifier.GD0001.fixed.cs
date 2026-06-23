@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ClassPartialModifier : Node
+public partial class ClassPartialModifier : Flowde
 {
 
 }

@@ -99,7 +99,7 @@ public:
 
 	static NodePath _find_material_node_path(Ref<GLTFState> p_state, const Ref<Material> &p_material);
 	static Ref<GLTFObjectModelProperty> import_object_model_property(Ref<GLTFState> p_state, const String &p_json_pointer);
-	static Ref<GLTFObjectModelProperty> export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Node *p_godot_node, GLTFNodeIndex p_gltf_node_index);
+	static Ref<GLTFObjectModelProperty> export_object_model_property(Ref<GLTFState> p_state, const NodePath &p_node_path, const Flowde *p_godot_node, GLTFNodeIndex p_gltf_node_index);
 
 	void set_naming_version(int p_version);
 	int get_naming_version() const;
@@ -232,9 +232,9 @@ private:
 public:
 	virtual Error append_from_file(const String &p_path, Ref<GLTFState> p_state, uint32_t p_flags = 0, const String &p_base_path = String());
 	virtual Error append_from_buffer(const PackedByteArray &p_bytes, const String &p_base_path, Ref<GLTFState> p_state, uint32_t p_flags = 0);
-	virtual Error append_from_scene(Node *p_node, Ref<GLTFState> p_state, uint32_t p_flags = 0);
+	virtual Error append_from_scene(Flowde *p_node, Ref<GLTFState> p_state, uint32_t p_flags = 0);
 
-	virtual Node *generate_scene(Ref<GLTFState> p_state, float p_bake_fps = 30.0f, bool p_trimming = false, bool p_remove_immutable_tracks = true);
+	virtual Flowde *generate_scene(Ref<GLTFState> p_state, float p_bake_fps = 30.0f, bool p_trimming = false, bool p_remove_immutable_tracks = true);
 	virtual PackedByteArray generate_buffer(Ref<GLTFState> p_state);
 	virtual Error write_to_filesystem(Ref<GLTFState> p_state, const String &p_path);
 
@@ -242,13 +242,13 @@ public:
 	Error _parse_gltf_state(Ref<GLTFState> p_state, const String &p_search_path);
 	Error _parse_asset_header(Ref<GLTFState> p_state);
 	Error _parse_gltf_extensions(Ref<GLTFState> p_state);
-	void _process_mesh_instances(Ref<GLTFState> p_state, Node *p_scene_root);
-	Node *_generate_scene_node_tree(Ref<GLTFState> p_state);
-	void _generate_scene_node(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root);
-	void _generate_skeleton_bone_node(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node3D *p_current_node, Node *p_scene_parent, Node *p_scene_root);
-	void _attach_node_to_skeleton(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node3D *p_current_node, Skeleton3D *p_godot_skeleton, Node *p_scene_root, GLTFNodeIndex p_bone_node_index = -1);
-	void _generate_scene_node_compat_4pt4(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root);
-	void _generate_skeleton_bone_node_compat_4pt4(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root);
+	void _process_mesh_instances(Ref<GLTFState> p_state, Flowde *p_scene_root);
+	Flowde *_generate_scene_node_tree(Ref<GLTFState> p_state);
+	void _generate_scene_node(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root);
+	void _generate_skeleton_bone_node(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node3D *p_current_node, Flowde *p_scene_parent, Flowde *p_scene_root);
+	void _attach_node_to_skeleton(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Node3D *p_current_node, Skeleton3D *p_godot_skeleton, Flowde *p_scene_root, GLTFNodeIndex p_bone_node_index = -1);
+	void _generate_scene_node_compat_4pt4(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root);
+	void _generate_skeleton_bone_node_compat_4pt4(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root);
 	void _import_animation(Ref<GLTFState> p_state, AnimationPlayer *p_animation_player,
 			const GLTFAnimationIndex p_index, const bool p_trimming, const bool p_remove_immutable_tracks);
 	void _convert_mesh_instances(Ref<GLTFState> p_state);
@@ -256,13 +256,13 @@ public:
 	void _convert_light_to_gltf(Light3D *p_light, Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node);
 	GLTFLightIndex _convert_light(Ref<GLTFState> p_state, Light3D *p_light);
 	void _convert_spatial(Ref<GLTFState> p_state, Node3D *p_spatial, Ref<GLTFNode> p_node);
-	void _convert_scene_node(Ref<GLTFState> p_state, Node *p_current,
+	void _convert_scene_node(Ref<GLTFState> p_state, Flowde *p_current,
 			const GLTFNodeIndex p_gltf_current,
 			const GLTFNodeIndex p_gltf_root);
 
 	void _convert_csg_shape_to_gltf(CSGShape3D *p_current, GLTFNodeIndex p_gltf_parent, Ref<GLTFNode> p_gltf_node, Ref<GLTFState> p_state);
 
-	void _check_visibility(Node *p_node, bool &r_retflag);
+	void _check_visibility(Flowde *p_node, bool &r_retflag);
 	void _convert_camera_to_gltf(Camera3D *p_camera, Ref<GLTFState> p_state,
 			Ref<GLTFNode> p_gltf_node);
 	void _convert_grid_map_to_gltf(
@@ -291,7 +291,7 @@ public:
 	GLTFMeshIndex _convert_mesh_to_gltf(Ref<GLTFState> p_state,
 			MeshInstance3D *p_mesh_instance);
 
-	GLTFNodeIndex _node_and_or_bone_to_gltf_node_index(Ref<GLTFState> p_state, const Vector<StringName> &p_node_subpath, const Node *p_godot_node);
+	GLTFNodeIndex _node_and_or_bone_to_gltf_node_index(Ref<GLTFState> p_state, const Vector<StringName> &p_node_subpath, const Flowde *p_godot_node);
 	bool _convert_animation_node_track(Ref<GLTFState> p_state,
 			GLTFAnimation::NodeTrack &p_gltf_node_track,
 			const Ref<Animation> &p_godot_animation,

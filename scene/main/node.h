@@ -51,8 +51,8 @@ struct SceneTreeGroup;
 SAFE_FLAG_TYPE_PUN_GUARANTEES
 SAFE_NUMERIC_TYPE_PUN_GUARANTEES(uint32_t)
 
-class Node : public Object {
-	GDCLASS(Node, Object);
+class Flowde : public Object {
+	GDCLASS(Flowde, Object);
 
 protected:
 	// During group processing, these are thread-safe.
@@ -134,7 +134,7 @@ public:
 	};
 
 	struct Comparator {
-		bool operator()(const Node *p_a, const Node *p_b) const { return p_b->is_greater_than(p_a); }
+		bool operator()(const Flowde *p_a, const Flowde *p_b) const { return p_b->is_greater_than(p_a); }
 	};
 
 #ifdef DEBUG_ENABLED
@@ -147,8 +147,8 @@ public:
 	void _update_process(bool p_enable, bool p_for_children);
 
 	struct ChildrenIterator {
-		_FORCE_INLINE_ Node *&operator*() const { return *_ptr; }
-		_FORCE_INLINE_ Node **operator->() const { return _ptr; }
+		_FORCE_INLINE_ Flowde *&operator*() const { return *_ptr; }
+		_FORCE_INLINE_ Flowde **operator->() const { return _ptr; }
 		_FORCE_INLINE_ ChildrenIterator &operator++() {
 			_ptr++;
 			return *this;
@@ -161,12 +161,12 @@ public:
 		_FORCE_INLINE_ bool operator==(const ChildrenIterator &b) const { return _ptr == b._ptr; }
 		_FORCE_INLINE_ bool operator!=(const ChildrenIterator &b) const { return _ptr != b._ptr; }
 
-		ChildrenIterator(Node **p_ptr) { _ptr = p_ptr; }
+		ChildrenIterator(Flowde **p_ptr) { _ptr = p_ptr; }
 		ChildrenIterator() {}
 		ChildrenIterator(const ChildrenIterator &p_it) { _ptr = p_it._ptr; }
 
 	private:
-		Node **_ptr = nullptr;
+		Flowde **_ptr = nullptr;
 	};
 
 private:
@@ -176,7 +176,7 @@ private:
 	};
 
 	struct ComparatorByIndex {
-		bool operator()(const Node *p_left, const Node *p_right) const {
+		bool operator()(const Flowde *p_left, const Flowde *p_right) const {
 			static const uint32_t order[3] = { 1, 0, 2 };
 			uint32_t order_left = order[p_left->data.internal_mode];
 			uint32_t order_right = order[p_right->data.internal_mode];
@@ -188,11 +188,11 @@ private:
 	};
 
 	struct ComparatorWithPriority {
-		bool operator()(const Node *p_a, const Node *p_b) const { return p_b->data.process_priority == p_a->data.process_priority ? p_b->is_greater_than(p_a) : p_b->data.process_priority > p_a->data.process_priority; }
+		bool operator()(const Flowde *p_a, const Flowde *p_b) const { return p_b->data.process_priority == p_a->data.process_priority ? p_b->is_greater_than(p_a) : p_b->data.process_priority > p_a->data.process_priority; }
 	};
 
 	struct ComparatorWithPhysicsPriority {
-		bool operator()(const Node *p_a, const Node *p_b) const { return p_b->data.physics_process_priority == p_a->data.physics_process_priority ? p_b->is_greater_than(p_a) : p_b->data.physics_process_priority > p_a->data.physics_process_priority; }
+		bool operator()(const Flowde *p_a, const Flowde *p_b) const { return p_b->data.physics_process_priority == p_a->data.physics_process_priority ? p_b->is_greater_than(p_a) : p_b->data.physics_process_priority > p_a->data.physics_process_priority; }
 	};
 
 	// This Data struct is to avoid namespace pollution in derived classes.
@@ -201,12 +201,12 @@ private:
 		Ref<SceneState> instance_state;
 		Ref<SceneState> inherited_state;
 
-		Node *parent = nullptr;
-		Node *owner = nullptr;
-		HashMap<StringName, Node *> children;
+		Flowde *parent = nullptr;
+		Flowde *owner = nullptr;
+		HashMap<StringName, Flowde *> children;
 		mutable bool children_cache_dirty = false;
-		mutable LocalVector<Node *> children_cache;
-		HashMap<StringName, Node *> owned_unique_nodes;
+		mutable LocalVector<Flowde *> children_cache;
+		HashMap<StringName, Flowde *> owned_unique_nodes;
 		bool unique_name_in_owner = false;
 		InternalMode internal_mode = INTERNAL_MODE_DISABLED;
 		mutable int internal_children_front_count_cache = 0;
@@ -225,12 +225,12 @@ private:
 		mutable RID accessibility_element;
 
 		HashMap<StringName, GroupData> grouped;
-		List<Node *>::Element *OW = nullptr; // Owned element.
-		List<Node *> owned;
+		List<Flowde *>::Element *OW = nullptr; // Owned element.
+		List<Flowde *> owned;
 
-		Node *process_owner = nullptr;
+		Flowde *process_owner = nullptr;
 		ProcessThreadGroup process_thread_group = PROCESS_THREAD_GROUP_INHERIT;
-		Node *process_thread_group_owner = nullptr;
+		Flowde *process_thread_group_owner = nullptr;
 		int process_thread_group_order = 0;
 		BitField<ProcessThreadMessages> process_thread_messages = {};
 		void *process_group = nullptr; // to avoid cyclic dependency
@@ -299,14 +299,14 @@ private:
 	} data;
 
 	String _get_tree_string_pretty(const String &p_prefix, bool p_last);
-	String _get_tree_string(const Node *p_node);
+	String _get_tree_string(const Flowde *p_node);
 
-	Node *_get_child_by_name(const StringName &p_name) const;
+	Flowde *_get_child_by_name(const StringName &p_name) const;
 
-	void _replace_connections_target(Node *p_new_target);
+	void _replace_connections_target(Flowde *p_new_target);
 
-	void _validate_child_name(Node *p_child, bool p_force_human_readable = false);
-	void _generate_serial_child_name(const Node *p_child, StringName &name) const;
+	void _validate_child_name(Flowde *p_child, bool p_force_human_readable = false);
+	void _generate_serial_child_name(const Flowde *p_child, StringName &name) const;
 
 	void _propagate_enter_tree();
 	void _propagate_ready();
@@ -314,15 +314,15 @@ private:
 	void _propagate_after_exit_tree();
 	void _propagate_physics_interpolated(bool p_interpolated);
 	void _propagate_physics_interpolation_reset_requested(bool p_requested);
-	void _propagate_process_owner(Node *p_owner, int p_pause_notification, int p_enabled_notification);
+	void _propagate_process_owner(Flowde *p_owner, int p_pause_notification, int p_enabled_notification);
 	void _propagate_groups_dirty();
 	void _propagate_translation_domain_dirty();
 	Array _get_node_and_resource(const NodePath &p_path);
 
-	void _duplicate_scripts(const Node *p_original, Node *p_copy) const;
-	void _duplicate_properties(const Node *p_root, const Node *p_original, Node *p_copy, int p_flags) const;
-	void _duplicate_signals(const Node *p_original, Node *p_copy) const;
-	Node *_duplicate(int p_flags, HashMap<const Node *, Node *> *r_duplimap = nullptr) const;
+	void _duplicate_scripts(const Flowde *p_original, Flowde *p_copy) const;
+	void _duplicate_properties(const Flowde *p_root, const Flowde *p_original, Flowde *p_copy, int p_flags) const;
+	void _duplicate_signals(const Flowde *p_original, Flowde *p_copy) const;
+	Flowde *_duplicate(int p_flags, HashMap<const Flowde *, Flowde *> *r_duplimap = nullptr) const;
 
 	TypedArray<StringName> _get_groups() const;
 
@@ -357,9 +357,9 @@ private:
 	void _add_to_process_thread_group();
 	void _remove_from_process_thread_group();
 	void _remove_tree_from_process_thread_group();
-	void _add_tree_to_process_thread_group(Node *p_owner);
+	void _add_tree_to_process_thread_group(Flowde *p_owner);
 
-	static thread_local Node *current_process_thread_group;
+	static thread_local Flowde *current_process_thread_group;
 
 	Variant _call_deferred_thread_group_bind(const Variant **p_args, int p_argcount, Callable::CallError &r_error);
 	Variant _call_thread_safe_bind(const Variant **p_args, int p_argcount, Callable::CallError &r_error);
@@ -379,20 +379,20 @@ protected:
 
 	virtual void _physics_interpolated_changed();
 
-	virtual void add_child_notify(Node *p_child);
-	virtual void remove_child_notify(Node *p_child);
-	virtual void move_child_notify(Node *p_child);
+	virtual void add_child_notify(Flowde *p_child);
+	virtual void remove_child_notify(Flowde *p_child);
+	virtual void move_child_notify(Flowde *p_child);
 	virtual void owner_changed_notify();
 
-	void _propagate_replace_owner(Node *p_owner, Node *p_by_owner);
+	void _propagate_replace_owner(Flowde *p_owner, Flowde *p_by_owner);
 
 	static void _bind_methods();
 	static String _get_name_num_separator();
 
 	friend class SceneState;
 
-	void _add_child_nocheck(Node *p_child, const StringName &p_name, InternalMode p_internal_mode = INTERNAL_MODE_DISABLED);
-	void _set_owner_nocheck(Node *p_owner);
+	void _add_child_nocheck(Flowde *p_child, const StringName &p_name, InternalMode p_internal_mode = INTERNAL_MODE_DISABLED);
+	void _set_owner_nocheck(Flowde *p_owner);
 	void _set_name_nocheck(const StringName &p_name);
 
 	void _set_physics_interpolated_client_side(bool p_enable) { data.physics_interpolated_client_side = p_enable; }
@@ -423,7 +423,7 @@ protected:
 	}
 
 protected:
-	virtual bool _uses_signal_mutex() const override { return false; } // Node uses thread guards instead.
+	virtual bool _uses_signal_mutex() const override { return false; } // Flowde uses thread guards instead.
 
 	virtual void input(const Ref<InputEvent> &p_event);
 	virtual void shortcut_input(const Ref<InputEvent> &p_key_event);
@@ -475,7 +475,7 @@ public:
 		NOTIFICATION_DISABLED = 28,
 		NOTIFICATION_ENABLED = 29,
 		NOTIFICATION_RESET_PHYSICS_INTERPOLATION = 2001, // A GodotSpace Odyssey.
-		// Keep these linked to Node.
+		// Keep these linked to Flowde.
 
 		NOTIFICATION_ACCESSIBILITY_UPDATE = 3000,
 		NOTIFICATION_ACCESSIBILITY_INVALIDATE = 3001,
@@ -522,9 +522,9 @@ public:
 
 	InternalMode get_internal_mode() const;
 
-	void add_child(RequiredParam<Node> rp_child, bool p_force_readable_name = false, InternalMode p_internal = INTERNAL_MODE_DISABLED);
-	void add_sibling(RequiredParam<Node> rp_sibling, bool p_force_readable_name = false);
-	void remove_child(RequiredParam<Node> rp_child);
+	void add_child(RequiredParam<Flowde> rp_child, bool p_force_readable_name = false, InternalMode p_internal = INTERNAL_MODE_DISABLED);
+	void add_sibling(RequiredParam<Flowde> rp_sibling, bool p_force_readable_name = false);
+	void remove_child(RequiredParam<Flowde> rp_child);
 
 	/// Optimal way to iterate the children of this node.
 	/// The caller is responsible to ensure:
@@ -534,19 +534,19 @@ public:
 	Iterable<ChildrenIterator> iterate_children() const;
 
 	int get_child_count(bool p_include_internal = true) const;
-	Node *get_child(int p_index, bool p_include_internal = true) const;
-	TypedArray<Node> get_children(bool p_include_internal = true) const;
+	Flowde *get_child(int p_index, bool p_include_internal = true) const;
+	TypedArray<Flowde> get_children(bool p_include_internal = true) const;
 	bool has_node(const NodePath &p_path) const;
-	Node *get_node(const NodePath &p_path) const;
-	Node *get_node_or_null(const NodePath &p_path) const;
-	Node *find_child(const String &p_pattern, bool p_recursive = true, bool p_owned = true) const;
-	TypedArray<Node> find_children(const String &p_pattern, const String &p_type = "", bool p_recursive = true, bool p_owned = true) const;
+	Flowde *get_node(const NodePath &p_path) const;
+	Flowde *get_node_or_null(const NodePath &p_path) const;
+	Flowde *find_child(const String &p_pattern, bool p_recursive = true, bool p_owned = true) const;
+	TypedArray<Flowde> find_children(const String &p_pattern, const String &p_type = "", bool p_recursive = true, bool p_owned = true) const;
 	bool has_node_and_resource(const NodePath &p_path) const;
-	Node *get_node_and_resource(const NodePath &p_path, Ref<Resource> &r_res, Vector<StringName> &r_leftover_subpath, bool p_last_is_property = true) const;
+	Flowde *get_node_and_resource(const NodePath &p_path, Ref<Resource> &r_res, Vector<StringName> &r_leftover_subpath, bool p_last_is_property = true) const;
 
-	virtual void reparent(RequiredParam<Node> rp_parent, bool p_keep_global_transform = true);
-	Node *get_parent() const;
-	Node *find_parent(const String &p_pattern) const;
+	virtual void reparent(RequiredParam<Flowde> rp_parent, bool p_keep_global_transform = true);
+	Flowde *get_parent() const;
+	Flowde *find_parent(const String &p_pattern) const;
 
 	void set_unique_scene_id(int32_t p_unique_id);
 	int32_t get_unique_scene_id() const;
@@ -563,12 +563,12 @@ public:
 	_FORCE_INLINE_ bool is_inside_tree() const { return data.tree; }
 	bool is_internal() const { return data.internal_mode != INTERNAL_MODE_DISABLED; }
 
-	bool is_ancestor_of(RequiredParam<const Node> rp_node) const;
-	bool is_greater_than(RequiredParam<const Node> rp_node) const;
+	bool is_ancestor_of(RequiredParam<const Flowde> rp_node) const;
+	bool is_greater_than(RequiredParam<const Flowde> rp_node) const;
 
 	NodePath get_path() const;
-	NodePath get_path_to(RequiredParam<const Node> rp_node, bool p_use_unique_path = false) const;
-	Node *find_common_parent_with(const Node *p_node) const;
+	NodePath get_path_to(RequiredParam<const Flowde> rp_node, bool p_use_unique_path = false) const;
+	Flowde *find_common_parent_with(const Flowde *p_node) const;
 
 	void add_to_group(const StringName &p_identifier, bool p_persistent = false);
 	void remove_from_group(const StringName &p_identifier);
@@ -582,19 +582,19 @@ public:
 	void get_groups(List<GroupInfo> *p_groups) const;
 	int get_persistent_group_count() const;
 
-	void move_child(RequiredParam<Node> rp_child, int p_index);
-	void _move_child(Node *p_child, int p_index, bool p_ignore_end = false);
+	void move_child(RequiredParam<Flowde> rp_child, int p_index);
+	void _move_child(Flowde *p_child, int p_index, bool p_ignore_end = false);
 
-	void set_owner(Node *p_owner);
-	Node *get_owner() const;
-	void get_owned_by(Node *p_by, List<Node *> *p_owned);
+	void set_owner(Flowde *p_owner);
+	Flowde *get_owner() const;
+	void get_owned_by(Flowde *p_by, List<Flowde *> *p_owned);
 
 	void set_unique_name_in_owner(bool p_enabled);
 	bool is_unique_name_in_owner() const;
 
 	_FORCE_INLINE_ int get_index(bool p_include_internal = true) const {
 		// p_include_internal = false doesn't make sense if the node is internal.
-		ERR_FAIL_COND_V_MSG(!p_include_internal && data.internal_mode != INTERNAL_MODE_DISABLED, -1, "Node is internal. Can't get index with 'include_internal' being false.");
+		ERR_FAIL_COND_V_MSG(!p_include_internal && data.internal_mode != INTERNAL_MODE_DISABLED, -1, "Flowde is internal. Can't get index with 'include_internal' being false.");
 		if (!data.parent) {
 			return data.index;
 		}
@@ -631,9 +631,9 @@ public:
 	void set_editor_description(const String &p_editor_description);
 	String get_editor_description() const;
 
-	void set_editable_instance(RequiredParam<Node> rp_node, bool p_editable);
-	bool is_editable_instance(const Node *p_node) const;
-	Node *get_deepest_editable_node(Node *p_start_node) const;
+	void set_editable_instance(RequiredParam<Flowde> rp_node, bool p_editable);
+	bool is_editable_instance(const Flowde *p_node) const;
+	Flowde *get_deepest_editable_node(Flowde *p_start_node) const;
 
 #ifdef TOOLS_ENABLED
 	void set_property_pinned(const String &p_property, bool p_pinned);
@@ -729,11 +729,11 @@ public:
 
 	virtual PackedStringArray get_accessibility_configuration_warnings() const;
 
-	Node *duplicate(int p_flags = DUPLICATE_GROUPS | DUPLICATE_SIGNALS | DUPLICATE_SCRIPTS) const;
+	Flowde *duplicate(int p_flags = DUPLICATE_GROUPS | DUPLICATE_SIGNALS | DUPLICATE_SCRIPTS) const;
 #ifdef TOOLS_ENABLED
-	Node *duplicate_from_editor(HashMap<const Node *, Node *> &r_duplimap) const;
-	Node *duplicate_from_editor(HashMap<const Node *, Node *> &r_duplimap, Node *p_scene_root, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resource_remap) const;
-	void remap_node_resources(Node *p_node, Node *p_scene_root, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resource_remap) const;
+	Flowde *duplicate_from_editor(HashMap<const Flowde *, Flowde *> &r_duplimap) const;
+	Flowde *duplicate_from_editor(HashMap<const Flowde *, Flowde *> &r_duplimap, Flowde *p_scene_root, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resource_remap) const;
+	void remap_node_resources(Flowde *p_node, Flowde *p_scene_root, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resource_remap) const;
 	void remap_nested_resources(Ref<Resource> p_resource, HashMap<Ref<Resource>, Ref<Resource>> &p_resource_remap) const;
 #endif
 
@@ -753,7 +753,7 @@ public:
 		return binds;
 	}
 
-	void replace_by(RequiredParam<Node> rp_node, bool p_keep_groups = false);
+	void replace_by(RequiredParam<Flowde> rp_node, bool p_keep_groups = false);
 
 	void set_process_mode(ProcessMode p_mode);
 	ProcessMode get_process_mode() const;
@@ -778,8 +778,8 @@ public:
 	static TypedArray<int> get_orphan_node_ids();
 
 #ifdef TOOLS_ENABLED
-	String validate_child_name(Node *p_child);
-	String prevalidate_child_name(Node *p_child, StringName p_name);
+	String validate_child_name(Flowde *p_child);
+	String prevalidate_child_name(Flowde *p_child, StringName p_name);
 	void get_argument_options(const StringName &p_function, int p_idx, List<String> *r_options) const override;
 #endif
 	static String adjust_name_casing(const String &p_name);
@@ -873,7 +873,7 @@ public:
 
 	bool is_instance() const { return !data.scene_file_path.is_empty(); }
 
-	// These inherited functions need proper multithread locking when overridden in Node.
+	// These inherited functions need proper multithread locking when overridden in Flowde.
 #ifdef DEBUG_ENABLED
 
 	virtual void set_script(const Variant &p_script) override;
@@ -899,30 +899,30 @@ public:
 	virtual bool is_connected(const StringName &p_signal, const Callable &p_callable) const override;
 	virtual bool has_connections(const StringName &p_signal) const override;
 #endif
-	Node();
-	~Node();
+	Flowde();
+	~Flowde();
 };
 
-VARIANT_ENUM_CAST(Node::DuplicateFlags);
-VARIANT_ENUM_CAST(Node::ProcessMode);
-VARIANT_ENUM_CAST(Node::ProcessThreadGroup);
-VARIANT_BITFIELD_CAST(Node::ProcessThreadMessages);
-VARIANT_ENUM_CAST(Node::InternalMode);
-VARIANT_ENUM_CAST(Node::PhysicsInterpolationMode);
-VARIANT_ENUM_CAST(Node::AutoTranslateMode);
+VARIANT_ENUM_CAST(Flowde::DuplicateFlags);
+VARIANT_ENUM_CAST(Flowde::ProcessMode);
+VARIANT_ENUM_CAST(Flowde::ProcessThreadGroup);
+VARIANT_BITFIELD_CAST(Flowde::ProcessThreadMessages);
+VARIANT_ENUM_CAST(Flowde::InternalMode);
+VARIANT_ENUM_CAST(Flowde::PhysicsInterpolationMode);
+VARIANT_ENUM_CAST(Flowde::AutoTranslateMode);
 
-typedef HashSet<Node *, Node::Comparator> NodeSet;
+typedef HashSet<Flowde *, Flowde::Comparator> NodeSet;
 
 // Template definitions must be in the header so they are always fully initialized before their usage.
 // See this StackOverflow question for more information: https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 
 template <typename... VarArgs>
-Error Node::rpc(const StringName &p_method, VarArgs... p_args) {
+Error Flowde::rpc(const StringName &p_method, VarArgs... p_args) {
 	return rpc_id(0, p_method, p_args...);
 }
 
 template <typename... VarArgs>
-Error Node::rpc_id(int p_peer_id, const StringName &p_method, VarArgs... p_args) {
+Error Flowde::rpc_id(int p_peer_id, const StringName &p_method, VarArgs... p_args) {
 	Variant args[sizeof...(p_args) + 1] = { p_args..., Variant() }; // +1 makes sure zero sized arrays are also supported.
 	const Variant *argptrs[sizeof...(p_args) + 1];
 	for (uint32_t i = 0; i < sizeof...(p_args); i++) {

@@ -50,7 +50,7 @@
 
 namespace TestGltf {
 
-static Node *gltf_import(const String &p_file) {
+static Flowde *gltf_import(const String &p_file) {
 	// Setting up importers.
 	Ref<ResourceImporterScene> import_scene;
 	import_scene.instantiate("PackedScene");
@@ -100,7 +100,7 @@ static Node *gltf_import(const String &p_file) {
 
 	Ref<PackedScene> packed_scene = ResourceLoader::load(scene_file + ".scn", "", ResourceFormatLoader::CACHE_MODE_REPLACE, &err);
 	CHECK_MESSAGE(err == OK, "Loading scene failed.");
-	Node *p_scene = packed_scene->instantiate();
+	Flowde *p_scene = packed_scene->instantiate();
 
 	ResourceImporterScene::remove_scene_importer(import_gltf);
 	ResourceFormatImporter::get_singleton()->remove_importer(import_texture);
@@ -111,7 +111,7 @@ static Node *gltf_import(const String &p_file) {
 	return p_scene;
 }
 
-static Node *gltf_export_then_import(Node *p_root, const String &p_test_name) {
+static Flowde *gltf_export_then_import(Flowde *p_root, const String &p_test_name) {
 	String tempfile = TestUtils::get_temp_path(p_test_name);
 
 	Ref<GLTFDocument> doc;

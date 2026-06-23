@@ -34,7 +34,7 @@
 #include "core/templates/hash_map.h"
 #include "core/templates/local_vector.h"
 
-class Node;
+class Flowde;
 class EditorFileSystemDirectory;
 class PackedScene;
 
@@ -49,7 +49,7 @@ class SceneCache {
 	String current_loaded_owner;
 	LocalVector<String> script_path_queue;
 
-	HashMap<String, Node *> cache;
+	HashMap<String, Flowde *> cache;
 
 	void _get_owner_paths(EditorFileSystemDirectory *p_dir, const String &p_script_path, LocalVector<String> &r_owner_paths);
 	void _finalize_scene_load();
@@ -61,5 +61,5 @@ public:
 	void request_load(const String &p_script_path);
 	void unload(const String &p_script_path);
 
-	Node *get(const String &p_script_path);
+	Flowde *get(const String &p_script_path);
 };

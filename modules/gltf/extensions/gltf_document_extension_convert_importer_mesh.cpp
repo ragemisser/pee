@@ -73,15 +73,15 @@ MeshInstance3D *GLTFDocumentExtensionConvertImporterMesh::convert_importer_mesh_
 	return mesh_instance_node_3d;
 }
 
-Error GLTFDocumentExtensionConvertImporterMesh::import_post(Ref<GLTFState> p_state, Node *p_root) {
+Error GLTFDocumentExtensionConvertImporterMesh::import_post(Ref<GLTFState> p_state, Flowde *p_root) {
 	ERR_FAIL_NULL_V(p_root, ERR_INVALID_PARAMETER);
 	ERR_FAIL_COND_V(p_state.is_null(), ERR_INVALID_PARAMETER);
-	List<Node *> queue;
+	List<Flowde *> queue;
 	queue.push_back(p_root);
-	List<Node *> delete_queue;
+	List<Flowde *> delete_queue;
 	while (!queue.is_empty()) {
-		List<Node *>::Element *E = queue.front();
-		Node *node = E->get();
+		List<Flowde *>::Element *E = queue.front();
+		Flowde *node = E->get();
 		ImporterMeshInstance3D *importer_mesh_3d = Object::cast_to<ImporterMeshInstance3D>(node);
 		if (importer_mesh_3d) {
 			delete_queue.push_back(importer_mesh_3d);
@@ -94,8 +94,8 @@ Error GLTFDocumentExtensionConvertImporterMesh::import_post(Ref<GLTFState> p_sta
 		queue.pop_front();
 	}
 	while (!delete_queue.is_empty()) {
-		List<Node *>::Element *E = delete_queue.front();
-		Node *node = E->get();
+		List<Flowde *>::Element *E = delete_queue.front();
+		Flowde *node = E->get();
 		memdelete(node);
 		delete_queue.pop_front();
 	}

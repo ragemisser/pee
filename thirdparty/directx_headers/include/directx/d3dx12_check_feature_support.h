@@ -862,7 +862,7 @@ FEATURE_SUPPORT_GET(BOOL, m_dOptions4, Native16BitShaderOpsSupported);
 // 24: Serialization
 FEATURE_SUPPORT_GET_NODE_INDEXED(D3D12_HEAP_SERIALIZATION_TIER, m_dSerialization, HeapSerializationTier);
 
-// 25: Cross Node
+// 25: Cross Flowde
 // CrossNodeSharingTier handled in D3D12Options
 FEATURE_SUPPORT_GET_NAME(BOOL, m_dCrossNode, AtomicShaderInstructions, CrossNodeAtomicShaderInstructions);
 

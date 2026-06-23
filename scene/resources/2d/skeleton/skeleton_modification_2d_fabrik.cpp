@@ -309,7 +309,7 @@ void SkeletonModification2DFABRIK::update_target_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(target_node)) {
-				Node *node = stack->skeleton->get_node(target_node);
+				Flowde *node = stack->skeleton->get_node(target_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update target cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -333,7 +333,7 @@ void SkeletonModification2DFABRIK::fabrik_joint_update_bone2d_cache(int p_joint_
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(fabrik_data_chain[p_joint_idx].bone2d_node)) {
-				Node *node = stack->skeleton->get_node(fabrik_data_chain[p_joint_idx].bone2d_node);
+				Flowde *node = stack->skeleton->get_node(fabrik_data_chain[p_joint_idx].bone2d_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update FABRIK joint " + itos(p_joint_idx) + " Bone2D cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),

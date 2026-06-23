@@ -55,11 +55,11 @@ void EditorSelectionHistory::cleanup_history() {
 				// If the node is a MultiNodeEdit node, examine it and see if anything is missing from it.
 				Ref<MultiNodeEdit> multi_node_edit = history[i].path[j].ref;
 				if (multi_node_edit.is_valid()) {
-					Node *root = EditorNode::get_singleton()->get_edited_scene();
+					Flowde *root = EditorNode::get_singleton()->get_edited_scene();
 					if (root) {
 						for (int k = 0; k < multi_node_edit->get_node_count(); k++) {
 							NodePath np = multi_node_edit->get_node(k);
-							Node *multi_node_selected_node = root->get_node_or_null(np);
+							Flowde *multi_node_selected_node = root->get_node_or_null(np);
 							if (!multi_node_selected_node) {
 								fail = true;
 								break;
@@ -77,13 +77,13 @@ void EditorSelectionHistory::cleanup_history() {
 			if (!fail) {
 				Object *obj = ObjectDB::get_instance(history[i].path[j].object);
 				if (obj) {
-					Node *n = Object::cast_to<Node>(obj);
+					Flowde *n = Object::cast_to<Flowde>(obj);
 					if (n && n->is_inside_tree()) {
-						// Node valid and inside tree - object still alive.
+						// Flowde valid and inside tree - object still alive.
 						continue;
 					}
 					if (!n) {
-						// Node possibly still alive.
+						// Flowde possibly still alive.
 						continue;
 					}
 				} // Else: object not valid - not alive.
@@ -337,9 +337,9 @@ Dictionary EditorData::get_scene_editor_states_with_selection(int p_idx) const {
 	Dictionary states = es.editor_states;
 
 	TypedArray<NodePath> selected_paths;
-	Node *root = es.root;
+	Flowde *root = es.root;
 	if (root) {
-		for (Node *node : es.selection) {
+		for (Flowde *node : es.selection) {
 			selected_paths.push_back(root->get_path_to(node));
 		}
 		states["$selected_nodes"] = selected_paths;
@@ -397,13 +397,13 @@ void EditorData::load_editor_plugin_states_from_config(const Ref<ConfigFile> &p_
 	}
 	es.editor_states = states;
 
-	const Node *root = es.root;
+	const Flowde *root = es.root;
 	if (root && p_config_file->has_section_key("editor_states", "$selected_nodes")) {
 		TypedArray<NodePath> node_paths = p_config_file->get_value("editor_states", "$selected_nodes");
-		List<Node *> nodes;
+		List<Flowde *> nodes;
 
 		for (const Variant &np : node_paths) {
-			Node *node = root->get_node_or_null(np);
+			Flowde *node = root->get_node_or_null(np);
 			if (node) {
 				nodes.push_back(node);
 			}
@@ -578,7 +578,7 @@ Variant EditorData::instantiate_custom_type(const String &p_type, const String &
 				ERR_FAIL_COND_V(!v, Variant());
 				Object *ob = v;
 
-				Node *n = Object::cast_to<Node>(ob);
+				Flowde *n = Object::cast_to<Flowde>(ob);
 				if (n) {
 					n->set_name(p_type);
 				}
@@ -701,7 +701,7 @@ void EditorData::remove_scene(int p_idx) {
 	edited_scene.remove_at(p_idx);
 }
 
-void EditorData::set_scene_root(int p_idx, Node *p_root) {
+void EditorData::set_scene_root(int p_idx, Flowde *p_root) {
 	ERR_FAIL_INDEX(p_idx, edited_scene.size());
 	EditedScene &scene_info = edited_scene.write[p_idx];
 
@@ -719,7 +719,7 @@ void EditorData::set_scene_root(int p_idx, Node *p_root) {
 	}
 }
 
-bool EditorData::_find_updated_instances(Node *p_root, Node *p_node, HashSet<String> &checked_paths) {
+bool EditorData::_find_updated_instances(Flowde *p_root, Flowde *p_node, HashSet<String> &checked_paths) {
 	Ref<SceneState> ss;
 
 	if (p_node == p_root) {
@@ -785,21 +785,21 @@ bool EditorData::reload_scene_from_memory(int p_idx, bool p_mark_unsaved) {
 	Error err = pscene->pack(edited_scene[p_idx].root);
 	ERR_FAIL_COND_V(err != OK, false);
 	ep.step(TTR("Updating scene..."), 1);
-	Node *new_scene = pscene->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
+	Flowde *new_scene = pscene->instantiate(PackedScene::GEN_EDIT_STATE_MAIN);
 	ERR_FAIL_NULL_V(new_scene, false);
 
 	// Transfer selection.
-	List<Node *> new_selection;
-	for (const Node *E : edited_scene.write[p_idx].selection) {
+	List<Flowde *> new_selection;
+	for (const Flowde *E : edited_scene.write[p_idx].selection) {
 		NodePath p = edited_scene[p_idx].root->get_path_to(E);
-		Node *new_node = new_scene->get_node(p);
+		Flowde *new_node = new_scene->get_node(p);
 		if (new_node) {
 			new_selection.push_back(new_node);
 		}
 	}
 
 	new_scene->set_scene_file_path(edited_scene[p_idx].root->get_scene_file_path());
-	Node *old_root = edited_scene[p_idx].root;
+	Flowde *old_root = edited_scene[p_idx].root;
 	EditorNode::get_singleton()->set_edited_scene(new_scene);
 	memdelete(old_root);
 	edited_scene.write[p_idx].selection = new_selection;
@@ -838,7 +838,7 @@ void EditorData::set_edited_scene(int p_idx) {
 	current_edited_scene = p_idx;
 }
 
-Node *EditorData::get_edited_scene_root(int p_idx) {
+Flowde *EditorData::get_edited_scene_root(int p_idx) {
 	if (p_idx < 0) {
 		ERR_FAIL_INDEX_V(current_edited_scene, edited_scene.size(), nullptr);
 		return edited_scene[current_edited_scene].root;
@@ -848,7 +848,7 @@ Node *EditorData::get_edited_scene_root(int p_idx) {
 	}
 }
 
-void EditorData::set_edited_scene_root(Node *p_root) {
+void EditorData::set_edited_scene_root(Flowde *p_root) {
 	set_scene_root(current_edited_scene, p_root);
 }
 
@@ -908,7 +908,7 @@ Ref<Script> EditorData::get_scene_root_script(int p_idx) const {
 	}
 	Ref<Script> s = edited_scene[p_idx].root->get_script();
 	if (s.is_null() && edited_scene[p_idx].root->get_child_count()) {
-		Node *n = edited_scene[p_idx].root->get_child(0);
+		Flowde *n = edited_scene[p_idx].root->get_child(0);
 		while (s.is_null() && n && !n->is_instance()) {
 			s = n->get_script();
 			n = n->get_parent();
@@ -1005,7 +1005,7 @@ Dictionary EditorData::restore_edited_scene_state(EditorSelection *p_selection, 
 	p_history->history = es.history_stored;
 
 	p_selection->clear();
-	for (Node *E : es.selection) {
+	for (Flowde *E : es.selection) {
 		p_selection->add_node(E);
 	}
 	set_editor_plugin_states(es.editor_states);
@@ -1266,7 +1266,7 @@ EditorData::~EditorData() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void EditorSelection::_node_removed(Node *p_node) {
+void EditorSelection::_node_removed(Flowde *p_node) {
 	ERR_FAIL_NULL(p_node);
 	ObjectID nid = p_node->get_instance_id();
 	if (!selection.has(nid)) {
@@ -1280,7 +1280,7 @@ void EditorSelection::_node_removed(Node *p_node) {
 	node_list_changed = true;
 }
 
-void EditorSelection::add_node(Node *p_node) {
+void EditorSelection::add_node(Flowde *p_node) {
 	ERR_FAIL_NULL(p_node);
 	ERR_FAIL_COND(!p_node->is_inside_tree());
 	ObjectID nid = p_node->get_instance_id();
@@ -1302,7 +1302,7 @@ void EditorSelection::add_node(Node *p_node) {
 	p_node->connect(SceneStringName(tree_exiting), callable_mp(this, &EditorSelection::_node_removed).bind(p_node), CONNECT_ONE_SHOT);
 }
 
-void EditorSelection::remove_node(Node *p_node) {
+void EditorSelection::remove_node(Flowde *p_node) {
 	ERR_FAIL_NULL(p_node);
 	ObjectID nid = p_node->get_instance_id();
 	if (!selection.has(nid)) {
@@ -1318,7 +1318,7 @@ void EditorSelection::remove_node(Node *p_node) {
 	p_node->disconnect(SceneStringName(tree_exiting), callable_mp(this, &EditorSelection::_node_removed));
 }
 
-bool EditorSelection::is_selected(Node *p_node) const {
+bool EditorSelection::is_selected(Flowde *p_node) const {
 	if (!p_node) {
 		return false;
 	}
@@ -1352,7 +1352,7 @@ void EditorSelection::_update_node_list() {
 	// However, if the parent is already selected, then adding this node is redundant as
 	// it is included with the parent, so skip it.
 	for (const KeyValue<ObjectID, Object *> &E : selection) {
-		Node *parent = ObjectDB::get_instance<Node>(E.key);
+		Flowde *parent = ObjectDB::get_instance<Flowde>(E.key);
 		if (!parent) {
 			continue;
 		}
@@ -1397,11 +1397,11 @@ void EditorSelection::_emit_change() {
 	emitted = false;
 }
 
-TypedArray<Node> EditorSelection::get_top_selected_nodes() {
-	TypedArray<Node> ret;
+TypedArray<Flowde> EditorSelection::get_top_selected_nodes() {
+	TypedArray<Flowde> ret;
 
 	for (const ObjectID &nid : top_selected_node_list) {
-		Node *node = ObjectDB::get_instance<Node>(nid);
+		Flowde *node = ObjectDB::get_instance<Flowde>(nid);
 		if (node) {
 			ret.push_back(node);
 		}
@@ -1410,11 +1410,11 @@ TypedArray<Node> EditorSelection::get_top_selected_nodes() {
 	return ret;
 }
 
-TypedArray<Node> EditorSelection::get_selected_nodes() {
-	TypedArray<Node> ret;
+TypedArray<Flowde> EditorSelection::get_selected_nodes() {
+	TypedArray<Flowde> ret;
 
 	for (const KeyValue<ObjectID, Object *> &E : selection) {
-		Node *node = ObjectDB::get_instance<Node>(E.key);
+		Flowde *node = ObjectDB::get_instance<Flowde>(E.key);
 		if (node) {
 			ret.push_back(node);
 		}
@@ -1423,15 +1423,15 @@ TypedArray<Node> EditorSelection::get_selected_nodes() {
 	return ret;
 }
 
-List<Node *> EditorSelection::get_top_selected_node_list() {
+List<Flowde *> EditorSelection::get_top_selected_node_list() {
 	if (changed) {
 		update();
 	} else {
 		_update_node_list();
 	}
-	List<Node *> node_list;
+	List<Flowde *> node_list;
 	for (const ObjectID &nid : top_selected_node_list) {
-		Node *node = ObjectDB::get_instance<Node>(nid);
+		Flowde *node = ObjectDB::get_instance<Flowde>(nid);
 		if (node) {
 			node_list.push_back(node);
 		}
@@ -1439,10 +1439,10 @@ List<Node *> EditorSelection::get_top_selected_node_list() {
 	return node_list;
 }
 
-List<Node *> EditorSelection::get_full_selected_node_list() {
-	List<Node *> node_list;
+List<Flowde *> EditorSelection::get_full_selected_node_list() {
+	List<Flowde *> node_list;
 	for (const KeyValue<ObjectID, Object *> &E : selection) {
-		Node *node = ObjectDB::get_instance<Node>(E.key);
+		Flowde *node = ObjectDB::get_instance<Flowde>(E.key);
 		if (node) {
 			node_list.push_back(node);
 		}
@@ -1453,7 +1453,7 @@ List<Node *> EditorSelection::get_full_selected_node_list() {
 
 void EditorSelection::clear() {
 	while (!selection.is_empty()) {
-		Node *node = ObjectDB::get_instance<Node>(selection.begin()->key);
+		Flowde *node = ObjectDB::get_instance<Flowde>(selection.begin()->key);
 		if (node) {
 			remove_node(node);
 		}

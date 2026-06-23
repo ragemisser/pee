@@ -53,7 +53,7 @@ class WindowWrapper : public MarginContainer {
 	bool override_close_request = false;
 
 	Rect2 _get_default_window_rect() const;
-	Node *_get_wrapped_control_parent() const;
+	Flowde *_get_wrapped_control_parent() const;
 
 	void _set_window_enabled_with_rect(bool p_visible, const Rect2 p_rect);
 	void _set_window_rect(const Rect2 p_rect);

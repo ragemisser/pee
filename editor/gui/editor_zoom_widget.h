@@ -64,5 +64,5 @@ public:
 	// It's best to setup simultaneously, so min < max can be checked easily.
 	void setup_zoom_limits(float p_min, float p_max);
 	// Sets the shortcut context for the zoom buttons. By default their context is this EditorZoomWidget control.
-	void set_shortcut_context(Node *p_node) const;
+	void set_shortcut_context(Flowde *p_node) const;
 };

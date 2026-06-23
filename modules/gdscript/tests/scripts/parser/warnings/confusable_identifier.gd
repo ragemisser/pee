@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func test():
 	var port = 0 # Only latin characters.

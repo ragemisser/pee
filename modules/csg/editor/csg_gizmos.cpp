@@ -44,7 +44,7 @@
 #include "scene/gui/menu_button.h"
 #include "scene/main/scene_tree.h"
 
-void CSGShapeEditor::_node_removed(Node *p_node) {
+void CSGShapeEditor::_node_removed(Flowde *p_node) {
 	if (p_node == node) {
 		node = nullptr;
 		options->hide();
@@ -103,7 +103,7 @@ void CSGShapeEditor::_create_baked_mesh_instance() {
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 	ur->create_action(TTR("Create baked CSGShape3D Mesh Instance"));
 
-	Node *owner = get_tree()->get_edited_scene_root();
+	Flowde *owner = get_tree()->get_edited_scene_root();
 
 	MeshInstance3D *mi = memnew(MeshInstance3D);
 	mi->set_mesh(mesh);
@@ -136,7 +136,7 @@ void CSGShapeEditor::_create_baked_collision_shape() {
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 	ur->create_action(TTR("Create baked CSGShape3D Collision Shape"));
 
-	Node *owner = get_tree()->get_edited_scene_root();
+	Flowde *owner = get_tree()->get_edited_scene_root();
 
 	CollisionShape3D *cshape = memnew(CollisionShape3D);
 	cshape->set_shape(shape);

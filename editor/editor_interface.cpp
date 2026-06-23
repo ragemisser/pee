@@ -111,7 +111,7 @@ EditorUndoRedoManager *EditorInterface::get_editor_undo_redo() const {
 	return EditorUndoRedoManager::get_singleton();
 }
 
-AABB EditorInterface::_calculate_aabb_for_scene(Node *p_node, AABB &p_scene_aabb) {
+AABB EditorInterface::_calculate_aabb_for_scene(Flowde *p_node, AABB &p_scene_aabb) {
 	MeshInstance3D *mesh_node = Object::cast_to<MeshInstance3D>(p_node);
 	if (mesh_node && mesh_node->get_mesh().is_valid()) {
 		Transform3D accum_xform;
@@ -237,7 +237,7 @@ Vector<Ref<Texture2D>> EditorInterface::make_mesh_previews(const Vector<Ref<Mesh
 	return textures;
 }
 
-void EditorInterface::make_scene_preview(const String &p_path, Node *p_scene, int p_preview_size) {
+void EditorInterface::make_scene_preview(const String &p_path, Flowde *p_scene, int p_preview_size) {
 	if (!Engine::get_singleton()->is_editor_hint() || !DisplayServer::get_singleton()->window_can_draw()) {
 		return;
 	}
@@ -371,7 +371,7 @@ void EditorInterface::make_scene_preview(const String &p_path, Node *p_scene, in
 	EditorFileSystem::get_singleton()->emit_signal(SNAME("filesystem_changed"));
 }
 
-void EditorInterface::add_root_node(Node *p_node) {
+void EditorInterface::add_root_node(Flowde *p_node) {
 	if (EditorNode::get_singleton()->get_edited_scene()) {
 		ERR_PRINT("EditorInterface::add_root_node: The current scene already has a root node.");
 		return;
@@ -494,7 +494,7 @@ void EditorInterface::set_current_feature_profile(const String &p_profile_name) 
 
 // Editor dialogs.
 
-void EditorInterface::popup_node_selector(const Callable &p_callback, const TypedArray<StringName> &p_valid_types, Node *p_current_value) {
+void EditorInterface::popup_node_selector(const Callable &p_callback, const TypedArray<StringName> &p_valid_types, Flowde *p_current_value) {
 	if (!node_selector) {
 		node_selector = memnew(SceneTreeDialog);
 		get_base_control()->add_child(node_selector);
@@ -678,7 +678,7 @@ EditorInspector *EditorInterface::get_inspector() const {
 	return InspectorDock::get_inspector_singleton();
 }
 
-// Object/Resource/Node editing.
+// Object/Resource/Flowde editing.
 
 void EditorInterface::inspect_object(Object *p_obj, const String &p_for_property, bool p_inspector_only) {
 	EditorNode::get_singleton()->push_item(p_obj, p_for_property, p_inspector_only);
@@ -688,7 +688,7 @@ void EditorInterface::edit_resource(const Ref<Resource> &p_resource) {
 	EditorNode::get_singleton()->edit_resource(p_resource);
 }
 
-void EditorInterface::edit_node(Node *p_node) {
+void EditorInterface::edit_node(Flowde *p_node) {
 	EditorNode::get_singleton()->edit_node(p_node);
 }
 
@@ -721,7 +721,7 @@ bool EditorInterface::is_object_edited(Object *p_object) const {
 	return p_object->is_edited();
 }
 
-Node *EditorInterface::get_edited_scene_root() const {
+Flowde *EditorInterface::get_edited_scene_root() const {
 	return EditorNode::get_singleton()->get_edited_scene();
 }
 
@@ -747,8 +747,8 @@ PackedStringArray EditorInterface::get_unsaved_scenes() const {
 	return ret;
 }
 
-TypedArray<Node> EditorInterface::get_open_scene_roots() const {
-	TypedArray<Node> ret;
+TypedArray<Flowde> EditorInterface::get_open_scene_roots() const {
+	TypedArray<Flowde> ret;
 	Vector<EditorData::EditedScene> scenes = EditorNode::get_editor_data().get_edited_scenes();
 
 	for (EditorData::EditedScene &edited_scene : scenes) {
@@ -910,7 +910,7 @@ void EditorInterface::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("get_inspector"), &EditorInterface::get_inspector);
 
-	// Object/Resource/Node editing.
+	// Object/Resource/Flowde editing.
 
 	ClassDB::bind_method(D_METHOD("inspect_object", "object", "for_property", "inspector_only"), &EditorInterface::inspect_object, DEFVAL(String()), DEFVAL(false));
 

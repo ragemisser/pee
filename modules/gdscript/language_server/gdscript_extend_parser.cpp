@@ -147,7 +147,7 @@ void ExtendGDScriptParser::update_document_links(const String &p_code) {
 	}
 }
 
-LSP::Range ExtendGDScriptParser::range_of_node(const GDScriptParser::Node *p_node) const {
+LSP::Range ExtendGDScriptParser::range_of_node(const GDScriptParser::Flowde *p_node) const {
 	GodotPosition start(p_node->start_line, p_node->start_column);
 	GodotPosition end(p_node->end_line, p_node->end_column);
 	return GodotRange(start, end).to_lsp();
@@ -219,7 +219,7 @@ void ExtendGDScriptParser::parse_class_symbol(const GDScriptParser::ClassNode *p
 				symbol.uri = uri;
 				symbol.script_path = path;
 
-				if (m.variable->initializer && m.variable->initializer->type == GDScriptParser::Node::LAMBDA) {
+				if (m.variable->initializer && m.variable->initializer->type == GDScriptParser::Flowde::LAMBDA) {
 					GDScriptParser::LambdaNode *lambda_node = (GDScriptParser::LambdaNode *)m.variable->initializer;
 					LSP::DocumentSymbol lambda;
 					parse_function_symbol(lambda_node->function, lambda);
@@ -227,13 +227,13 @@ void ExtendGDScriptParser::parse_class_symbol(const GDScriptParser::ClassNode *p
 					symbol.children.append_array(lambda.children);
 				}
 
-				if (m.variable->getter && m.variable->getter->type == GDScriptParser::Node::FUNCTION) {
+				if (m.variable->getter && m.variable->getter->type == GDScriptParser::Flowde::FUNCTION) {
 					LSP::DocumentSymbol get_symbol;
 					parse_function_symbol(m.variable->getter, get_symbol);
 					get_symbol.local = true;
 					symbol.children.push_back(get_symbol);
 				}
-				if (m.variable->setter && m.variable->setter->type == GDScriptParser::Node::FUNCTION) {
+				if (m.variable->setter && m.variable->setter->type == GDScriptParser::Flowde::FUNCTION) {
 					LSP::DocumentSymbol set_symbol;
 					parse_function_symbol(m.variable->setter, set_symbol);
 					set_symbol.local = true;
@@ -451,11 +451,11 @@ void ExtendGDScriptParser::parse_function_symbol(const GDScriptParser::FunctionN
 
 	List<GDScriptParser::SuiteNode *> function_nodes;
 
-	List<GDScriptParser::Node *> node_stack;
+	List<GDScriptParser::Flowde *> node_stack;
 	node_stack.push_back(p_func->body);
 
 	while (!node_stack.is_empty()) {
-		GDScriptParser::Node *node = node_stack.front()->get();
+		GDScriptParser::Flowde *node = node_stack.front()->get();
 		node_stack.pop_front();
 
 		switch (node->type) {
@@ -517,7 +517,7 @@ void ExtendGDScriptParser::parse_function_symbol(const GDScriptParser::FunctionN
 				case SuiteNode::Local::VARIABLE:
 					symbol.range = range_of_node(local.variable);
 					symbol.selectionRange = range_of_node(local.variable->identifier);
-					if (local.variable->initializer && local.variable->initializer->type == GDScriptParser::Node::LAMBDA) {
+					if (local.variable->initializer && local.variable->initializer->type == GDScriptParser::Flowde::LAMBDA) {
 						GDScriptParser::LambdaNode *lambda_node = (GDScriptParser::LambdaNode *)local.variable->initializer;
 						LSP::DocumentSymbol lambda;
 						parse_function_symbol(lambda_node->function, lambda);

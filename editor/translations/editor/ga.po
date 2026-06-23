@@ -685,7 +685,7 @@ msgstr "Cuir %s leis"
 msgid "Load..."
 msgstr "Luchtaigh..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Bog Pointe Nód BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -700,7 +700,7 @@ msgstr "Ní féidir an cineál nód seo a úsáid. Ní cheadaítear ach nóid bh
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Ní féidir an cineál nód seo a úsáid. Ní cheadaítear ach nóid fréimhe."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Cuir Pointe Nód Leis"
 
 msgid "Add Animation Point"
@@ -757,7 +757,7 @@ msgstr "Uasmhéid"
 msgid "Value"
 msgstr "Luach"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Oscail Nód Beochana"
 
 msgid "Triangle already exists."
@@ -832,10 +832,10 @@ msgstr "Cuir Scagairí in Eagar"
 msgid "Output node can't be added to the blend tree."
 msgstr "Ní féidir nód aschuir a chur leis an gcrann cumaisc."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Cuir Nód le BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nód Bogtha"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -852,10 +852,10 @@ msgstr "Nóid Dícheangailte"
 msgid "Set Animation"
 msgstr "Socraigh Beochan"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Scrios Nód"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Scrios Nód(anna)"
 
 msgid "Toggle Filter On/Off"
@@ -895,10 +895,10 @@ msgstr "Scrúdaigh Rianta Scagtha:"
 msgid "Edit Filtered Tracks:"
 msgstr "Cuir Rianta Scagtha in Eagar:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nód Athainmnithe"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Cuir Nód Leis..."
 
 msgid "Enable Filtering"
@@ -1322,7 +1322,7 @@ msgstr "Ar Aghaidh (Scuaine Uathoibríoch):"
 msgid "Reconnect Transition"
 msgstr "Athcheangail an Aistriú"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Bog Nód"
 
 msgid "Transition exists!"
@@ -1346,7 +1346,7 @@ msgstr "Seinn/Taisteal go %s"
 msgid "Edit %s"
 msgstr "Cuir %s in eagar"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Cuir Nód agus Aistriú Leis"
 
 msgid "Transition already exists!"
@@ -1367,7 +1367,7 @@ msgstr "Taisteal"
 msgid "No playback resource set at path: %s."
 msgstr "Níl aon acmhainn athsheinm socraithe ag an gcosán: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nód Bainte"
 
 msgid "Transition Removed"
@@ -1885,7 +1885,7 @@ msgstr "Beochan Cuir Eochracha ATHSHOCRAITHE Leis"
 msgid "Bake Animation as Linear Keys"
 msgstr "Bácáil Beochan mar Eochracha Líneacha"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Cruthaigh Nód"
 
 msgid ""
@@ -2842,7 +2842,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Sábháil an Brainse mar Radharc..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Cóipeáil Conair nód"
 
 msgid "Expand/Collapse Branch"
@@ -4264,13 +4264,13 @@ msgstr "Ní féidir an oibríocht seo a dhéanamh ar fhréamh an chrainn."
 msgid "Detach Script"
 msgstr "Script Scoite"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Bog Nód sa Tuismitheoir"
 
 msgid "Move Nodes in Parent"
 msgstr "Bog Nóid i dTuismitheoir"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Nód(anna) Dúblacha"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4278,7 +4278,7 @@ msgstr ""
 "Ní féidir nóid a athshealbhú i radhairc oidhreacht, ní féidir ord nóid a "
 "athrú."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr ""
 "Caithfidh nód a bheith páirteach sa radharc eagarthóireachta le bheith "
 "fréamhaithe."
@@ -4390,7 +4390,7 @@ msgstr "Díchumasaigh Ainm(neacha) Uathúla Radhairc"
 msgid "New Scene Root"
 msgstr "Fréamh an Radhairc Nua"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Cruthaigh Nód Fréimhe:"
 
 msgid "Favorite Nodes"
@@ -4408,7 +4408,7 @@ msgstr "Radharc 3T"
 msgid "User Interface"
 msgstr "Comhéadan Úsáideora"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Nód Eile"
 
 msgid "Paste From Clipboard"
@@ -4423,7 +4423,7 @@ msgstr "Ní féidir oibriú ar nóid a fhaigheann an radharc reatha le hoidhreac
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Ní féidir an oibríocht seo a dhéanamh ar radhairc mheandaracha."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Nód Reparent"
 
 msgid "Attach Script"
@@ -4435,16 +4435,16 @@ msgstr "Socraigh Scáthóir"
 msgid "Toggle Editable Children"
 msgstr "Scoránaigh Leanaí Ineagarthóireachta"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Gearr Nód(anna)"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Bain Nód(anna)"
 
 msgid "Change type of node(s)"
 msgstr "Athraigh cineál nód(anna)"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Tuismitheoir ar ais chuig Nód Nua"
 
 msgid "This operation requires a single selected node."
@@ -4502,14 +4502,14 @@ msgstr "Oscail san Eagarthóir"
 msgid "Auto Expand to Selected"
 msgstr "Leathnaigh go hUathoibríoch go Roghnaithe"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Nód Ionaid ar Reparent"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
-"Má chumasaítear é, cruthóidh Reparent to New Node an nód nua i lár na nóid "
+"Má chumasaítear é, cruthóidh Reparent to New Flowde an nód nua i lár na nóid "
 "roghnaithe, más féidir."
 
 msgid "Hide Filtered Out Parents"
@@ -4547,7 +4547,7 @@ msgstr "Scag de réir Grúpa"
 
 msgid ""
 "Selects all Nodes belonging to the given group.\n"
-"If empty, selects any Node belonging to any group.\n"
+"If empty, selects any Flowde belonging to any group.\n"
 "Inserts \"group:\". You can also use the shorthand \"g:\"."
 msgstr ""
 "Roghnaíonn sé na nóid uile a bhaineann leis an ngrúpa tugtha.\n"
@@ -4566,13 +4566,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Ní féidir nód fréimhe a ghreamú isteach sa radharc céanna."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Greamaigh nód(anna) mar shiblíní de %s"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Greamaigh nód(anna) mar pháiste de %s"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Greamaigh nód(anna) mar fhréamh"
 
 msgid "<Unnamed> at %s"
@@ -4587,7 +4587,7 @@ msgstr "Oscail Duga Radharc"
 msgid "Batch Rename..."
 msgstr "Baisc Athainmnigh..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Cuir Nód Linbh Leis..."
 
 msgid "Instantiate Child Scene..."
@@ -4617,7 +4617,7 @@ msgstr "Dúblach"
 msgid "Reparent..."
 msgstr "Tuismitheoir..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Reparent go Nód Nua..."
 
 msgid "Make Scene Root"
@@ -4629,11 +4629,11 @@ msgstr "Scoránaigh Rochtain mar Ainm Uathúil"
 msgid "Delete (No Confirm)"
 msgstr "Scrios (Gan Deimhnigh)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Cuir/Cruthaigh Nód Nua."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Instantiate comhad radharc mar Nód. Cruthaíonn radharc oidhreacht mura bhfuil "
@@ -5433,16 +5433,16 @@ msgstr ""
 msgid "Main Menu"
 msgstr "Príomh-Roghchlár"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Cuir nód(anna) roghnaithe faoi ghlas"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Díghlasáil Nód(anna) Roghnaithe"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Grúpa Nód(anna) Roghnaithe"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Díghrúpáil Nód(anna) Roghnaithe"
 
 msgid "Pan View"
@@ -6980,7 +6980,7 @@ msgstr "Script neamhbhailí/briste le haghaidh iariompórtála (seiceáil consó
 msgid "Error running post-import script:"
 msgstr "Earráid agus script iariompórtála á rith:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
 msgstr "Ar thug tú réad a dhíorthaítear ó Nód ar ais sa mhodh '_post_import()'?"
 
 msgid "Saving..."
@@ -7682,16 +7682,16 @@ msgstr "Sealadach Euler %s"
 msgid "Assign..."
 msgstr "Sann..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Sannadh Nód"
 
 msgid "Copy as Text"
 msgstr "Cóipeáil mar Théacs"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Taispeáin Nód i gCrann"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Cosán an Nóid"
 
 msgid "Invalid RID"
@@ -12262,7 +12262,7 @@ msgstr "Níl geoiméadracht aghaidhe i \"%s\"."
 msgid "Generate AABB"
 msgstr "Gin AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Cruthaigh pointí astaíochta ó nód"
 
 msgid "The geometry's faces don't contain any area."
@@ -12561,7 +12561,7 @@ msgstr ""
 "Faigheann leanaí coimeádáin a suíomh agus a méid arna chinneadh ag a "
 "dtuismitheoir amháin."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Bog nód(anna) go dtí an suíomh"
 
 msgid "Move Vertical Guide"
@@ -12588,10 +12588,10 @@ msgstr "Cruthaigh Treoracha Cothrománacha agus Ingearacha"
 msgid "Instantiate Scene Here..."
 msgstr "Radharc meandarach anseo..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Greamaigh Nód(anna) Anseo"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Bog nód(anna) anseo"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -12679,7 +12679,7 @@ msgstr "Greamaigh Údar"
 msgid "Clear Guides"
 msgstr "Treoracha Soiléire"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Cruthaigh Bone2D(anna) Saincheaptha ó Nód(anna)"
 
 msgid "Zoom to 3.125%"
@@ -12742,13 +12742,13 @@ msgstr "Úsáid Pixel Snap"
 msgid "Snap to Parent"
 msgstr "Léim chuig tuismitheoir"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Léim go Ancaire Nód"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Léim go Taobhanna Nód"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Léim go dtí an Lárionad Nód"
 
 msgid "Snap to Other Nodes"
@@ -12773,7 +12773,7 @@ msgstr "Roghanna cnámharlaigh"
 msgid "Show Bones"
 msgstr "Taispeáin Cnámha"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Déan Nód (Nód) Bone2D ó Nód (í)"
 
 msgid "Show"
@@ -12901,7 +12901,7 @@ msgstr "Script Cheangailte"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Ní ghinfear cód aisghlaoigh, cuir leis de láimh é."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Ceangail le Nód:"
 
 msgid "Connect to Script:"
@@ -13710,7 +13710,7 @@ msgstr "Téama Eile"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Scag liosta na gcineálacha nó cruthaigh cineál saincheaptha nua:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Cineálacha bunaithe ar Nód atá ar fáil:"
 
 msgid "Type name is empty!"
@@ -13971,13 +13971,13 @@ msgstr "Úsáid Slonn Ionadaíochta"
 msgid "Substitute"
 msgstr "Ionadaí"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Ainm nód."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Máthairainm nód, má tá sé ar fáil."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Cineál nód."
 
 msgid "Current scene name."
@@ -14084,7 +14084,7 @@ msgstr "Duga Réamhluchtaitheora Acmhainní a Athrú"
 msgid "Load Resource"
 msgstr "Luchtaigh Acmhainn"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Roghnaigh Cineál Nód Fréimhe"
 
 msgid "Scene name is empty."
@@ -14111,7 +14111,7 @@ msgstr "Cineál Fréimhe:"
 msgid "Other Type"
 msgstr "Cineál Eile"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Roghnaigh Nód"
 
 msgid "Scene Name:"
@@ -14149,7 +14149,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Scoránaigh Infheicthe"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Díghlasáil Nód"
 
 msgid "Ungroup Children"
@@ -14164,7 +14164,7 @@ msgstr "Díchumasaigh Ainm Uathúil an Radhairc"
 msgid "(Connecting From)"
 msgstr "(Ag Nascadh Ó)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Rabhadh cumraíochta nód:"
 
 msgid ""
@@ -14177,16 +14177,16 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Cliceáil chun seo a dhíchumasú."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Tá nasc amháin ag Nód."
 msgstr[1] "Tá naisc {num} ag Nód."
 msgstr[2] "Tá naisc {num} ag Nód."
 msgstr[3] "Tá naisc {num} ag Nód."
 msgstr[4] "Tá naisc {num} ag Nód."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Tá nód sa ghrúpa seo:"
 msgstr[1] "Tá Nód sna grúpaí seo a leanas:"
 msgstr[2] "Tá Nód sna grúpaí seo a leanas:"
@@ -14216,7 +14216,7 @@ msgid "Open Script:"
 msgstr "Oscail Script:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Tá nód faoi ghlas.\n"
@@ -14252,7 +14252,7 @@ msgstr "Ainm nód neamhbhailí, ní cheadaítear na carachtair seo a leanas:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "Tá nód leis an ainm uathúil %s sa radharc seo cheana féin."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Athainmnigh Nód"
 
 msgid "Rename Nodes"
@@ -14261,7 +14261,7 @@ msgstr "Athainmnigh Nóid"
 msgid "Scene Tree (Nodes):"
 msgstr "Crann Radharc (Nóid):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Rabhadh Cumraíochta Nód!"
 
 msgid "Revoke"
@@ -14277,7 +14277,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "Ceadaithe:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Roghnaigh Nód"
 
 msgid "Show All"
@@ -14739,7 +14739,7 @@ msgstr "Script Tógtha:"
 msgid "Select File"
 msgstr "Roghnaigh Comhad"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Ceangail Script nód"
 
 msgid "Line"
@@ -14990,7 +14990,7 @@ msgstr "Ní thacaítear le hacmhainní inmheánacha a réamhlódáil."
 msgid "Can't drop nodes without an open scene."
 msgstr "Ní féidir nóid a scaoileadh gan radharc oscailte."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
 msgstr ""
 "Ní féidir nóid a scaoileadh toisc nach bhfaigheann script '%s' Nód le "
 "hoidhreacht."
@@ -15466,8 +15466,8 @@ msgstr "Eagarthóir 3D"
 msgid "Scene Tree Editing"
 msgstr "Eagarthóireacht Crann Radharc"
 
-msgid "Node Dock (deprecated)"
-msgstr "Node Dock (as feidhm)"
+msgid "Flowde Dock (deprecated)"
+msgstr "Flowde Dock (as feidhm)"
 
 msgid "FileSystem Dock"
 msgstr "Duga an Chórais Comhad"
@@ -16873,7 +16873,7 @@ msgstr "Bandaleithead Isteach"
 msgid "Outgoing Bandwidth"
 msgstr "Bandaleithead Amach"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nód"
 
 msgid "Incoming RPC"
@@ -17715,7 +17715,7 @@ msgstr "Bain Port Aschurtha"
 msgid "Set VisualShader Expression"
 msgstr "Socraigh Slonn VisualShader"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "Athraigh Méid Nód VisualShader"
 
 msgid "Hide Port Preview"
@@ -17745,10 +17745,10 @@ msgstr "Socraigh Ainm an Phaiméadair"
 msgid "Set Input Default Port"
 msgstr "Socraigh Port Réamhshocraithe Ionchurtha"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Socraigh Rogha Nód Saincheaptha"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Cuir Nód le Scáthóir Amhairc"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -17757,28 +17757,28 @@ msgstr "Cuir Athrú leis an Scáthóir Amhairc: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Bain Athrú ó Scáthóir Amhairc: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "Bog Nód(anna) VisualShader"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "Bog agus Ceangail Nód VisualShader le fráma tuismitheora"
 
 msgid "Insert node"
 msgstr "Ionsáigh nód"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Tiontaigh Nód (Nód) Tairiseach go Paraiméadar(í)"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Tiontaigh nód paraiméadar go tairiseach (í)"
 
-msgid "Detach VisualShader Node(s) from Frame"
-msgstr "Detach VisualShader Node(s) ó Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
+msgstr "Detach VisualShader Flowde(s) ó Frame"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Scrios Nód VisualShader"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Scrios Nód(anna) VisualShader"
 
 msgid "Float Constants"
@@ -17802,13 +17802,13 @@ msgstr "Cumasaigh Dath Tint"
 msgid "Edit Preview Parameter: %s"
 msgstr "Cuir Paraiméadar Réamhamhairc in Eagar: %s"
 
-msgid "Duplicate VisualShader Node(s)"
-msgstr "Dúblach VisualShader Node (í)"
+msgid "Duplicate VisualShader Flowde(s)"
+msgstr "Dúblach VisualShader Flowde (í)"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Greamaigh Nód(anna) VisualShader"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Gearr Nód(anna) VisualShader"
 
 msgid "Visual Shader Input Type Changed"
@@ -17832,7 +17832,7 @@ msgstr "Tá athrú leis an ainm sin ann cheana féin."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Ní féidir cineál Booleánach a úsáid leis an mód athraitheach `%s`."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Cuir nód(anna) le Scáthóir Amhairc"
 
 msgid "Hold %s Key To Swap Connections"
@@ -17877,13 +17877,13 @@ msgstr "Réamhamharc scáthaithe a scoránaigh."
 msgid "Generated Shader Code"
 msgstr "Cód Scáthóra Ginte"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Cuir Nód Leis"
 
 msgid "Clear Copy Buffer"
 msgstr "Glan an Maolán Cóipeála"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Ionsáigh Nód Nua"
 
 msgid "Insert New Reroute"
@@ -17908,7 +17908,7 @@ msgstr ""
 "Ní thacaítear leis seo ach sna modhanna rindreála Forward+ agus Mobile, ní i "
 "gComhoiriúnacht."
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Cruthaigh Nód Scáthaigh"
 
 msgid "Create Shader Varying"
@@ -18509,7 +18509,7 @@ msgstr ""
 "Tuairisceáin an luach doimhneachta a fhaightear ón prepass doimhneacht i spás "
 "líneach."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "Athchruthaíonn sé Seasamh Domhanda an Nód ón uigeacht doimhneachta."
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -20219,19 +20219,19 @@ msgstr ""
 "cruthanna bunaithe ar pholagáin. Smaoinigh ar nód CollisionPolygon2D a úsáid "
 "ina ionad."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Ní mór nód A agus Nód B a bheith FisiceBody2Ds"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Ní mór nód A a bheith ina PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Caithfidh Nód B a bheith ina FhisicBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Níl Joint ceangailte le dhá PhysicsBody2Ds"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Caithfidh Nód A agus Nód B a bheith difriúil PhysicsBody2Ds"
 
 msgid ""
@@ -20773,19 +20773,19 @@ msgstr ""
 "Déan a scála aonfhoirmeach (i.e. mar an gcéanna ar gach aiseanna), agus "
 "athraigh méid a acmhainne crutha ina ionad."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "Ní mór nód A agus Nód B a bheith FisiceBody3Ds"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "Ní mór nód A a bheith ina PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "Ní mór nód B a bheith ina PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Níl Joint ceangailte le haon PhysicsBody3Ds"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Caithfidh nód A agus nód B a bheith difriúil ó chéile i PhysicsBody3Ds"
 
 msgid ""
@@ -21109,7 +21109,7 @@ msgstr ""
 "Ní féidir Ainm Inrochtaineachta a bheith folamh, agus ní féidir ach spásanna "
 "a bheith ann."
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr "Ní féidir ainm ranga an Nóid a áireamh in Ainm Inrochtaineachta."
 
 msgid "Accessibility Name must not include control character."

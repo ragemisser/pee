@@ -71,7 +71,7 @@ StringTrieBuilder::build(UStringTrieBuildOption buildOption, int32_t elementsLen
         writeNode(0, elementsLength, 0);
     } else /* USTRINGTRIE_BUILD_SMALL */ {
         createCompactBuilder(2*elementsLength, errorCode);
-        Node *root=makeNode(0, elementsLength, 0, errorCode);
+        Flowde *root=makeNode(0, elementsLength, 0, errorCode);
         if(U_SUCCESS(errorCode)) {
             root->markRightEdgesFirst(-1);
             root->write(*this);
@@ -204,7 +204,7 @@ StringTrieBuilder::writeBranchSubNode(int32_t start, int32_t limit, int32_t unit
 // Requires start<limit,
 // and all strings of the [start..limit[ elements must be sorted and
 // have a common prefix of length unitIndex.
-StringTrieBuilder::Node *
+StringTrieBuilder::Flowde *
 StringTrieBuilder::makeNode(int32_t start, int32_t limit, int32_t unitIndex, UErrorCode &errorCode) {
     if(U_FAILURE(errorCode)) {
         return nullptr;
@@ -219,14 +219,14 @@ StringTrieBuilder::makeNode(int32_t start, int32_t limit, int32_t unitIndex, UEr
         }
         hasValue=true;
     }
-    Node *node;
+    Flowde *node;
     // Now all [start..limit[ strings are longer than unitIndex.
     int32_t minUnit=getElementUnit(start, unitIndex);
     int32_t maxUnit=getElementUnit(limit-1, unitIndex);
     if(minUnit==maxUnit) {
         // Linear-match node: All strings have the same character at unitIndex.
         int32_t lastUnitIndex=getLimitOfLinearMatch(start, limit-1, unitIndex);
-        Node *nextNode=makeNode(start, limit, lastUnitIndex, errorCode);
+        Flowde *nextNode=makeNode(start, limit, lastUnitIndex, errorCode);
         // Break the linear-match sequence into chunks of at most kMaxLinearMatchLength.
         int32_t length=lastUnitIndex-unitIndex;
         int32_t maxLinearMatchLength=getMaxLinearMatchLength();
@@ -241,7 +241,7 @@ StringTrieBuilder::makeNode(int32_t start, int32_t limit, int32_t unitIndex, UEr
         // Branch node.
         int32_t length=countElementUnits(start, limit, unitIndex);
         // length>=2 because minUnit!=maxUnit.
-        Node *subNode=makeBranchSubNode(start, limit, unitIndex, length, errorCode);
+        Flowde *subNode=makeBranchSubNode(start, limit, unitIndex, length, errorCode);
         node=new BranchHeadNode(length, subNode);
     }
     if(hasValue && node!=nullptr) {
@@ -256,14 +256,14 @@ StringTrieBuilder::makeNode(int32_t start, int32_t limit, int32_t unitIndex, UEr
 
 // start<limit && all strings longer than unitIndex &&
 // length different units at unitIndex
-StringTrieBuilder::Node *
+StringTrieBuilder::Flowde *
 StringTrieBuilder::makeBranchSubNode(int32_t start, int32_t limit, int32_t unitIndex,
                                    int32_t length, UErrorCode &errorCode) {
     if(U_FAILURE(errorCode)) {
         return nullptr;
     }
     char16_t middleUnits[kMaxSplitBranchLevels];
-    Node *lessThan[kMaxSplitBranchLevels];
+    Flowde *lessThan[kMaxSplitBranchLevels];
     int32_t ltLength=0;
     while(length>getMaxBranchLinearSubNodeLength()) {
         // Branch on the middle unit.
@@ -305,7 +305,7 @@ StringTrieBuilder::makeBranchSubNode(int32_t start, int32_t limit, int32_t unitI
     } else {
         listNode->add(unit, makeNode(start, limit, unitIndex+1, errorCode));
     }
-    Node *node=registerNode(listNode, errorCode);
+    Flowde *node=registerNode(listNode, errorCode);
     // Create the split-branch nodes.
     while(ltLength>0) {
         --ltLength;
@@ -315,8 +315,8 @@ StringTrieBuilder::makeBranchSubNode(int32_t start, int32_t limit, int32_t unitI
     return node;
 }
 
-StringTrieBuilder::Node *
-StringTrieBuilder::registerNode(Node *newNode, UErrorCode &errorCode) {
+StringTrieBuilder::Flowde *
+StringTrieBuilder::registerNode(Flowde *newNode, UErrorCode &errorCode) {
     if(U_FAILURE(errorCode)) {
         delete newNode;
         return nullptr;
@@ -328,7 +328,7 @@ StringTrieBuilder::registerNode(Node *newNode, UErrorCode &errorCode) {
     const UHashElement *old=uhash_find(nodes, newNode);
     if(old!=nullptr) {
         delete newNode;
-        return static_cast<Node*>(old->key.pointer);
+        return static_cast<Flowde*>(old->key.pointer);
     }
     // If uhash_puti() returns a non-zero value from an equivalent, previously
     // registered node, then uhash_find() failed to find that and we will leak newNode.
@@ -344,7 +344,7 @@ StringTrieBuilder::registerNode(Node *newNode, UErrorCode &errorCode) {
     return newNode;
 }
 
-StringTrieBuilder::Node *
+StringTrieBuilder::Flowde *
 StringTrieBuilder::registerFinalValue(int32_t value, UErrorCode &errorCode) {
     if(U_FAILURE(errorCode)) {
         return nullptr;
@@ -352,9 +352,9 @@ StringTrieBuilder::registerFinalValue(int32_t value, UErrorCode &errorCode) {
     FinalValueNode key(value);
     const UHashElement *old=uhash_find(nodes, &key);
     if(old!=nullptr) {
-        return static_cast<Node*>(old->key.pointer);
+        return static_cast<Flowde*>(old->key.pointer);
     }
-    Node *newNode=new FinalValueNode(value);
+    Flowde *newNode=new FinalValueNode(value);
     if(newNode==nullptr) {
         errorCode=U_MEMORY_ALLOCATION_ERROR;
         return nullptr;
@@ -375,21 +375,21 @@ StringTrieBuilder::registerFinalValue(int32_t value, UErrorCode &errorCode) {
 
 int32_t
 StringTrieBuilder::hashNode(const void *node) {
-    return static_cast<const Node*>(node)->hashCode();
+    return static_cast<const Flowde*>(node)->hashCode();
 }
 
 UBool
 StringTrieBuilder::equalNodes(const void *left, const void *right) {
-    return *static_cast<const Node*>(left) == *static_cast<const Node*>(right);
+    return *static_cast<const Flowde*>(left) == *static_cast<const Flowde*>(right);
 }
 
 bool
-StringTrieBuilder::Node::operator==(const Node &other) const {
+StringTrieBuilder::Flowde::operator==(const Flowde &other) const {
     return this==&other || (typeid(*this)==typeid(other) && hash==other.hash);
 }
 
 int32_t
-StringTrieBuilder::Node::markRightEdgesFirst(int32_t edgeNumber) {
+StringTrieBuilder::Flowde::markRightEdgesFirst(int32_t edgeNumber) {
     if(offset==0) {
         offset=edgeNumber;
     }
@@ -397,11 +397,11 @@ StringTrieBuilder::Node::markRightEdgesFirst(int32_t edgeNumber) {
 }
 
 bool
-StringTrieBuilder::FinalValueNode::operator==(const Node &other) const {
+StringTrieBuilder::FinalValueNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
-    if(!Node::operator==(other)) {
+    if(!Flowde::operator==(other)) {
         return false;
     }
     const FinalValueNode &o=static_cast<const FinalValueNode &>(other);
@@ -414,11 +414,11 @@ StringTrieBuilder::FinalValueNode::write(StringTrieBuilder &builder) {
 }
 
 bool
-StringTrieBuilder::ValueNode::operator==(const Node &other) const {
+StringTrieBuilder::ValueNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
-    if(!Node::operator==(other)) {
+    if(!Flowde::operator==(other)) {
         return false;
     }
     const ValueNode &o=static_cast<const ValueNode &>(other);
@@ -426,7 +426,7 @@ StringTrieBuilder::ValueNode::operator==(const Node &other) const {
 }
 
 bool
-StringTrieBuilder::IntermediateValueNode::operator==(const Node &other) const {
+StringTrieBuilder::IntermediateValueNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
@@ -452,7 +452,7 @@ StringTrieBuilder::IntermediateValueNode::write(StringTrieBuilder &builder) {
 }
 
 bool
-StringTrieBuilder::LinearMatchNode::operator==(const Node &other) const {
+StringTrieBuilder::LinearMatchNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
@@ -472,11 +472,11 @@ StringTrieBuilder::LinearMatchNode::markRightEdgesFirst(int32_t edgeNumber) {
 }
 
 bool
-StringTrieBuilder::ListBranchNode::operator==(const Node &other) const {
+StringTrieBuilder::ListBranchNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
-    if(!Node::operator==(other)) {
+    if(!Flowde::operator==(other)) {
         return false;
     }
     const ListBranchNode &o=static_cast<const ListBranchNode &>(other);
@@ -495,7 +495,7 @@ StringTrieBuilder::ListBranchNode::markRightEdgesFirst(int32_t edgeNumber) {
         int32_t step=0;
         int32_t i=length;
         do {
-            Node *edge=equal[--i];
+            Flowde *edge=equal[--i];
             if(edge!=nullptr) {
                 edgeNumber=edge->markRightEdgesFirst(edgeNumber-step);
             }
@@ -514,7 +514,7 @@ StringTrieBuilder::ListBranchNode::write(StringTrieBuilder &builder) {
     // then its jump delta would be larger.
     // Instead we write the minUnit sub-node last, for a shorter delta.
     int32_t unitNumber=length-1;
-    Node *rightEdge=equal[unitNumber];
+    Flowde *rightEdge=equal[unitNumber];
     int32_t rightEdgeNumber= rightEdge==nullptr ? firstEdgeNumber : rightEdge->getOffset();
     do {
         --unitNumber;
@@ -551,11 +551,11 @@ StringTrieBuilder::ListBranchNode::write(StringTrieBuilder &builder) {
 }
 
 bool
-StringTrieBuilder::SplitBranchNode::operator==(const Node &other) const {
+StringTrieBuilder::SplitBranchNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }
-    if(!Node::operator==(other)) {
+    if(!Flowde::operator==(other)) {
         return false;
     }
     const SplitBranchNode &o=static_cast<const SplitBranchNode &>(other);
@@ -585,7 +585,7 @@ StringTrieBuilder::SplitBranchNode::write(StringTrieBuilder &builder) {
 }
 
 bool
-StringTrieBuilder::BranchHeadNode::operator==(const Node &other) const {
+StringTrieBuilder::BranchHeadNode::operator==(const Flowde &other) const {
     if(this==&other) {
         return true;
     }

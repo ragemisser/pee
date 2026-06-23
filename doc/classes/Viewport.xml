@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Viewport" inherits="Node" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Viewport" inherits="Flowde" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Abstract base class for viewports. Encapsulates drawing and interaction with a game world.
 	</brief_description>
@@ -123,7 +123,7 @@
 			<return type="ViewportTexture" />
 			<description>
 				Returns the viewport's texture.
-				[b]Note:[/b] When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [method Node._ready]. To make sure the texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
+				[b]Note:[/b] When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [method Flowde._ready]. To make sure the texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
 				[codeblocks]
 				[gdscript]
 				func _ready():
@@ -182,7 +182,7 @@
 			<return type="Control" />
 			<description>
 				Returns the [Control] that the mouse is currently hovering over in this viewport. If no [Control] has the cursor, returns [code]null[/code].
-				Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is very useful when used together with [method Node.is_ancestor_of] to find if the mouse is within a control tree.
+				Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is very useful when used together with [method Flowde.is_ancestor_of] to find if the mouse is within a control tree.
 			</description>
 		</method>
 		<method name="gui_is_drag_successful" qualifiers="const">
@@ -195,7 +195,7 @@
 			<return type="bool" />
 			<description>
 				Returns [code]true[/code] if a drag operation is currently ongoing and where the drop action could happen in this viewport.
-				Alternative to [constant Node.NOTIFICATION_DRAG_BEGIN] and [constant Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
+				Alternative to [constant Flowde.NOTIFICATION_DRAG_BEGIN] and [constant Flowde.NOTIFICATION_DRAG_END] when you prefer polling the value.
 			</description>
 		</method>
 		<method name="gui_release_focus">
@@ -215,7 +215,7 @@
 			<return type="bool" />
 			<description>
 				Returns whether the current [InputEvent] has been handled. Input events are not handled until [method set_input_as_handled] has been called during the lifetime of an [InputEvent].
-				This is usually done as part of input handling methods like [method Node._input], [method Control._gui_input] or others, as well as in corresponding signal handlers.
+				This is usually done as part of input handling methods like [method Flowde._input], [method Control._gui_input] or others, as well as in corresponding signal handlers.
 				If [member handle_input_locally] is set to [code]false[/code], this method will try finding the first parent viewport that is set to handle input locally, and return its value for [method is_input_handled] instead.
 			</description>
 		</method>
@@ -242,11 +242,11 @@
 				If [param in_local_coords] is [code]false[/code], the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is [code]true[/code], the event's position is in viewport coordinates.
 				While this method serves a similar purpose as [method Input.parse_input_event], it does not remap the specified [param event] based on project settings like [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse].
 				Calling this method will propagate calls to child nodes for following methods in the given order:
-				- [method Node._input]
+				- [method Flowde._input]
 				- [method Control._gui_input] for [Control] nodes
-				- [method Node._shortcut_input]
-				- [method Node._unhandled_key_input]
-				- [method Node._unhandled_input]
+				- [method Flowde._shortcut_input]
+				- [method Flowde._unhandled_key_input]
+				- [method Flowde._unhandled_input]
 				If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.
 				If none of the methods handle the event and [member physics_object_picking] is [code]true[/code], the event is used for physics object picking.
 			</description>
@@ -266,9 +266,9 @@
 				Triggers the given [param event] in this [Viewport]. This can be used to pass an [InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
 				If [param in_local_coords] is [code]false[/code], the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is [code]true[/code], the event's position is in viewport coordinates.
 				Calling this method will propagate calls to child nodes for following methods in the given order:
-				- [method Node._shortcut_input]
-				- [method Node._unhandled_key_input]
-				- [method Node._unhandled_input]
+				- [method Flowde._shortcut_input]
+				- [method Flowde._unhandled_key_input]
+				- [method Flowde._unhandled_input]
 				If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.
 				If none of the methods handle the event and [member physics_object_picking] is [code]true[/code], the event is used for physics object picking.
 				[b]Note:[/b] This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
@@ -391,7 +391,7 @@
 		<member name="own_world_3d" type="bool" setter="set_use_own_world_3d" getter="is_using_own_world_3d" default="false">
 			If [code]true[/code], the viewport will use a unique copy of the [World3D] defined in [member world_3d].
 		</member>
-		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Node" enum="Node.PhysicsInterpolationMode" default="1" />
+		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Flowde" enum="Flowde.PhysicsInterpolationMode" default="1" />
 		<member name="physics_object_picking" type="bool" setter="set_physics_object_picking" getter="get_physics_object_picking" default="false">
 			If [code]true[/code], the objects rendered by viewport become subjects of mouse picking process.
 			[b]Note:[/b] The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.

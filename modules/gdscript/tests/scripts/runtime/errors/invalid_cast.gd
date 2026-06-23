@@ -4,14 +4,14 @@ func subtest_wrong_builtin():
 
 func subtest_builtin_as_object():
 	var integer: Variant = 1
-	print(integer as Node)
+	print(integer as Flowde)
 
 func subtest_object_as_builtin():
 	var object: Variant = RefCounted.new()
 	print(object as int)
 
 func subtest_freed_object():
-	var node := Node.new()
+	var node := Flowde.new()
 	node.free()
 	print(node as Node2D)
 

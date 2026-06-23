@@ -708,7 +708,7 @@ msgstr "Aldoni %s"
 msgid "Load..."
 msgstr "Ŝargi..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Movi punkton de BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -723,7 +723,7 @@ msgstr "Ĉi tia nodo ne estas uzebla. Nur animaciaj nodoj estas permesataj."
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Tiun ĉi tipon de nodo ne eblas uzi. Nur radikaj nodoj estas permesitaj."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Aldoni punkton de nodo"
 
 msgid "Add Animation Point"
@@ -768,7 +768,7 @@ msgstr "Pozicio"
 msgid "Value"
 msgstr "Valoro"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Malfermi animacian nodon"
 
 msgid "Triangle already exists."
@@ -807,10 +807,10 @@ msgstr "Redakti filtrojn"
 msgid "Output node can't be added to the blend tree."
 msgstr "Ne eblas aldoni eligan nodon al la miksan arbon."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Aldoni nodon al BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nodo moviĝis"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -826,10 +826,10 @@ msgstr "La nodoj disligiĝis"
 msgid "Set Animation"
 msgstr "Difini animacion"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Forigi la nodon"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Forigo de nodo(j)"
 
 msgid "Toggle Filter On/Off"
@@ -857,10 +857,10 @@ msgstr "Funkcioj"
 msgid "Edit Filtered Tracks:"
 msgstr "Redakti filtritajn trakojn:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nodo alinomiĝis"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Aldoni nodon..."
 
 msgid "Enable Filtering"
@@ -1094,13 +1094,13 @@ msgstr "Tempoj de mikso:"
 msgid "Next (Auto Queue):"
 msgstr "Sekvo (aŭtomata atendovico):"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Movi nodon"
 
 msgid "Transition exists!"
 msgstr "La transiro ekzistas!"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Aldoni nodon aŭ transiron"
 
 msgid "Transition already exists!"
@@ -1121,7 +1121,7 @@ msgstr "Vojaĝa"
 msgid "No playback resource set at path: %s."
 msgstr "Ne reproduktada risurcaro al vojo: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nodon forigis"
 
 msgid "Transition Removed"
@@ -1404,7 +1404,7 @@ msgstr "Krei Malrigidigitajn Ŝlosilojn"
 msgid "Animation Add RESET Keys"
 msgstr "Aldoni RESET-Ŝlosilojn de Animado"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Kreo de nodo"
 
 msgid ""
@@ -1967,7 +1967,7 @@ msgstr "Sencimigi"
 msgid "Save Branch as Scene..."
 msgstr "Konservi la nod(ar)on kiel scenon..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Kopii la nodo-vojon"
 
 msgid "Expand/Collapse Branch"
@@ -2724,10 +2724,10 @@ msgid_plural "Create AudioStreamPlayers"
 msgstr[0] "Kreo de aŭdaĵ-ludilo (AudioStreamPlayer)"
 msgstr[1] "Kreo de aŭdaĵ-ludiloj (AudioStreamPlayer)"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duobligo de nodo(j)"
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Nodo povas esti la radiko nur de sia respektiva sceno."
 
 msgid "Instantiated scenes can't become root"
@@ -2766,7 +2766,7 @@ msgstr "Malŝalti ĉi-scenajn ununurajn nomojn"
 msgid "New Scene Root"
 msgstr "Nova radiko de sceno"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Krei radikan nodon:"
 
 msgid "Favorite Nodes"
@@ -2781,28 +2781,28 @@ msgstr "3D-a sceno"
 msgid "User Interface"
 msgstr "Uzula interfaco"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Alia nod-tipo"
 
 msgid "Paste From Clipboard"
 msgstr "Alglui el la tondujo"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Elekti alian patron"
 
 msgid "Attach Script"
 msgstr "Ligi kun kodo"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Eltondi la nodo(j)n"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Forigi la nodo(j)n"
 
 msgid "Change type of node(s)"
 msgstr "Ŝanĝi la tipon de la nodo(j)"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Aldoni novan patran nodon"
 
 msgid "Can't overwrite scene that is still open!"
@@ -2826,10 +2826,10 @@ msgstr "Atingo per ununura nomo"
 msgid "Open in Editor"
 msgstr "Malfermi en la redaktilon"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Alglui la nodo(j)n kiel radikon"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Aldoni idan nodon..."
 
 msgid "Instantiate Child Scene..."
@@ -2853,7 +2853,7 @@ msgstr "Duobligi"
 msgid "Reparent..."
 msgstr "Elekti alian patron..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Aldoni novan patran nodon..."
 
 msgid "Make Scene Root"
@@ -2865,7 +2865,7 @@ msgstr "Baskuli la atingon per ununura nomo"
 msgid "Delete (No Confirm)"
 msgstr "Forigi (ne konfirmo)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Aldoni/Krei novan nodon."
 
 msgid "Filter Nodes"
@@ -3259,16 +3259,16 @@ msgstr "Mastrumi eksportaj ŝablonoj..."
 msgid "Main Menu"
 msgstr "Ĉefmenuo"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Fiksi elektita(j)n nodo(j)n"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Malfiksi elektita(j)n nodo(j)n"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Grupigi elektita(j)n nodo(j)n"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Malgrupigi elektita(j)n nodo(j)n"
 
 msgid "Pan View"
@@ -4456,7 +4456,7 @@ msgstr "Transformo"
 msgid "Configure Snap..."
 msgstr "Agordi kaptadon..."
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Krei emisiajn punktojn el la nodo"
 
 msgid "GPUParticles3D"
@@ -4600,13 +4600,13 @@ msgstr "Uzi kaptadon per rastrumero"
 msgid "Snap to Parent"
 msgstr "Kapti al patro"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Kapti al ankro de nodo"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Kapti al flankoj de nodo"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Kapti al centro de nodo"
 
 msgid "Snap to Other Nodes"
@@ -4714,7 +4714,7 @@ msgstr ""
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Vi devos deklari mane la funkcion por la signalo."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Konekti al nodo:"
 
 msgid "Connect to Script:"
@@ -4918,7 +4918,7 @@ msgstr "Krei novan scenon"
 msgid "Toggle Visible"
 msgstr "Baskuli videblon"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Malŝlosi nodon"
 
 msgid "Revoke unique name for node \"%s\"?"
@@ -4930,7 +4930,7 @@ msgstr "Malŝalti ĉi-scenan ununuran nomon"
 msgid "(Connecting From)"
 msgstr "(Konektas el)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Averto pri uzo de la nodo:"
 
 msgid ""
@@ -4943,13 +4943,13 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Alklaku por malŝalti tion."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "La nodo havas signalon."
 msgstr[1] "La nodo havas {num} signalojn."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "La nodo estas en la grupo:"
 msgstr[1] "La nodo estas en la grupoj:"
 
@@ -4963,7 +4963,7 @@ msgid "Open Script:"
 msgstr "Malfermi la kodon:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "La nodo estas barita.\n"
@@ -4989,13 +4989,13 @@ msgstr "Malvalida nomo de nodo, la jenaj signoj ne permesas:"
 msgid "Scene Tree (Nodes):"
 msgstr "Scenoarbo (nodoj):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Averto pri uzo de la nodo!"
 
 msgid "Revoke"
 msgstr "Malŝalti"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Elektu nodon"
 
 msgid "Delete Animation?"
@@ -5174,7 +5174,7 @@ msgstr "Enkonstruita skripto:"
 msgid "Select File"
 msgstr "Elekti dosieron"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Ligi kodon al la nodo"
 
 msgid "Line"
@@ -5672,7 +5672,7 @@ msgstr "Ne sufiĉas bitokoj por malĉifri bitokojn, aŭ nevalida formo."
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nodo"
 
 msgid "Incoming RPC"
@@ -5687,7 +5687,7 @@ msgstr "Forigi atributon?"
 msgid "Error loading %s: %s."
 msgstr "Eraro dum la ŝargo de %s: %s."
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Aldoni nodon"
 
 msgid "[None]"

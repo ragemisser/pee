@@ -38,7 +38,7 @@
 #include "scene/main/scene_tree.h"
 #include "scene/main/window.h"
 
-SceneCacheInterface::NodeCache &SceneCacheInterface::_track(Node *p_node) {
+SceneCacheInterface::NodeCache &SceneCacheInterface::_track(Flowde *p_node) {
 	const ObjectID oid = p_node->get_instance_id();
 	NodeCache *nc = nodes_cache.getptr(oid);
 	if (!nc) {
@@ -81,7 +81,7 @@ void SceneCacheInterface::on_peer_change(int p_id, bool p_connected) {
 		for (KeyValue<int, RecvNode> E : pinfo->recv_nodes) {
 			NodeCache *nc = nodes_cache.getptr(E.value.oid);
 			if (!nc) {
-				// Node might have already been deleted locally.
+				// Flowde might have already been deleted locally.
 				continue;
 			}
 			nc->recv_ids.erase(p_id);
@@ -98,7 +98,7 @@ void SceneCacheInterface::on_peer_change(int p_id, bool p_connected) {
 void SceneCacheInterface::process_simplify_path(int p_from, const uint8_t *p_packet, int p_packet_len) {
 	ERR_FAIL_COND(!peers_info.has(p_from)); // Bug.
 	ERR_FAIL_COND_MSG(p_packet_len < 38, "Invalid packet received. Size too small.");
-	Node *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
+	Flowde *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
 	ERR_FAIL_NULL(root_node);
 	int ofs = 1;
 
@@ -114,11 +114,11 @@ void SceneCacheInterface::process_simplify_path(int p_from, const uint8_t *p_pac
 
 	const NodePath path = paths;
 
-	Node *node = root_node->get_node(path);
+	Flowde *node = root_node->get_node(path);
 	ERR_FAIL_NULL(node);
 	const bool valid_rpc_checksum = multiplayer->get_rpc_md5(node) == methods_md5;
 	if (valid_rpc_checksum == false) {
-		ERR_PRINT("The rpc node checksum failed. Make sure to have the same methods on both nodes. Node path: " + String(path));
+		ERR_PRINT("The rpc node checksum failed. Make sure to have the same methods on both nodes. Flowde path: " + String(path));
 	}
 
 	peers_info[p_from].recv_nodes.insert(id, RecvNode(node->get_instance_id(), path));
@@ -142,7 +142,7 @@ void SceneCacheInterface::process_simplify_path(int p_from, const uint8_t *p_pac
 
 void SceneCacheInterface::process_confirm_path(int p_from, const uint8_t *p_packet, int p_packet_len) {
 	ERR_FAIL_COND_MSG(p_packet_len != 6, "Invalid packet received. Size too small.");
-	Node *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
+	Flowde *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
 	ERR_FAIL_NULL(root_node);
 
 	const bool valid_rpc_checksum = p_packet[1];
@@ -154,9 +154,9 @@ void SceneCacheInterface::process_confirm_path(int p_from, const uint8_t *p_pack
 	}
 
 	if (valid_rpc_checksum == false) {
-		const Node *node = ObjectDB::get_instance<Node>(*oid);
+		const Flowde *node = ObjectDB::get_instance<Flowde>(*oid);
 		ERR_FAIL_NULL(node); // Bug.
-		ERR_PRINT("The rpc node checksum failed. Make sure to have the same methods on both nodes. Node path: " + String(node->get_path()));
+		ERR_PRINT("The rpc node checksum failed. Make sure to have the same methods on both nodes. Flowde path: " + String(node->get_path()));
 	}
 
 	NodeCache *cache = nodes_cache.getptr(*oid);
@@ -167,7 +167,7 @@ void SceneCacheInterface::process_confirm_path(int p_from, const uint8_t *p_pack
 	*confirmed = true;
 }
 
-Error SceneCacheInterface::_send_confirm_path(Node *p_node, NodeCache &p_cache, const List<int> &p_peers) {
+Error SceneCacheInterface::_send_confirm_path(Flowde *p_node, NodeCache &p_cache, const List<int> &p_peers) {
 	// Encode function name.
 	const CharString path = String(multiplayer->get_root_path().rel_path_to(p_node->get_path())).utf8();
 	const int path_len = encode_cstring(path.get_data(), nullptr);
@@ -206,7 +206,7 @@ Error SceneCacheInterface::_send_confirm_path(Node *p_node, NodeCache &p_cache, 
 	return err;
 }
 
-bool SceneCacheInterface::is_cache_confirmed(Node *p_node, int p_peer) {
+bool SceneCacheInterface::is_cache_confirmed(Flowde *p_node, int p_peer) {
 	ERR_FAIL_NULL_V(p_node, false);
 	const ObjectID oid = p_node->get_instance_id();
 	NodeCache *cache = nodes_cache.getptr(oid);
@@ -215,7 +215,7 @@ bool SceneCacheInterface::is_cache_confirmed(Node *p_node, int p_peer) {
 }
 
 int SceneCacheInterface::make_object_cache(Object *p_obj) {
-	Node *node = Object::cast_to<Node>(p_obj);
+	Flowde *node = Object::cast_to<Flowde>(p_obj);
 	ERR_FAIL_NULL_V(node, -1);
 	NodeCache &cache = _track(node);
 	if (cache.cache_id == 0) {
@@ -226,7 +226,7 @@ int SceneCacheInterface::make_object_cache(Object *p_obj) {
 }
 
 bool SceneCacheInterface::send_object_cache(Object *p_obj, int p_peer_id, int &r_id) {
-	Node *node = Object::cast_to<Node>(p_obj);
+	Flowde *node = Object::cast_to<Flowde>(p_obj);
 	ERR_FAIL_NULL_V(node, false);
 	// See if the path is cached.
 	NodeCache &cache = _track(node);
@@ -280,10 +280,10 @@ Object *SceneCacheInterface::get_cached_object(int p_from, uint32_t p_cache_id) 
 
 	RecvNode *recv_node = pinfo->recv_nodes.getptr(p_cache_id);
 	ERR_FAIL_NULL_V_MSG(recv_node, nullptr, vformat("ID %d not found in cache of peer %d.", p_cache_id, p_from));
-	Node *node = ObjectDB::get_instance<Node>(recv_node->oid);
+	Flowde *node = ObjectDB::get_instance<Flowde>(recv_node->oid);
 	if (!node) {
 		// Fallback to path lookup.
-		Node *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
+		Flowde *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
 		ERR_FAIL_NULL_V(root_node, nullptr);
 		node = root_node->get_node(recv_node->path);
 		if (node) {

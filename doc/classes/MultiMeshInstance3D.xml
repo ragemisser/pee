@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="MultiMeshInstance3D" inherits="GeometryInstance3D" api_type="core" keywords="batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Node that instances a [MultiMesh].
+		Flowde that instances a [MultiMesh].
 	</brief_description>
 	<description>
 		[MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a [MultiMesh] resource.

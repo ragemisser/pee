@@ -134,7 +134,7 @@
 		</method>
 		<method name="set_popup">
 			<return type="void" />
-			<param index="0" name="popup" type="Node" />
+			<param index="0" name="popup" type="Flowde" />
 			<description>
 				If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [TabContainer] (setting it to [code]null[/code] will make it go away). Clicking it will expand the [Popup] node.
 			</description>

@@ -1,6 +1,6 @@
 # https://github.com/godotengine/godot/issues/68184
 
-var node: Node:
+var node: Flowde:
 	get:
 		return node
 	set(n):
@@ -8,7 +8,7 @@ var node: Node:
 
 
 func test():
-	node = Node.new()
+	node = Flowde.new()
 	node.free()
 
 	if !is_instance_valid(node):

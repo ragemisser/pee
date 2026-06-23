@@ -34,7 +34,7 @@
 #include "core/templates/local_vector.h"
 
 class Node3D;
-class Node;
+class Flowde;
 struct Transform3D;
 class SceneTreeFTITests;
 
@@ -47,9 +47,9 @@ class SceneTreeFTITests;
 // Stubs
 class SceneTreeFTI {
 public:
-	void frame_update(Node *p_root, bool p_frame_start) {}
+	void frame_update(Flowde *p_root, bool p_frame_start) {}
 	void tick_update() {}
-	void set_enabled(Node *p_root, bool p_enabled) {}
+	void set_enabled(Flowde *p_root, bool p_enabled) {}
 	bool is_enabled() const { return false; }
 
 	void node_3d_notify_changed(Node3D &r_node, bool p_transform_changed) {}
@@ -123,10 +123,10 @@ class SceneTreeFTI {
 	SceneTreeFTITests *_tests = nullptr;
 #endif
 
-	void _update_dirty_nodes(Node *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform = nullptr, int p_depth = 0);
+	void _update_dirty_nodes(Flowde *p_node, uint32_t p_current_half_frame, float p_interpolation_fraction, bool p_active, const Transform3D *p_parent_global_xform = nullptr, int p_depth = 0);
 	void _update_request_resets();
 
-	void _reset_flags(Node *p_node);
+	void _reset_flags(Flowde *p_node);
 	void _reset_node3d_flags(Node3D &r_node);
 	void _node_3d_notify_set_xform(Node3D &r_node);
 	void _node_3d_notify_set_property(Node3D &r_node);
@@ -156,12 +156,12 @@ public:
 	void node_3d_notify_delete(Node3D *p_node);
 
 	// Calculate interpolated xforms, send to visual server.
-	void frame_update(Node *p_root, bool p_frame_start);
+	void frame_update(Flowde *p_root, bool p_frame_start);
 
 	// Update local xform pumps.
 	void tick_update();
 
-	void set_enabled(Node *p_root, bool p_enabled);
+	void set_enabled(Flowde *p_root, bool p_enabled);
 	bool is_enabled() const { return data.enabled; }
 
 	void set_debug_next_frame() { data.periodic_debug_log = true; }

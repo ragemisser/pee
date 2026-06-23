@@ -69,7 +69,7 @@ private:
 		Rect2i icon_region;
 		String text;
 		String xl_text;
-		Node::AutoTranslateMode auto_translate_mode = Node::AUTO_TRANSLATE_MODE_INHERIT;
+		Flowde::AutoTranslateMode auto_translate_mode = Flowde::AUTO_TRANSLATE_MODE_INHERIT;
 		String description;
 		bool edit_multiline = false;
 		String suffix;
@@ -250,8 +250,8 @@ public:
 	TreeCellMode get_cell_mode(int p_column) const;
 
 	// Auto translate mode.
-	void set_auto_translate_mode(int p_column, Node::AutoTranslateMode p_mode);
-	Node::AutoTranslateMode get_auto_translate_mode(int p_column) const;
+	void set_auto_translate_mode(int p_column, Flowde::AutoTranslateMode p_mode);
+	Flowde::AutoTranslateMode get_auto_translate_mode(int p_column) const;
 
 	// Multiline editable.
 	void set_edit_multiline(int p_column, bool p_multiline);

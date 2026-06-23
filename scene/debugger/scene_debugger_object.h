@@ -37,7 +37,7 @@
 #include "core/templates/list.h"
 #include "core/templates/pair.h"
 
-class Node;
+class Flowde;
 class Script;
 
 class SceneDebuggerObject {
@@ -92,7 +92,7 @@ public:
 
 	void serialize(Array &r_arr);
 	void deserialize(const Array &p_arr);
-	SceneDebuggerTree(Node *p_root);
+	SceneDebuggerTree(Flowde *p_root);
 	SceneDebuggerTree() {}
 };
 #endif // DEBUG_ENABLED

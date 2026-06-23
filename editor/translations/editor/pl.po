@@ -779,7 +779,7 @@ msgstr "Dodaj %s"
 msgid "Load..."
 msgstr "Wczytaj..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Przesuń punkt węzła BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -794,7 +794,7 @@ msgstr "Ten typ węzła nie może zostać użyty. Tylko węzły animacji są doz
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Ten typ węzła nie może zostać użyty. Tylko węzły korzenia są dozwolone."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Dodaj punkt węzła"
 
 msgid "Add Animation Point"
@@ -851,7 +851,7 @@ msgstr "Maks."
 msgid "Value"
 msgstr "Wartość"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Otwórz węzeł animacji"
 
 msgid "Triangle already exists."
@@ -926,10 +926,10 @@ msgstr "Edytuj filtry"
 msgid "Output node can't be added to the blend tree."
 msgstr "Węzeł wyjściowy nie może być dodany do drzewa mieszania."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Dodaj węzeł do BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Węzeł przesunięty"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -946,10 +946,10 @@ msgstr "Węzły rozłączone"
 msgid "Set Animation"
 msgstr "Ustaw animację"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Usuń węzeł"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Usuń węzeł (węzły)"
 
 msgid "Toggle Filter On/Off"
@@ -989,10 +989,10 @@ msgstr "Inspekcjonuj filtrowane ścieżki:"
 msgid "Edit Filtered Tracks:"
 msgstr "Edytuj filtrowane ścieżki:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Węzeł przemianowany"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Dodaj węzeł..."
 
 msgid "Enable Filtering"
@@ -1410,7 +1410,7 @@ msgstr "Następny (automatyczna kolejka):"
 msgid "Reconnect Transition"
 msgstr "Połącz ponownie przejście"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Przesuń węzeł"
 
 msgid "Transition exists!"
@@ -1434,7 +1434,7 @@ msgstr "Odtwarzaj/przejdź do %s"
 msgid "Edit %s"
 msgstr "Edytuj %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Dodaj węzeł i przejście"
 
 msgid "Transition already exists!"
@@ -1455,7 +1455,7 @@ msgstr "Przejdź"
 msgid "No playback resource set at path: %s."
 msgstr "Nie znaleziono zasobu do odtworzenia w ścieżce: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Węzeł usunięty"
 
 msgid "Transition Removed"
@@ -1975,7 +1975,7 @@ msgstr "Animacja dodaj klatki kluczowe RESET"
 msgid "Bake Animation as Linear Keys"
 msgstr "Wypal animację jako liniowe klucze"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Utwórz węzeł"
 
 msgid ""
@@ -2918,7 +2918,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Zapisz gałąź jako scenę..."
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Skopiuj ścieżkę węzła"
 
 msgid "Expand/Collapse Branch"
@@ -4313,13 +4313,13 @@ msgstr "Nie można wykonać tej operacji na głównym węźle drzewa."
 msgid "Detach Script"
 msgstr "Odłącz skrypt"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Przenieś węzeł w nadrzędnym"
 
 msgid "Move Nodes in Parent"
 msgstr "Przenieś węzły w nadrzędnym"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplikuj węzeł(y)"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4327,7 +4327,7 @@ msgstr ""
 "Nie można zmieniać węzłów nadrzędnych w scenie dziedziczonej. Kolejność "
 "węzłów nie może się zmienić."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Węzeł musi należeć do edytowanej sceny, by stać się korzeniem."
 
 msgid "Instantiated scenes can't become root"
@@ -4431,7 +4431,7 @@ msgstr "Wyłącz unikalne w scenie nazwy"
 msgid "New Scene Root"
 msgstr "Nowy korzeń sceny"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Utwórz korzeń:"
 
 msgid "Favorite Nodes"
@@ -4449,7 +4449,7 @@ msgstr "Scena 3D"
 msgid "User Interface"
 msgstr "Interfejs użytkownika"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Inny węzeł"
 
 msgid "Paste From Clipboard"
@@ -4464,7 +4464,7 @@ msgstr "Nie można działać na węzłach z których dziedziczy obecna scena!"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Tej operacji nie można wykonać na instancjonowanej scenie."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Zmień nadrzędny węzeł"
 
 msgid "Attach Script"
@@ -4476,16 +4476,16 @@ msgstr "Ustaw shader"
 msgid "Toggle Editable Children"
 msgstr "Przełącz edytowalne dzieci"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Wytnij węzeł/y"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Usuń węzeł(y)"
 
 msgid "Change type of node(s)"
 msgstr "Zmień typ węzła/ów"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Zmień nadrzędny węzeł na nowy"
 
 msgid "This operation requires a single selected node."
@@ -4543,11 +4543,11 @@ msgstr "Otwórz w edytorze"
 msgid "Auto Expand to Selected"
 msgstr "Automatycznie rozwijaj do wybranego"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Wycentruj węzeł przy zmianie nadrzędnego"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
 "Gdy włączone, \"Zmień nadrzędny węzeł na nowy\" utworzy nowy węzeł pośrodku "
@@ -4588,7 +4588,7 @@ msgstr "Filtruj po grupie"
 
 msgid ""
 "Selects all Nodes belonging to the given group.\n"
-"If empty, selects any Node belonging to any group.\n"
+"If empty, selects any Flowde belonging to any group.\n"
 "Inserts \"group:\". You can also use the shorthand \"g:\"."
 msgstr ""
 "Zaznacza wszystkie węzły należące do danej grupy.\n"
@@ -4607,13 +4607,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Nie można wkleić korzenia do tej samej sceny."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Wklej węzeł/y jako równorzędne do %s"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Wklej węzeł/y jako potomne %s"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Wklej węzeł/y jako korzeń"
 
 msgid "<Unnamed> at %s"
@@ -4628,7 +4628,7 @@ msgstr "Otwórz dok sceny"
 msgid "Batch Rename..."
 msgstr "Grupowa zmiana nazwy..."
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Dodaj węzeł potomny..."
 
 msgid "Instantiate Child Scene..."
@@ -4658,7 +4658,7 @@ msgstr "Duplikuj"
 msgid "Reparent..."
 msgstr "Zmień nadrzędny..."
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Zmień nadrzędny węzeł na nowy..."
 
 msgid "Make Scene Root"
@@ -4670,11 +4670,11 @@ msgstr "Przełącz dostęp jako unikalna nazwa"
 msgid "Delete (No Confirm)"
 msgstr "Usuń (bez potwierdzenia)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Dodaj/Utwórz nowy węzeł."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Instancjonuj plik sceny jako węzeł. Tworzy scenę dziedziczącą jeśli korzeń "
@@ -5452,16 +5452,16 @@ msgstr "Kopiuje do schowka informacje o systemie jako jednolinijkowy tekst."
 msgid "Main Menu"
 msgstr "Menu główne"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Zablokuj zaznaczone węzły"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Odblokuj zaznaczone węzły"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Grupuj zaznaczone węzły"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Rozgrupuj zaznaczone węzły"
 
 msgid "Pan View"
@@ -6981,7 +6981,7 @@ msgstr ""
 msgid "Error running post-import script:"
 msgstr "Błąd podczas uruchamiania skryptu po imporcie:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
 msgstr "Czy zwracasz obiekt dziedziczący po węźle w metodzie `post_import()`?"
 
 msgid "Saving..."
@@ -7680,16 +7680,16 @@ msgstr "Tymczasowy Euler %s"
 msgid "Assign..."
 msgstr "Przypisz..."
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Przypisz węzeł"
 
 msgid "Copy as Text"
 msgstr "Skopiuj jako tekst"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Pokaż węzeł w drzewie"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Ścieżka węzła"
 
 msgid "Invalid RID"
@@ -12204,7 +12204,7 @@ msgstr "\"%s\" nie zawiera geometrii powierzchni."
 msgid "Generate AABB"
 msgstr "Generuj AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Twórz punkty emisji z węzła"
 
 msgid "The geometry's faces don't contain any area."
@@ -12497,7 +12497,7 @@ msgstr ""
 "Węzły potomne kontenera mają pozycję i rozmiar określone tylko przez ich "
 "rodzica."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Przesuń węzeł/y na pozycję"
 
 msgid "Move Vertical Guide"
@@ -12524,10 +12524,10 @@ msgstr "Utwórz poziomą i pionową prowadnicę"
 msgid "Instantiate Scene Here..."
 msgstr "Instancjonuj scenę tutaj..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Wklej węzeł/y tutaj"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Przenieś węzeł/y tutaj"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -12615,8 +12615,8 @@ msgstr "Wklej pozę"
 msgid "Clear Guides"
 msgstr "Wyczyść prowadnice"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
-msgstr "Utwórz własne węzły Bone2D z węzłów Node"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
+msgstr "Utwórz własne węzły Bone2D z węzłów Flowde"
 
 msgid "Zoom to 3.125%"
 msgstr "Oddal do 3.125%"
@@ -12678,13 +12678,13 @@ msgstr "Przyciągaj do pikseli"
 msgid "Snap to Parent"
 msgstr "Przyciągaj do rodzica"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Przyciągaj do zakotwiczenia węzła"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Przyciągaj do boków węzła"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Przyciągaj do środka węzła"
 
 msgid "Snap to Other Nodes"
@@ -12709,8 +12709,8 @@ msgstr "Opcje szkieletu"
 msgid "Show Bones"
 msgstr "Pokaż kości"
 
-msgid "Make Bone2D Node(s) from Node(s)"
-msgstr "Utwórz węzły Bone2D z węzłów Node"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
+msgstr "Utwórz węzły Bone2D z węzłów Flowde"
 
 msgid "Show"
 msgstr "Pokaż"
@@ -12838,7 +12838,7 @@ msgid "%s: Callback code won't be generated, please add it manually."
 msgstr ""
 "%s: Kod wywołania zwrotnego nie zostanie wygenerowany. Dodaj go ręcznie."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Połącz do węzła:"
 
 msgid "Connect to Script:"
@@ -13628,7 +13628,7 @@ msgstr "Inny motyw"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Przefiltruj listę typów lub stwórz nowy, niestandardowy typ:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Dostępne typy oparte na węzłach:"
 
 msgid "Type name is empty!"
@@ -13885,13 +13885,13 @@ msgstr "Użyj wyrażeń regularnych"
 msgid "Substitute"
 msgstr "Substytut"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Nazwa węzła."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Nazwa rodzica węzła, jeśli dostępna."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Typ węzła."
 
 msgid "Current scene name."
@@ -13998,7 +13998,7 @@ msgstr "Przełącz dok Wczytywacza zasobów"
 msgid "Load Resource"
 msgstr "Wczytaj zasób"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Wybierz typ korzenia"
 
 msgid "Scene name is empty."
@@ -14025,7 +14025,7 @@ msgstr "Typ korzenia:"
 msgid "Other Type"
 msgstr "Inny typ"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Wybierz węzeł"
 
 msgid "Scene Name:"
@@ -14062,7 +14062,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Przełącz widoczność"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Odblokuj węzeł"
 
 msgid "Ungroup Children"
@@ -14077,7 +14077,7 @@ msgstr "Wyłącz unikalną w scenie nazwę"
 msgid "(Connecting From)"
 msgstr "(łączony teraz)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Ostrzeżenie konfiguracji węzła:"
 
 msgid ""
@@ -14090,14 +14090,14 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Kliknij, aby to wyłączyć."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Węzeł ma jedno połączenie."
 msgstr[1] "Węzeł ma {num} połączenia."
 msgstr[2] "Węzeł ma {num} połączeń."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Węzeł jest w następującej grupie:"
 msgstr[1] "Węzeł jest w następujących grupach:"
 msgstr[2] "Węzeł jest w następujących grupach:"
@@ -14125,7 +14125,7 @@ msgid "Open Script:"
 msgstr "Otwórz skrypt:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Węzeł jest zablokowany.\n"
@@ -14161,7 +14161,7 @@ msgstr "Nieprawidłowa nazwa węzła, następujące znaki są niedozwolone:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "Węzeł z unikalną nazwą %s już istnieje w tej scenie."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Zmień nazwę węzła"
 
 msgid "Rename Nodes"
@@ -14170,7 +14170,7 @@ msgstr "Zmień nazwę węzłów"
 msgid "Scene Tree (Nodes):"
 msgstr "Drzewo sceny (węzły):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Ostrzeżenie konfiguracji węzła!"
 
 msgid "Revoke"
@@ -14186,7 +14186,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "Dozwolone:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Wybierz węzeł"
 
 msgid "Show All"
@@ -14643,7 +14643,7 @@ msgstr "Skrypt wbudowany:"
 msgid "Select File"
 msgstr "Wybierz plik"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Dołącz skrypt dla węzła"
 
 msgid "Line"
@@ -14893,9 +14893,9 @@ msgstr "Wstępne wczytywanie wewnętrznych zasobów nie jest wspierane."
 msgid "Can't drop nodes without an open scene."
 msgstr "Nie można upuścić węzłów bez otwartej sceny."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
 msgstr ""
-"Nie można upuścić węzłów, ponieważ skrypt \"%s\" nie jest pochodną klasy Node."
+"Nie można upuścić węzłów, ponieważ skrypt \"%s\" nie jest pochodną klasy Flowde."
 
 msgid "Pick Color"
 msgstr "Wybierz kolor"
@@ -15362,7 +15362,7 @@ msgstr "Edytor 3D"
 msgid "Scene Tree Editing"
 msgstr "Edycja drzewa sceny"
 
-msgid "Node Dock (deprecated)"
+msgid "Flowde Dock (deprecated)"
 msgstr "Dok węzła (przestarzały)"
 
 msgid "FileSystem Dock"
@@ -16742,7 +16742,7 @@ msgstr "Przychodząca przepustowość"
 msgid "Outgoing Bandwidth"
 msgstr "Wychodząca przepustowość"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Węzeł"
 
 msgid "Incoming RPC"
@@ -17579,7 +17579,7 @@ msgstr "Usuń port wyjściowy"
 msgid "Set VisualShader Expression"
 msgstr "Ustaw wyrażenie VisualShader"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "Zmień rozmiar węzła VisualShader"
 
 msgid "Hide Port Preview"
@@ -17609,10 +17609,10 @@ msgstr "Ustaw nazwę parametru"
 msgid "Set Input Default Port"
 msgstr "Ustaw domyślny port wejścia"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Ustaw własną opcję węzła"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Dodaj Węzeł do Wizualnego Shadera"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -17621,28 +17621,28 @@ msgstr "Dodaj varying do shadera wizualnego: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Usuń varying z shadera wizualnego: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "Przesuń węzeł/y VisualShader"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "Przesuń i przyłącz węzeł VisualShader do nadrzędnej ramki"
 
 msgid "Insert node"
 msgstr "Wstaw węzeł"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Konwertuj stałe węzły do parametrów"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Konwertuj węzły parametrów do stałych"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "Odczep węzeł/y VisualShader od ramki"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Usuń węzeł VisualShadera"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Usuń węzły VisualShadera"
 
 msgid "Float Constants"
@@ -17666,13 +17666,13 @@ msgstr "Włącz zabarwienie"
 msgid "Edit Preview Parameter: %s"
 msgstr "Edytuj parametr podglądu: %s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "Duplikuj węzeł(y) VisualShader"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Wklej węzeł(y) VisualShader"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Wytnij węzeł(y) VisualShader"
 
 msgid "Visual Shader Input Type Changed"
@@ -17696,7 +17696,7 @@ msgstr "Varying o tej nazwie już istnieje."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Typ boolowski nie może być użyty z trybem varying `%s`."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Dodaj węzeł(y) do shadera wizualnego"
 
 msgid "Hold %s Key To Swap Connections"
@@ -17741,13 +17741,13 @@ msgstr "Przełącz podgląd shadera."
 msgid "Generated Shader Code"
 msgstr "Wygenerowany kod shadera"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Dodaj węzeł"
 
 msgid "Clear Copy Buffer"
 msgstr "Wyczyść bufor kopiowania"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Wstaw nowy węzeł"
 
 msgid "Insert New Reroute"
@@ -17772,7 +17772,7 @@ msgstr ""
 "Tylko wspierane w metodach renderowania Forward+ i Mobilny, nie w "
 "Kompatybilnym."
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Utwórz węzeł shadera"
 
 msgid "Create Shader Varying"
@@ -18364,7 +18364,7 @@ msgstr ""
 "Zwraca wartość głębi otrzymaną z wstępnego przetwarzania głębi w przestrzeni "
 "liniowej."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "Rekonstruuje światową pozycję węzła z tekstury głębi."
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -20065,20 +20065,20 @@ msgstr ""
 "Węzeł CollisionShape2D ma ograniczone opcje edycji dla kształtów opartych na "
 "wielokątach. Rozważ zamiast tego użycie węzła CollisionPolygon2D."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
-msgstr "Node A i Node B muszą być węzłami PhysicsBody2D"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
+msgstr "Flowde A i Flowde B muszą być węzłami PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
-msgstr "Node A musi być węzłem PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
+msgstr "Flowde A musi być węzłem PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
-msgstr "Node B musi być węzłem PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
+msgstr "Flowde B musi być węzłem PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Złącze nie jest połączone do dwóch węzłów PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
-msgstr "Node A i Node B muszą być różnymi węzłami PhysicsBody2D"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
+msgstr "Flowde A i Flowde B muszą być różnymi węzłami PhysicsBody2D"
 
 msgid ""
 "A PhysicalBone2D only works with a Skeleton2D or another PhysicalBone2D as a "
@@ -20608,19 +20608,19 @@ msgstr ""
 "Proszę ujednolicić jego skalę (tj. taką samą we wszystkich osiach), a zamiast "
 "tego zmienić rozmiar jego zasobu kształtu."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "Węzeł A i węzeł B muszą być węzłami PhysicsBody3D"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "Węzeł A musi być węzłem PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "Węzeł B musi być węzłem PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Staw nie jest połączony z żadnym węzłem PhysicsBody3D"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Węzeł A i węzeł B muszą być różnymi PhysicsBody3D"
 
 msgid ""
@@ -20939,7 +20939,7 @@ msgstr ""
 msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr "Nazwa dla dostępności nie może być pusta lub zawierać tylko spacji."
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr "Nazwa dla dostępności nie może zawierać nazwy klasy węzła."
 
 msgid "Accessibility Name must not include control character."

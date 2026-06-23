@@ -1,6 +1,6 @@
-extends Node
+extends Flowde
 
-@onready var test: Node = $AnimationPlayer
+@onready var test: Flowde = $AnimationPlayer
 
 func a():
     test.➡

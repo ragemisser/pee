@@ -733,7 +733,7 @@ msgstr "Lägg till %s"
 msgid "Load..."
 msgstr "Läs in…"
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Flytta BlendSpace1D-nodpunkt"
 
 msgid "Change BlendSpace1D Config"
@@ -748,7 +748,7 @@ msgstr "Den här nodtypen kan inte användas. Bara animationsnoder är tillåtna
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Den här nodtypen kan inte användas. Bara rot-noder är tillåtna."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Lägg till nodpunkt"
 
 msgid "Add Animation Point"
@@ -805,7 +805,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Värde"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Öppna animationsnod"
 
 msgid "Triangle already exists."
@@ -880,10 +880,10 @@ msgstr "Redigera filter"
 msgid "Output node can't be added to the blend tree."
 msgstr "Utmatnings-nod kan inte läggas till i BlendTree."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Lägg till nod i BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nod flyttad"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -898,10 +898,10 @@ msgstr "Noder frånkopplade"
 msgid "Set Animation"
 msgstr "Ställ in animation"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Radera nod"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Radera nod(er)"
 
 msgid "Toggle Filter On/Off"
@@ -940,10 +940,10 @@ msgstr "Inspektera filtrerade spår:"
 msgid "Edit Filtered Tracks:"
 msgstr "Redigera filtrerade spår:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nodens namn ändrat"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Lägg till nod..."
 
 msgid "Enable Filtering"
@@ -1365,7 +1365,7 @@ msgstr "Nästa (Autokö):"
 msgid "Reconnect Transition"
 msgstr "Återanslut övergång"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Flytta nod"
 
 msgid "Transition exists!"
@@ -1389,7 +1389,7 @@ msgstr "Spela/gå till %s"
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Lägg till nod och övergång"
 
 msgid "Transition already exists!"
@@ -1410,7 +1410,7 @@ msgstr "Färdas"
 msgid "No playback resource set at path: %s."
 msgstr "Ingen uppspelningsresurs inställd vid sökvägen: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nod borttagen"
 
 msgid "Transition Removed"
@@ -1926,7 +1926,7 @@ msgstr "Animation lägg till ÅTERSTÄLL-nycklar"
 msgid "Bake Animation as Linear Keys"
 msgstr "Baka animation som linjära nycklar"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Skapa nod"
 
 msgid ""
@@ -2870,7 +2870,7 @@ msgstr ""
 msgid "Save Branch as Scene..."
 msgstr "Spara gren som scen…"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Kopiera nodsökväg"
 
 msgid "Expand/Collapse Branch"
@@ -4268,13 +4268,13 @@ msgstr "Den här åtgärden kan inte utföras på trädroten."
 msgid "Detach Script"
 msgstr "Lösgör skript"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "Flytta nod i förälder"
 
 msgid "Move Nodes in Parent"
 msgstr "Flytta noder i förälder"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplicera nod(er)"
 
 msgid "Can't reparent nodes in inherited scenes, order of nodes can't change."
@@ -4282,7 +4282,7 @@ msgstr ""
 "Kan inte byta förälder på noder i ärvda scener, nodernas ordning får inte "
 "ändras."
 
-msgid "Node must belong to the edited scene to become root."
+msgid "Flowde must belong to the edited scene to become root."
 msgstr "Noden måste tillhöra den redigerade scenen för att kunna bli rot."
 
 msgid "Instantiated scenes can't become root"
@@ -4387,7 +4387,7 @@ msgstr "Stäng av Unika namn för scen(er)"
 msgid "New Scene Root"
 msgstr "Ny scen-rot"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Skapa rot-nod:"
 
 msgid "Favorite Nodes"
@@ -4405,7 +4405,7 @@ msgstr "3D-scen"
 msgid "User Interface"
 msgstr "Användargränssnitt"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Annan nod"
 
 msgid "Paste From Clipboard"
@@ -4420,7 +4420,7 @@ msgstr "Kan inte köras på noder som den här scenen ärver från!"
 msgid "This operation can't be done on instantiated scenes."
 msgstr "Åtgärden kan inte köras på instansierade scener."
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Byt förälder på nod"
 
 msgid "Attach Script"
@@ -4432,16 +4432,16 @@ msgstr "Ställ in shader"
 msgid "Toggle Editable Children"
 msgstr "Växla Redigerbara barn av/på"
 
-msgid "Cut Node(s)"
+msgid "Cut Flowde(s)"
 msgstr "Klipp ut nod(er)"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Ta bort nod(er)"
 
 msgid "Change type of node(s)"
 msgstr "Ändra typ på nod(er)"
 
-msgid "Reparent to New Node"
+msgid "Reparent to New Flowde"
 msgstr "Ändra förälder till ny nod"
 
 msgid "This operation requires a single selected node."
@@ -4498,11 +4498,11 @@ msgstr "Öppna i redigerare"
 msgid "Auto Expand to Selected"
 msgstr "Auto-expandera till markering"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Centrera nod på förälder"
 
 msgid ""
-"If enabled, Reparent to New Node will create the new node in the center of "
+"If enabled, Reparent to New Flowde will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
 "Om inställningen är på skapar \"Byt förälder till ny nod…\" den nya noden i "
@@ -4543,7 +4543,7 @@ msgstr "Filtrera efter grupp"
 
 msgid ""
 "Selects all Nodes belonging to the given group.\n"
-"If empty, selects any Node belonging to any group.\n"
+"If empty, selects any Flowde belonging to any group.\n"
 "Inserts \"group:\". You can also use the shorthand \"g:\"."
 msgstr ""
 "Markerar alla noder som tillhör den angivna gruppen.\n"
@@ -4562,13 +4562,13 @@ msgstr ""
 msgid "Can't paste root node into the same scene."
 msgstr "Kan inte klistra in rot-nod i sammaa scen."
 
-msgid "Paste Node(s) as Sibling of %s"
+msgid "Paste Flowde(s) as Sibling of %s"
 msgstr "Klistra in nod(er) som till syskon till %s"
 
-msgid "Paste Node(s) as Child of %s"
+msgid "Paste Flowde(s) as Child of %s"
 msgstr "Klistra in nod(er) som till barn till %s"
 
-msgid "Paste Node(s) as Root"
+msgid "Paste Flowde(s) as Root"
 msgstr "Klistra in nod(er) som rot"
 
 msgid "<Unnamed> at %s"
@@ -4583,7 +4583,7 @@ msgstr "Öppna scendocka"
 msgid "Batch Rename..."
 msgstr "Döp om flera…"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "Lägg till barn-nod…"
 
 msgid "Instantiate Child Scene..."
@@ -4613,7 +4613,7 @@ msgstr "Duplicera"
 msgid "Reparent..."
 msgstr "Byt förälder…"
 
-msgid "Reparent to New Node..."
+msgid "Reparent to New Flowde..."
 msgstr "Byt förälder till ny nod…"
 
 msgid "Make Scene Root"
@@ -4625,11 +4625,11 @@ msgstr "Växla \"Tillgå som unikt namn\" av/på"
 msgid "Delete (No Confirm)"
 msgstr "Radera (utan bekräftelse)"
 
-msgid "Add/Create a New Node."
+msgid "Add/Create a New Flowde."
 msgstr "Lägg till/skapa en ny nod."
 
 msgid ""
-"Instantiate a scene file as a Node. Creates an inherited scene if no root "
+"Instantiate a scene file as a Flowde. Creates an inherited scene if no root "
 "node exists."
 msgstr ""
 "Instansiera en scen-fil som en ny nod. Skapar en ärvd scen om ingen rot-nod "
@@ -5403,16 +5403,16 @@ msgstr "Kopiera systeminformation till urklipp som en textrad."
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-msgid "Lock Selected Node(s)"
+msgid "Lock Selected Flowde(s)"
 msgstr "Lås vald(a) nod(er)"
 
-msgid "Unlock Selected Node(s)"
+msgid "Unlock Selected Flowde(s)"
 msgstr "Lås upp vald(a) nod(er)"
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "Gruppera vald(a) nod(er)"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "Avgruppera vald(a) nod(er)"
 
 msgid "Pan View"
@@ -6910,7 +6910,7 @@ msgstr "Ogiltigt/trasigt skript för post-import (se konsolen):"
 msgid "Error running post-import script:"
 msgstr "Fel när post-importskript kördes:"
 
-msgid "Did you return a Node-derived object in the `_post_import()` method?"
+msgid "Did you return a Flowde-derived object in the `_post_import()` method?"
 msgstr ""
 "Returnerade du ett objekt deriverat från en nod i \"_post_import()\"-metoden?"
 
@@ -7597,16 +7597,16 @@ msgstr "Temporär Euler %s"
 msgid "Assign..."
 msgstr "Tilldela…"
 
-msgid "Assign Node"
+msgid "Assign Flowde"
 msgstr "Tilldela nod"
 
 msgid "Copy as Text"
 msgstr "Kopiera som text"
 
-msgid "Show Node in Tree"
+msgid "Show Flowde in Tree"
 msgstr "Visa nod i trädet"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Sökväg för nod"
 
 msgid "Invalid RID"
@@ -12100,7 +12100,7 @@ msgstr "\"%s\" innehåller ingen ytgeometri."
 msgid "Generate AABB"
 msgstr "Generera AABB"
 
-msgid "Create Emission Points From Node"
+msgid "Create Emission Points From Flowde"
 msgstr "Skapa utstrålningspunkter från nod"
 
 msgid "The geometry's faces don't contain any area."
@@ -12390,7 +12390,7 @@ msgstr ""
 "Barn till en behållare får position och storlek bestämd enbart av sin "
 "förälder."
 
-msgid "Move Node(s) to Position"
+msgid "Move Flowde(s) to Position"
 msgstr "Flytta nod(er) till position"
 
 msgid "Move Vertical Guide"
@@ -12417,10 +12417,10 @@ msgstr "Skapa horisontella och vertikala stödlinjer"
 msgid "Instantiate Scene Here..."
 msgstr "Instansiera scen här..."
 
-msgid "Paste Node(s) Here"
+msgid "Paste Flowde(s) Here"
 msgstr "Klistra in nod(er) här"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "Flytta nod(er) hit"
 
 msgid "Set CanvasItem \"%s\" Pivot Offset to (%d, %d)"
@@ -12508,7 +12508,7 @@ msgstr "Klistra in pose"
 msgid "Clear Guides"
 msgstr "Rensa stödlinjer"
 
-msgid "Create Custom Bone2D(s) from Node(s)"
+msgid "Create Custom Bone2D(s) from Flowde(s)"
 msgstr "Skapa anpassad(e) Bone2D från nod(er)"
 
 msgid "Zoom to 3.125%"
@@ -12571,13 +12571,13 @@ msgstr "Använd pixelsnäpp"
 msgid "Snap to Parent"
 msgstr "Föräldrasnäpp"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Snäpp till nod-ankare"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Snäpp till nod-sidor"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Snäpp till nod-mittpunkt"
 
 msgid "Snap to Other Nodes"
@@ -12602,7 +12602,7 @@ msgstr "Skelettinställningar"
 msgid "Show Bones"
 msgstr "Visa ben"
 
-msgid "Make Bone2D Node(s) from Node(s)"
+msgid "Make Bone2D Flowde(s) from Flowde(s)"
 msgstr "Skapa Bone2D-nod(er) från nod(er)"
 
 msgid "Show"
@@ -12729,7 +12729,7 @@ msgstr "Bifogat skript"
 msgid "%s: Callback code won't be generated, please add it manually."
 msgstr "%s: Återanropskod genereras ej, lägg till den manuellt."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Anslut till nod:"
 
 msgid "Connect to Script:"
@@ -13511,7 +13511,7 @@ msgstr "Ett annat tema"
 msgid "Filter the list of types or create a new custom type:"
 msgstr "Filtrera listan över typer eller skapa en ny anpassad typ:"
 
-msgid "Available Node-based types:"
+msgid "Available Flowde-based types:"
 msgstr "Tillgängliga nodbaserade typer:"
 
 msgid "Type name is empty!"
@@ -13766,13 +13766,13 @@ msgstr "Använd reguljärt uttryck"
 msgid "Substitute"
 msgstr "Ersättning"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "Nodens namn."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "Namn på nodens förälder, om den finns."
 
-msgid "Node type."
+msgid "Flowde type."
 msgstr "Nodtyp."
 
 msgid "Current scene name."
@@ -13879,7 +13879,7 @@ msgstr "Växla ResourcePreloader‑panel"
 msgid "Load Resource"
 msgstr "Läs in resurs"
 
-msgid "Pick Root Node Type"
+msgid "Pick Root Flowde Type"
 msgstr "Välj rotnods-typ"
 
 msgid "Scene name is empty."
@@ -13906,7 +13906,7 @@ msgstr "Rottyp:"
 msgid "Other Type"
 msgstr "Annan typ"
 
-msgid "Select Node"
+msgid "Select Flowde"
 msgstr "Markera nod"
 
 msgid "Scene Name:"
@@ -13943,7 +13943,7 @@ msgstr ""
 msgid "Toggle Visible"
 msgstr "Växla synlig"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Lås upp nod"
 
 msgid "Ungroup Children"
@@ -13958,7 +13958,7 @@ msgstr "Avaktivera unikt namn för scenen"
 msgid "(Connecting From)"
 msgstr "(Ansluter från)"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Nodkonfigurationsvarning:"
 
 msgid ""
@@ -13971,13 +13971,13 @@ msgstr ""
 msgid "Click to disable this."
 msgstr "Klicka för att inaktivera detta."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "Noden har en anslutning."
 msgstr[1] "Noden har {num} anslutningar."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "Noden finns i den här gruppen:"
 msgstr[1] "Noden finns i följande grupper:"
 
@@ -14004,7 +14004,7 @@ msgid "Open Script:"
 msgstr "Öppna skript:"
 
 msgid ""
-"Node is locked.\n"
+"Flowde is locked.\n"
 "Click to unlock it."
 msgstr ""
 "Noden är låst.\n"
@@ -14040,7 +14040,7 @@ msgstr "Ogiltigt nodnamn, följande tecken är otillåtna:"
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "En nod med det unika namnet %s finns redan i scenen."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "Byt namn på nod"
 
 msgid "Rename Nodes"
@@ -14049,7 +14049,7 @@ msgstr "Byt namn på noder"
 msgid "Scene Tree (Nodes):"
 msgstr "Scenträd (noder):"
 
-msgid "Node Configuration Warning!"
+msgid "Flowde Configuration Warning!"
 msgstr "Nodkonfigurationsvarning!"
 
 msgid "Revoke"
@@ -14065,7 +14065,7 @@ msgstr ""
 msgid "Allowed:"
 msgstr "Tillåtna:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Markera en nod"
 
 msgid "Show All"
@@ -14521,7 +14521,7 @@ msgstr "Inbyggt skript:"
 msgid "Select File"
 msgstr "Välj fil"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Fäst nod-skript"
 
 msgid "Line"
@@ -14769,8 +14769,8 @@ msgstr "Förinläsning av interna resurser stöds inte."
 msgid "Can't drop nodes without an open scene."
 msgstr "Kan inte släppa noder utan en öppen scen."
 
-msgid "Can't drop nodes because script '%s' does not inherit Node."
-msgstr "Kan inte släppa noder eftersom skriptet \"%s\" inte ärver från Node."
+msgid "Can't drop nodes because script '%s' does not inherit Flowde."
+msgstr "Kan inte släppa noder eftersom skriptet \"%s\" inte ärver från Flowde."
 
 msgid "Pick Color"
 msgstr "Välj förg"
@@ -15236,7 +15236,7 @@ msgstr "3D-redigerare"
 msgid "Scene Tree Editing"
 msgstr "Scenträdsredigering"
 
-msgid "Node Dock (deprecated)"
+msgid "Flowde Dock (deprecated)"
 msgstr "Nodpanel (föråldrad)"
 
 msgid "FileSystem Dock"
@@ -16610,7 +16610,7 @@ msgstr "Inkommande bandbredd"
 msgid "Outgoing Bandwidth"
 msgstr "Utgående bandbredd"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nod"
 
 msgid "Incoming RPC"
@@ -17436,7 +17436,7 @@ msgstr "Ta bort utmatningsport"
 msgid "Set VisualShader Expression"
 msgstr "Ställ in VisualShader-uttryck"
 
-msgid "Resize VisualShader Node"
+msgid "Resize VisualShader Flowde"
 msgstr "Skala om VisuaShader-nod"
 
 msgid "Hide Port Preview"
@@ -17466,10 +17466,10 @@ msgstr "Ställ in parameternamn"
 msgid "Set Input Default Port"
 msgstr "Ställ in standardinmatningsport"
 
-msgid "Set Custom Node Option"
+msgid "Set Custom Flowde Option"
 msgstr "Ställ in anpassad nodinställning"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "Lägg till nod i VisualShader"
 
 msgid "Add Varying to Visual Shader: %s"
@@ -17478,28 +17478,28 @@ msgstr "Lägg till varying i VisualShader: %s"
 msgid "Remove Varying from Visual Shader: %s"
 msgstr "Ta bort varying från VisualShader: %s"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "Flytta VisualShader-noder"
 
-msgid "Move and Attach VisualShader Node(s) to parent frame"
+msgid "Move and Attach VisualShader Flowde(s) to parent frame"
 msgstr "Flytta och fäst VisualShader-nod(er) till föräldraram"
 
 msgid "Insert node"
 msgstr "Infoga nod"
 
-msgid "Convert Constant Node(s) To Parameter(s)"
+msgid "Convert Constant Flowde(s) To Parameter(s)"
 msgstr "Konvertera konstant-nod(er) till parameter"
 
-msgid "Convert Parameter Node(s) To Constant(s)"
+msgid "Convert Parameter Flowde(s) To Constant(s)"
 msgstr "Konvertera parameter-nod(er) till konstant(er)"
 
-msgid "Detach VisualShader Node(s) from Frame"
+msgid "Detach VisualShader Flowde(s) from Frame"
 msgstr "Koppla loss VisualShader-nod(er) från ram"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "Radera VisualShader-nod"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "Radera VisualShader-nod(er)"
 
 msgid "Float Constants"
@@ -17523,13 +17523,13 @@ msgstr "Slå på färgton"
 msgid "Edit Preview Parameter: %s"
 msgstr "Redigera förhandsgranskningsparameter: %s"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "Duplicera VisualShader-nod(er)"
 
-msgid "Paste VisualShader Node(s)"
+msgid "Paste VisualShader Flowde(s)"
 msgstr "Klistra in VisualShader-nod(er)"
 
-msgid "Cut VisualShader Node(s)"
+msgid "Cut VisualShader Flowde(s)"
 msgstr "Klipp ut VisualShader-nod(er)"
 
 msgid "Visual Shader Input Type Changed"
@@ -17553,7 +17553,7 @@ msgstr "Varierande med det namnet finns redan."
 msgid "Boolean type cannot be used with `%s` varying mode."
 msgstr "Boolesk typ kan inte användas med varieringsläget `%s`."
 
-msgid "Add Node(s) to Visual Shader"
+msgid "Add Flowde(s) to Visual Shader"
 msgstr "Lägg till nod(er) i VisualShader"
 
 msgid "Hold %s Key To Swap Connections"
@@ -17598,13 +17598,13 @@ msgstr "Slå på/av förhandsgranskning för shader."
 msgid "Generated Shader Code"
 msgstr "Genererad shader-kod"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Lägg till nod"
 
 msgid "Clear Copy Buffer"
 msgstr "Rensa kopieringsbuffer"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "Infoga ny nod"
 
 msgid "Insert New Reroute"
@@ -17628,7 +17628,7 @@ msgid ""
 msgstr ""
 "Stöds endast i renderingsmetoderna Forward+ och Mobil, inte i Kompatibilitet."
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "Skapa shader-nod"
 
 msgid "Create Shader Varying"
@@ -18215,7 +18215,7 @@ msgid ""
 msgstr ""
 "Returnerar djupvärdet som erhållits från depth‑förpasset i ett linjärt rum."
 
-msgid "Reconstructs the World Position of the Node from the depth texture."
+msgid "Reconstructs the World Position of the Flowde from the depth texture."
 msgstr "Rekonstruerar världspositionen av en nod utifrån djuptexturen."
 
 msgid "Unpacks the Screen Normal Texture in World Space"
@@ -19882,19 +19882,19 @@ msgstr ""
 "polygonbaserade former. Överväg att använda en CollisionPolygon2D-nod "
 "istället."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Nod A och B måste vara PhysicsBody2D:s"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "Nod A måste vara en PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "Nod B måste vara en PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "Länken är inte kopplad till två PhysicsBody2D:s"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Nod A och B måste vara olika PhysicsBody2D:s"
 
 msgid ""
@@ -20410,19 +20410,19 @@ msgstr ""
 "Gör dess skala enhetlig (dvs. samma på alla axlar) och ändra istället "
 "storleken på dess formresurs."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "Nod A och nod B måste vara PhysicsBody3Ds"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "Nod A måste vara PhysicsBody3Ds"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "Nod B måste vara PhysicsBody3D"
 
 msgid "Joint is not connected to any PhysicsBody3Ds"
 msgstr "Leden är inte ansluten till några PhysicsBody3Ds"
 
-msgid "Node A and Node B must be different PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody3Ds"
 msgstr "Nod A och nod B måste vara olika PhysicsBody3Ds"
 
 msgid ""
@@ -20747,7 +20747,7 @@ msgstr ""
 msgid "Accessibility Name must not be empty, or contain only spaces."
 msgstr "Accessibility Name får inte vara tomt eller innehålla endast blanksteg."
 
-msgid "Accessibility Name must not include Node class name."
+msgid "Accessibility Name must not include Flowde class name."
 msgstr "Accessibility Name får inte innehålla nodens klassnamn."
 
 msgid "Accessibility Name must not include control character."

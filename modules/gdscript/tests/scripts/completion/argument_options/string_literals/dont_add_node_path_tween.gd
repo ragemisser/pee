@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 const A = preload("res://completion/class_a.notest.gd")
 

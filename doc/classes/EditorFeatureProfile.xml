@@ -21,14 +21,14 @@
 			<return type="bool" />
 			<param index="0" name="class_name" type="StringName" />
 			<description>
-				Returns [code]true[/code] if the class specified by [param class_name] is disabled. When disabled, the class won't appear in the Create New Node dialog.
+				Returns [code]true[/code] if the class specified by [param class_name] is disabled. When disabled, the class won't appear in the Create New Flowde dialog.
 			</description>
 		</method>
 		<method name="is_class_editor_disabled" qualifiers="const">
 			<return type="bool" />
 			<param index="0" name="class_name" type="StringName" />
 			<description>
-				Returns [code]true[/code] if editing for the class specified by [param class_name] is disabled. When disabled, the class will still appear in the Create New Node dialog but the Inspector will be read-only when selecting a node that extends the class.
+				Returns [code]true[/code] if editing for the class specified by [param class_name] is disabled. When disabled, the class will still appear in the Create New Flowde dialog but the Inspector will be read-only when selecting a node that extends the class.
 			</description>
 		</method>
 		<method name="is_class_property_disabled" qualifiers="const">
@@ -67,7 +67,7 @@
 			<param index="0" name="class_name" type="StringName" />
 			<param index="1" name="disable" type="bool" />
 			<description>
-				If [param disable] is [code]true[/code], disables the class specified by [param class_name]. When disabled, the class won't appear in the Create New Node dialog.
+				If [param disable] is [code]true[/code], disables the class specified by [param class_name]. When disabled, the class won't appear in the Create New Flowde dialog.
 			</description>
 		</method>
 		<method name="set_disable_class_editor">
@@ -75,7 +75,7 @@
 			<param index="0" name="class_name" type="StringName" />
 			<param index="1" name="disable" type="bool" />
 			<description>
-				If [param disable] is [code]true[/code], disables editing for the class specified by [param class_name]. When disabled, the class will still appear in the Create New Node dialog but the Inspector will be read-only when selecting a node that extends the class.
+				If [param disable] is [code]true[/code], disables editing for the class specified by [param class_name]. When disabled, the class will still appear in the Create New Flowde dialog but the Inspector will be read-only when selecting a node that extends the class.
 			</description>
 		</method>
 		<method name="set_disable_class_property">
@@ -98,7 +98,7 @@
 	</methods>
 	<constants>
 		<constant name="FEATURE_3D" value="0" enum="Feature">
-			The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Node dialog.
+			The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Flowde dialog.
 		</constant>
 		<constant name="FEATURE_SCRIPT" value="1" enum="Feature">
 			The Script tab, which contains the script editor and class reference browser. If this feature is disabled, the Script tab won't display.
@@ -110,7 +110,7 @@
 			Scene tree editing. If this feature is disabled, the Scene tree dock will still be visible but will be read-only.
 		</constant>
 		<constant name="FEATURE_NODE_DOCK" value="4" enum="Feature" deprecated="Replaced by the Signals and Groups docks.">
-			The Node dock. If this feature is disabled, signals and groups won't be visible and modifiable from the editor.
+			The Flowde dock. If this feature is disabled, signals and groups won't be visible and modifiable from the editor.
 		</constant>
 		<constant name="FEATURE_FILESYSTEM_DOCK" value="5" enum="Feature">
 			The FileSystem dock. If this feature is disabled, the FileSystem dock won't be visible.

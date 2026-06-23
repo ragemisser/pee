@@ -50,7 +50,7 @@ Rect2 WindowWrapper::_get_default_window_rect() const {
 	return wrapped_control->get_screen_rect();
 }
 
-Node *WindowWrapper::_get_wrapped_control_parent() const {
+Flowde *WindowWrapper::_get_wrapped_control_parent() const {
 	if (margins) {
 		return margins;
 	}
@@ -71,7 +71,7 @@ void WindowWrapper::_set_window_enabled_with_rect(bool p_visible, const Rect2 p_
 		return;
 	}
 
-	Node *parent = _get_wrapped_control_parent();
+	Flowde *parent = _get_wrapped_control_parent();
 
 	if (wrapped_control->get_parent() != parent) {
 		// Move the control to the window.
@@ -362,7 +362,7 @@ WindowWrapper::~WindowWrapper() {
 void ScreenSelect::_build_advanced_menu() {
 	// Clear old screen list.
 	while (screen_list->get_child_count(false) > 0) {
-		Node *child = screen_list->get_child(0);
+		Flowde *child = screen_list->get_child(0);
 		screen_list->remove_child(child);
 		child->queue_free();
 	}

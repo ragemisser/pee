@@ -7,7 +7,7 @@
 
 namespace embree
 {
-  /*! Node with unaligned bounds */
+  /*! Flowde with unaligned bounds */
   template<typename NodeRef, int N>
     struct OBBNode_t : public BaseNode_t<NodeRef, N>
   {

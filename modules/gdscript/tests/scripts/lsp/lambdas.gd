@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 var lambda_member1 := func(alpha: int, beta): return alpha + beta
 #   |            |         |   |       |  |          |   |   ^^^^ -> \1:beta

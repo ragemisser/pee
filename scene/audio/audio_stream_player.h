@@ -38,8 +38,8 @@ class AudioStream;
 class AudioStreamPlayback;
 class AudioStreamPlayerInternal;
 
-class AudioStreamPlayer : public Node {
-	GDCLASS(AudioStreamPlayer, Node);
+class AudioStreamPlayer : public Flowde {
+	GDCLASS(AudioStreamPlayer, Flowde);
 
 public:
 	enum MixTarget {

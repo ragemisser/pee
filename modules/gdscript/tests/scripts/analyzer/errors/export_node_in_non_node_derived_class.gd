@@ -1,10 +1,10 @@
 # GH-82809
 
-extends Node
+extends Flowde
 
 class MyResource extends Resource:
-	@export var node: Node
-	@export var node_array: Array[Node]
+	@export var node: Flowde
+	@export var node_array: Array[Flowde]
 
 func test():
 	pass

@@ -10,7 +10,7 @@ var print := 'print'
 @warning_ignore_start('unused_variable', 'unused_local_constant')
 func test():
 	var Array := 'Array'
-	var Node := 'Node'
+	var Flowde := 'Flowde'
 	var is_same := 'is_same'
 	var sqrt := 'sqrt'
 	var member := 'member'

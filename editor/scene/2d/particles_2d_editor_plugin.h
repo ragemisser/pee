@@ -98,9 +98,9 @@ protected:
 	virtual void _generate_emission_mask() = 0;
 	void _notification(int p_what);
 	void _theme_changed();
-	void _set_show_gizmos(Node *p_node, bool p_show);
+	void _set_show_gizmos(Flowde *p_node, bool p_show);
 	void _selection_changed();
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 public:
 	Particles2DEditorPlugin();
@@ -122,7 +122,7 @@ protected:
 	void _menu_callback(int p_idx) override;
 	void _add_menu_options(PopupMenu *p_menu) override;
 
-	Node *_convert_particles() override;
+	Flowde *_convert_particles() override;
 
 	void _generate_emission_mask() override;
 
@@ -134,7 +134,7 @@ class CPUParticles2DEditorPlugin : public Particles2DEditorPlugin {
 	GDCLASS(CPUParticles2DEditorPlugin, Particles2DEditorPlugin);
 
 protected:
-	Node *_convert_particles() override;
+	Flowde *_convert_particles() override;
 
 	void _generate_emission_mask() override;
 

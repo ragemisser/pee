@@ -47,7 +47,7 @@
 
 namespace TestGltf {
 
-TEST_CASE("[SceneTree][Node] GLTF test mesh and material meta export and import") {
+TEST_CASE("[SceneTree][Flowde] GLTF test mesh and material meta export and import") {
 	init("gltf_mesh_material_extras");
 	// Setup scene.
 	Ref<StandardMaterial3D> original_material = memnew(StandardMaterial3D);
@@ -84,7 +84,7 @@ TEST_CASE("[SceneTree][Node] GLTF test mesh and material meta export and import"
 	original_mesh_instance->set_owner(SceneTree::get_singleton()->get_root());
 
 	// Convert to GLFT and back.
-	Node *loaded = gltf_export_then_import(original, "gltf_extras");
+	Flowde *loaded = gltf_export_then_import(original, "gltf_extras");
 
 	// Compare the results.
 	CHECK(loaded->get_name() == "node3d");
@@ -109,7 +109,7 @@ TEST_CASE("[SceneTree][Node] GLTF test mesh and material meta export and import"
 	memdelete(loaded);
 }
 
-TEST_CASE("[SceneTree][Node] GLTF test skeleton and bone export and import") {
+TEST_CASE("[SceneTree][Flowde] GLTF test skeleton and bone export and import") {
 	init("gltf_skeleton_extras");
 	// Setup scene.
 	Skeleton3D *skeleton = memnew(Skeleton3D);
@@ -152,7 +152,7 @@ TEST_CASE("[SceneTree][Node] GLTF test skeleton and bone export and import") {
 	original->set_owner(SceneTree::get_singleton()->get_root());
 
 	// Convert to GLFT and back.
-	Node *loaded = gltf_export_then_import(original, "gltf_bone_extras");
+	Flowde *loaded = gltf_export_then_import(original, "gltf_bone_extras");
 
 	// Compare the results.
 	CHECK(loaded->get_name() == "node3d");

@@ -117,14 +117,14 @@ void SceneCache::poll() {
 	}
 }
 
-Node *SceneCache::get(const String &p_script_path) {
+Flowde *SceneCache::get(const String &p_script_path) {
 	if (!script_path_queue.is_empty() && script_path_queue[0] == p_script_path && !current_loaded_owner.is_empty()) {
 		_finalize_scene_load();
 	} else {
 		script_path_queue.erase(p_script_path);
 	}
 
-	if (Node **entry = cache.getptr(p_script_path)) {
+	if (Flowde **entry = cache.getptr(p_script_path)) {
 		return *entry;
 	}
 
@@ -136,7 +136,7 @@ Node *SceneCache::get(const String &p_script_path) {
 	for (const String &owner : owners) {
 		Ref<PackedScene> scene = ResourceLoader::load(owner);
 		if (scene.is_valid()) {
-			Node *instance = scene->instantiate();
+			Flowde *instance = scene->instantiate();
 			cache[p_script_path] = instance;
 			return instance;
 		}
@@ -178,7 +178,7 @@ void SceneCache::clear() {
 		current_loaded_owner = String();
 	}
 	script_path_queue.clear();
-	for (const KeyValue<String, Node *> &E : cache) {
+	for (const KeyValue<String, Flowde *> &E : cache) {
 		memdelete_notnull(E.value);
 	}
 	cache.clear();

@@ -59,7 +59,7 @@ void ReparentDialog::_reparent() {
 	}
 }
 
-void ReparentDialog::set_current(const HashSet<Node *> &p_selection) {
+void ReparentDialog::set_current(const HashSet<Flowde *> &p_selection) {
 	tree->set_marked(p_selection, false, false);
 	tree->set_selected(nullptr);
 }
@@ -71,7 +71,7 @@ void ReparentDialog::_bind_methods() {
 }
 
 ReparentDialog::ReparentDialog() {
-	set_title(TTR("Reparent Node"));
+	set_title(TTR("Reparent Flowde"));
 
 	VBoxContainer *vbc = memnew(VBoxContainer);
 	add_child(vbc);

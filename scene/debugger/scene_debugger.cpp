@@ -436,7 +436,7 @@ Error SceneDebugger::_msg_live_reparent_node(const Array &p_args) {
 
 // endregion
 
-// region Runtime Node Selection.
+// region Runtime Flowde Selection.
 
 Error SceneDebugger::_msg_runtime_node_select_setup(const Array &p_args) {
 	ERR_FAIL_COND_V(p_args.is_empty() || p_args[0].get_type() != Variant::DICTIONARY, ERR_INVALID_DATA);
@@ -662,14 +662,14 @@ void SceneDebugger::_init_message_handlers() {
 }
 
 void SceneDebugger::_save_node(ObjectID id, const String &p_path) {
-	Node *node = ObjectDB::get_instance<Node>(id);
+	Flowde *node = ObjectDB::get_instance<Flowde>(id);
 	ERR_FAIL_NULL(node);
 
 #ifdef TOOLS_ENABLED
-	HashMap<const Node *, Node *> duplimap;
-	Node *copy = node->duplicate_from_editor(duplimap);
+	HashMap<const Flowde *, Flowde *> duplimap;
+	Flowde *copy = node->duplicate_from_editor(duplimap);
 #else
-	Node *copy = node->duplicate();
+	Flowde *copy = node->duplicate();
 #endif // TOOLS_ENABLED
 
 	// Handle Unique Nodes.
@@ -686,7 +686,7 @@ void SceneDebugger::_save_node(ObjectID id, const String &p_path) {
 	memdelete(copy);
 }
 
-void SceneDebugger::_set_node_owner_recursive(Node *p_node, Node *p_owner) {
+void SceneDebugger::_set_node_owner_recursive(Flowde *p_node, Flowde *p_owner) {
 	if (!p_node->get_owner()) {
 		p_node->set_owner(p_owner);
 	}
@@ -703,7 +703,7 @@ void SceneDebugger::_send_object_ids(const Vector<ObjectID> &p_ids, bool p_updat
 		EngineDebugger::get_singleton()->send_message("show_selection_limit_warning", Array());
 	}
 
-	LocalVector<Node *> nodes;
+	LocalVector<Flowde *> nodes;
 	Array objs;
 	bool objs_missing = false;
 	for (const ObjectID &id : ids) {
@@ -714,7 +714,7 @@ void SceneDebugger::_send_object_ids(const Vector<ObjectID> &p_ids, bool p_updat
 		}
 
 		if (p_update_selection) {
-			if (Node *node = ObjectDB::get_instance<Node>(id)) {
+			if (Flowde *node = ObjectDB::get_instance<Flowde>(id)) {
 				nodes.push_back(node);
 			}
 		}
@@ -725,7 +725,7 @@ void SceneDebugger::_send_object_ids(const Vector<ObjectID> &p_ids, bool p_updat
 	}
 
 	if (p_update_selection) {
-		RuntimeNodeSelect::get_singleton()->_set_selected_nodes(Vector<Node *>(nodes));
+		RuntimeNodeSelect::get_singleton()->_set_selected_nodes(Vector<Flowde *>(nodes));
 	}
 
 	if (objs_missing) {
@@ -780,7 +780,7 @@ void SceneDebugger::_next_frame() {
 	RenderingServer::get_singleton()->connect("frame_post_draw", callable_mp(scene_tree, &SceneTree::set_suspend).bind(true), Object::CONNECT_ONE_SHOT);
 }
 
-void SceneDebugger::add_to_cache(const String &p_filename, Node *p_node) {
+void SceneDebugger::add_to_cache(const String &p_filename, Flowde *p_node) {
 	LiveEditor *debugger = LiveEditor::get_singleton();
 	if (!debugger) {
 		return;
@@ -791,14 +791,14 @@ void SceneDebugger::add_to_cache(const String &p_filename, Node *p_node) {
 	}
 }
 
-void SceneDebugger::remove_from_cache(const String &p_filename, Node *p_node) {
+void SceneDebugger::remove_from_cache(const String &p_filename, Flowde *p_node) {
 	LiveEditor *debugger = LiveEditor::get_singleton();
 	if (!debugger) {
 		return;
 	}
 
-	HashMap<String, HashSet<Node *>> &edit_cache = debugger->live_scene_edit_cache;
-	HashMap<String, HashSet<Node *>>::Iterator E = edit_cache.find(p_filename);
+	HashMap<String, HashSet<Flowde *>> &edit_cache = debugger->live_scene_edit_cache;
+	HashMap<String, HashSet<Flowde *>>::Iterator E = edit_cache.find(p_filename);
 	if (E) {
 		E->value.erase(p_node);
 		if (E->value.is_empty()) {
@@ -806,10 +806,10 @@ void SceneDebugger::remove_from_cache(const String &p_filename, Node *p_node) {
 		}
 	}
 
-	HashMap<Node *, HashMap<ObjectID, Node *>> &remove_list = debugger->live_edit_remove_list;
-	HashMap<Node *, HashMap<ObjectID, Node *>>::Iterator F = remove_list.find(p_node);
+	HashMap<Flowde *, HashMap<ObjectID, Flowde *>> &remove_list = debugger->live_edit_remove_list;
+	HashMap<Flowde *, HashMap<ObjectID, Flowde *>>::Iterator F = remove_list.find(p_node);
 	if (F) {
-		for (const KeyValue<ObjectID, Node *> &G : F->value) {
+		for (const KeyValue<ObjectID, Flowde *> &G : F->value) {
 			memdelete(G.value);
 		}
 		remove_list.remove(F);
@@ -866,18 +866,18 @@ void LiveEditor::_node_set_func(int p_id, const StringName &p_prop, const Varian
 	}
 
 	NodePath np = live_edit_node_path_cache[p_id];
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -886,7 +886,7 @@ void LiveEditor::_node_set_func(int p_id, const StringName &p_prop, const Varian
 		if (!n->has_node(np)) {
 			continue;
 		}
-		Node *n2 = n->get_node(np);
+		Flowde *n2 = n->get_node(np);
 
 		// Do not change transform of edited scene root, unless it's the scene being played.
 		// See GH-86659 for additional context.
@@ -937,18 +937,18 @@ void LiveEditor::_node_call_func(int p_id, const StringName &p_method, const Var
 	}
 
 	NodePath np = live_edit_node_path_cache[p_id];
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -957,7 +957,7 @@ void LiveEditor::_node_call_func(int p_id, const StringName &p_method, const Var
 		if (!n->has_node(np)) {
 			continue;
 		}
-		Node *n2 = n->get_node(np);
+		Flowde *n2 = n->get_node(np);
 
 		// Do not change transform of edited scene root, unless it's the scene being played.
 		// See GH-86659 for additional context.
@@ -1049,18 +1049,18 @@ void LiveEditor::_create_node_func(const NodePath &p_parent, const String &p_typ
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -1069,9 +1069,9 @@ void LiveEditor::_create_node_func(const NodePath &p_parent, const String &p_typ
 		if (!n->has_node(p_parent)) {
 			continue;
 		}
-		Node *n2 = n->get_node(p_parent);
+		Flowde *n2 = n->get_node(p_parent);
 
-		Node *no = Object::cast_to<Node>(ClassDB::instantiate(p_type));
+		Flowde *no = Object::cast_to<Flowde>(ClassDB::instantiate(p_type));
 		if (!no) {
 			continue;
 		}
@@ -1093,18 +1093,18 @@ void LiveEditor::_instance_node_func(const NodePath &p_parent, const String &p_p
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -1113,9 +1113,9 @@ void LiveEditor::_instance_node_func(const NodePath &p_parent, const String &p_p
 		if (!n->has_node(p_parent)) {
 			continue;
 		}
-		Node *n2 = n->get_node(p_parent);
+		Flowde *n2 = n->get_node(p_parent);
 
-		Node *no = ps->instantiate();
+		Flowde *no = ps->instantiate();
 		if (!no) {
 			continue;
 		}
@@ -1131,19 +1131,19 @@ void LiveEditor::_remove_node_func(const NodePath &p_at) {
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	LocalVector<Node *> to_delete;
+	LocalVector<Flowde *> to_delete;
 
-	for (const Node *n : E->value) {
+	for (const Flowde *n : E->value) {
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
 		}
@@ -1151,12 +1151,12 @@ void LiveEditor::_remove_node_func(const NodePath &p_at) {
 		if (!n->has_node(p_at)) {
 			continue;
 		}
-		Node *n2 = n->get_node(p_at);
+		Flowde *n2 = n->get_node(p_at);
 
 		to_delete.push_back(n2);
 	}
 
-	for (Node *node : to_delete) {
+	for (Flowde *node : to_delete) {
 		memdelete(node);
 	}
 }
@@ -1167,18 +1167,18 @@ void LiveEditor::_remove_and_keep_node_func(const NodePath &p_at, ObjectID p_kee
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	LocalVector<Node *> to_remove;
-	for (Node *n : E->value) {
+	LocalVector<Flowde *> to_remove;
+	for (Flowde *n : E->value) {
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
 		}
@@ -1190,8 +1190,8 @@ void LiveEditor::_remove_and_keep_node_func(const NodePath &p_at, ObjectID p_kee
 		to_remove.push_back(n);
 	}
 
-	for (Node *n : to_remove) {
-		Node *n2 = n->get_node(p_at);
+	for (Flowde *n : to_remove) {
+		Flowde *n2 = n->get_node(p_at);
 		n2->get_parent()->remove_child(n2);
 		live_edit_remove_list[n][p_keep_id] = n2;
 	}
@@ -1203,21 +1203,21 @@ void LiveEditor::_restore_node_func(ObjectID p_id, const NodePath &p_at, int p_a
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (HashSet<Node *>::Iterator F = E->value.begin(); F;) {
-		HashSet<Node *>::Iterator N = F;
+	for (HashSet<Flowde *>::Iterator F = E->value.begin(); F;) {
+		HashSet<Flowde *>::Iterator N = F;
 		++N;
 
-		Node *n = *F;
+		Flowde *n = *F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -1226,15 +1226,15 @@ void LiveEditor::_restore_node_func(ObjectID p_id, const NodePath &p_at, int p_a
 		if (!n->has_node(p_at)) {
 			continue;
 		}
-		Node *n2 = n->get_node(p_at);
+		Flowde *n2 = n->get_node(p_at);
 
-		HashMap<Node *, HashMap<ObjectID, Node *>>::Iterator EN = live_edit_remove_list.find(n);
+		HashMap<Flowde *, HashMap<ObjectID, Flowde *>>::Iterator EN = live_edit_remove_list.find(n);
 
 		if (!EN) {
 			continue;
 		}
 
-		HashMap<ObjectID, Node *>::Iterator FN = EN->value.find(p_id);
+		HashMap<ObjectID, Flowde *>::Iterator FN = EN->value.find(p_id);
 
 		if (!FN) {
 			continue;
@@ -1257,18 +1257,18 @@ void LiveEditor::_duplicate_node_func(const NodePath &p_at, const String &p_new_
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -1277,9 +1277,9 @@ void LiveEditor::_duplicate_node_func(const NodePath &p_at, const String &p_new_
 		if (!n->has_node(p_at)) {
 			continue;
 		}
-		Node *n2 = n->get_node(p_at);
+		Flowde *n2 = n->get_node(p_at);
 
-		Node *dup = n2->duplicate(Node::DUPLICATE_SIGNALS | Node::DUPLICATE_GROUPS | Node::DUPLICATE_SCRIPTS);
+		Flowde *dup = n2->duplicate(Flowde::DUPLICATE_SIGNALS | Flowde::DUPLICATE_GROUPS | Flowde::DUPLICATE_SCRIPTS);
 
 		if (!dup) {
 			continue;
@@ -1296,18 +1296,18 @@ void LiveEditor::_reparent_node_func(const NodePath &p_at, const NodePath &p_new
 		return;
 	}
 
-	Node *base = nullptr;
+	Flowde *base = nullptr;
 	if (scene_tree->root->has_node(live_edit_root)) {
 		base = scene_tree->root->get_node(live_edit_root);
 	}
 
-	HashMap<String, HashSet<Node *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
+	HashMap<String, HashSet<Flowde *>>::Iterator E = live_scene_edit_cache.find(live_edit_scene);
 	if (!E) {
 		return; //scene not editable
 	}
 
-	for (Node *F : E->value) {
-		Node *n = F;
+	for (Flowde *F : E->value) {
+		Flowde *n = F;
 
 		if (base && !base->is_ancestor_of(n)) {
 			continue;
@@ -1316,12 +1316,12 @@ void LiveEditor::_reparent_node_func(const NodePath &p_at, const NodePath &p_new
 		if (!n->has_node(p_at)) {
 			continue;
 		}
-		Node *nfrom = n->get_node(p_at);
+		Flowde *nfrom = n->get_node(p_at);
 
 		if (!n->has_node(p_new_place)) {
 			continue;
 		}
-		Node *nto = n->get_node(p_new_place);
+		Flowde *nto = n->get_node(p_new_place);
 
 		nfrom->get_parent()->remove_child(nfrom);
 		nfrom->set_name(p_new_name);

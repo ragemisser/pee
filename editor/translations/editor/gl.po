@@ -584,7 +584,7 @@ msgstr "Engadir %s"
 msgid "Load..."
 msgstr "Cargar..."
 
-msgid "Move BlendSpace1D Node Point"
+msgid "Move BlendSpace1D Flowde Point"
 msgstr "Mover o punto do nodo BlendSpace1D"
 
 msgid "Change BlendSpace1D Config"
@@ -600,7 +600,7 @@ msgstr ""
 msgid "This type of node can't be used. Only root nodes are allowed."
 msgstr "Non se pode usar este tipo de nodo. Só nodos raíz están permitidos."
 
-msgid "Add Node Point"
+msgid "Add Flowde Point"
 msgstr "Engadir punto de nodo"
 
 msgid "Add Animation Point"
@@ -654,7 +654,7 @@ msgstr "Max"
 msgid "Value"
 msgstr "Valor"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "Abrir Nodo de Animación"
 
 msgid "Triangle already exists."
@@ -723,10 +723,10 @@ msgstr "Editar Flitros"
 msgid "Output node can't be added to the blend tree."
 msgstr "O nodo de saída non pode ser añadido ao arbol de mesturado."
 
-msgid "Add Node to BlendTree"
+msgid "Add Flowde to BlendTree"
 msgstr "Engadir Nodo a BlendTree"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "Nodo Movido"
 
 msgid "Unable to connect, port may be in use or connection may be invalid."
@@ -743,10 +743,10 @@ msgstr "Nodos Desconectados"
 msgid "Set Animation"
 msgstr "Establecer Animación"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "Eliminar Nodo"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "Eliminar Nodo(s)"
 
 msgid "Toggle Filter On/Off"
@@ -786,10 +786,10 @@ msgstr "Inspeccionar Pistas Filtradas:"
 msgid "Edit Filtered Tracks:"
 msgstr "Editar Pistas Filtradas:"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "Nodo Renomeado"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "Engadir Nodo..."
 
 msgid "Enable Filtering"
@@ -1179,7 +1179,7 @@ msgstr "Tempos de Mestura:"
 msgid "Next (Auto Queue):"
 msgstr "Seguinte (Cola Automática):"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "Mover Nodo"
 
 msgid "Transition exists!"
@@ -1191,7 +1191,7 @@ msgstr "Reproducir/Ir a %s"
 msgid "Edit %s"
 msgstr "Editar %s"
 
-msgid "Add Node and Transition"
+msgid "Add Flowde and Transition"
 msgstr "Engadir Nodo e Transición"
 
 msgid "Add Transition"
@@ -1209,7 +1209,7 @@ msgstr "Viaxe"
 msgid "No playback resource set at path: %s."
 msgstr "Ningún recurso de reproducción asignado na ruta: %s."
 
-msgid "Node Removed"
+msgid "Flowde Removed"
 msgstr "Nodo Eliminado"
 
 msgid "Transition Removed"
@@ -1662,7 +1662,7 @@ msgstr "Engadir Claves de Animación de RESET"
 msgid "Bake Animation as Linear Keys"
 msgstr "Bakear Animación como claves Lineales"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "Crear Nodo"
 
 msgid ""
@@ -2158,7 +2158,7 @@ msgstr "Depurador"
 msgid "Debug"
 msgstr "Depuración"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "Copiar Ruta do Nodo"
 
 msgid "Instance:"
@@ -2639,7 +2639,7 @@ msgid_plural "Instantiate Scenes"
 msgstr[0] "Instanciar escena"
 msgstr[1] "Instanciar escenas"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "Duplicar Nodo(s)"
 
 msgid "Delete %d nodes?"
@@ -2648,16 +2648,16 @@ msgstr "Eliminar %d nodos?"
 msgid "Delete node \"%s\"?"
 msgstr "Eliminar nodo \"%s\"?"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "Crear nodo raíz:"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "Outro Nodo"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "Remparentar Nodo"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "Eliminar Nodo(s)"
 
 msgid "This operation requires a single selected node."
@@ -4086,13 +4086,13 @@ msgstr "Empregar Axuste aos Píxeles"
 msgid "Snap to Parent"
 msgstr "Axustar ao Pai"
 
-msgid "Snap to Node Anchor"
+msgid "Snap to Flowde Anchor"
 msgstr "Axustar á Áncora do Nodo"
 
-msgid "Snap to Node Sides"
+msgid "Snap to Flowde Sides"
 msgstr "Axustar aos Laterais do Nodo"
 
-msgid "Snap to Node Center"
+msgid "Snap to Flowde Center"
 msgstr "Axustar ao Centro do Nodo"
 
 msgid "Snap to Other Nodes"
@@ -4173,7 +4173,7 @@ msgstr ""
 msgid "Attached Script"
 msgstr "Enadir Script"
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "Conectar ao Nodo:"
 
 msgid "Connect to Script:"
@@ -4424,26 +4424,26 @@ msgstr "Pegar Recurso"
 msgid "Load Resource"
 msgstr "Cargar Recurso"
 
-msgid "Unlock Node"
+msgid "Unlock Flowde"
 msgstr "Desbloquear Nodo"
 
 msgid "Revoke unique name for node \"%s\"?"
 msgstr "Revogar o nome único do nodo \"%s\"?"
 
-msgid "Node configuration warning:"
+msgid "Flowde configuration warning:"
 msgstr "Aviso sobre a configuración do nodo:"
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "O nodo ten unha conexión."
 msgstr[1] "O nodo ten {num} conexións."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "O nodo está neste grupo:"
 msgstr[1] "O nodo está nestes grupos:"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "Seleccione un Nodo"
 
 msgid "(empty)"
@@ -4565,7 +4565,7 @@ msgstr "Crearase un novo arquivo de script."
 msgid "Built-in Script:"
 msgstr "Script Integrado:"
 
-msgid "Attach Node Script"
+msgid "Attach Flowde Script"
 msgstr "Adxuntar Script de Nodo"
 
 msgid "Line"
@@ -5083,7 +5083,7 @@ msgstr ""
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nodo"
 
 msgid "Incoming RPC"
@@ -5122,7 +5122,7 @@ msgstr "Vértice"
 msgid "Fragment"
 msgstr "Fragmento"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "Engadir Nodo"
 
 msgid "Converts a quantity in radians to degrees."
@@ -5290,19 +5290,19 @@ msgstr ""
 "Úsao só como fillo de Area2D, StaticBody2D, RigidBody2D, CharacterBody2D, "
 "etc., para darlles unha forma."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "Os nodo A e B teñen que ser do tipo PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "O nodo A ten que ser un nodo PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "O nodo B ten que ser un nodo PhysicsBody2D"
 
 msgid "Joint is not connected to two PhysicsBody2Ds"
 msgstr "A articulación non está conectada a dous nodos PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "Os nodos A e B teñen que ser nodos PhysicsBody2D distintos"
 
 msgid ""

@@ -2,7 +2,7 @@ class A:
 	func return_int(_variant: Variant) -> int: return 123
 	func return_int_array(_variant: Variant) -> Array[int]: return [1]
 	func return_int_dict(_variant: Variant) -> Dictionary[int, int]: return {1: 1}
-	func return_node(_variant: Variant) -> Node: return null
+	func return_node(_variant: Variant) -> Flowde: return null
 
 class B extends A:
 	func return_int(variant: Variant): return variant

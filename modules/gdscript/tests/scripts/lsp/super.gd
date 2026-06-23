@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 class Inner1:
 #     ^^^^^^ class1 -> class1

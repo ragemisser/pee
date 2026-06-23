@@ -1,6 +1,6 @@
-extends Node
+extends Flowde
 
-@onready var test: Node = $A
+@onready var test: Flowde = $A
 
 func a():
     test.➡

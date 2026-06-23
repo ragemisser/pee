@@ -201,8 +201,8 @@ bool EditorExportPlugin::_begin_customize_scenes(const Ref<EditorExportPlatform>
 	return ret;
 }
 
-Node *EditorExportPlugin::_customize_scene(Node *p_root, const String &p_path) {
-	Node *ret = nullptr;
+Flowde *EditorExportPlugin::_customize_scene(Flowde *p_root, const String &p_path) {
+	Flowde *ret = nullptr;
 	GDVIRTUAL_CALL(_customize_scene, p_root, p_path, ret);
 	return ret;
 }

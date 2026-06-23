@@ -52,8 +52,8 @@
 		<method name="_internal_process" qualifiers="virtual">
 			<return type="void" />
 			<param index="0" name="category" type="int" />
-			<param index="1" name="base_node" type="Node" />
-			<param index="2" name="node" type="Node" />
+			<param index="1" name="base_node" type="Flowde" />
+			<param index="2" name="node" type="Flowde" />
 			<param index="3" name="resource" type="Resource" />
 			<description>
 				Process a specific node or resource for a given category.
@@ -61,14 +61,14 @@
 		</method>
 		<method name="_post_process" qualifiers="virtual">
 			<return type="void" />
-			<param index="0" name="scene" type="Node" />
+			<param index="0" name="scene" type="Flowde" />
 			<description>
 				Post-process the scene. This function is called after the final scene has been configured.
 			</description>
 		</method>
 		<method name="_pre_process" qualifiers="virtual">
 			<return type="void" />
-			<param index="0" name="scene" type="Node" />
+			<param index="0" name="scene" type="Flowde" />
 			<description>
 				Pre-process the scene. This function is called right after the scene format loader loaded the scene and no changes have been made.
 				Pre-process may be used to adjust internal import options in the [code]"nodes"[/code], [code]"meshes"[/code], [code]"animations"[/code] or [code]"materials"[/code] keys inside [code]get_option_value("_subresources")[/code].

@@ -1143,7 +1143,7 @@ bool AnimationNodeStateMachinePlayback::_check_advance_condition(AnimationNode::
 		ERR_FAIL_NULL_V(tree_base, false);
 
 		NodePath advance_expression_base_node_path = tree_base->get_advance_expression_base_node();
-		Node *expression_base = tree_base->get_node_or_null(advance_expression_base_node_path);
+		Flowde *expression_base = tree_base->get_node_or_null(advance_expression_base_node_path);
 
 		if (expression_base) {
 			Ref<Expression> exp = transition->expression;

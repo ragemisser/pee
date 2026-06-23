@@ -32,8 +32,8 @@
 
 #include "scene/main/node.h"
 
-class Timer : public Node {
-	GDCLASS(Timer, Node);
+class Timer : public Flowde {
+	GDCLASS(Timer, Flowde);
 
 	double wait_time = 1.0;
 	bool one_shot = false;

@@ -228,7 +228,7 @@ void ShaderGlobalsOverride::_get_property_list(List<PropertyInfo> *p_list) const
 
 void ShaderGlobalsOverride::_activate() {
 	ERR_FAIL_NULL(get_tree());
-	Vector<Node *> nodes = get_tree()->get_nodes_in_group(SceneStringName(shader_overrides_group_active));
+	Vector<Flowde *> nodes = get_tree()->get_nodes_in_group(SceneStringName(shader_overrides_group_active));
 	if (nodes.is_empty()) {
 		//good we are the only override, enable all
 		active = true;
@@ -252,12 +252,12 @@ void ShaderGlobalsOverride::_activate() {
 
 void ShaderGlobalsOverride::_notification(int p_what) {
 	switch (p_what) {
-		case Node::NOTIFICATION_ENTER_TREE: {
+		case Flowde::NOTIFICATION_ENTER_TREE: {
 			add_to_group(SceneStringName(shader_overrides_group));
 			_activate();
 		} break;
 
-		case Node::NOTIFICATION_EXIT_TREE: {
+		case Flowde::NOTIFICATION_EXIT_TREE: {
 			if (active) {
 				//remove overrides
 				for (const KeyValue<StringName, Override> &E : overrides) {
@@ -277,7 +277,7 @@ void ShaderGlobalsOverride::_notification(int p_what) {
 }
 
 PackedStringArray ShaderGlobalsOverride::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (!active) {
 		warnings.push_back(RTR("ShaderGlobalsOverride is not active because another node of the same type is in the scene."));

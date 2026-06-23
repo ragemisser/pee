@@ -1030,7 +1030,7 @@ CanvasItem *QuickOpenResultContainer::_get_result_root() {
 
 void QuickOpenResultContainer::_layout_result_item(QuickOpenResultItem *item) {
 	item->set_display_mode(content_display_mode);
-	Node *parent = item->get_parent();
+	Flowde *parent = item->get_parent();
 	if (parent) {
 		parent->remove_child(item);
 	}

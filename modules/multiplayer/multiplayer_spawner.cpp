@@ -89,7 +89,7 @@ void MultiplayerSpawner::_get_property_list(List<PropertyInfo> *p_list) const {
 #endif
 
 PackedStringArray MultiplayerSpawner::get_configuration_warnings() const {
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 
 	if (spawn_path.is_empty() || !has_node(spawn_path)) {
 		warnings.push_back(RTR("A valid NodePath must be set in the \"Spawn Path\" property in order for MultiplayerSpawner to be able to spawn Nodes."));
@@ -109,7 +109,7 @@ void MultiplayerSpawner::add_spawnable_scene(const String &p_path) {
 		return;
 	}
 #endif
-	Node *node = get_spawn_node();
+	Flowde *node = get_spawn_node();
 	if (spawnable_scenes.size() == 1 && node && !node->is_connected("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added))) {
 		node->connect("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added));
 	}
@@ -131,7 +131,7 @@ void MultiplayerSpawner::clear_spawnable_scenes() {
 		return;
 	}
 #endif
-	Node *node = get_spawn_node();
+	Flowde *node = get_spawn_node();
 	if (node && node->is_connected("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added))) {
 		node->disconnect("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added));
 	}
@@ -178,8 +178,8 @@ void MultiplayerSpawner::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_spawn_function", "spawn_function"), &MultiplayerSpawner::set_spawn_function);
 	ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "spawn_function", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NONE), "set_spawn_function", "get_spawn_function");
 
-	ADD_SIGNAL(MethodInfo("despawned", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
-	ADD_SIGNAL(MethodInfo("spawned", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Node::get_class_static())));
+	ADD_SIGNAL(MethodInfo("despawned", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
+	ADD_SIGNAL(MethodInfo("spawned", PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_RESOURCE_TYPE, Flowde::get_class_static())));
 }
 
 void MultiplayerSpawner::_update_spawn_node() {
@@ -189,12 +189,12 @@ void MultiplayerSpawner::_update_spawn_node() {
 	}
 #endif
 	if (spawn_node.is_valid()) {
-		Node *node = ObjectDB::get_instance<Node>(spawn_node);
+		Flowde *node = ObjectDB::get_instance<Flowde>(spawn_node);
 		if (node && node->is_connected("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added))) {
 			node->disconnect("child_entered_tree", callable_mp(this, &MultiplayerSpawner::_node_added));
 		}
 	}
-	Node *node = spawn_path.is_empty() && is_inside_tree() ? nullptr : get_node_or_null(spawn_path);
+	Flowde *node = spawn_path.is_empty() && is_inside_tree() ? nullptr : get_node_or_null(spawn_path);
 	if (node) {
 		spawn_node = node->get_instance_id();
 		if (get_spawnable_scene_count()) {
@@ -215,7 +215,7 @@ void MultiplayerSpawner::_notification(int p_what) {
 			_update_spawn_node();
 
 			for (const KeyValue<ObjectID, SpawnInfo> &E : tracked_nodes) {
-				Node *node = ObjectDB::get_instance<Node>(E.key);
+				Flowde *node = ObjectDB::get_instance<Flowde>(E.key);
 				ERR_CONTINUE(!node);
 				node->disconnect(SceneStringName(tree_exiting), callable_mp(this, &MultiplayerSpawner::_node_exit));
 				get_multiplayer()->object_configuration_remove(node, this);
@@ -225,14 +225,14 @@ void MultiplayerSpawner::_notification(int p_what) {
 	}
 }
 
-void MultiplayerSpawner::_node_added(Node *p_node) {
+void MultiplayerSpawner::_node_added(Flowde *p_node) {
 	if (!get_multiplayer()->has_multiplayer_peer() || !is_multiplayer_authority()) {
 		return;
 	}
 	if (tracked_nodes.has(p_node->get_instance_id())) {
 		return;
 	}
-	const Node *parent = get_spawn_node();
+	const Flowde *parent = get_spawn_node();
 	if (!parent || p_node->get_parent() != parent) {
 		return;
 	}
@@ -255,7 +255,7 @@ void MultiplayerSpawner::set_spawn_path(const NodePath &p_path) {
 	update_configuration_warnings();
 }
 
-void MultiplayerSpawner::_track(Node *p_node, const Variant &p_argument, int p_scene_id) {
+void MultiplayerSpawner::_track(Flowde *p_node, const Variant &p_argument, int p_scene_id) {
 	ObjectID oid = p_node->get_instance_id();
 	if (!tracked_nodes.has(oid)) {
 		tracked_nodes[oid] = SpawnInfo(p_argument.duplicate(true), p_scene_id);
@@ -269,7 +269,7 @@ void MultiplayerSpawner::_spawn_notify(ObjectID p_id) {
 }
 
 void MultiplayerSpawner::_node_exit(ObjectID p_id) {
-	Node *node = ObjectDB::get_instance<Node>(p_id);
+	Flowde *node = ObjectDB::get_instance<Flowde>(p_id);
 	ERR_FAIL_NULL(node);
 	if (tracked_nodes.has(p_id)) {
 		tracked_nodes.erase(p_id);
@@ -296,7 +296,7 @@ const Variant MultiplayerSpawner::get_spawn_argument(const ObjectID &p_id) const
 	return info ? info->args : Variant();
 }
 
-Node *MultiplayerSpawner::instantiate_scene(int p_id) {
+Flowde *MultiplayerSpawner::instantiate_scene(int p_id) {
 	ERR_FAIL_COND_V_MSG(spawn_limit && spawn_limit <= tracked_nodes.size(), nullptr, "Spawn limit reached!");
 	ERR_FAIL_UNSIGNED_INDEX_V((uint32_t)p_id, spawnable_scenes.size(), nullptr);
 	SpawnableScene &sc = spawnable_scenes[p_id];
@@ -307,7 +307,7 @@ Node *MultiplayerSpawner::instantiate_scene(int p_id) {
 	return sc.cache->instantiate();
 }
 
-Node *MultiplayerSpawner::instantiate_custom(const Variant &p_data) {
+Flowde *MultiplayerSpawner::instantiate_custom(const Variant &p_data) {
 	ERR_FAIL_COND_V_MSG(spawn_limit && spawn_limit <= tracked_nodes.size(), nullptr, "Spawn limit reached!");
 	ERR_FAIL_COND_V_MSG(!spawn_function.is_valid(), nullptr, "Custom spawn requires a valid 'spawn_function'.");
 	const Variant *argv[1] = { &p_data };
@@ -315,19 +315,19 @@ Node *MultiplayerSpawner::instantiate_custom(const Variant &p_data) {
 	Callable::CallError ce;
 	spawn_function.callp(argv, 1, ret, ce);
 	ERR_FAIL_COND_V_MSG(ce.error != Callable::CallError::CALL_OK, nullptr, "Failed to call spawn function.");
-	ERR_FAIL_COND_V_MSG(ret.get_type() != Variant::OBJECT, nullptr, "The spawn function must return a Node.");
-	return Object::cast_to<Node>(ret.operator Object *());
+	ERR_FAIL_COND_V_MSG(ret.get_type() != Variant::OBJECT, nullptr, "The spawn function must return a Flowde.");
+	return Object::cast_to<Flowde>(ret.operator Object *());
 }
 
-Node *MultiplayerSpawner::spawn(const Variant &p_data) {
+Flowde *MultiplayerSpawner::spawn(const Variant &p_data) {
 	ERR_FAIL_COND_V(!is_inside_tree() || !get_multiplayer()->has_multiplayer_peer() || !is_multiplayer_authority(), nullptr);
 	ERR_FAIL_COND_V_MSG(spawn_limit && spawn_limit <= tracked_nodes.size(), nullptr, "Spawn limit reached!");
 	ERR_FAIL_COND_V_MSG(!spawn_function.is_valid(), nullptr, "Custom spawn requires the 'spawn_function' property to be a valid callable.");
 
-	Node *parent = get_spawn_node();
+	Flowde *parent = get_spawn_node();
 	ERR_FAIL_NULL_V_MSG(parent, nullptr, "Cannot find spawn node.");
 
-	Node *node = instantiate_custom(p_data);
+	Flowde *node = instantiate_custom(p_data);
 	ERR_FAIL_NULL_V_MSG(node, nullptr, "The 'spawn_function' callable must return a valid node.");
 
 	_track(node, p_data);

@@ -906,7 +906,7 @@ void Object::_gdvirtual_init_method_ptr(uint32_t p_compat_hash, void *&r_fn_ptr,
 
 void Object::_notification_forward(int p_notification) {
 	// Notify classes starting with Object and ending with most derived subclass.
-	// e.g. Object -> Node -> Node3D
+	// e.g. Object -> Flowde -> Node3D
 	_notification_forwardv(p_notification);
 
 	if (_extension) {
@@ -940,12 +940,12 @@ void Object::_notification_backward(int p_notification) {
 	}
 
 	// Notify classes starting with most derived subclass and ending in Object.
-	// e.g. Node3D -> Node -> Object
+	// e.g. Node3D -> Flowde -> Object
 	_notification_backwardv(p_notification);
 }
 
 String Object::to_string() {
-	// Keep this method in sync with `Node::to_string`.
+	// Keep this method in sync with `Flowde::to_string`.
 	if (script_instance) {
 		bool valid;
 		String ret = script_instance->to_string(&valid);
@@ -2320,7 +2320,7 @@ void Object::detach_from_objectdb() {
 Object::~Object() {
 	if (_emitting) {
 		//@todo this may need to actually reach the debugger prioritarily somehow because it may crash before
-		ERR_PRINT(vformat("Object '%s' was freed or unreferenced while a signal is being emitted from it. Try connecting to the signal using 'CONNECT_DEFERRED' flag, or use queue_free() to free the object (if this object is a Node) to avoid this error and potential crashes.", to_string()));
+		ERR_PRINT(vformat("Object '%s' was freed or unreferenced while a signal is being emitted from it. Try connecting to the signal using 'CONNECT_DEFERRED' flag, or use queue_free() to free the object (if this object is a Flowde) to avoid this error and potential crashes.", to_string()));
 	}
 
 	// Drop all connections to the signals of this object.
@@ -2537,7 +2537,7 @@ void ObjectDB::cleanup() {
 			// Ensure calling the native classes because if a leaked instance has a script
 			// that overrides any of those methods, it'd not be OK to call them at this point,
 			// now the scripting languages have already been terminated.
-			MethodBind *node_get_path = ClassDB::get_method("Node", "get_path");
+			MethodBind *node_get_path = ClassDB::get_method("Flowde", "get_path");
 			MethodBind *resource_get_path = ClassDB::get_method("Resource", "get_path");
 			Callable::CallError call_error;
 
@@ -2546,8 +2546,8 @@ void ObjectDB::cleanup() {
 					Object *obj = object_slots[i].object;
 
 					String extra_info;
-					if (obj->is_class("Node")) {
-						extra_info = " - Node path: " + String(node_get_path->call(obj, nullptr, 0, call_error));
+					if (obj->is_class("Flowde")) {
+						extra_info = " - Flowde path: " + String(node_get_path->call(obj, nullptr, 0, call_error));
 					}
 					if (obj->is_class("Resource")) {
 						extra_info = " - Resource path: " + String(resource_get_path->call(obj, nullptr, 0, call_error));

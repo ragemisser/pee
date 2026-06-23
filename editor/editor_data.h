@@ -111,11 +111,11 @@ public:
 	};
 
 	struct EditedScene {
-		Node *root = nullptr;
+		Flowde *root = nullptr;
 		String path;
 		uint64_t file_modified_time = 0;
 		Dictionary editor_states;
-		List<Node *> selection;
+		List<Flowde *> selection;
 		Vector<EditorSelectionHistory::HistoryElement> history_stored;
 		int history_current = 0;
 		Dictionary custom_state;
@@ -144,7 +144,7 @@ private:
 	int current_edited_scene = -1;
 	int last_created_scene = 1;
 
-	bool _find_updated_instances(Node *p_root, Node *p_node, HashSet<String> &checked_paths);
+	bool _find_updated_instances(Flowde *p_root, Flowde *p_node, HashSet<String> &checked_paths);
 
 	HashMap<StringName, String> _script_class_icon_paths;
 	HashMap<String, StringName> _script_class_file_to_path;
@@ -200,12 +200,12 @@ public:
 
 	int add_edited_scene(int p_at_pos);
 	void remove_scene(int p_idx);
-	void set_scene_root(int p_idx, Node *p_root);
+	void set_scene_root(int p_idx, Flowde *p_root);
 	void set_edited_scene(int p_idx);
-	void set_edited_scene_root(Node *p_root);
+	void set_edited_scene_root(Flowde *p_root);
 	int get_edited_scene() const;
 	int get_edited_scene_from_path(const String &p_path) const;
-	Node *get_edited_scene_root(int p_idx = -1);
+	Flowde *get_edited_scene_root(int p_idx = -1);
 	int get_edited_scene_count() const;
 	Vector<EditedScene> get_edited_scenes() const;
 
@@ -287,7 +287,7 @@ class EditorSelection : public Object {
 	bool changed = false;
 	bool node_list_changed = false;
 
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	// Editor plugins which are related to selection.
 	List<Object *> editor_plugins;
@@ -300,12 +300,12 @@ protected:
 	static void _bind_methods();
 
 public:
-	void add_node(Node *p_node);
-	void remove_node(Node *p_node);
-	bool is_selected(Node *p_node) const;
+	void add_node(Flowde *p_node);
+	void remove_node(Flowde *p_node);
+	bool is_selected(Flowde *p_node) const;
 
 	template <typename T>
-	T *get_node_editor_data(Node *p_node) {
+	T *get_node_editor_data(Flowde *p_node) {
 		if (!p_node) {
 			return nullptr;
 		}
@@ -324,13 +324,13 @@ public:
 
 	// Returns only the top level selected nodes.
 	// That is, if the selection includes some node and a child of that node, only the parent is returned.
-	List<Node *> get_top_selected_node_list();
+	List<Flowde *> get_top_selected_node_list();
 	// Same as get_top_selected_node_list but returns a copy in a TypedArray for binding to scripts.
-	TypedArray<Node> get_top_selected_nodes();
+	TypedArray<Flowde> get_top_selected_nodes();
 	// Returns all the selected nodes (list version of "get_selected_nodes").
-	List<Node *> get_full_selected_node_list();
+	List<Flowde *> get_full_selected_node_list();
 	// Same as get_full_selected_node_list but returns a copy in a TypedArray for binding to scripts.
-	TypedArray<Node> get_selected_nodes();
+	TypedArray<Flowde> get_selected_nodes();
 	// Returns the map of selected objects and their metadata.
 	HashMap<ObjectID, Object *> &get_selection() { return selection; }
 

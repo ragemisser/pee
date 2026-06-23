@@ -430,7 +430,7 @@ Ref<Resource> Resource::_duplicate(const DuplicateParams &p_params) const {
 #undef AFTER_USER_CODE
 }
 
-Ref<Resource> Resource::duplicate_for_local_scene(Node *p_for_scene, DuplicateRemapCacheT &p_remap_cache) const {
+Ref<Resource> Resource::duplicate_for_local_scene(Flowde *p_for_scene, DuplicateRemapCacheT &p_remap_cache) const {
 #ifdef DEBUG_ENABLED
 	// The only possibilities for the remap cache passed being valid are these:
 	// a) It's the same already used as the one of the thread. That happens when this function
@@ -487,7 +487,7 @@ void Resource::_find_sub_resources(const Variant &p_variant, HashSet<Ref<Resourc
 	}
 }
 
-void Resource::configure_for_local_scene(Node *p_for_scene, DuplicateRemapCacheT &p_remap_cache) {
+void Resource::configure_for_local_scene(Flowde *p_for_scene, DuplicateRemapCacheT &p_remap_cache) {
 	List<PropertyInfo> plist;
 	get_property_list(&plist);
 
@@ -657,7 +657,7 @@ bool Resource::is_local_to_scene() const {
 	return local_to_scene;
 }
 
-Node *Resource::get_local_scene() const {
+Flowde *Resource::get_local_scene() const {
 	if (local_scene) {
 		return local_scene;
 	}
@@ -682,7 +682,7 @@ String Resource::_to_string() {
 	return (name.is_empty() ? "" : String(name) + " ") + "(" + path_cache + "):" + Object::_to_string();
 }
 
-Node *(*Resource::_get_local_scene_func)() = nullptr;
+Flowde *(*Resource::_get_local_scene_func)() = nullptr;
 void (*Resource::_update_configuration_warning)() = nullptr;
 
 void Resource::set_as_translation_remapped(bool p_remapped) {

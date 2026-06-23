@@ -78,7 +78,7 @@ void PhysicalBone2D::_position_at_bone2d() {
 }
 
 void PhysicalBone2D::_find_skeleton_parent() {
-	Node *current_parent = get_parent();
+	Flowde *current_parent = get_parent();
 
 	while (current_parent != nullptr) {
 		Skeleton2D *potential_skeleton = Object::cast_to<Skeleton2D>(current_parent);
@@ -98,7 +98,7 @@ void PhysicalBone2D::_find_skeleton_parent() {
 
 void PhysicalBone2D::_find_joint_child() {
 	for (int i = 0; i < get_child_count(); i++) {
-		Node *child_node = get_child(i);
+		Flowde *child_node = get_child(i);
 		Joint2D *potential_joint = Object::cast_to<Joint2D>(child_node);
 		if (potential_joint) {
 			child_joint = potential_joint;
@@ -132,8 +132,8 @@ void PhysicalBone2D::_auto_configure_joint() {
 	}
 
 	if (child_joint) {
-		// Node A = parent | Node B = this node
-		Node *parent_node = get_parent();
+		// Flowde A = parent | Flowde B = this node
+		Flowde *parent_node = get_parent();
 		PhysicalBone2D *potential_parent_bone = Object::cast_to<PhysicalBone2D>(parent_node);
 
 		if (potential_parent_bone) {

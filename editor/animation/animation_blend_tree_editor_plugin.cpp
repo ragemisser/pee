@@ -457,7 +457,7 @@ void AnimationNodeBlendTreeEditor::_add_node(int p_idx) {
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Add Node to BlendTree"));
+	undo_redo->create_action(TTR("Add Flowde to BlendTree"));
 	undo_redo->add_do_method(blend_tree.ptr(), "add_node", name, anode, instance_pos / EDSCALE);
 	undo_redo->add_undo_method(blend_tree.ptr(), "remove_node", name);
 
@@ -526,7 +526,7 @@ void AnimationNodeBlendTreeEditor::_popup_hide() {
 void AnimationNodeBlendTreeEditor::_node_dragged(const Vector2 &p_from, const Vector2 &p_to, const StringName &p_which) {
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Node Moved"));
+	undo_redo->create_action(TTR("Flowde Moved"));
 	undo_redo->add_do_method(blend_tree.ptr(), "set_node_position", p_which, p_to / EDSCALE);
 	undo_redo->add_undo_method(blend_tree.ptr(), "set_node_position", p_which, p_from / EDSCALE);
 	undo_redo->add_do_method(this, "update_graph");
@@ -600,7 +600,7 @@ void AnimationNodeBlendTreeEditor::_delete_node_request(const String &p_which) {
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Delete Node"));
+	undo_redo->create_action(TTR("Delete Flowde"));
 	undo_redo->add_do_method(blend_tree.ptr(), "remove_node", p_which);
 	undo_redo->add_undo_method(blend_tree.ptr(), "add_node", p_which, blend_tree->get_node(p_which), blend_tree.ptr()->get_node_position(p_which));
 
@@ -652,7 +652,7 @@ void AnimationNodeBlendTreeEditor::_delete_nodes_request(const TypedArray<String
 	}
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Delete Node(s)"));
+	undo_redo->create_action(TTR("Delete Flowde(s)"));
 
 	for (const StringName &F : to_erase) {
 		_delete_node_request(F);
@@ -844,7 +844,7 @@ bool AnimationNodeBlendTreeEditor::_update_filters(const Ref<AnimationNode> &ano
 		return false;
 	}
 
-	Node *base = tree->get_node(tree->get_root_node());
+	Flowde *base = tree->get_node(tree->get_root_node());
 	if (!base) {
 		EditorNode::get_singleton()->show_warning(TTR("Animation player has no valid root node path, so unable to retrieve track names."));
 		return false;
@@ -909,7 +909,7 @@ bool AnimationNodeBlendTreeEditor::_update_filters(const Ref<AnimationNode> &ano
 				ti->set_selectable(0, false);
 				ti->set_editable(0, false);
 
-				Node *node = base->get_node_or_null(accum);
+				Flowde *node = base->get_node_or_null(accum);
 				if (node) {
 					ti->set_icon(0, EditorNode::get_singleton()->get_object_icon(node));
 				}
@@ -919,7 +919,7 @@ bool AnimationNodeBlendTreeEditor::_update_filters(const Ref<AnimationNode> &ano
 			}
 		}
 
-		Node *node = base->get_node_or_null(accum);
+		Flowde *node = base->get_node_or_null(accum);
 		if (!node) {
 			continue; //no node, can't edit
 		}
@@ -1051,7 +1051,7 @@ void AnimationNodeBlendTreeEditor::_notification(int p_what) {
 		case NOTIFICATION_PROCESS: {
 			AnimationTree *tree = AnimationTreeEditor::get_singleton()->get_animation_tree();
 			if (!tree) {
-				return; // Node has been changed.
+				return; // Flowde has been changed.
 			}
 
 			if (graph_update_queued) {
@@ -1168,7 +1168,7 @@ void AnimationNodeBlendTreeEditor::_node_renamed(const String &p_text, Ref<Anima
 
 	updating = true;
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action(TTR("Node Renamed"));
+	undo_redo->create_action(TTR("Flowde Renamed"));
 	undo_redo->add_do_method(blend_tree.ptr(), "rename_node", prev_name, name);
 	undo_redo->add_undo_method(blend_tree.ptr(), "rename_node", name, prev_name);
 	undo_redo->add_do_method(this, "update_graph");
@@ -1284,7 +1284,7 @@ AnimationNodeBlendTreeEditor::AnimationNodeBlendTreeEditor() {
 
 	add_node = memnew(MenuButton);
 	graph->get_menu_hbox()->add_child(add_node);
-	add_node->set_text(TTR("Add Node..."));
+	add_node->set_text(TTR("Add Flowde..."));
 	graph->get_menu_hbox()->move_child(add_node, 0);
 	add_node->get_popup()->connect(SceneStringName(id_pressed), callable_mp(this, &AnimationNodeBlendTreeEditor::_add_node));
 	add_node->get_popup()->connect("popup_hide", callable_mp(this, &AnimationNodeBlendTreeEditor::_popup_hide), CONNECT_DEFERRED);
@@ -1345,7 +1345,7 @@ AnimationNodeBlendTreeEditor::AnimationNodeBlendTreeEditor() {
 
 	open_file = memnew(EditorFileDialog);
 	add_child(open_file);
-	open_file->set_title(TTR("Open Animation Node"));
+	open_file->set_title(TTR("Open Animation Flowde"));
 	open_file->set_file_mode(EditorFileDialog::FILE_MODE_OPEN_FILE);
 	open_file->connect("file_selected", callable_mp(this, &AnimationNodeBlendTreeEditor::_file_opened));
 

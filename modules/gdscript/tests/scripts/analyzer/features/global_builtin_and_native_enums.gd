@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 @export var test_type_1 := TYPE_BOOL
 @export var test_type_2 := Variant.Type.TYPE_BOOL
@@ -12,9 +12,9 @@ extends Node
 @export var test_axis_2 := Vector3.Axis.AXIS_Y
 @export var test_axis_3: Vector3.Axis
 
-@export var test_mode_1 := Node.PROCESS_MODE_ALWAYS
-@export var test_mode_2 := Node.ProcessMode.PROCESS_MODE_ALWAYS
-@export var test_mode_3: Node.ProcessMode
+@export var test_mode_1 := Flowde.PROCESS_MODE_ALWAYS
+@export var test_mode_2 := Flowde.ProcessMode.PROCESS_MODE_ALWAYS
+@export var test_mode_3: Flowde.ProcessMode
 
 func test():
 	for property in get_property_list():

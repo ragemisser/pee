@@ -120,7 +120,7 @@ private:
     int32_t                       fStackPtr;           //  and pops as specified in the state
                                                        //  transition rules.
 
-    RBBINode                      *fNodeStack[kStackSize]; // Node stack, holds nodes created
+    RBBINode                      *fNodeStack[kStackSize]; // Flowde stack, holds nodes created
                                                            //  during the parse of a rule
     int32_t                        fNodeStackPtr;
 

@@ -317,7 +317,7 @@ msgstr "ala"
 msgid "Open Editor"
 msgstr "o open e ilo ante"
 
-msgid "Open Animation Node"
+msgid "Open Animation Flowde"
 msgstr "o open e ijo pali pi sitelen tawa"
 
 msgid "Triangle already exists."
@@ -326,7 +326,7 @@ msgstr "kiki li lon kin."
 msgid "Edit Filters"
 msgstr "o ante e lawa len"
 
-msgid "Node Moved"
+msgid "Flowde Moved"
 msgstr "ijo pali li tawa"
 
 msgid "Nodes Connected"
@@ -335,10 +335,10 @@ msgstr "ijo pali li kulupu"
 msgid "Nodes Disconnected"
 msgstr "ijo pali li kulupu ala"
 
-msgid "Delete Node"
+msgid "Delete Flowde"
 msgstr "o weka e ijo pali"
 
-msgid "Delete Node(s)"
+msgid "Delete Flowde(s)"
 msgstr "o weka ijo pali"
 
 msgid "Toggle Filter On/Off"
@@ -347,10 +347,10 @@ msgstr "o ante tu e lawa len"
 msgid "Change Filter"
 msgstr "o ante e lawa len"
 
-msgid "Node Renamed"
+msgid "Flowde Renamed"
 msgstr "ijo pali li jo e nimi sin"
 
-msgid "Add Node..."
+msgid "Add Flowde..."
 msgstr "o pana e ijo pali..."
 
 msgid "Invert"
@@ -555,7 +555,7 @@ msgstr "nimi pi sitelen tawa:"
 msgid "Error!"
 msgstr "pakala!"
 
-msgid "Move Node"
+msgid "Move Flowde"
 msgstr "o tawa e ijo pali"
 
 msgid "Transition exists!"
@@ -622,7 +622,7 @@ msgstr "suli"
 msgid "Audio"
 msgstr "kalama"
 
-msgid "Create Node"
+msgid "Create Flowde"
 msgstr "o pali sin e ijo pali"
 
 msgid "Insert at current time."
@@ -808,7 +808,7 @@ msgstr "ilo pi pipi ala"
 msgid "Debug"
 msgstr "pipi ala"
 
-msgid "Copy Node Path"
+msgid "Copy Flowde Path"
 msgstr "o jasima e nasin pi ijo pali"
 
 msgid "Toggle Visibility"
@@ -1283,13 +1283,13 @@ msgid "Create AudioStreamPlayer"
 msgid_plural "Create AudioStreamPlayers"
 msgstr[0] "o pali sin e ijo pali AudioStreamPlayer"
 
-msgid "Move Node in Parent"
+msgid "Move Flowde in Parent"
 msgstr "o tawa e ijo pali lon mama"
 
 msgid "Move Nodes in Parent"
 msgstr "o tawa e ijo pali lon mama"
 
-msgid "Duplicate Node(s)"
+msgid "Duplicate Flowde(s)"
 msgstr "o pali tu e ijo pali"
 
 msgid "Delete %d nodes and any children?"
@@ -1313,7 +1313,7 @@ msgstr "ijo pali ante li kepeken kin nimi wan lon ma pali:"
 msgid "New Scene Root"
 msgstr "open sin pi ma pali"
 
-msgid "Create Root Node:"
+msgid "Create Root Flowde:"
 msgstr "o pali sin e ijo pali open:"
 
 msgid "Toggle the display of favorite nodes."
@@ -1328,16 +1328,16 @@ msgstr "ma pali 3D"
 msgid "User Interface"
 msgstr "ma pali jan"
 
-msgid "Other Node"
+msgid "Other Flowde"
 msgstr "ijo pali ante"
 
-msgid "Reparent Node"
+msgid "Reparent Flowde"
 msgstr "o mama sin e ijo pali"
 
 msgid "Toggle Editable Children"
 msgstr "o ante tu e kili pi ken ante"
 
-msgid "Remove Node(s)"
+msgid "Remove Flowde(s)"
 msgstr "o weka e ijo pali"
 
 msgid "Can't overwrite scene that is still open!"
@@ -1370,7 +1370,7 @@ msgstr "o open lon ilo ante"
 msgid "Show Accessibility Warnings"
 msgstr "o ken lukin e toki suli"
 
-msgid "Add Child Node..."
+msgid "Add Child Flowde..."
 msgstr "o pana e ijo pali kili..."
 
 msgid "Move Up"
@@ -1655,10 +1655,10 @@ msgstr "o open e poki ni: lawa toki pi ilo ante"
 msgid "Manage Editor Features..."
 msgstr "o lawa e nasin pi ilo ante..."
 
-msgid "Group Selected Node(s)"
+msgid "Group Selected Flowde(s)"
 msgstr "o kulupu e ijo pali ni"
 
-msgid "Ungroup Selected Node(s)"
+msgid "Ungroup Selected Flowde(s)"
 msgstr "o kulupu ala e ijo pali ni"
 
 msgid "Copy Text"
@@ -3434,7 +3434,7 @@ msgstr "o tu e nasin"
 msgid "Create Polygon3D"
 msgstr "o pali sin e ijo Polygon3D"
 
-msgid "Move Node(s) Here"
+msgid "Move Flowde(s) Here"
 msgstr "o tawa e ijo pali tawa ni"
 
 msgid "Rotate %d CanvasItems"
@@ -3509,7 +3509,7 @@ msgstr "poki sona meso pi ante sitelen"
 msgid "Adding %s..."
 msgstr "mi pana e ijo pali %s..."
 
-msgid "Connect to Node:"
+msgid "Connect to Flowde:"
 msgstr "o kulupu tawa ijo pali:"
 
 msgid "Connect to Script:"
@@ -3847,10 +3847,10 @@ msgstr "o lawa e ijo..."
 msgid "Toggle Button"
 msgstr "o ante tu e nena"
 
-msgid "Node name."
+msgid "Flowde name."
 msgstr "nimi pi ijo pali."
 
-msgid "Node's parent name, if available."
+msgid "Flowde's parent name, if available."
 msgstr "nimi li lon la, ni li nimi tan mama pi ijo pali."
 
 msgid "Current scene name."
@@ -3925,12 +3925,12 @@ msgstr "o kulupu ala e kili"
 msgid "Click to disable this."
 msgstr "o pilin tawa ala e ni."
 
-msgid "Node has one connection."
-msgid_plural "Node has {num} connections."
+msgid "Flowde has one connection."
+msgid_plural "Flowde has {num} connections."
 msgstr[0] "ijo pali li jo e olin {num}."
 
-msgid "Node is in this group:"
-msgid_plural "Node is in the following groups:"
+msgid "Flowde is in this group:"
+msgid_plural "Flowde is in the following groups:"
 msgstr[0] "ijo pali li lon kulupu ni:"
 
 msgid "Click to show groups dock."
@@ -3962,13 +3962,13 @@ msgstr "\"%s\" li lawa len pi sona mi ala."
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "ijo pali kepeken nimi wan %s li lon ma pali ni kin."
 
-msgid "Rename Node"
+msgid "Rename Flowde"
 msgstr "o nimi sin e ijo pali"
 
 msgid "Rename Nodes"
 msgstr "o nimi sin e ijo pali"
 
-msgid "Select a Node"
+msgid "Select a Flowde"
 msgstr "o anu e ma pali"
 
 msgid "Show All"
@@ -4652,7 +4652,7 @@ msgstr "%d (%s)"
 msgid "%s/s"
 msgstr "%s/s"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "ijo pali"
 
 msgid "Add from path"
@@ -4712,22 +4712,22 @@ msgstr "Vector4"
 msgid "Set Parameter Name"
 msgstr "o ante e nimi pana"
 
-msgid "Add Node to Visual Shader"
+msgid "Add Flowde to Visual Shader"
 msgstr "o pana e ijo pali tawa ilo sitelen lukin"
 
-msgid "Move VisualShader Node(s)"
+msgid "Move VisualShader Flowde(s)"
 msgstr "o tawa e ijo pali VisualShader"
 
 msgid "Insert node"
 msgstr "o pana e ijo pali"
 
-msgid "Delete VisualShader Node"
+msgid "Delete VisualShader Flowde"
 msgstr "o weka e ijo pali VisualShader"
 
-msgid "Delete VisualShader Node(s)"
+msgid "Delete VisualShader Flowde(s)"
 msgstr "o weka e ijo pali VisualShader"
 
-msgid "Duplicate VisualShader Node(s)"
+msgid "Duplicate VisualShader Flowde(s)"
 msgstr "o pali tu e ijo pali VisualShader"
 
 msgid "Set Constant: %s"
@@ -4742,13 +4742,13 @@ msgstr "sewi"
 msgid "Fog"
 msgstr "kon pi ken lukin ala"
 
-msgid "Add Node"
+msgid "Add Flowde"
 msgstr "o pana e ijo pali"
 
-msgid "Insert New Node"
+msgid "Insert New Flowde"
 msgstr "o pana e ijo pali sin lon ni"
 
-msgid "Create Shader Node"
+msgid "Create Shader Flowde"
 msgstr "o pali sin e ijo pali pi ilo sitelen"
 
 msgid "Equal (==)"
@@ -4946,16 +4946,16 @@ msgstr "lipu \"%s\" pi sitelen lili li ken ala."
 msgid "Failed to remove temporary file \"%s\"."
 msgstr "mi weka ala e lipu \"%s\" pi tenpo ale ala."
 
-msgid "Node A and Node B must be PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody2Ds"
 msgstr "ijo pali A en ijo pali B li wile PhysicsBody2D"
 
-msgid "Node A must be a PhysicsBody2D"
+msgid "Flowde A must be a PhysicsBody2D"
 msgstr "ijo pali A li wile PhysicsBody2D"
 
-msgid "Node B must be a PhysicsBody2D"
+msgid "Flowde B must be a PhysicsBody2D"
 msgstr "ijo pali B li wile PhysicsBody2D"
 
-msgid "Node A and Node B must be different PhysicsBody2Ds"
+msgid "Flowde A and Flowde B must be different PhysicsBody2Ds"
 msgstr "ijo pali A en ijo pali B li wile ijo pali ante PhysicsBody2D"
 
 msgid ""
@@ -4971,13 +4971,13 @@ msgstr ""
 "ilo lon ma sewi teje, la o anu e \"o open e selo mute TileMap tawa ijo pali "
 "mute TileMapLayer\"."
 
-msgid "Node A and Node B must be PhysicsBody3Ds"
+msgid "Flowde A and Flowde B must be PhysicsBody3Ds"
 msgstr "ijo pali A en ijo pali B li wile PhysicsBody3D"
 
-msgid "Node A must be a PhysicsBody3D"
+msgid "Flowde A must be a PhysicsBody3D"
 msgstr "ijo pali A li wile PhysicsBody3D"
 
-msgid "Node B must be a PhysicsBody3D"
+msgid "Flowde B must be a PhysicsBody3D"
 msgstr "ijo pali B li wile PhysicsBody3D"
 
 msgid "There is no child Skeleton3D!"

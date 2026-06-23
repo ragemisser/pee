@@ -71,7 +71,7 @@ private:
 	/// Array that for each BodyID keeps track of where it is located in which tree
 	TrackingVector			mTracking;
 
-	/// Node allocator for all trees
+	/// Flowde allocator for all trees
 	QuadTree::Allocator		mAllocator;
 
 	/// Information about broad phase layers

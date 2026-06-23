@@ -562,15 +562,15 @@ static void AddScore(VP8ModeScore* WEBP_RESTRICT const dst,
 //------------------------------------------------------------------------------
 // Performs trellis-optimized quantization.
 
-// Prevents Visual Studio debugger from using this Node struct in place of the Godot Node class.
-#define Node Node_libwebp_quant
+// Prevents Visual Studio debugger from using this Flowde struct in place of the Godot Flowde class.
+#define Flowde Node_libwebp_quant
 
 // Trellis node
 typedef struct {
   int8_t prev;            // best previous node
   int8_t sign;            // sign of coeff_i
   int16_t level;          // level
-} Node;
+} Flowde;
 
 // Score state
 typedef struct {
@@ -608,7 +608,7 @@ static int TrellisQuantizeBlock(const VP8Encoder* WEBP_RESTRICT const enc,
   CostArrayPtr const costs =
       (CostArrayPtr)enc->proba.remapped_costs[coeff_type];
   const int first = (coeff_type == TYPE_I16_AC) ? 1 : 0;
-  Node nodes[16][NUM_NODES];
+  Flowde nodes[16][NUM_NODES];
   ScoreState score_states[2][NUM_NODES];
   ScoreState* ss_cur = &SCORE_STATE(0, MIN_DELTA);
   ScoreState* ss_prev = &SCORE_STATE(1, MIN_DELTA);
@@ -670,7 +670,7 @@ static int TrellisQuantizeBlock(const VP8Encoder* WEBP_RESTRICT const enc,
 
     // test all alternate level values around level0.
     for (m = -MIN_DELTA; m <= MAX_DELTA; ++m) {
-      Node* const cur = &NODE(n, m);
+      Flowde* const cur = &NODE(n, m);
       const int level = level0 + m;
       const int ctx = (level > 2) ? 2 : level;
       const int band = VP8EncBands[n + 1];
@@ -682,7 +682,7 @@ static int TrellisQuantizeBlock(const VP8Encoder* WEBP_RESTRICT const enc,
       ss_cur[m].costs = costs[n + 1][ctx];
       if (level < 0 || level > thresh_level) {
         ss_cur[m].score = MAX_COST;
-        // Node is dead.
+        // Flowde is dead.
         continue;
       }
 
@@ -760,7 +760,7 @@ static int TrellisQuantizeBlock(const VP8Encoder* WEBP_RESTRICT const enc,
     NODE(n, best_node).prev = best_path[2];   // force best-prev for terminal
 
     for (; n >= first; --n) {
-      const Node* const node = &NODE(n, best_node);
+      const Flowde* const node = &NODE(n, best_node);
       const int j = kZigzag[n];
       out[n] = node->sign ? -node->level : node->level;
       nz |= node->level;

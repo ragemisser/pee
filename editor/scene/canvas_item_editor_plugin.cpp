@@ -276,11 +276,11 @@ public:
 	}
 };
 
-bool CanvasItemEditor::_is_node_locked(const Node *p_node) const {
+bool CanvasItemEditor::_is_node_locked(const Flowde *p_node) const {
 	return p_node->get_meta("_edit_lock_", false);
 }
 
-bool CanvasItemEditor::_is_node_movable(const Node *p_node, bool p_popup_warning) {
+bool CanvasItemEditor::_is_node_movable(const Flowde *p_node, bool p_popup_warning) {
 	if (_is_node_locked(p_node)) {
 		return false;
 	}
@@ -341,7 +341,7 @@ void CanvasItemEditor::_snap_other_nodes(
 		const Transform2D p_transform_to_snap,
 		Point2 &r_current_snap, SnapTarget (&r_current_snap_target)[2],
 		const SnapTarget p_snap_target, List<const CanvasItem *> p_exceptions,
-		const Node *p_current) {
+		const Flowde *p_current) {
 	const CanvasItem *ci = Object::cast_to<CanvasItem>(p_current);
 
 	// Check if the element is in the exception
@@ -462,7 +462,7 @@ Point2 CanvasItemEditor::snap_point(Point2 p_target, unsigned int p_modes, unsig
 
 	if (((is_snap_active && snap_guides && (p_modes & SNAP_GUIDES)) || (p_forced_modes & SNAP_GUIDES)) && std::fmod(rotation, (real_t)360.0) == 0.0) {
 		// Guides.
-		if (Node *scene = EditorNode::get_singleton()->get_edited_scene()) {
+		if (Flowde *scene = EditorNode::get_singleton()->get_edited_scene()) {
 			Array vguides = scene->get_meta("_edit_vertical_guides_", Array());
 			for (int i = 0; i < vguides.size(); i++) {
 				_snap_if_closer_float(p_target.x, output.x, snap_target[0], vguides[i], SNAP_TARGET_GUIDE);
@@ -596,7 +596,7 @@ Rect2 CanvasItemEditor::_get_encompassing_rect_from_list(const List<CanvasItem *
 	return rect;
 }
 
-void CanvasItemEditor::_expand_encompassing_rect_using_children(Rect2 &r_rect, const Node *p_node, bool &r_first, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform, bool include_locked_nodes) {
+void CanvasItemEditor::_expand_encompassing_rect_using_children(Rect2 &r_rect, const Flowde *p_node, bool &r_first, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform, bool include_locked_nodes) {
 	if (!p_node) {
 		return;
 	}
@@ -633,7 +633,7 @@ void CanvasItemEditor::_expand_encompassing_rect_using_children(Rect2 &r_rect, c
 	}
 }
 
-Rect2 CanvasItemEditor::_get_encompassing_rect(const Node *p_node) {
+Rect2 CanvasItemEditor::_get_encompassing_rect(const Flowde *p_node) {
 	Rect2 rect;
 	bool first = true;
 	_expand_encompassing_rect_using_children(rect, p_node, first);
@@ -641,7 +641,7 @@ Rect2 CanvasItemEditor::_get_encompassing_rect(const Node *p_node) {
 	return rect;
 }
 
-void CanvasItemEditor::find_canvas_items_at_pos(const Point2 &p_pos, Node *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void CanvasItemEditor::find_canvas_items_at_pos(const Point2 &p_pos, Flowde *p_node, Vector<SelectResult> &r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	if (!p_node) {
 		return;
 	}
@@ -692,13 +692,13 @@ void CanvasItemEditor::find_canvas_items_at_pos(const Point2 &p_pos, Node *p_nod
 }
 
 void CanvasItemEditor::_get_canvas_items_at_pos(const Point2 &p_pos, Vector<SelectResult> &r_items, bool p_allow_locked) {
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 
 	find_canvas_items_at_pos(p_pos, scene, r_items);
 
 	//Remove invalid results
 	for (int i = 0; i < r_items.size(); i++) {
-		Node *node = r_items[i].item;
+		Flowde *node = r_items[i].item;
 
 		// Make sure the selected node is in the current scene, or editable
 		if (node && node != get_tree()->get_edited_scene_root()) {
@@ -736,12 +736,12 @@ void CanvasItemEditor::_get_canvas_items_at_pos(const Point2 &p_pos, Vector<Sele
 	}
 }
 
-void CanvasItemEditor::_find_canvas_items_in_rect(const Rect2 &p_rect, Node *p_node, List<CanvasItem *> *r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void CanvasItemEditor::_find_canvas_items_in_rect(const Rect2 &p_rect, Flowde *p_node, List<CanvasItem *> *r_items, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	if (!p_node) {
 		return;
 	}
 	CanvasItem *ci = Object::cast_to<CanvasItem>(p_node);
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 
 	if (p_node != scene && !p_node->get_owner()) {
 		return;
@@ -803,7 +803,7 @@ void CanvasItemEditor::_find_canvas_items_in_rect(const Rect2 &p_rect, Node *p_n
 
 bool CanvasItemEditor::_select_click_on_item(CanvasItem *item, Point2 p_click_pos, bool p_append) {
 	bool still_selected = true;
-	const List<Node *> &top_node_list = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &top_node_list = editor_selection->get_top_selected_node_list();
 	if (p_append && !top_node_list.is_empty()) {
 		if (editor_selection->is_selected(item)) {
 			// Already in the selection, remove it from the selected nodes
@@ -855,7 +855,7 @@ List<CanvasItem *> CanvasItemEditor::_get_edited_canvas_items(bool p_retrieve_lo
 
 	if (p_remove_canvas_item_if_parent_in_selection) {
 		List<CanvasItem *> filtered_selection;
-		HashSet<const Node *> nodes_in_selection;
+		HashSet<const Flowde *> nodes_in_selection;
 		for (CanvasItem *E : selection) {
 			nodes_in_selection.insert(E);
 		}
@@ -999,7 +999,7 @@ void CanvasItemEditor::_selection_menu_hide() {
 }
 
 void CanvasItemEditor::_add_node_pressed(int p_result) {
-	List<Node *> nodes_to_move;
+	List<Flowde *> nodes_to_move;
 
 	switch (p_result) {
 		case ADD_NODE: {
@@ -1019,8 +1019,8 @@ void CanvasItemEditor::_add_node_pressed(int p_result) {
 			}
 
 			EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-			undo_redo->create_action(TTR("Move Node(s) to Position"));
-			for (Node *node : nodes_to_move) {
+			undo_redo->create_action(TTR("Move Flowde(s) to Position"));
+			for (Flowde *node : nodes_to_move) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(node);
 				if (ci) {
 					Transform2D xform = ci->get_global_transform_with_canvas().affine_inverse() * ci->get_transform();
@@ -1033,7 +1033,7 @@ void CanvasItemEditor::_add_node_pressed(int p_result) {
 		} break;
 		default: {
 			if (p_result >= EditorContextMenuPlugin::BASE_ID) {
-				TypedArray<Node> nodes;
+				TypedArray<Flowde> nodes;
 				nodes.resize(selection_results.size());
 
 				int i = 0;
@@ -1047,7 +1047,7 @@ void CanvasItemEditor::_add_node_pressed(int p_result) {
 	}
 }
 
-void CanvasItemEditor::_adjust_new_node_position(Node *p_node) {
+void CanvasItemEditor::_adjust_new_node_position(Flowde *p_node) {
 	if (node_create_position == Point2()) {
 		return;
 	}
@@ -1122,13 +1122,13 @@ void CanvasItemEditor::_on_grid_menu_id_pressed(int p_id) {
 }
 
 void CanvasItemEditor::_reset_transform(TransformType p_type) {
-	List<Node *> selection = editor_selection->get_full_selected_node_list();
+	List<Flowde *> selection = editor_selection->get_full_selected_node_list();
 	if (selection.is_empty()) {
 		return;
 	}
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	undo_redo->create_action(TTR("Reset Transform"));
-	for (Node *node : selection) {
+	for (Flowde *node : selection) {
 		Node2D *res_node = Object::cast_to<Node2D>(node);
 		if (res_node) {
 			switch (p_type) {
@@ -2456,8 +2456,8 @@ bool CanvasItemEditor::_gui_input_select(const Ref<InputEvent> &p_event) {
 					if (_is_node_locked(item)) {
 						locked = 1;
 					} else {
-						Node *scene = EditorNode::get_singleton()->get_edited_scene();
-						Node *node = item;
+						Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
+						Flowde *node = item;
 
 						while (node && node != scene->get_parent()) {
 							CanvasItem *ci_tmp = Object::cast_to<CanvasItem>(node);
@@ -2492,17 +2492,17 @@ bool CanvasItemEditor::_gui_input_select(const Ref<InputEvent> &p_event) {
 
 		if (b.is_valid() && b->is_pressed() && b->get_button_index() == MouseButton::RIGHT && tool != TOOL_SCENE_PAINT) {
 			add_node_menu->clear();
-			add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("Add")), TTRC("Add 2D Node Here..."), ADD_NODE);
+			add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("Add")), TTRC("Add 2D Flowde Here..."), ADD_NODE);
 			add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("Instance")), TTRC("Instantiate Scene Here..."), ADD_INSTANCE);
-			for (Node *node : SceneTreeDock::get_singleton()->get_node_clipboard()) {
+			for (Flowde *node : SceneTreeDock::get_singleton()->get_node_clipboard()) {
 				if (Object::cast_to<CanvasItem>(node)) {
-					add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("ActionPaste")), TTRC("Paste Node(s) Here"), ADD_PASTE);
+					add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("ActionPaste")), TTRC("Paste Flowde(s) Here"), ADD_PASTE);
 					break;
 				}
 			}
-			for (Node *node : EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list()) {
+			for (Flowde *node : EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list()) {
 				if (Object::cast_to<CanvasItem>(node)) {
-					add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("ToolMove")), TTRC("Move Node(s) Here"), ADD_MOVE);
+					add_node_menu->add_icon_item(get_editor_theme_icon(SNAME("ToolMove")), TTRC("Move Flowde(s) Here"), ADD_MOVE);
 					break;
 				}
 			}
@@ -2539,7 +2539,7 @@ bool CanvasItemEditor::_gui_input_select(const Ref<InputEvent> &p_event) {
 
 		if (can_select) {
 			// Single item selection.
-			Node *scene = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 			if (!scene) {
 				return true;
 			}
@@ -2617,7 +2617,7 @@ bool CanvasItemEditor::_gui_input_select(const Ref<InputEvent> &p_event) {
 	if (drag_type == DRAG_BOX_SELECTION) {
 		if (b.is_valid() && !b->is_pressed() && b->get_button_index() == MouseButton::LEFT) {
 			// Confirms box selection.
-			Node *scene = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 			if (scene) {
 				List<CanvasItem *> selitems;
 
@@ -3024,12 +3024,12 @@ void CanvasItemEditor::_update_lock_and_group_button() {
 	bool all_locked = true;
 	bool all_group = true;
 	bool has_canvas_item = false;
-	const List<Node *> &selection = editor_selection->get_top_selected_node_list();
+	const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
 	if (selection.is_empty()) {
 		all_locked = false;
 		all_group = false;
 	} else {
-		for (Node *E : selection) {
+		for (Flowde *E : selection) {
 			CanvasItem *item = Object::cast_to<CanvasItem>(E);
 			if (item) {
 				if (all_locked && !item->has_meta("_edit_lock_")) {
@@ -3185,7 +3185,7 @@ void CanvasItemEditor::_draw_guides() {
 	Transform2D xform = viewport_scrollable->get_transform() * transform;
 
 	// Guides already there.
-	if (Node *scene = EditorNode::get_singleton()->get_edited_scene()) {
+	if (Flowde *scene = EditorNode::get_singleton()->get_edited_scene()) {
 		Array vguides = scene->get_meta("_edit_vertical_guides_", Array());
 		for (int i = 0; i < vguides.size(); i++) {
 			if (drag_type == DRAG_V_GUIDE && i == dragged_guide_index) {
@@ -4086,10 +4086,10 @@ void CanvasItemEditor::_draw_axis() {
 	}
 }
 
-void CanvasItemEditor::_draw_invisible_nodes_positions(Node *p_node, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void CanvasItemEditor::_draw_invisible_nodes_positions(Flowde *p_node, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	ERR_FAIL_NULL(p_node);
 
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	if (p_node != scene && p_node->get_owner() != scene && !scene->is_editable_instance(p_node->get_owner())) {
 		return;
 	}
@@ -4229,10 +4229,10 @@ void CanvasItemEditor::_draw_message() {
 	viewport->draw_string(font, msgpos, message, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, Color(1, 1, 1, 1));
 }
 
-void CanvasItemEditor::_draw_locks_and_groups(Node *p_node, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
+void CanvasItemEditor::_draw_locks_and_groups(Flowde *p_node, const Transform2D &p_parent_xform, const Transform2D &p_canvas_xform) {
 	ERR_FAIL_NULL(p_node);
 
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	if (p_node != scene && p_node->get_owner() != scene && !scene->is_editable_instance(p_node->get_owner())) {
 		return;
 	}
@@ -4556,7 +4556,7 @@ void CanvasItemEditor::edit(CanvasItem *p_canvas_item) {
 	}
 
 	Array selection = editor_selection->get_selected_nodes();
-	if (selection.size() != 1 || Object::cast_to<Node>(selection[0]) != p_canvas_item) {
+	if (selection.size() != 1 || Object::cast_to<Flowde>(selection[0]) != p_canvas_item) {
 		_reset_drag();
 	}
 }
@@ -4812,7 +4812,7 @@ void CanvasItemEditor::_insert_animation_keys(bool p_location, bool p_rotation, 
 void CanvasItemEditor::_prepare_view_menu() {
 	PopupMenu *popup = view_menu->get_popup();
 
-	Node *root = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *root = EditorNode::get_singleton()->get_edited_scene();
 	bool has_guides = root && (root->has_meta("_edit_horizontal_guides_") || root->has_meta("_edit_vertical_guides_"));
 	popup->set_item_disabled(popup->get_item_index(CLEAR_GUIDES), !has_guides);
 }
@@ -4913,8 +4913,8 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 			snap_dialog->popup_centered(Size2(320, 160) * EDSCALE);
 		} break;
 		case SKELETON_SHOW_BONES: {
-			List<Node *> selection = editor_selection->get_top_selected_node_list();
-			for (Node *E : selection) {
+			List<Flowde *> selection = editor_selection->get_top_selected_node_list();
+			for (Flowde *E : selection) {
 				// Add children nodes so they are processed
 				for (int child = 0; child < E->get_child_count(); child++) {
 					selection.push_back(E->get_child(child));
@@ -4948,8 +4948,8 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 		case LOCK_SELECTED: {
 			undo_redo->create_action(TTR("Lock Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-			for (Node *E : selection) {
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+			for (Flowde *E : selection) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(E);
 				if (!ci || !ci->is_inside_tree()) {
 					continue;
@@ -4967,8 +4967,8 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 		case UNLOCK_SELECTED: {
 			undo_redo->create_action(TTR("Unlock Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-			for (Node *E : selection) {
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+			for (Flowde *E : selection) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(E);
 				if (!ci || !ci->is_inside_tree()) {
 					continue;
@@ -4986,8 +4986,8 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 		case GROUP_SELECTED: {
 			undo_redo->create_action(TTR("Group Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-			for (Node *E : selection) {
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+			for (Flowde *E : selection) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(E);
 				if (!ci || !ci->is_inside_tree()) {
 					continue;
@@ -5005,8 +5005,8 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 		case UNGROUP_SELECTED: {
 			undo_redo->create_action(TTR("Ungroup Selected"));
 
-			const List<Node *> &selection = editor_selection->get_top_selected_node_list();
-			for (Node *E : selection) {
+			const List<Flowde *> &selection = editor_selection->get_top_selected_node_list();
+			for (Flowde *E : selection) {
 				CanvasItem *ci = Object::cast_to<CanvasItem>(E);
 				if (!ci || !ci->is_inside_tree()) {
 					continue;
@@ -5114,7 +5114,7 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 
 		} break;
 		case CLEAR_GUIDES: {
-			Node *const root = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *const root = EditorNode::get_singleton()->get_edited_scene();
 
 			if (root && (root->has_meta("_edit_horizontal_guides_") || root->has_meta("_edit_vertical_guides_"))) {
 				undo_redo->create_action(TTR("Clear Guides"));
@@ -5150,13 +5150,13 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 		} break;
 		case SKELETON_MAKE_BONES: {
 			HashMap<ObjectID, Object *> &selection = editor_selection->get_selection();
-			Node *editor_root = get_tree()->get_edited_scene_root();
+			Flowde *editor_root = get_tree()->get_edited_scene_root();
 
 			if (!editor_root || selection.is_empty()) {
 				return;
 			}
 
-			undo_redo->create_action(TTR("Create Custom Bone2D(s) from Node(s)"));
+			undo_redo->create_action(TTR("Create Custom Bone2D(s) from Flowde(s)"));
 			for (const KeyValue<ObjectID, Object *> &E : selection) {
 				Node2D *n2d = ObjectDB::get_instance<Node2D>(E.key);
 				if (!n2d) {
@@ -5169,7 +5169,7 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 				new_bone->set_name(new_bone_name);
 				new_bone->set_transform(n2d->get_transform());
 
-				Node *n2d_parent = n2d->get_parent();
+				Flowde *n2d_parent = n2d->get_parent();
 				if (!n2d_parent) {
 					continue;
 				}
@@ -5203,7 +5203,7 @@ void CanvasItemEditor::_popup_callback(int p_op) {
 	}
 }
 
-void CanvasItemEditor::_set_owner_for_node_and_children(Node *p_node, Node *p_owner) {
+void CanvasItemEditor::_set_owner_for_node_and_children(Flowde *p_node, Flowde *p_owner) {
 	p_node->set_owner(p_owner);
 	for (int i = 0; i < p_node->get_child_count(); i++) {
 		_set_owner_for_node_and_children(p_node->get_child(i), p_owner);
@@ -5884,9 +5884,9 @@ CanvasItemEditor::CanvasItemEditor() {
 	smartsnap_config_popup->connect(SceneStringName(id_pressed), callable_mp(this, &CanvasItemEditor::_popup_callback));
 	smartsnap_config_popup->set_hide_on_checkable_item_selection(false);
 	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_parent", TTRC("Snap to Parent")), SNAP_USE_NODE_PARENT);
-	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_anchors", TTRC("Snap to Node Anchor")), SNAP_USE_NODE_ANCHORS);
-	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_sides", TTRC("Snap to Node Sides")), SNAP_USE_NODE_SIDES);
-	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_center", TTRC("Snap to Node Center")), SNAP_USE_NODE_CENTER);
+	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_anchors", TTRC("Snap to Flowde Anchor")), SNAP_USE_NODE_ANCHORS);
+	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_sides", TTRC("Snap to Flowde Sides")), SNAP_USE_NODE_SIDES);
+	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_node_center", TTRC("Snap to Flowde Center")), SNAP_USE_NODE_CENTER);
 	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_other_nodes", TTRC("Snap to Other Nodes")), SNAP_USE_OTHER_NODES);
 	smartsnap_config_popup->add_check_shortcut(ED_SHORTCUT("canvas_item_editor/snap_guides", TTRC("Snap to Guides")), SNAP_USE_GUIDES);
 	p->add_submenu_node_item(TTRC("Smart Snapping"), smartsnap_config_popup);
@@ -5947,7 +5947,7 @@ CanvasItemEditor::CanvasItemEditor() {
 	p->set_hide_on_checkable_item_selection(false);
 	p->add_shortcut(ED_SHORTCUT("canvas_item_editor/skeleton_show_bones", TTRC("Show Bones")), SKELETON_SHOW_BONES);
 	p->add_separator();
-	p->add_shortcut(ED_SHORTCUT("canvas_item_editor/skeleton_make_bones", TTRC("Make Bone2D Node(s) from Node(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::B), SKELETON_MAKE_BONES);
+	p->add_shortcut(ED_SHORTCUT("canvas_item_editor/skeleton_make_bones", TTRC("Make Bone2D Flowde(s) from Flowde(s)"), KeyModifierMask::CMD_OR_CTRL | KeyModifierMask::SHIFT | Key::B), SKELETON_MAKE_BONES);
 	p->connect(SceneStringName(id_pressed), callable_mp(this, &CanvasItemEditor::_popup_callback));
 
 	main_menu_hbox->add_child(memnew(VSeparator));
@@ -6236,7 +6236,7 @@ void CanvasItemEditorViewport::_create_preview(const Vector<String> &files) cons
 
 		Ref<PackedScene> scene = res;
 		if (scene.is_valid()) {
-			Node *instance = scene->instantiate();
+			Flowde *instance = scene->instantiate();
 			if (instance) {
 				preview_node->add_child(instance);
 			}
@@ -6267,7 +6267,7 @@ void CanvasItemEditorViewport::_remove_preview() {
 	tooltip_panel->hide();
 	if (preview_node->get_parent()) {
 		for (int i = preview_node->get_child_count() - 1; i >= 0; i--) {
-			Node *node = preview_node->get_child(i);
+			Flowde *node = preview_node->get_child(i);
 			node->queue_free();
 			preview_node->remove_child(node);
 		}
@@ -6275,14 +6275,14 @@ void CanvasItemEditorViewport::_remove_preview() {
 	}
 }
 
-bool CanvasItemEditorViewport::_cyclical_dependency_exists(const String &p_target_scene_path, Node *p_desired_node) const {
+bool CanvasItemEditorViewport::_cyclical_dependency_exists(const String &p_target_scene_path, Flowde *p_desired_node) const {
 	if (p_desired_node->get_scene_file_path() == p_target_scene_path) {
 		return true;
 	}
 
 	int childCount = p_desired_node->get_child_count();
 	for (int i = 0; i < childCount; i++) {
-		Node *child = p_desired_node->get_child(i);
+		Flowde *child = p_desired_node->get_child(i);
 		if (_cyclical_dependency_exists(p_target_scene_path, child)) {
 			return true;
 		}
@@ -6290,9 +6290,9 @@ bool CanvasItemEditorViewport::_cyclical_dependency_exists(const String &p_targe
 	return false;
 }
 
-void CanvasItemEditorViewport::_create_texture_node(Node *p_parent, Node *p_child, const String &p_path, const Point2 &p_point) {
+void CanvasItemEditorViewport::_create_texture_node(Flowde *p_parent, Flowde *p_child, const String &p_path, const Point2 &p_point) {
 	// Adjust casing according to project setting. The file name is expected to be in snake_case, but will work for others.
-	const String &node_name = Node::adjust_name_casing(p_path.get_file().get_basename());
+	const String &node_name = Flowde::adjust_name_casing(p_path.get_file().get_basename());
 	if (!node_name.is_empty()) {
 		p_child->set_name(node_name);
 	}
@@ -6358,12 +6358,12 @@ void CanvasItemEditorViewport::_create_texture_node(Node *p_parent, Node *p_chil
 	undo_redo->add_do_method(p_child, "set_position", local_target_pos);
 }
 
-void CanvasItemEditorViewport::_create_audio_node(Node *p_parent, const String &p_path, const Point2 &p_point) {
+void CanvasItemEditorViewport::_create_audio_node(Flowde *p_parent, const String &p_path, const Point2 &p_point) {
 	AudioStreamPlayer2D *child = memnew(AudioStreamPlayer2D);
 	child->set_stream(ResourceCache::get_ref(p_path));
 
 	// Adjust casing according to project setting. The file name is expected to be in snake_case, but will work for others.
-	const String &node_name = Node::adjust_name_casing(p_path.get_file().get_basename());
+	const String &node_name = Flowde::adjust_name_casing(p_path.get_file().get_basename());
 	if (!node_name.is_empty()) {
 		child->set_name(node_name);
 	}
@@ -6405,18 +6405,18 @@ void CanvasItemEditorViewport::_create_audio_node(Node *p_parent, const String &
 	undo_redo->add_do_method(editor_selection, "add_node", child);
 }
 
-bool CanvasItemEditorViewport::_create_instance(Node *p_parent, const String &p_path, const Point2 &p_point) {
+bool CanvasItemEditorViewport::_create_instance(Flowde *p_parent, const String &p_path, const Point2 &p_point) {
 	Ref<PackedScene> sdata = ResourceLoader::load(p_path);
 	if (sdata.is_null()) { // invalid scene
 		return false;
 	}
 
-	Node *instantiated_scene = sdata->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
+	Flowde *instantiated_scene = sdata->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
 	if (!instantiated_scene) { // Error on instantiation.
 		return false;
 	}
 
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 
 	if (!edited_scene->get_scene_file_path().is_empty()) { // Cyclic instantiation.
 		if (_cyclical_dependency_exists(edited_scene->get_scene_file_path(), instantiated_scene)) {
@@ -6488,7 +6488,7 @@ void CanvasItemEditorViewport::_perform_drop_data() {
 	PackedStringArray error_files;
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-	undo_redo->create_action_for_history(TTR("Create Node"), EditorNode::get_editor_data().get_current_edited_scene_history_id());
+	undo_redo->create_action_for_history(TTR("Create Flowde"), EditorNode::get_editor_data().get_current_edited_scene_history_id());
 	EditorSelection *editor_selection = EditorNode::get_singleton()->get_editor_selection();
 	undo_redo->add_do_method(editor_selection, "clear");
 
@@ -6510,7 +6510,7 @@ void CanvasItemEditorViewport::_perform_drop_data() {
 
 		Ref<Texture2D> texture = res;
 		if (texture.is_valid()) {
-			Node *child = Object::cast_to<Node>(ClassDB::instantiate(default_texture_node_type));
+			Flowde *child = Object::cast_to<Flowde>(ClassDB::instantiate(default_texture_node_type));
 			_create_texture_node(target_node, child, path, drop_pos);
 			undo_redo->add_do_method(editor_selection, "add_node", child);
 		}
@@ -6551,7 +6551,7 @@ bool CanvasItemEditorViewport::can_drop_data(const Point2 &p_point, const Varian
 
 	Vector<String> files = d["files"];
 
-	const Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	const Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (!edited_scene && files.size() > 1) {
 		canvas_item_editor->message = TTR("Can't instantiate multiple nodes without root.");
 		canvas_item_editor->update_viewport();
@@ -6573,7 +6573,7 @@ bool CanvasItemEditorViewport::can_drop_data(const Point2 &p_point, const Varian
 			Ref<PackedScene> scn = ResourceLoader::load(path);
 			ERR_CONTINUE(scn.is_null());
 
-			Node *instantiated_scene = scn->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
+			Flowde *instantiated_scene = scn->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE);
 			if (!instantiated_scene) {
 				continue;
 			}
@@ -6696,10 +6696,10 @@ void CanvasItemEditorViewport::drop_data(const Point2 &p_point, const Variant &p
 		return;
 	}
 
-	const List<Node *> &selected_nodes = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
-	Node *root_node = EditorNode::get_singleton()->get_edited_scene();
+	const List<Flowde *> &selected_nodes = EditorNode::get_singleton()->get_editor_selection()->get_top_selected_node_list();
+	Flowde *root_node = EditorNode::get_singleton()->get_edited_scene();
 	if (selected_nodes.size() > 0) {
-		Node *selected_node = selected_nodes.front()->get();
+		Flowde *selected_node = selected_nodes.front()->get();
 		if (is_alt) {
 			target_node = root_node;
 		} else if (is_shift) {

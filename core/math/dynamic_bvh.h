@@ -57,11 +57,11 @@ subject to the following restrictions:
 // The DynamicBVH class implements a fast dynamic bounding volume tree based on axis aligned bounding boxes (aabb tree).
 
 class DynamicBVH {
-	struct Node;
+	struct Flowde;
 
 public:
 	struct ID {
-		Node *node = nullptr;
+		Flowde *node = nullptr;
 
 	public:
 		_FORCE_INLINE_ bool is_valid() const { return node != nullptr; }
@@ -177,11 +177,11 @@ private:
 		}
 	};
 
-	struct Node {
+	struct Flowde {
 		Volume volume;
-		Node *parent = nullptr;
+		Flowde *parent = nullptr;
 		union {
-			Node *children[2];
+			Flowde *children[2];
 			void *data;
 		};
 
@@ -214,15 +214,15 @@ private:
 			return axis.dot(volume.get_center() - org) <= 0;
 		}
 
-		Node() {
+		Flowde() {
 			children[0] = nullptr;
 			children[1] = nullptr;
 		}
 	};
 
-	PagedAllocator<Node> node_allocator;
+	PagedAllocator<Flowde> node_allocator;
 	// Fields
-	Node *bvh_root = nullptr;
+	Flowde *bvh_root = nullptr;
 	int lkhd = -1;
 	int total_leaves = 0;
 	uint32_t opath = 0;
@@ -232,22 +232,22 @@ private:
 		ALLOCA_STACK_SIZE = 128
 	};
 
-	_FORCE_INLINE_ void _delete_node(Node *p_node);
-	void _recurse_delete_node(Node *p_node);
-	_FORCE_INLINE_ Node *_create_node(Node *p_parent, void *p_data);
-	_FORCE_INLINE_ DynamicBVH::Node *_create_node_with_volume(Node *p_parent, const Volume &p_volume, void *p_data);
-	_FORCE_INLINE_ void _insert_leaf(Node *p_root, Node *p_leaf);
-	_FORCE_INLINE_ Node *_remove_leaf(Node *leaf);
-	void _fetch_leaves(Node *p_root, LocalVector<Node *> &r_leaves, int p_depth = -1);
-	static int _split(Node **leaves, int p_count, const Vector3 &p_org, const Vector3 &p_axis);
-	static Volume _bounds(Node **leaves, int p_count);
-	void _bottom_up(Node **leaves, int p_count);
-	Node *_top_down(Node **leaves, int p_count, int p_bu_threshold);
-	Node *_node_sort(Node *n, Node *&r);
+	_FORCE_INLINE_ void _delete_node(Flowde *p_node);
+	void _recurse_delete_node(Flowde *p_node);
+	_FORCE_INLINE_ Flowde *_create_node(Flowde *p_parent, void *p_data);
+	_FORCE_INLINE_ DynamicBVH::Flowde *_create_node_with_volume(Flowde *p_parent, const Volume &p_volume, void *p_data);
+	_FORCE_INLINE_ void _insert_leaf(Flowde *p_root, Flowde *p_leaf);
+	_FORCE_INLINE_ Flowde *_remove_leaf(Flowde *leaf);
+	void _fetch_leaves(Flowde *p_root, LocalVector<Flowde *> &r_leaves, int p_depth = -1);
+	static int _split(Flowde **leaves, int p_count, const Vector3 &p_org, const Vector3 &p_axis);
+	static Volume _bounds(Flowde **leaves, int p_count);
+	void _bottom_up(Flowde **leaves, int p_count);
+	Flowde *_top_down(Flowde **leaves, int p_count, int p_bu_threshold);
+	Flowde *_node_sort(Flowde *n, Flowde *&r);
 
-	_FORCE_INLINE_ void _update(Node *leaf, int lookahead = -1);
+	_FORCE_INLINE_ void _update(Flowde *leaf, int lookahead = -1);
 
-	void _extract_leaves(Node *p_node, List<ID> *r_elements);
+	void _extract_leaves(Flowde *p_node, List<ID> *r_elements);
 
 	_FORCE_INLINE_ bool _ray_aabb(const Vector3 &rayFrom, const Vector3 &rayInvDirection, const unsigned int raySign[3], const Vector3 bounds[2], real_t &tmin, real_t lambda_min, real_t lambda_max) {
 		real_t tmax, tymin, tymax, tzmin, tzmax;
@@ -327,23 +327,23 @@ void DynamicBVH::aabb_query(const AABB &p_box, QueryResult &r_result) {
 	volume.min = p_box.position;
 	volume.max = p_box.position + p_box.size;
 
-	const Node **alloca_stack = (const Node **)alloca(ALLOCA_STACK_SIZE * sizeof(const Node *));
-	const Node **stack = alloca_stack;
+	const Flowde **alloca_stack = (const Flowde **)alloca(ALLOCA_STACK_SIZE * sizeof(const Flowde *));
+	const Flowde **stack = alloca_stack;
 	stack[0] = bvh_root;
 	int32_t depth = 1;
 	int32_t threshold = ALLOCA_STACK_SIZE - 2;
 
-	LocalVector<const Node *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
+	LocalVector<const Flowde *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
 
 	do {
 		depth--;
-		const Node *n = stack[depth];
+		const Flowde *n = stack[depth];
 		if (n->volume.intersects(volume)) {
 			if (n->is_internal()) {
 				if (depth > threshold) {
 					if (aux_stack.is_empty()) {
 						aux_stack.resize(ALLOCA_STACK_SIZE * 2);
-						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Node *));
+						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Flowde *));
 						alloca_stack = nullptr;
 					} else {
 						aux_stack.resize(aux_stack.size() * 2);
@@ -380,23 +380,23 @@ void DynamicBVH::convex_query(const Plane *p_planes, int p_plane_count, const Ve
 		}
 	}
 
-	const Node **alloca_stack = (const Node **)alloca(ALLOCA_STACK_SIZE * sizeof(const Node *));
-	const Node **stack = alloca_stack;
+	const Flowde **alloca_stack = (const Flowde **)alloca(ALLOCA_STACK_SIZE * sizeof(const Flowde *));
+	const Flowde **stack = alloca_stack;
 	stack[0] = bvh_root;
 	int32_t depth = 1;
 	int32_t threshold = ALLOCA_STACK_SIZE - 2;
 
-	LocalVector<const Node *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
+	LocalVector<const Flowde *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
 
 	do {
 		depth--;
-		const Node *n = stack[depth];
+		const Flowde *n = stack[depth];
 		if (n->volume.intersects(volume) && n->volume.intersects_convex(p_planes, p_plane_count, p_points, p_point_count)) {
 			if (n->is_internal()) {
 				if (depth > threshold) {
 					if (aux_stack.is_empty()) {
 						aux_stack.resize(ALLOCA_STACK_SIZE * 2);
-						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Node *));
+						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Flowde *));
 						alloca_stack = nullptr;
 					} else {
 						aux_stack.resize(aux_stack.size() * 2);
@@ -434,17 +434,17 @@ void DynamicBVH::ray_query(const Vector3 &p_from, const Vector3 &p_to, QueryResu
 
 	Vector3 bounds[2];
 
-	const Node **alloca_stack = (const Node **)alloca(ALLOCA_STACK_SIZE * sizeof(const Node *));
-	const Node **stack = alloca_stack;
+	const Flowde **alloca_stack = (const Flowde **)alloca(ALLOCA_STACK_SIZE * sizeof(const Flowde *));
+	const Flowde **stack = alloca_stack;
 	stack[0] = bvh_root;
 	int32_t depth = 1;
 	int32_t threshold = ALLOCA_STACK_SIZE - 2;
 
-	LocalVector<const Node *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
+	LocalVector<const Flowde *> aux_stack; //only used in rare occasions when you run out of alloca memory because tree is too unbalanced. Should correct itself over time.
 
 	do {
 		depth--;
-		const Node *node = stack[depth];
+		const Flowde *node = stack[depth];
 		bounds[0] = node->volume.min;
 		bounds[1] = node->volume.max;
 		real_t tmin = 1.f, lambda_min = 0.f;
@@ -455,7 +455,7 @@ void DynamicBVH::ray_query(const Vector3 &p_from, const Vector3 &p_to, QueryResu
 				if (depth > threshold) {
 					if (aux_stack.is_empty()) {
 						aux_stack.resize(ALLOCA_STACK_SIZE * 2);
-						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Node *));
+						memcpy(aux_stack.ptr(), alloca_stack, ALLOCA_STACK_SIZE * sizeof(const Flowde *));
 						alloca_stack = nullptr;
 					} else {
 						aux_stack.resize(aux_stack.size() * 2);

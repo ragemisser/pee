@@ -480,9 +480,9 @@ TEST_SUITE("[Modules][GDScript][LSP][Editor]") {
 		CHECK_EQ(LSP::marked_documentation("Single class [RigidBody2D]"), "Single class `RigidBody2D`");
 		CHECK_EQ(LSP::marked_documentation("[method Node2D.set_position]"), "`Node2D.set_position`");
 		CHECK_EQ(LSP::marked_documentation("[member Node2D.position]"), "`Node2D.position`");
-		CHECK_EQ(LSP::marked_documentation("[signal Node.ready]"), "`Node.ready`");
+		CHECK_EQ(LSP::marked_documentation("[signal Flowde.ready]"), "`Flowde.ready`");
 		CHECK_EQ(LSP::marked_documentation("[constant Color.RED]"), "`Color.RED`");
-		CHECK_EQ(LSP::marked_documentation("[enum Node.ProcessMode]"), "`Node.ProcessMode`");
+		CHECK_EQ(LSP::marked_documentation("[enum Flowde.ProcessMode]"), "`Flowde.ProcessMode`");
 		CHECK_EQ(LSP::marked_documentation("[annotation @GDScript.@export]"), "`@GDScript.@export`");
 		CHECK_EQ(LSP::marked_documentation("[constructor Vector2.Vector2]"), "`Vector2.Vector2`");
 		CHECK_EQ(LSP::marked_documentation("[operator Vector2.operator +]"), "`Vector2.operator +`");

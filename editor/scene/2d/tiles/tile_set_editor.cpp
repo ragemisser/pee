@@ -772,7 +772,7 @@ void TileSetEditor::add_expanded_editor(Control *p_editor) {
 	expanded_editor_parent = p_editor->get_parent()->get_instance_id();
 
 	// Find the scrollable control this node belongs to.
-	Node *check_parent = expanded_editor->get_parent();
+	Flowde *check_parent = expanded_editor->get_parent();
 	Control *parent_container = nullptr;
 	while (check_parent) {
 		parent_container = Object::cast_to<EditorInspector>(check_parent);
@@ -802,7 +802,7 @@ void TileSetEditor::remove_expanded_editor() {
 		return;
 	}
 
-	Node *original_parent = ObjectDB::get_instance<Node>(expanded_editor_parent);
+	Flowde *original_parent = ObjectDB::get_instance<Flowde>(expanded_editor_parent);
 	if (original_parent) {
 		expanded_editor->remove_meta("reparented");
 		expanded_editor->reparent(original_parent);

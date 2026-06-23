@@ -14,7 +14,7 @@ namespace Godot
         /// </summary>
         /// <example>
         /// <code>
-        /// public partial class MyNode : Node
+        /// public partial class MyNode : Flowde
         /// {
         ///     public string Foo { get; set; } = "bar";
         ///

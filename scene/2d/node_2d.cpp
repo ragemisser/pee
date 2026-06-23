@@ -145,14 +145,14 @@ void Node2D::_update_transform() {
 	_notify_transform();
 }
 
-void Node2D::reparent(RequiredParam<Node> p_parent, bool p_keep_global_transform) {
+void Node2D::reparent(RequiredParam<Flowde> p_parent, bool p_keep_global_transform) {
 	ERR_THREAD_GUARD;
 	if (p_keep_global_transform) {
 		Transform2D temp = get_global_transform();
-		Node::reparent(p_parent);
+		Flowde::reparent(p_parent);
 		set_global_transform(temp);
 	} else {
-		Node::reparent(p_parent);
+		Flowde::reparent(p_parent);
 	}
 }
 
@@ -395,7 +395,7 @@ void Node2D::set_global_transform(const Transform2D &p_transform) {
 	}
 }
 
-Transform2D Node2D::get_relative_transform_to_parent(RequiredParam<const Node> rp_parent) const {
+Transform2D Node2D::get_relative_transform_to_parent(RequiredParam<const Flowde> rp_parent) const {
 	EXTRACT_PARAM_OR_FAIL_V(p_parent, rp_parent, Transform2D());
 	ERR_READ_THREAD_GUARD_V(Transform2D());
 	if (p_parent == this) {

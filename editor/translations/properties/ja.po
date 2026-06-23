@@ -371,10 +371,10 @@ msgstr "国際化"
 msgid "Force Right to Left Layout Direction"
 msgstr "レイアウト方向を右から左に強制"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "ルートノードの配置方向"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "ルートノードの自動翻訳"
 
 msgid "GUI"
@@ -1058,7 +1058,7 @@ msgstr "ボーン名変更"
 msgid "Rename Bones"
 msgstr "ボーン名を変更"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "ユニークノード"
 
 msgid "Make Unique"
@@ -1070,7 +1070,7 @@ msgstr "スケルトン名"
 msgid "Rest Fixer"
 msgstr "レストを修正"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "ノード変換を適用"
 
 msgid "Normalize Position Tracks"
@@ -1136,7 +1136,7 @@ msgstr "メッシュのオフセット"
 msgid "Force Disable Mesh Compression"
 msgstr "メッシュ圧縮を無効化"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "ノード"
 
 msgid "Script"
@@ -1337,7 +1337,7 @@ msgstr "スケルトンのボーンとしてインポート"
 msgid "Use Name Suffixes"
 msgstr "名前サフィックスを使用"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "ノードタイプサフィックスを使用"
 
 msgid "Meshes"
@@ -2097,7 +2097,7 @@ msgstr "新規作成ダイアログの開始時にすべてを展開する"
 msgid "Auto Expand to Selected"
 msgstr "選択対象へ自動拡張"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "親ノード変更時にノードを中央に配置"
 
 msgid "Hide Filtered Out Parents"
@@ -2235,7 +2235,7 @@ msgstr "垂直スクロールの速度"
 msgid "Drag and Drop Selection"
 msgstr "選択範囲のドラッグ＆ドロップ移動"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "ノード選択時にスクリプトエディターにとどまる"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2346,7 +2346,7 @@ msgstr "型ヒントを追加"
 msgid "Add String Name Literals"
 msgstr "StringNameリテラルを追加"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "NodePathリテラルを追加"
 
 msgid "Use Single Quotes"
@@ -3288,7 +3288,7 @@ msgstr "ジョイント"
 msgid "Roots"
 msgstr "ルート"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "ボーンノード"
 
 msgid "Skin Root"
@@ -3321,7 +3321,7 @@ msgstr "セル"
 msgid "Priority"
 msgstr "優先順位"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "ワールドノード"
 
 msgid "World Boundary Shape Size"
@@ -4161,10 +4161,10 @@ msgstr "硬さ"
 msgid "Initial Offset"
 msgstr "初期オフセット"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "ノード A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "ノード B"
 
 msgid "Bias"
@@ -4242,7 +4242,7 @@ msgstr "Yソート原点"
 msgid "Enabling"
 msgstr "有効化"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "ノードのパス"
 
 msgid "Doppler Tracking"
@@ -4555,7 +4555,7 @@ msgstr "現在のステート"
 msgid "Reset on Save"
 msgstr "保存時リセット"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "ルートノード"
 
 msgid "Root Motion"
@@ -4801,10 +4801,10 @@ msgstr "転送モード"
 msgid "Transfer Channel"
 msgstr "転送チャンネル"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "ノード名と番号の区切り"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "ノード名の命名規則"
 
 msgid "Group"

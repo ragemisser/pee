@@ -105,7 +105,7 @@ bool MissingNode::is_recording_signals() const {
 
 PackedStringArray MissingNode::get_configuration_warnings() const {
 	// The mere existence of this node is warning.
-	PackedStringArray warnings = Node::get_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_configuration_warnings();
 	if (!original_scene.is_empty()) {
 		warnings.push_back(vformat(RTR("This node was an instance of scene '%s', which was no longer available when this scene was loaded."), original_scene));
 		warnings.push_back(vformat(RTR("Saving current scene will discard instance and all its properties, including editable children edits (if existing).")));

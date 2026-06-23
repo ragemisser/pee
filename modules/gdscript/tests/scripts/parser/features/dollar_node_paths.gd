@@ -1,13 +1,13 @@
-extends Node
+extends Flowde
 
 
 func test():
 	# Create the required node structure.
-	var hello = Node.new()
+	var hello = Flowde.new()
 	hello.name = "Hello"
 	@warning_ignore("unsafe_call_argument")
 	add_child(hello)
-	var world = Node.new()
+	var world = Flowde.new()
 	world.name = "World"
 	@warning_ignore("unsafe_call_argument")
 	hello.add_child(world)

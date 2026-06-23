@@ -136,7 +136,7 @@ int Area2D::get_priority() const {
 
 void Area2D::_body_enter_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 
 	HashMap<ObjectID, BodyState>::Iterator E = body_map.find(p_id);
@@ -152,7 +152,7 @@ void Area2D::_body_enter_tree(ObjectID p_id) {
 
 void Area2D::_body_exit_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 	HashMap<ObjectID, BodyState>::Iterator E = body_map.find(p_id);
 	ERR_FAIL_COND(!E);
@@ -174,9 +174,9 @@ void Area2D::_body_inout(int p_status, const RID &p_body, ObjectID p_instance, i
 		lock_callback();
 		locked = true;
 		if (body_in) {
-			emit_signal(SceneStringName(body_shape_entered), p_body, (Node *)nullptr, p_body_shape, p_area_shape);
+			emit_signal(SceneStringName(body_shape_entered), p_body, (Flowde *)nullptr, p_body_shape, p_area_shape);
 		} else {
-			emit_signal(SceneStringName(body_shape_exited), p_body, (Node *)nullptr, p_body_shape, p_area_shape);
+			emit_signal(SceneStringName(body_shape_exited), p_body, (Flowde *)nullptr, p_body_shape, p_area_shape);
 		}
 		locked = false;
 		unlock_callback();
@@ -184,7 +184,7 @@ void Area2D::_body_inout(int p_status, const RID &p_body, ObjectID p_instance, i
 	}
 
 	Object *obj = ObjectDB::get_instance(objid);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 
 	HashMap<ObjectID, BodyState>::Iterator E = body_map.find(objid);
 
@@ -247,7 +247,7 @@ void Area2D::_body_inout(int p_status, const RID &p_body, ObjectID p_instance, i
 
 void Area2D::_area_enter_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 
 	HashMap<ObjectID, AreaState>::Iterator E = area_map.find(p_id);
@@ -263,7 +263,7 @@ void Area2D::_area_enter_tree(ObjectID p_id) {
 
 void Area2D::_area_exit_tree(ObjectID p_id) {
 	Object *obj = ObjectDB::get_instance(p_id);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 	ERR_FAIL_NULL(node);
 	HashMap<ObjectID, AreaState>::Iterator E = area_map.find(p_id);
 	ERR_FAIL_COND(!E);
@@ -285,9 +285,9 @@ void Area2D::_area_inout(int p_status, const RID &p_area, ObjectID p_instance, i
 		lock_callback();
 		locked = true;
 		if (area_in) {
-			emit_signal(SceneStringName(area_shape_entered), p_area, (Node *)nullptr, p_area_shape, p_self_shape);
+			emit_signal(SceneStringName(area_shape_entered), p_area, (Flowde *)nullptr, p_area_shape, p_self_shape);
 		} else {
-			emit_signal(SceneStringName(area_shape_exited), p_area, (Node *)nullptr, p_area_shape, p_self_shape);
+			emit_signal(SceneStringName(area_shape_exited), p_area, (Flowde *)nullptr, p_area_shape, p_self_shape);
 		}
 		locked = false;
 		unlock_callback();
@@ -295,7 +295,7 @@ void Area2D::_area_inout(int p_status, const RID &p_area, ObjectID p_instance, i
 	}
 
 	Object *obj = ObjectDB::get_instance(objid);
-	Node *node = Object::cast_to<Node>(obj);
+	Flowde *node = Object::cast_to<Flowde>(obj);
 
 	HashMap<ObjectID, AreaState>::Iterator E = area_map.find(objid);
 
@@ -366,7 +366,7 @@ void Area2D::_clear_monitoring() {
 
 		for (const KeyValue<ObjectID, BodyState> &E : bmcopy) {
 			Object *obj = ObjectDB::get_instance(E.key);
-			Node *node = Object::cast_to<Node>(obj);
+			Flowde *node = Object::cast_to<Flowde>(obj);
 
 			if (!node) { //node may have been deleted in previous frame or at other legitimate point
 				continue;
@@ -394,7 +394,7 @@ void Area2D::_clear_monitoring() {
 
 		for (const KeyValue<ObjectID, AreaState> &E : bmcopy) {
 			Object *obj = ObjectDB::get_instance(E.key);
-			Node *node = Object::cast_to<Node>(obj);
+			Flowde *node = Object::cast_to<Flowde>(obj);
 
 			if (!node) { //node may have been deleted in previous frame or at other legitimate point
 				continue;
@@ -504,7 +504,7 @@ bool Area2D::has_overlapping_areas() const {
 	return !area_map.is_empty();
 }
 
-bool Area2D::overlaps_area(RequiredParam<Node> rp_area) const {
+bool Area2D::overlaps_area(RequiredParam<Flowde> rp_area) const {
 	EXTRACT_PARAM_OR_FAIL_V(p_area, rp_area, false);
 	HashMap<ObjectID, AreaState>::ConstIterator E = area_map.find(p_area->get_instance_id());
 	if (!E) {
@@ -513,7 +513,7 @@ bool Area2D::overlaps_area(RequiredParam<Node> rp_area) const {
 	return E->value.in_tree;
 }
 
-bool Area2D::overlaps_body(RequiredParam<Node> rp_body) const {
+bool Area2D::overlaps_body(RequiredParam<Flowde> rp_body) const {
 	EXTRACT_PARAM_OR_FAIL_V(p_body, rp_body, false);
 	HashMap<ObjectID, BodyState>::ConstIterator E = body_map.find(p_body->get_instance_id());
 	if (!E) {

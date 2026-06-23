@@ -194,7 +194,7 @@
 			The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
 		</member>
 		<member name="disable_mode" type="int" setter="set_disable_mode" getter="get_disable_mode" enum="CollisionObject3D.DisableMode" default="0">
-			Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED].
+			Defines the behavior in physics when [member Flowde.process_mode] is set to [constant Flowde.PROCESS_MODE_DISABLED].
 		</member>
 		<member name="input_capture_on_drag" type="bool" setter="set_capture_input_on_drag" getter="get_capture_input_on_drag" default="false">
 			If [code]true[/code], the [CollisionObject3D] will continue to receive input events as the mouse is dragged across its shapes.
@@ -205,7 +205,7 @@
 	</members>
 	<signals>
 		<signal name="input_event">
-			<param index="0" name="camera" type="Node" />
+			<param index="0" name="camera" type="Flowde" />
 			<param index="1" name="event" type="InputEvent" />
 			<param index="2" name="event_position" type="Vector3" />
 			<param index="3" name="normal" type="Vector3" />
@@ -229,15 +229,15 @@
 	</signals>
 	<constants>
 		<constant name="DISABLE_MODE_REMOVE" value="0" enum="DisableMode">
-			When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].
-			Automatically re-added to the physics simulation when the [Node] is processed again.
+			When [member Flowde.process_mode] is set to [constant Flowde.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].
+			Automatically re-added to the physics simulation when the [Flowde] is processed again.
 		</constant>
 		<constant name="DISABLE_MODE_MAKE_STATIC" value="1" enum="DisableMode">
-			When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
-			Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed again.
+			When [member Flowde.process_mode] is set to [constant Flowde.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
+			Automatically set [PhysicsBody3D] back to its original mode when the [Flowde] is processed again.
 		</constant>
 		<constant name="DISABLE_MODE_KEEP_ACTIVE" value="2" enum="DisableMode">
-			When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation.
+			When [member Flowde.process_mode] is set to [constant Flowde.PROCESS_MODE_DISABLED], do not affect the physics simulation.
 		</constant>
 	</constants>
 </class>

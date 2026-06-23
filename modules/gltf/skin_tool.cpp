@@ -565,7 +565,7 @@ Error SkinTool::_create_skeletons(
 		Vector<Ref<GLTFNode>> &nodes,
 		HashMap<ObjectID, GLTFSkeletonIndex> &skeleton3d_to_gltf_skeleton,
 		Vector<Ref<GLTFSkeleton>> &skeletons,
-		HashMap<GLTFNodeIndex, Node *> &scene_nodes,
+		HashMap<GLTFNodeIndex, Flowde *> &scene_nodes,
 		int p_naming_version) {
 	// This is the syntax to duplicate a Godot HashSet.
 	HashSet<String> unique_node_names(unique_names);

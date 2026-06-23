@@ -131,13 +131,13 @@
 			<description>
 				Returns [code]true[/code] if [param value] is an instance of [param type]. The [param type] value must be one of the following:
 				- A constant from the [enum Variant.Type] enumeration, for example [constant TYPE_INT].
-				- An [Object]-derived class which exists in [ClassDB], for example [Node].
+				- An [Object]-derived class which exists in [ClassDB], for example [Flowde].
 				- A [Script] (you can use any class, including inner one).
 				Unlike the right operand of the [code]is[/code] operator, [param type] can be a non-constant value. The [code]is[/code] operator supports more features (such as typed arrays and dictionaries). Use the operator instead of this method if you do not need to check the type dynamically.
 				[b]Examples:[/b]
 				[codeblock]
 				print(is_instance_of(a, TYPE_INT))
-				print(is_instance_of(a, Node))
+				print(is_instance_of(a, Flowde))
 				print(is_instance_of(a, MyClass))
 				print(is_instance_of(a, MyClass.InnerClass))
 				[/codeblock]
@@ -322,7 +322,7 @@
 			<description>
 				Mark the following property as exported (editable in the Inspector dock and saved to disk). To control the type of the exported property, use the type hint notation.
 				[codeblock]
-				extends Node
+				extends Flowde
 
 				enum Direction {LEFT, RIGHT, UP, DOWN}
 
@@ -341,17 +341,17 @@
 				@export var custom_resource: CustomResource
 
 				# Nodes.
-				@export var node: Node
+				@export var node: Flowde
 				@export var custom_node: CustomNode
 
 				# Typed arrays.
 				@export var int_array: Array[int]
 				@export var direction_array: Array[Direction]
 				@export var image_array: Array[Image]
-				@export var node_array: Array[Node]
+				@export var node_array: Array[Flowde]
 				[/codeblock]
 				[b]Note:[/b] Custom resources and nodes should be registered as global classes using [code]class_name[/code], since the Inspector currently only supports global classes. Otherwise, a less specific type will be exported instead.
-				[b]Note:[/b] Node export is only supported in [Node]-derived classes and has a number of other limitations.
+				[b]Note:[/b] Flowde export is only supported in [Flowde]-derived classes and has a number of other limitations.
 			</description>
 		</annotation>
 		<annotation name="@export_category">
@@ -365,7 +365,7 @@
 				@export var hp = 30
 				@export var speed = 1.25
 				[/codeblock]
-				[b]Note:[/b] Categories in the Inspector dock's list usually divide properties coming from different classes (Node, Node2D, Sprite, etc.). For better clarity, it's recommended to use [annotation @export_group] and [annotation @export_subgroup], instead.
+				[b]Note:[/b] Categories in the Inspector dock's list usually divide properties coming from different classes (Flowde, Node2D, Sprite, etc.). For better clarity, it's recommended to use [annotation @export_group] and [annotation @export_subgroup], instead.
 			</description>
 		</annotation>
 		<annotation name="@export_color_no_alpha">
@@ -644,7 +644,7 @@
 				@export_node_path("Button", "TouchScreenButton") var some_button
 				@export_node_path("Button", "TouchScreenButton") var many_buttons: Array[NodePath]
 				[/codeblock]
-				[b]Note:[/b] The type must be a native class or a globally registered script (using the [code]class_name[/code] keyword) that inherits [Node].
+				[b]Note:[/b] The type must be a native class or a globally registered script (using the [code]class_name[/code] keyword) that inherits [Flowde].
 			</description>
 		</annotation>
 		<annotation name="@export_placeholder">
@@ -688,7 +688,7 @@
 		<annotation name="@export_storage">
 			<return type="void" />
 			<description>
-				Export a property with [constant PROPERTY_USAGE_STORAGE] flag. The property is not displayed in the editor, but it is serialized and stored in the scene or resource file. This can be useful for [annotation @tool] scripts. Also the property value is copied when [method Resource.duplicate] or [method Node.duplicate] is called, unlike non-exported variables.
+				Export a property with [constant PROPERTY_USAGE_STORAGE] flag. The property is not displayed in the editor, but it is serialized and stored in the scene or resource file. This can be useful for [annotation @tool] scripts. Also the property value is copied when [method Resource.duplicate] or [method Flowde.duplicate] is called, unlike non-exported variables.
 				[codeblock]
 				var a # Not stored in the file, not displayed in the editor.
 				@export_storage var b # Stored in the file, not displayed in the editor.
@@ -778,7 +778,7 @@
 		<annotation name="@onready">
 			<return type="void" />
 			<description>
-				Mark the following property as assigned when the [Node] is ready. Values for these properties are not assigned immediately when the node is initialized ([method Object._init]), and instead are computed and stored right before [method Node._ready].
+				Mark the following property as assigned when the [Flowde] is ready. Values for these properties are not assigned immediately when the node is initialized ([method Object._init]), and instead are computed and stored right before [method Flowde._ready].
 				[codeblock]
 				@onready var character_name = $Label
 				[/codeblock]
@@ -792,8 +792,8 @@
 			<param index="3" name="transfer_channel" type="int" default="0" />
 			<description>
 				Mark the following method for remote procedure calls. See [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]High-level multiplayer[/url].
-				If [param mode] is set as [code]"any_peer"[/code], allows any peer to call this RPC function. Otherwise, only the authority peer is allowed to call it and [param mode] should be kept as [code]"authority"[/code]. When configuring functions as RPCs with [method Node.rpc_config], each of these modes respectively corresponds to the [constant MultiplayerAPI.RPC_MODE_AUTHORITY] and [constant MultiplayerAPI.RPC_MODE_ANY_PEER] RPC modes. See [enum MultiplayerAPI.RPCMode]. If a peer that is not the authority tries to call a function that is only allowed for the authority, the function will not be executed. If the error can be detected locally (when the RPC configuration is consistent between the local and the remote peer), an error message will be displayed on the sender peer. Otherwise, the remote peer will detect the error and print an error there.
-				If [param sync] is set as [code]"call_remote"[/code], the function will only be executed on the remote peer, but not locally. To run this function locally too, set [param sync] to [code]"call_local"[/code]. When configuring functions as RPCs with [method Node.rpc_config], this is equivalent to setting [code]call_local[/code] to [code]true[/code].
+				If [param mode] is set as [code]"any_peer"[/code], allows any peer to call this RPC function. Otherwise, only the authority peer is allowed to call it and [param mode] should be kept as [code]"authority"[/code]. When configuring functions as RPCs with [method Flowde.rpc_config], each of these modes respectively corresponds to the [constant MultiplayerAPI.RPC_MODE_AUTHORITY] and [constant MultiplayerAPI.RPC_MODE_ANY_PEER] RPC modes. See [enum MultiplayerAPI.RPCMode]. If a peer that is not the authority tries to call a function that is only allowed for the authority, the function will not be executed. If the error can be detected locally (when the RPC configuration is consistent between the local and the remote peer), an error message will be displayed on the sender peer. Otherwise, the remote peer will detect the error and print an error there.
+				If [param sync] is set as [code]"call_remote"[/code], the function will only be executed on the remote peer, but not locally. To run this function locally too, set [param sync] to [code]"call_local"[/code]. When configuring functions as RPCs with [method Flowde.rpc_config], this is equivalent to setting [code]call_local[/code] to [code]true[/code].
 				The [param transfer_mode] accepted values are [code]"unreliable"[/code], [code]"unreliable_ordered"[/code], or [code]"reliable"[/code]. It sets the transfer mode of the underlying [MultiplayerPeer]. See [member MultiplayerPeer.transfer_mode].
 				The [param transfer_channel] defines the channel of the underlying [MultiplayerPeer]. See [member MultiplayerPeer.transfer_channel].
 				The order of [param mode], [param sync] and [param transfer_mode] does not matter, but values related to the same argument must not be used more than once. [param transfer_channel] always has to be the 4th argument (you must specify 3 preceding arguments).
@@ -824,7 +824,7 @@
 				Mark the current script as a tool script, allowing it to be loaded and executed by the editor. See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the editor[/url].
 				[codeblock]
 				@tool
-				extends Node
+				extends Flowde
 				[/codeblock]
 				[b]Note:[/b] As annotations describe their subject, the [annotation @tool] annotation must be placed before the class definition and inheritance.
 			</description>

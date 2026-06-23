@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 var script: int
 

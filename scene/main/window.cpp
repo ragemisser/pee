@@ -824,10 +824,10 @@ void Window::_rect_changed_callback(const Rect2i &p_callback) {
 	queue_accessibility_update();
 }
 
-void Window::_propagate_window_notification(Node *p_node, int p_notification) {
+void Window::_propagate_window_notification(Flowde *p_node, int p_notification) {
 	p_node->notification(p_notification);
 	for (int i = 0; i < p_node->get_child_count(); i++) {
-		Node *child = p_node->get_child(i);
+		Flowde *child = p_node->get_child(i);
 		Window *window = Object::cast_to<Window>(child);
 		if (window) {
 			continue;
@@ -973,7 +973,7 @@ void Window::_accessibility_deactivate() {
 	}
 }
 
-void Window::_accessibility_notify_enter(Node *p_node) {
+void Window::_accessibility_notify_enter(Flowde *p_node) {
 	p_node->queue_accessibility_update();
 
 	if (p_node != this) {
@@ -988,8 +988,8 @@ void Window::_accessibility_notify_enter(Node *p_node) {
 	}
 }
 
-void Window::_accessibility_notify_exit(Node *p_node) {
-	p_node->notification(Node::NOTIFICATION_ACCESSIBILITY_INVALIDATE);
+void Window::_accessibility_notify_exit(Flowde *p_node) {
+	p_node->notification(Flowde::NOTIFICATION_ACCESSIBILITY_INVALIDATE);
 
 	if (p_node != this) {
 		const Window *window = Object::cast_to<Window>(p_node);
@@ -1501,7 +1501,7 @@ RID Window::get_accessibility_element() const {
 		return RID();
 	}
 	if (get_embedder() || is_popup()) {
-		return Node::get_accessibility_element();
+		return Flowde::get_accessibility_element();
 	} else if (window_id != DisplayServerEnums::INVALID_WINDOW_ID) {
 		return AccessibilityServer::get_singleton()->get_window_root(window_id);
 	} else {
@@ -1515,7 +1515,7 @@ RID Window::get_focused_accessibility_element() const {
 			return get_child(0)->get_focused_accessibility_element(); // Try scene tree root node.
 		}
 	}
-	return Node::get_focused_accessibility_element();
+	return Flowde::get_focused_accessibility_element();
 }
 
 String Window::_get_accessibility_name() const {
@@ -1528,14 +1528,14 @@ String Window::_get_accessibility_name() const {
 
 PackedStringArray Window::get_accessibility_configuration_warnings() const {
 	ERR_READ_THREAD_GUARD_V(PackedStringArray());
-	PackedStringArray warnings = Node::get_accessibility_configuration_warnings();
+	PackedStringArray warnings = Flowde::get_accessibility_configuration_warnings();
 
 	String ac_name = _get_accessibility_name().strip_edges();
 	if (ac_name.is_empty()) {
 		warnings.push_back(RTR("Accessibility Name must not be empty, or contain only spaces."));
 	}
 	if (ac_name.contains(get_class_name())) {
-		warnings.push_back(RTR("Accessibility Name must not include Node class name."));
+		warnings.push_back(RTR("Accessibility Name must not include Flowde class name."));
 	}
 	for (int i = 0; i < ac_name.length(); i++) {
 		if (is_control(ac_name[i])) {
@@ -1761,7 +1761,7 @@ void Window::_notification(int p_what) {
 
 		case NOTIFICATION_VISIBILITY_CHANGED: {
 			if (unparent_when_invisible && !is_visible()) {
-				Node *p = get_parent();
+				Flowde *p = get_parent();
 				if (p) {
 					p->remove_child(this);
 				}
@@ -2292,7 +2292,7 @@ void Window::_popup_base(const Rect2i &p_screen_rect) {
 	notification(NOTIFICATION_POST_POPUP);
 }
 
-bool Window::_try_parent_dialog(Node *p_from_node) {
+bool Window::_try_parent_dialog(Flowde *p_from_node) {
 	ERR_FAIL_NULL_V(p_from_node, false);
 	ERR_FAIL_COND_V_MSG(is_inside_tree(), false, "Attempting to parent and popup a dialog that already has a parent.");
 
@@ -2304,31 +2304,31 @@ bool Window::_try_parent_dialog(Node *p_from_node) {
 	return false;
 }
 
-void Window::popup_exclusive(Node *p_from_node, const Rect2i &p_screen_rect) {
+void Window::popup_exclusive(Flowde *p_from_node, const Rect2i &p_screen_rect) {
 	if (_try_parent_dialog(p_from_node)) {
 		popup(p_screen_rect);
 	}
 }
 
-void Window::popup_exclusive_on_parent(Node *p_from_node, const Rect2i &p_parent_rect) {
+void Window::popup_exclusive_on_parent(Flowde *p_from_node, const Rect2i &p_parent_rect) {
 	if (_try_parent_dialog(p_from_node)) {
 		popup_on_parent(p_parent_rect);
 	}
 }
 
-void Window::popup_exclusive_centered(Node *p_from_node, const Size2i &p_minsize) {
+void Window::popup_exclusive_centered(Flowde *p_from_node, const Size2i &p_minsize) {
 	if (_try_parent_dialog(p_from_node)) {
 		popup_centered(p_minsize);
 	}
 }
 
-void Window::popup_exclusive_centered_ratio(Node *p_from_node, float p_ratio) {
+void Window::popup_exclusive_centered_ratio(Flowde *p_from_node, float p_ratio) {
 	if (_try_parent_dialog(p_from_node)) {
 		popup_centered_ratio(p_ratio);
 	}
 }
 
-void Window::popup_exclusive_centered_clamped(Node *p_from_node, const Size2i &p_size, float p_fallback_ratio) {
+void Window::popup_exclusive_centered_clamped(Flowde *p_from_node, const Size2i &p_size, float p_fallback_ratio) {
 	if (_try_parent_dialog(p_from_node)) {
 		popup_centered_clamped(p_size, p_fallback_ratio);
 	}
@@ -2495,13 +2495,13 @@ void Window::accessibility_announcement(const String &p_announcement) {
 	queue_accessibility_update();
 }
 
-void Window::add_child_notify(Node *p_child) {
+void Window::add_child_notify(Flowde *p_child) {
 	if (is_inside_tree() && wrap_controls) {
 		child_controls_changed();
 	}
 }
 
-void Window::remove_child_notify(Node *p_child) {
+void Window::remove_child_notify(Flowde *p_child) {
 	if (is_inside_tree() && wrap_controls) {
 		child_controls_changed();
 	}
@@ -2509,12 +2509,12 @@ void Window::remove_child_notify(Node *p_child) {
 
 // Theming.
 
-void Window::set_theme_owner_node(Node *p_node) {
+void Window::set_theme_owner_node(Flowde *p_node) {
 	ERR_MAIN_THREAD_GUARD;
 	theme_owner->set_owner_node(p_node);
 }
 
-Node *Window::get_theme_owner_node() const {
+Flowde *Window::get_theme_owner_node() const {
 	ERR_READ_THREAD_GUARD_V(nullptr);
 	return theme_owner->get_owner_node();
 }
@@ -3082,7 +3082,7 @@ Rect2i Window::get_parent_rect() const {
 	ERR_FAIL_COND_V(!is_inside_tree(), Rect2i());
 	if (is_embedded()) {
 		//viewport
-		Node *n = get_parent();
+		Flowde *n = get_parent();
 		ERR_FAIL_NULL_V(n, Rect2i());
 		Viewport *p = n->get_viewport();
 		ERR_FAIL_NULL_V(p, Rect2i());
@@ -3149,7 +3149,7 @@ bool Window::is_layout_rtl() const {
 			return true;
 		}
 		if (is_inside_tree()) {
-			Node *edited_scene_root = get_tree()->get_edited_scene_root();
+			Flowde *edited_scene_root = get_tree()->get_edited_scene_root();
 			if (edited_scene_root == this) {
 				int proj_root_layout_direction = GLOBAL_GET_CACHED(int, "internationalization/rendering/root_node_layout_direction");
 				if (proj_root_layout_direction == 1) {
@@ -3169,7 +3169,7 @@ bool Window::is_layout_rtl() const {
 		}
 #endif
 		const StringName domain_name = get_translation_domain();
-		Node *parent_node = get_parent();
+		Flowde *parent_node = get_parent();
 		while (parent_node && parent_node->get_translation_domain() == domain_name) {
 			Control *parent_control = Object::cast_to<Control>(parent_node);
 			if (parent_control) {

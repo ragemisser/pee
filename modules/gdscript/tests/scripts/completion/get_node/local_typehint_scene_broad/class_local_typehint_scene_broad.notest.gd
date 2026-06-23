@@ -1,7 +1,7 @@
 # TODO
-extends Node
+extends Flowde
 
 func a():
-    var test: Node = $A
+    var test: Flowde = $A
     test.➡
     pass

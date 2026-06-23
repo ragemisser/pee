@@ -278,7 +278,7 @@ void SkeletonModification2DCCDIK::update_target_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(target_node)) {
-				Node *node = stack->skeleton->get_node(target_node);
+				Flowde *node = stack->skeleton->get_node(target_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update target cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -301,7 +301,7 @@ void SkeletonModification2DCCDIK::update_tip_cache() {
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(tip_node)) {
-				Node *node = stack->skeleton->get_node(tip_node);
+				Flowde *node = stack->skeleton->get_node(tip_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update tip cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),
@@ -325,7 +325,7 @@ void SkeletonModification2DCCDIK::ccdik_joint_update_bone2d_cache(int p_joint_id
 	if (stack->skeleton) {
 		if (stack->skeleton->is_inside_tree()) {
 			if (stack->skeleton->has_node(ccdik_data_chain[p_joint_idx].bone2d_node)) {
-				Node *node = stack->skeleton->get_node(ccdik_data_chain[p_joint_idx].bone2d_node);
+				Flowde *node = stack->skeleton->get_node(ccdik_data_chain[p_joint_idx].bone2d_node);
 				ERR_FAIL_COND_MSG(!node || stack->skeleton == node,
 						"Cannot update CCDIK joint " + itos(p_joint_idx) + " Bone2D cache: node is this modification's skeleton or cannot be found!");
 				ERR_FAIL_COND_MSG(!node->is_inside_tree(),

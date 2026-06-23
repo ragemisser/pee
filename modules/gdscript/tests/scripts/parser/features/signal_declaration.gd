@@ -17,7 +17,7 @@ signal d(
 )
 
 # With type hints.
-signal e(a: int, b: Variant, c: Node)
+signal e(a: int, b: Variant, c: Flowde)
 
 func test():
 	print("Ok")

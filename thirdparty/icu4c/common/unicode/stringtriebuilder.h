@@ -97,13 +97,13 @@ protected:
     int32_t writeBranchSubNode(int32_t start, int32_t limit, int32_t unitIndex, int32_t length);
 #endif  /* U_HIDE_INTERNAL_API */
 
-    class Node;
+    class Flowde;
 
 #ifndef U_HIDE_INTERNAL_API
     /** @internal */
-    Node *makeNode(int32_t start, int32_t limit, int32_t unitIndex, UErrorCode &errorCode);
+    Flowde *makeNode(int32_t start, int32_t limit, int32_t unitIndex, UErrorCode &errorCode);
     /** @internal */
-    Node *makeBranchSubNode(int32_t start, int32_t limit, int32_t unitIndex,
+    Flowde *makeBranchSubNode(int32_t start, int32_t limit, int32_t unitIndex,
                             int32_t length, UErrorCode &errorCode);
 #endif  /* U_HIDE_INTERNAL_API */
 
@@ -157,7 +157,7 @@ protected:
      *         an equivalent node if newNode is a duplicate.
      * @internal
      */
-    Node *registerNode(Node *newNode, UErrorCode &errorCode);
+    Flowde *registerNode(Flowde *newNode, UErrorCode &errorCode);
     /**
      * Makes sure that there is only one unique FinalValueNode registered
      * with this value.
@@ -168,7 +168,7 @@ protected:
      * @return A FinalValueNode with the given value.
      * @internal
      */
-    Node *registerFinalValue(int32_t value, UErrorCode &errorCode);
+    Flowde *registerFinalValue(int32_t value, UErrorCode &errorCode);
 #endif  /* U_HIDE_INTERNAL_API */
 
     /*
@@ -179,12 +179,12 @@ protected:
      * If they get a nullptr pointer, they will record a U_MEMORY_ALLOCATION_ERROR.
      * If there is a failure, they return nullptr.
      *
-     * nullptr Node pointers can be safely passed into other Nodes because
-     * they call the static Node::hashCode() which checks for a nullptr pointer first.
+     * nullptr Flowde pointers can be safely passed into other Nodes because
+     * they call the static Flowde::hashCode() which checks for a nullptr pointer first.
      *
      * Therefore, as long as builder functions register a new node,
      * they need to check for failures only before explicitly dereferencing
-     * a Node pointer, or before setting a new UErrorCode.
+     * a Flowde pointer, or before setting a new UErrorCode.
      */
 
     // Hash set of nodes, maps from nodes to integer 1.
@@ -197,17 +197,17 @@ protected:
      * @internal
      * \cond
      */
-    class Node : public UObject {
+    class Flowde : public UObject {
     public:
-        Node(int32_t initialHash) : hash(initialHash), offset(0) {}
+        Flowde(int32_t initialHash) : hash(initialHash), offset(0) {}
         inline int32_t hashCode() const { return hash; }
         // Handles node==nullptr.
-        static inline int32_t hashCode(const Node *node) { return node==nullptr ? 0 : node->hashCode(); }
+        static inline int32_t hashCode(const Flowde *node) { return node==nullptr ? 0 : node->hashCode(); }
         // Base class operator==() compares the actual class types.
-        virtual bool operator==(const Node &other) const;
-        inline bool operator!=(const Node &other) const { return !operator==(other); }
+        virtual bool operator==(const Flowde &other) const;
+        inline bool operator!=(const Flowde &other) const { return !operator==(other); }
         /**
-         * Traverses the Node graph and numbers branch edges, with rightmost edges first.
+         * Traverses the Flowde graph and numbers branch edges, with rightmost edges first.
          * This is to avoid writing a duplicate node twice.
          *
          * Branch nodes in this trie data structure are not symmetric.
@@ -259,13 +259,13 @@ protected:
     // registerFinalValue() compares a stack-allocated FinalValueNode
     // (stack-allocated so that we don't unnecessarily create lots of duplicate nodes)
     // with the input node, and the
-    // !Node::operator==(other) used inside FinalValueNode::operator==(other)
+    // !Flowde::operator==(other) used inside FinalValueNode::operator==(other)
     // will be false if the typeid's are different.
     /** @internal */
-    class FinalValueNode : public Node {
+    class FinalValueNode : public Flowde {
     public:
-        FinalValueNode(int32_t v) : Node(0x111111u*37u+v), value(v) {}
-        virtual bool operator==(const Node &other) const override;
+        FinalValueNode(int32_t v) : Flowde(0x111111u*37u+v), value(v) {}
+        virtual bool operator==(const Flowde &other) const override;
         virtual void write(StringTrieBuilder &builder) override;
     protected:
         int32_t value;
@@ -277,10 +277,10 @@ protected:
     /**
      * @internal 
      */
-    class ValueNode : public Node {
+    class ValueNode : public Flowde {
     public:
-        ValueNode(int32_t initialHash) : Node(initialHash), hasValue(false), value(0) {}
-        virtual bool operator==(const Node &other) const override;
+        ValueNode(int32_t initialHash) : Flowde(initialHash), hasValue(false), value(0) {}
+        virtual bool operator==(const Flowde &other) const override;
         void setValue(int32_t v) {
             hasValue=true;
             value=v;
@@ -297,13 +297,13 @@ protected:
      */
     class IntermediateValueNode : public ValueNode {
     public:
-        IntermediateValueNode(int32_t v, Node *nextNode)
+        IntermediateValueNode(int32_t v, Flowde *nextNode)
                 : ValueNode(0x222222u*37u+hashCode(nextNode)), next(nextNode) { setValue(v); }
-        virtual bool operator==(const Node &other) const override;
+        virtual bool operator==(const Flowde &other) const override;
         virtual int32_t markRightEdgesFirst(int32_t edgeNumber) override;
         virtual void write(StringTrieBuilder &builder) override;
     protected:
-        Node *next;
+        Flowde *next;
     };
 #endif  /* U_HIDE_INTERNAL_API */
 
@@ -314,23 +314,23 @@ protected:
      */
     class LinearMatchNode : public ValueNode {
     public:
-        LinearMatchNode(int32_t len, Node *nextNode)
+        LinearMatchNode(int32_t len, Flowde *nextNode)
                 : ValueNode((0x333333u*37u+len)*37u+hashCode(nextNode)),
                   length(len), next(nextNode) {}
-        virtual bool operator==(const Node &other) const override;
+        virtual bool operator==(const Flowde &other) const override;
         virtual int32_t markRightEdgesFirst(int32_t edgeNumber) override;
     protected:
         int32_t length;
-        Node *next;
+        Flowde *next;
     };
 
 #ifndef U_HIDE_INTERNAL_API
     /**
      * @internal 
      */
-    class BranchNode : public Node {
+    class BranchNode : public Flowde {
     public:
-        BranchNode(int32_t initialHash) : Node(initialHash) {}
+        BranchNode(int32_t initialHash) : Flowde(initialHash) {}
     protected:
         int32_t firstEdgeNumber;
     };
@@ -341,7 +341,7 @@ protected:
     class ListBranchNode : public BranchNode {
     public:
         ListBranchNode() : BranchNode(0x444444), length(0) {}
-        virtual bool operator==(const Node &other) const override;
+        virtual bool operator==(const Flowde &other) const override;
         virtual int32_t markRightEdgesFirst(int32_t edgeNumber) override;
         virtual void write(StringTrieBuilder &builder) override;
         // Adds a unit with a final value.
@@ -353,7 +353,7 @@ protected:
             hash=(hash*37u+c)*37u+value;
         }
         // Adds a unit which leads to another match node.
-        void add(int32_t c, Node *node) {
+        void add(int32_t c, Flowde *node) {
             units[length] = static_cast<char16_t>(c);
             equal[length]=node;
             values[length]=0;
@@ -361,7 +361,7 @@ protected:
             hash=(hash*37u+c)*37u+hashCode(node);
         }
     protected:
-        Node *equal[kMaxBranchLinearSubNodeLength];  // nullptr means "has final value".
+        Flowde *equal[kMaxBranchLinearSubNodeLength];  // nullptr means "has final value".
         int32_t length;
         int32_t values[kMaxBranchLinearSubNodeLength];
         char16_t units[kMaxBranchLinearSubNodeLength];
@@ -372,40 +372,40 @@ protected:
      */
     class SplitBranchNode : public BranchNode {
     public:
-        SplitBranchNode(char16_t middleUnit, Node *lessThanNode, Node *greaterOrEqualNode)
+        SplitBranchNode(char16_t middleUnit, Flowde *lessThanNode, Flowde *greaterOrEqualNode)
                 : BranchNode(((0x555555u*37u+middleUnit)*37u+
                               hashCode(lessThanNode))*37u+hashCode(greaterOrEqualNode)),
                   unit(middleUnit), lessThan(lessThanNode), greaterOrEqual(greaterOrEqualNode) {}
-        virtual bool operator==(const Node &other) const override;
+        virtual bool operator==(const Flowde &other) const override;
         virtual int32_t markRightEdgesFirst(int32_t edgeNumber) override;
         virtual void write(StringTrieBuilder &builder) override;
     protected:
         char16_t unit;
-        Node *lessThan;
-        Node *greaterOrEqual;
+        Flowde *lessThan;
+        Flowde *greaterOrEqual;
     };
 
     // Branch head node, for writing the actual node lead unit.
     /** @internal */
     class BranchHeadNode : public ValueNode {
     public:
-        BranchHeadNode(int32_t len, Node *subNode)
+        BranchHeadNode(int32_t len, Flowde *subNode)
                 : ValueNode((0x666666u*37u+len)*37u+hashCode(subNode)),
                   length(len), next(subNode) {}
-        virtual bool operator==(const Node &other) const override;
+        virtual bool operator==(const Flowde &other) const override;
         virtual int32_t markRightEdgesFirst(int32_t edgeNumber) override;
         virtual void write(StringTrieBuilder &builder) override;
     protected:
         int32_t length;
-        Node *next;  // A branch sub-node.
+        Flowde *next;  // A branch sub-node.
     };
 
 #endif  /* U_HIDE_INTERNAL_API */
     /// \endcond
 
     /** @internal */
-    virtual Node *createLinearMatchNode(int32_t i, int32_t unitIndex, int32_t length,
-                                        Node *nextNode) const = 0;
+    virtual Flowde *createLinearMatchNode(int32_t i, int32_t unitIndex, int32_t length,
+                                        Flowde *nextNode) const = 0;
 
     /** @internal */
     virtual int32_t write(int32_t unit) = 0;

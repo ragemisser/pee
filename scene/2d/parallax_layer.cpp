@@ -161,5 +161,5 @@ void ParallaxLayer::_bind_methods() {
 
 ParallaxLayer::ParallaxLayer() {
 	// ParallaxLayer is always updated every frame so there is no need to interpolate.
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_OFF);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_OFF);
 }

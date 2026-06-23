@@ -9,8 +9,8 @@
 		[b]Note:[/b] Since both [Node2D] and [Control] inherit from [CanvasItem], they share several concepts from the class such as the [member CanvasItem.z_index] and [member CanvasItem.visible] properties.
 		[b]User Interface nodes and input[/b]
 		Godot propagates input events via viewports. Each [Viewport] is responsible for propagating [InputEvent]s to their child nodes. As the [member SceneTree.root] is a [Window], this already happens automatically for all UI elements in your game.
-		Input events are propagated through the [SceneTree] from the root node to all child nodes by calling [method Node._input]. For UI elements specifically, it makes more sense to override the virtual method [method _gui_input], which filters out unrelated input events, such as by checking z-order, [member mouse_filter], focus, or if the event was inside of the control's bounding box.
-		Call [method accept_event] so no other node receives the event. Once you accept an input, it becomes handled so [method Node._unhandled_input] will not process it.
+		Input events are propagated through the [SceneTree] from the root node to all child nodes by calling [method Flowde._input]. For UI elements specifically, it makes more sense to override the virtual method [method _gui_input], which filters out unrelated input events, such as by checking z-order, [member mouse_filter], focus, or if the event was inside of the control's bounding box.
+		Call [method accept_event] so no other node receives the event. Once you accept an input, it becomes handled so [method Flowde._unhandled_input] will not process it.
 		Only one [Control] node can be in focus. Only the node in focus will receive events. To get the focus, call [method grab_focus]. [Control] nodes lose focus when another node grabs it, or if you hide the node in focus. Focus will not be represented visually if gained via mouse/touch input, only appearing with keyboard/gamepad input (for accessibility), or via [method grab_focus].
 		Set [member mouse_filter] to [constant MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch events. You'll need it if you place an icon on top of a button.
 		[Theme] resources change the control's appearance. The [member theme] of a [Control] node affects all of its direct and indirect children (as long as a chain of controls is uninterrupted). To override some of the theme items, call one of the [code]add_theme_*_override[/code] methods, like [method add_theme_font_override]. You can also override theme items in the Inspector.
@@ -87,7 +87,7 @@
 		</method>
 		<method name="_get_accessibility_container_name" qualifiers="virtual const">
 			<return type="String" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Override this method to return a human-readable description of the position of the child [param node] in the custom container, added to the [member accessibility_name].
 			</description>
@@ -151,7 +151,7 @@
 			</description>
 		</method>
 		<method name="_get_tooltip_auto_translate_mode_at" qualifiers="virtual const">
-			<return type="int" enum="Node.AutoTranslateMode" />
+			<return type="int" enum="Flowde.AutoTranslateMode" />
 			<param index="0" name="at_position" type="Vector2" />
 			<description>
 				Return the auto-translation mode at the given [param at_position]. If not implemented, the [member tooltip_auto_translate_mode] property will be used instead.
@@ -239,7 +239,7 @@
 				[csharp]
 				public override Control _MakeCustomTooltip(string forText)
 				{
-					Node tooltip = ResourceLoader.Load&lt;PackedScene&gt;("res://some_tooltip_scene.tscn").Instantiate();
+					Flowde tooltip = ResourceLoader.Load&lt;PackedScene&gt;("res://some_tooltip_scene.tscn").Instantiate();
 					tooltip.GetNode&lt;Label&gt;("Label").Text = forText;
 					return tooltip;
 				}
@@ -259,7 +259,7 @@
 		<method name="accept_event">
 			<return type="void" />
 			<description>
-				Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].
+				Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Flowde._unhandled_input] or [method Flowde._unhandled_key_input].
 				[b]Note:[/b] This does not affect the methods in [Input], only the way events are propagated.
 			</description>
 		</method>
@@ -677,7 +677,7 @@
 			<description>
 				Steal the focus from another control and become the focused control (see [member focus_mode]).
 				If [param hide_focus] is [code]true[/code], the control will not visually show its focused state. Has no effect for [LineEdit] and [TextEdit] when [member ProjectSettings.gui/common/show_focus_state_on_pointer_event] is set to [code]Text Input Controls[/code], or for any control when it is set to [code]Always[/code].
-				[b]Note:[/b] Using this method together with [method Callable.call_deferred] makes it more reliable, especially when called inside [method Node._ready].
+				[b]Note:[/b] Using this method together with [method Callable.call_deferred] makes it more reliable, especially when called inside [method Flowde._ready].
 			</description>
 		</method>
 		<method name="has_focus" qualifiers="const">
@@ -794,7 +794,7 @@
 			<return type="bool" />
 			<description>
 				Returns [code]true[/code] if a drag operation is successful. Alternative to [method Viewport.gui_is_drag_successful].
-				Best used with [constant Node.NOTIFICATION_DRAG_END].
+				Best used with [constant Flowde.NOTIFICATION_DRAG_END].
 			</description>
 		</method>
 		<method name="is_layout_rtl" qualifiers="const">
@@ -1051,7 +1051,7 @@
 			The paths to the nodes which label this node.
 		</member>
 		<member name="accessibility_live" type="int" setter="set_accessibility_live" getter="get_accessibility_live" enum="AccessibilityServer.AccessibilityLiveMode" default="0">
-			The mode with which a live region updates. A live region is a [Node] that is updated as a result of an external event when the user's focus may be elsewhere.
+			The mode with which a live region updates. A live region is a [Flowde] that is updated as a result of an external event when the user's focus may be elsewhere.
 		</member>
 		<member name="accessibility_name" type="String" setter="set_accessibility_name" getter="get_accessibility_name" default="&quot;&quot;">
 			The human-readable node name that is reported to assistive apps.
@@ -1068,7 +1068,7 @@
 		<member name="anchor_top" type="float" setter="_set_anchor" getter="get_anchor" default="0.0">
 			Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
 		</member>
-		<member name="auto_translate" type="bool" setter="set_auto_translate" getter="is_auto_translating" deprecated="Use [member Node.auto_translate_mode] and [method Node.can_auto_translate] instead.">
+		<member name="auto_translate" type="bool" setter="set_auto_translate" getter="is_auto_translating" deprecated="Use [member Flowde.auto_translate_mode] and [method Flowde.can_auto_translate] instead.">
 			Toggles if any text should automatically change to its translated version depending on the current locale.
 		</member>
 		<member name="clip_contents" type="bool" setter="set_clip_contents" getter="is_clipping_contents" default="false">
@@ -1139,7 +1139,7 @@
 		</member>
 		<member name="mouse_force_pass_scroll_events" type="bool" setter="set_force_pass_scroll_events" getter="is_force_pass_scroll_events" default="true">
 			When enabled, scroll wheel events processed by [method _gui_input] will be passed to the parent control even if [member mouse_filter] is set to [constant MOUSE_FILTER_STOP].
-			You should disable it on the root of your UI if you do not want scroll events to go to the [method Node._unhandled_input] processing.
+			You should disable it on the root of your UI if you do not want scroll events to go to the [method Flowde._unhandled_input] processing.
 			[b]Note:[/b] Because this property defaults to [code]true[/code], this allows nested scrollable containers to work out of the box.
 		</member>
 		<member name="offset_bottom" type="float" setter="set_offset" getter="get_offset" default="0.0">
@@ -1193,7 +1193,7 @@
 			If [code]false[/code], the entire transform of this Control is affected and input events will register where the Control is visually.
 			Has no effect unless [member offset_transform_enabled] is [code]true[/code].
 		</member>
-		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Node" enum="Node.PhysicsInterpolationMode" default="2" />
+		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Flowde" enum="Flowde.PhysicsInterpolationMode" default="2" />
 		<member name="pivot_offset" type="Vector2" setter="set_pivot_offset" getter="get_pivot_offset" default="Vector2(0, 0)">
 			By default, the node's pivot is its top-left corner. When you change its [member rotation] or [member scale], it will rotate or scale around this pivot.
 			The actual offset is the combined value of this property and [member pivot_offset_ratio].
@@ -1221,8 +1221,8 @@
 			[b]Note:[/b] [member FontFile.oversampling] does [i]not[/i] take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling [b]Multichannel Signed Distance Field[/b] in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.
 			[b]Note:[/b] If the Control node is a child of a [Container] node, the scale will be reset to [code]Vector2(1, 1)[/code] when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using [code]await get_tree().process_frame[/code] then set its [member scale] property.
 		</member>
-		<member name="shortcut_context" type="Node" setter="set_shortcut_context" getter="get_shortcut_context">
-			The [Node] which must be a parent of the focused [Control] for the shortcut to be activated. If [code]null[/code], the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
+		<member name="shortcut_context" type="Flowde" setter="set_shortcut_context" getter="get_shortcut_context">
+			The [Flowde] which must be a parent of the focused [Control] for the shortcut to be activated. If [code]null[/code], the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
 		</member>
 		<member name="size" type="Vector2" setter="_set_size" getter="get_size" default="Vector2(0, 0)">
 			The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes update this property automatically.
@@ -1246,8 +1246,8 @@
 			[b]Note:[/b] To look up [Control]'s own items use various [code]get_theme_*[/code] methods without specifying [code]theme_type[/code].
 			[b]Note:[/b] Theme items are looked for in the tree order, from branch to root, where each [Control] node is checked for its [member theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
 		</member>
-		<member name="tooltip_auto_translate_mode" type="int" setter="set_tooltip_auto_translate_mode" getter="get_tooltip_auto_translate_mode" enum="Node.AutoTranslateMode" default="0">
-			Defines if tooltip text should automatically change to its translated version depending on the current locale. Uses the same auto translate mode as this control when set to [constant Node.AUTO_TRANSLATE_MODE_INHERIT].
+		<member name="tooltip_auto_translate_mode" type="int" setter="set_tooltip_auto_translate_mode" getter="get_tooltip_auto_translate_mode" enum="Flowde.AutoTranslateMode" default="0">
+			Defines if tooltip text should automatically change to its translated version depending on the current locale. Uses the same auto translate mode as this control when set to [constant Flowde.AUTO_TRANSLATE_MODE_INHERIT].
 			[b]Note:[/b] Tooltips customized using [method _make_custom_tooltip] do not use this auto translate mode automatically.
 		</member>
 		<member name="tooltip_text" type="String" setter="set_tooltip_text" getter="get_tooltip_text" default="&quot;&quot;">
@@ -1406,7 +1406,7 @@
 			- One of the node's theme property overrides is changed.
 			- The node enters the scene tree.
 			[b]Note:[/b] As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
-			[b]Note:[/b] This notification is received alongside [constant Node.NOTIFICATION_ENTER_TREE], so if you are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup theming for this node, child nodes created from script, or if you want to access child nodes added in the editor, make sure the node is ready using [method Node.is_node_ready].
+			[b]Note:[/b] This notification is received alongside [constant Flowde.NOTIFICATION_ENTER_TREE], so if you are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup theming for this node, child nodes created from script, or if you want to access child nodes added in the editor, make sure the node is ready using [method Flowde.is_node_ready].
 			[codeblock]
 			func _notification(what):
 				if what == NOTIFICATION_THEME_CHANGED:
@@ -1561,7 +1561,7 @@
 		</constant>
 		<constant name="MOUSE_FILTER_PASS" value="1" enum="MouseFilter">
 			The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. The control will also receive the [signal mouse_entered] and [signal mouse_exited] signals.
-			If this control does not handle the event, the event will propagate up to its parent control if it has one. The event is bubbled up the node hierarchy until it reaches a non-[CanvasItem], a control with [constant MOUSE_FILTER_STOP], or a [CanvasItem] with [member CanvasItem.top_level] enabled. This will allow signals to fire in all controls it reaches. If no control handled it, the event will be passed to [method Node._shortcut_input] for further processing.
+			If this control does not handle the event, the event will propagate up to its parent control if it has one. The event is bubbled up the node hierarchy until it reaches a non-[CanvasItem], a control with [constant MOUSE_FILTER_STOP], or a [CanvasItem] with [member CanvasItem.top_level] enabled. This will allow signals to fire in all controls it reaches. If no control handled it, the event will be passed to [method Flowde._shortcut_input] for further processing.
 		</constant>
 		<constant name="MOUSE_FILTER_IGNORE" value="2" enum="MouseFilter">
 			The control will not receive any mouse movement input events nor mouse button input events through [method _gui_input]. The control will also not receive the [signal mouse_entered] nor [signal mouse_exited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically. If a child has [constant MOUSE_FILTER_PASS] and an event was passed to this control, the event will further propagate up to the control's parent.

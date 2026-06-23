@@ -115,7 +115,7 @@ public:
 	};
 
 private:
-	struct Node {
+	struct Flowde {
 		Ref<VisualShaderNode> node;
 		Vector2 position;
 		LocalVector<int> prev_connected_nodes;
@@ -123,7 +123,7 @@ private:
 	};
 
 	struct Graph {
-		RBMap<int, Node> nodes;
+		RBMap<int, Flowde> nodes;
 		List<Connection> connections;
 	} graph[TYPE_MAX];
 

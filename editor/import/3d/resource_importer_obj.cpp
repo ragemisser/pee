@@ -569,7 +569,7 @@ static Error _parse_obj(const String &p_path, List<Ref<ImporterMesh>> &r_meshes,
 	return OK;
 }
 
-Node *EditorOBJImporter::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
+Flowde *EditorOBJImporter::import_scene(const String &p_path, uint32_t p_flags, const HashMap<StringName, Variant> &p_options, List<String> *r_missing_deps, Error *r_err) {
 	List<Ref<ImporterMesh>> meshes;
 
 	// LOD, shadow mesh and lightmap UV2 generation are handled by ResourceImporterScene in this case,

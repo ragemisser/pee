@@ -76,7 +76,7 @@ void ScenePaint2DEditor::_edit(Object *p_object) {
 	cache_node = Object::cast_to<Node2D>(p_object);
 	if (_is_node_valid() && (pinned || input_tool == INPUT_TOOL_PICK)) {
 		if (input_tool == INPUT_TOOL_PICK) {
-			SceneTreeDock::get_singleton()->set_selection(Vector<Node *>{ node });
+			SceneTreeDock::get_singleton()->set_selection(Vector<Flowde *>{ node });
 		}
 		return;
 	}
@@ -211,7 +211,7 @@ void ScenePaint2DEditor::_add_instance(bool p_show) {
 	if (p_show && instance_container) {
 		instance_container->show();
 	} else if (selected_scene && instance_container && !instance) {
-		HashMap<const Node *, Node *> duplimap;
+		HashMap<const Flowde *, Flowde *> duplimap;
 		instance = Object::cast_to<Node2D>(selected_scene->duplicate_from_editor(duplimap));
 		instance_container->add_child(instance, true);
 		instance->set_position(Point2());
@@ -337,7 +337,7 @@ void ScenePaint2DEditor::_add_node_at_pos() {
 	CanvasItemEditor *canvas_item_editor = CanvasItemEditor::get_singleton();
 	Vector2 pos = canvas_item_editor->get_canvas_transform().affine_inverse().xform(viewport->get_local_mouse_position());
 
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	if (paint_mode != PAINT_MODE_FREE) {
 		Vector2 offset = node->get_global_transform().basis_xform(grid_step / 2.0);
 		pos = paint_mode == PAINT_MODE_SNAP_GRID ? cell_pos : (cell_pos + offset);
@@ -356,7 +356,7 @@ void ScenePaint2DEditor::_add_node_at_pos() {
 		}
 	}
 
-	HashMap<const Node *, Node *> duplimap;
+	HashMap<const Flowde *, Flowde *> duplimap;
 	Node2D *node_2d = Object::cast_to<Node2D>(instance->duplicate_from_editor(duplimap));
 	if (!node_2d) {
 		return;
@@ -369,7 +369,7 @@ void ScenePaint2DEditor::_add_node_at_pos() {
 		node_2d->set_global_position(pos);
 
 		EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-		undo_redo->create_action(TTR("Paint Node(s)"), UndoRedo::MERGE_ALL);
+		undo_redo->create_action(TTR("Paint Flowde(s)"), UndoRedo::MERGE_ALL);
 		undo_redo->add_do_reference(node_2d);
 		undo_redo->add_do_method(node, "add_child", node_2d, true);
 		undo_redo->add_do_method(node_2d, "set_owner", scene);
@@ -396,7 +396,7 @@ void ScenePaint2DEditor::_remove_node_at_pos() {
 		pos = paint_mode == PAINT_MODE_SNAP_GRID ? cell_pos : (cell_pos + offset);
 	}
 
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	Vector<CanvasItemEditor::SelectResult> results;
 	canvas_item_editor->find_canvas_items_at_pos(pos, node, results);
 
@@ -411,7 +411,7 @@ void ScenePaint2DEditor::_remove_node_at_pos() {
 		node->remove_child(node_2d);
 
 		EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
-		undo_redo->create_action(TTR("Erase Node(s)"), UndoRedo::MERGE_ALL);
+		undo_redo->create_action(TTR("Erase Flowde(s)"), UndoRedo::MERGE_ALL);
 		undo_redo->add_do_method(node, "remove_child", node_2d);
 		undo_redo->add_undo_reference(node_2d);
 		undo_redo->add_undo_method(node, "add_child", node_2d, true);
@@ -497,7 +497,7 @@ void ScenePaint2DEditor::_recent_item_selected(int p_idx) {
 }
 
 bool ScenePaint2DEditor::_is_selected_scene_valid(Node2D *p_node) const {
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	return p_node && p_node->is_instance() && p_node != scene;
 }
 
@@ -505,8 +505,8 @@ bool ScenePaint2DEditor::_is_scene_painted(Node2D *p_node) const {
 	return p_node && p_node->has_meta("_scene_painted") && p_node->get_parent() == node;
 }
 
-Node2D *ScenePaint2DEditor::_get_node_root(Node *p_node) const {
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+Node2D *ScenePaint2DEditor::_get_node_root(Flowde *p_node) const {
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	Node2D *item = Object::cast_to<Node2D>(p_node);
 	if (!item) {
 		return nullptr;
@@ -518,19 +518,19 @@ Node2D *ScenePaint2DEditor::_get_node_root(Node *p_node) const {
 	return root;
 }
 
-void ScenePaint2DEditor::_set_pinned(bool p_pinned, Node *p_pinned_node) {
+void ScenePaint2DEditor::_set_pinned(bool p_pinned, Flowde *p_pinned_node) {
 	pinned = p_pinned;
 	pin_node_button->set_pressed_no_signal(pinned);
 	String tooltip_text = TTR("Pin the current node.\nWhen enabled, the painting parent node will not change when selecting other nodes in the scene.");
 	if (p_pinned_node && pinned) {
-		tooltip_text += vformat("\n" + TTR("Pinned Node: %s"), EditorNode::get_singleton()->get_edited_scene()->get_path_to(p_pinned_node));
+		tooltip_text += vformat("\n" + TTR("Pinned Flowde: %s"), EditorNode::get_singleton()->get_edited_scene()->get_path_to(p_pinned_node));
 	}
 	pin_node_button->set_tooltip_text(tooltip_text);
 }
 
 void ScenePaint2DEditor::_pinned_toggled(bool p_pressed) {
-	Node *selected_node = nullptr;
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *selected_node = nullptr;
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	if (p_pressed) {
 		pinned_nodes[scene] = node;
 	} else {
@@ -543,9 +543,9 @@ void ScenePaint2DEditor::_pinned_toggled(bool p_pressed) {
 
 void ScenePaint2DEditor::_scene_changed() {
 	input_tool = INPUT_TOOL_NONE;
-	Node *scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 	if (pinned_nodes.has(scene)) {
-		Node *pinned_node = pinned_nodes[scene];
+		Flowde *pinned_node = pinned_nodes[scene];
 		if (pinned_node && pinned_node->is_inside_tree()) {
 			_set_pinned(true, pinned_node);
 			cache_node = Object::cast_to<Node2D>(pinned_node);
@@ -594,7 +594,7 @@ void ScenePaint2DEditor::_update_scene_picker(int p_mode) {
 			CanvasItemEditor *canvas_item_editor = CanvasItemEditor::get_singleton();
 			Vector2 pos = canvas_item_editor->get_canvas_transform().affine_inverse().xform(viewport->get_local_mouse_position());
 			Vector<CanvasItemEditor::SelectResult> results;
-			Node *scene = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *scene = EditorNode::get_singleton()->get_edited_scene();
 			canvas_item_editor->find_canvas_items_at_pos(pos, scene, results);
 			for (const CanvasItemEditor::SelectResult &result : results) {
 				Node2D *root = _get_node_root(result.item);
@@ -632,7 +632,7 @@ void ScenePaint2DEditor::_edit_properties_toggled(bool p_pressed) {
 	edit_properties = p_pressed;
 	edit_properties_button->set_pressed_no_signal(edit_properties);
 	if (!edit_properties) {
-		Node *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
+		Flowde *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
 		if (selected_node) {
 			InspectorDock::get_inspector_singleton()->edit(selected_node);
 		} else if (node) {
@@ -820,11 +820,11 @@ ScenePaint2DEditor::ScenePaint2DEditor() {
 
 	pin_node_button = memnew(Button);
 	pin_node_button->set_toggle_mode(true);
-	pin_node_button->set_accessibility_name(TTRC("Pin Node"));
+	pin_node_button->set_accessibility_name(TTRC("Pin Flowde"));
 	pin_node_button->set_theme_type_variation(SceneStringName(FlatButton));
 	pin_node_button->set_tooltip_text(TTRC("When enabled, the painting parent node will not change when selecting other nodes in the scene."));
 	pin_node_button->connect(SceneStringName(toggled), callable_mp(this, &ScenePaint2DEditor::_pinned_toggled));
-	pin_node_button->set_shortcut(ED_SHORTCUT("scene_painter/pin_node", TTRC("Pin Node"), Key::P));
+	pin_node_button->set_shortcut(ED_SHORTCUT("scene_painter/pin_node", TTRC("Pin Flowde"), Key::P));
 	pin_node_button->set_shortcut_context(canvas_item_editor);
 	toolbar->add_child(pin_node_button);
 
@@ -884,7 +884,7 @@ ScenePaint2DEditor::ScenePaint2DEditor() {
 
 void ScenePaint2DEditorPlugin::_canvas_item_tool_changed(int p_tool) {
 	scene_paint_2d_editor->is_tool_selected = (CanvasItemEditor::Tool)p_tool == CanvasItemEditor::TOOL_SCENE_PAINT;
-	Node *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
+	Flowde *selected_node = SceneTreeDock::get_singleton()->get_tree_editor()->get_selected();
 	if (!selected_node) {
 		make_visible(false);
 		return;

@@ -103,7 +103,7 @@ void EditorSceneFormatImporterBlend::get_extensions(List<String> *r_extensions) 
 	r_extensions->push_back("blend");
 }
 
-Node *EditorSceneFormatImporterBlend::import_scene(const String &p_path, uint32_t p_flags,
+Flowde *EditorSceneFormatImporterBlend::import_scene(const String &p_path, uint32_t p_flags,
 		const HashMap<StringName, Variant> &p_options,
 		List<String> *r_missing_deps, Error *r_err) {
 	String blender_path = EDITOR_GET("filesystem/import/blender/blender_path");

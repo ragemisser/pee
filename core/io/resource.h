@@ -35,7 +35,7 @@
 #include "core/object/ref_counted.h"
 #include "core/templates/self_list.h"
 
-class Node;
+class Flowde;
 class RWLock;
 
 #define RES_BASE_EXTENSION(m_ext) \
@@ -63,7 +63,7 @@ protected:
 	struct DuplicateParams {
 		bool deep = false;
 		ResourceDeepDuplicateMode subres_mode = RESOURCE_DEEP_DUPLICATE_MAX;
-		Node *local_scene = nullptr;
+		Flowde *local_scene = nullptr;
 	};
 
 private:
@@ -87,7 +87,7 @@ private:
 	EmitChangedState emit_changed_state = EMIT_CHANGED_UNBLOCKED;
 	bool local_to_scene = false;
 	friend class SceneState;
-	Node *local_scene = nullptr;
+	Flowde *local_scene = nullptr;
 
 	SelfList<Resource> remapped_list;
 
@@ -125,7 +125,7 @@ protected:
 	virtual String _to_string() override;
 
 public:
-	static Node *(*_get_local_scene_func)(); // Used by the editor.
+	static Flowde *(*_get_local_scene_func)(); // Used by the editor.
 	static void (*_update_configuration_warning)(); // Used by the editor.
 
 	void update_configuration_warning();
@@ -155,14 +155,14 @@ public:
 	Ref<Resource> duplicate_deep(ResourceDeepDuplicateMode p_deep_subresources_mode = RESOURCE_DEEP_DUPLICATE_INTERNAL) const;
 	Ref<Resource> _duplicate_from_variant(bool p_deep, ResourceDeepDuplicateMode p_deep_subresources_mode, int p_recursion_count) const;
 	static void _teardown_duplicate_from_variant();
-	Ref<Resource> duplicate_for_local_scene(Node *p_for_scene, HashMap<Ref<Resource>, Ref<Resource>> &p_remap_cache) const;
-	void configure_for_local_scene(Node *p_for_scene, HashMap<Ref<Resource>, Ref<Resource>> &p_remap_cache);
+	Ref<Resource> duplicate_for_local_scene(Flowde *p_for_scene, HashMap<Ref<Resource>, Ref<Resource>> &p_remap_cache) const;
+	void configure_for_local_scene(Flowde *p_for_scene, HashMap<Ref<Resource>, Ref<Resource>> &p_remap_cache);
 
 	void set_local_to_scene(bool p_enable);
 	bool is_local_to_scene() const;
 	virtual void setup_local_to_scene();
 
-	Node *get_local_scene() const;
+	Flowde *get_local_scene() const;
 
 #ifdef TOOLS_ENABLED
 

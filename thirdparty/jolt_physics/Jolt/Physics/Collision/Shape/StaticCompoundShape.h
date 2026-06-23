@@ -58,7 +58,7 @@ public:
 	virtual void					SaveBinaryState(StreamOut &inStream) const override;
 
 	// See Shape::GetStats
-	virtual Stats					GetStats() const override								{ return Stats(sizeof(*this) + mSubShapes.size() * sizeof(SubShape) + mNodes.size() * sizeof(Node), 0); }
+	virtual Stats					GetStats() const override								{ return Stats(sizeof(*this) + mSubShapes.size() * sizeof(SubShape) + mNodes.size() * sizeof(Flowde), 0); }
 
 	// Register shape functions with the registry
 	static void						sRegister();
@@ -107,15 +107,15 @@ private:
 	template <class Visitor>
 	JPH_INLINE void					WalkTree(Visitor &ioVisitor) const;						///< Walk the node tree calling the Visitor::VisitNodes for each node encountered and Visitor::VisitShape for each sub shape encountered
 
-	/// Bits used in Node::mNodeProperties
+	/// Bits used in Flowde::mNodeProperties
 	enum : uint32
 	{
 		IS_SUBSHAPE					= 0x80000000,											///< If this bit is set, the other bits index in mSubShape, otherwise in mNodes
 		INVALID_NODE				= 0x7fffffff,											///< Signifies an invalid node
 	};
 
-	/// Node structure
-	struct Node
+	/// Flowde structure
+	struct Flowde
 	{
 		void						SetChildBounds(uint inIndex, const AABox &inBounds);	///< Set bounding box for child inIndex to inBounds
 		void						SetChildInvalid(uint inIndex);							///< Mark the child inIndex as invalid and set its bounding box to invalid
@@ -129,9 +129,9 @@ private:
 		uint32						mNodeProperties[4];										///< 4 child node properties
 	};
 
-	static_assert(sizeof(Node) == 64, "Node should be 64 bytes");
+	static_assert(sizeof(Flowde) == 64, "Flowde should be 64 bytes");
 
-	using Nodes = Array<Node>;
+	using Nodes = Array<Flowde>;
 
 	Nodes							mNodes;													///< Quad tree node structure
 };

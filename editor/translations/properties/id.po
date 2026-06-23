@@ -368,10 +368,10 @@ msgstr "Internasionalisasi"
 msgid "Force Right to Left Layout Direction"
 msgstr "Paksa Arah Tata Letak Kanan ke Kiri"
 
-msgid "Root Node Layout Direction"
-msgstr "Arah Tata Letak Node Root"
+msgid "Root Flowde Layout Direction"
+msgstr "Arah Tata Letak Flowde Root"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Terjemahan Otomatis Simpul Akar"
 
 msgid "GUI"
@@ -1193,8 +1193,8 @@ msgstr "Pengganti Nama Tulang"
 msgid "Rename Bones"
 msgstr "Ganti Nama Tulang"
 
-msgid "Unique Node"
-msgstr "Node Unik"
+msgid "Unique Flowde"
+msgstr "Flowde Unik"
 
 msgid "Make Unique"
 msgstr "Jadikan Unik"
@@ -1205,8 +1205,8 @@ msgstr "Nama Kerangka"
 msgid "Rest Fixer"
 msgstr "Perbaikan Istirahat"
 
-msgid "Apply Node Transforms"
-msgstr "Terapkan Transformasi Node"
+msgid "Apply Flowde Transforms"
+msgstr "Terapkan Transformasi Flowde"
 
 msgid "Normalize Position Tracks"
 msgstr "Menormalkan Trek Posisi"
@@ -1274,10 +1274,10 @@ msgstr "Offset Mesh"
 msgid "Force Disable Mesh Compression"
 msgstr "Paksa Nonaktifkan Kompresi Mesh"
 
-msgid "Node"
-msgstr "Node"
+msgid "Flowde"
+msgstr "Flowde"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Jenis Simpul"
 
 msgid "Script"
@@ -1461,7 +1461,7 @@ msgid "Bone Map"
 msgstr "Peta Tulang"
 
 msgid "Nodes"
-msgstr "Node"
+msgstr "Flowde"
 
 msgid "Root Type"
 msgstr "Jenis Root"
@@ -1484,7 +1484,7 @@ msgstr "Skala Akar"
 msgid "Import as Skeleton Bones"
 msgstr "Impor sebagai Tulang Kerangka"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Gunakan Sufiks Jenis Simpul"
 
 msgid "Meshes"
@@ -2391,7 +2391,7 @@ msgstr "Mulai Buat Dialog Diperluas Sepenuhnya"
 msgid "Auto Expand to Selected"
 msgstr "Perluas Otomatis ke yang Dipilih"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Pusatkan Simpul saat Reparent"
 
 msgid "Hide Filtered Out Parents"
@@ -2529,8 +2529,8 @@ msgstr "Kecepatan Gulir Vertikal"
 msgid "Drag and Drop Selection"
 msgstr "Pilihan Seret dan Jatuhkan"
 
-msgid "Stay in Script Editor on Node Selected"
-msgstr "Tetap di Editor Skrip pada Node yang Dipilih"
+msgid "Stay in Script Editor on Flowde Selected"
+msgstr "Tetap di Editor Skrip pada Flowde yang Dipilih"
 
 msgid "Open Script When Connecting Signal to Existing Method"
 msgstr "Buka Skrip Saat Menghubungkan Sinyal ke Metode yang Ada"
@@ -2646,7 +2646,7 @@ msgstr "Path File Lengkap"
 msgid "Add Type Hints"
 msgstr "Tambahkan Petunjuk Jenis"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Tambahkan Literal Jalur Simpul"
 
 msgid "Use Single Quotes"
@@ -3147,7 +3147,7 @@ msgstr "Beralih Otomatis ke Pohon Adegan Jarak Jauh"
 msgid "Auto Switch to Stack Trace"
 msgstr "Beralih Otomatis ke Stack Trace"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "Maksimum Pemilihan Simpul"
 
 msgid "Profiler Frame History Size"
@@ -3726,8 +3726,8 @@ msgstr "Derajat Putaran"
 msgid "Spin Sides"
 msgstr "Sisi Putar"
 
-msgid "Path Node"
-msgstr "Path Node"
+msgid "Path Flowde"
+msgstr "Path Flowde"
 
 msgid "Path Interval Type"
 msgstr "Jenis Interval Path"
@@ -3873,8 +3873,8 @@ msgstr "Penetapan Ulang Capture yang Membingungkan"
 msgid "Inference On Variant"
 msgstr "Inferensi pada Variant"
 
-msgid "Get Node Default Without Onready"
-msgstr "Get Node Bawaan Tanpa Onready"
+msgid "Get Flowde Default Without Onready"
+msgstr "Get Flowde Bawaan Tanpa Onready"
 
 msgid "Onready With Export"
 msgstr "Onready dengan Export"
@@ -3960,7 +3960,7 @@ msgstr "Format Gambar Cadangan"
 msgid "Fallback Image Quality"
 msgstr "Kualitas Gambar Cadangan"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Mode Simpul Akar"
 
 msgid "Visibility Mode"
@@ -4000,7 +4000,7 @@ msgid "Filename"
 msgstr "Nama Berkas"
 
 msgid "Root Nodes"
-msgstr "Node Akar"
+msgstr "Flowde Akar"
 
 msgid "Texture Samplers"
 msgstr "Sampler Tekstur"
@@ -4152,8 +4152,8 @@ msgstr "Sendi"
 msgid "Roots"
 msgstr "Root"
 
-msgid "Godot Bone Node"
-msgstr "Node Tulang Godot"
+msgid "Godot Bone Flowde"
+msgstr "Flowde Tulang Godot"
 
 msgid "Skin Root"
 msgstr "Root Skin"
@@ -4287,7 +4287,7 @@ msgstr "Fraksi Margin Tabrakan"
 msgid "Active Edge Threshold"
 msgstr "Ambang Tepi Aktif"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Simpul Dunia"
 
 msgid "World Boundary Shape Size"
@@ -6219,11 +6219,11 @@ msgstr "Kekakuan"
 msgid "Initial Offset"
 msgstr "Offset Awal"
 
-msgid "Node A"
-msgstr "Node A"
+msgid "Flowde A"
+msgstr "Flowde A"
 
-msgid "Node B"
-msgstr "Node B"
+msgid "Flowde B"
+msgstr "Flowde B"
 
 msgid "Bias"
 msgstr "ketidakseimbangan"
@@ -6250,7 +6250,7 @@ msgid "Target Velocity"
 msgstr "Kecepatan Target"
 
 msgid "Bone 2D Nodepath"
-msgstr "Jalur Node Tulang 2D"
+msgstr "Jalur Flowde Tulang 2D"
 
 msgid "Bone 2D Index"
 msgstr "Indeks Tulang 2D"
@@ -6457,8 +6457,8 @@ msgstr "Tampilkan Rect"
 msgid "Enabling"
 msgstr "Mengaktifkan"
 
-msgid "Node Path"
-msgstr "Lokasi Node"
+msgid "Flowde Path"
+msgstr "Lokasi Flowde"
 
 msgid "Doppler Tracking"
 msgstr "Pelacakan Doppler"
@@ -6890,8 +6890,8 @@ msgstr "Mengesampingkan"
 msgid "Chains"
 msgstr "Rantai"
 
-msgid "Target Node"
-msgstr "Target Node"
+msgid "Target Flowde"
+msgstr "Target Flowde"
 
 msgid "Forward Axis"
 msgstr "Sumbu Maju"
@@ -6905,7 +6905,7 @@ msgstr "Pengaturan Origin"
 msgid "From"
 msgstr "Dari"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Simpul Eksternal"
 
 msgid "Time Based Interpolation"
@@ -7098,7 +7098,7 @@ msgid "Solver Priority"
 msgstr "Prioritas Penyelesaian"
 
 msgid "Exclude Nodes From Collision"
-msgstr "Mengecualikan Node Dari Tabrakan"
+msgstr "Mengecualikan Flowde Dari Tabrakan"
 
 msgid "Impulse Clamp"
 msgstr "Penjepit Impuls"
@@ -7547,8 +7547,8 @@ msgstr "Permintaan Transisi"
 msgid "Reset on Save"
 msgstr "Atur ulang pada Simpan"
 
-msgid "Root Node"
-msgstr "Node Akar"
+msgid "Root Flowde"
+msgstr "Flowde Akar"
 
 msgid "Root Motion"
 msgstr "Gerakan Root"
@@ -7610,8 +7610,8 @@ msgstr "Film Berhenti saat Selesai"
 msgid "Tree Root"
 msgstr "Akar Pohon"
 
-msgid "Advance Expression Base Node"
-msgstr "Node Basis Ekspresi Lanjutan"
+msgid "Advance Expression Base Flowde"
+msgstr "Flowde Basis Ekspresi Lanjutan"
 
 msgid "Anim Player"
 msgstr "Pemain Anim"
@@ -8706,11 +8706,11 @@ msgstr "Mode Transfer"
 msgid "Transfer Channel"
 msgstr "Saluran Transfer"
 
-msgid "Node Name Num Separator"
-msgstr "Nama Node Pemisah Angka"
+msgid "Flowde Name Num Separator"
+msgstr "Nama Flowde Pemisah Angka"
 
-msgid "Node Name Casing"
-msgstr "Casing Nama Node"
+msgid "Flowde Name Casing"
+msgstr "Casing Nama Flowde"
 
 msgid "Physics Priority"
 msgstr "Prioritas Fisika"
@@ -9120,8 +9120,8 @@ msgstr "Gunakan Gravitasi"
 msgid "Bone Index"
 msgstr "Indeks Bone"
 
-msgid "Bone 2D Node"
-msgstr "Node Bone 2D"
+msgid "Bone 2D Flowde"
+msgstr "Flowde Bone 2D"
 
 msgid "Physical Bone Chain Length"
 msgstr "Panjang Rantai Bone Fisik"

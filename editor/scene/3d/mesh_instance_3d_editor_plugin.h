@@ -114,7 +114,7 @@ class MeshInstance3DEditor : public Control {
 	void _debug_uv_draw();
 
 protected:
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	void _notification(int p_what);
 

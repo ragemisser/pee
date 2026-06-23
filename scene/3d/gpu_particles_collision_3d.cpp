@@ -147,7 +147,7 @@ GPUParticlesCollisionBox3D::~GPUParticlesCollisionBox3D() {
 ///////////////////////////////
 ///////////////////////////
 
-void GPUParticlesCollisionSDF3D::_find_meshes(const AABB &p_aabb, Node *p_at_node, List<PlotMesh> &plot_meshes) {
+void GPUParticlesCollisionSDF3D::_find_meshes(const AABB &p_aabb, Flowde *p_at_node, List<PlotMesh> &plot_meshes) {
 	MeshInstance3D *mi = Object::cast_to<MeshInstance3D>(p_at_node);
 	if (mi && mi->is_visible_in_tree()) {
 		if ((mi->get_layer_mask() & bake_mask) == 0) {
@@ -195,7 +195,7 @@ void GPUParticlesCollisionSDF3D::_find_meshes(const AABB &p_aabb, Node *p_at_nod
 	}
 
 	for (int i = 0; i < p_at_node->get_child_count(); i++) {
-		Node *child = p_at_node->get_child(i);
+		Flowde *child = p_at_node->get_child(i);
 		_find_meshes(p_aabb, child, plot_meshes);
 	}
 }

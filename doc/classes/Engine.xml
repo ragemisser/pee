@@ -78,7 +78,7 @@
 		<method name="get_main_loop" qualifiers="const">
 			<return type="MainLoop" />
 			<description>
-				Returns the instance of the [MainLoop]. This is usually the main [SceneTree] and is the same as [method Node.get_tree].
+				Returns the instance of the [MainLoop]. This is usually the main [SceneTree] and is the same as [method Flowde.get_tree].
 				[b]Note:[/b] The type instantiated as the main loop can changed with [member ProjectSettings.application/run/main_loop_type].
 			</description>
 		</method>
@@ -330,7 +330,7 @@
 			[b]Note:[/b] When using a custom physics interpolation solution, or within a network game, it's recommended to disable the physics jitter fix by setting this property to [code]0[/code].
 		</member>
 		<member name="physics_ticks_per_second" type="int" setter="set_physics_ticks_per_second" getter="get_physics_ticks_per_second" default="60">
-			The number of fixed iterations per second. This controls how often physics simulation and the [method Node._physics_process] method are run.
+			The number of fixed iterations per second. This controls how often physics simulation and the [method Flowde._physics_process] method are run.
 			CPU usage scales approximately with the physics tick rate. However, at very low tick rates (usually below 30), physics behavior can break down. Input can also become less responsive at low tick rates as there can be a gap between input being registered, and the response on the next physics tick. High tick rates give more accurate physics simulation, particularly for fast moving objects. For example, racing games may benefit from increasing the tick rate above the default 60.
 			See also [member max_fps] and [member ProjectSettings.physics/common/physics_ticks_per_second].
 			[b]Note:[/b] Only [member max_physics_steps_per_frame] physics ticks may be simulated per rendered frame at most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the project will appear to slow down (even if [code]delta[/code] is used consistently in physics calculations). Therefore, it is recommended to also increase [member max_physics_steps_per_frame] if increasing [member physics_ticks_per_second] significantly above its default value.
@@ -347,7 +347,7 @@
 		</member>
 		<member name="time_scale" type="float" setter="set_time_scale" getter="get_time_scale" default="1.0">
 			The speed multiplier at which the in-game clock updates, compared to real time. For example, if set to [code]2.0[/code] the game runs twice as fast, and if set to [code]0.5[/code] the game runs half as fast.
-			This value affects [Timer], [SceneTreeTimer], and all other simulations that make use of [code]delta[/code] time (such as [method Node._process] and [method Node._physics_process]).
+			This value affects [Timer], [SceneTreeTimer], and all other simulations that make use of [code]delta[/code] time (such as [method Flowde._process] and [method Flowde._physics_process]).
 			[b]Note:[/b] It's recommended to keep this property above [code]0.0[/code], as the game may behave unexpectedly otherwise.
 			[b]Note:[/b] This does not affect audio playback speed. Use [member AudioServer.playback_speed_scale] to adjust audio playback speed independently of [member Engine.time_scale].
 			[b]Note:[/b] This does not automatically adjust [member physics_ticks_per_second]. With values above [code]1.0[/code] physics simulation may become less precise, as each physics tick will stretch over a larger period of engine time. If you're modifying [member Engine.time_scale] to speed up simulation by a large factor, consider also increasing [member physics_ticks_per_second] to make the simulation more reliable.

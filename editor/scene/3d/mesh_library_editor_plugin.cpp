@@ -171,7 +171,7 @@ void MeshLibraryEditor::edit(const Ref<MeshLibrary> &p_mesh_library) {
 	}
 }
 
-Error MeshLibraryEditor::update_library_file(Node *p_base_scene, Ref<MeshLibrary> ml, bool p_merge, bool p_apply_xforms) {
+Error MeshLibraryEditor::update_library_file(Flowde *p_base_scene, Ref<MeshLibrary> ml, bool p_merge, bool p_apply_xforms) {
 	_import_scene(p_base_scene, ml, p_merge, p_apply_xforms);
 	return OK;
 }
@@ -447,7 +447,7 @@ void MeshLibraryEditor::_menu_update_confirm(bool p_apply_xforms) {
 	_import_scene_cbk(existing);
 }
 
-void MeshLibraryEditor::_import_scene(Node *p_scene, Ref<MeshLibrary> p_library, bool p_merge, bool p_apply_xforms) {
+void MeshLibraryEditor::_import_scene(Flowde *p_scene, Ref<MeshLibrary> p_library, bool p_merge, bool p_apply_xforms) {
 	if (!p_merge) {
 		p_library->clear();
 	}
@@ -483,7 +483,7 @@ void MeshLibraryEditor::_import_scene_cbk(const String &p_str) {
 	Ref<PackedScene> ps = ResourceLoader::load(p_str, "PackedScene");
 	ERR_FAIL_COND(ps.is_null());
 
-	Node *scene = ps->instantiate();
+	Flowde *scene = ps->instantiate();
 	ERR_FAIL_NULL_MSG(scene, "Cannot create an instance from PackedScene '" + p_str + "'.");
 
 	// Preserve the data from the current library.
@@ -504,7 +504,7 @@ void MeshLibraryEditor::_import_scene_cbk(const String &p_str) {
 	import_scene->get_popup()->set_item_disabled(import_scene->get_popup()->get_item_index(MENU_OPTION_UPDATE_FROM_SCENE), false);
 }
 
-void MeshLibraryEditor::_import_scene_parse_node(Ref<MeshLibrary> p_library, HashMap<int, MeshInstance3D *> &p_mesh_instances, Node *p_node, bool p_merge, bool p_apply_xforms) {
+void MeshLibraryEditor::_import_scene_parse_node(Ref<MeshLibrary> p_library, HashMap<int, MeshInstance3D *> &p_mesh_instances, Flowde *p_node, bool p_merge, bool p_apply_xforms) {
 	MeshInstance3D *mesh_instance_node = Object::cast_to<MeshInstance3D>(p_node);
 
 	if (!mesh_instance_node) {

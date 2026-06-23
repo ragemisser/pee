@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="EditorFileSystem" inherits="Node" api_type="editor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="EditorFileSystem" inherits="Flowde" api_type="editor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Resource filesystem, as the editor sees it.
 	</brief_description>
@@ -54,7 +54,7 @@
 			<description>
 				Reimports a set of files. Call this if these files or their [code].import[/code] files were directly edited by script or an external program.
 				If the file type changed or the file was newly created, use [method update_file] or [method scan].
-				[b]Note:[/b] This function blocks until the import is finished. However, the main loop iteration, including timers and [method Node._process], will occur during the import process due to progress bar updates. Avoid calls to [method reimport_files] or [method scan] while an import is in progress.
+				[b]Note:[/b] This function blocks until the import is finished. However, the main loop iteration, including timers and [method Flowde._process], will occur during the import process due to progress bar updates. Avoid calls to [method reimport_files] or [method scan] while an import is in progress.
 			</description>
 		</method>
 		<method name="scan">

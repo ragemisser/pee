@@ -95,8 +95,8 @@ public:
 	void remove_references(const StringName &p_name);
 	void rename_references(const StringName &p_old_name, const StringName &p_new_name);
 
-	bool remove_node_references(Node *p_node, const StringName &p_name);
-	bool rename_node_references(Node *p_node, const StringName &p_old_name, const StringName &p_new_name);
+	bool remove_node_references(Flowde *p_node, const StringName &p_name);
+	bool rename_node_references(Flowde *p_node, const StringName &p_old_name, const StringName &p_new_name);
 
 	void update_groups();
 	void connect_filesystem_dock_signals(FileSystemDock *p_fs_dock);

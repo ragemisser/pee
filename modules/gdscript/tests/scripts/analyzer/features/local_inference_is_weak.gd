@@ -8,7 +8,7 @@ func test():
 	if x:
 		dyn_var = 5
 	else:
-		dyn_var = Node.new()
+		dyn_var = Flowde.new()
 
 	int_var = dyn_var
 	print(int_var)

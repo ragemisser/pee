@@ -34,7 +34,7 @@
 #include "core/variant/type_info.h"
 
 class Tween;
-class Node;
+class Flowde;
 class SceneTree;
 
 class Tweener : public RefCounted {
@@ -164,7 +164,7 @@ public:
 	bool is_valid();
 	void clear();
 
-	RequiredResult<Tween> bind_node(RequiredParam<const Node> rp_node);
+	RequiredResult<Tween> bind_node(RequiredParam<const Flowde> rp_node);
 	RequiredResult<Tween> set_process_mode(TweenProcessMode p_mode);
 	TweenProcessMode get_process_mode() const;
 	RequiredResult<Tween> set_pause_mode(TweenPauseMode p_mode);
@@ -189,7 +189,7 @@ public:
 
 	bool step(double p_delta);
 	bool can_process(bool p_tree_paused) const;
-	Node *get_bound_node() const;
+	Flowde *get_bound_node() const;
 	double get_total_time() const;
 
 	Tween();

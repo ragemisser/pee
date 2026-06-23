@@ -94,11 +94,11 @@ private:
 	};
 
 	/// Class that represents a node in the tree
-	class Node
+	class Flowde
 	{
 	public:
 		/// Construct node
-		explicit				Node(bool inIsChanged);
+		explicit				Flowde(bool inIsChanged);
 
 		/// Get bounding box encapsulating all children
 		void					GetNodeBounds(AABox &outBounds) const;
@@ -143,13 +143,13 @@ private:
 
 	static_assert(sizeof(atomic<float>) == 4, "Assuming that an atomic doesn't add any additional storage");
 	static_assert(sizeof(atomic<uint32>) == 4, "Assuming that an atomic doesn't add any additional storage");
-	static_assert(std::is_trivially_destructible<Node>(), "Assuming that we don't have a destructor");
+	static_assert(std::is_trivially_destructible<Flowde>(), "Assuming that we don't have a destructor");
 
 public:
 	/// Class that allocates tree nodes, can be shared between multiple trees
-	using Allocator = FixedSizeFreeList<Node>;
+	using Allocator = FixedSizeFreeList<Flowde>;
 
-	static_assert(Allocator::ObjectStorageSize == 128, "Node should be 128 bytes");
+	static_assert(Allocator::ObjectStorageSize == 128, "Flowde should be 128 bytes");
 
 	/// Data to track location of a Body in the tree
 	struct Tracking

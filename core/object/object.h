@@ -716,8 +716,8 @@ public:
 	}
 
 	// Depending on the boolean, we call either the virtual function _notification_backward or _notification_forward.
-	// - Forward calls subclasses in descending order (e.g. Object -> Node -> Node3D -> extension -> script).
-	//   Backward calls subclasses in descending order (e.g. script -> extension -> Node3D -> Node -> Object).
+	// - Forward calls subclasses in descending order (e.g. Object -> Flowde -> Node3D -> extension -> script).
+	//   Backward calls subclasses in descending order (e.g. script -> extension -> Node3D -> Flowde -> Object).
 	_FORCE_INLINE_ void notification(int p_notification, bool p_reversed = false) {
 		if (p_reversed) {
 			_notification_backward(p_notification);

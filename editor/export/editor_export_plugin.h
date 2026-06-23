@@ -126,7 +126,7 @@ protected:
 	GDVIRTUAL2R_REQUIRED(Ref<Resource>, _customize_resource, const Ref<Resource> &, String)
 
 	GDVIRTUAL2RC(bool, _begin_customize_scenes, const Ref<EditorExportPlatform> &, const Vector<String> &)
-	GDVIRTUAL2R_REQUIRED(Node *, _customize_scene, Node *, String)
+	GDVIRTUAL2R_REQUIRED(Flowde *, _customize_scene, Flowde *, String)
 	GDVIRTUAL0RC_REQUIRED(uint64_t, _get_customization_configuration_hash)
 
 	GDVIRTUAL0(_end_customize_scenes)
@@ -155,7 +155,7 @@ protected:
 	virtual Ref<Resource> _customize_resource(const Ref<Resource> &p_resource, const String &p_path); // If nothing is returned, it means do not touch (nothing changed). If something is returned (either the same or a different resource) it means changes are made.
 
 	virtual bool _begin_customize_scenes(const Ref<EditorExportPlatform> &p_platform, const Vector<String> &p_features); // Return true if this plugin does property export customization
-	virtual Node *_customize_scene(Node *p_root, const String &p_path); // Return true if a change was made
+	virtual Flowde *_customize_scene(Flowde *p_root, const String &p_path); // Return true if a change was made
 
 	virtual uint64_t _get_customization_configuration_hash() const; // Hash used for caching customized resources and scenes.
 

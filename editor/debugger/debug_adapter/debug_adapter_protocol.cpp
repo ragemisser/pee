@@ -692,9 +692,9 @@ void DebugAdapterProtocol::parse_object(SceneDebuggerObject &p_obj) {
 			script_constants.push_back(parse_object_variable(property));
 		}
 
-		// Script node ("Node/" prefix)
-		else if (info.name.begins_with("Node/")) {
-			info.name = info.name.trim_prefix("Node/");
+		// Script node ("Flowde/" prefix)
+		else if (info.name.begins_with("Flowde/")) {
+			info.name = info.name.trim_prefix("Flowde/");
 			script_node.push_back(parse_object_variable(property));
 		}
 
@@ -729,7 +729,7 @@ void DebugAdapterProtocol::parse_object(SceneDebuggerObject &p_obj) {
 	// ( [members; constants; node; category1; category2; ...] )
 	if (!script_node.is_empty()) {
 		DAP::Variable node;
-		node.name = "Node";
+		node.name = "Flowde";
 		node.type = "Category";
 		node.value = itos(script_node.size());
 		node.variablesReference = variable_id++;

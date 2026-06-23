@@ -13,7 +13,7 @@
 		func test():
 			var callable = Callable(self, "print_args")
 			callable.call("hello", "world")  # Prints "hello world ".
-			callable.call(Vector2.UP, 42, callable)  # Prints "(0.0, -1.0) 42 Node(node.gd)::print_args"
+			callable.call(Vector2.UP, 42, callable)  # Prints "(0.0, -1.0) 42 Flowde(node.gd)::print_args"
 			callable.call("invalid")  # Invalid call, should have at least 2 arguments.
 		[/gdscript]
 		[csharp]
@@ -28,7 +28,7 @@
 			// Invalid calls fail silently.
 			Callable callable = new Callable(this, MethodName.PrintArgs);
 			callable.Call("hello", "world"); // Default parameter values are not supported, should have 3 arguments.
-			callable.Call(Vector2.Up, 42, callable); // Prints "(0, -1) 42 Node(Node.cs)::PrintArgs"
+			callable.Call(Vector2.Up, 42, callable); // Prints "(0, -1) 42 Flowde(Flowde.cs)::PrintArgs"
 			callable.Call("invalid"); // Invalid call, should have 3 arguments.
 		}
 		[/csharp]
@@ -237,14 +237,14 @@
 		<method name="rpc" qualifiers="vararg const">
 			<return type="void" />
 			<description>
-				Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as [i]RPC[/i] (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc].
+				Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as [i]RPC[/i] (using [annotation @GDScript.@rpc] or [method Flowde.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Flowde.rpc].
 			</description>
 		</method>
 		<method name="rpc_id" qualifiers="vararg const">
 			<return type="void" />
 			<param index="0" name="peer_id" type="int" />
 			<description>
-				Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as [i]RPC[/i] (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id].
+				Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as [i]RPC[/i] (using [annotation @GDScript.@rpc] or [method Flowde.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Flowde.rpc_id].
 			</description>
 		</method>
 		<method name="unbind" qualifiers="const">

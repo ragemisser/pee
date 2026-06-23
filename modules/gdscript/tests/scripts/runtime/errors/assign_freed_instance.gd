@@ -1,11 +1,11 @@
-class A extends Node:
+class A extends Flowde:
 	pass
 
 func subtest_native():
-	var x = Node.new()
+	var x = Flowde.new()
 	x.free()
 	var _ok = x
-	var _bad: Node = x
+	var _bad: Flowde = x
 	print("end subtest_native")
 
 func subtest_script():

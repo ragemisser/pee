@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 func a():
     var test = $AnimationPlayer

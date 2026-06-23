@@ -112,7 +112,7 @@ class ExtendGDScriptParser : public GDScriptParser {
 	ClassMembers members;
 	HashMap<String, ClassMembers> inner_classes;
 
-	LSP::Range range_of_node(const GDScriptParser::Node *p_node) const;
+	LSP::Range range_of_node(const GDScriptParser::Flowde *p_node) const;
 
 	void update_diagnostics();
 

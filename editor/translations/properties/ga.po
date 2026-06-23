@@ -310,10 +310,10 @@ msgstr "Idirnáisiúnú"
 msgid "Force Right to Left Layout Direction"
 msgstr "Fórsa Ar Dheis go Clé Leagan Amach Treo"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Treo Leagan Amach an Nód Fréimhe"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Fréamh nód Auto Translate"
 
 msgid "GUI"
@@ -1135,7 +1135,7 @@ msgstr "Athdhéanamh Cnámh"
 msgid "Rename Bones"
 msgstr "Athainmnigh Cnámha"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Nód Uathúil"
 
 msgid "Make Unique"
@@ -1147,7 +1147,7 @@ msgstr "Ainm an Chnámharlaigh"
 msgid "Rest Fixer"
 msgstr "Deisitheoir Scíthe"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Cuir Claochluithe Nód i bhFeidhm"
 
 msgid "Normalize Position Tracks"
@@ -1216,10 +1216,10 @@ msgstr "Fritháireamh Mogalra"
 msgid "Force Disable Mesh Compression"
 msgstr "Fórsa Díchumasaigh Comhbhrú Mogalra"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Nód"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "Cineál Nóid"
 
 msgid "Script"
@@ -1429,7 +1429,7 @@ msgstr "Iompórtáil mar chnámha cnámharlaigh"
 msgid "Use Name Suffixes"
 msgstr "Úsáid Iarmhíreanna Ainm"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Úsáid Iarmhíreanna Cineál Nód"
 
 msgid "Meshes"
@@ -2357,7 +2357,7 @@ msgstr "Tosaigh Cruthaigh Dialóg Leathnaithe go hiomlán"
 msgid "Auto Expand to Selected"
 msgstr "Leathnaigh go hUathoibríoch go Roghnaithe"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Nód Ionaid ar Reparent"
 
 msgid "Hide Filtered Out Parents"
@@ -2501,7 +2501,7 @@ msgstr "V Luas Scrollaigh"
 msgid "Drag and Drop Selection"
 msgstr "Tarraing agus Buail Roghnúchán"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Fan san Eagarthóir Scripte ar Nód Roghnaithe"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2627,7 +2627,7 @@ msgstr "Cuir Leideanna Cineál Leis"
 msgid "Add String Name Literals"
 msgstr "Cuir Litriúil Ainm Teaghrán Leis"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Cuir Litriúil Cosán Nód Leis"
 
 msgid "Use Single Quotes"
@@ -3149,7 +3149,7 @@ msgstr "Athraigh go Crann Radharc Cianda Uathoibríoch"
 msgid "Auto Switch to Stack Trace"
 msgstr "Athraigh go Rian Cruachta Uathoibríoch"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "Uasmhéid Roghnúcháin Nóid"
 
 msgid "Profiler Frame History Size"
@@ -3758,7 +3758,7 @@ msgstr "Céimeanna Spin"
 msgid "Spin Sides"
 msgstr "Taobhanna Spin"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Nód Cosáin"
 
 msgid "Path Interval Type"
@@ -3947,7 +3947,7 @@ msgstr "Inference On Leagan"
 msgid "Native Method Override"
 msgstr "Sárú Modh Dúchasach"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "Faigh Nód Réamhshocraithe Gan Onready"
 
 msgid "Onready With Export"
@@ -4034,7 +4034,7 @@ msgstr "Formáid Íomhá Cúltaca"
 msgid "Fallback Image Quality"
 msgstr "Cáilíocht Íomhá Cúltaca"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Mód Nód Fréimhe"
 
 msgid "Visibility Mode"
@@ -4214,7 +4214,7 @@ msgstr "glTF a Slonn Godot"
 msgid "Godot to glTF Expression"
 msgstr "Godot go glTF Slonn"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Cosáin Nód"
 
 msgid "Object Model Type"
@@ -4232,7 +4232,7 @@ msgstr "Ailt"
 msgid "Roots"
 msgstr "Fréamhacha"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Nód Cnámh Godot"
 
 msgid "Skin Root"
@@ -4385,7 +4385,7 @@ msgstr "Codán Corrlach Imbhuailte"
 msgid "Active Edge Threshold"
 msgstr "Tairseach Imeall Gníomhach"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Nód Domhanda"
 
 msgid "Temporary Memory Buffer Size"
@@ -6386,10 +6386,10 @@ msgstr "Righin"
 msgid "Initial Offset"
 msgstr "Fritháireamh Tosaigh"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "Nód A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "Nód B"
 
 msgid "Bias"
@@ -6627,7 +6627,7 @@ msgstr "Taispeáin an Droch-cheart"
 msgid "Enabling"
 msgstr "Cumasú"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Conair nód"
 
 msgid "Doppler Tracking"
@@ -7066,7 +7066,7 @@ msgstr "Ná cuir as an áireamh"
 msgid "Chains"
 msgstr "Slabhraí"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "Sprioc nód"
 
 msgid "Forward Axis"
@@ -7084,7 +7084,7 @@ msgstr "Socruithe Bunús"
 msgid "From"
 msgstr "Ó"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Nód Seachtrach"
 
 msgid "Time Based Interpolation"
@@ -7747,7 +7747,7 @@ msgstr "Iarratas ar Aistriú"
 msgid "Reset on Save"
 msgstr "Athshocraigh ar Sábháil"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Nód Fréimhe"
 
 msgid "Root Motion"
@@ -7813,7 +7813,7 @@ msgstr "Scannán Scoir ar Críochnaigh"
 msgid "Tree Root"
 msgstr "Fréamh an Chrainn"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "Nód Bonn Slonn Roimh Ré"
 
 msgid "Anim Player"
@@ -8936,10 +8936,10 @@ msgstr "Mód Aistrithe"
 msgid "Transfer Channel"
 msgstr "Cainéal Aistrithe"
 
-msgid "Node Name Num Separator"
-msgstr "Node Ainm Num Deighilteoir"
+msgid "Flowde Name Num Separator"
+msgstr "Flowde Ainm Num Deighilteoir"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "Cásáil Ainm Nód"
 
 msgid "Physics Priority"
@@ -9350,7 +9350,7 @@ msgstr "Úsáid Domhantarraingt"
 msgid "Bone Index"
 msgstr "Innéacs Cnámh"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "Nód Cnámh 2D"
 
 msgid "Physical Bone Chain Length"

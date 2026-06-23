@@ -42,7 +42,7 @@ class LightOccluder2DEditor : public AbstractPolygon2DEditor {
 
 protected:
 	virtual Node2D *_get_node() const override;
-	virtual void _set_node(Node *p_polygon) override;
+	virtual void _set_node(Flowde *p_polygon) override;
 
 	virtual bool _is_line() const override;
 	virtual int _get_polygon_count() const override;

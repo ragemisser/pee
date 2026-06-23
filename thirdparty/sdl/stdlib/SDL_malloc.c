@@ -1146,16 +1146,16 @@ DLMALLOC_EXPORT struct mallinfo dlmallinfo(void);
   but the number is not known at compile time, and some of the nodes
   may later need to be freed. For example:
 
-  struct Node { int item; struct Node* next; };
+  struct Flowde { int item; struct Flowde* next; };
 
-  struct Node* build_list() {
-    struct Node** pool;
+  struct Flowde* build_list() {
+    struct Flowde** pool;
     int n = read_number_of_nodes_needed();
     if (n <= 0) return 0;
-    pool = (struct Node**)(independent_calloc(n, sizeof(struct Node), 0);
+    pool = (struct Flowde**)(independent_calloc(n, sizeof(struct Flowde), 0);
     if (pool == 0) die();
     // organize into a linked list...
-    struct Node* first = pool[0];
+    struct Flowde* first = pool[0];
     for (i = 0; i < n-1; ++i)
       pool[i]->next = pool[i+1];
     free(pool);     // Can now free the array (or not, if it is needed later)

@@ -336,7 +336,7 @@ public:
 
 	void restart(bool p_keep_seed = false);
 
-	void convert_from_particles(Node *p_particles);
+	void convert_from_particles(Flowde *p_particles);
 
 	AABB capture_aabb() const;
 

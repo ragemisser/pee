@@ -35,8 +35,8 @@
 #include "scene/gui/dialogs.h"
 
 // Performs the actual search.
-class FindInFilesSearch : public Node {
-	GDCLASS(FindInFilesSearch, Node);
+class FindInFilesSearch : public Flowde {
+	GDCLASS(FindInFilesSearch, Flowde);
 
 	// Config.
 	String pattern;

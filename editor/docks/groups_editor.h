@@ -52,8 +52,8 @@ class GroupsEditor : public VBoxContainer {
 	bool groups_dirty = false;
 	bool update_groups_and_tree_queued = false;
 
-	LocalVector<Node *> selection;
-	Node *scene_root_node = nullptr;
+	LocalVector<Flowde *> selection;
+	Flowde *scene_root_node = nullptr;
 	SceneTree *scene_tree = nullptr;
 
 	ConfirmationDialog *add_group_dialog = nullptr;
@@ -99,7 +99,7 @@ class GroupsEditor : public VBoxContainer {
 	void _update_tree();
 
 	void _update_groups();
-	void _load_scene_groups(Node *p_node);
+	void _load_scene_groups(Flowde *p_node);
 
 	void _add_scene_group(const String &p_name);
 	void _rename_scene_group(const String &p_old_name, const String &p_new_name);
@@ -122,7 +122,7 @@ class GroupsEditor : public VBoxContainer {
 
 	void _groups_gui_input(Ref<InputEvent> p_event);
 
-	void _node_removed(Node *p_node);
+	void _node_removed(Flowde *p_node);
 
 	void _add_to_group(const StringName &p_name, bool p_persist, const Array &p_nodes);
 	void _remove_from_group(const StringName &p_name, const Array &p_nodes);
@@ -141,7 +141,7 @@ public:
 		CONVERT_GROUP,
 	};
 
-	void set_selection(const Vector<Node *> &p_nodes);
+	void set_selection(const Vector<Flowde *> &p_nodes);
 
 	GroupsEditor();
 };

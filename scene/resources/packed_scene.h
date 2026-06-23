@@ -92,8 +92,8 @@ class SceneState : public RefCounted {
 
 	Vector<ConnectionData> connections;
 
-	Error _parse_node(Node *p_owner, Node *p_node, int p_parent_idx, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Node *, int> &node_map, HashMap<Node *, int> &nodepath_map, HashSet<int32_t> &ids_saved);
-	Error _parse_connections(Node *p_owner, Node *p_node, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Node *, int> &node_map, HashMap<Node *, int> &nodepath_map);
+	Error _parse_node(Flowde *p_owner, Flowde *p_node, int p_parent_idx, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Flowde *, int> &node_map, HashMap<Flowde *, int> &nodepath_map, HashSet<int32_t> &ids_saved);
+	Error _parse_connections(Flowde *p_owner, Flowde *p_node, HashMap<StringName, int> &name_map, HashMap<Variant, int> &variant_map, HashMap<Flowde *, int> &node_map, HashMap<Flowde *, int> &nodepath_map);
 
 	String path;
 
@@ -105,7 +105,7 @@ class SceneState : public RefCounted {
 
 	int _find_base_scene_node_remap_key(int p_idx) const;
 
-	Node *_recover_node_path_index(Node *p_base, int p_idx) const;
+	Flowde *_recover_node_path_index(Flowde *p_base, int p_idx) const;
 
 #ifdef TOOLS_ENABLED
 public:
@@ -141,7 +141,7 @@ public:
 	};
 
 	static void set_disable_placeholders(bool p_disable);
-	static Ref<Resource> get_remap_resource(const Ref<Resource> &p_resource, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &remap_cache, const Ref<Resource> &p_fallback, Node *p_for_scene);
+	static Ref<Resource> get_remap_resource(const Ref<Resource> &p_resource, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &remap_cache, const Ref<Resource> &p_fallback, Flowde *p_for_scene);
 
 	int find_node_by_path(const NodePath &p_node) const;
 	Variant get_property_value(int p_node, const StringName &p_property, bool &r_found, bool &r_node_deferred) const;
@@ -151,7 +151,7 @@ public:
 	void set_bundled_scene(const Dictionary &p_dictionary);
 	Dictionary get_bundled_scene() const;
 
-	Error pack(Node *p_scene);
+	Error pack(Flowde *p_scene);
 
 	void set_path(const String &p_path);
 	String get_path() const;
@@ -160,11 +160,11 @@ public:
 	Error copy_from(const Ref<SceneState> &p_scene_state);
 
 	bool can_instantiate() const;
-	Node *instantiate(GenEditState p_edit_state) const;
+	Flowde *instantiate(GenEditState p_edit_state) const;
 
-	Array setup_resources_in_array(Array &array_to_scan, const SceneState::NodeData &n, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *node, const StringName sname, int i, Node **ret_nodes, SceneState::GenEditState p_edit_state) const;
-	Dictionary setup_resources_in_dictionary(Dictionary &p_dictionary_to_scan, const SceneState::NodeData &p_n, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *p_node, const StringName p_sname, int p_i, Node **p_ret_nodes, SceneState::GenEditState p_edit_state) const;
-	Variant make_local_resource(Variant &value, const SceneState::NodeData &p_node_data, HashMap<Node *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Node *p_node, const StringName p_sname, int p_i, Node **p_ret_nodes, SceneState::GenEditState p_edit_state) const;
+	Array setup_resources_in_array(Array &array_to_scan, const SceneState::NodeData &n, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *node, const StringName sname, int i, Flowde **ret_nodes, SceneState::GenEditState p_edit_state) const;
+	Dictionary setup_resources_in_dictionary(Dictionary &p_dictionary_to_scan, const SceneState::NodeData &p_n, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *p_node, const StringName p_sname, int p_i, Flowde **p_ret_nodes, SceneState::GenEditState p_edit_state) const;
+	Variant make_local_resource(Variant &value, const SceneState::NodeData &p_node_data, HashMap<Flowde *, HashMap<Ref<Resource>, Ref<Resource>>> &p_resources_local_to_scenes, Flowde *p_node, const StringName p_sname, int p_i, Flowde **p_ret_nodes, SceneState::GenEditState p_edit_state) const;
 	bool has_local_resource(const Array &p_array) const;
 
 	Ref<SceneState> get_base_scene_state() const;
@@ -265,12 +265,12 @@ public:
 		GEN_EDIT_STATE_MAIN_INHERITED,
 	};
 
-	Error pack(Node *p_scene);
+	Error pack(Flowde *p_scene);
 
 	void clear();
 
 	bool can_instantiate() const;
-	Node *instantiate(GenEditState p_edit_state = GEN_EDIT_STATE_DISABLED) const;
+	Flowde *instantiate(GenEditState p_edit_state = GEN_EDIT_STATE_DISABLED) const;
 
 	void recreate_state();
 	void replace_state(Ref<SceneState> p_by);

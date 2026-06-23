@@ -376,9 +376,9 @@ private:
 	Vector<TileMapLayer *> tile_map_layers_in_scene_cache;
 	bool layers_in_scene_list_cache_needs_update = false;
 	TileMapLayer *_get_edited_layer() const;
-	void _find_tile_map_layers_in_scene(Node *p_current, const Node *p_owner, Vector<TileMapLayer *> &r_list) const;
+	void _find_tile_map_layers_in_scene(Flowde *p_current, const Flowde *p_owner, Vector<TileMapLayer *> &r_list) const;
 	void _update_tile_map_layers_in_scene_list_cache();
-	void _node_change(Node *p_node);
+	void _node_change(Flowde *p_node);
 
 	Control *custom_overlay = nullptr;
 	void _draw_overlay();

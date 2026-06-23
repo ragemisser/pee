@@ -371,7 +371,7 @@ void BonePropertiesEditor::_update_properties() {
 	// UI for any bone metadata prop not seen during the iteration has to be deleted
 	for (KeyValue<StringName, EditorProperty *> iter : meta_editors) {
 		if (!meta_seen.has(iter.key)) {
-			callable_mp((Node *)meta_section->get_vbox(), &Node::remove_child).call_deferred(iter.value);
+			callable_mp((Flowde *)meta_section->get_vbox(), &Flowde::remove_child).call_deferred(iter.value);
 			meta_editors.remove(meta_editors.find(iter.key));
 		}
 	}
@@ -498,7 +498,7 @@ void Skeleton3DEditor::_insert_keys(const bool p_all_bones) {
 	bool scl_enabled = key_scale_button->is_pressed();
 
 	int bone_len = skeleton->get_bone_count();
-	Node *root = EditorNode::get_singleton()->get_tree()->get_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_root();
 	String path = String(root->get_path_to(skeleton));
 
 	AnimationTrackEditor *te = AnimationPlayerEditor::get_singleton()->get_track_editor();
@@ -557,7 +557,7 @@ void Skeleton3DEditor::pose_to_rest(const bool p_all_bones) {
 void Skeleton3DEditor::create_physical_skeleton() {
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 	ERR_FAIL_NULL(get_tree());
-	Node *owner = get_tree()->get_edited_scene_root();
+	Flowde *owner = get_tree()->get_edited_scene_root();
 
 	const int bone_count = skeleton->get_bone_count();
 
@@ -813,7 +813,7 @@ void Skeleton3DEditor::drop_data_fw(const Point2 &p_point, const Variant &p_data
 }
 
 void Skeleton3DEditor::move_skeleton_bone(NodePath p_skeleton_path, int32_t p_selected_boneidx, int32_t p_target_boneidx) {
-	Node *node = get_node_or_null(p_skeleton_path);
+	Flowde *node = get_node_or_null(p_skeleton_path);
 	Skeleton3D *skeleton_node = Object::cast_to<Skeleton3D>(node);
 	ERR_FAIL_NULL(skeleton_node);
 	EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
@@ -1283,7 +1283,7 @@ void Skeleton3DEditor::_notification(int p_what) {
 	}
 }
 
-void Skeleton3DEditor::_node_removed(Node *p_node) {
+void Skeleton3DEditor::_node_removed(Flowde *p_node) {
 	if (!skeleton || p_node != skeleton) {
 		return;
 	}

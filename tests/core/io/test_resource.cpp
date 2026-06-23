@@ -434,7 +434,7 @@ TEST_CASE("[Resource] Duplication") {
 								Object::cast_to<DuplicateGuineaPigData>(p_res->call("get_data"))->enable_scene_local_subresources();
 							}
 							HashMap<Ref<Resource>, Ref<Resource>> remap_cache;
-							Node fake_scene;
+							Flowde fake_scene;
 							return p_res->duplicate_for_local_scene(&fake_scene, remap_cache);
 						});
 			}

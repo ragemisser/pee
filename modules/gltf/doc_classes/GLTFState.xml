@@ -31,7 +31,7 @@
 		<method name="append_gltf_node">
 			<return type="int" />
 			<param index="0" name="gltf_node" type="GLTFNode" />
-			<param index="1" name="godot_scene_node" type="Node" />
+			<param index="1" name="godot_scene_node" type="Flowde" />
 			<param index="2" name="parent_node_index" type="int" />
 			<description>
 				Appends the given [GLTFNode] to the state, and returns its new index. This can be used to export one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this must be called before [method GLTFDocumentExtension._generate_scene_node] finishes for the parent node. On export, this must be called before [method GLTFDocumentExtension._export_node] runs for the parent node.
@@ -114,7 +114,7 @@
 		</method>
 		<method name="get_node_index" qualifiers="const">
 			<return type="int" />
-			<param index="0" name="scene_node" type="Node" />
+			<param index="0" name="scene_node" type="Flowde" />
 			<description>
 				Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse of [method get_scene_node]. Useful during the export process.
 				[b]Note:[/b] Not every Godot scene node will have a corresponding [GLTFNode], and not every [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node, [code]-1[/code] is returned.
@@ -127,7 +127,7 @@
 			</description>
 		</method>
 		<method name="get_scene_node" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="gltf_node_index" type="int" />
 			<description>
 				Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was generated from. This is the inverse of [method get_node_index]. Useful during the import process.

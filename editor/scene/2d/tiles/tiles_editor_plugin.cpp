@@ -124,7 +124,7 @@ void TilesEditorUtils::_thread() {
 				tile_map_layer->set_position(-(scale * encompassing_rect.get_center()) + thumbnail_size2 / 2);
 
 				// Add the viewport at the last moment to avoid rendering too early.
-				callable_mp((Node *)EditorNode::get_singleton(), &Node::add_child).call_deferred(viewport, false, Node::INTERNAL_MODE_DISABLED);
+				callable_mp((Flowde *)EditorNode::get_singleton(), &Flowde::add_child).call_deferred(viewport, false, Flowde::INTERNAL_MODE_DISABLED);
 
 				RS::get_singleton()->connect(SNAME("frame_pre_draw"), callable_mp(this, &TilesEditorUtils::_preview_frame_started), Object::CONNECT_ONE_SHOT);
 
@@ -389,7 +389,7 @@ void TileMapEditorPlugin::_select_layer(const StringName &p_name) {
 	TileMapLayer *edited_layer = ObjectDB::get_instance<TileMapLayer>(tile_map_layer_id);
 	ERR_FAIL_NULL(edited_layer);
 
-	Node *parent = edited_layer->get_parent();
+	Flowde *parent = edited_layer->get_parent();
 	if (parent) {
 		TileMapLayer *new_layer = Object::cast_to<TileMapLayer>(parent->get_node_or_null(String(p_name)));
 		edit(new_layer);
@@ -474,7 +474,7 @@ void TileMapEditorPlugin::edit(Object *p_object) {
 
 bool TileMapEditorPlugin::handles(Object *p_object) const {
 	MultiNodeEdit *multi_node_edit = Object::cast_to<MultiNodeEdit>(p_object);
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	if (multi_node_edit && edited_scene) {
 		bool only_tile_map_layers = true;
 		for (int i = 0; i < multi_node_edit->get_node_count(); i++) {

@@ -95,7 +95,7 @@ void RootMotionView::_notification(int p_what) {
 			Basis diff;
 
 			if (has_node(path)) {
-				Node *node = get_node(path);
+				Flowde *node = get_node(path);
 				AnimationMixer *mixer = Object::cast_to<AnimationMixer>(node);
 				if (mixer && mixer->is_active() && mixer->get_root_motion_track() != NodePath()) {
 					if (is_processing_internal() && mixer->get_callback_mode_process() == AnimationMixer::ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS) {

@@ -405,7 +405,7 @@ Error FBXDocument::_parse_nodes(Ref<FBXState> p_state) {
 							}
 							const real_t max_error = 0.01f;
 							if (error >= max_error) {
-								WARN_PRINT(vformat("FBX: Node '%s' has multiple bind poses, using initial pose as rest pose.", node->get_name()));
+								WARN_PRINT(vformat("FBX: Flowde '%s' has multiple bind poses, using initial pose as rest pose.", node->get_name()));
 								bad_rest_xform = true;
 							}
 						}
@@ -1459,7 +1459,7 @@ void FBXDocument::_assign_node_names(Ref<FBXState> p_state) {
 			} else if (fbx_node->camera >= 0) {
 				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Camera3D"));
 			} else {
-				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Node"));
+				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Flowde"));
 			}
 		}
 
@@ -1600,7 +1600,7 @@ Node3D *FBXDocument::_generate_spatial(Ref<FBXState> p_state, const GLTFNodeInde
 	return spatial;
 }
 
-void FBXDocument::_generate_scene_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root) {
+void FBXDocument::_generate_scene_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root) {
 	Ref<GLTFNode> fbx_node = p_state->nodes[p_node_index];
 
 	if (fbx_node->skeleton >= 0) {
@@ -1665,7 +1665,7 @@ void FBXDocument::_generate_scene_node(Ref<FBXState> p_state, const GLTFNodeInde
 	}
 }
 
-void FBXDocument::_generate_skeleton_bone_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Node *p_scene_parent, Node *p_scene_root) {
+void FBXDocument::_generate_skeleton_bone_node(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index, Flowde *p_scene_parent, Flowde *p_scene_root) {
 	Ref<GLTFNode> fbx_node = p_state->nodes[p_node_index];
 
 	Node3D *current_node = nullptr;
@@ -1705,7 +1705,7 @@ void FBXDocument::_generate_skeleton_bone_node(Ref<FBXState> p_state, const GLTF
 		current_node = nullptr;
 		// skinned meshes must not be placed in a bone attachment.
 		if (!is_skinned_mesh) {
-			// Bone Attachment - Same Node Case
+			// Bone Attachment - Same Flowde Case
 			BoneAttachment3D *bone_attachment = _generate_bone_attachment(p_state, active_skeleton, p_node_index, p_node_index);
 
 			p_scene_parent->add_child(bone_attachment, true);
@@ -1783,9 +1783,9 @@ void FBXDocument::_import_animation(Ref<FBXState> p_state, AnimationPlayer *p_an
 		//for skeletons, transform tracks always affect bones
 		NodePath transform_node_path;
 		GLTFNodeIndex node_index = track_i.key;
-		Node *root = p_animation_player->get_parent();
+		Flowde *root = p_animation_player->get_parent();
 		ERR_FAIL_NULL(root);
-		HashMap<GLTFNodeIndex, Node *>::Iterator node_element = p_state->scene_nodes.find(node_index);
+		HashMap<GLTFNodeIndex, Flowde *>::Iterator node_element = p_state->scene_nodes.find(node_index);
 		ERR_CONTINUE_MSG(!node_element, vformat("Unable to find node %d for animation.", node_index));
 		node_path = root->get_path_to(node_element->value);
 
@@ -1912,9 +1912,9 @@ void FBXDocument::_import_animation(Ref<FBXState> p_state, AnimationPlayer *p_an
 		// For meshes, especially skinned meshes, there are cases where it will be added as a child.
 		NodePath mesh_instance_node_path;
 
-		Node *root = p_animation_player->get_parent();
+		Flowde *root = p_animation_player->get_parent();
 		ERR_FAIL_NULL(root);
-		HashMap<GLTFNodeIndex, Node *>::Iterator node_element = p_state->scene_nodes.find(node_index);
+		HashMap<GLTFNodeIndex, Flowde *>::Iterator node_element = p_state->scene_nodes.find(node_index);
 		ERR_CONTINUE_MSG(!node_element, vformat("Unable to find node %d for animation.", node_index));
 		NodePath node_path = root->get_path_to(node_element->value);
 		HashMap<GLTFNodeIndex, ImporterMeshInstance3D *>::Iterator mesh_instance_element = p_state->scene_mesh_instances.find(node_index);
@@ -1973,7 +1973,7 @@ void FBXDocument::_import_animation(Ref<FBXState> p_state, AnimationPlayer *p_an
 	library->add_animation(anim_name, animation);
 }
 
-void FBXDocument::_process_mesh_instances(Ref<FBXState> p_state, Node *p_scene_root) {
+void FBXDocument::_process_mesh_instances(Ref<FBXState> p_state, Flowde *p_scene_root) {
 	for (GLTFNodeIndex node_i = 0; node_i < p_state->nodes.size(); ++node_i) {
 		Ref<GLTFNode> node = p_state->nodes[node_i];
 
@@ -1986,7 +1986,7 @@ void FBXDocument::_process_mesh_instances(Ref<FBXState> p_state, Node *p_scene_r
 		ImporterMeshInstance3D *mi = nullptr;
 		HashMap<GLTFNodeIndex, ImporterMeshInstance3D *>::Iterator mi_element = p_state->scene_mesh_instances.find(node_i);
 		if (!mi_element) {
-			HashMap<GLTFNodeIndex, Node *>::Iterator si_element = p_state->scene_nodes.find(node_i);
+			HashMap<GLTFNodeIndex, Flowde *>::Iterator si_element = p_state->scene_nodes.find(node_i);
 			ERR_CONTINUE_MSG(!si_element, vformat("Unable to find node %d", node_i));
 			mi = Object::cast_to<ImporterMeshInstance3D>(si_element->value);
 			ERR_CONTINUE_MSG(mi == nullptr, vformat("Unable to cast node %d of type %s to ImporterMeshInstance3D", node_i, si_element->value->get_class_name()));
@@ -2115,14 +2115,14 @@ Error FBXDocument::_parse(Ref<FBXState> p_state, const String &p_path, Ref<FileA
 	return OK;
 }
 
-Node *FBXDocument::generate_scene(Ref<GLTFState> p_state, float p_bake_fps, bool p_trimming, bool p_remove_immutable_tracks) {
+Flowde *FBXDocument::generate_scene(Ref<GLTFState> p_state, float p_bake_fps, bool p_trimming, bool p_remove_immutable_tracks) {
 	Ref<FBXState> state = p_state;
 	ERR_FAIL_COND_V(state.is_null(), nullptr);
 	ERR_FAIL_INDEX_V(0, state->root_nodes.size(), nullptr);
 	p_state->set_bake_fps(p_bake_fps);
 	GLTFNodeIndex fbx_root = state->root_nodes.write[0];
-	Node *fbx_root_node = state->get_scene_node(fbx_root);
-	Node *root = fbx_root_node;
+	Flowde *fbx_root_node = state->get_scene_node(fbx_root);
+	Flowde *root = fbx_root_node;
 	if (root && root->get_owner() && root->get_owner() != root) {
 		root = root->get_owner();
 	}
@@ -2136,7 +2136,7 @@ Node *FBXDocument::generate_scene(Ref<GLTFState> p_state, float p_bake_fps, bool
 			_import_animation(state, ap, i, p_trimming, p_remove_immutable_tracks);
 		}
 	}
-	for (KeyValue<GLTFNodeIndex, Node *> E : state->scene_nodes) {
+	for (KeyValue<GLTFNodeIndex, Flowde *> E : state->scene_nodes) {
 		ERR_CONTINUE(!E.value);
 		for (Ref<GLTFDocumentExtension> ext : document_extensions) {
 			ERR_CONTINUE(ext.is_null());
@@ -2487,7 +2487,7 @@ Error FBXDocument::write_to_filesystem(Ref<GLTFState> p_state, const String &p_p
 	return ERR_UNAVAILABLE;
 }
 
-Error FBXDocument::append_from_scene(Node *p_node, Ref<GLTFState> p_state, uint32_t p_flags) {
+Error FBXDocument::append_from_scene(Flowde *p_node, Ref<GLTFState> p_state, uint32_t p_flags) {
 	return ERR_UNAVAILABLE;
 }
 

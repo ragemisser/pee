@@ -9,7 +9,7 @@
 		[codeblocks]
 		[gdscript]
 		# server_node.gd
-		extends Node
+		extends Flowde
 
 		var dtls = DTLSServer.new()
 		var server = UDPServer.new()
@@ -41,7 +41,7 @@
 		// ServerNode.cs
 		using Godot;
 
-		public partial class ServerNode : Node
+		public partial class ServerNode : Flowde
 		{
 			private DtlsServer _dtls = new DtlsServer();
 			private UdpServer _server = new UdpServer();
@@ -88,7 +88,7 @@
 		[codeblocks]
 		[gdscript]
 		# client_node.gd
-		extends Node
+		extends Flowde
 
 		var dtls = PacketPeerDTLS.new()
 		var udp = PacketPeerUDP.new()
@@ -113,7 +113,7 @@
 		using Godot;
 		using System.Text;
 
-		public partial class ClientNode : Node
+		public partial class ClientNode : Flowde
 		{
 			private PacketPeerDtls _dtls = new PacketPeerDtls();
 			private PacketPeerUdp _udp = new PacketPeerUdp();

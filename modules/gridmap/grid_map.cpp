@@ -1725,7 +1725,7 @@ void GridMap::navmesh_parse_init() {
 	}
 }
 
-void GridMap::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Node *p_node) {
+void GridMap::navmesh_parse_source_geometry(const Ref<NavigationMesh> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData3D> p_source_geometry_data, Flowde *p_node) {
 	GridMap *gridmap = Object::cast_to<GridMap>(p_node);
 
 	if (gridmap == nullptr) {

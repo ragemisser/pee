@@ -34,8 +34,8 @@
 
 #include "scene/main/node.h"
 
-class MultiplayerSynchronizer : public Node {
-	GDCLASS(MultiplayerSynchronizer, Node);
+class MultiplayerSynchronizer : public Flowde {
+	GDCLASS(MultiplayerSynchronizer, Flowde);
 
 public:
 	enum VisibilityUpdateMode {
@@ -82,7 +82,7 @@ public:
 	static Error set_state(const List<NodePath> &p_properties, Object *p_obj, const Vector<Variant> &p_state);
 
 	void reset();
-	Node *get_root_node();
+	Flowde *get_root_node();
 
 	uint32_t get_net_id() const;
 	void set_net_id(uint32_t p_net_id);

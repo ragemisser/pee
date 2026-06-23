@@ -32,7 +32,7 @@
 
 #include "core/object/ref_counted.h"
 
-class Node;
+class Flowde;
 class SceneMultiplayer;
 
 class SceneCacheInterface : public RefCounted {
@@ -69,10 +69,10 @@ private:
 	int last_send_cache_id = 1;
 
 	void _remove_node_cache(ObjectID p_oid);
-	NodeCache &_track(Node *p_node);
+	NodeCache &_track(Flowde *p_node);
 
 protected:
-	Error _send_confirm_path(Node *p_node, NodeCache &p_cache, const List<int> &p_peers);
+	Error _send_confirm_path(Flowde *p_node, NodeCache &p_cache, const List<int> &p_peers);
 
 public:
 	void clear();
@@ -84,7 +84,7 @@ public:
 	bool send_object_cache(Object *p_obj, int p_target, int &p_id);
 	int make_object_cache(Object *p_obj);
 	Object *get_cached_object(int p_from, uint32_t p_cache_id);
-	bool is_cache_confirmed(Node *p_path, int p_peer);
+	bool is_cache_confirmed(Flowde *p_path, int p_peer);
 
 	SceneCacheInterface(SceneMultiplayer *p_multiplayer) { multiplayer = p_multiplayer; }
 };

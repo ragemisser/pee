@@ -45,7 +45,7 @@
 		</method>
 		<method name="overlaps_area" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="area" type="Node" />
+			<param index="0" name="area" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given [Area2D] intersects or overlaps this [Area2D], [code]false[/code] otherwise.
 				[b]Note:[/b] The result of this test is not immediate after moving objects. For performance, the list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
@@ -53,7 +53,7 @@
 		</method>
 		<method name="overlaps_body" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="body" type="Node" />
+			<param index="0" name="body" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given physics body intersects or overlaps this [Area2D], [code]false[/code] otherwise.
 				[b]Note:[/b] The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.

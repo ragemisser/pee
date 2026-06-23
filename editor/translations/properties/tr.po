@@ -413,10 +413,10 @@ msgstr "Uluslararası Kullanılırlık"
 msgid "Force Right to Left Layout Direction"
 msgstr "Sağdan Sola Yerleşim Düzenini Zorla"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "Kök Düğüm Yerleşim Düzeni Yönü"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "Kök Düğüm Otomatik Çeviri"
 
 msgid "GUI"
@@ -1196,7 +1196,7 @@ msgstr "Kemik Yeniden İsimlendirici"
 msgid "Rename Bones"
 msgstr "Kemikleri Yeniden İsimlendir"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "Benzersiz Düğüm"
 
 msgid "Make Unique"
@@ -1208,7 +1208,7 @@ msgstr "İskelet İsmi"
 msgid "Rest Fixer"
 msgstr "Rahat Duruş Düzeltici"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "Düğüm Dönüşümlerini Uygula"
 
 msgid "Normalize Position Tracks"
@@ -1277,11 +1277,11 @@ msgstr "Örgü Kaydırma"
 msgid "Force Disable Mesh Compression"
 msgstr "Örgü Sıkıştırmayı Devre Dışı Bırakmayı Zorla"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "Düğüm"
 
-msgid "Node Type"
-msgstr "Node Türü"
+msgid "Flowde Type"
+msgstr "Flowde Türü"
 
 msgid "Script"
 msgstr "Betik"
@@ -1484,7 +1484,7 @@ msgstr "Kök Ölçeği"
 msgid "Import as Skeleton Bones"
 msgstr "İskelet Kemikleri Olarak İçe Aktar"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "Düğüm Türü Son-eklerini Kullan"
 
 msgid "Meshes"
@@ -2331,7 +2331,7 @@ msgstr "Oluştur İleti Penceresini Tam Boy Başlat"
 msgid "Auto Expand to Selected"
 msgstr "Seçilene Otomatik Genişlet"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "Üst-öge Değişiminde Düğümü Merkeze Ortala"
 
 msgid "Hide Filtered Out Parents"
@@ -2472,7 +2472,7 @@ msgstr "Dikey Kaydırma Hızı"
 msgid "Drag and Drop Selection"
 msgstr "Seçimi Sürükle ve Bırak"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "Düğüm Seçildiğinde Betik Düzenleyicide Kal"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2592,7 +2592,7 @@ msgstr "Tip İpuçlarını Ekle"
 msgid "Add String Name Literals"
 msgstr "Dize İsmi Harflerini Ekle"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "Düğüm Yolu Harflerini Ekle"
 
 msgid "Use Single Quotes"
@@ -3624,7 +3624,7 @@ msgstr "Dönme Derecesi"
 msgid "Spin Sides"
 msgstr "Dönme Kenarları"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "Yol Düğüm"
 
 msgid "Path Interval Type"
@@ -3780,7 +3780,7 @@ msgstr "İçe Aktarıcı Örgü"
 msgid "Image Format"
 msgstr "Resim Formatı"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "Kök Düğüm Kipi"
 
 msgid "Visibility Mode"
@@ -3957,7 +3957,7 @@ msgstr "glTF'den Godot İfadesi'ne"
 msgid "Godot to glTF Expression"
 msgstr "Godot'dan glTF İfadesi'ne"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "Düğüm Yolları"
 
 msgid "Object Model Type"
@@ -3975,7 +3975,7 @@ msgstr "Eklemler"
 msgid "Roots"
 msgstr "Kökler"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Godot Kemik Düğümü"
 
 msgid "Skin Root"
@@ -4128,7 +4128,7 @@ msgstr "Çarpışma Kenar Boşluğu Oranı"
 msgid "Active Edge Threshold"
 msgstr "Aktif Kenar Eşik Değeri"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "Dünya Düğümü"
 
 msgid "Temporary Memory Buffer Size"
@@ -5997,10 +5997,10 @@ msgstr "Eğilmezlik"
 msgid "Initial Offset"
 msgstr "Başlangıç Kayması"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "Düğüm A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "Düğüm B"
 
 msgid "Bias"
@@ -6232,7 +6232,7 @@ msgstr "Kinematik Cisimleri Kullan"
 msgid "Enabling"
 msgstr "Etkinleştiriliyor"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "Düğüm Yolu"
 
 msgid "Doppler Tracking"
@@ -6653,7 +6653,7 @@ msgstr "Işık Verisi"
 msgid "Exclude"
 msgstr "Hariç tut"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "Hedef Düğüm"
 
 msgid "Forward Axis"
@@ -6671,7 +6671,7 @@ msgstr "Sıfır Noktası Ayarları"
 msgid "From"
 msgstr "Şuradan"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "Harici Düğüm"
 
 msgid "Time Based Interpolation"
@@ -7325,7 +7325,7 @@ msgstr "Geçiş İsteği"
 msgid "Reset on Save"
 msgstr "Kaydederken Sıfırla"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "Kök Düğüm"
 
 msgid "Root Motion"
@@ -7391,7 +7391,7 @@ msgstr "Film Bitirince Çık"
 msgid "Tree Root"
 msgstr "Ağaç Kökü"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "Gelişmiş İfade Temel Düğümü"
 
 msgid "Anim Player"
@@ -8352,10 +8352,10 @@ msgstr "Aktarım Kipi"
 msgid "Transfer Channel"
 msgstr "Aktarım Kanalı"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "Düğüm İsmi Numara Ayırıcı"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "Düğüm İsmi Harf Boyutu"
 
 msgid "Physics Priority"
@@ -8754,7 +8754,7 @@ msgstr "Yerçekimi Kullan"
 msgid "Bone Index"
 msgstr "Kemik İndeksi"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "2B Kemik Düğümü"
 
 msgid "Physical Bone Chain Length"

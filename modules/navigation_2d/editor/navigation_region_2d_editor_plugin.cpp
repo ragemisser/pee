@@ -51,7 +51,7 @@ Node2D *NavigationRegion2DEditor::_get_node() const {
 	return node;
 }
 
-void NavigationRegion2DEditor::_set_node(Node *p_polygon) {
+void NavigationRegion2DEditor::_set_node(Flowde *p_polygon) {
 	node = Object::cast_to<NavigationRegion2D>(p_polygon);
 	if (node) {
 		Ref<NavigationPolygon> navpoly = node->get_navigation_polygon();

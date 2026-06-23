@@ -76,7 +76,7 @@ bool ParticlesEditorPlugin::need_show_lifetime_dialog(SpinBox *p_seconds) {
 void ParticlesEditorPlugin::_menu_callback(int p_idx) {
 	switch (p_idx) {
 		case MENU_OPTION_CONVERT: {
-			Node *converted_node = _convert_particles();
+			Flowde *converted_node = _convert_particles();
 
 			EditorUndoRedoManager *ur = EditorUndoRedoManager::get_singleton();
 			ur->create_action(conversion_option_name, UndoRedo::MERGE_DISABLE, edited_node);
@@ -91,7 +91,7 @@ void ParticlesEditorPlugin::_menu_callback(int p_idx) {
 }
 
 void ParticlesEditorPlugin::edit(Object *p_object) {
-	edited_node = Object::cast_to<Node>(p_object);
+	edited_node = Object::cast_to<Flowde>(p_object);
 }
 
 bool ParticlesEditorPlugin::handles(Object *p_object) const {

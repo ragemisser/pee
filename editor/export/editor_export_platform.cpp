@@ -982,7 +982,7 @@ bool EditorExportPlatform::_export_customize_object(Object *p_object, LocalVecto
 	return changed;
 }
 
-bool EditorExportPlatform::_is_editable_ancestor(Node *p_root, Node *p_node) {
+bool EditorExportPlatform::_is_editable_ancestor(Flowde *p_root, Flowde *p_node) {
 	while (p_node != nullptr && p_node != p_root) {
 		if (p_root->is_editable_instance(p_node)) {
 			return true;
@@ -992,7 +992,7 @@ bool EditorExportPlatform::_is_editable_ancestor(Node *p_root, Node *p_node) {
 	return false;
 }
 
-bool EditorExportPlatform::_export_customize_scene_resources(Node *p_root, Node *p_node, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins) {
+bool EditorExportPlatform::_export_customize_scene_resources(Flowde *p_root, Flowde *p_node, LocalVector<Ref<EditorExportPlugin>> &customize_resources_plugins) {
 	bool changed = false;
 
 	if (p_root == p_node || p_node->get_owner() == p_root || _is_editable_ancestor(p_root, p_node)) {
@@ -1066,11 +1066,11 @@ String EditorExportPlatform::_export_customize(const String &p_path, LocalVector
 	if (type == "PackedScene") { // Its a scene.
 		Ref<PackedScene> ps = ResourceLoader::load(p_path, "PackedScene", ResourceFormatLoader::CACHE_MODE_IGNORE);
 		ERR_FAIL_COND_V(ps.is_null(), p_path);
-		Node *node = ps->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE); // Make sure the child scene root gets the correct inheritance chain.
+		Flowde *node = ps->instantiate(PackedScene::GEN_EDIT_STATE_INSTANCE); // Make sure the child scene root gets the correct inheritance chain.
 		ERR_FAIL_NULL_V(node, p_path);
 		if (!customize_scenes_plugins.is_empty()) {
 			for (Ref<EditorExportPlugin> &plugin : customize_scenes_plugins) {
-				Node *customized = plugin->_customize_scene(node, p_path);
+				Flowde *customized = plugin->_customize_scene(node, p_path);
 				if (customized != nullptr) {
 					node = customized;
 					modified = true;

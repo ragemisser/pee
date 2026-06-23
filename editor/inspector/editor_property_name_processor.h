@@ -32,8 +32,8 @@
 
 #include "scene/main/node.h"
 
-class EditorPropertyNameProcessor : public Node {
-	GDCLASS(EditorPropertyNameProcessor, Node);
+class EditorPropertyNameProcessor : public Flowde {
+	GDCLASS(EditorPropertyNameProcessor, Flowde);
 
 	static EditorPropertyNameProcessor *singleton;
 

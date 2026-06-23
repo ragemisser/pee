@@ -1,4 +1,4 @@
-extends Node
+extends Flowde
 
 @onready @export var conflict = ""
 

@@ -9,9 +9,9 @@ class A:
 	func g2(_p: Variant): pass # No `is_type_compatible()` misuse.
 	func g3(_p: int): pass # No implicit conversion.
 
-	func h1() -> Node: return null
-	func h2() -> Node: return null # No `is_type_compatible()` misuse.
-	func h3() -> Node: return null # No `is_type_compatible()` misuse.
+	func h1() -> Flowde: return null
+	func h2() -> Flowde: return null # No `is_type_compatible()` misuse.
+	func h3() -> Flowde: return null # No `is_type_compatible()` misuse.
 	func h4() -> float: return 0.0 # No implicit conversion.
 
 class B extends A:
@@ -21,8 +21,8 @@ class B extends A:
 	func f4(_p1: Vector2) -> int: return 0
 	func f5() -> Vector2: return Vector2()
 
-	func g1(_p: Node): pass
-	func g2(_p: Node): pass
+	func g1(_p: Flowde): pass
+	func g2(_p: Flowde): pass
 	func g3(_p: float): pass
 
 	func h1() -> Object: return null

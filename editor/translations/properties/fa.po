@@ -358,10 +358,10 @@ msgstr "بین‌المللی‌سازی"
 msgid "Force Right to Left Layout Direction"
 msgstr "راست‌چین کردن اجباری جهت چیدمان"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "جهت چیدمان گره ریشه"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "ترجمه‌ خودکار گره ریشه"
 
 msgid "GUI"
@@ -898,13 +898,13 @@ msgstr "بازنامگذار استخوان"
 msgid "Rename Bones"
 msgstr "بازنامگذاری استخوان‌ها"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "گرهٔ یکتا"
 
 msgid "Make Unique"
 msgstr "یکتا سازی"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "بکاربستن ترادیسی‌های گره"
 
 msgid "Filter"
@@ -916,7 +916,7 @@ msgstr "آستانه"
 msgid "Offset Mesh"
 msgstr "مش بازه از مبدا"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "گره"
 
 msgid "Script"
@@ -1517,7 +1517,7 @@ msgstr "تندی پیمایش عمودی"
 msgid "Drag and Drop Selection"
 msgstr "کشاندن و انداختن برگزیده"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "ماندن درون ویراستار اسکریپت هنگام گزینش گره"
 
 msgid "Use Default Word Separators"
@@ -1988,7 +1988,7 @@ msgstr "شعاع بیرونی"
 msgid "Depth"
 msgstr "عمق"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "مسیر گره"
 
 msgid "Importer"
@@ -2093,7 +2093,7 @@ msgstr "نور"
 msgid "Roots"
 msgstr "ریشه‌ها"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "گرهٔ استخوان گودوت"
 
 msgid "Min Filter"
@@ -2117,7 +2117,7 @@ msgstr "زمان پریدگی"
 msgid "Jolt Physics 3D"
 msgstr "فیزیک جولت سه‌بعدی"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "گرهٔ جهان"
 
 msgid "Region Size"
@@ -2834,10 +2834,10 @@ msgstr "درازا"
 msgid "Initial Offset"
 msgstr "بازه از مبدا آغازین"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "گرهٔ A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "گرهٔ B"
 
 msgid "Disable Collision"
@@ -2988,7 +2988,7 @@ msgstr "به‌کاراندازی برخوردگاه"
 msgid "Use Kinematic Bodies"
 msgstr "بکاربردن بدن‌های جنبشی"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "مسیر گره"
 
 msgid "Max dB"
@@ -3159,7 +3159,7 @@ msgstr "برد نوفه‌زدا"
 msgid "Max Texture Size"
 msgstr "بیشینهٔ اندازهٔ بافت"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "هدف گره"
 
 msgid "From"
@@ -3318,7 +3318,7 @@ msgstr "درخواست گذار"
 msgid "Reset on Save"
 msgstr "بازنشانی هنگام ذخیره"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "ریشهٔ گره"
 
 msgid "Track"
@@ -3759,7 +3759,7 @@ msgstr "A"
 msgid "B"
 msgstr "بایت"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "گرهٔ استخوان دوبعدی"
 
 msgid "Right Corner"

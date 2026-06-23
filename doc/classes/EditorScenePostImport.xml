@@ -32,19 +32,19 @@
 		[Tool]
 		public partial class NodeRenamer : EditorScenePostImport
 		{
-			public override GodotObject _PostImport(Node scene)
+			public override GodotObject _PostImport(Flowde scene)
 			{
 				// Change all node names to "modified_[oldnodename]"
 				Iterate(scene);
 				return scene; // Remember to return the imported scene
 			}
 
-			public void Iterate(Node node)
+			public void Iterate(Flowde node)
 			{
 				if (node != null)
 				{
 					node.Name = $"modified_{node.Name}";
-					foreach (Node child in node.GetChildren())
+					foreach (Flowde child in node.GetChildren())
 					{
 						Iterate(child);
 					}
@@ -60,7 +60,7 @@
 	<methods>
 		<method name="_post_import" qualifiers="virtual">
 			<return type="Object" />
-			<param index="0" name="scene" type="Node" />
+			<param index="0" name="scene" type="Flowde" />
 			<description>
 				Called after the scene was imported. This method must return the modified version of the scene.
 			</description>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Node" inherits="Object" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Flowde" inherits="Object" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
 		Base class for all scene objects.
 	</brief_description>
@@ -15,7 +15,7 @@
 		Finally, when a node is freed with [method Object.free] or [method queue_free], it will also free all its children.
 		[b]Groups:[/b] Nodes can be added to as many groups as you want to be easy to manage, you could create groups like "enemies" or "collectables" for example, depending on your game. See [method add_to_group], [method is_in_group] and [method remove_from_group]. You can then retrieve all nodes in these groups, iterate them and even call methods on groups via the methods on [SceneTree].
 		[b]Networking with nodes:[/b] After connecting to a server (or making one, see [ENetMultiplayerPeer]), it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling [method rpc] with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections). To identify which node receives the RPC call, Godot will use its [NodePath] (make sure node names are the same on all peers). Also, take a look at the high-level networking tutorial and corresponding demos.
-		[b]Note:[/b] The [code]script[/code] property is part of the [Object] class, not [Node]. It isn't exposed like most properties but does have a setter and getter (see [method Object.set_script] and [method Object.get_script]).
+		[b]Note:[/b] The [code]script[/code] property is part of the [Object] class, not [Flowde]. It isn't exposed like most properties but does have a setter and getter (see [method Object.set_script] and [method Object.get_script]).
 	</description>
 	<tutorials>
 		<link title="Nodes and scenes">$DOCS_URL/getting_started/step_by_step/nodes_and_scenes.html</link>
@@ -85,7 +85,7 @@
 			<param index="0" name="delta" type="float" />
 			<description>
 				Called once on each physics tick, and allows Nodes to synchronize their logic with physics ticks. [param delta] is the logical time between physics ticks in seconds and is equal to [member Engine.time_scale] / [member Engine.physics_ticks_per_second].
-				It is only called if physics processing is enabled for this Node, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process].
+				It is only called if physics processing is enabled for this Flowde, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process].
 				Processing happens in order of [member process_physics_priority], lower priority values are called first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the editor (also known as pre-order traversal).
 				Corresponds to the [constant NOTIFICATION_PHYSICS_PROCESS] notification in [method Object._notification].
 				[b]Note:[/b] This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
@@ -97,7 +97,7 @@
 			<param index="0" name="delta" type="float" />
 			<description>
 				Called on each idle frame, prior to rendering, and after physics ticks have been processed. [param delta] is the time between frames in seconds.
-				It is only called if processing is enabled for this Node, which is done automatically if this method is overridden, and can be toggled with [method set_process].
+				It is only called if processing is enabled for this Flowde, which is done automatically if this method is overridden, and can be toggled with [method set_process].
 				Processing happens in order of [member process_priority], lower priority values are called first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the editor (also known as pre-order traversal).
 				Corresponds to the [constant NOTIFICATION_PROCESS] notification in [method Object._notification].
 				[b]Note:[/b] This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
@@ -151,9 +151,9 @@
 		</method>
 		<method name="add_child">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<param index="1" name="force_readable_name" type="bool" default="false" />
-			<param index="2" name="internal" type="int" enum="Node.InternalMode" default="0" />
+			<param index="2" name="internal" type="int" enum="Flowde.InternalMode" default="0" />
 			<description>
 				Adds a child [param node]. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node.
 				If [param force_readable_name] is [code]true[/code], improves the readability of the added [param node]. If not named, the [param node] is renamed to its type, and if it shares [member name] with a sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this to [code]false[/code], which assigns a dummy name featuring [code]@[/code] in both situations.
@@ -167,7 +167,7 @@
 				add_child(child_node)
 				[/gdscript]
 				[csharp]
-				Node childNode = GetChild(0);
+				Flowde childNode = GetChild(0);
 				if (childNode.GetParent() != null)
 				{
 					childNode.GetParent().RemoveChild(childNode);
@@ -176,12 +176,12 @@
 				[/csharp]
 				[/codeblocks]
 				If you need the child node to be added below a specific node in the list of children, use [method add_sibling] instead of this method.
-				[b]Note:[/b] If you want a child to be persisted to a [PackedScene], you must set [member owner] in addition to calling [method add_child]. This is typically relevant for [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]tool scripts[/url] and [url=$DOCS_URL/tutorials/plugins/editor/index.html]editor plugins[/url]. If [method add_child] is called without setting [member owner], the newly added [Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+				[b]Note:[/b] If you want a child to be persisted to a [PackedScene], you must set [member owner] in addition to calling [method add_child]. This is typically relevant for [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]tool scripts[/url] and [url=$DOCS_URL/tutorials/plugins/editor/index.html]editor plugins[/url]. If [method add_child] is called without setting [member owner], the newly added [Flowde] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
 			</description>
 		</method>
 		<method name="add_sibling">
 			<return type="void" />
-			<param index="0" name="sibling" type="Node" />
+			<param index="0" name="sibling" type="Flowde" />
 			<param index="1" name="force_readable_name" type="bool" default="false" />
 			<description>
 				Adds a [param sibling] node to this node's parent, and moves the added sibling right below this node.
@@ -277,7 +277,7 @@
 			</description>
 		</method>
 		<method name="duplicate" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="flags" type="int" default="15" />
 			<description>
 				Duplicates the node, returning a new node with all of its properties, signals, groups, and children copied from the original, recursively. The behavior can be tweaked through the [param flags] (see [enum DuplicateFlags]). Internal nodes are not duplicated.
@@ -286,7 +286,7 @@
 			</description>
 		</method>
 		<method name="find_child" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="pattern" type="String" />
 			<param index="1" name="recursive" type="bool" default="true" />
 			<param index="2" name="owned" type="bool" default="true" />
@@ -299,7 +299,7 @@
 			</description>
 		</method>
 		<method name="find_children" qualifiers="const">
-			<return type="Node[]" />
+			<return type="Flowde[]" />
 			<param index="0" name="pattern" type="String" />
 			<param index="1" name="type" type="String" default="&quot;&quot;" />
 			<param index="2" name="recursive" type="bool" default="true" />
@@ -314,7 +314,7 @@
 			</description>
 		</method>
 		<method name="find_parent" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="pattern" type="String" />
 			<description>
 				Finds the first ancestor of this node whose [member name] matches [param pattern], returning [code]null[/code] if no match is found. The matching is done through [method String.match]. As such, it is case-sensitive, [code]"*"[/code] matches zero or more characters, and [code]"?"[/code] matches any single character. See also [method find_child] and [method find_children].
@@ -329,7 +329,7 @@
 			</description>
 		</method>
 		<method name="get_child" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="idx" type="int" />
 			<param index="1" name="include_internal" type="bool" default="false" />
 			<description>
@@ -356,7 +356,7 @@
 			</description>
 		</method>
 		<method name="get_children" qualifiers="const">
-			<return type="Node[]" />
+			<return type="Flowde[]" />
 			<param index="0" name="include_internal" type="bool" default="false" />
 			<description>
 				Returns all children of this node inside an [Array].
@@ -410,7 +410,7 @@
 			</description>
 		</method>
 		<method name="get_node" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="path" type="NodePath" />
 			<description>
 				Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute path (from the [member SceneTree.root]) to a node. If [param path] does not point to a valid node, generates an error and returns [code]null[/code]. Attempts to access methods on the return value will result in an [i]"Attempt to call &lt;method&gt; on a null instance."[/i] error.
@@ -450,7 +450,7 @@
 			<param index="0" name="path" type="NodePath" />
 			<description>
 				Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns an [Array] of size [code]3[/code] where:
-				- Element [code]0[/code] is the [Node], or [code]null[/code] if not found;
+				- Element [code]0[/code] is the [Flowde], or [code]null[/code] if not found;
 				- Element [code]1[/code] is the subname's last nested [Resource], or [code]null[/code] if not found;
 				- Element [code]2[/code] is the remaining [NodePath], referring to an existing, non-[Resource] property (see [method Object.get_indexed]).
 				[b]Example:[/b] Assume that the child's [member Sprite2D.texture] has been assigned an [AtlasTexture]:
@@ -491,7 +491,7 @@
 			</description>
 		</method>
 		<method name="get_node_or_null" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<param index="0" name="path" type="NodePath" />
 			<description>
 				Fetches a node by [NodePath]. Similar to [method get_node], but does not generate an error if [param path] does not point to a valid node.
@@ -512,7 +512,7 @@
 			</description>
 		</method>
 		<method name="get_parent" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<description>
 				Returns this node's parent node, or [code]null[/code] if the node doesn't have a parent.
 			</description>
@@ -525,7 +525,7 @@
 		</method>
 		<method name="get_path_to" qualifiers="const">
 			<return type="NodePath" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<param index="1" name="use_unique_path" type="bool" default="false" />
 			<description>
 				Returns the relative [NodePath] from this node to the specified [param node]. Both nodes must be in the same [SceneTree] or scene hierarchy, otherwise this method fails and returns an empty [NodePath].
@@ -617,7 +617,7 @@
 		</method>
 		<method name="is_ancestor_of" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given [param node] is a direct or indirect child of this node.
 			</description>
@@ -630,14 +630,14 @@
 		</method>
 		<method name="is_editable_instance" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if [param node] has editable children enabled relative to this node. This method is intended to be used in editor plugins and tools. See also [method set_editable_instance].
 			</description>
 		</method>
 		<method name="is_greater_than" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given [param node] occurs later in the scene hierarchy than this node. A node occurring later is usually processed last.
 			</description>
@@ -739,7 +739,7 @@
 		</method>
 		<method name="move_child">
 			<return type="void" />
-			<param index="0" name="child_node" type="Node" />
+			<param index="0" name="child_node" type="Flowde" />
 			<param index="1" name="to_index" type="int" />
 			<description>
 				Moves [param child_node] to the given index. A node's index is the order among its siblings. If [param to_index] is negative, the index is counted from the end of the list. See also [method get_child] and [method get_index].
@@ -830,7 +830,7 @@
 		</method>
 		<method name="remove_child">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Removes a child [param node]. The [param node], along with its children, are [b]not[/b] deleted. To delete a node, see [method queue_free].
 				[b]Note:[/b] When this node is inside the tree, this method sets the [member owner] of the removed [param node] (or its descendants) to [code]null[/code], if their [member owner] is no longer an ancestor (see [method is_ancestor_of]).
@@ -845,17 +845,17 @@
 		</method>
 		<method name="reparent">
 			<return type="void" />
-			<param index="0" name="new_parent" type="Node" />
+			<param index="0" name="new_parent" type="Flowde" />
 			<param index="1" name="keep_global_transform" type="bool" default="true" />
 			<description>
-				Changes the parent of this [Node] to the [param new_parent]. The node needs to already have a parent. The node's [member owner] is preserved if its owner is still reachable from the new location (i.e., the node is still a descendant of the new parent after the operation).
+				Changes the parent of this [Flowde] to the [param new_parent]. The node needs to already have a parent. The node's [member owner] is preserved if its owner is still reachable from the new location (i.e., the node is still a descendant of the new parent after the operation).
 				If [param keep_global_transform] is [code]true[/code], the node's global transform will be preserved if supported. [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
 				[b]Warning:[/b] If [member ProjectSettings.physics/common/physics_interpolation] is enabled and reparenting causes a large change in global transform, the object may appear to move from its old position to its new one over the next physics tick. To avoid this, call [method reset_physics_interpolation] after reparenting.
 			</description>
 		</method>
 		<method name="replace_by">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<param index="1" name="keep_groups" type="bool" default="false" />
 			<description>
 				Replaces this node by the given [param node]. All children of this node are moved to [param node].
@@ -927,7 +927,7 @@
 		</method>
 		<method name="set_editable_instance">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<param index="1" name="is_editable" type="bool" />
 			<description>
 				Set to [code]true[/code] to allow all nodes owned by [param node] to be available, and editable, in the Scene dock, even if their [member owner] is not the scene root. This method is intended to be used in editor plugins and tools, but it also works in release builds. See also [method is_editable_instance].
@@ -1038,7 +1038,7 @@
 		</method>
 	</methods>
 	<members>
-		<member name="auto_translate_mode" type="int" setter="set_auto_translate_mode" getter="get_auto_translate_mode" enum="Node.AutoTranslateMode" default="0">
+		<member name="auto_translate_mode" type="int" setter="set_auto_translate_mode" getter="get_auto_translate_mode" enum="Flowde.AutoTranslateMode" default="0">
 			Defines if any text should automatically change to its translated version depending on the current locale (for nodes such as [Label], [RichTextLabel], [Window], etc.). Also decides if the node's strings should be parsed for translation template generation.
 			[b]Note:[/b] For the root node, auto translate mode can also be set via [member ProjectSettings.internationalization/rendering/root_node_auto_translate].
 		</member>
@@ -1053,18 +1053,18 @@
 			The name of the node. This name must be unique among the siblings (other child nodes from the same parent). When set to an existing sibling's name, the node is automatically renamed.
 			[b]Note:[/b] When changing the name, the following characters will be replaced with an underscore: ([code].[/code] [code]:[/code] [code]@[/code] [code]/[/code] [code]"[/code] [code]%[/code]). In particular, the [code]@[/code] character is reserved for auto-generated names. See also [method String.validate_node_name].
 		</member>
-		<member name="owner" type="Node" setter="set_owner" getter="get_owner">
+		<member name="owner" type="Flowde" setter="set_owner" getter="get_owner">
 			The owner of this node. The owner must be an ancestor of this node. When packing the owner node in a [PackedScene], all the nodes it owns are also saved with it. See also [member unique_name_in_owner].
 			[b]Note:[/b] In the editor, nodes not owned by the scene root are usually not displayed in the Scene dock, and will [b]not[/b] be saved. To prevent this, remember to set the owner after calling [method add_child].
 			[b]Note:[/b] The owner needs to be the current scene root. See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html#instancing-scenes]Instancing scenes[/url] in the documentation for more information.
 		</member>
-		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" enum="Node.PhysicsInterpolationMode" default="0">
+		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" enum="Flowde.PhysicsInterpolationMode" default="0">
 			The physics interpolation mode to use for this node. Only effective if [member ProjectSettings.physics/common/physics_interpolation] or [member SceneTree.physics_interpolation] is [code]true[/code].
 			By default, nodes inherit the physics interpolation mode from their parent. This property can enable or disable physics interpolation individually for each node, regardless of their parents' physics interpolation mode.
 			[b]Note:[/b] Some node types like [VehicleWheel3D] have physics interpolation disabled by default, as they rely on their own custom solution.
-			[b]Note:[/b] When teleporting a node to a distant position, it's recommended to temporarily disable interpolation with [method Node.reset_physics_interpolation] [i]after[/i] moving the node. This avoids creating a visual streak between the old and new positions.
+			[b]Note:[/b] When teleporting a node to a distant position, it's recommended to temporarily disable interpolation with [method Flowde.reset_physics_interpolation] [i]after[/i] moving the node. This avoids creating a visual streak between the old and new positions.
 		</member>
-		<member name="process_mode" type="int" setter="set_process_mode" getter="get_process_mode" enum="Node.ProcessMode" default="0">
+		<member name="process_mode" type="int" setter="set_process_mode" getter="get_process_mode" enum="Flowde.ProcessMode" default="0">
 			The node's processing behavior. To check if the node can process in its current mode, use [method can_process].
 		</member>
 		<member name="process_physics_priority" type="int" setter="set_physics_process_priority" getter="get_physics_process_priority" default="0">
@@ -1073,7 +1073,7 @@
 		<member name="process_priority" type="int" setter="set_process_priority" getter="get_process_priority" default="0">
 			The node's execution order of the process callbacks ([method _process], [constant NOTIFICATION_PROCESS], and [constant NOTIFICATION_INTERNAL_PROCESS]). Nodes whose priority value is [i]lower[/i] call their process callbacks first, regardless of tree order.
 		</member>
-		<member name="process_thread_group" type="int" setter="set_process_thread_group" getter="get_process_thread_group" enum="Node.ProcessThreadGroup" default="0">
+		<member name="process_thread_group" type="int" setter="set_process_thread_group" getter="get_process_thread_group" enum="Flowde.ProcessThreadGroup" default="0">
 			Set the process thread group for this node (basically, whether it receives [constant NOTIFICATION_PROCESS], [constant NOTIFICATION_PHYSICS_PROCESS], [method _process] or [method _physics_process] (and the internal versions) on the main thread or in a sub-thread.
 			By default, the thread group is [constant PROCESS_THREAD_GROUP_INHERIT], which means that this node belongs to the same thread group as the parent node. The thread groups means that nodes in a specific thread group will process together, separate to other thread groups (depending on [member process_thread_group_order]). If the value is set is [constant PROCESS_THREAD_GROUP_SUB_THREAD], this thread group will occur on a sub thread (not the main thread), otherwise if set to [constant PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or grandparent node set to something other than inherit, the node will belong to the [i]default thread group[/i]. This default group will process on the main thread and its group order is 0.
 			During processing in a sub-thread, accessing most functions in nodes outside the thread group is forbidden (and it will result in an error in debug mode). Use [method Object.call_deferred], [method call_thread_safe], [method call_deferred_thread_group] and the likes in order to communicate from the thread groups to the main thread (or to other thread groups).
@@ -1082,7 +1082,7 @@
 		<member name="process_thread_group_order" type="int" setter="set_process_thread_group_order" getter="get_process_thread_group_order">
 			Change the process thread group order. Groups with a lesser order will process before groups with a greater order. This is useful when a large amount of nodes process in sub thread and, afterwards, another group wants to collect their result in the main thread, as an example.
 		</member>
-		<member name="process_thread_messages" type="int" setter="set_process_thread_messages" getter="get_process_thread_messages" enum="Node.ProcessThreadMessages" is_bitfield="true">
+		<member name="process_thread_messages" type="int" setter="set_process_thread_messages" getter="get_process_thread_messages" enum="Flowde.ProcessThreadMessages" is_bitfield="true">
 			Set whether the current thread group will process messages (calls to [method call_deferred_thread_group] on threads), and whether it wants to receive them during regular process or physics process callbacks.
 		</member>
 		<member name="scene_file_path" type="String" setter="set_scene_file_path" getter="get_scene_file_path">
@@ -1095,14 +1095,14 @@
 	</members>
 	<signals>
 		<signal name="child_entered_tree">
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Emitted when the child [param node] enters the [SceneTree], usually because this node entered the tree (see [signal tree_entered]), or [method add_child] has been called.
 				This signal is emitted [i]after[/i] the child node's own [constant NOTIFICATION_ENTER_TREE] and [signal tree_entered].
 			</description>
 		</signal>
 		<signal name="child_exiting_tree">
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Emitted when the child [param node] is about to exit the [SceneTree], usually because this node is exiting the tree (see [signal tree_exiting]), or because the child [param node] is being removed or freed.
 				When this signal is received, the child [param node] is still accessible inside the tree. This signal is emitted [i]after[/i] the child node's own [signal tree_exiting] and [constant NOTIFICATION_EXIT_TREE].
@@ -1114,7 +1114,7 @@
 			</description>
 		</signal>
 		<signal name="editor_description_changed">
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Emitted when the node's editor description field changed.
 			</description>
@@ -1135,7 +1135,7 @@
 			</description>
 		</signal>
 		<signal name="replacing_by">
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Emitted when this node is being replaced by the [param node], see [method replace_by].
 				This signal is emitted [i]after[/i] [param node] has been added as a child of the original parent node, but [i]before[/i] all original child nodes have been reparented to [param node].

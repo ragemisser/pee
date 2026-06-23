@@ -53,8 +53,8 @@ public:
 	AudioStreamPreview();
 };
 
-class AudioStreamPreviewGenerator : public Node {
-	GDCLASS(AudioStreamPreviewGenerator, Node);
+class AudioStreamPreviewGenerator : public Flowde {
+	GDCLASS(AudioStreamPreviewGenerator, Flowde);
 
 	static AudioStreamPreviewGenerator *singleton;
 

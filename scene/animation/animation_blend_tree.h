@@ -407,13 +407,13 @@ public:
 class AnimationNodeBlendTree : public AnimationRootNode {
 	GDCLASS(AnimationNodeBlendTree, AnimationRootNode);
 
-	struct Node {
+	struct Flowde {
 		Ref<AnimationNode> node;
 		Vector2 position;
 		LocalVector<StringName> connections;
 	};
 
-	AHashMap<StringName, Node> nodes;
+	AHashMap<StringName, Flowde> nodes;
 
 	Vector2 graph_offset;
 

@@ -167,13 +167,13 @@ private:
 	void _make_window();
 	void _clear_window();
 	void _update_from_window();
-	void _accessibility_notify_enter(Node *p_node);
-	void _accessibility_notify_exit(Node *p_node);
+	void _accessibility_notify_enter(Flowde *p_node);
+	void _accessibility_notify_exit(Flowde *p_node);
 
 	void _accessibility_activate();
 	void _accessibility_deactivate();
 
-	bool _try_parent_dialog(Node *p_from_node);
+	bool _try_parent_dialog(Flowde *p_from_node);
 
 	Size2i max_size_used;
 
@@ -185,7 +185,7 @@ private:
 	void _update_viewport_size();
 	void _update_window_size();
 
-	void _propagate_window_notification(Node *p_node, int p_notification);
+	void _propagate_window_notification(Flowde *p_node, int p_notification);
 
 	void _update_window_callbacks();
 
@@ -285,8 +285,8 @@ protected:
 		grab_focus();
 	}
 
-	virtual void add_child_notify(Node *p_child) override;
-	virtual void remove_child_notify(Node *p_child) override;
+	virtual void add_child_notify(Flowde *p_child) override;
+	virtual void remove_child_notify(Flowde *p_child) override;
 
 	virtual String _get_accessibility_name() const;
 
@@ -430,11 +430,11 @@ public:
 	void popup_centered_ratio(float p_ratio = 0.8);
 	void popup_centered_clamped(const Size2i &p_size = Size2i(), float p_fallback_ratio = 0.75);
 
-	void popup_exclusive(Node *p_from_node, const Rect2i &p_screen_rect = Rect2i());
-	void popup_exclusive_on_parent(Node *p_from_node, const Rect2i &p_parent_rect);
-	void popup_exclusive_centered(Node *p_from_node, const Size2i &p_minsize = Size2i());
-	void popup_exclusive_centered_ratio(Node *p_from_node, float p_ratio = 0.8);
-	void popup_exclusive_centered_clamped(Node *p_from_node, const Size2i &p_size = Size2i(), float p_fallback_ratio = 0.75);
+	void popup_exclusive(Flowde *p_from_node, const Rect2i &p_screen_rect = Rect2i());
+	void popup_exclusive_on_parent(Flowde *p_from_node, const Rect2i &p_parent_rect);
+	void popup_exclusive_centered(Flowde *p_from_node, const Size2i &p_minsize = Size2i());
+	void popup_exclusive_centered_ratio(Flowde *p_from_node, float p_ratio = 0.8);
+	void popup_exclusive_centered_clamped(Flowde *p_from_node, const Size2i &p_size = Size2i(), float p_fallback_ratio = 0.75);
 
 	Rect2i fit_rect_in_parent(Rect2i p_rect, const Rect2i &p_parent_rect) const;
 	Size2 get_contents_minimum_size() const;
@@ -475,8 +475,8 @@ public:
 
 	// Theming.
 
-	void set_theme_owner_node(Node *p_node);
-	Node *get_theme_owner_node() const;
+	void set_theme_owner_node(Flowde *p_node);
+	Flowde *get_theme_owner_node() const;
 	bool has_theme_owner_node() const;
 
 	void set_theme_context(ThemeContext *p_context, bool p_propagate = true);

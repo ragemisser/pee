@@ -1589,7 +1589,7 @@ void TileDataCollisionEditor::_property_selected(const StringName &p_path, int p
 
 void TileDataCollisionEditor::_polygons_changed() {
 	// Clear old labels first to prevent duplicates.
-	for (Node *child : iterate_children()) {
+	for (Flowde *child : iterate_children()) {
 		if (Object::cast_to<Label>(child)) {
 			child->queue_free();
 		}

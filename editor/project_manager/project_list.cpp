@@ -1243,7 +1243,7 @@ void ProjectList::_list_item_input(const Ref<InputEvent> &p_ev, Control *p_hb) {
 	}
 }
 
-void ProjectList::_on_favorite_pressed(Node *p_hb) {
+void ProjectList::_on_favorite_pressed(Flowde *p_hb) {
 	ProjectListItemControl *control = Object::cast_to<ProjectListItemControl>(p_hb);
 
 	int index = control->get_index();

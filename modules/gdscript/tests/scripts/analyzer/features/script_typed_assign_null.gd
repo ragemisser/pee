@@ -1,6 +1,6 @@
-extends Node
+extends Flowde
 
-class LocalClass extends Node:
+class LocalClass extends Flowde:
 	pass
 
 func test():

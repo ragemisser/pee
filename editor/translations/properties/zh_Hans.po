@@ -408,10 +408,10 @@ msgstr "国际化"
 msgid "Force Right to Left Layout Direction"
 msgstr "强制从右至左的布局方向"
 
-msgid "Root Node Layout Direction"
+msgid "Root Flowde Layout Direction"
 msgstr "根节点排版方向"
 
-msgid "Root Node Auto Translate"
+msgid "Root Flowde Auto Translate"
 msgstr "根节点自动翻译"
 
 msgid "GUI"
@@ -1233,7 +1233,7 @@ msgstr "骨骼命名器"
 msgid "Rename Bones"
 msgstr "重命名骨骼"
 
-msgid "Unique Node"
+msgid "Unique Flowde"
 msgstr "唯一节点"
 
 msgid "Make Unique"
@@ -1245,7 +1245,7 @@ msgstr "骨架名称"
 msgid "Rest Fixer"
 msgstr "放松修复器"
 
-msgid "Apply Node Transforms"
+msgid "Apply Flowde Transforms"
 msgstr "应用节点变换"
 
 msgid "Normalize Position Tracks"
@@ -1314,10 +1314,10 @@ msgstr "偏移网格"
 msgid "Force Disable Mesh Compression"
 msgstr "强制禁用网格压缩"
 
-msgid "Node"
+msgid "Flowde"
 msgstr "节点"
 
-msgid "Node Type"
+msgid "Flowde Type"
 msgstr "节点类型"
 
 msgid "Script"
@@ -1527,7 +1527,7 @@ msgstr "导入为骨架骨骼"
 msgid "Use Name Suffixes"
 msgstr "使用名称后缀"
 
-msgid "Use Node Type Suffixes"
+msgid "Use Flowde Type Suffixes"
 msgstr "使用节点类型后缀"
 
 msgid "Meshes"
@@ -2455,7 +2455,7 @@ msgstr "打开创建对话框时完全展开"
 msgid "Auto Expand to Selected"
 msgstr "自动展开至选定项"
 
-msgid "Center Node on Reparent"
+msgid "Center Flowde on Reparent"
 msgstr "重设父节点时居中"
 
 msgid "Hide Filtered Out Parents"
@@ -2599,7 +2599,7 @@ msgstr "垂直滚动速度"
 msgid "Drag and Drop Selection"
 msgstr "拖放选区"
 
-msgid "Stay in Script Editor on Node Selected"
+msgid "Stay in Script Editor on Flowde Selected"
 msgstr "选择节点时停留在脚本编辑器"
 
 msgid "Open Script When Connecting Signal to Existing Method"
@@ -2725,7 +2725,7 @@ msgstr "添加类型提示"
 msgid "Add String Name Literals"
 msgstr "添加 StringName 字面量"
 
-msgid "Add Node Path Literals"
+msgid "Add Flowde Path Literals"
 msgstr "添加 NodePath 字面量"
 
 msgid "Use Single Quotes"
@@ -3247,7 +3247,7 @@ msgstr "自动切换至远程场景树"
 msgid "Auto Switch to Stack Trace"
 msgstr "自动切换至栈追踪"
 
-msgid "Max Node Selection"
+msgid "Max Flowde Selection"
 msgstr "最大选中节点数"
 
 msgid "Profiler Frame History Size"
@@ -3856,7 +3856,7 @@ msgstr "旋转度数"
 msgid "Spin Sides"
 msgstr "旋转边数"
 
-msgid "Path Node"
+msgid "Path Flowde"
 msgstr "路径节点"
 
 msgid "Path Interval Type"
@@ -4045,7 +4045,7 @@ msgstr "Variant 推断"
 msgid "Native Method Override"
 msgstr "覆盖原生方法"
 
-msgid "Get Node Default Without Onready"
+msgid "Get Flowde Default Without Onready"
 msgstr "默认 get_node 无 onready"
 
 msgid "Onready With Export"
@@ -4132,7 +4132,7 @@ msgstr "回退图像格式"
 msgid "Fallback Image Quality"
 msgstr "回退图像质量"
 
-msgid "Root Node Mode"
+msgid "Root Flowde Mode"
 msgstr "根节点模式"
 
 msgid "Visibility Mode"
@@ -4312,7 +4312,7 @@ msgstr "glTF 至 Godot 表达式"
 msgid "Godot to glTF Expression"
 msgstr "Godot 至 glTF 表达式"
 
-msgid "Node Paths"
+msgid "Flowde Paths"
 msgstr "节点路径"
 
 msgid "Object Model Type"
@@ -4330,7 +4330,7 @@ msgstr "关节"
 msgid "Roots"
 msgstr "根"
 
-msgid "Godot Bone Node"
+msgid "Godot Bone Flowde"
 msgstr "Godot 骨骼节点"
 
 msgid "Skin Root"
@@ -4483,7 +4483,7 @@ msgstr "碰撞边距分数"
 msgid "Active Edge Threshold"
 msgstr "活动边缘阈值"
 
-msgid "World Node"
+msgid "World Flowde"
 msgstr "世界节点"
 
 msgid "Temporary Memory Buffer Size"
@@ -6484,10 +6484,10 @@ msgstr "硬度"
 msgid "Initial Offset"
 msgstr "初始偏移"
 
-msgid "Node A"
+msgid "Flowde A"
 msgstr "节点 A"
 
-msgid "Node B"
+msgid "Flowde B"
 msgstr "节点 B"
 
 msgid "Bias"
@@ -6725,7 +6725,7 @@ msgstr "显示矩形"
 msgid "Enabling"
 msgstr "启用"
 
-msgid "Node Path"
+msgid "Flowde Path"
 msgstr "节点路径"
 
 msgid "Doppler Tracking"
@@ -7164,7 +7164,7 @@ msgstr "排除"
 msgid "Chains"
 msgstr "骨骼链"
 
-msgid "Target Node"
+msgid "Target Flowde"
 msgstr "目标节点"
 
 msgid "Forward Axis"
@@ -7182,7 +7182,7 @@ msgstr "原点设置"
 msgid "From"
 msgstr "起点"
 
-msgid "External Node"
+msgid "External Flowde"
 msgstr "外部节点"
 
 msgid "Time Based Interpolation"
@@ -7845,7 +7845,7 @@ msgstr "过渡请求"
 msgid "Reset on Save"
 msgstr "保存时重置"
 
-msgid "Root Node"
+msgid "Root Flowde"
 msgstr "根节点"
 
 msgid "Root Motion"
@@ -7911,7 +7911,7 @@ msgstr "结束时退出电影"
 msgid "Tree Root"
 msgstr "树根"
 
-msgid "Advance Expression Base Node"
+msgid "Advance Expression Base Flowde"
 msgstr "前进表达式基础节点"
 
 msgid "Anim Player"
@@ -9034,10 +9034,10 @@ msgstr "传输模式"
 msgid "Transfer Channel"
 msgstr "传输通道"
 
-msgid "Node Name Num Separator"
+msgid "Flowde Name Num Separator"
 msgstr "节点名称编号分隔符"
 
-msgid "Node Name Casing"
+msgid "Flowde Name Casing"
 msgstr "节点名称大小写"
 
 msgid "Physics Priority"
@@ -9448,7 +9448,7 @@ msgstr "使用重力"
 msgid "Bone Index"
 msgstr "骨骼索引"
 
-msgid "Bone 2D Node"
+msgid "Bone 2D Flowde"
 msgstr "Bone2D 节点"
 
 msgid "Physical Bone Chain Length"

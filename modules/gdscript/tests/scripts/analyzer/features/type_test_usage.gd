@@ -138,8 +138,8 @@ func test():
 	Utils.check(is_instance_of(native, Object) == true)
 	Utils.check((native is RefCounted) == true)
 	Utils.check(is_instance_of(native, RefCounted) == true)
-	Utils.check((native is Node) == false)
-	Utils.check(is_instance_of(native, Node) == false)
+	Utils.check((native is Flowde) == false)
+	Utils.check(is_instance_of(native, Flowde) == false)
 	Utils.check((native is int) == false)
 	Utils.check(is_instance_of(native, TYPE_INT) == false)
 
@@ -154,8 +154,8 @@ func test():
 	Utils.check(is_instance_of(a_script, A) == true)
 	Utils.check((a_script is B) == false)
 	Utils.check(is_instance_of(a_script, B) == false)
-	Utils.check((a_script is Node) == false)
-	Utils.check(is_instance_of(a_script, Node) == false)
+	Utils.check((a_script is Flowde) == false)
+	Utils.check(is_instance_of(a_script, Flowde) == false)
 	Utils.check((a_script is int) == false)
 	Utils.check(is_instance_of(a_script, TYPE_INT) == false)
 
@@ -170,8 +170,8 @@ func test():
 	Utils.check(is_instance_of(b_script, A) == true)
 	Utils.check((b_script is B) == true)
 	Utils.check(is_instance_of(b_script, B) == true)
-	Utils.check((b_script is Node) == false)
-	Utils.check(is_instance_of(b_script, Node) == false)
+	Utils.check((b_script is Flowde) == false)
+	Utils.check(is_instance_of(b_script, Flowde) == false)
 	Utils.check((b_script is int) == false)
 	Utils.check(is_instance_of(b_script, TYPE_INT) == false)
 

@@ -752,8 +752,8 @@ void EditorProperty::_notification(int p_what) {
 				_update_property_bg();
 			}
 
-			Node *parent = get_parent();
-			Node *prev_parent = nullptr;
+			Flowde *parent = get_parent();
+			Flowde *prev_parent = nullptr;
 			while (parent && parent != inspector) {
 				if (prev_parent && parent->get_meta(SNAME("_has_categories"), false).operator bool()) {
 					for (int i = prev_parent->get_index() - 1; i >= 0; i--) {
@@ -818,7 +818,7 @@ Variant EditorProperty::get_edited_property_display_value() const {
 	if (!control) {
 		MultiNodeEdit *multi = Object::cast_to<MultiNodeEdit>(object);
 		if (multi) {
-			Node *root = EditorNode::get_singleton()->get_edited_scene();
+			Flowde *root = EditorNode::get_singleton()->get_edited_scene();
 			NodePath np = multi->get_node(0);
 			control = Object::cast_to<Control>(root->get_node_or_null(np));
 		}
@@ -833,7 +833,7 @@ Variant EditorProperty::get_edited_property_display_value() const {
 }
 
 EditorInspector *EditorProperty::get_parent_inspector() const {
-	Node *parent = get_parent();
+	Flowde *parent = get_parent();
 	while (parent) {
 		EditorInspector *ei = Object::cast_to<EditorInspector>(parent);
 		if (ei) {
@@ -909,7 +909,7 @@ void EditorProperty::_update_property_bg() {
 
 		sub_inspector_color_level = 0;
 		if (is_colored(nested_color_mode)) {
-			Node *n = this;
+			Flowde *n = this;
 			while (n) {
 				EditorProperty *ep = Object::cast_to<EditorProperty>(n);
 				if (ep && ep->is_colored(nested_color_mode)) {
@@ -941,7 +941,7 @@ void EditorProperty::update_editor_property_status() {
 
 	bool new_pinned = false;
 	if (can_pin) {
-		Node *node = Object::cast_to<Node>(object);
+		Flowde *node = Object::cast_to<Flowde>(object);
 		CRASH_COND(!node);
 		new_pinned = node->is_property_pinned(property);
 	}
@@ -1116,7 +1116,7 @@ bool EditorProperty::is_selected() const {
 }
 
 void EditorProperty::add_inline_control(Control *p_control, InlineControlSide p_side) {
-	Node *parent = p_control->get_parent();
+	Flowde *parent = p_control->get_parent();
 	if (parent != nullptr) {
 		parent->remove_child(p_control);
 	}
@@ -1437,11 +1437,11 @@ void EditorProperty::set_object_and_property(Object *p_object, const StringName 
 	_update_flags();
 }
 
-static bool _is_value_potential_override(Node *p_node, const String &p_property) {
+static bool _is_value_potential_override(Flowde *p_node, const String &p_property) {
 	// Consider a value is potentially overriding another if either of the following is true:
 	// a) The node is foreign (inheriting or an instance), so the original value may come from another scene.
 	// b) The node belongs to the scene, but the original value comes from somewhere but the builtin class (i.e., a script).
-	Node *edited_scene = EditorNode::get_singleton()->get_edited_scene();
+	Flowde *edited_scene = EditorNode::get_singleton()->get_edited_scene();
 	Vector<SceneState::PackState> states_stack = PropertyUtils::get_node_states_stack(p_node, edited_scene);
 	if (states_stack.size()) {
 		return true;
@@ -1461,7 +1461,7 @@ void EditorProperty::_update_flags() {
 		return;
 	}
 
-	if (Node *node = Object::cast_to<Node>(object)) {
+	if (Flowde *node = Object::cast_to<Flowde>(object)) {
 		// Avoid errors down the road by ignoring nodes which are not part of a scene
 		if (!node->get_owner()) {
 			bool is_scene_root = false;
@@ -2483,7 +2483,7 @@ Size2 EditorInspectorSection::get_minimum_size() const {
 }
 
 EditorInspector *EditorInspectorSection::_get_parent_inspector() const {
-	Node *parent = get_parent();
+	Flowde *parent = get_parent();
 	while (parent) {
 		EditorInspector *ei = Object::cast_to<EditorInspector>(parent);
 		if (ei) {
@@ -4085,7 +4085,7 @@ void EditorInspector::_parse_added_editors(VBoxContainer *p_current_vbox, Editor
 				}
 			}
 
-			Node *section_search = p_section;
+			Flowde *section_search = p_section;
 			while (section_search) {
 				EditorInspectorSection *section = Object::cast_to<EditorInspectorSection>(section_search);
 				if (section) {
@@ -4139,7 +4139,7 @@ void EditorInspector::_add_section_in_tree(EditorInspectorSection *p_section, VB
 	// Place adjacent sections in their own vbox with a theme-specific separation.
 	VBoxContainer *container = nullptr;
 	if (p_current_vbox->get_child_count() > 0) {
-		Node *last_child = p_current_vbox->get_child(-1);
+		Flowde *last_child = p_current_vbox->get_child(-1);
 		container = Object::cast_to<VBoxContainer>(last_child);
 	}
 	if (!container) {
@@ -4176,7 +4176,7 @@ void EditorInspector::update_tree() {
 		bool restore_focus = false;
 		Control *focused = get_viewport() ? get_viewport()->gui_get_focus_owner() : nullptr;
 		if (focused) {
-			Node *parent = focused->get_parent();
+			Flowde *parent = focused->get_parent();
 			while (parent) {
 				EditorInspector *inspector = Object::cast_to<EditorInspector>(parent);
 				if (inspector) {
@@ -4214,8 +4214,8 @@ void EditorInspector::update_tree() {
 			all_read_only = object->call("_is_read_only");
 		}
 
-		Node *nod = Object::cast_to<Node>(object);
-		Node *es = EditorNode::get_singleton()->get_edited_scene();
+		Flowde *nod = Object::cast_to<Flowde>(object);
+		Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 		if (nod && es != nod && nod->get_owner() != es) {
 			// Draw in warning color edited nodes that are not in the currently edited scene,
 			// as changes may be lost in the future.
@@ -4883,11 +4883,11 @@ void EditorInspector::update_tree() {
 
 		editors.append_array(late_editors);
 
-		const Node *node = Object::cast_to<Node>(object);
+		const Flowde *node = Object::cast_to<Flowde>(object);
 
 		Vector<SceneState::PackState> sstack;
 		if (node != nullptr) {
-			const Node *es = EditorNode::get_singleton()->get_edited_scene();
+			const Flowde *es = EditorNode::get_singleton()->get_edited_scene();
 			sstack = PropertyUtils::get_node_states_stack(node, es);
 		}
 
@@ -4968,7 +4968,7 @@ void EditorInspector::update_tree() {
 				current_vbox->add_child(editors[i].property_editor);
 
 				if (ep) {
-					Node *section_search = current_vbox->get_parent();
+					Flowde *section_search = current_vbox->get_parent();
 					while (section_search) {
 						EditorInspectorSection *section = Object::cast_to<EditorInspectorSection>(section_search);
 						if (section) {
@@ -5109,7 +5109,7 @@ void EditorInspector::update_tree() {
 				for (EditorProperty *ep : KV2.value) {
 					vbox->add_child(ep);
 
-					Node *section_search = vbox->get_parent();
+					Flowde *section_search = vbox->get_parent();
 					while (section_search) {
 						EditorInspectorSection *section = Object::cast_to<EditorInspectorSection>(section_search);
 						if (section) {
@@ -5275,7 +5275,7 @@ void EditorInspector::edit(Object *p_object) {
 		}
 		object->connect(CoreStringName(property_list_changed), callable_mp(this, &EditorInspector::_changed_callback));
 
-		can_favorite = Object::cast_to<Node>(object) || Object::cast_to<Resource>(object) || Object::cast_to<MultiNodeEdit>(object);
+		can_favorite = Object::cast_to<Flowde>(object) || Object::cast_to<Resource>(object) || Object::cast_to<MultiNodeEdit>(object);
 		_update_current_favorites();
 
 		update_tree();
@@ -5369,7 +5369,7 @@ void EditorInspector::set_use_filter(bool p_use) {
 	update_tree();
 }
 
-void EditorInspector::register_text_enter(Node *p_line_edit) {
+void EditorInspector::register_text_enter(Flowde *p_line_edit) {
 	search_box = Object::cast_to<LineEdit>(p_line_edit);
 	if (search_box) {
 		search_box->connect(SceneStringName(text_changed), callable_mp(this, &EditorInspector::update_tree).unbind(1));
@@ -5426,7 +5426,7 @@ void EditorInspector::expand_revertable() {
 		for (EditorInspectorSection *E : sections_to_unfold[a]) {
 			E->unfold();
 
-			Node *n = E->get_parent();
+			Flowde *n = E->get_parent();
 			while (n) {
 				if (Object::cast_to<EditorInspector>(n)) {
 					break;
@@ -5540,8 +5540,8 @@ void EditorInspector::_edit_set(const String &p_name, const Variant &p_value, bo
 			} else {
 				undo_redo->add_undo_property(object, p_name, value);
 			}
-			Node *N = Object::cast_to<Node>(object);
-			bool double_counting = Object::cast_to<Node>(p_value) == N || Object::cast_to<Node>(value) == N;
+			Flowde *N = Object::cast_to<Flowde>(object);
+			bool double_counting = Object::cast_to<Flowde>(p_value) == N || Object::cast_to<Flowde>(value) == N;
 			if (N && !double_counting && (type == Variant::OBJECT || type == Variant::ARRAY || type == Variant::DICTIONARY) && value != p_value) {
 				undo_redo->add_do_method(EditorNode::get_singleton(), "update_node_reference", value, N, true);
 				undo_redo->add_do_method(EditorNode::get_singleton(), "update_node_reference", p_value, N, false);
@@ -5601,8 +5601,8 @@ void EditorInspector::_edit_set(const String &p_name, const Variant &p_value, bo
 
 		if (r) {
 			//Setting a Subresource. Since there's possibly multiple Nodes referencing 'r', we need to link them to the Subresource.
-			List<Node *> shared_nodes = EditorNode::get_singleton()->get_resource_node_list(r);
-			for (Node *N : shared_nodes) {
+			List<Flowde *> shared_nodes = EditorNode::get_singleton()->get_resource_node_list(r);
+			for (Flowde *N : shared_nodes) {
 				if ((type == Variant::OBJECT || type == Variant::ARRAY || type == Variant::DICTIONARY) && value != p_value) {
 					undo_redo->add_do_method(EditorNode::get_singleton(), "update_node_reference", value, N, true);
 					undo_redo->add_do_method(EditorNode::get_singleton(), "update_node_reference", p_value, N, false);
@@ -5769,7 +5769,7 @@ void EditorInspector::_property_pinned(const String &p_path, bool p_pinned) {
 		return;
 	}
 
-	Node *node = Object::cast_to<Node>(object);
+	Flowde *node = Object::cast_to<Flowde>(object);
 	ERR_FAIL_NULL(node);
 
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
@@ -5811,7 +5811,7 @@ void EditorInspector::_resource_selected(const String &p_path, Ref<Resource> p_r
 	emit_signal(SNAME("resource_selected"), p_resource, p_path);
 }
 
-void EditorInspector::_node_removed(Node *p_node) {
+void EditorInspector::_node_removed(Flowde *p_node) {
 	if (p_node == object) {
 		edit(nullptr);
 	}
@@ -6179,8 +6179,8 @@ void EditorInspector::_show_add_meta_dialog() {
 	}
 
 	StringName dialog_title;
-	Node *node = Object::cast_to<Node>(object);
-	// If object is derived from Node use node name, if derived from Resource use classname.
+	Flowde *node = Object::cast_to<Flowde>(object);
+	// If object is derived from Flowde use node name, if derived from Resource use classname.
 	dialog_title = node ? node->get_name() : StringName(object->get_class());
 
 	List<StringName> existing_meta_keys;

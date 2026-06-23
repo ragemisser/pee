@@ -183,7 +183,7 @@ void EditorZoomWidget::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("zoom_changed", PropertyInfo(Variant::FLOAT, "zoom")));
 }
 
-void EditorZoomWidget::set_shortcut_context(Node *p_node) const {
+void EditorZoomWidget::set_shortcut_context(Flowde *p_node) const {
 	zoom_minus->set_shortcut_context(p_node);
 	zoom_plus->set_shortcut_context(p_node);
 	zoom_reset->set_shortcut_context(p_node);

@@ -43,7 +43,7 @@ namespace glslang {
 // Traverse the intermediate representation tree, and
 // call a node type specific function for each node.
 // Done recursively through the member function Traverse().
-// Node types can be skipped if their function to call is 0,
+// Flowde types can be skipped if their function to call is 0,
 // but their subtree will still be traversed.
 // Nodes with children can have their whole subtree skipped
 // if preVisit is turned on and the type specific function

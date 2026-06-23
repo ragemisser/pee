@@ -106,7 +106,7 @@
 		<method name="poll">
 			<return type="int" enum="Error" />
 			<description>
-				Call this method frequently (e.g. in [method Node._process] or [method Node._physics_process]) to properly receive signals.
+				Call this method frequently (e.g. in [method Flowde._process] or [method Flowde._physics_process]) to properly receive signals.
 			</description>
 		</method>
 		<method name="set_default_extension" qualifiers="static">

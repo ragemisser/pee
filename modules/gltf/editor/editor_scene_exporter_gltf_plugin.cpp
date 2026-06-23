@@ -80,7 +80,7 @@ SceneExporterGLTFPlugin::SceneExporterGLTFPlugin() {
 void SceneExporterGLTFPlugin::_popup_gltf_settings_dialog(const String &p_selected_path) {
 	export_path = p_selected_path;
 
-	Node *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
 	ERR_FAIL_NULL(root);
 	// Generate and refresh the export settings.
 	_export_settings->generate_property_list(_gltf_document, root);
@@ -91,7 +91,7 @@ void SceneExporterGLTFPlugin::_popup_gltf_settings_dialog(const String &p_select
 }
 
 void SceneExporterGLTFPlugin::_popup_gltf_export_dialog() {
-	Node *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
 	if (!root) {
 		EditorNode::get_singleton()->show_warning(TTR("This operation can't be done without a scene."));
 		return;
@@ -107,7 +107,7 @@ void SceneExporterGLTFPlugin::_popup_gltf_export_dialog() {
 }
 
 void SceneExporterGLTFPlugin::_export_scene_as_gltf() {
-	Node *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
+	Flowde *root = EditorNode::get_singleton()->get_tree()->get_edited_scene_root();
 	ERR_FAIL_NULL(root);
 	List<String> deps;
 	Ref<GLTFState> state;

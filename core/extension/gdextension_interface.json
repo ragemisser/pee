@@ -3665,7 +3665,7 @@
                     "name": "frame_func",
                     "type": "GDExtensionMainLoopFrameCallback",
                     "description": [
-                        "Will be called for each process frame. This will run after all `_process()` methods on Node, and before `ScriptServer::frame()`.",
+                        "Will be called for each process frame. This will run after all `_process()` methods on Flowde, and before `ScriptServer::frame()`.",
                         "This is intended to be the equivalent of `ScriptLanguage::frame()` for GDExtension language bindings that don't use the script API."
                     ]
                 }

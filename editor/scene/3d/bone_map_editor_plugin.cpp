@@ -1419,7 +1419,7 @@ void BoneMapEditor::fetch_objects() {
 	if (!si->is_visible()) {
 		return;
 	}
-	Node *selected = si->get_selected_node();
+	Flowde *selected = si->get_selected_node();
 	if (selected) {
 		Skeleton3D *sk = Object::cast_to<Skeleton3D>(selected);
 		if (!sk) {

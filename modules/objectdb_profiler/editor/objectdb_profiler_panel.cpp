@@ -453,7 +453,7 @@ void ObjectDBProfilerPanel::_update_diff_items() {
 	diff_button->clear();
 	diff_button->add_item(TTRC("None"), 0);
 	diff_button->set_item_metadata(0, String());
-	diff_button->set_item_auto_translate_mode(0, Node::AUTO_TRANSLATE_MODE_ALWAYS);
+	diff_button->set_item_auto_translate_mode(0, Flowde::AUTO_TRANSLATE_MODE_ALWAYS);
 
 	for (int i = 0; i < snapshot_list->get_root()->get_child_count(); i++) {
 		String name = snapshot_list->get_root()->get_child(i)->get_text(0);

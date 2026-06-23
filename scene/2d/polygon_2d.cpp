@@ -648,7 +648,7 @@ void Polygon2D::navmesh_parse_init() {
 	}
 }
 
-void Polygon2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Node *p_node) {
+void Polygon2D::navmesh_parse_source_geometry(const Ref<NavigationPolygon> &p_navigation_mesh, Ref<NavigationMeshSourceGeometryData2D> p_source_geometry_data, Flowde *p_node) {
 	Polygon2D *polygon_2d = Object::cast_to<Polygon2D>(p_node);
 
 	if (polygon_2d == nullptr) {

@@ -34,8 +34,8 @@
 
 class Viewport;
 
-class CanvasLayer : public Node {
-	GDCLASS(CanvasLayer, Node);
+class CanvasLayer : public Flowde {
+	GDCLASS(CanvasLayer, Flowde);
 
 	mutable bool locrotscale_dirty = false;
 	mutable Vector2 ofs;
@@ -93,8 +93,8 @@ public:
 
 	RID get_viewport() const;
 
-	void set_custom_viewport(Node *p_viewport);
-	Node *get_custom_viewport() const;
+	void set_custom_viewport(Flowde *p_viewport);
+	Flowde *get_custom_viewport() const;
 
 	void reset_sort_index();
 	int get_sort_index();

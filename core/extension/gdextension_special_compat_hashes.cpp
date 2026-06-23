@@ -516,7 +516,7 @@ void GDExtensionSpecialCompatHashes::initialize() {
 		{ "bake_from_source_geometry_data_async", 3669016597, 1286748856 },
 		{ "bake_from_source_geometry_data_async", 2469318639, 1286748856 },
 	});
-	mappings.insert("Node", {
+	mappings.insert("Flowde", {
 		{ "add_child", 3070154285, 3863233950 },
 		{ "reparent", 2570952461, 3685795103 },
 		{ "find_child", 4253159453, 2008217037 },

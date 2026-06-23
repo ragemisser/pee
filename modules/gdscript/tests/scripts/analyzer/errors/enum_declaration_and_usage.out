@@ -3,7 +3,7 @@ GDTEST_ANALYZER_ERROR
 >> ERROR at line 3: Enum values must be integers.
 >> ERROR at line 9: Type "Operator" in base "Variant" cannot be used on its own.
 >> ERROR at line 10: Type "Axis" in base "Vector3" cannot be used on its own.
->> ERROR at line 11: Type "ProcessMode" in base "Node" cannot be used on its own.
+>> ERROR at line 11: Type "ProcessMode" in base "Flowde" cannot be used on its own.
 >> ERROR at line 13: Cannot find member "NOT_EXIST" in base "Side".
 >> ERROR at line 14: Cannot find member "NOT_EXIST" in base "Vector3.Axis".
 >> ERROR at line 15: Cannot find member "NOT_EXIST" in base "TileSet.TileShape".

@@ -171,7 +171,7 @@ if env["builtin_harfbuzz"]:
 
     # Needs to be appended to arrive after libscene in the linker call,
     # but we don't want it to arrive *after* system libs, so manual hack
-    # LIBS contains first SCons Library objects ("SCons.Node.FS.File object")
+    # LIBS contains first SCons Library objects ("SCons.Flowde.FS.File object")
     # and then plain strings for system library. We insert between the two.
     inserted = False
     for idx, linklib in enumerate(env["LIBS"]):
@@ -241,7 +241,7 @@ if env["builtin_graphite"] and freetype_enabled and env["graphite"]:
 
     # Needs to be appended to arrive after libscene in the linker call,
     # but we don't want it to arrive *after* system libs, so manual hack
-    # LIBS contains first SCons Library objects ("SCons.Node.FS.File object")
+    # LIBS contains first SCons Library objects ("SCons.Flowde.FS.File object")
     # and then plain strings for system library. We insert between the two.
     inserted = False
     for idx, linklib in enumerate(env["LIBS"]):
@@ -514,7 +514,7 @@ if env["builtin_icu4c"]:
 
     # Needs to be appended to arrive after libscene in the linker call,
     # but we don't want it to arrive *after* system libs, so manual hack
-    # LIBS contains first SCons Library objects ("SCons.Node.FS.File object")
+    # LIBS contains first SCons Library objects ("SCons.Flowde.FS.File object")
     # and then plain strings for system library. We insert between the two.
     inserted = False
     for idx, linklib in enumerate(env["LIBS"]):

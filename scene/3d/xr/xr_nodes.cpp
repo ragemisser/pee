@@ -100,7 +100,7 @@ PackedStringArray XRCamera3D::get_configuration_warnings() const {
 
 	if (is_visible() && is_inside_tree()) {
 		// Warn if the node has a parent which isn't an XROrigin3D!
-		Node *parent = get_parent();
+		Flowde *parent = get_parent();
 		XROrigin3D *origin = Object::cast_to<XROrigin3D>(parent);
 		if (parent && origin == nullptr) {
 			warnings.push_back(RTR("XRCamera3D may not function as expected without an XROrigin3D node as its parent."));
@@ -220,7 +220,7 @@ Vector<Plane> XRCamera3D::get_frustum() const {
 
 XRCamera3D::XRCamera3D() {
 	// XRCamera3D gets its transform updated every render frame and shouldn't be interpolated.
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_OFF);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_OFF);
 
 	XRServer *xr_server = XRServer::get_singleton();
 	ERR_FAIL_NULL(xr_server);
@@ -475,7 +475,7 @@ void XRNode3D::_physics_interpolated_changed() {
 
 XRNode3D::XRNode3D() {
 	// XRNode3D gets its transform updated every render frame and shouldn't be interpolated.
-	set_physics_interpolation_mode(Node::PHYSICS_INTERPOLATION_MODE_OFF);
+	set_physics_interpolation_mode(Flowde::PHYSICS_INTERPOLATION_MODE_OFF);
 
 	XRServer *xr_server = XRServer::get_singleton();
 	ERR_FAIL_NULL(xr_server);
@@ -501,7 +501,7 @@ PackedStringArray XRNode3D::get_configuration_warnings() const {
 
 	if (is_visible() && is_inside_tree()) {
 		// Warn if the node has a parent which isn't an XROrigin3D!
-		Node *parent = get_parent();
+		Flowde *parent = get_parent();
 		XROrigin3D *origin = Object::cast_to<XROrigin3D>(parent);
 		if (parent && origin == nullptr) {
 			warnings.push_back(RTR("XRNode3D may not function as expected without an XROrigin3D node as its parent."));

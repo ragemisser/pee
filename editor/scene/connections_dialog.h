@@ -178,7 +178,7 @@ public:
 	StringName get_signal_name() const;
 	PackedStringArray get_signal_args() const;
 	NodePath get_dst_path() const;
-	void set_dst_node(Node *p_node);
+	void set_dst_node(Flowde *p_node);
 	StringName get_dst_method_name() const;
 	void set_dst_method(const StringName &p_method);
 	int get_unbinds() const;

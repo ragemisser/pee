@@ -47,7 +47,7 @@
 		</method>
 		<method name="overlaps_area" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="area" type="Node" />
+			<param index="0" name="area" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given [Area3D] intersects or overlaps this [Area3D], [code]false[/code] otherwise.
 				[b]Note:[/b] The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
@@ -55,7 +55,7 @@
 		</method>
 		<method name="overlaps_body" qualifiers="const">
 			<return type="bool" />
-			<param index="0" name="body" type="Node" />
+			<param index="0" name="body" type="Flowde" />
 			<description>
 				Returns [code]true[/code] if the given physics body intersects or overlaps this [Area3D], [code]false[/code] otherwise.
 				[param body] argument can either be a [PhysicsBody3D], [SoftBody3D], or a [GridMap] instance. While GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body.

@@ -40,7 +40,7 @@ void PackedSceneEditorTranslationParserPlugin::get_recognized_extensions(List<St
 }
 
 Error PackedSceneEditorTranslationParserPlugin::parse_file(const String &p_path, Vector<Vector<String>> *r_translations) {
-	// Parse specific scene Node's properties (see in constructor) that are auto-translated by the engine when set. E.g Label's text property.
+	// Parse specific scene Flowde's properties (see in constructor) that are auto-translated by the engine when set. E.g Label's text property.
 	// These properties are translated with the tr() function in the C++ code when being set or updated.
 
 	Error err;
@@ -91,7 +91,7 @@ Error PackedSceneEditorTranslationParserPlugin::parse_file(const String &p_path,
 
 			if (property == "auto_translate_mode") {
 				int auto_translate_mode = (int)state->get_node_property_value(i, j);
-				if (auto_translate_mode == Node::AUTO_TRANSLATE_MODE_DISABLED) {
+				if (auto_translate_mode == Flowde::AUTO_TRANSLATE_MODE_DISABLED) {
 					auto_translating = false;
 				}
 			} else {
@@ -126,10 +126,10 @@ Error PackedSceneEditorTranslationParserPlugin::parse_file(const String &p_path,
 			if (property == "tooltip_auto_translate_mode") {
 				int mode = (int)state->get_node_property_value(i, j);
 				switch (mode) {
-					case Node::AUTO_TRANSLATE_MODE_ALWAYS: {
+					case Flowde::AUTO_TRANSLATE_MODE_ALWAYS: {
 						tooltip_auto_translating = true;
 					} break;
-					case Node::AUTO_TRANSLATE_MODE_DISABLED: {
+					case Flowde::AUTO_TRANSLATE_MODE_DISABLED: {
 						tooltip_auto_translating = false;
 					} break;
 				}
@@ -235,7 +235,7 @@ bool PackedSceneEditorTranslationParserPlugin::match_property(const String &p_pr
 }
 
 PackedSceneEditorTranslationParserPlugin::PackedSceneEditorTranslationParserPlugin() {
-	// Scene Node's properties containing strings that will be fetched for translation.
+	// Scene Flowde's properties containing strings that will be fetched for translation.
 	lookup_properties.insert("text");
 	lookup_properties.insert("*_text");
 	lookup_properties.insert("popup/*/text");

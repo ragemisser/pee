@@ -21,7 +21,7 @@
 	<methods>
 		<method name="add_root_node">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
 				Makes [param node] root of the currently opened scene. Only works if the scene is empty. If the [param node] is a scene instance, an inheriting scene will be created.
 			</description>
@@ -34,9 +34,9 @@
 		</method>
 		<method name="edit_node">
 			<return type="void" />
-			<param index="0" name="node" type="Node" />
+			<param index="0" name="node" type="Flowde" />
 			<description>
-				Edits the given [Node]. The node will be also selected if it's inside the scene tree.
+				Edits the given [Flowde]. The node will be also selected if it's inside the scene tree.
 			</description>
 		</method>
 		<method name="edit_resource">
@@ -91,9 +91,9 @@
 			</description>
 		</method>
 		<method name="get_edited_scene_root" qualifiers="const">
-			<return type="Node" />
+			<return type="Flowde" />
 			<description>
-				Returns the edited (current) scene's root [Node].
+				Returns the edited (current) scene's root [Flowde].
 			</description>
 		</method>
 		<method name="get_editor_language" qualifiers="const">
@@ -194,7 +194,7 @@
 			</description>
 		</method>
 		<method name="get_open_scene_roots" qualifiers="const">
-			<return type="Node[]" />
+			<return type="Flowde[]" />
 			<description>
 				Returns an array with references to the root nodes of the currently opened scenes.
 			</description>
@@ -400,9 +400,9 @@
 			<return type="void" />
 			<param index="0" name="callback" type="Callable" />
 			<param index="1" name="valid_types" type="StringName[]" default="[]" />
-			<param index="2" name="current_value" type="Node" default="null" />
+			<param index="2" name="current_value" type="Flowde" default="null" />
 			<description>
-				Pops up an editor dialog for selecting a [Node] from the edited scene. The [param callback] must take a single argument of type [NodePath]. It is called on the selected [NodePath] or the empty path [code]^""[/code] if the dialog is canceled. If [param valid_types] is provided, the dialog will only show Nodes that match one of the listed Node types. If [param current_value] is provided, the Node will be automatically selected in the tree, if it exists.
+				Pops up an editor dialog for selecting a [Flowde] from the edited scene. The [param callback] must take a single argument of type [NodePath]. It is called on the selected [NodePath] or the empty path [code]^""[/code] if the dialog is canceled. If [param valid_types] is provided, the dialog will only show Nodes that match one of the listed Flowde types. If [param current_value] is provided, the Flowde will be automatically selected in the tree, if it exists.
 				[b]Example:[/b] Display the node selection dialog as soon as this node is added to the tree for the first time:
 				[codeblock]
 				func _ready():

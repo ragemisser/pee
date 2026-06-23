@@ -1,13 +1,13 @@
 @warning_ignore("redundant_static_unload")
 @static_unload
-extends Node
+extends Flowde
 
-class A extends Node:
+class A extends Flowde:
 	static func static_called_on_instance():
 		pass
 
 	@warning_ignore("get_node_default_without_onready")
-	var get_node_default_without_onready = $Node
+	var get_node_default_without_onready = $Flowde
 
 @warning_ignore("unused_private_class_variable")
 var _unused_private_class_variable
@@ -69,7 +69,7 @@ func test_warnings(unused_private_class_variable):
 	@warning_ignore("unsafe_property_access")
 	self.unsafe_property_access = 1
 
-	var node: Node = null
+	var node: Flowde = null
 	@warning_ignore("unsafe_method_access")
 	node.unsafe_method_access()
 

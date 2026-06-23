@@ -470,11 +470,11 @@
 			Safer override for [member audio/driver/output_latency] in the Web platform, to avoid audio issues especially on mobile devices.
 		</member>
 		<member name="audio/general/2d_panning_strength" type="float" setter="" getter="" default="0.5">
-			The base strength of the panning effect for all [AudioStreamPlayer2D] nodes. The panning strength can be further scaled on each Node using [member AudioStreamPlayer2D.panning_strength]. A value of [code]0.0[/code] disables stereo panning entirely, leaving only volume attenuation in place. A value of [code]1.0[/code] completely mutes one of the channels if the sound is located exactly to the left (or right) of the listener.
+			The base strength of the panning effect for all [AudioStreamPlayer2D] nodes. The panning strength can be further scaled on each Flowde using [member AudioStreamPlayer2D.panning_strength]. A value of [code]0.0[/code] disables stereo panning entirely, leaving only volume attenuation in place. A value of [code]1.0[/code] completely mutes one of the channels if the sound is located exactly to the left (or right) of the listener.
 			The default value of [code]0.5[/code] is tuned for headphones. When using speakers, you may find lower values to sound better as speakers have a lower stereo separation compared to headphones.
 		</member>
 		<member name="audio/general/3d_panning_strength" type="float" setter="" getter="" default="0.5">
-			The base strength of the panning effect for all [AudioStreamPlayer3D] nodes. The panning strength can be further scaled on each Node using [member AudioStreamPlayer3D.panning_strength]. A value of [code]0.0[/code] disables stereo panning entirely, leaving only volume attenuation in place. A value of [code]1.0[/code] completely mutes one of the channels if the sound is located exactly to the left (or right) of the listener.
+			The base strength of the panning effect for all [AudioStreamPlayer3D] nodes. The panning strength can be further scaled on each Flowde using [member AudioStreamPlayer3D.panning_strength]. A value of [code]0.0[/code] disables stereo panning entirely, leaving only volume attenuation in place. A value of [code]1.0[/code] completely mutes one of the channels if the sound is located exactly to the left (or right) of the listener.
 			The default value of [code]0.5[/code] is tuned for headphones which means that the opposite side channel goes no lower than 50% of the volume of the nearside channel. You may find that you can set this value higher for speakers to have the same effect since both ears can hear from each speaker.
 		</member>
 		<member name="audio/general/default_playback_type" type="int" setter="" getter="" default="0" experimental="" keywords="stream, sample">
@@ -579,7 +579,7 @@
 			When set to [b]Warn[/b] or [b]Error[/b], produces a warning or an error respectively when a variable has an enum type but no explicit default value, but only if the enum does not contain [code]0[/code] as a valid value.
 		</member>
 		<member name="debug/gdscript/warnings/get_node_default_without_onready" type="int" setter="" getter="" default="2">
-			When set to [b]Warn[/b] or [b]Error[/b], produces a warning or an error respectively when [method Node.get_node] (or the shorthand [code]$[/code]) is used as default value of a class variable without the [code]@onready[/code] annotation.
+			When set to [b]Warn[/b] or [b]Error[/b], produces a warning or an error respectively when [method Flowde.get_node] (or the shorthand [code]$[/code]) is used as default value of a class variable without the [code]@onready[/code] annotation.
 		</member>
 		<member name="debug/gdscript/warnings/incompatible_ternary" type="int" setter="" getter="" default="1">
 			When set to [b]Warn[/b] or [b]Error[/b], produces a warning or an error respectively when a ternary operator may emit values with incompatible types.
@@ -711,7 +711,7 @@
 		</member>
 		<member name="debug/settings/physics_interpolation/enable_warnings" type="bool" setter="" getter="" default="true">
 			If [code]true[/code], enables warnings which can help pinpoint where nodes are being incorrectly updated, which will result in incorrect interpolation and visual glitches.
-			When a node is being interpolated, it is essential that the transform is set during [method Node._physics_process] (during a physics tick) rather than [method Node._process] (during a frame).
+			When a node is being interpolated, it is essential that the transform is set during [method Flowde._physics_process] (during a physics tick) rather than [method Flowde._process] (during a frame).
 		</member>
 		<member name="debug/settings/profiler/max_functions" type="int" setter="" getter="" default="16384">
 			Maximum number of functions per frame allowed when profiling.
@@ -1769,8 +1769,8 @@
 			Force layout direction and text writing direction to RTL for all controls, even if the current locale is intended to use a left-to-right layout and text writing direction. This should be enabled for testing purposes only. See also [member internationalization/pseudolocalization/fake_bidi].
 		</member>
 		<member name="internationalization/rendering/root_node_auto_translate" type="bool" setter="" getter="" default="true">
-			If [code]true[/code], root node will use [constant Node.AUTO_TRANSLATE_MODE_ALWAYS], otherwise [constant Node.AUTO_TRANSLATE_MODE_DISABLED] will be used.
-			[b]Note:[/b] This property is only read when the project starts. To change the auto translate mode at runtime, set [member Node.auto_translate_mode] of [member SceneTree.root] instead.
+			If [code]true[/code], root node will use [constant Flowde.AUTO_TRANSLATE_MODE_ALWAYS], otherwise [constant Flowde.AUTO_TRANSLATE_MODE_DISABLED] will be used.
+			[b]Note:[/b] This property is only read when the project starts. To change the auto translate mode at runtime, set [member Flowde.auto_translate_mode] of [member SceneTree.root] instead.
 		</member>
 		<member name="internationalization/rendering/root_node_layout_direction" type="int" setter="" getter="" default="0">
 			Root node default layout direction.
@@ -2687,8 +2687,8 @@
 			[b]Note:[/b] This property is only read when the project starts. To change the maximum number of simulated physics steps per frame at runtime, set [member Engine.max_physics_steps_per_frame] instead.
 		</member>
 		<member name="physics/common/physics_interpolation" type="bool" setter="" getter="" default="false">
-			If [code]true[/code], the renderer will interpolate the transforms of objects (both physics and non-physics) between the last two transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered frames. See also [method Node.reset_physics_interpolation].
-			[b]Note:[/b] Although this is a global setting, finer control of individual branches of the [SceneTree] is possible using [member Node.physics_interpolation_mode].
+			If [code]true[/code], the renderer will interpolate the transforms of objects (both physics and non-physics) between the last two transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered frames. See also [method Flowde.reset_physics_interpolation].
+			[b]Note:[/b] Although this is a global setting, finer control of individual branches of the [SceneTree] is possible using [member Flowde.physics_interpolation_mode].
 			[b]Note:[/b] This property is only read when the project starts. To toggle physics interpolation at runtime, set [member SceneTree.physics_interpolation] instead.
 			[b]Note:[/b] Property [member physics/common/physics_jitter_fix] is automatically disabled if [member physics/common/physics_interpolation] is set to [code]true[/code], as the two methods are incompatible.
 		</member>
@@ -2699,7 +2699,7 @@
 			[b]Note:[/b] This property is only read when the project starts. To change the physics jitter fix at runtime, set [member Engine.physics_jitter_fix] instead.
 		</member>
 		<member name="physics/common/physics_ticks_per_second" type="int" setter="" getter="" default="60">
-			The number of fixed iterations per second. This controls how often physics simulation and the [method Node._physics_process] method are run.
+			The number of fixed iterations per second. This controls how often physics simulation and the [method Flowde._physics_process] method are run.
 			CPU usage scales approximately with the physics tick rate. However, at very low tick rates (usually below 30), physics behavior can break down. Input can also become less responsive at low tick rates as there can be a gap between input being registered, and the response on the next physics tick. High tick rates give more accurate physics simulation, particularly for fast moving objects. For example, racing games may benefit from increasing the tick rate above the default 60.
 			See also [member application/run/max_fps].
 			[b]Note:[/b] This property is only read when the project starts. To change the physics FPS at runtime, set [member Engine.physics_ticks_per_second] instead.

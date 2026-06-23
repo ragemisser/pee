@@ -297,7 +297,7 @@ void AnimationTreeEditor::edit(AnimationTree *p_tree) {
 	}
 }
 
-void AnimationTreeEditor::_node_removed(Node *p_node) {
+void AnimationTreeEditor::_node_removed(Flowde *p_node) {
 	if (p_node == tree) {
 		tree = nullptr;
 		_clear_editors();

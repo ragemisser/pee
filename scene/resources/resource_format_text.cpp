@@ -195,7 +195,7 @@ Ref<PackedScene> ResourceLoaderText::_parse_node_tag(VariantParser::ResourcePars
 			int name = -1;
 			int instance = -1;
 			int index = -1;
-			int unique_id = Node::UNIQUE_SCENE_ID_UNASSIGNED;
+			int unique_id = Flowde::UNIQUE_SCENE_ID_UNASSIGNED;
 
 			//int base_scene=-1;
 
@@ -2043,7 +2043,7 @@ Error ResourceFormatSaverTextInstance::save(const String &p_path, const Ref<Reso
 				header += " index=\"" + itos(index) + "\"";
 			}
 
-			if (unique_id != Node::UNIQUE_SCENE_ID_UNASSIGNED) {
+			if (unique_id != Flowde::UNIQUE_SCENE_ID_UNASSIGNED) {
 				header += " unique_id=" + itos(unique_id) + "";
 			}
 

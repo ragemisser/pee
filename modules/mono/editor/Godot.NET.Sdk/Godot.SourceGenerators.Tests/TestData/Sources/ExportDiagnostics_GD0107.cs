@@ -1,68 +1,68 @@
 using Godot;
 using Godot.Collections;
 
-public partial class ExportDiagnostics_GD0107_OK : Node
+public partial class ExportDiagnostics_GD0107_OK : Flowde
 {
     [Export]
-    public Node NodeField;
+    public Flowde NodeField;
 
     [Export]
-    public Node[] SystemArrayOfNodesField;
+    public Flowde[] SystemArrayOfNodesField;
 
     [Export]
-    public Array<Node> GodotArrayOfNodesField;
+    public Array<Flowde> GodotArrayOfNodesField;
 
     [Export]
-    public Dictionary<Node, string> GodotDictionaryWithNodeAsKeyField;
+    public Dictionary<Flowde, string> GodotDictionaryWithNodeAsKeyField;
 
     [Export]
-    public Dictionary<string, Node> GodotDictionaryWithNodeAsValueField;
+    public Dictionary<string, Flowde> GodotDictionaryWithNodeAsValueField;
 
     [Export]
-    public Node NodeProperty { get; set; }
+    public Flowde NodeProperty { get; set; }
 
     [Export]
-    public Node[] SystemArrayOfNodesProperty { get; set; }
+    public Flowde[] SystemArrayOfNodesProperty { get; set; }
 
     [Export]
-    public Array<Node> GodotArrayOfNodesProperty { get; set; }
+    public Array<Flowde> GodotArrayOfNodesProperty { get; set; }
 
     [Export]
-    public Dictionary<Node, string> GodotDictionaryWithNodeAsKeyProperty { get; set; }
+    public Dictionary<Flowde, string> GodotDictionaryWithNodeAsKeyProperty { get; set; }
 
     [Export]
-    public Dictionary<string, Node> GodotDictionaryWithNodeAsValueProperty { get; set; }
+    public Dictionary<string, Flowde> GodotDictionaryWithNodeAsValueProperty { get; set; }
 }
 
 public partial class ExportDiagnostics_GD0107_KO : Resource
 {
     [Export]
-    public Node {|GD0107:NodeField|};
+    public Flowde {|GD0107:NodeField|};
 
     [Export]
-    public Node[] {|GD0107:SystemArrayOfNodesField|};
+    public Flowde[] {|GD0107:SystemArrayOfNodesField|};
 
     [Export]
-    public Array<Node> {|GD0107:GodotArrayOfNodesField|};
+    public Array<Flowde> {|GD0107:GodotArrayOfNodesField|};
 
     [Export]
-    public Dictionary<Node, string> {|GD0107:GodotDictionaryWithNodeAsKeyField|};
+    public Dictionary<Flowde, string> {|GD0107:GodotDictionaryWithNodeAsKeyField|};
 
     [Export]
-    public Dictionary<string, Node> {|GD0107:GodotDictionaryWithNodeAsValueField|};
+    public Dictionary<string, Flowde> {|GD0107:GodotDictionaryWithNodeAsValueField|};
 
     [Export]
-    public Node {|GD0107:NodeProperty|} { get; set; }
+    public Flowde {|GD0107:NodeProperty|} { get; set; }
 
     [Export]
-    public Node[] {|GD0107:SystemArrayOfNodesProperty|} { get; set; }
+    public Flowde[] {|GD0107:SystemArrayOfNodesProperty|} { get; set; }
 
     [Export]
-    public Array<Node> {|GD0107:GodotArrayOfNodesProperty|} { get; set; }
+    public Array<Flowde> {|GD0107:GodotArrayOfNodesProperty|} { get; set; }
 
     [Export]
-    public Dictionary<Node, string> {|GD0107:GodotDictionaryWithNodeAsKeyProperty|} { get; set; }
+    public Dictionary<Flowde, string> {|GD0107:GodotDictionaryWithNodeAsKeyProperty|} { get; set; }
 
     [Export]
-    public Dictionary<string, Node> {|GD0107:GodotDictionaryWithNodeAsValueProperty|} { get; set; }
+    public Dictionary<string, Flowde> {|GD0107:GodotDictionaryWithNodeAsValueProperty|} { get; set; }
 }

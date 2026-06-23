@@ -49,7 +49,7 @@ _FORCE_INLINE_ String quoted(const String &p_str) {
 	return "\"" + p_str + "\"";
 }
 
-void _add_nodes_suggestions(const Node *p_base, const Node *p_node, PackedStringArray &r_suggestions) {
+void _add_nodes_suggestions(const Flowde *p_base, const Flowde *p_node, PackedStringArray &r_suggestions) {
 	if (p_node != p_base && !p_node->get_owner()) {
 		return;
 	}
@@ -63,7 +63,7 @@ void _add_nodes_suggestions(const Node *p_base, const Node *p_node, PackedString
 	}
 }
 
-Node *_find_node_for_script(Node *p_base, Node *p_current, const Ref<Script> &p_script) {
+Flowde *_find_node_for_script(Flowde *p_base, Flowde *p_current, const Ref<Script> &p_script) {
 	if (p_current->get_owner() != p_base && p_base != p_current) {
 		return nullptr;
 	}
@@ -75,7 +75,7 @@ Node *_find_node_for_script(Node *p_base, Node *p_current, const Ref<Script> &p_
 	}
 
 	for (int i = 0; i < p_current->get_child_count(); i++) {
-		Node *found = _find_node_for_script(p_base, p_current->get_child(i), p_script);
+		Flowde *found = _find_node_for_script(p_base, p_current->get_child(i), p_script);
 		if (found) {
 			return found;
 		}
@@ -94,12 +94,12 @@ void _get_directory_contents(EditorFileSystemDirectory *p_dir, PackedStringArray
 	}
 }
 
-Node *_try_find_owner_node_in_tree(const Ref<Script> p_script) {
+Flowde *_try_find_owner_node_in_tree(const Ref<Script> p_script) {
 	SceneTree *tree = SceneTree::get_singleton();
 	if (!tree) {
 		return nullptr;
 	}
-	Node *base = tree->get_edited_scene_root();
+	Flowde *base = tree->get_edited_scene_root();
 	if (base) {
 		base = _find_node_for_script(base, base, p_script);
 	}
@@ -137,7 +137,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 			{
 				// Current edited scene tree
 				Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-				Node *base = _try_find_owner_node_in_tree(script);
+				Flowde *base = _try_find_owner_node_in_tree(script);
 				if (base) {
 					_add_nodes_suggestions(base, base, suggestions);
 				}
@@ -197,7 +197,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 		} break;
 		case CompletionKind::THEME_COLORS: {
 			Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-			Node *base = _try_find_owner_node_in_tree(script);
+			Flowde *base = _try_find_owner_node_in_tree(script);
 			if (base && Object::cast_to<Control>(base)) {
 				List<StringName> sn;
 				ThemeDB::get_singleton()->get_default_theme()->get_color_list(base->get_class(), &sn);
@@ -209,7 +209,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 		} break;
 		case CompletionKind::THEME_CONSTANTS: {
 			Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-			Node *base = _try_find_owner_node_in_tree(script);
+			Flowde *base = _try_find_owner_node_in_tree(script);
 			if (base && Object::cast_to<Control>(base)) {
 				List<StringName> sn;
 				ThemeDB::get_singleton()->get_default_theme()->get_constant_list(base->get_class(), &sn);
@@ -221,7 +221,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 		} break;
 		case CompletionKind::THEME_FONTS: {
 			Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-			Node *base = _try_find_owner_node_in_tree(script);
+			Flowde *base = _try_find_owner_node_in_tree(script);
 			if (base && Object::cast_to<Control>(base)) {
 				List<StringName> sn;
 				ThemeDB::get_singleton()->get_default_theme()->get_font_list(base->get_class(), &sn);
@@ -233,7 +233,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 		} break;
 		case CompletionKind::THEME_FONT_SIZES: {
 			Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-			Node *base = _try_find_owner_node_in_tree(script);
+			Flowde *base = _try_find_owner_node_in_tree(script);
 			if (base && Object::cast_to<Control>(base)) {
 				List<StringName> sn;
 				ThemeDB::get_singleton()->get_default_theme()->get_font_size_list(base->get_class(), &sn);
@@ -245,7 +245,7 @@ PackedStringArray get_code_completion(CompletionKind p_kind, const String &p_scr
 		} break;
 		case CompletionKind::THEME_STYLES: {
 			Ref<Script> script = ResourceLoader::load(p_script_file.simplify_path());
-			Node *base = _try_find_owner_node_in_tree(script);
+			Flowde *base = _try_find_owner_node_in_tree(script);
 			if (base && Object::cast_to<Control>(base)) {
 				List<StringName> sn;
 				ThemeDB::get_singleton()->get_default_theme()->get_stylebox_list(base->get_class(), &sn);

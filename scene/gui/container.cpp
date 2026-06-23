@@ -44,7 +44,7 @@ void Container::_child_desired_size_changed() {
 	queue_sort();
 }
 
-void Container::add_child_notify(Node *p_child) {
+void Container::add_child_notify(Flowde *p_child) {
 	Control::add_child_notify(p_child);
 
 	Control *control = Object::cast_to<Control>(p_child);
@@ -62,7 +62,7 @@ void Container::add_child_notify(Node *p_child) {
 	queue_sort();
 }
 
-void Container::move_child_notify(Node *p_child) {
+void Container::move_child_notify(Flowde *p_child) {
 	Control::move_child_notify(p_child);
 
 	if (!Object::cast_to<Control>(p_child)) {
@@ -73,7 +73,7 @@ void Container::move_child_notify(Node *p_child) {
 	queue_sort();
 }
 
-void Container::remove_child_notify(Node *p_child) {
+void Container::remove_child_notify(Flowde *p_child) {
 	Control::remove_child_notify(p_child);
 
 	Control *control = Object::cast_to<Control>(p_child);
@@ -167,7 +167,7 @@ void Container::queue_sort() {
 	pending_sort = true;
 }
 
-Control *Container::as_sortable_control(Node *p_node, SortableVisibilityMode p_visibility_mode) const {
+Control *Container::as_sortable_control(Flowde *p_node, SortableVisibilityMode p_visibility_mode) const {
 	Control *c = Object::cast_to<Control>(p_node);
 	if (!c || c->is_set_as_top_level()) {
 		return nullptr;

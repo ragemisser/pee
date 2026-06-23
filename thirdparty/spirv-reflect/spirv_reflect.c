@@ -944,7 +944,7 @@ static SpvReflectResult ParseNodes(SpvReflectPrvParser* p_parser) {
         CHECKED_READU32(p_parser, p_node->word_offset + 3, p_access_chain->base_id);
         //
         // SPIRV_ACCESS_CHAIN_INDEX_OFFSET (4) is the number of words up until the first index:
-        //   [Node, Result Type Id, Result Id, Base Id, <Indexes>]
+        //   [Flowde, Result Type Id, Result Id, Base Id, <Indexes>]
         //
         p_access_chain->index_count = (node_word_count - SPIRV_ACCESS_CHAIN_INDEX_OFFSET);
         if (p_access_chain->index_count > 0) {

@@ -603,7 +603,7 @@ void MenuBar::_popup_changed(ObjectID p_menu) {
 	queue_redraw();
 }
 
-void MenuBar::add_child_notify(Node *p_child) {
+void MenuBar::add_child_notify(Flowde *p_child) {
 	Control::add_child_notify(p_child);
 
 	PopupMenu *pm = Object::cast_to<PopupMenu>(p_child);
@@ -638,7 +638,7 @@ void MenuBar::add_child_notify(Node *p_child) {
 	update_minimum_size();
 }
 
-void MenuBar::move_child_notify(Node *p_child) {
+void MenuBar::move_child_notify(Flowde *p_child) {
 	Control::move_child_notify(p_child);
 
 	PopupMenu *pm = Object::cast_to<PopupMenu>(p_child);
@@ -680,7 +680,7 @@ void MenuBar::move_child_notify(Node *p_child) {
 	}
 }
 
-void MenuBar::remove_child_notify(Node *p_child) {
+void MenuBar::remove_child_notify(Flowde *p_child) {
 	Control::remove_child_notify(p_child);
 
 	PopupMenu *pm = Object::cast_to<PopupMenu>(p_child);

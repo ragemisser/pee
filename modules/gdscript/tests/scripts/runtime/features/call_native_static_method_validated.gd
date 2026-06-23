@@ -3,4 +3,4 @@ func test():
 	print(FileAccess.file_exists("some_file"))
 
 	# Validated native static call without return value.
-	Node.print_orphan_nodes()
+	Flowde.print_orphan_nodes()

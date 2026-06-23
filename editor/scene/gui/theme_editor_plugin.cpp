@@ -2311,7 +2311,7 @@ ThemeTypeDialog::ThemeTypeDialog() {
 	add_type_filter->connect(SceneStringName(text_submitted), callable_mp(this, &ThemeTypeDialog::_add_type_dialog_entered));
 
 	Label *add_type_options_label = memnew(Label);
-	add_type_options_label->set_text(TTR("Available Node-based types:"));
+	add_type_options_label->set_text(TTR("Available Flowde-based types:"));
 	add_type_vb->add_child(add_type_options_label);
 
 	MarginContainer *mc = memnew(MarginContainer);
@@ -2388,7 +2388,7 @@ void ThemeTypeEditor::_update_type_list() {
 			return;
 		}
 
-		Node *focus_parent = focused->get_parent();
+		Flowde *focus_parent = focused->get_parent();
 		while (focus_parent) {
 			Control *c = Object::cast_to<Control>(focus_parent);
 			if (c && focusables.has(c)) {
@@ -2595,7 +2595,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Colors.
 	{
 		for (int i = color_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = color_items_list->get_child(i);
+			Flowde *node = color_items_list->get_child(i);
 			node->queue_free();
 			color_items_list->remove_child(node);
 		}
@@ -2624,7 +2624,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Constants.
 	{
 		for (int i = constant_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = constant_items_list->get_child(i);
+			Flowde *node = constant_items_list->get_child(i);
 			node->queue_free();
 			constant_items_list->remove_child(node);
 		}
@@ -2658,7 +2658,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Fonts.
 	{
 		for (int i = font_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = font_items_list->get_child(i);
+			Flowde *node = font_items_list->get_child(i);
 			node->queue_free();
 			font_items_list->remove_child(node);
 		}
@@ -2698,7 +2698,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Fonts sizes.
 	{
 		for (int i = font_size_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = font_size_items_list->get_child(i);
+			Flowde *node = font_size_items_list->get_child(i);
 			node->queue_free();
 			font_size_items_list->remove_child(node);
 		}
@@ -2732,7 +2732,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Icons.
 	{
 		for (int i = icon_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = icon_items_list->get_child(i);
+			Flowde *node = icon_items_list->get_child(i);
 			node->queue_free();
 			icon_items_list->remove_child(node);
 		}
@@ -2772,7 +2772,7 @@ void ThemeTypeEditor::_update_type_items() {
 	// Styleboxes.
 	{
 		for (int i = stylebox_items_list->get_child_count() - 1; i >= 0; i--) {
-			Node *node = stylebox_items_list->get_child(i);
+			Flowde *node = stylebox_items_list->get_child(i);
 			node->queue_free();
 			stylebox_items_list->remove_child(node);
 		}
@@ -3846,12 +3846,12 @@ void ThemeEditor::_remove_preview_tab(int p_tab) {
 	}
 }
 
-void ThemeEditor::_remove_preview_tab_invalid(Node *p_tab_control) {
+void ThemeEditor::_remove_preview_tab_invalid(Flowde *p_tab_control) {
 	int tab_index = p_tab_control->get_index();
 	_remove_preview_tab(tab_index);
 }
 
-void ThemeEditor::_update_preview_tab(Node *p_tab_control) {
+void ThemeEditor::_update_preview_tab(Flowde *p_tab_control) {
 	if (!Object::cast_to<SceneThemeEditorPreview>(p_tab_control)) {
 		return;
 	}
